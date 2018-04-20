@@ -6,8 +6,10 @@
         console.log("Home Controller Loaded")
     })
 
-    app.controller('homeCtrl', function(){
-        console.log("hello from homeCtrl")
+    app.controller('homeCtrl', function($scope){
+        $scope.$on('$routeChangeSuccess', function () {
+				$('.carousel').carousel();
+	});
 
     })
 

@@ -11,6 +11,7 @@
         $routeProvider
             .when('/',{
                 templateUrl:'../views/pages/test.html',
+                controller:'homeCtrl',
                 name:"QLH | INDEX",
                 resolve:{
                     init: function($route){
@@ -20,6 +21,33 @@
             })
                 .when('/services',{
                 templateUrl:'../views/pages/services.html',
+                name:"QLH | SERVICES",
+                resolve:{
+                    init: function($route){
+                        console.log("index")
+                    }
+                }
+            })
+                            .when('/register',{
+                templateUrl:'../views/pages/register.html',
+                name:"QLH | SERVICES",
+                resolve:{
+                    init: function($route){
+                        console.log("index")
+                    }
+                }
+            })
+                            .when('/login',{
+                templateUrl:'../views/pages/login.html',
+                name:"QLH | SERVICES",
+                resolve:{
+                    init: function($route){
+                        console.log("index")
+                    }
+                }
+            })
+                            .when('/contact',{
+                templateUrl:'../views/pages/contact.html',
                 name:"QLH | SERVICES",
                 resolve:{
                     init: function($route){
@@ -44,7 +72,7 @@
 
             })
             .otherwise({
-                redirectTo: '/home'
+                redirectTo: '/'
             });
 
         $locationProvider.html5Mode({
