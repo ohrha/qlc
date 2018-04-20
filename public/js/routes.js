@@ -18,13 +18,21 @@
                     }
                 }
             })
+                .when('/services',{
+                templateUrl:'../views/pages/services.html',
+                name:"QLH | SERVICES",
+                resolve:{
+                    init: function($route){
+                        console.log("index")
+                    }
+                }
+            })
             .when('/home', {
 
                 templateUrl: '../views/pages/test2.html',
                 
                 name: "QLH | Home",
-                controller: 'homeCtrl',
-                controllerAs: 'home',
+           
                 resolve: {
                     init: function ($route) {
 
