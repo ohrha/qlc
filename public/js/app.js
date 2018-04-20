@@ -2,7 +2,7 @@
 
 //console.log("app.js loaded");
 
-var app = angular.module('qlc',["tapTargetController"]);
+var app = angular.module('qlc',['appRoutes',"tapTargetController","homeController"]);
 																																																  
 app.config(function(){
 
@@ -11,6 +11,10 @@ app.config(function(){
     console.log("app module loaded.")
 
 });
+app.controller('QlhController', [  function() {
+console.log("QlhController")
+
+}])
 }());
-//app.controller('StoreController', [  function() {
+
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="qlc" ng-controller ="QlhController">
 
-<head ng-app="qlc">
+<head >
     <title>QLH</title>
     <base href="/">
         <!-- Compiled and minified CSS -->
@@ -9,16 +9,19 @@
 <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"  crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script type="text/javascript" src="../js/app.js"></script>
-    <script type = "text/javascript" src="../controllers/taptargetCtrl.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="../js/angular.js"></script>
+    <script type = "text/javascript" src = "../js/angular-route.js"></script>
+    <script type = "text/javascript" src = "../js/app.js"></script>
+    <script type = "text/javascript" src = "../js/routes.js"></script>
+    <script type = "text/javascript" src = "../controllers/taptargetCtrl.js"></script>
+    <script type = "text/javascript" src = "../controllers/homeCtrl.js"></script>
 </head>
 <body>
 
   <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><i class = "material-icons">cloud</i>QLH</a>
+      <a href="/home" class="brand-logo"><i class = "material-icons">cloud</i>QLH</a>
 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>      
 <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Sass</a></li>
@@ -33,7 +36,7 @@
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#test1">Test 1</a></li>
+        <li class="tab"><a href="/home">Test 1</a></li>
         <li class="tab"><a class="active" href="#test2">Test 2</a></li>
         <li class="tab disabled"><a href="#test3">Disabled Tab</a></li>
         <li class="tab"><a href="#test4">Test 4</a></li>
@@ -56,7 +59,7 @@
 <script>
 
 </script>
-
+<h1>oy</h1>
 
       <div class="fixed-action-btn" id="infoToggle"  >
         <!-- Element Showed -->
@@ -80,8 +83,12 @@
           </div>
         </div>
       </div>
+      
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.js"></script>
-
+  <div style="color:red;">
+<div ng-view></div>
+  </div>
 </body>
 <script>
  $(document).ready(function(){
