@@ -1,0 +1,40 @@
+<div class="row animated fadeIn">
+    <div class = "col s12 ">
+        <h3 class = "center-align">Sign-up!</h3>
+
+    </div>
+    <form name = "regForm" ng-submit = "register.regUser(regData)" class="col s12" novalidate>
+      <div class="row">
+        <div class="input-field col s12">
+          <input  id="first_name"name="name" ng-model = "register.regData.name" type="text" class="validate">
+          <label for="first_name">Name</label>
+        </div>
+
+      </div>
+            <div class="row">
+        <div class="input-field col s12">
+          <input  id="username"name="username" ng-model = "register.regData.userName" type="text" class="validate">
+          <label for="username">Username</label>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 l12">
+          <input id="password" type="password"name = "password" ng-model = "register.regData.password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" name = "email" ng-model = "register.regData.email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+  <div class=" input-field col s12">
+      <button class="waves-effect waves-light btn center-align"type="submit">Submit!</button>
+  </div>
+      </div>
+    </form>
+  </div>
