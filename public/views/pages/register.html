@@ -44,15 +44,7 @@
          <p class = "animated fadeIn"  ng-show = "(!regForm.password.$pristine && regForm.password.$error.minlength)||(!regForm.password.$pristine && regForm.password.$error.maxlength) ">Must be at least 8 characters and no longer than 35 each...</p>
       </div>
     </div>
-    <div class="row">
-      <div class="input-field col s12 l12">
-       <!-- <input id="cpassword" type="password" name="cpassword" ng-model="register.regData.cpassword" class="validate" required>
-       -->   <input class="form-control"type="password" name="cpassword" placeholder="Please confirm password"  match ="{{[password]}}" ng-change="register.regData.password = confirm " ng-model="confirm" required/>
-                  <p ng-show="!confirmed && !regForm.confirmPassword.$pristine && regForm.firstPassword.$valid">Passwords do not match </p>
-{{confirmed}}
-        <label for="cpassword">Confirm Password</label>
-      </div>
-    </div>
+
     <div class="row">
       <div class="input-field col s12">
         <input id="email" type="email" name="email" ng-model="register.regData.email" class="validate" required>
@@ -69,9 +61,7 @@
 
     </div>
   
-        <input type="text" class="datepicker">
-      
- <input type="text" class="timepicker">
+  
     <div class="row">
       <div class=" input-field col s12">
         <button class="waves-effect waves-light btn center-align" type="submit">Submit!</button>

@@ -4,11 +4,12 @@
 
 var app = angular.module('qlc',['appRoutes',"tapTargetController","homeController",'registerController','loginController']);
 																																																  
-app.config(function(){
+app.config(function($compileProvider){
 
 	//$httpProvider.interceptors.push('AuthInterceptors');
 	//$window.Stripe.setPublishableKey('pk_test_aE3UDuxFXzcslBrNanFIIi6Q');
     console.log("app module loaded.")
+	$compileProvider.preAssignBindingsEnabled(true);
 
 });
 app.controller('QlhController', [  function() {
