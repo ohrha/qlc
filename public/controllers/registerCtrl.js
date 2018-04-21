@@ -8,9 +8,12 @@
 
     app.controller('registerCtrl', function($scope){
  
-        this.regUser=function(regData){
+        
+        this.regUser=function(regData,valid,regForm){
             console.log("gello");
+            console.log(valid)
             console.log(this.regData)
+            console.log(regForm)
         }
 
     })
