@@ -61,13 +61,17 @@
     </div>
     <div class="col s12">
       <label for="crole">Role *</label>
-      <select class="error browser-default" id="crole" name="crole" required>
+      <select class="error browser-default" id="crole"ng-model="register.regData.crole" name="crole" required>
                                 				<option value="" disabled selected>Gender</option>
                                 				<option value="1">Male</option>
                                                 <option value="2">Female</option>
                                 			</select>
 
     </div>
+  
+        <input type="text" class="datepicker">
+      
+ <input type="text" class="timepicker">
     <div class="row">
       <div class=" input-field col s12">
         <button class="waves-effect waves-light btn center-align" type="submit">Submit!</button>
