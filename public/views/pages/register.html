@@ -11,7 +11,7 @@
         <label for="first_name">Name</label>
 
         <p class="form-text animated fadeIn" ng-show="(!regForm.name.$pristine && regForm.name.$error.required) || (regForm.$submitted && regForm.name.$error.required)">This field is required</p>
-        {{regForm.name.$error.pattern}}
+      
           <p class="form-text animated fadeIn" ng-class="{'fadeOut': (!regForm.name.$pristine && !regForm.name.$error.pattern)}" ng-show="!regForm.name.$pristine && regForm.name.$error.pattern">Must have a space in between first and last name...</li>
           <p class="form-text animated fadeIn" ng-show="!regForm.name.$pristine && regForm.name.$error.pattern">Must not contain any special characters...</li>
           <p class="form-text animated fadeIn" ng-show="!regForm.name.$pristine && regForm.name.$error.pattern">Must not contain any numbers...</li>
@@ -26,10 +26,8 @@
           required>
         <label for="username">Username</label>
         <p class="form-text animated fadeIn" ng-show="(!regForm.userName.$pristine && regForm.userName.$error.required) || (regForm.$submitted && regForm.userName.$error.required)">This field is required</p>
-      
-            
-            <p class="form-text animated fadeIn" ng-show="!regForm.userName.$pristine && regForm.userName.$error.pattern">Must not contain any special characters or spaces...</p>
-            <p class="form-text animated fadeIn" ng-show = "(!regForm.userName.$pristine && regForm.userName.$error.minlength)||(!regForm.userName.$pristine && regForm.userName.$error.maxlength) ">Must be at least 3 characters and no longer than 20 each...</p>
+        <p class="form-text animated fadeIn" ng-show="!regForm.userName.$pristine && regForm.userName.$error.pattern">Must not contain any special characters or spaces...</p>
+        <p class="form-text animated fadeIn" ng-show = "(!regForm.userName.$pristine && regForm.userName.$error.minlength)||(!regForm.userName.$pristine && regForm.userName.$error.maxlength) ">Must be at least 3 characters and no longer than 20 each...</p>
         
         </ul>
       </div>
@@ -38,14 +36,21 @@
 
     <div class="row">
       <div class="input-field col s12 l12">
-        <input id="password" type="password" name="password" ng-model="register.regData.password" class="validate" required>
+        <input id="password" type="password" name="password" ng-model="password" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,35}$/"ng-minLength = "8" ng-maxLength = "25" class="validate" required>
         <label for="password">Password</label>
+        <p class="form-text animated fadeIn" ng-show="(!regForm.password.$pristine && regForm.password.$error.required) || (regForm.$submitted && regForm.password.$error.required)">This field is required</p>
+
+        <p class = "animated fadeIn"   ng-show="!regForm.password.$pristine && regForm.password.$error.pattern">Must contain one uppercase letter, one lowercase letter, and a number...</p>
+         <p class = "animated fadeIn"  ng-show = "(!regForm.password.$pristine && regForm.password.$error.minlength)||(!regForm.password.$pristine && regForm.password.$error.maxlength) ">Must be at least 8 characters and no longer than 35 each...</p>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 l12">
-        <input id="cpassword" type="password" name="cpassword" ng-model="register.regData.cpassword" class="validate" required>
-        <label for="cpassword">Password</label>
+       <!-- <input id="cpassword" type="password" name="cpassword" ng-model="register.regData.cpassword" class="validate" required>
+       -->   <input class="form-control"type="password" name="cpassword" placeholder="Please confirm password"  match ="{{[password]}}" ng-change="register.regData.password = confirm " ng-model="confirm" required/>
+                  <p ng-show="!confirmed && !regForm.confirmPassword.$pristine && regForm.firstPassword.$valid">Passwords do not match </p>
+{{confirmed}}
+        <label for="cpassword">Confirm Password</label>
       </div>
     </div>
     <div class="row">
