@@ -11,12 +11,12 @@
         <label for="first_name">Name</label>
 
         <p class="form-text animated fadeIn" ng-show="(!regForm.name.$pristine && regForm.name.$error.required) || (regForm.$submitted && regForm.name.$error.required)">This field is required</p>
-        <ul class="help-block animated fadeIn" ng-show="(!regForm.name.$pristine && regForm.name.$error.pattern)|| (!regForm.name.$pristine && regForm.name.$error.minlength) || (!regForm.name.$pristine && regForm.name.$error.maxlength)">
-          <li>Must have a space in between first and last name...</li>
-          <li>Must not contain any special characters...</li>
-          <li>Must not contain any numbers...</li>
-          <li>Must be at least 3 characters and no longer than 20 each...</li>
-        </ul>
+        {{regForm.name.$error.pattern}}
+          <p class="form-text animated fadeIn" ng-class="{'fadeOut': (!regForm.name.$pristine && !regForm.name.$error.pattern)}" ng-show="!regForm.name.$pristine && regForm.name.$error.pattern">Must have a space in between first and last name...</li>
+          <p class="form-text animated fadeIn" ng-show="!regForm.name.$pristine && regForm.name.$error.pattern">Must not contain any special characters...</li>
+          <p class="form-text animated fadeIn" ng-show="!regForm.name.$pristine && regForm.name.$error.pattern">Must not contain any numbers...</li>
+          <p class="form-text animated fadeIn" ng-show = "(!regForm.name.$pristine && regForm.name.$error.minlength)||(!regForm.name.$pristine && regForm.name.$error.maxlength) ">Must be at least 3 characters and no longer than 20 each...</li>
+        
       </div>
 
     </div>
@@ -27,9 +27,10 @@
         <label for="username">Username</label>
         <p class="form-text animated fadeIn" ng-show="(!regForm.userName.$pristine && regForm.userName.$error.required) || (regForm.$submitted && regForm.userName.$error.required)">This field is required</p>
       
-       <ul class="help-block animated fadeIn"ng-show="(!regForm.userName.$pristine && regForm.userName.$error.pattern)|| (!regForm.userName.$pristine && regForm.userName.$error.minlength) || (!regForm.userName.$pristine && regForm.userName.$error.maxlength)">
-            <li>Must not contain any special charactersor spaces...</li>
-            <li>Must be at least 3 characters and no longer than 25 each...</li>
+            
+            <p class="form-text animated fadeIn" ng-show="!regForm.userName.$pristine && regForm.userName.$error.pattern">Must not contain any special characters or spaces...</p>
+            <p class="form-text animated fadeIn" ng-show = "(!regForm.userName.$pristine && regForm.userName.$error.minlength)||(!regForm.userName.$pristine && regForm.userName.$error.maxlength) ">Must be at least 3 characters and no longer than 20 each...</p>
+        
         </ul>
       </div>
 
