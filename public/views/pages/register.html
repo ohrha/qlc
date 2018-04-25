@@ -36,7 +36,7 @@
 
     <div class="row">
       <div class="input-field col s12 l12">
-        <input id="password" type="password" name="password" ng-model="password" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,35}$/"ng-minLength = "8" ng-maxLength = "25" class="validate" required>
+        <input id="password" type="password" name="password" ng-model="register.regData.password" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d]).{8,35}$/"ng-minLength = "8" ng-maxLength = "25" class="validate" required>
         <label for="password">Password</label>
         <p class="form-text animated fadeIn" ng-show="(!regForm.password.$pristine && regForm.password.$error.required) || (regForm.$submitted && regForm.password.$error.required)">This field is required</p>
 
@@ -52,9 +52,9 @@
       </div>
     </div>
     <div class="col s12">
-      <label for="crole">Role *</label>
-      <select class="error browser-default" id="crole"ng-model="register.regData.crole" name="crole" required>
-                                				<option value="" disabled selected>Gender</option>
+      <label for="Sex">Sex *</label>
+      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+                                				<option value="" disabled selected>Sex</option>
                                 				<option value="1">Male</option>
                                                 <option value="2">Female</option>
                                 			</select>
@@ -68,4 +68,24 @@
       </div>
     </div>
   </form>
+
 </div>
+<div class = "row" ng-show="loading">
+  <div class = "col s12">
+    <div class = "center-align">
+ <i class="fa fa-cog fa-spin fa-3x fa-fw "></i>
+    </div>
+  </div>
+</div>
+  <div  class = "row animated fadeIn" ng-show = " successReg">
+    <div class = "col s12 green lighten-3" >
+   
+     <p class = "center-align"ng-show = "successMsg">{{successMsg}}</p>
+    </div>
+  </div>
+    <div  class = "row animated fadeIn" ng-show = "failReg ">
+    <div class = "col s12 red lighten-3" >
+   
+     <p class = "center-align"ng-show = "errorMsg"> {{errorMsg}} </p>
+    </div>
+  </div>

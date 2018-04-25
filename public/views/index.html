@@ -8,6 +8,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+
   <link rel="stylesheet" href="../css/main.css">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -151,7 +154,12 @@
         }
     })
     /*Materialize initializations */
-    $('.tap-target').tapTarget('open');
+    setTimeout(function(){
+
+      $('.tap-target').tapTarget('open');
+
+    },3000);
+    
     //This method wasn't working
    // $('select').material_select();
     $('select:not([multiple])').material_select();
