@@ -1,7 +1,29 @@
 var User = require('./models/user');
 module.exports = function (app) {
 
+    app.post('/authenticate', function(req,res){
 
+        //res.send("testing new route")
+        console.log("authenticate Route Hit");
+        console.log(req.body)
+        User.findOne({username: req.body.username}).select('email username password')
+        .exec(function(err,user){
+            if(err) throw err;
+            if(!user){
+                res.json({success: false, message:"Could Not Authenticate User"})
+            }else if(user){
+                //START PASSWORD VALIDATION
+                var validPassword = user.comparePassword(req.body.password)
+                console.log(validPassword)
+                if(!validPassword){
+                    res.json({success: false, message:"Could not authenticate password"})
+                }else{
+                    res.json({success:true, message: "User authenticated..."})
+                }
+        }
+        })
+
+    })
     app.post('/users', function (req, res) {
         console.log("Route Hit")
         var user = new User();

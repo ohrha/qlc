@@ -1,12 +1,12 @@
 (function(){
 
-    var app = angular.module('registerController',[])
+    var app = angular.module('registerController',['userServices'])
     app.config(function(){
 
         console.log("Register Controller Loaded")
     })
 
-    app.controller('registerCtrl', function($scope,$http){
+    app.controller('registerCtrl', function($scope,$http,$location,User){
         $scope.successReg = false;
         $scope.failReg = false;
        $scope.errorMsg = false;
@@ -17,7 +17,7 @@
             if(valid){
                 console.log(this.regData)
                 $scope.loading= true;
-                $http.post('/api/users', this.regData).then(function(data){
+                User.create(this.regData).then(function(data){
                     console.log(data.data)
                     if(data.data.success){
                         $scope.loading = false;
@@ -27,6 +27,7 @@
                         setTimeout(function(){
                             $scope.successReg = false;
                             $scope.successMsg = false;
+                            $location.path('/');
                         },3000)
                     }else{
                         $scope.loading = false;

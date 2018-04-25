@@ -22,6 +22,20 @@ var UserSchema = new Schema({
 
 })
 
+UserSchema.pre('save', function(next){
+    var user = this;
+    bcrypt.hash(user.password, null,null, function(err,hash){
+        if(err) return next(err);
+        user.password = hash;
+        next();
+    })
+})
+//CREATE CUSTOM METHOD
+UserSchema.methods.comparePassword = function(password){
+
+    console.log(password, this.password)
+    return bcrypt.compareSync(password, this.password)
+}
 //var Model = mongoose.model('User', UserSchema);
 module.exports = mongoose.model('User', UserSchema);
 
