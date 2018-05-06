@@ -86,23 +86,13 @@
                     <td class="day"><span class="number">27</span><span class="event event-multiday-start" style="background-color:#da5f5f;"></td>
   </tr>
   <tr>
-    <td class="day"><span class="number">28</span><span class="event event-multiday" style="background-color:#da5f5f;"></td>
-    <td class="day today"><span class="number">29</span><span class="event event-multiday-finish" style="background-color:#da5f5f;"></td>
-    <td class="day"><span class="number">30</span></td>
-                    <td class="day"><span class="number">1</span></td>
-                    <td class="day"><span class="number">2</span></td>
-                    <td class="day"><span class="number">3</span></td>
-                    <td class="day"><span class="number">4</span></td>
+    <td  class="day animated fadeIn"><span class="number">28</span><span class="event event-multiday" style="background-color:#da5f5f;"></td>
+    <td ng-show="monthPosition !== 2" class="day today animated fadeIn"><span class="number">29</span><span class="event event-multiday-finish" style="background-color:#da5f5f;"></td>
+    <td ng-show="monthPosition !== 2" class="day animated fadeIn"><span class="number">30</span></td>
+                    <td ng-show="monthPosition !== 2 && monthPosition !== 4 && monthPosition !== 6 && monthPosition !== 9 && monthPosition !== 11"class="day animated fadeIn"><span class="number">31</span></td>
+           
                 </tr>
-                <tr>
-                    <td class="day"><span class="number">5</span></td>
-                    <td class="day"><span class="number">6</span><span class="event"></span></td>
-                    <td class="day"><span class="number">7</span></td>
-                    <td class="day"><span class="number">8</span></td>
-                    <td class="day"><span class="number">9</span></td>
-                    <td class="day"><span class="number">10</span></td>
-                    <td class="day"><span class="number">11</span></td>
-                </tr>
+
             </table>
 
         </div>
