@@ -10,33 +10,33 @@
         <div style=" border-bottom:1px solid black;" class="col s9 ">
             <h4 class="center-align animated fadeIn">{{name}}</h4>
             <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
-            <div class = "row center-align">
-                <div class = "col s4">
-                    <i ng-click="previousMonth()"class="material-icons center-align">chevron_left</i>
+            <div class="row center-align">
+                <div class="col s4">
+                    <i ng-click="previousMonth()" class="material-icons center-align">chevron_left</i>
                 </div>
-                <div class = "col s4">
-                    <span ng-show="monthPosition ===1" class = "center-align animated fadeIn">JANUARY</span>
-                    <span ng-show="monthPosition ===2" class = "center-align animated fadeIn">FEBRUARY</span>
-                    <span ng-show="monthPosition ===3" class = "center-align animated fadeIn">MARCH</span>
-                    <span ng-show="monthPosition ===4" class = "center-align animated fadeIn">APRIL</span>
-                    <span ng-show="monthPosition ===5" class = "center-align animated fadeIn">MAY</span>
-                    <span ng-show="monthPosition ===6" class = "center-align animated fadeIn">JUNE</span>
-                    <span ng-show="monthPosition ===7" class = "center-align animated fadeIn">JULY</span>
-                    <span ng-show="monthPosition ===8" class = "center-align animated fadeIn">AUGUST</span>
-                    <span ng-show="monthPosition ===9" class = "center-align animated fadeIn">SEPTEMBER</span>
-                    <span ng-show="monthPosition ===10" class = "center-align animated fadeIn">OCTOVER</span>
-                    <span ng-show="monthPosition ===11" class = "center-align animated fadeIn">NOVEMBER</span>
-                    <span ng-show="monthPosition ===12" class = "center-align animated fadeIn">DECEMBER</span>
-                    
-                   <!-- <span class = "center-align">{{currentMonth}}</span>-->
+                <div class="col s4">
+                    <span ng-show="monthPosition ===1" class="center-align animated fadeIn">JANUARY</span>
+                    <span ng-show="monthPosition ===2" class="center-align animated fadeIn">FEBRUARY</span>
+                    <span ng-show="monthPosition ===3" class="center-align animated fadeIn">MARCH</span>
+                    <span ng-show="monthPosition ===4" class="center-align animated fadeIn">APRIL</span>
+                    <span ng-show="monthPosition ===5" class="center-align animated fadeIn">MAY</span>
+                    <span ng-show="monthPosition ===6" class="center-align animated fadeIn">JUNE</span>
+                    <span ng-show="monthPosition ===7" class="center-align animated fadeIn">JULY</span>
+                    <span ng-show="monthPosition ===8" class="center-align animated fadeIn">AUGUST</span>
+                    <span ng-show="monthPosition ===9" class="center-align animated fadeIn">SEPTEMBER</span>
+                    <span ng-show="monthPosition ===10" class="center-align animated fadeIn">OCTOVER</span>
+                    <span ng-show="monthPosition ===11" class="center-align animated fadeIn">NOVEMBER</span>
+                    <span ng-show="monthPosition ===12" class="center-align animated fadeIn">DECEMBER</span>
+
+                    <!-- <span class = "center-align">{{currentMonth}}</span>-->
                 </div>
-                <div class ="col s4">
+                <div class="col s4">
                     <i ng-click="nextMonth()" class="material-icons center-align">chevron_right</i>
                 </div>
             </div>
-        
-            <table class = "animated fadeIn center-align">
-                
+
+            <table class="animated fadeIn center-align">
+
                 <tr>
                     <th class="day-name">Sun</th>
                     <th class="day-name">Mon</th>
@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td class="day"><span class="number">31</span></td>
-                    <td class="day"><span class="number">1</span><span class="event"></span><span class="event"></span></td>
+                    <td ng-click="areYouAvailable()"ng-class = "{'available': availability == 1, 'notavailable': availability == 3, 'pending': availability == 2}"class="day"><span class="number">1</span><span class="event"></span><span class="event"></span></td>
                     <td class="day"><span class="number">2</span></td>
                     <td class="day"><span class="number">3</span><span class="event event-multiday-start"></span></td>
                     <td class="day"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass"
@@ -87,10 +87,12 @@
   </tr>
   <tr>
     <td  class="day animated fadeIn"><span class="number">28</span><span class="event event-multiday" style="background-color:#da5f5f;"></td>
-    <td ng-show="monthPosition !== 2" class="day today animated fadeIn"><span class="number">29</span><span class="event event-multiday-finish" style="background-color:#da5f5f;"></td>
+    <td ng-show="monthPosition !== 2" class="day today animated fadeIn"><span class="number">29</span><span class="event event-multiday-finish"
+                            style="background-color:#da5f5f;"></td>
     <td ng-show="monthPosition !== 2" class="day animated fadeIn"><span class="number">30</span></td>
-                    <td ng-show="monthPosition !== 2 && monthPosition !== 4 && monthPosition !== 6 && monthPosition !== 9 && monthPosition !== 11"class="day animated fadeIn"><span class="number">31</span></td>
-           
+                    <td ng-show="monthPosition !== 2 && monthPosition !== 4 && monthPosition !== 6 && monthPosition !== 9 && monthPosition !== 11"
+                        class="day animated fadeIn"><span class="number">31</span></td>
+
                 </tr>
 
             </table>
