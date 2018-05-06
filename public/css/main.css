@@ -39,6 +39,14 @@ td { width: 14.285%; transition: all 0.3s; font-size: 14px; color: rgba(255,255,
 .available:hover { background-color: black};
 */
 .day:hover { background-color: rgba(0,0,0,0.1); cursor:pointer; }
+.day:hover div{
+    background-color: white;
+    position:absolute;
+    top:300px;
+    height:200px;
+    width:200px;
+    transition:.3s;
+}
 .day:active div{
     background-color: white;
     position:absolute;
