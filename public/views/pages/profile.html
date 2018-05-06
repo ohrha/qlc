@@ -15,7 +15,20 @@
                     <i ng-click="previousMonth()"class="material-icons center-align">chevron_left</i>
                 </div>
                 <div class = "col s4">
-                    <span class = "center-align">{{currentMonth}}</span>
+                    <span ng-show="monthPosition ===1" class = "center-align animated fadeIn">JANUARY</span>
+                    <span ng-show="monthPosition ===2" class = "center-align animated fadeIn">FEBRUARY</span>
+                    <span ng-show="monthPosition ===3" class = "center-align animated fadeIn">MARCH</span>
+                    <span ng-show="monthPosition ===4" class = "center-align animated fadeIn">APRIL</span>
+                    <span ng-show="monthPosition ===5" class = "center-align animated fadeIn">MAY</span>
+                    <span ng-show="monthPosition ===6" class = "center-align animated fadeIn">JUNE</span>
+                    <span ng-show="monthPosition ===7" class = "center-align animated fadeIn">JULY</span>
+                    <span ng-show="monthPosition ===8" class = "center-align animated fadeIn">AUGUST</span>
+                    <span ng-show="monthPosition ===9" class = "center-align animated fadeIn">SEPTEMBER</span>
+                    <span ng-show="monthPosition ===10" class = "center-align animated fadeIn">OCTOVER</span>
+                    <span ng-show="monthPosition ===11" class = "center-align animated fadeIn">NOVEMBER</span>
+                    <span ng-show="monthPosition ===12" class = "center-align animated fadeIn">DECEMBER</span>
+                    
+                   <!-- <span class = "center-align">{{currentMonth}}</span>-->
                 </div>
                 <div class ="col s4">
                     <i ng-click="nextMonth()" class="material-icons center-align">chevron_right</i>
