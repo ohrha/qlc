@@ -1,4 +1,5 @@
 var User = require('./models/user');
+var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
 
     app.post('/authenticate', function(req,res){
@@ -8,13 +9,18 @@ module.exports = function (app) {
         console.log(req.body)
         User.findOne({username: req.body.username}).select('email username password')
         .exec(function(err,user){
+
             if(err) throw err;
             if(!user){
+                console.log("ppocher")
                 res.json({success: false, message:"Could Not Authenticate User"})
             }else if(user){
                 //START PASSWORD VALIDATION
+                console.log("hello")
                 var validPassword = user.comparePassword(req.body.password)
-                console.log(validPassword)
+                //console.log(validPassword)
+             
+                //console.log(validPassword)
                 if(!validPassword){
                     res.json({success: false, message:"Could not authenticate password"})
                 }else{
@@ -28,8 +34,8 @@ module.exports = function (app) {
         console.log("Route Hit")
         var user = new User();
         user.username = req.body.userName;
-        user.password = req.body.password,
-            user.email = req.body.email;
+        user.password = req.body.password.toString(),
+        user.email = req.body.email;
         user.name = req.body.name;
         console.log(user)
 
@@ -47,17 +53,16 @@ module.exports = function (app) {
                     res.json({success: false, message: "There was an error..."})
                     console.log(err)
                 } else {
-                    user.save(function (err) {
-                        if (err) {
+                   
+                       /* if (err) {
                             res.send("Username or email already exists..")
                             res.json({success: false, message: "Username or email already exists.."})
-                        } else {
+                        } else {*/
                             //res.send("userCreated");
                             res.json({success: true, message: "User Created Successfully."})
-                        }
+               /* }*/
 
 
-                    })
                 }
             })
         }

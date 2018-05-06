@@ -22,5 +22,16 @@
 
         </div>
     </form>
+     <div  class = "row animated fadeIn" ng-show = "successfulLogin">
+    <div class = "col s12 green lighten-3" >
+   
+     <p class = "center-align"ng-show = "successMsg">{{successMsg}}</p>
+    </div>
+  </div>
+    <div  class = "row animated fadeIn" ng-show = "failedLogin ">
+    <div class = "col s12 red lighten-3" >
+   
+     <p class = "center-align"ng-show = "errorMsg"> {{errorMsg}} </p>
+    </div>
   </div>
         

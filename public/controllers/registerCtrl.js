@@ -6,7 +6,7 @@
         console.log("Register Controller Loaded")
     })
 
-    app.controller('registerCtrl', function($scope,$http,$location,User){
+    app.controller('registerCtrl', function($scope,$http,$location,User,$timeout){
         $scope.successReg = false;
         $scope.failReg = false;
        $scope.errorMsg = false;
@@ -24,10 +24,10 @@
                         $scope.successReg = true;
                         console.log(this.successReg)
                         $scope.successMsg = data.data.message;
-                        setTimeout(function(){
+                        $timeout(function(){
                             $scope.successReg = false;
                             $scope.successMsg = false;
-                            $location.path('/');
+                            $location.path('/login');
                         },3000)
                     }else{
                         $scope.loading = false;

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var titlize = require('mongoose-title-case');
 var validate = require('mongoose-validator');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcryptjs');
 
 var UserSchema = new Schema({
 
@@ -24,17 +24,29 @@ var UserSchema = new Schema({
 
 UserSchema.pre('save', function(next){
     var user = this;
-    bcrypt.hash(user.password, null,null, function(err,hash){
+    console.log('user Prehook',user.password) 
+    console.log(typeof user.password)
+    //var password = user.password.toString()
+    bcrypt.hash(user.password, 10, function(err,hash){
         if(err) return next(err);
+        console.log("Old user.password", user.password);
+        console.log("Hash". hash)
         user.password = hash;
+        console.log("New user.password", user.password)
         next();
     })
 })
 //CREATE CUSTOM METHOD
 UserSchema.methods.comparePassword = function(password){
-
+    console.log("oy")
     console.log(password, this.password)
-    return bcrypt.compareSync(password, this.password)
+    console.log(typeof password)
+    var passwordPlain = password.toString()
+    return bcrypt.compare(password,this.password, function(err, res) {
+    // res == true
+    console.log("hellO",res)
+});
+
 }
 //var Model = mongoose.model('User', UserSchema);
 module.exports = mongoose.model('User', UserSchema);
