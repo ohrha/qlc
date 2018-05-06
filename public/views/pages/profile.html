@@ -8,7 +8,7 @@
             </div>
         </div>
         <div style=" border-bottom:1px solid black;" class="col s9 ">
-            <h4 class="center-align animated fadeIn">{{name}}</h4>
+            <h4 class="center-align animated fadeIn" >{{name}}</h4>
             <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
             <div class="row center-align">
                 <div class="col s4">
@@ -38,7 +38,7 @@
             <table class="animated fadeIn center-align">
 
                 <tr>
-                    <th class="day-name">Sun</th>
+                    <th class="day-name" >Sun</th>
                     <th class="day-name">Mon</th>
                     <th class="day-name">Tue</th>
                     <th class="day-name">Wed</th>
@@ -47,9 +47,9 @@
                     <th class="day-name">Sat</th>
                 </tr>
                 <tr>
-                    <td class="day"><span class="number">31</span></td>
-                    <td ng-click="areYouAvailable()"ng-class = "{'available': availability == 1, 'notavailable': availability == 3, 'pending': availability == 2}"class="day"><span class="number">1</span><span class="event"></span><span class="event"></span></td>
-                    <td class="day"><span class="number">2</span></td>
+                    
+                    <td class = "day"ng-click="areYouAvailable()" ng-class = "{available: availability == 1, notavailable: availability == 3, pending: availability == 2}"><span class="number">1</span><span class="event"></span><span class="event"></span></td>
+                    <td class = "day"ng-click="areYouAvailable()" ng-class = "{available: availability == 1, notavailable: availability == 3, pending: availability == 2}"><span class="number">2</span></td>
                     <td class="day"><span class="number">3</span><span class="event event-multiday-start"></span></td>
                     <td class="day"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass"
                             style="background-color:#5a9ab2;"></span><span class="event"></td>

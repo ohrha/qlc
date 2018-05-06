@@ -14,7 +14,7 @@
         $scope.name = "";
         $scope.monthPosition = 1;
         $scope.currentMonth = "JANUARY";
-        $scope.availability = 1;
+        $scope.availability = 2;
 
         console.log($routeParams)
         User.getUser($routeParams.userid).then(function (data) {
@@ -27,12 +27,14 @@
             if($scope.availability == 1){
 
                 $scope.availability = 2;
-
+                console.log($scope.availability)
             }else if($scope.availability == 2){
                 $scope.availability = 3;
+                console.log($scope.availability)
 
             }else if($scope.availability == 3){
                 $scope.availability = 1;
+                console.log($scope.availability)
 
             }
         }
