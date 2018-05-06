@@ -9,52 +9,60 @@
 
 
         $routeProvider
-            .when('/',{
-                templateUrl:'../views/pages/test.html',
-                controller:'homeCtrl',
-                name:"QLH | INDEX",
-                resolve:{
-                    init: function($route){
+            .when('/', {
+                templateUrl: '../views/pages/test.html',
+                controller: 'homeCtrl',
+                name: "QLH | INDEX",
+                resolve: {
+                    init: function ($route) {
                         console.log("index")
                     }
                 }
             })
-                .when('/services',{
-                templateUrl:'../views/pages/services.html',
-                name:"QLH | SERVICES",
-                resolve:{
-                    init: function($route){
+            .when('/services', {
+                templateUrl: '../views/pages/services.html',
+                name: "QLH | SERVICES",
+                resolve: {
+                    init: function ($route) {
                         console.log("index")
                     }
                 }
             })
-                            .when('/register',{
-                templateUrl:'../views/pages/register.html',
-                name:"QLH | SERVICES",
-                controller:"registerCtrl",
-                controllerAs:'register',
-                resolve:{
-                    init: function($route){
+            .when('/register', {
+                templateUrl: '../views/pages/register.html',
+                name: "QLH | SERVICES",
+                controller: "registerCtrl",
+                controllerAs: 'register',
+                resolve: {
+                    init: function ($route) {
                         console.log("index")
                     }
                 }
             })
-                            .when('/login',{
-                templateUrl:'../views/pages/login.html',
-                name:"QLH | SERVICES",
-                controller:"loginCtrl",
-                controllerAs:'login',
-                resolve:{
-                    init: function($route){
+            .when('/login', {
+                templateUrl: '../views/pages/login.html',
+                name: "QLH | SERVICES",
+                controller: "loginCtrl",
+                controllerAs: 'login',
+                resolve: {
+                    init: function ($route) {
                         console.log("index")
                     }
                 }
             })
-                            .when('/contact',{
-                templateUrl:'../views/pages/contact.html',
-                name:"QLH | SERVICES",
-                resolve:{
-                    init: function($route){
+            .when('/profile', {
+                templateUrl: '../views/pages/profile.html',
+                name: "QLH | PROFILE",
+                controller: "profileCtrl",
+                controllerAs: 'profile'
+            
+            })
+
+            .when('/contact', {
+                templateUrl: '../views/pages/contact.html',
+                name: "QLH | SERVICES",
+                resolve: {
+                    init: function ($route) {
                         console.log("index")
                     }
                 }
@@ -62,9 +70,9 @@
             .when('/home', {
 
                 templateUrl: '../views/pages/test2.html',
-                
+
                 name: "QLH | Home",
-           
+
                 resolve: {
                     init: function ($route) {
 

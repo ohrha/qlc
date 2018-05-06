@@ -6,7 +6,7 @@
         console.log("login Controller Loaded")
     })
 
-    app.controller('loginCtrl', function ($scope, Auth) {
+    app.controller('loginCtrl', function ($scope, Auth,$timeout,$location) {
         $scope.successfulLogin = false;
         $scope.failedLogin = false;
         $scope.errorMsg = false;
@@ -15,11 +15,11 @@
 
             console.log(this.loginData)
             console.log(valid)
-
+  $scope.loading = true;
             Auth.login(this.loginData).then(function (data) {
 
                 console.log(data);
-                $scope.loading = true;
+              
                 if(data.data.success){
                     $scope.loading = false;
                     $scope.successfulLogin = true;
@@ -30,6 +30,11 @@
 
                     },3000)
 
+                }else{
+                    $scope.loading = false;
+                    $scope.failedLogin = true;
+                    $scope.errorMsg = data.data.message;
+                    
                 }
 
             })

@@ -16,22 +16,30 @@
           <label for="icon_telephone">password</label>
         </div>
       </div>
+      
       <div class = "row">
         <div class = "col s12 center-align">
           <button class ="waves-effect waves-light btn" type="submit">Submit</button>
 
         </div>
     </form>
+    <div class = "row" ng-show="loading">
+  <div class = "col s12">
+    <div class = "center-align">
+ <i style = "font-size:16px;"class="fa fa-cog fa-spin fa-3x fa-fw "></i>
+    </div>
+  </div>
+</div>
      <div  class = "row animated fadeIn" ng-show = "successfulLogin">
     <div class = "col s12 green lighten-3" >
    
-     <p class = "center-align"ng-show = "successMsg">{{successMsg}}</p>
+     <p class = "center-align">Login Successful!</p>
     </div>
   </div>
     <div  class = "row animated fadeIn" ng-show = "failedLogin ">
     <div class = "col s12 red lighten-3" >
    
-     <p class = "center-align"ng-show = "errorMsg"> {{errorMsg}} </p>
+     <p class = "center-align"> {{errorMsg}} </p>
     </div>
   </div>
         

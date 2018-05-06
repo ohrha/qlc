@@ -42,10 +42,7 @@ UserSchema.methods.comparePassword = function(password){
     console.log(password, this.password)
     console.log(typeof password)
     var passwordPlain = password.toString()
-    return bcrypt.compare(password,this.password, function(err, res) {
-    // res == true
-    console.log("hellO",res)
-});
+    return bcrypt.compare(password,this.password);
 
 }
 //var Model = mongoose.model('User', UserSchema);

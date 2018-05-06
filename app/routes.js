@@ -18,7 +18,7 @@ module.exports = function (app) {
                 //START PASSWORD VALIDATION
                 console.log("hello")
                 var validPassword = user.comparePassword(req.body.password)
-                //console.log(validPassword)
+                console.log("validPassword",validPassword)
              
                 //console.log(validPassword)
                 if(!validPassword){

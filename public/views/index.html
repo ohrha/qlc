@@ -8,30 +8,30 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+    crossorigin="anonymous">
 
 
   <link rel="stylesheet" href="../css/main.css">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script
-  src="https://code.jquery.com/jquery-2.1.3.js"
-  integrity="sha256-goy7ystDD5xbXSf+kwL4eV6zOPJCEBD1FBiCElIm+U8="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script> 
-<script type="text/javascript" src="../js/app.js"></script>
- <script src="../js/jquery.validate.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.3.js" integrity="sha256-goy7ystDD5xbXSf+kwL4eV6zOPJCEBD1FBiCElIm+U8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+  <script src="../js/jquery.validate.js"></script>
   <script type="text/javascript" src="../js/angular-route.js"></script>
   <script type="text/javascript" src="../js/routes.js"></script>
   <script type="text/javascript" src="../controllers/taptargetCtrl.js"></script>
   <script type="text/javascript" src="../controllers/homeCtrl.js"></script>
   <script type="text/javascript" src="../controllers/registerCtrl.js"></script>
+  <script type="text/javascript" src="../controllers/profileCtrl.js"></script>
   <script type="text/javascript" src="../controllers/loginCtrl.js"></script>
   <script type="text/javascript" src="../services/userServices.js"></script>
-    <script type="text/javascript" src="../services/authServices.js"></script>
-
+  <script type="text/javascript" src="../services/authServices.js"></script>
   
+
+
 
 </head>
 
@@ -116,40 +116,40 @@
     </div>
   </footer>
   <script>
-  $(document).ready(function () {
-    console.log($('.tap-target'))
-    /*Form Validation*/
-    $('#registrationForm').validate({
+    $(document).ready(function () {
+      console.log($('.tap-target'))
+      /*Form Validation*/
+      $('#registrationForm').validate({
 
-      rules: {
-        name: {
-          required: true,
-          minlength: 5
+        rules: {
+          name: {
+            required: true,
+            minlength: 5
+          },
+          userName: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+          cpassword: {
+            required: true,
+            minlength: 5,
+            equalTo: "#password"
+          },
+          crole: "required"
         },
-        userName: {
-          required: true,
-          email: true
+        messages: {
+          uname: {
+            required: "Enter a username",
+            minlength: "Enter at least 5 characters"
+          },
+          crole: "Please Select..",
         },
-        password: {
-          required: true,
-          minlength: 5
-        },
-        cpassword: {
-          required: true,
-          minlength: 5,
-          equalTo: "#password"
-        },
-        crole: "required"
-      },
-         messages: {
-            uname:{
-                required: "Enter a username",
-                minlength: "Enter at least 5 characters"
-            },
-            crole: "Please Select..",
-        },
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
           var placement = $(element).data('error');
           if (placement) {
             $(placement).append(error)
@@ -157,51 +157,51 @@
             error.insertAfter(element);
           }
         }
+      })
+      /*Materialize initializations */
+      setTimeout(function () {
+
+        $('.tap-target').tapTarget('open');
+
+      }, 3000);
+
+      //This method wasn't working
+      // $('select').material_select();
+      $('select:not([multiple])').material_select();
+      console.log($('select'))
+      $('.carousel.carousel-slider').carousel({ fullWidth: true });
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false // Close upon selecting a date,
+
+      });
+      $('.timepicker').pickatime({
+        default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+        fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+        twelvehour: false, // Use AM/PM or 24-hour format
+        donetext: 'OK', // text for done-button
+        cleartext: 'Clear', // text for clear-button
+        canceltext: 'Cancel', // Text for cancel-button,
+        container: undefined, // ex. 'body' will append picker to body
+        autoclose: false, // automatic close timepicker
+        ampmclickable: true, // make AM PM clickable
+        aftershow: function () { } //Function for after opening timepicker
+      });
+      $(".button-collapse").sideNav({
+        menuWidth: 200, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true // Choose whether you can drag to open on touch screens,
+
+      }
+      );
     })
-    /*Materialize initializations */
-    setTimeout(function(){
 
-      $('.tap-target').tapTarget('open');
-
-    },3000);
-    
-    //This method wasn't working
-   // $('select').material_select();
-    $('select:not([multiple])').material_select();
-    console.log($('select'))
-    $('.carousel.carousel-slider').carousel({ fullWidth: true });
- $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year,
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
-   
-  });
-   $('.timepicker').pickatime({
-    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
-    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
-    twelvehour: false, // Use AM/PM or 24-hour format
-    donetext: 'OK', // text for done-button
-    cleartext: 'Clear', // text for clear-button
-    canceltext: 'Cancel', // Text for cancel-button,
-    container: undefined, // ex. 'body' will append picker to body
-    autoclose: false, // automatic close timepicker
-    ampmclickable: true, // make AM PM clickable
-    aftershow: function(){} //Function for after opening timepicker
-  });
-    $(".button-collapse").sideNav({
-      menuWidth: 200, // Default is 300
-      edge: 'left', // Choose the horizontal origin
-      closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      draggable: true // Choose whether you can drag to open on touch screens,
-
-    }
-    );
-  })
-
-</script>
+  </script>
 </body>
 
 
