@@ -26,7 +26,7 @@
                     $timeout(function(){
 
                         $scope.successfulLogin = false;
-                        $location.path('/profile')
+                        $location.path('/profile/'+data.data.user._id)
 
                     },3000)
 

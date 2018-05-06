@@ -50,7 +50,7 @@
                     }
                 }
             })
-            .when('/profile', {
+            .when('/profile/:userid', {
                 templateUrl: '../views/pages/profile.html',
                 name: "QLH | PROFILE",
                 controller: "profileCtrl",

@@ -2,6 +2,17 @@ var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
 
+    app.put('/users/:userid',function(req,res){
+
+        User.findOne({_id:req.params.userid},function(err,user){
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                res.json({success: true, message:"User found..", user:user})
+            }
+        })
+
+    })
     app.post('/authenticate', function(req,res){
 
         //res.send("testing new route")
@@ -24,7 +35,7 @@ module.exports = function (app) {
                 if(!validPassword){
                     res.json({success: false, message:"Could not authenticate password"})
                 }else{
-                    res.json({success:true, message: "User authenticated..."})
+                    res.json({success:true, message: "User authenticated...",user:user})
                 }
         }
         })

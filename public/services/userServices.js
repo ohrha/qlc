@@ -13,5 +13,8 @@ angular.module('userServices',[]).config(function(){
         return $http.post('/api/users', regData);
 
     }
+    userFactory.getUser  = function(userId){
+        return $http.put('/api/users/'+userId);
+    }
     return userFactory
 })
