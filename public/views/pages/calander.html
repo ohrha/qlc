@@ -1,14 +1,13 @@
-     <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
+  
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+    <div class="modal-content center-align">
+      <h4 class = "railway">Book Job For {{name}}</h4>
+      <p style="font-size:24px;" class = "railway">Are You Sure?</p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" ng-click="imSure()"class="modal-close waves-effect waves-green btn-flat">Agree</a>
+
     </div>
   </div>
 <div class="container animated fadeIn">
@@ -210,6 +209,15 @@
             <div class = "row">
 <form name = "jobDetailsForm" ng-submit="bookJob(jobDetailsData, jobDetailsForm.$valid);">
          <div class="input-field col s12">
+            <select name = "location" ng-model="jobDetailsData.location">
+                <option value="" disabled selected>X</option>
+                <option value="Carlton Events" >ASB SHOWGROUNDS</option>
+                <option value="Goldriggers" >MISSION BAY</option>
+   
+            </select>
+                <label>Location</label>
+            </div>
+         <div class="input-field col s12">
             <select name = "contractor" ng-model="jobDetailsData.contractor">
                 <option value="" disabled selected>X</option>
                 <option value="Carlton Events" >Carlton Events</option>
@@ -229,7 +237,7 @@
             </div>
             <div class = "input-field col s12 center-align">
                 <!-- Modal Trigger -->
-  <button data-target="modal1" class="btn modal-trigger">Modal</button>
+  <button ng-click="bookJob()"data-target="modal1" class="btn modal-trigger">Modal</button>
         
             <button class="btn waves-effect waves-light " type="submit">Submit<i class ="material-icons right">send</i></button>
             </div>

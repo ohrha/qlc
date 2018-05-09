@@ -16,7 +16,8 @@ var UserSchema = new Schema({
     viewhistory:{type:Array},
     alreadyapplied:{type:Array},
     calender:{type:Object},
-    june:{type:Array}
+    June:{type:Array},
+    jobDetails:{type:Array}
 
 
 

@@ -14,7 +14,12 @@
         $scope.month = $routeParams.month;
         $scope.hrsWorked = null;
         $scope.minsWorked = null;
-
+        $scope.areYouSure = false;
+        $scope.supervisor = "";
+        $scope.contractor = "";
+        $scope.location = "";
+        $scope.name ="";
+    
         $scope.finalTimeOut = {
             name: "",
 
@@ -33,10 +38,25 @@
         //console.log(document.getElementById("switch").prop)
         console.log($routeParams)
         $('#switch').prop('checked', true);
+        $scope.imSure=function(){
+            $scope.imSure=true;
+            $scope.areYouSure= false;
+                  $scope.jobDetails = {
+            supervisor:$scope.supervisor,
+            contractor:$scope.contractor,
+            location:$scope.location,
+            date:$routeParams.date,
+            month:$routeParams.month
 
+        }
+        console.log($scope.jobDetails)
+        }
         $scope.bookJob = function(jobDetailData,valid){
             if(valid){
                 $scope.areYouSure = true;
+                $scope.contractor = jobDetailData.contractor
+                $scope.location = jobDetailData.location
+                $scope.supervisor = jobDetailData.supervisor
             }
             console.log(this.jobDetailsData)
             console.log(valid)
@@ -121,6 +141,7 @@
 
             console.log(data);
             console.log(data.data.user[$routeParams.month][$routeParams.date - 1])
+            $scope.name = data.data.user.name;
             $scope.isSwitchedOn = data.data.user[$routeParams.month][$routeParams.date - 1]
 
         })
