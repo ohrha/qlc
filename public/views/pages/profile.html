@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-        <div style="height:500px; border-right:1px solid black" class="col s3 animated fadeIn">
+        <!--<div style="height:500px; border-right:1px solid black" class="col s3 animated fadeIn">
             <div class="row">
                 <div style="height: 50px;border-bottom:1px solid black" class="col s12">
 
                 </div>
             </div>
-        </div>
-        <div style=" border-bottom:1px solid black;" class="col s9 ">
+        </div>-->
+        <div style=" border-bottom:1px solid black;" class="col s12 ">
             <h4 class="center-align animated fadeIn">{{name}}</h4>
             <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
             <div class="row center-align">
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
 
-                    <td class="day" ng-class="{available: june1, notavailable: !june1, pending: availability == 2}"><a href ="/calander/{{user_id}}/June/1"><div class="floater"></div><span ng-show="june1Booked" class="number align-right">1<span  style="float:right;font-size:17px;"class = "material-icons align-right animated pulse infinite">access_alarms</span></span><span class="event"></span></a><span class="event"></span></td>
+                    <td class="day" ng-class="{available: june1, notavailable: !june1, pending: availability == 2}"><a href ="/calander/{{user_id}}/June/1"><span ng-show="june1Booked" class="number align-right">1<span  style="float:right;font-size:17px;"class = "material-icons align-right animated pulse infinite">access_alarms</span></span><span class="event"></span></a><span class="event"></span></td>
                     <td class="day" ng-class="{available: june2, notavailable: !june2, pending: availability == 2}"><a href="/calander/{{user_id}}/June/2"><span class="number">2<span ng-show="june2Booked"  style="float:right;font-size:17px;"class = "material-icons align-right animated pulse infinite">access_alarms</span></span></a></td>
                     <td class="day" ng-class="{available: june3, notavailable: !june3, pending: availability == 2}"><span class="number">3</span><span class="event event-multiday-start"></span></td>
                     <td class="day" ng-class="{available: june4, notavailable: !june4, pending: availability == 2}"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass"
@@ -99,8 +99,7 @@
                 </tr>
 
             </table>
-            -->
-
+          
         </div>
     </div>
 </div>

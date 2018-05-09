@@ -1,8 +1,9 @@
  <div class="row animated fadeIn">
-         <div class = "col s12 ">
-        <h3 class = "center-align">Sign-up!</h3>
+         <div style="border-bottom:1px solid black;"class = "col s12 ">
+        <p style="font-size:24px;" class = "center-align railway">Login!</p>
 
     </div>
+    <br>
     <form name ="loginForm" ng-submit="loginUser(loginData,loginForm.$valid,loginForm);"class="col s12">
       <div class="row">
         <div class="input-field col s6">
@@ -32,14 +33,13 @@
 </div>
      <div  class = "row animated fadeIn" ng-show = "successfulLogin">
     <div class = "col s12 green lighten-3" >
-   
-     <p class = "center-align">Login Successful!</p>
+     <p class = "center-align railway">Login Successful!</p>
     </div>
   </div>
     <div  class = "row animated fadeIn" ng-show = "failedLogin ">
     <div class = "col s12 red lighten-3" >
    
-     <p class = "center-align"> {{errorMsg}} </p>
+     <p class = "center-align railway"> {{errorMsg}} </p>
     </div>
   </div>
         
