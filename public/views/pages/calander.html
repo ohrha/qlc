@@ -19,31 +19,29 @@
             </div>-->
         </div>
         <form name="timeSheet" ng-submit="clockOut(timeData,timeSheet.$valid,timeSheet);">
-            <input type="text" name = "holo" ng-model="timeData.holo">
             <div class="input-field col s3">
-                <select name = "tenth" ng-model="timeData.tenth">
+                <select name = "hundreth" ng-model="timeData.hundreth">
                     <option value="" disabled selected>X</option>
-      <option value="1">0</option>
-      <option value="2">1</option>
-      <option value="3">2</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
    
     </select>
                 <label>HRS</label>
             </div>
             <div class="input-field col s3">
-                <select name = "tenth2" ng-model="timeData.tenth2">
+                <select name = "hundreth2" ng-model="timeData.hundreth2">
                                         <option value="" disabled selected>X</option>
 
-      <option  value="1">0</option>
-      <option  value="2">1</option>
-      <option   value="3">2</option>
-     <option  value="1">3</option>
-      <option value="2">4</option>
-      <option value="3">5</option>
-      <option  value="1">6</option>
-      <option  value="2">7</option>
-      <option  value="3">8</option>
-      <option  value="3">9</option>
+      <option  value="0">0</option>
+      <option  value="1">1</option>
+      <option   value="2">2</option>
+     <option  value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option  value="6">6</option>
+      <option  value="7">7</option>
+      <option  value="8">8</option>
+      <option  value="9">9</option>
       
    
     </select>
@@ -53,16 +51,13 @@
                 <select name = "minTenth" ng-model="timeData.minTenth">
                                         <option value="" disabled selected>X</option>
 
-      <option  value="1">0</option>
-      <option  value="2">1</option>
-      <option  value="3">2</option>
-            <option  value="1">3</option>
-      <option  value="2">4</option>
-      <option  value="3">5</option>
-            <option  value="1">6</option>
-      <option  value="2">7</option>
-      <option  value="3">8</option>
-      <option  value="3">9</option>
+      <option  value="0">0</option>
+      <option  value="1">1</option>
+      <option  value="2">2</option>
+            <option  value="3">3</option>
+      <option  value="4">4</option>
+      <option  value="5">5</option>
+
       
    
     </select>
@@ -74,16 +69,16 @@
                 <select name = "minTenth2" ng-model="timeData.minTenth2">
                                         <option value="" disabled selected>X</option>
 
-      <option value="1">0</option>
-      <option value="2">1</option>
-      <option value="3">2</option>
-            <option value="1">3</option>
-      <option value="2">4</option>
-      <option value="3">5</option>
-            <option value="1">6</option>
-      <option value="2">7</option>
-      <option value="3">8</option>
-      <option value="3">9</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+            <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+            <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
       
    
     </select>
@@ -91,11 +86,11 @@
             <div class =" col s4">
             </div>
                             <div class="input-field col s5 align-center">
-                <select name = "outMinTenth2" ng-model="timeData.outMinTenth2">
+                <select name = "inAmPm" ng-model="timeData.inAmPm">
                                         <option value="" disabled selected>X</option>
 
-      <option value="1" >AM</option>
-      <option value="2">PM</option>
+      <option value="AM" >AM</option>
+      <option value="PM">PM</option>
 
    
     </select>
@@ -106,30 +101,30 @@
                 <p class="center-align"> TO</p>
             </div>
             <div class="input-field col s3">
-                <select name = "outMinHundreth" ng-model="timeData.outMinHundreth2">
+                <select name = "outHundreth" ng-model="timeData.outHundreth">
                                         <option value="" disabled selected>X</option>
 
-      <option value="1" >0</option>
-      <option value="2" >1</option>
-      <option value="3">2</option>
+      <option value="0" >0</option>
+      <option value="1" >1</option>
    
     </select>
                 <label>HRS</label>
             </div>
             <div class="input-field col s3">
-                <select name = "outMinHundreth" ng-model="timeData.outMinHundreth">
+                <select name = "outHundreth2" ng-model="timeData.outHundreth2">
                                         <option value="" disabled selected>X</option>
 
-      <option value="1" >0</option>
-      <option value="2" >1</option>
-      <option value="3">2</option>
-            <option value="1">3</option>
-      <option value="2">4</option>
-      <option value="3">5</option>
-            <option value="1">6</option>
-      <option value="2">7</option>
-      <option value="3">8</option>
-      <option value="3">9</option>
+      <option value="0" >0</option>
+      <option value="1" >1</option>
+      <option value="2">2</option>
+            <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+            <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      
       
    
     </select>
@@ -139,16 +134,13 @@
                 <select name = "outMinTenth" ng-model="timeData.outMinTenth">     
                                         <option value="" disabled selected>X</option>
  
-                    <option value="1" >0</option>
-      <option value="2">1</option>
-      <option value="3">2</option>
-            <option value="1">3</option>
-      <option value="2">4</option>
-      <option value="3">5</option>
-            <option value="1">6</option>
-      <option value="2">7</option>
-      <option value="3">8</option>
-      <option value="3">9</option>
+                    <option value="0" >0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+            <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+
       
    
     </select>
@@ -160,16 +152,17 @@
                 <select name = "outMinTenth2" ng-model="timeData.outMinTenth2">
                                         <option value="" disabled selected>X</option>
 
-      <option value="1" >0</option>
-      <option value="2">1</option>
-      <option value="3">2</option>
-            <option value="1">3</option>
-      <option value="2">4</option>
-      <option value="3">5</option>
-            <option value="1">6</option>
-      <option value="2">7</option>
-      <option value="3">8</option>
-      <option value="3">9</option>
+      <option value="0" >0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+            <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+            <option value="6">6</option>
+      <option value="7">7</option>
+            <option value="8">8</option>
+      <option value="9">9</option>
+ 
       
    
     </select>
@@ -177,11 +170,11 @@
             <div class = "input-field col s4">
             </div>
                 <div class="input-field col s5 align-center">
-                <select name = "outMinTenth2" ng-model="timeData.outMinTenth2">
+                <select name = "outAmPm" ng-model="timeData.outAmPm">
                                         <option value="" disabled selected>X</option>
 
-      <option value="1" >AM</option>
-      <option value="2">PM</option>
+      <option value="AM" >AM</option>
+      <option value="PM">PM</option>
 
    
     </select>
@@ -194,6 +187,18 @@
             </div>
             </div>
         </form>
+<div class = "row">
+    <div class = "container">
+        <div style ="border:1px solid#ddd;"class = "col s4 center-align animated fadeIn">
+            <h4>Hours: <span class = "animated fadeIn" ng-show="hrsWorked">{{hrsWorked}}</span></h4>
+            <h4>Mins: <span class = "animated fadeIn" ng-show="minsWorked">{{minsWorked}}</span></h4>
+
+        </div>
+        <div  style ="border:1px solid#ddd;" class = "col s8">
+        </div>
+    </div>
+</div>
+         
 
 
     </div>

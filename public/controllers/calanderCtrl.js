@@ -6,54 +6,135 @@
         console.log("calander Controller Loaded")
     })
 
-    app.controller('calanderCtrl', function ($scope, Auth,$timeout,$location,$routeParams,User) {
-       
+    app.controller('calanderCtrl', function ($scope, Auth, $timeout, $location, $routeParams, User) {
+
         $scope.available = false;
         $scope.isSwitchedOn = false;
         $scope.date = $routeParams.date;
         $scope.month = $routeParams.month;
-document.addEventListener("DOMContentLoaded", function(event) { 
-  //do work
-});
+        $scope.hrsWorked = null;
+        $scope.minsWorked = null;
+
+        $scope.finalTimeOut = {
+            name: "",
+
+            clockIn: "",
+            clockOut: "",
+            hrsWorked: 0,
+            minsWorked: 0,
+            date: 0,
+            month: ""
+
+        }
+        document.addEventListener("DOMContentLoaded", function (event) {
+            //do work
+        });
         ////console.log(document.getElementById("switch").checked)
         //console.log(document.getElementById("switch").prop)
         console.log($routeParams)
         $('#switch').prop('checked', true);
-        
-        $scope.clockOut = function(timeData){
+
+        $scope.clockOut = function (timeData) {
             console.log(this.timeData)
+            $scope.clockIn = "" + this.timeData.hundreth + "" + this.timeData.hundreth2 + ":" + this.timeData.minTenth + "" + this.timeData.minTenth2 + this.timeData.inAmPm + "";
+            $scope.clockOut = "" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + ":" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + this.timeData.outAmPm + ""
+            console.log($scope.clockIn)
+            console.log($scope.clockOut)
+            console.log("ampm", this.timeData.inAmPm, this.timeData.outAmPm)
+            if ((this.timeData.inAmPm == "AM" && this.timeData.outAmPm == "AM") || (this.timeData.inAmPm == "PM" && this.timeData.outAmPm == "PM")) {
+                //$scope.hrsWorked = (this.timeData.outHundreth + this.timeData.outHundreth2 + this.timeData.outMinTenth + this.timeData.outMinTenth2) - (this.timeData.hundreth + this.timeData.hundreth2 + this.timeData.minTenth + this.timeData.minTenth2)
+                //console.log($scope.hrsWorked)
+                console.log("same")
+                if (Number(("" + this.timeData.hundreth + "" + this.timeData.hundreth2 + "")) <= (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + ""))) {
+                    console.log("oro")
+                    if (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") == 12) {
+
+                        $scope.hrsWorked = (12 - Number("" + this.timeData.hundreth + "" + this.timeData.hundreth2 + "") + 12)
+
+                    } else {
+                        $scope.hrsWorked = (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") - Number("" + this.timeData.hundreth + "" + this.timeData.hundreth2 + ""))
+
+                    }
+                } else {
+
+                    $scope.hrsWorked = (Number("" + this.timeData.hundreth2 + "" + this.timeData.hundreth + "") - Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + ""))
+                }
+                if ((Number("" + this.timeData.minTenth + "" + this.timeData.minTenth2 + "")) >= (Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + ""))) {
+                    console.log("helo")
+                    console.log(Number("" + this.timeData.minTenth2 + "" + this.timeData.minTenth + ""))
+                    console.log(Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + ""))
+                    $scope.minsWorked = (Number("" + this.timeData.minTenth + "" + this.timeData.minTenth2 + "") - (Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + "")))
+                } else {
+                    $scope.minsWorked = (Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + "") - (Number("" + this.timeData.minTenth + "" + this.timeData.minTenth2 + "")))
+                }
+                console.log("hrsWorked", $scope.hrsWorked)
+                console.log("minsWorked", $scope.minsWorked)
+
+            } else {
+                if (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") == 12) {
+                    console.log('last')
+                    $scope.hrsWorked = (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") - Number("" + this.timeData.hundreth + "" + this.timeData.hundreth2 + ""))
+
+                } else {
+                    if (this.timeData.inAmPm == "AM") {
+                        $scope.hrsWorked = (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") - (Number("" + this.timeData.hundreth + "" + this.timeData.hundreth2 + "")) + 12)
+
+                    } else {
+                        $scope.hrsWorked = (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") - (Number("" + this.timeData.hundreth + "" + this.timeData.hundreth2 + "")) + 12)
+
+                    }
+
+                    console.log()
+                }
+                if (Number("" + this.timeData.outHundreth + "" + this.timeData.outHundreth2 + "") == 12) {
+                    console.log("helo")
+                    console.log(Number("" + this.timeData.minTenth2 + "" + this.timeData.minTenth + ""))
+                    console.log(Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + ""))
+                    $scope.minsWorked = (Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + "") - (Number("" + this.timeData.minTenth + "" + this.timeData.minTenth2 + "")))
+                } else {
+
+                    $scope.minsWorked = (Number("" + this.timeData.outMinTenth + "" + this.timeData.outMinTenth2 + "") - (Number("" + this.timeData.minTenth + "" + this.timeData.minTenth2 + "")))
+                }
+                console.log("hrsWorked", $scope.hrsWorked)
+                console.log("minsWorked", $scope.minsWorked)
+
+
+
+            }
+
+            // console.log(""+this.timeData.hundreth+""+this.timeData.hundreth2+":"+this.timeData.minTenth+""+this.timeData.minTenth2+this.timeData.inAmPm+"")
         }
 
-        
-            $scope.getSwitchValue = function() {
-      alert(angular.element('#my-switch').prop('checked'));
-    };  
 
-    User.getUser($routeParams.userid).then(function(data){
+        $scope.getSwitchValue = function () {
+            alert(angular.element('#my-switch').prop('checked'));
+        };
 
-        console.log(data);
-        console.log(data.data.user[$routeParams.month][$routeParams.date-1])
-        $scope.isSwitchedOn=data.data.user[$routeParams.month][$routeParams.date-1]
+        User.getUser($routeParams.userid).then(function (data) {
 
-    })
+            console.log(data);
+            console.log(data.data.user[$routeParams.month][$routeParams.date - 1])
+            $scope.isSwitchedOn = data.data.user[$routeParams.month][$routeParams.date - 1]
+
+        })
 
 
-    
 
-        $scope.availabilityChanger = function(){
 
-            if($scope.isSwitchedOn){
+        $scope.availabilityChanger = function () {
+
+            if ($scope.isSwitchedOn) {
                 $scope.available = false;
                 console.log($scope.available)
-                User.changeAvailability($routeParams.userid,$routeParams.month,$routeParams.date,"false").then(function(data){
+                User.changeAvailability($routeParams.userid, $routeParams.month, $routeParams.date, "false").then(function (data) {
                     console.log(data)
                     $scope.isSwitchedOn = false;
                 })
 
-            }else{
+            } else {
                 $scope.available = true;
                 console.log($scope.available)
-                User.changeAvailability($routeParams.userid,$routeParams.month,$routeParams.date,"true").then(function(data){
+                User.changeAvailability($routeParams.userid, $routeParams.month, $routeParams.date, "true").then(function (data) {
                     console.log(data)
                     $scope.isSwitcheOn = true;
                 })
