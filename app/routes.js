@@ -42,8 +42,8 @@ module.exports = function (app) {
 
     })
    
-    app.put('/users/:userid/:job', function(req,res){
-        User.findOneAndUpdate ({_id: req.params.userid},{$push:{jobDetails: req.params.job}}, function(err,user){
+    app.post('/users/bookjob', function(req,res){
+        User.findOneAndUpdate ({_id: req.body.jobObject.userid},{$push:{jobDetails: req.body.jobObject.jobDetails}}, function(err,user){
             if(err)throw(err)
             if(!user){
                 res.json({success: false, message:"User not found"})

@@ -26,7 +26,7 @@ angular.module('userServices',[]).config(function(){
 
     }
     userFactory.setToBooked = function(userId,date,boolean){
-        return $http.put('/api/users/'+userId+'/'+date+'/'+boolean)
+        return $http.post('/api/users/bookjob')
         
     }
     return userFactory

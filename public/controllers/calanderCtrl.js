@@ -68,13 +68,17 @@
                     $scope.loading = false;
                 }
             })
-            /*User.addBookedJob($routeParams.userid, $scope.jobDetails).then(function(data){
+            $scope.jobObject = {
+                userid:$routeParams.userid,
+                jobDetails : $scope.jobDetails
+            }
+            User.addBookedJob($scope.jobObject).then(function(data){
                 console.log(data)
                 $timeout(function(){
     
                     $location.path('/profile/'+$routeParams.userid)
                 },2000)
-            })*/
+            })
             console.log($scope.jobDetails)
         }
         $scope.bookJob = function (jobDetailData, valid) {
