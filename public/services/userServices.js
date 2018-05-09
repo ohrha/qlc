@@ -21,12 +21,15 @@ angular.module('userServices',[]).config(function(){
         return $http.put('/api/users/'+userid+'/'+month+'/'+date+'/'+boolean);
 
     }
-    userFactory.addBookedJob = function(userid,job){
-                return $http.put('/api/users/'+userid+"/"+job);
+    userFactory.addBookedJob = function(jobObject){
+        console.log(jobObject)
+                return $http.post('/api/bookjob',jobObject);
 
     }
-    userFactory.setToBooked = function(userId,date,boolean){
-        return $http.post('/api/users/bookjob')
+    userFactory.setToBooked = function(userid,date,boolean){
+        //console.log(jobObject)
+        return $http.put('/api/users/'+userid+"/"+date+"/"+boolean);
+                
         
     }
     return userFactory

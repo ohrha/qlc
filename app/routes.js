@@ -42,8 +42,9 @@ module.exports = function (app) {
 
     })
    
-    app.post('/users/bookjob', function(req,res){
-        User.findOneAndUpdate ({_id: req.body.jobObject.userid},{$push:{jobDetails: req.body.jobObject.jobDetails}}, function(err,user){
+    app.post('/bookjob', function(req,res){ 
+        console.log(req.body)
+       User.findOneAndUpdate ({_id: req.body.userid},{$push:{jobDetails: req.body.jobDetails}}, function(err,user){
             if(err)throw(err)
             if(!user){
                 res.json({success: false, message:"User not found"})
@@ -57,7 +58,8 @@ module.exports = function (app) {
             
         User.findOne({_id:req.params.userId},function(err,user){
 
-            if(err)throw err;
+            if(err)throw err; 
+
             if(!user){
                 res.json({success: false, message:"User not found"})
 

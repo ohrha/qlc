@@ -23,7 +23,10 @@
         $scope.calender = [];
         $scope.successfullyBooked = false;
         $scope.failedBooking=false;
-
+        $scope.jobDetails2 = null;
+        $scope.contractor2 = "";
+        $scope.location2 = "";
+        $scope.supervisor2 = "";
         $scope.finalTimeOut = {
             name: "",
 
@@ -59,6 +62,7 @@
                 console.log(data)
                 if (data.data.success) {
                     $scope.successfullyBooked = true;
+                    
                     $scope.loading = false;
                     $timeout(function () {
                         $scope.successfullyBooked = false;
@@ -72,12 +76,16 @@
                 userid:$routeParams.userid,
                 jobDetails : $scope.jobDetails
             }
+            this.logo = {
+
+            }
+            console.log($scope.jobObject)
             User.addBookedJob($scope.jobObject).then(function(data){
                 console.log(data)
                 $timeout(function(){
     
                     $location.path('/profile/'+$routeParams.userid)
-                },2000)
+                },4000)
             })
             console.log($scope.jobDetails)
         }
@@ -174,6 +182,12 @@
             console.log(data.data.user[$routeParams.month][$routeParams.date - 1])
             $scope.name = data.data.user.name;
             $scope.isSwitchedOn = data.data.user[$routeParams.month][$routeParams.date - 1]
+            $scope.jobDetails2 = data.data.user.jobDetails;
+            console.log($scope.jobDetails2[$scope.date-1].location)
+            $scope.location2 = $scope.jobDetails2[$scope.date-1].location;
+            $scope.contractor2= $scope.jobDetails2[$scope.date-1].contractor;
+            $scope.supervisor2 = $scope.jobDetails2[$scope.date-1].supervisor;
+
 
         })
 
