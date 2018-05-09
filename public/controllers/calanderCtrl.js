@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //console.log(document.getElementById("switch").prop)
         console.log($routeParams)
         $('#switch').prop('checked', true);
+        
+        $scope.clockOut = function(timeData){
+            console.log(this.timeData)
+        }
+
+        
             $scope.getSwitchValue = function() {
       alert(angular.element('#my-switch').prop('checked'));
     };  
