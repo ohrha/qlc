@@ -17,6 +17,7 @@
         $scope.availability
         $scope.availability = 2;
         $scope.userObject = {};
+        $scope.user_id = "";
         $scope.calander = [[], [], []];
         $scope.june1 = false;
         $scope.june2 = false;
@@ -42,6 +43,7 @@
             console.log(data)
             $scope.name = data.data.user.name;
             $scope.userObject = data.data.user;
+            $scope.user_id = data.data.user._id;
             //$scope.userObject
             for (var i = 0; i < data.data.user.june.length; i++) {
                 
