@@ -1,4 +1,18 @@
+     <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 <div class="container animated fadeIn">
+ 
     <div class="row">
         <div style="border-bottom:1px solid black" class="col s12 center-align ">
             <p style="font-size:24px;" class = "railway"> {{month}} {{date}}, 2018 </p>
@@ -192,6 +206,36 @@
             </div>
             </div>
         </form>
+        <div class = "container">
+            <div class = "row">
+<form name = "jobDetailsForm" ng-submit="bookJob(jobDetailsData, jobDetailsForm.$valid);">
+         <div class="input-field col s12">
+            <select name = "contractor" ng-model="jobDetailsData.contractor">
+                <option value="" disabled selected>X</option>
+                <option value="Carlton Events" >Carlton Events</option>
+                <option value="Goldriggers" >Goldriggers</option>
+   
+            </select>
+                <label>Contractor</label>
+            </div>
+                    <div class="input-field col s12">
+            <select name = "supervisor" ng-model="jobDetailsData.supervisor">
+                <option value="" disabled selected>X</option>
+                <option value="Hendrix" >Hendrix</option>
+                <option value="Stoves" >Stoves</option>
+   
+            </select>
+                <label>Supervisor</label>
+            </div>
+            <div class = "input-field col s12 center-align">
+                <!-- Modal Trigger -->
+  <button data-target="modal1" class="btn modal-trigger">Modal</button>
+        
+            <button class="btn waves-effect waves-light " type="submit">Submit<i class ="material-icons right">send</i></button>
+            </div>
+</form>
+            </div>
+        </div>
 <div class = "row">
     <div class = "container">
         <div style ="border:1px solid#ddd;"class = "col s4 center-align animated fadeIn">
@@ -213,6 +257,7 @@
 <script>
     $(document).ready(function () {
         $('select').material_select();
+        $('.modal').modal();
     })
 
 </script>

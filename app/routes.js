@@ -11,10 +11,10 @@ module.exports = function (app) {
             } else {
                 //res.json({success: true, message: "User found..", user.})
                 console.log(user)
-                if (req.params.month == "june") {
+                if (req.params.month == "June") {
                     if (req.params.boolean == "false") {
                         user.june[req.params.date - 1] = false;
-                        User.findOneAndUpdate({ _id: req.params.userid }, { $set: { june: user.june } }, function (err, user) {
+                        User.findOneAndUpdate({ _id: req.params.userid }, { $set: { June: user.June } }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
                                 res.json({ success: false, message: "User not found..." })
@@ -24,7 +24,7 @@ module.exports = function (app) {
                         })
                     } else {
                         user.june[req.params.date - 1] = true;
-                        User.findOneAndUpdate({ _id: req.params.userid }, { $set: { june: user.june } }, function (err, user) {
+                        User.findOneAndUpdate({ _id: req.params.userid }, { $set: { June: user.June } }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
                                 res.json({ success: false, message: "User not found..." })

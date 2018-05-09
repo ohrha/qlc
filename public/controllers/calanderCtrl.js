@@ -34,6 +34,13 @@
         console.log($routeParams)
         $('#switch').prop('checked', true);
 
+        $scope.bookJob = function(jobDetailData,valid){
+            if(valid){
+                $scope.areYouSure = true;
+            }
+            console.log(this.jobDetailsData)
+            console.log(valid)
+        }
         $scope.clockOut = function (timeData) {
             console.log(this.timeData)
             $scope.clockIn = "" + this.timeData.hundreth + "" + this.timeData.hundreth2 + ":" + this.timeData.minTenth + "" + this.timeData.minTenth2 + this.timeData.inAmPm + "";
