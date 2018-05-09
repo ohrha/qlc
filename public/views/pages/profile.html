@@ -8,7 +8,7 @@
             </div>
         </div>
         <div style=" border-bottom:1px solid black;" class="col s9 ">
-            <h4 class="center-align animated fadeIn" >{{name}}</h4>
+            <h4 class="center-align animated fadeIn">{{name}}</h4>
             <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
             <div class="row center-align">
                 <div class="col s4">
@@ -35,10 +35,12 @@
                 </div>
             </div>
 
+
+
             <table class="animated fadeIn center-align">
 
                 <tr>
-                    <th class="day-name" >Sun</th>
+                    <th class="day-name">Sun</th>
                     <th class="day-name">Mon</th>
                     <th class="day-name">Tue</th>
                     <th class="day-name">Wed</th>
@@ -47,43 +49,43 @@
                     <th class="day-name">Sat</th>
                 </tr>
                 <tr>
-                    
-                    <td class = "day"ng-click="areYouAvailable()" ng-class = "{available: availability == 1, notavailable: availability == 3, pending: availability == 2}"><div class = "floater"></div><span class="number">1</span><span class="event"></span><span class="event"></span></td>
-                    <td class = "day"ng-click="areYouAvailable()" ng-class = "{available: availability == 1, notavailable: availability == 3, pending: availability == 2}"><span class="number">2</span></td>
-                    <td class="day"><span class="number">3</span><span class="event event-multiday-start"></span></td>
-                    <td class="day"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass"
+
+                    <td class="day" ng-class="{available: june1, notavailable: !june1, pending: availability == 2}"><div class="floater"></div><spanclass="number">1<span  style="position:relative; top:50px; left:10px; font-size:20px;"class = "material-icons align-center animated pulse infinite">access_alarms</span></span><span class="event"></span><span class="event"></span></td>
+                    <td class="day" ng-class="{available: june2, notavailable: !june2, pending: availability == 2}"><span class="number">2</span></td>
+                    <td class="day" ng-class="{available: june3, notavailable: !june3, pending: availability == 2}"><span class="number">3</span><span class="event event-multiday-start"></span></td>
+                    <td class="day" ng-class="{available: june4, notavailable: !june4, pending: availability == 2}"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass"
                             style="background-color:#5a9ab2;"></span><span class="event"></td>
-    <td class="day"><span class="number">5</span><span class="event event-multiday-finish"></span><span class="event event-multiday eventclass"
+                    <td class="day" ng-class = "{available: june5, notavailable: !june5, pending: availability == 2}"><span class="number">5</span><span
+                            class="event event-multiday-finish"></span><span class="event event-multiday eventclass" style="background-color:#5a9ab2;"></span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june6, pending: availability == 2}"><span class="number">6</span><span class="event event-ghost"></span><span class="event event-multiday-finish eventclass"
                             style="background-color:#5a9ab2;"></span></td>
-                    <td class="day"><span class="number">6</span><span class="event event-ghost"></span><span class="event event-multiday-finish eventclass"
-                            style="background-color:#5a9ab2;"></span></td>
                 </tr>
                 <tr>
-                    <td class="day"><span class="number">7</span></td>
-                    <td class="day"><span class="number">8</span><span class="event"></span></td>
-                    <td class="day"><span class="number">9</span></td>
-                    <td class="day"><span class="number">10</span></td>
-                    <td class="day"><span class="number">11</span></td>
-                    <td class="day"><span class="number">12</span></td>
-                    <td class="day"><span class="number">13</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june7, pending: availability == 2}"><span class="number">7</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june8, pending: availability == 2}"><span class="number">8</span><span class="event"></span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june9, pending: availability == 2}"><span class="number">9</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june10, pending: availability == 2}"><span class="number">10</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june11, pending: availability == 2}"><span class="number">11</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june12, pending: availability == 2}"><span class="number">12</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june13, pending: availability == 2}"><span class="number">13</span></td>
                 </tr>
                 <tr>
-                    <td class="day"><span class="number">14</span></td>
-                    <td class="day"><span class="number">15</span></td>
-                    <td class="day"><span class="number">16</span><span class="event"></span></td>
-                    <td class="day"><span class="number">17</span><span class="event"></span></td>
-                    <td class="day"><span class="number">18</span></td>
-                    <td class="day"><span class="number">19</span></td>
-                    <td class="day"><span class="number">20</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june14, pending: availability == 2}"><span class="number">14</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june15, pending: availability == 2}"><span class="number">15</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june16, pending: availability == 2}"><span class="number">16</span><span class="event"></span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june17, pending: availability == 2}"><span class="number">17</span><span class="event"></span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june18, pending: availability == 2}"><span class="number">18</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june19, pending: availability == 2}"><span class="number">19</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june20, pending: availability == 2}"><span class="number">20</span></td>
                 </tr>
                 <tr>
-                    <td class="day"><span class="number">21</span></td>
-                    <td class="day"><span class="number">22</span></td>
-                    <td class="day"><span class="number">23</span></td>
-                    <td class="day"><span class="number">24</span></td>
-                    <td class="day"><span class="number">25</span></td>
-                    <td class="day"><span class="number">26</span></td>
-                    <td class="day"><span class="number">27</span><span class="event event-multiday-start" style="background-color:#da5f5f;"></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june21, pending: availability == 2}"><span class="number">21</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june22, pending: availability == 2}"><span class="number">22</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june23, pending: availability == 2}"><span class="number">23</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june24, pending: availability == 2}"><span class="number">24</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june25, pending: availability == 2}"><span class="number">25</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june26, pending: availability == 2}"><span class="number">26</span></td>
+                    <td class="day" ng-class="{available: june6, notavailable: !june27, pending: availability == 2}"><span class="number">27</span><span class="event event-multiday-start" style="background-color:#da5f5f;"></td>
   </tr>
   <tr>
     <td  class="day animated fadeIn"><span class="number">28</span><span class="event event-multiday" style="background-color:#da5f5f;"></td>
@@ -96,6 +98,7 @@
                 </tr>
 
             </table>
+            -->
 
         </div>
     </div>

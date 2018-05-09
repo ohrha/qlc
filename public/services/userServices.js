@@ -16,5 +16,10 @@ angular.module('userServices',[]).config(function(){
     userFactory.getUser  = function(userId){
         return $http.put('/api/users/'+userId);
     }
+    userFactory.changeAvailability = function(){
+
+        return $http.put('/api/user/');
+
+    }
     return userFactory
 })

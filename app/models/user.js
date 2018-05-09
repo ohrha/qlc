@@ -15,7 +15,8 @@ var UserSchema = new Schema({
     resettoken:{type:String, required:false, default:'user'},
     viewhistory:{type:Array},
     alreadyapplied:{type:Array},
-    calender:{type:Object}
+    calender:{type:Object},
+    june:{type:Object}
 
 
 

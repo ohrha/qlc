@@ -57,6 +57,13 @@
                 controllerAs: 'profile'
             
             })
+            .when('/profile/:userid/:date', {
+                templateUrl: '../views/pages/calander.html',
+                name: "QLH | Calander",
+                controller: "profileCtrl",
+                controllerAs: 'profile'
+            
+            })
 
             .when('/contact', {
                 templateUrl: '../views/pages/contact.html',
