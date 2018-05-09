@@ -10,6 +10,8 @@
        
         $scope.available = false;
         $scope.isSwitchedOn = false;
+        $scope.date = $routeParams.date;
+        $scope.month = $routeParams.month;
 document.addEventListener("DOMContentLoaded", function(event) { 
   //do work
 });

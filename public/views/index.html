@@ -121,6 +121,7 @@
     $(document).ready(function () {
       console.log($('.tap-target'))
       /*Form Validation*/
+      $('select').material_select();
       $('#registrationForm').validate({
 
         rules: {
@@ -163,13 +164,13 @@
       /*Materialize initializations */
       setTimeout(function () {
 
-        $('.tap-target').tapTarget('open');
+        //$('.tap-target').tapTarget('open');
 
       }, 3000);
 
       //This method wasn't working
       // $('select').material_select();
-      $('select:not([multiple])').material_select();
+     // $('select:not([multiple])').material_select();
       console.log($('select'))
       $('.carousel.carousel-slider').carousel({ fullWidth: true });
       $('.datepicker').pickadate({
