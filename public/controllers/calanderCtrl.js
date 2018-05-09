@@ -9,7 +9,7 @@
     app.controller('calanderCtrl', function ($scope, Auth,$timeout,$location,$routeParams,User) {
        
         $scope.available = false;
-        $scope.isSwitchedOn = true;
+        $scope.isSwitchedOn = false;
 document.addEventListener("DOMContentLoaded", function(event) { 
   //do work
 });
@@ -20,6 +20,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
             $scope.getSwitchValue = function() {
       alert(angular.element('#my-switch').prop('checked'));
     };  
+
+    User.getUser($routeParams.userid).then(function(data){
+
+        console.log(data);
+        console.log(data.data.user[$routeParams.month][$routeParams.date-1])
+        $scope.isSwitchedOn=data.data.user[$routeParams.month][$routeParams.date-1]
+
+    })
+
+
+    
 
         $scope.availabilityChanger = function(){
 
