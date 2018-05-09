@@ -57,7 +57,7 @@
                 controllerAs: 'profile'
             
             })
-            .when('/calander/:userid/:date', {
+            .when('/calander/:userid/:month/:date', {
                 templateUrl: '../views/pages/calander.html',
                 name: "QLH | Calander",
                 controller: "calanderCtrl",

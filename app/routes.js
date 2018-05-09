@@ -1,7 +1,29 @@
 var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
+    app.put('/users/:userid/:month/:date/:boolean', function(req,res){
 
+        User.findOne({_id: req.params.userid}, function(err,user){
+
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message: "User not found.."})
+            }else{
+                //res.json({success: true, message: "User found..", user.})
+                console.log(user)
+                if(req.params.month == "june"){
+                    if(req.params.boolean == "false"){
+                    user.june[req.params.date] = false;
+                    }else{
+                        user.june[req.params.date] = true;
+                    }
+                }
+                res.json({success: true, message: "User's availability modified", user: user})
+            }
+
+        })
+
+    })
     app.put('/users/:userid',function(req,res){
 
         User.findOne({_id:req.params.userid},function(err,user){

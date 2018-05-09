@@ -1,1 +1,21 @@
 <h2> Calander works!</h2>
+<div class="container">
+    <div class="row">
+        <div class="col s12 center-align">
+            <!-- Switch -->
+            <div class="switch " ng-click="availabilityChanger();" >
+                <label>
+      Unavailable
+      <input id="my-switch"  ng-checked="isSwitchedOn" type="checkbox" >
+      <span class="lever"></span>
+      Available
+    </label>
+            </div>
+            		<div id="switch-panel" ng-show="isSwitchedOn">
+			<p>I'm switched on</p>
+		</div>
+        </div>
+
+    </div>
+</div>
+</div>
