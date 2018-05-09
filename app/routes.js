@@ -1,66 +1,83 @@
 var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
-    app.put('/users/:userid/:month/:date/:boolean', function(req,res){
+    app.put('/users/:userid/:month/:date/:boolean', function (req, res) {
 
-        User.findOne({_id: req.params.userid}, function(err,user){
+        User.findOne({ _id: req.params.userid }, function (err, user) {
 
-            if(err)throw err;
-            if(!user){
-                res.json({success: false, message: "User not found.."})
-            }else{
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found.." })
+            } else {
                 //res.json({success: true, message: "User found..", user.})
                 console.log(user)
-                if(req.params.month == "june"){
-                    if(req.params.boolean == "false"){
-                    user.june[req.params.date] = false;
-                    }else{
-                        user.june[req.params.date] = true;
+                if (req.params.month == "june") {
+                    if (req.params.boolean == "false") {
+                        user.june[req.params.date - 1] = false;
+                        User.findOneAndUpdate({ _id: req.params.userid }, { $set: { june: user.june } }, function (err, user) {
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found..." })
+                            } else {
+                                res.json({ success: true, message: "User found and updated..", user })
+                            }
+                        })
+                    } else {
+                        user.june[req.params.date - 1] = true;
+                        User.findOneAndUpdate({ _id: req.params.userid }, { $set: { june: user.june } }, function (err, user) {
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found..." })
+                            } else {
+                                res.json({ success: true, message: "User found and updated..", user })
+                            }
+                        })
                     }
+               
                 }
-                res.json({success: true, message: "User's availability modified", user: user})
+                //res.json({success: true, message: "User's availability modified", user: user})
             }
 
         })
 
     })
-    app.put('/users/:userid',function(req,res){
+    app.put('/users/:userid', function (req, res) {
 
-        User.findOne({_id:req.params.userid},function(err,user){
-            if(!user){
-                res.json({success: false, message:"User not found..."})
-            }else{
-                res.json({success: true, message:"User found..", user:user})
+        User.findOne({ _id: req.params.userid }, function (err, user) {
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                res.json({ success: true, message: "User found..", user: user })
             }
         })
 
     })
-    app.post('/authenticate', function(req,res){
+    app.post('/authenticate', function (req, res) {
 
         //res.send("testing new route")
         console.log("authenticate Route Hit");
         console.log(req.body)
-        User.findOne({username: req.body.username}).select('email username password')
-        .exec(function(err,user){
+        User.findOne({ username: req.body.username }).select('email username password')
+            .exec(function (err, user) {
 
-            if(err) throw err;
-            if(!user){
-                console.log("ppocher")
-                res.json({success: false, message:"Could Not Authenticate User"})
-            }else if(user){
-                //START PASSWORD VALIDATION
-                console.log("hello")
-                var validPassword = user.comparePassword(req.body.password)
-                console.log("validPassword",validPassword)
-             
-                //console.log(validPassword)
-                if(!validPassword){
-                    res.json({success: false, message:"Could not authenticate password"})
-                }else{
-                    res.json({success:true, message: "User authenticated...",user:user})
+                if (err) throw err;
+                if (!user) {
+                    console.log("ppocher")
+                    res.json({ success: false, message: "Could Not Authenticate User" })
+                } else if (user) {
+                    //START PASSWORD VALIDATION
+                    console.log("hello")
+                    var validPassword = user.comparePassword(req.body.password)
+                    console.log("validPassword", validPassword)
+
+                    //console.log(validPassword)
+                    if (!validPassword) {
+                        res.json({ success: false, message: "Could not authenticate password" })
+                    } else {
+                        res.json({ success: true, message: "User authenticated...", user: user })
+                    }
                 }
-        }
-        })
+            })
 
     })
     app.post('/users', function (req, res) {
@@ -68,7 +85,7 @@ module.exports = function (app) {
         var user = new User();
         user.username = req.body.userName;
         user.password = req.body.password.toString(),
-        user.email = req.body.email;
+            user.email = req.body.email;
         user.name = req.body.name;
         console.log(user)
 
@@ -83,17 +100,17 @@ module.exports = function (app) {
                 if (err) {
 
                     //res.send("Ensure all fields input")
-                    res.json({success: false, message: "There was an error..."})
+                    res.json({ success: false, message: "There was an error..." })
                     console.log(err)
                 } else {
-                   
-                       /* if (err) {
-                            res.send("Username or email already exists..")
-                            res.json({success: false, message: "Username or email already exists.."})
-                        } else {*/
-                            //res.send("userCreated");
-                            res.json({success: true, message: "User Created Successfully."})
-               /* }*/
+
+                    /* if (err) {
+                         res.send("Username or email already exists..")
+                         res.json({success: false, message: "Username or email already exists.."})
+                     } else {*/
+                    //res.send("userCreated");
+                    res.json({ success: true, message: "User Created Successfully." })
+                    /* }*/
 
 
                 }

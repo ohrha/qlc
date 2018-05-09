@@ -16,7 +16,7 @@ var UserSchema = new Schema({
     viewhistory:{type:Array},
     alreadyapplied:{type:Array},
     calender:{type:Object},
-    june:{type:Object}
+    june:{type:Array}
 
 
 
@@ -28,12 +28,16 @@ UserSchema.pre('save', function(next){
     console.log('user Prehook',user.password) 
     console.log(typeof user.password)
     //var password = user.password.toString()
+   
     bcrypt.hash(user.password, 10, function(err,hash){
         if(err) return next(err);
         console.log("Old user.password", user.password);
         console.log("Hash". hash)
-        user.password = hash;
+        if(user.password !== hash){
+ user.password = hash;
         console.log("New user.password", user.password)
+        }
+       
         next();
     })
 })
