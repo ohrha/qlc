@@ -10,6 +10,30 @@ a{
 .railway{
     font-family: 'Raleway', sans-serif;
 }
+.pimg1{
+  background-image:url('../img/backgroundsmall.jpg');
+    min-height:640px;
+    width:100%;
+    margin:0;
+}
+.pimg2{
+
+    background-image:url('../img/background2small.jpg');
+    min-height:400px;
+
+}
+.pimg3{
+
+    background-image:url('../img/background3small.jpg');
+    min-height:400px;
+
+}
+.pimg4{
+
+    background-image:url('../img/background4small.jpg');
+    min-height:400px;
+
+}
 /*
 .carousel-slider {
     height: 400px !important;
