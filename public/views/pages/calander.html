@@ -211,8 +211,8 @@
          <div class="input-field col s12">
             <select name = "location" ng-model="jobDetailsData.location">
                 <option value="" disabled selected>X</option>
-                <option value="Carlton Events" >ASB SHOWGROUNDS</option>
-                <option value="Goldriggers" >MISSION BAY</option>
+                <option value="ASB SHOWGROUNDS" >ASB SHOWGROUNDS</option>
+                <option value="MISSION BAY" >MISSION BAY</option>
    
             </select>
                 <label>Location</label>
@@ -237,15 +237,27 @@
             </div>
             <div class = "input-field col s12 center-align">
                 <!-- Modal Trigger -->
-  <button ng-click="bookJob()"data-target="modal1" class="btn modal-trigger">Modal</button>
+  <button ng-click="bookJob()"data-target="modal1" id="trigger"class="btn modal-trigger">Modal</button>
         
             <button class="btn waves-effect waves-light " type="submit">Submit<i class ="material-icons right">send</i></button>
             </div>
 </form>
             </div>
         </div>
-<div class = "row">
-    <div class = "container">
+
+
+    <div ng-show = "loading" class = "container">
+         <div class = "col s12 animated fadeIn">
+    <div class = "center-align">
+ <i style = "font-size:16px;"class="fa fa-cog fa-spin fa-3x fa-fw "></i>
+    </div>
+  </div>
+    </div>
+    <div class = "row">
+
+        <div ng-show="successfullyBooked"class ="col s12 animated fadeIn">
+           <p style="font-size:24px;" class = "railway">Job At {{location}} Successfully Booked for {{name}} </p>
+        </div>
         <div style ="border:1px solid#ddd;"class = "col s4 center-align animated fadeIn">
             <p style="font-size:24px;" class = "railway">Hrs: </p>
             <p style="font-size:24px; " class = "railway">Mins: </p>

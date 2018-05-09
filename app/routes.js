@@ -41,6 +41,55 @@ module.exports = function (app) {
         })
 
     })
+   
+    app.put('/users/:userid/:job', function(req,res){
+        User.findOneAndUpdate ({_id: req.params.userid},{$push:{jobDetails: req.params.job}}, function(err,user){
+            if(err)throw(err)
+            if(!user){
+                res.json({success: false, message:"User not found"})
+                
+            }else{
+                res.json({success: true, message: "User found and updated",user})
+            }
+        })
+    })
+     app.put('/users/:userId/:date/:boolean', function(req,res){
+            
+        User.findOne({_id:req.params.userId},function(err,user){
+
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found"})
+
+            }else{
+                if(req.params.boolean =="true"){
+                    user.calender[0][req.params.date]=true;
+                    console.log(user.calender[0][req.params.date])
+                              User.findOneAndUpdate({_id: req.params.userId},{$set:{calender:user.calender}},function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success:false, message:"User not found"})
+                    }else{
+                        res.json({success: true, message: "User found and updated...",user:user})
+                    }
+                })
+            }else{
+                                    user.calender[0][req.params.date]=false;
+
+                              User.findOneAndUpdate({_id: req.params.userid},{$set:{calender:user.calender}},function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success:false, message:"User not found"})
+                    }else{
+                        res.json({success: true, message: "User found and updated...",user:user})
+                    }
+                })
+                }
+      
+            }
+
+        })
+    })
     app.put('/users/:userid', function (req, res) {
 
         User.findOne({ _id: req.params.userid }, function (err, user) {

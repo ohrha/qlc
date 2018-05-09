@@ -20,7 +20,10 @@
         $scope.user_id = "";
         $scope.calander = [[], [], []];
         $scope.june1 = false;
+        $scope.june1Booked = false;
+        
         $scope.june2 = false;
+        $scope.june2Booked = false;
         $scope.june3 = false;
         $scope.june4 = false;
         $scope.june5 = false;
@@ -45,7 +48,7 @@
             $scope.userObject = data.data.user;
             $scope.user_id = data.data.user._id;
             //$scope.userObject
-            for (var i = 0; i < data.data.user.june.length; i++) {
+            for (var i = 0; i < data.data.user.June.length; i++) {
                 
                    /*  if (data.data.user.june[2] === true) {
                         $scope.june3 = true;
@@ -96,16 +99,24 @@
                         $scope.june18 = true;
                     }*/
                 if (i < 8)
-                    $scope.calander[0].push(data.data.user.june[i])
+                    $scope.calander[0].push(data.data.user.June[i])
           
 
                 if (i > 8) {
-                    $scope.calander[1].push(data.data.user.june[i])
+                    $scope.calander[1].push(data.data.user.June[i])
                 } if (i > 16) {
-                    $scope.calander[2].push(data.data.user.june[i])
+                    $scope.calander[2].push(data.data.user.June[i])
                 }
 
             }
+            
+                if(data.data.user.calender[0]["1"]){
+                    $scope.june1Booked = true;
+                }
+                 if(data.data.user.calender[0]["2"]){
+                    $scope.june2Booked = true;
+                }
+           
             for(var i =0; i< $scope.calander[0].length;i++){
 
                     if ($scope.calander[0][0] === true) {

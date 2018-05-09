@@ -15,11 +15,15 @@
         $scope.hrsWorked = null;
         $scope.minsWorked = null;
         $scope.areYouSure = false;
+        $scope.loading =false;
         $scope.supervisor = "";
         $scope.contractor = "";
         $scope.location = "";
-        $scope.name ="";
-    
+        $scope.name = "";
+        $scope.calender = [];
+        $scope.successfullyBooked = false;
+        $scope.failedBooking=false;
+
         $scope.finalTimeOut = {
             name: "",
 
@@ -38,25 +42,48 @@
         //console.log(document.getElementById("switch").prop)
         console.log($routeParams)
         $('#switch').prop('checked', true);
-        $scope.imSure=function(){
-            $scope.imSure=true;
-            $scope.areYouSure= false;
-                  $scope.jobDetails = {
-            supervisor:$scope.supervisor,
-            contractor:$scope.contractor,
-            location:$scope.location,
-            date:$routeParams.date,
-            month:$routeParams.month
+        $scope.imSure = function () {
+            
+            $scope.imSure = true;
+            $scope.areYouSure = false;
+            $scope.loading = true;
+            $scope.jobDetails = {
+                supervisor: $scope.supervisor,
+                contractor: $scope.contractor,
+                location: $scope.location,
+                date: $routeParams.date,
+                month: $routeParams.month
 
+            }
+            User.setToBooked($routeParams.userid, $routeParams.date, "true").then(function (data) {
+                console.log(data)
+                if (data.data.success) {
+                    $scope.successfullyBooked = true;
+                    $scope.loading = false;
+                    $timeout(function () {
+                        $scope.successfullyBooked = false;
+                    }, 4000)
+                }else{
+                    $scope.failedBooking = true;
+                    $scope.loading = false;
+                }
+            })
+            /*User.addBookedJob($routeParams.userid, $scope.jobDetails).then(function(data){
+                console.log(data)
+                $timeout(function(){
+    
+                    $location.path('/profile/'+$routeParams.userid)
+                },2000)
+            })*/
+            console.log($scope.jobDetails)
         }
-        console.log($scope.jobDetails)
-        }
-        $scope.bookJob = function(jobDetailData,valid){
-            if(valid){
+        $scope.bookJob = function (jobDetailData, valid) {
+            if (valid) {
                 $scope.areYouSure = true;
                 $scope.contractor = jobDetailData.contractor
                 $scope.location = jobDetailData.location
                 $scope.supervisor = jobDetailData.supervisor
+                document.getElementById("trigger").click();
             }
             console.log(this.jobDetailsData)
             console.log(valid)

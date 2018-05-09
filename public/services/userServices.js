@@ -21,5 +21,13 @@ angular.module('userServices',[]).config(function(){
         return $http.put('/api/users/'+userid+'/'+month+'/'+date+'/'+boolean);
 
     }
+    userFactory.addBookedJob = function(userid,job){
+                return $http.put('/api/users/'+userid+"/"+job);
+
+    }
+    userFactory.setToBooked = function(userId,date,boolean){
+        return $http.put('/api/users/'+userId+'/'+date+'/'+boolean)
+        
+    }
     return userFactory
 })
