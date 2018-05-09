@@ -1,10 +1,11 @@
 <div class="container animated fadeIn">
     <div class="row">
-        <div class="col s12 center-align ">
-            <h2> {{month}} {{date}}, 2018 </h2>
+        <div style="border-bottom:1px solid black" class="col s12 center-align ">
+            <p style="font-size:24px;" class = "railway"> {{month}} {{date}}, 2018 </p>
         </div>
+     
         <div class="col s12 center-align animated fadeIn">
-
+<p style="font-size:24px; text-decoration:underline;" class = "railway"> Available?</p>
             <!-- Switch -->
             <div class="switch " ng-click="availabilityChanger();">
                 <label>
@@ -13,12 +14,16 @@
       <span class="lever"></span>
       Available
     </label>
+    <br>
             </div>
+            
             <!--  <div id="switch-panel" ng-show="isSwitchedOn">
                 <p>I'm switched on</p>
             </div>-->
         </div>
+        <br>
         <form name="timeSheet" ng-submit="clockOut(timeData,timeSheet.$valid,timeSheet);">
+            <br>
             <div class="input-field col s3">
                 <select name = "hundreth" ng-model="timeData.hundreth">
                     <option value="" disabled selected>X</option>
@@ -190,13 +195,13 @@
 <div class = "row">
     <div class = "container">
         <div style ="border:1px solid#ddd;"class = "col s4 center-align animated fadeIn">
-            <h4>Hrs: </h4>
-            <h4>Mins: </h4>
+            <p style="font-size:24px;" class = "railway">Hrs: </p>
+            <p style="font-size:24px; " class = "railway">Mins: </p>
 
         </div>
-        <div  style ="border:1px solid#ddd;" class = "col s8 center-align">
-            <h4 class = "animated fadeIn" ng-show="hrsWorked">{{hrsWorked}}</h4>
-            <h4 class = "animated fadeIn" ng-show="minsWorked">{{minsWorked}}</h4>
+        <div  style ="border:1px solid#ddd; height:145px;" class = "col s8 center-align">
+            <p style="font-size:22px; color:#ddd;"class = " railway animated fadeIn" ng-show="hrsWorked">{{hrsWorked}}</p>
+            <p style="font-size:22px; color:#ddd;" class = "railway animated fadeIn" ng-show="minsWorked">{{minsWorked}}</p>
         </div>
     </div>
 </div>
