@@ -1,6 +1,18 @@
 var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
+
+    app.get('/users', function(req,res){
+
+        User.find({}, function(err,users){
+            if(err)throw err;
+            if(!users){
+                res.json({success: false, message:"Users not found.."})
+            }else{
+                res.json({success: true, message: "Users found..", users})
+            }
+        })
+    })
     app.put('/users/:userid/:month/:date/:boolean', function (req, res) {
 
         User.findOne({ _id: req.params.userid }, function (err, user) {
@@ -53,10 +65,11 @@ module.exports = function (app) {
                 res.json({success: true, message: "User found and updated",user})
             }
         })
-    })
+    }) 
      app.put('/users/:userId/:date/:boolean', function(req,res){
             
         User.findOne({_id:req.params.userId},function(err,user){
+            
 
             if(err)throw err; 
 

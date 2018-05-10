@@ -55,14 +55,28 @@
                 name: "QLH | PROFILE",
                 controller: "profileCtrl",
                 controllerAs: 'profile'
-            
+
             })
             .when('/calander/:userid/:month/:date', {
                 templateUrl: '../views/pages/calander.html',
                 name: "QLH | Calander",
                 controller: "calanderCtrl",
                 controllerAs: 'calander'
-            
+
+            })
+            .when('/management', {
+                templateUrl: '../views/pages/management.html',
+                name: "QLH | MANAGEMENT",
+                controller: "managementCtrl",
+                controllerAs: 'management'
+
+            })
+                   .when('/management/users/:_id', {
+                templateUrl: '../views/pages/management-users.html',
+                name: "QLH | MANAGEMENT|USER",
+                controller: "managementCtrl",
+                controllerAs: 'management'
+
             })
 
             .when('/contact', {

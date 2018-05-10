@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div style="border-bottom:1px solid black;" class='col s12 center-align animated fadeIn'>
+
+            <p class="management-header underline railway animated fadeIn">| Administration |</p>
+        </div>
+
+        <div style="border-right:1px solid #ddd" class="col s2 center-align ">
+            <p ng-click="openManagementPage()" class=" underline animated fadeIn"> HOME </p><br>
+            <p ng-click="openClientsPage()" class=" underline animated fadeIn"> CLIENTS </p>
+            <p ng-click="openEmployeesPage()" class=" underline animated fadeIn"> EMPLOYEES </p>
+
+        </div>
+        <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
+            <p class="railway">Administration Page</p>
+  
+        </div>
+        <div ng-show="clientsPage" class="col s10 center-align animated fadeIn">
+            <p class="railway">Clients Page</p>
+        </div>
+        <div ng-show="employeesPage" class="col s10 center-align animated fadeIn">
+            <p class="railway">Employees Page</p>
+                      <div class = "row">
+                <div class = "col s3 center-align">
+                    <p ng-repeat = "user in employees" class = "railway">{{user.name}}</p>
+                    
+                </div>
+                <div class = "col s9">
+
+                </div>
+            <!--<p class="railway">Main Page</p>-->
+        </div>
+            
+
+
+        </div>
+    </div>
+</div>

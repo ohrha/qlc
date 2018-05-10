@@ -10,6 +10,14 @@ a{
 .railway{
     font-family: 'Raleway', sans-serif;
 }
+.underline{
+    border-bottom:1px solid rgba(0,0,0,.4);
+    display:inline-block;
+}
+.management-header{
+    font-size: 24px;
+}
+
 .pimg1{
   background-image:url('../img/backgroundsmall.jpg');
     min-height:640px;
