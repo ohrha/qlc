@@ -15,10 +15,19 @@
         $scope.closeIssue = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
+        $scope.jobDetails = [];
+        console.log($scope.jobDetails)
 
         User.getUsers().then(function(data){
             console.log(data)
             $scope.employees = data.data.users;
+            $scope.jobDetails = data.data.users.jobDetails;
+            for(var i = 0; i < data.data.users.length; i++){
+                if(data.data.users[i].name == $scope.currentUserFile){
+                    data.data.users[i].jobDetails = $scope.jobDetails;
+                }
+            }
+            console.log($scope.jobDetails)
         })
         $scope.openCloseIssue= function(){
             console.log($scope.openIssue)
@@ -75,6 +84,19 @@
         }
         $scope.openUserFile=function(name){
             $scope.currentUserFile = name;
+                   User.getUsers().then(function(data){
+            console.log(data)
+           // $scope.employees = data.data.users;
+            //$scope.jobDetails = data.data.users.jobDetails;
+            for(var i = 0; i < data.data.users.length; i++){
+                if(data.data.users[i].name == $scope.currentUserFile){
+                   $scope.jobDetails=data.data.users[i].jobDetails ;
+                   console.log(data.data.users[i].name)
+                   console.log(data.data.users[i].jobDetails)
+                }
+            }
+            console.log($scope.jobDetails)
+        })
             console.log(name);
             console.log("Curent User",$scope.currentUserFile)
             if(!$scope.userFilePage && $scope.currentUserFile == name){
