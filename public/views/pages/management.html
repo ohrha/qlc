@@ -8,7 +8,7 @@
         <div style="border-right:1px solid #ddd" class="col s2 center-align ">
             <span ng-click="openManagementPage()" class=" truncate  animated fadeIn "><i class="material-icons">home</i> HOME </span>
             <span ng-click="openClientsPage()" class=" truncate  animated fadeIn "><i class="material-icons">business</i> CLIENTS </span>
-            <span ng-click="openEmployeesPage()" class=" truncate  animated fadeIn "><i class="material-icons">person</i> EMPLOYEES </span>
+            <span ng-click="openEmployeesPage()" class=" truncate  animated fadeIn "><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
 
         </div>
         <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
@@ -18,11 +18,11 @@
         <div ng-show="clientsPage" class="col s10 center-align animated fadeIn">
             <p class="railway">Clients Page</p>
         </div>
-        <div ng-show="employeesPage" class="col s10 center-align animated fadeIn">
+        <div ng-show="employeesPage" class="col s10 center-align animated fadeIn" >
             <p class="railway">Employees Page</p>
             <div class="row">
                 <div style="border-right:1px solid #ddd" class="col s3 center-align">
-                    <p ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway">{{user.name}}</p>
+                    <p ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway underline">{{user.name}}</p>
 
                 </div>
                 <div class="col s9" ng-repeat="user in employees">
