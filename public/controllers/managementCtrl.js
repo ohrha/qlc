@@ -18,6 +18,8 @@
         $scope.complaintsOpened = false;
         $scope.complaintsSelected = false;
         $scope.bookedJobsSelected = false;
+        $scope.bookedJobsPageOpened = false;
+        $scope.complaintsPageOpened = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
@@ -37,16 +39,23 @@
         $scope.openComplaintsPage=function(){
             if($scope.complaintsSelected){
                 $scope.complaintsSelected = false;
+                $scope.complaintsPageOpened = false;
             }else{
                 $scope.complaintsSelected = true;
+                $scope.complaintsPageOpened = true;
+                $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
             }
         }
                 $scope.openBookedJobsPage=function(){
             if($scope.bookedJobsSelected){
                 $scope.bookedJobsSelected = false;
+                $scope.bookedJobsPageOpened =false;
+
             }else{
                 $scope.bookedJobsSelected = true;
+                              $scope.complaintsPageOpened = false;
+                $scope.bookedJobsPageOpened = true;
                 $scope.complaintsSelected = false;
             }
         }
