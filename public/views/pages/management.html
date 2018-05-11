@@ -65,9 +65,9 @@
 
 <br>
                         <p ng-click="openCloseBookedJobs()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">schedule</i>BOOKED JOBS({{user.jobDetails.length}})</p>
-                        <div ng-show="bookedJobs"ng-repeat ="job in jobDetails"style = "border:1px solid #ddd; padding-bottom:10px;"class = 'col s12'>
+                        <div ng-show="bookedJobs"ng-repeat ="job in jobDetails"style = " border-top:1px solid #ddd; border-left: 1px solid #ddd; border-right:1px solid #ddd; padding-bottom:10px;"class = 'col s12'>
                             <br>
-                            <div style = "border:1px solid black; padding-bottom:10px;">
+                            <div style = "border-bottom:1px solid #ddd;  padding-bottom:10px;">
                            <p class = "railway animated fadeIn "><i style="font-size:16px;"class = "material-icons">business</i>  {{job.contractor}}</p>
                            <span class = "railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">mail</i> {{job.supervisor}}</span>
                             <p class = "railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">landscape</i> {{job.location}}</p>
