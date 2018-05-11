@@ -6,9 +6,9 @@
         </div>
 
         <div style="border-right:1px solid #ddd" class="col s2 center-align animated fadeIn">
-            <span ng-click="openManagementPage()" class=" truncate   "ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
-            <span ng-click="openClientsPage()" class=" truncate   "ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
-            <span ng-click="openEmployeesPage()" class=" truncate   "ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
+            <span ng-click="openManagementPage()" class=" truncate   " ng-class="{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
+            <span ng-click="openClientsPage()" class=" truncate   " ng-class="{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
+            <span ng-click="openEmployeesPage()" class=" truncate   " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
 
         </div>
         <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
@@ -21,74 +21,87 @@
         <!-- EMPLOYEE PAGE -->
 
 
-        <div ng-show="employeesPage" class="col s10 center-align animated fadeIn" >
-             <div class="row">
-        
+        <div ng-show="employeesPage" class="col s10 center-align animated fadeIn">
+            <div class="row">
 
-            
-                 </div>
-           
-                <div style="border-right:1px solid #ddd" class="col s3 center-align">
-                    <p style="word-wrap:break-word; text-decoration:underline;" ng-click="openEmployeeHome()"class = " railway  "> Overview</p>
-                    <p style="word-wrap:break-word; text-decoration:underline;" ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}}</p>
 
+
+            </div>
+
+            <div style="border-right:1px solid #ddd" class="col s3 center-align">
+                <p style="word-wrap:break-word; text-decoration:underline;" ng-click="openEmployeeHome()" class=" railway  "> Overview</p>
+                <p style="word-wrap:break-word; text-decoration:underline;" ng-click="openUserFile(user.name);" ng-repeat="user in employees"
+                    class="railway ">{{user.name}}</p>
+
+            </div>
+            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="employeeHome">
+                <div class="underline">
+                    <p class="railway">Employees Page</p>
                 </div>
-                <div class = "col s9 animated fadeIn"style="border-right: 1px solid #ddd;" ng-show="employeeHome">
-                 <div  class = "underline">
-                     <p class="railway">Employees Page</p>
-                 </div>
-                 <p class= "railway">
-                     A Simple way to manage your employees...
-                 </p>
-                </div>
-                <div ng-show="!employeeHome"class="col s9" style="border-right: 1px solid #ddd;"ng-repeat="user in employees">
-        
-                    <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
-                        
-                        <p style="font-size:18px;" class="railway animated fadeIn ">| {{currentUserFile}} |</p>
-                        <div class = "row">
-                            <div class = "col s2">
-                            </div>
-                            <div style ="border-bottom:1px solid #ddd; opacity:.4;"class = "col s8 center-align">
-                                 <i style="font-size:16px;" class = "material-icons">schedule</i>
+                <p class="railway">
+                    A Simple way to manage your employees...
+                </p>
+            </div>
+            <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in employees">
 
-                           <i style="font-size:16px;" class = "material-icons">priority_high</i>
+                <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
 
-                            </div>
-                            <div class = "col s2">
-                            </div>
-                            <div style="border-bottom:1px solid #ddd;"class= "col s12">
-                            </div>
+                    <p style="font-size:18px;" class="railway animated fadeIn ">| {{currentUserFile}} |</p>
+                    <div class="row">
+                        <div style="opacity:0;"class = "col s1">
+                            jj
                         </div>
-                          <br>
+                        <div style="border-bottom:1px solid #ddd; " class="col s10 center-align">
+                        
+                        </div>
+                        <div class="col s1">
+                        </div>
+                        <div class="col s2">
+                            
+                        </div>
+                        <div  class="col s8 center-align">
+                            <i style="font-size:20px; color:black;" class="material-icons">schedule</i>
 
-                        <p ng-click="openComplaints()"class="railway animated fadeIn underline">Complaints({{user.complaints.length}})</p>
-                        <br>
-<div ng-show="complaintsOpened">
+                            <i style="font-size:20px; color:black;" class="material-icons">priority_high</i>
+
+                        </div>
+                        <div class="col s2">
+                            
+                        </div>
+                       
+                  
+                 
+                    </div>
+                    <br>
+
+                    <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
+                    <br>
+                    <div ng-show="complaintsOpened">
                         <div style="border:1px solid rgba(0,0,0,.6)">
                             <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>
                         </div>
-                        <div style="border:1px solid rgba(0,0,0,.6)" >
-                            <p style="font-size:12px;padding-top:10px; "  ng-class ="{closedissue: !openIssue,openissue:openIssue}" class="railway underline ">{{user.complaints[0].subject}}</p>
+                        <div style="border:1px solid rgba(0,0,0,.6)">
+                            <p style="font-size:12px;padding-top:10px; " ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway underline ">{{user.complaints[0].subject}}</p>
 
-                            <p style="font-size:12px; padding-bottom:10px;" ng-class ="{closedissue: !openIssue,openissue:openIssue}" class="railway">{{user.complaints[0].body}}</p>
+                            <p style="font-size:12px; padding-bottom:10px;" ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway">{{user.complaints[0].body}}</p>
                             <button ng-click="openCloseIssue()" class="waves-effect waves-light btn"><span ng-show="!openIssue">Open Issue</span><span ng-show="openIssue">Close Issue</span></button>
-                            
+
                         </div>
-                        </div>
+                    </div>
 
 
-                        <p ng-click="openCloseBookedJobs()"class="railway animated fadeIn underline">BOOKED JOBS({{user.jobDetails.length}})</p>
-                        <div ng-show="bookedJobs"ng-repeat ="job in jobDetails"style = " border-top:1px solid #ddd; border-left: 1px solid #ddd; border-right:1px solid #ddd; padding-bottom:10px;"class = 'col s12'>
-                            <br>
-                            <div style = "border-bottom:1px solid #ddd;  padding-bottom:10px;">
-                           <p class = "railway animated fadeIn "><i style="font-size:16px;"class = "material-icons">business</i>  {{job.contractor}}</p>
-                           <span class = "railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">mail</i> {{job.supervisor}}</span>
-                            <p class = "railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">landscape</i> {{job.location}}</p>
-                            </div>
+                    <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">Booked Jobs( {{user.jobDetails.length}} )</p>
+                    <div ng-show="bookedJobs" ng-repeat="job in jobDetails" style=" border-top:1px solid #ddd; border-left: 1px solid #ddd; border-right:1px solid #ddd; padding-bottom:10px;"
+                        class='col s12'>
+                        <br>
+                        <div style="border-bottom:1px solid #ddd;  padding-bottom:10px;">
+                            <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">business</i> {{job.contractor}}</p>
+                            <span class="railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">mail</i> {{job.supervisor}}</span>
+                            <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">landscape</i> {{job.location}}</p>
                         </div>
-<br>
-<!--
+                    </div>
+                    <br>
+                    <!--
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
 
 <table>
@@ -156,14 +169,14 @@
     <td class="day"><span class="number">11</span></td>
   </tr>
 </table>-->
-                    </div>
-
                 </div>
-                <!--<p class="railway">Main Page</p>-->
+
             </div>
-
-
-
+            <!--<p class="railway">Main Page</p>-->
         </div>
+
+
+
     </div>
+</div>
 </div>
