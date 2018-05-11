@@ -6,9 +6,9 @@
         </div>
 
         <div style="border-right:1px solid #ddd" class="col s2 center-align ">
-            <span ng-click="openManagementPage()" class=" truncate  animated fadeIn "><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
-            <span ng-click="openClientsPage()" class=" truncate  animated fadeIn "><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
-            <span ng-click="openEmployeesPage()" class=" truncate  animated fadeIn "><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
+            <span ng-click="openManagementPage()" class=" truncate  animated fadeIn "ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
+            <span ng-click="openClientsPage()" class=" truncate  animated fadeIn "ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
+            <span ng-click="openEmployeesPage()" class=" truncate  animated fadeIn "ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
 
         </div>
         <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
@@ -45,7 +45,11 @@
         
                     <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
                         
-                        <p style="font-size:20px;" class="railway animated fadeIn underline">{{currentUserFile}}</p>
+                        <p style="font-size:18px;" class="railway animated fadeIn ">| {{currentUserFile}} |</p>
+                        <div class = "row">
+                            <div style="border-bottom:1px solid #ddd;"class= "col s12">
+                            </div>
+                        </div>
                           <br>
 
                         <p ng-click="openComplaints()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">priority_high</i>Complaints({{user.complaints.length}})</p>
