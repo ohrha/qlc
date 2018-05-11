@@ -32,12 +32,11 @@
                         <p ng-click="openComplaints()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">priority_high</i>Complaints({{user.complaints.length}})</p>
                         <br>
 <div ng-show="complaintsOpened">
-                        <p class="railway animated fadeIn underline">Date</p>
-                        <div style="border:1px solid black">
-                            <p style="font-size:12px;" class="railway animated fadeIn">{{user.complaints[0].date}}</p>
+                        <div style="border:1px solid rgba(0,0,0,.6)">
+                            <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>
                         </div>
-                        <div style="border:1px solid black" >
-                            <p style="font-size:12px;padding-top:10px; "  ng-class ="{closedissue: !openIssue,openissue:openIssue}" class="railway ">{{user.complaints[0].subject}}</p>
+                        <div style="border:1px solid rgba(0,0,0,.6)" >
+                            <p style="font-size:12px;padding-top:10px; "  ng-class ="{closedissue: !openIssue,openissue:openIssue}" class="railway underline ">{{user.complaints[0].subject}}</p>
 
                             <p style="font-size:12px; padding-bottom:10px;" ng-class ="{closedissue: !openIssue,openissue:openIssue}" class="railway">{{user.complaints[0].body}}</p>
                             <button ng-click="openCloseIssue()" class="waves-effect waves-light btn"><span ng-show="!openIssue">Open Issue</span><span ng-show="openIssue">Close Issue</span></button>
