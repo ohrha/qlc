@@ -44,11 +44,9 @@
                 <div ng-show="!employeeHome"class="col s9" style="border-right: 1px solid #ddd;"ng-repeat="user in employees">
         
                     <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
-                        <div class = "row">
-                            <div  class = "col s12">
+                        
                         <p style="font-size:20px;" class="railway animated fadeIn underline">{{currentUserFile}}</p>
-                            </div>
-                        </div>
+                          <br>
 
                         <p ng-click="openComplaints()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">priority_high</i>Complaints({{user.complaints.length}})</p>
                         <br>
