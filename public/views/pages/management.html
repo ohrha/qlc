@@ -21,7 +21,7 @@
         <div ng-show="employeesPage" class="col s10 center-align animated fadeIn">
             <p class="railway">Employees Page</p>
             <div class="row">
-                <div class="col s3 center-align">
+                <div style="border-right:1px solid #ddd" class="col s3 center-align">
                     <p ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway">{{user.name}}</p>
 
                 </div>
