@@ -51,20 +51,13 @@
                         <div style="opacity:0;"class = "col s1">
                            
                         </div>
-                        <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s10 center-align">
+                        <div style=" border-top:1px solid #ddd; " class="col s10 center-align">
                           <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class= "{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
 
                             <i ng-click="openComplaintsPage()"style="font-size:17px; color:black;padding-top:5px;" class="material-icons"ng-class= "{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
                             <i ng-click="openCommentsPage()"style="font-size:17px; color:black;padding-top:5px;" class="material-icons"ng-class= "{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
                             <i ng-click="openCommentsPage()"style="font-size:17px; color:black;padding-top:5px;" class="material-icons"ng-class= "{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-
-                        </div>
-                        <div class="col s1">
-                        </div>
-                 
-                    </div>
-                    
-                    <div ng-show="commentsPageOpened" class = "col s12">
+       <div ng-show="commentsPageOpened" class = "col s12">
                         <div class = "row"  ng-repeat="comment in comments">
                            
                             <div style="border-bottom:1px solid #ddd"class = "col s12 animated fadeIn">
@@ -77,6 +70,13 @@
                             </div>
                         </div>
                     </div>
+                        </div>
+                        <div class="col s1">
+                        </div>
+                 
+                    </div>
+                    
+             
 <div ng-show="complaintsPageOpened" class = "col s12">
                     <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
                     <br>
