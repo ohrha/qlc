@@ -5,10 +5,10 @@
             <p class="management-header underline railway animated fadeIn">| Administration |</p>
         </div>
 
-        <div style="border-right:1px solid #ddd" class="col s2 center-align ">
-            <span ng-click="openManagementPage()" class=" truncate  animated fadeIn "ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
-            <span ng-click="openClientsPage()" class=" truncate  animated fadeIn "ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
-            <span ng-click="openEmployeesPage()" class=" truncate  animated fadeIn "ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
+        <div style="border-right:1px solid #ddd" class="col s2 center-align animated fadeIn">
+            <span ng-click="openManagementPage()" class=" truncate   "ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
+            <span ng-click="openClientsPage()" class=" truncate   "ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
+            <span ng-click="openEmployeesPage()" class=" truncate   "ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
 
         </div>
         <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
@@ -47,12 +47,22 @@
                         
                         <p style="font-size:18px;" class="railway animated fadeIn ">| {{currentUserFile}} |</p>
                         <div class = "row">
+                            <div class = "col s2">
+                            </div>
+                            <div style ="border-bottom:1px solid #ddd; opacity:.4;"class = "col s8 center-align">
+                                 <i style="font-size:16px;" class = "material-icons">schedule</i>
+
+                           <i style="font-size:16px;" class = "material-icons">priority_high</i>
+
+                            </div>
+                            <div class = "col s2">
+                            </div>
                             <div style="border-bottom:1px solid #ddd;"class= "col s12">
                             </div>
                         </div>
                           <br>
 
-                        <p ng-click="openComplaints()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">priority_high</i>Complaints({{user.complaints.length}})</p>
+                        <p ng-click="openComplaints()"class="railway animated fadeIn underline">Complaints({{user.complaints.length}})</p>
                         <br>
 <div ng-show="complaintsOpened">
                         <div style="border:1px solid rgba(0,0,0,.6)">
@@ -67,8 +77,8 @@
                         </div>
                         </div>
 
-<br>
-                        <p ng-click="openCloseBookedJobs()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">schedule</i>BOOKED JOBS({{user.jobDetails.length}})</p>
+
+                        <p ng-click="openCloseBookedJobs()"class="railway animated fadeIn underline">BOOKED JOBS({{user.jobDetails.length}})</p>
                         <div ng-show="bookedJobs"ng-repeat ="job in jobDetails"style = " border-top:1px solid #ddd; border-left: 1px solid #ddd; border-right:1px solid #ddd; padding-bottom:10px;"class = 'col s12'>
                             <br>
                             <div style = "border-bottom:1px solid #ddd;  padding-bottom:10px;">
