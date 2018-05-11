@@ -120,6 +120,7 @@
         $scope.openClientsPage = function(){
 
             console.log("clicked")
+            $scope.employeeHome = true;
             console.log($scope.clientsPage)
             if($scope.clientsPage){
 
