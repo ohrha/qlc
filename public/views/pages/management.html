@@ -18,17 +18,38 @@
         <div ng-show="clientsPage" class="col s10 center-align animated fadeIn">
             <p class="railway">Clients Page</p>
         </div>
+        <!-- EMPLOYEE PAGE -->
+
+
         <div ng-show="employeesPage" class="col s10 center-align animated fadeIn" >
-            <p class="railway">Employees Page</p>
-            <div class="row">
+             <div class="row">
+        
+
+            
+                 </div>
+           
                 <div style="border-right:1px solid #ddd" class="col s3 center-align">
+                    <p style="word-wrap:break-word; text-decoration:underline;" ng-click="openEmployeeHome()"class = " railway  "> Overview</p>
                     <p ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway underline">{{user.name}}</p>
 
                 </div>
-                <div class="col s9" ng-repeat="user in employees">
+                <div class = "col s9 animated fadeIn" ng-show="employeeHome">
+                 <div  class = "underline">
+                     <p class="railway">Employees Page</p>
+                 </div>
+                 <p class= "railway">
+                     A Simple way to manage your employees...
+                 </p>
+                </div>
+                <div ng-show="!employeeHome"class="col s9" style="border-right: 1px solid #ddd;"ng-repeat="user in employees">
+        
+                    <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
+                        <div class = "row">
+                            <div  class = "col s12">
+                        <p style="font-size:20px;" class="railway animated fadeIn underline">{{currentUserFile}}</p>
+                            </div>
+                        </div>
 
-                    <div ng-show="userFilePage && (currentUserFile == user.name)">
-                        <p class="railway animated fadeIn">{{currentUserFile}}</p>
                         <p ng-click="openComplaints()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">priority_high</i>Complaints({{user.complaints.length}})</p>
                         <br>
 <div ng-show="complaintsOpened">

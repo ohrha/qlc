@@ -14,6 +14,7 @@
         $scope.openIssue = false;
         $scope.closeIssue = false;
         $scope.bookedJobs = false;
+        $scope.employeeHome = true;
         $scope.complaintsOpened = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
@@ -31,6 +32,13 @@
             }
             console.log($scope.jobDetails)
         })
+        $scope.openEmployeeHome = function(){
+            console.log("clicked")
+            if(!$scope.employeeHome){
+                $scope.employeeHome = true;
+                
+            }
+        }
         $scope.openCloseIssue= function(){
             console.log($scope.openIssue)
            
@@ -105,6 +113,7 @@
             }
         }
         $scope.openUserFile=function(name){
+            $scope.employeeHome = false;
             $scope.currentUserFile = name;
                    User.getUsers().then(function(data){
             console.log(data)
