@@ -55,7 +55,7 @@
                           <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class= "{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">schedule</i>
 
                             <i ng-click="openComplaintsPage()"style="font-size:17px; color:black;padding-top:5px;" class="material-icons"ng-class= "{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
-                            <i ng-click="openComplaintsPage()"style="font-size:17px; color:black;padding-top:5px;" class="material-icons"ng-class= "{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">comment</i>
+                            <i ng-click="openCommentsPage()"style="font-size:17px; color:black;padding-top:5px;" class="material-icons"ng-class= "{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
 
                         </div>
                         <div class="col s1">
@@ -63,7 +63,9 @@
                  
                     </div>
                     
-                    
+                    <div ng-show="commentsPageOpened" class = "col s12">
+                        <p class = "railway">Complaints opened</p>
+                    </div>
 <div ng-show="complaintsPageOpened" class = "col s12">
                     <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
                     <br>

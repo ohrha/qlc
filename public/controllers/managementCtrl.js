@@ -20,6 +20,10 @@
         $scope.bookedJobsSelected = false;
         $scope.bookedJobsPageOpened = false;
         $scope.complaintsPageOpened = false;
+        $scope.commentsPageOpened = false;
+        $scope.commentsPageOpened = false;
+        $scope.commentsSelected = false;
+        
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
@@ -36,6 +40,20 @@
             }
             console.log($scope.jobDetails)
         })
+        $scope.openCommentsPage = function(){
+            if($scope.commentsSelected){
+
+                $scope.commentsSelected = false;
+                $scope.commentsPageOpened = false;
+            }else{
+
+                $scope.commentsSelected = true;
+                $scope.commentsPageOpened = true
+                $scope.complaintsPageOpened = false;
+                $scope.bookedJobsPageOpened = false;
+                $scope.bookedJobsSelected = false;
+            }
+        }
         $scope.openComplaintsPage=function(){
             if($scope.complaintsSelected){
                 $scope.complaintsSelected = false;
@@ -43,8 +61,11 @@
             }else{
                 $scope.complaintsSelected = true;
                 $scope.complaintsPageOpened = true;
+                $scope.commentsSelected = false;
+                $scope.commentsPageOpened = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
+
             }
         }
                 $scope.openBookedJobsPage=function(){
@@ -57,6 +78,10 @@
                               $scope.complaintsPageOpened = false;
                 $scope.bookedJobsPageOpened = true;
                 $scope.complaintsSelected = false;
+                      $scope.complaintsSelected = false;
+                $scope.complaintsPageOpened = false;
+                $scope.commentsSelected = false;
+                $scope.commentsPageOpened = false;
             }
         }
 

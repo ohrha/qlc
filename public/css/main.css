@@ -31,6 +31,14 @@ a{
     opacity:1;
     transition:.2s;
 }
+.commentsselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.commentsdeselected{
+    opacity:1;
+    transition:.2s;
+}
 .bookedjobsselected{
     opacity:0.4;
     transition:.2s;
