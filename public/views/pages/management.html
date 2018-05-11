@@ -65,14 +65,16 @@
                     
                     <div ng-show="commentsPageOpened" class = "col s12">
                         <div class = "row"  ng-repeat="comment in comments">
-                            <div class = "col s2">
-                                {{comment.date}}-
+                           
+                            <div style="border-bottom:1px solid #ddd"class = "col s12">
+                               <p class = "railway"> {{comment.date}}</p>
+                               
                             </div>
-                            <div class = "col s10">
-                                {{comment.body}}
+                             <div class = "col s12">
+                               
+                               <p class = "railway"> {{comment.body}}</p>
                             </div>
                         </div>
-                        <p class = "railway">Comments opened</p>
                     </div>
 <div ng-show="complaintsPageOpened" class = "col s12">
                     <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
