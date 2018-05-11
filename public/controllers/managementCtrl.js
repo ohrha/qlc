@@ -13,6 +13,8 @@
         $scope.userFilePage = false;
         $scope.openIssue = false;
         $scope.closeIssue = false;
+        $scope.bookedJobs = false;
+        $scope.complaintsOpened = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
@@ -81,6 +83,20 @@
                 $scope.managementPage = false;
             }
 
+        }
+        $scope.openComplaints = function(){
+            if($scope.complaintsOpened){
+                $scope.complaintsOpened = false;
+            }else{
+                $scope.complaintsOpened = true;
+            }
+        }
+        $scope.openCloseBookedJobs= function(){
+            if($scope.bookedJobs){
+                $scope.bookedJobs = false;
+            }else{
+                $scope.bookedJobs = true;
+            }
         }
         $scope.openUserFile=function(name){
             $scope.currentUserFile = name;

@@ -29,9 +29,9 @@
 
                     <div ng-show="userFilePage && (currentUserFile == user.name)">
                         <p class="railway animated fadeIn">{{currentUserFile}}</p>
-                        <p class="railway animated fadeIn underline">Complaints({{user.complaints.length}})</p>
+                        <p ng-click="openComplaints()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">priority_high</i>Complaints({{user.complaints.length}})</p>
                         <br>
-
+<div ng-show="complaintsOpened">
                         <p class="railway animated fadeIn underline">Date</p>
                         <div style="border:1px solid black">
                             <p style="font-size:12px;" class="railway animated fadeIn">{{user.complaints[0].date}}</p>
@@ -42,12 +42,12 @@
                             <p style="font-size:12px; padding-bottom:10px;" ng-class ="{closedissue: !openIssue,openissue:openIssue}" class="railway">{{user.complaints[0].body}}</p>
                             <button ng-click="openCloseIssue()" class="waves-effect waves-light btn"><span ng-show="!openIssue">Open Issue</span><span ng-show="openIssue">Close Issue</span></button>
                             
-
+                        </div>
                         </div>
 
 <br>
-                        <p class="railway animated fadeIn underline">BOOKED JOBS({{user.jobDetails.length}})</p>
-                        <div ng-repeat ="job in jobDetails"style = "border:1px solid black; padding-bottom:10px;"class = 'col s12'>
+                        <p ng-click="openCloseBookedJobs()"class="railway animated fadeIn underline"><i style="font-size:16px;" class = "material-icons">schedule</i>BOOKED JOBS({{user.jobDetails.length}})</p>
+                        <div ng-show="bookedJobs"ng-repeat ="job in jobDetails"style = "border:1px solid black; padding-bottom:10px;"class = 'col s12'>
                             <br>
                             <div style = "border:1px solid black; padding-bottom:10px;">
                            <p class = "railway animated fadeIn "><i class = "material-icons">business</i>  {{job.contractor}}</p>
