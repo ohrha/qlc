@@ -16,6 +16,8 @@
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
         $scope.complaintsOpened = false;
+        $scope.complaintsSelected = false;
+        $scope.bookedJobsSelected = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
@@ -32,6 +34,23 @@
             }
             console.log($scope.jobDetails)
         })
+        $scope.openComplaintsPage=function(){
+            if($scope.complaintsSelected){
+                $scope.complaintsSelected = false;
+            }else{
+                $scope.complaintsSelected = true;
+                $scope.bookedJobsSelected = false;
+            }
+        }
+                $scope.openBookedJobsPage=function(){
+            if($scope.bookedJobsSelected){
+                $scope.bookedJobsSelected = false;
+            }else{
+                $scope.bookedJobsSelected = true;
+                $scope.complaintsSelected = false;
+            }
+        }
+
         $scope.openEmployeeHome = function(){
             console.log("clicked")
             if(!$scope.employeeHome){

@@ -23,6 +23,22 @@ a{
     opacity:1;
     transition:.3s;
 }
+.complaintsselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.complaintsdeselected{
+    opacity:1;
+    transition:.2s;
+}
+.bookedjobsselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.bookedjobsdeselected{
+    opacity:1;
+    transition:.2s;
+}
 .clientspageselected{
     opacity:.4;
     transition:.2s;
