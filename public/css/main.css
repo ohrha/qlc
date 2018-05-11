@@ -14,6 +14,15 @@ a{
     border-bottom:1px solid rgba(0,0,0,.4);
     display:inline-block;
 }
+.closedissue{
+    opacity:.4;
+        transition:.3s;
+
+}
+.openissue{
+    opacity:1;
+    transition:.3s;
+}
 .management-header{
     font-size: 24px;
 }

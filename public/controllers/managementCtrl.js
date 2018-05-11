@@ -10,12 +10,28 @@
         $scope.managementPage = true;
         $scope.clientsPage = false;
         $scope.employeesPage = false;
+        $scope.userFilePage = false;
+        $scope.openIssue = false;
+        $scope.closeIssue = false;
+        $scope.currentUserFile = "";
         $scope.employees = [];
 
         User.getUsers().then(function(data){
             console.log(data)
             $scope.employees = data.data.users;
         })
+        $scope.openCloseIssue= function(){
+            console.log($scope.openIssue)
+
+            if(!$scope.openIssue){
+                $scope.openIssue = true
+                $scope.closeIssue = false;
+            }else{
+                $scope.openIssue = false
+                $scope.closeIssue = true;
+            }
+        }
+
         $scope.openManagementPage = function(){
 
             
@@ -51,12 +67,27 @@
 
             }else{
                 $scope.employeesPage = true;
+                $scope.currentUserFile = "";
                 $scope.clientsPage = false;
                 $scope.managementPage = false;
             }
 
         }
-
+        $scope.openUserFile=function(name){
+            $scope.currentUserFile = name;
+            console.log(name);
+            console.log("Curent User",$scope.currentUserFile)
+            if(!$scope.userFilePage && $scope.currentUserFile == name){
+                $scope.userFilePage = true;
+            }else if(!$scope.userFilePage && $scope.currentUserFile == name){
+                $scope.userFilePage = true;
+            }else if($scope.userFilePage && $scope.currentUserFile == name){
+                $scope.userFilePage = true;
+            }else if($scope.userFilePage && $scope.currentUserFile !== name){
+                $scope.currentUserFile = name;
+                $scope.userFilePage = true;
+            }
+        }
 
     })
 
