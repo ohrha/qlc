@@ -53,6 +53,7 @@
                 $scope.commentsSelected = true;
                 $scope.commentsPageOpened = true
                 $scope.complaintsPageOpened = false;
+                $scope.complaintsSelected = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
             }
