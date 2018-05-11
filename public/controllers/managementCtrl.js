@@ -27,6 +27,7 @@
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
+        $scope.comments = [];
         console.log($scope.jobDetails)
 
         User.getUsers().then(function(data){
@@ -36,9 +37,11 @@
             for(var i = 0; i < data.data.users.length; i++){
                 if(data.data.users[i].name == $scope.currentUserFile){
                     data.data.users[i].jobDetails = $scope.jobDetails;
+                    data.data.users[i].comments = $scope.comments;
                 }
             }
             console.log($scope.jobDetails)
+            console.log($scope.comments)
         })
         $scope.openCommentsPage = function(){
             if($scope.commentsSelected){
@@ -175,8 +178,10 @@
             for(var i = 0; i < data.data.users.length; i++){
                 if(data.data.users[i].name == $scope.currentUserFile){
                    $scope.jobDetails=data.data.users[i].jobDetails ;
+                   $scope.comments=data.data.users[i].comments ;
                    console.log(data.data.users[i].name)
                    console.log(data.data.users[i].jobDetails)
+                   console.log(data.data.users[i].comments)
                 }
             }
             console.log($scope.jobDetails)
