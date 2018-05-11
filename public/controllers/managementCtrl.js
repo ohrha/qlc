@@ -33,7 +33,7 @@
         })
         $scope.openCloseIssue= function(){
             console.log($scope.openIssue)
-
+           
             if(!$scope.openIssue){
                 $scope.openIssue = true
                 $scope.closeIssue = false;
@@ -85,6 +85,9 @@
 
         }
         $scope.openComplaints = function(){
+             if($scope.bookedJobs){
+                $scope.bookedJobs = false;
+            }
             if($scope.complaintsOpened){
                 $scope.complaintsOpened = false;
             }else{
@@ -92,6 +95,9 @@
             }
         }
         $scope.openCloseBookedJobs= function(){
+            if($scope.complaintsOpened){
+                $scope.complaintsOpened = false;
+            }
             if($scope.bookedJobs){
                 $scope.bookedJobs = false;
             }else{
