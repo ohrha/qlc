@@ -23,6 +23,22 @@ a{
     opacity:1;
     transition:.3s;
 }
+.clientspageselected{
+    opacity:.4;
+    transition:.2s;
+}
+.clientspageclosed{
+    opacity:1;
+    transition:.2s;
+}
+.managementpageselected{
+    opacity:.4;
+    transition:.2s;
+}
+.managementpageclosed{
+    opacity:1;
+    transition:.2s;
+}
 .employeepageselected{
     opacity:.4;
     transition:.2s;

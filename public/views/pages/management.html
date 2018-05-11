@@ -6,8 +6,8 @@
         </div>
 
         <div style="border-right:1px solid #ddd" class="col s2 center-align ">
-            <span ng-click="openManagementPage()" class=" truncate  animated fadeIn "><i class="material-icons">home</i> HOME </span>
-            <span ng-click="openClientsPage()" class=" truncate  animated fadeIn "><i class="material-icons">business</i> CLIENTS </span>
+            <span ng-click="openManagementPage()" class=" truncate  animated fadeIn "><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
+            <span ng-click="openClientsPage()" class=" truncate  animated fadeIn "><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
             <span ng-click="openEmployeesPage()" class=" truncate  animated fadeIn "><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
 
         </div>
