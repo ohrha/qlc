@@ -70,46 +70,60 @@
                            <div class = "col s1">
                            </div>
                             <div style="border-bottom:1px solid #ddd"class = "col s10 animated fadeIn">
-                               <span class = "railway"> {{comment.date}}</span>
+                               <span class = "railway animated fadeIn"> {{comment.date}}</span>
                                
                             </div>
                              <div class = "col s1">
                            </div>
                              <div class = "col s12">
                                
-                               <span class = "railway"> {{comment.body}}</span>
+                               <span class = "railway animated fadeIn"> {{comment.body}}</span>
                             </div>
                         </div>
                     </div>
 <div ng-show="complaintsPageOpened" class = "col s12">
-                    <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
-                    <br>
+    <div class = "row">
+        <div class ="col s3">
+                                <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
+
+        </div>
+        <div class = "col s9">
                     <div ng-show="complaintsOpened">
                         <div style="border:1px solid rgba(0,0,0,.6)">
                             <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>
                         </div>
                         <div style="border:1px solid rgba(0,0,0,.6)">
-                            <p style="font-size:12px;padding-top:10px; " ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway underline ">{{user.complaints[0].subject}}</p>
+                            <p style="font-size:12px;padding-top:10px; " ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway underline animated fadeIn ">{{user.complaints[0].subject}}</p>
 
-                            <p style="font-size:12px; padding-bottom:10px;" ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway">{{user.complaints[0].body}}</p>
+                            <p style="font-size:12px; padding-bottom:10px;" ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway animated fadeIn">{{user.complaints[0].body}}</p>
                             <button ng-click="openCloseIssue()" class="waves-effect waves-light btn"><span ng-show="!openIssue">Open Issue</span><span ng-show="openIssue">Close Issue</span></button>
 
                         </div>
                     </div>
+        </div>
+                    <br>
+    </div>   
 </div>
 <div ng-show="bookedJobsPageOpened" class = "col s12">
                     <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">Booked Jobs( {{user.jobDetails.length}} )</p>
                     <div ng-show="bookedJobs" ng-repeat="job in jobDetails" style=" border-top:1px solid #ddd; border-left: 1px solid #ddd; border-right:1px solid #ddd; padding-bottom:10px;"
                         class='col s12'>
                         <br>
-                        <div style="border-bottom:1px solid #ddd;  padding-bottom:10px;">
-                            <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">business</i> {{job.contractor}}</p>
-                            <span class="railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">mail</i> {{job.supervisor}}</span>
+                        <div class = "row">
+                            <div class = "col s3">
+                                                        <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">business</i> {{job.contractor}}</p>
+                            </div>
+                            <div class = "col s9">
+                                <span class="railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">mail</i> {{job.supervisor}}</span>
                             <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">landscape</i> {{job.location}}</p>
-                        </div>
+                            </div>
+                     <!--   <div style="border-bottom:1px solid #ddd;  padding-bottom:10px;">
+                            
+                        </div>-->
                     </div>
 </div>
-                   
+
+</div>    
                     <!--
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
 
