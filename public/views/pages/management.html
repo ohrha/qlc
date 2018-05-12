@@ -106,14 +106,19 @@
 </div>
 <div ng-show="bookedJobsPageOpened" class = "col s12">
                     <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">Booked Jobs( {{user.jobDetails.length}} )</p>
-                    <div ng-show="bookedJobs" ng-repeat="job in jobDetails" style=" border-top:1px solid #ddd; border-left: 1px solid #ddd; border-right:1px solid #ddd; padding-bottom:10px;"
+                    <div ng-show="bookedJobs" ng-repeat="job in jobDetails" style=" border-top:1px solid #ddd;  border-right:1px solid #ddd; padding-bottom:10px;"
                         class='col s12'>
                         <br>
                         <div class = "row">
-                            <div class = "col s3">
-                                                        <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">business</i> {{job.contractor}}</p>
+                            <div class = "col s3"style = "border-right: 1px solid #ddd;">
+                                                        <p class="railway animated fadeIn "> Jobs|</p>
+                                                        <p class="railway animated fadeIn "> Timesheets|</p>
+                                                        <p class="railway animated fadeIn "> Disputes|</p>
+
                             </div>
                             <div class = "col s9">
+                                                                                        <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">business</i> {{job.contractor}}</p>
+
                                 <span class="railway animated fadeIn "><i style="font-size:16px;" class = "material-icons">mail</i> {{job.supervisor}}</span>
                             <p class="railway animated fadeIn "><i style="font-size:16px;" class="material-icons">landscape</i> {{job.location}}</p>
                             </div>
