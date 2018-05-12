@@ -105,17 +105,17 @@
                     </div>
                     <div ng-show="bookedJobsPageOpened" class="col s12">
                         <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">Booked Jobs( {{user.jobDetails.length}} )</p>
-                        <div ng-show="bookedJobs" ng-repeat="job in jobDetails" style=" border-top:1px solid #ddd;   padding-bottom:10px;"
+                        <div ng-show="bookedJobs" ng-repeat="job in jobDetails track by $index" style=" border-top:1px solid #ddd;   padding-bottom:10px;"
                             class='col s12'>
                             <br>
                             <div class="row">
                                 <div class="col s3" style="border-right: 1px solid #ddd;">
-                                    <p ng-click="openJobsPage();"class="railway animated fadeIn truncate"> <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
-                                    <p ng-click = "openTimesheetsPage();"class="railway animated fadeIn truncate "><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
-                                    <p ng-click = "openDisputesPage();"class="railway animated fadeIn truncate "><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
+                                    <p ng-click="openJobsPage($index);"class="railway animated fadeIn truncate"> <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
+                                    <p ng-click = "openTimesheetsPage($index);"class="railway animated fadeIn truncate "><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
+                                    <p ng-click = "openDisputesPage($index);"class="railway animated fadeIn truncate "><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
 
                                 </div>
-                                <div ng-show="jobsPageOpen" class="col s9">
+                                <div ng-show="jobsPageOpen && usersPageIndex == $index" class="col s9">
                                     <span class = "railway animated fadeIn underline">Client</span>
                                     <p class="railway animated fadeIn "> {{job.contractor}}</p>
                                     <span class = "railway animated fadeIn underline">Supervisor</span>
@@ -126,12 +126,12 @@
                             
                         </div>-->
                             
-                            <div ng-show="timesheetsPageOpen" class = "col s9">
+                            <div ng-show="timesheetsPageOpen && usersPageIndex == $index" class = "col s9">
                                 <p class = "railway">
                                     Timesheets Open!
                                 </p>
                             </div>
-                                <div ng-show="disputesPageOpen" class = "col s9">
+                                <div ng-show="disputesPageOpen && usersPageIndex == $index" class = "col s9">
                                                 <p class = "railway">
                                     Disputes
                                      Open!
