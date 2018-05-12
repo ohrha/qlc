@@ -23,6 +23,9 @@
         $scope.commentsPageOpened = false;
         $scope.commentsPageOpened = false;
         $scope.commentsSelected = false;
+        $scope.jobsPageOpen = true;
+        $scope.timesheetsPageOpen = false;
+        $scope.disputesPageOpen = false;
         
         $scope.currentUserFile = "";
         $scope.employees = [];
@@ -43,6 +46,29 @@
             console.log($scope.jobDetails)
             console.log($scope.comments)
         })
+        $scope.openDisputesPage=function(){
+                          if(!$scope.disputesPageOpen){
+                    $scope.jobsPageOpen = false;
+                    $scope.disputesPageOpen =true;
+                    $scope.timesheetsPageOpen = false;
+                }
+
+        }
+        $scope.openJobsPage = function(){
+                if(!$scope.jobsPageOpen){
+                    $scope.jobsPageOpen = true;
+                    $scope.disputesPageOpen =false;
+                    $scope.timesheetsPageOpen = false;
+                }
+
+        }
+        $scope.openTimesheetsPage = function(){
+                          if(!$scope.timesheetsPageOpen){
+                    $scope.jobsPageOpen = false;
+                    $scope.disputesPageOpen =false;
+                    $scope.timesheetsPageOpen = true;
+                }
+        }
         $scope.openCommentsPage = function(){
             if($scope.commentsSelected){
 
