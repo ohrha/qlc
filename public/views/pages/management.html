@@ -64,6 +64,11 @@
 
                     </div>
 
+                        <div ng-show="userDetailsPageOpened" class="col s12">
+                            <p class ="railway">{{user.email}}</p>
+                            <p class = "railway">{{user.phonenumber}}</p>
+                            
+                    </div>
                     <div ng-show="commentsPageOpened" class="col s12">
                         <div class="row" ng-repeat="comment in comments">
                             <div class="col s1">

@@ -31,7 +31,7 @@
         $scope.timesheetsPageOpen = false;
         $scope.disputesPageOpen = false;
         $scope.usersPageIndex = ""
-        
+        $scope.userDetailsPageOpened = true;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
@@ -108,6 +108,7 @@
                 }
         }
         $scope.openCommentsPage = function(index){
+            $scope.openJob = 0;
             if($scope.commentsSelected){
 
                 $scope.commentsSelected = false;
@@ -118,11 +119,14 @@
                 $scope.commentsPageOpened = true
                 $scope.complaintsPageOpened = false;
                 $scope.complaintsSelected = false;
+                $scope.userDetailsPageOpened = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
+                $scope.userDetailsPageOpened=false;
             }
         }
         $scope.openComplaintsPage=function(){
+            $scope.openJob = 0;
             if($scope.complaintsSelected){
                 $scope.complaintsSelected = false;
                 $scope.complaintsPageOpened = false;
@@ -137,6 +141,7 @@
             }
         }
                 $scope.openBookedJobsPage=function(){
+                    
             if($scope.bookedJobsSelected){
                 $scope.bookedJobsSelected = false;
                 $scope.bookedJobsPageOpened =false;
@@ -147,6 +152,7 @@
                 $scope.bookedJobsPageOpened = true;
                 $scope.complaintsSelected = false;
                       $scope.complaintsSelected = false;
+                      $scope.userDetailsPageOpened = false;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;
@@ -215,6 +221,7 @@
 
         }
         $scope.openComplaints = function(){
+            $scope.openJob = 0;
              if($scope.bookedJobs){
                 $scope.bookedJobs = false;
             }
@@ -222,6 +229,7 @@
                 $scope.complaintsOpened = false;
             }else{
                 $scope.complaintsOpened = true;
+
             }
         }
         $scope.openCloseBookedJobs= function(){
@@ -235,7 +243,13 @@
             }
         }
         $scope.openUserFile=function(name){
+           $scope.openJob = 0;
             $scope.employeeHome = false;
+            $scope.userDetailsPageOpened = true;
+            $scope.bookedJobsPageOpened = false;
+            $scope.complaintsPageOpened = false;
+            $scope.commentsPageOpened = false;
+
             $scope.currentUserFile = name;
                    User.getUsers().then(function(data){
             console.log(data)
