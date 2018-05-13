@@ -104,24 +104,29 @@
                         </div>
                     </div>
                     <div ng-show="bookedJobsPageOpened" class="col s12">
+                        <i ng-click="increaseDay()"style="padding-right:50px;"class = "material-icons">expand_less</i><i ng-click="decreaseDay()" class = "material-icons">expand_more</i>
+                        <br>
                         <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">Booked Jobs( {{user.jobDetails.length}} )</p>
-                        <div ng-show="bookedJobs" ng-repeat="job in jobDetails track by $index" style=" border-top:1px solid #ddd;   padding-bottom:10px;"
+                        <div ng-show = "openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;"
                             class='col s12'>
                             <br>
                             <div class="row">
-                                <div class="col s3" style="border-right: 1px solid #ddd;">
-                                    <p ng-click="openJobsPage($index);"class="railway animated fadeIn truncate"> <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
-                                    <p ng-click = "openTimesheetsPage($index);"class="railway animated fadeIn truncate "><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
-                                    <p ng-click = "openDisputesPage($index);"class="railway animated fadeIn truncate "><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
+                                <div ng-show = "openJob == $index"class="col s3" style="border-right: 1px solid #ddd;">
+                                    <p ng-show = "openJob == $index" ng-click="openJobsPage($index);"class="railway truncate"> <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
+                                    <p ng-show = "openJob == $index"ng-click = "openTimesheetsPage($index);"class="railway  truncate "><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
+                                    <p ng-show = "openJob == $index" ng-click = "openDisputesPage($index);"class="railway  truncate "><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
 
                                 </div>
-                                <div ng-show="jobsPageOpen && usersPageIndex == $index" class="col s9">
-                                    <span class = "railway animated fadeIn underline">Client</span>
-                                    <p class="railway animated fadeIn "> {{job.contractor}}</p>
-                                    <span class = "railway animated fadeIn underline">Supervisor</span>
-                                    <p class="railway animated fadeIn "> {{job.supervisor}}</p>
-                                    <span class = "railway animated fadeIn underline">Location</span>
-                                    <p class="railway animated fadeIn "> {{job.location}}</p>                                </div>
+                                <!--jobsPageOpen && usersPageIndex == $index -->
+                                <div ng-show="openJob == $index && jobsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                
+                                    <span  class = "railway  underline" >Client</span>
+                                    <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
+                                    <span class = "railway  underline">Supervisor</span>
+                                    <p class="railway  "> {{job.supervisor}}</p>
+                                    <span class = "railway underline">Location</span>
+                                    <p class="railway  "> {{job.location}}</p>                                
+                                    </div>
                                 <!--   <div style="border-bottom:1px solid #ddd;  padding-bottom:10px;">
                             
                         </div>-->
