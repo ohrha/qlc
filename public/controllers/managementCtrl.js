@@ -18,6 +18,9 @@
         $scope.complaintsOpened = false;
         $scope.complaintsSelected = false;
         $scope.bookedJobsSelected = false;
+        $scope.timesheetsSelected = false;
+        $scope.disputesSelected = false;
+        $scope.jobsSelected = true;
         $scope.bookedJobsPageOpened = false;
         $scope.complaintsPageOpened = false;
         $scope.commentsPageOpened = false;
@@ -57,6 +60,12 @@
                     $scope.jobsPageOpen = false;
                     $scope.disputesPageOpen =true;
                     $scope.timesheetsPageOpen = false;
+                    $scope.timesheetsSelected = false;
+                    $scope.jobsSelected = false;
+                    $scope.disputesSelected = true;
+                }else{
+                    $scope.disputesSelected = false;
+                    
                 }
 
         }
@@ -93,8 +102,14 @@
 
                 if(!$scope.jobsPageOpen){
                     $scope.jobsPageOpen = true;
+                    $scope.jobsSelected = true;
+                    $scope.disputesSelected = false;
+                    $scope.timesheetsSelected = false;
                     $scope.disputesPageOpen =false;
                     $scope.timesheetsPageOpen = false;
+                }else{
+                    $scope.jobsSelected = false;
+
                 }
 
         }
@@ -105,6 +120,11 @@
                     $scope.jobsPageOpen = false;
                     $scope.disputesPageOpen =false;
                     $scope.timesheetsPageOpen = true;
+                    $scope.timesheetsSelected = true;
+                    $scope.disputesSelected = false;
+                    $scope.jobsSelected = false;
+                }else{
+                    $scope.timesheetsSelected = false;
                 }
         }
         $scope.openCommentsPage = function(index){

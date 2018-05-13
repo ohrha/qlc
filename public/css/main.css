@@ -31,6 +31,30 @@ a{
     opacity:1;
     transition:.2s;
 }
+.timesheetsselected{
+ opacity:0.4;
+    transition:.2s;
+}
+.timesheetsdeselected{
+   opacity:1;
+    transition:.2s;
+}
+.disputesselected{
+     opacity:0.4;
+    transition:.2s;
+}
+.disputesdeselected{
+       opacity:1;
+    transition:.2s;
+}
+.jobsselected{
+ opacity:0.4;
+    transition:.2s;
+}
+.jobsdeselected{
+   opacity:1;
+    transition:.2s;
+}
 .commentsselected{
     opacity:0.4;
     transition:.2s;
