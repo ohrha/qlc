@@ -68,7 +68,7 @@
                 $scope.slideout=false;
                 $scope.fadeOut = false;
                 $scope.slidein = true;
-                            if($scope.openJob < 2){
+                            if($scope.openJob <= 5){
 
                 $scope.openJob= $scope.openJob+1;
 
@@ -100,7 +100,7 @@
         }
         $scope.openTimesheetsPage = function(index){
                         $scope.usersPageIndex = index;
-
+                        $scope.openJob = index;
                           if(!$scope.timesheetsPageOpen){
                     $scope.jobsPageOpen = false;
                     $scope.disputesPageOpen =false;
