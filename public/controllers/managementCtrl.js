@@ -39,6 +39,7 @@
         $scope.userDetailsPageOpened = true;
         $scope.noInput = false;
         $scope.searchResults = false;
+        $scope.userList = false;
         $scope.noSearchResults = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
@@ -82,6 +83,7 @@
             }else{
                 console.log("dog")
                 $scope.loading = false;
+                $scope.userList=false;
                 $scope.userSearchResults=data.data.users
                console.log($scope.userSearchResults)
                 $scope.searchResults = true;
@@ -233,8 +235,11 @@
           $scope.openEmployeeList = function(){
             if($scope.employeeListOpen){
                 $scope.employeeListOpen = false;
+                            $scope.userDetailsPageOpened = false;
+
             }else{
                 $scope.employeeListOpen = true;
+                $scope.userList=true;
             }
         }
 
@@ -325,6 +330,9 @@
         $scope.openUserFile=function(name){
            $scope.openJob = 0;
             $scope.employeeHome = false;
+            $scope.searchResults = false;
+            $scope.userList = false;
+            $scope.employeeListOpen=false;
             $scope.userDetailsPageOpened = true;
             $scope.bookedJobsPageOpened = false;
             $scope.complaintsPageOpened = false;
