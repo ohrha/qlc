@@ -83,7 +83,7 @@
                 console.log("dog")
                 $scope.loading = false;
                 $scope.userSearchResults=data.data.users
-               
+               console.log($scope.userSearchResults)
                 $scope.searchResults = true;
                 $scope.noInput = false;
                 $scope.noSearchResults = false;
