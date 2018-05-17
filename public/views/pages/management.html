@@ -89,13 +89,13 @@
                 </div>
                    <div ng-show="!searchResults " class="center-align" >
                     
-                    <p style="word-wrap:break-word;" class="railway  animated fadeIn">Users...</p>
+                    
                     <table >
                         <thead>
                             <tr style="font-family: railway;">
                                 <th>Name</th>
                                 <th>Phonenumber</th>
-                                <th >E-mail</th>
+                                
                             </tr>
                         </thead>
 
@@ -103,7 +103,6 @@
                             <tr ng-repeat="user in employees track by $index">
                                 <td><a style="color:black;"href="#">{{$index+1}}.{{user.name}}</a></td>
                                 <td><a style="color:black;" href="#">{{user.phonenumber}}</a></td>
-                                <td style="word-break:break-word;"><a style="color:black;" href="#" style="word-break:break-word;">{{user.email}}</a></td>
                             </tr>
 
 
