@@ -30,26 +30,39 @@
 
             <div style="border-right:1px solid #ddd" class="col s3 center-align">
                 <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
-                <a style="color:black;"href="#"><p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Employee List </p></a>
-            
+                <a style="color:black;" href="#">
+                    <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Employee List </p>
+                </a>
+
 
             </div>
-                <div ng-show="employeeListOpen" class = "col s9 animated fadeIn ">
-                    <span class = "railway ">
+            <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
+                <span class="railway ">
               Search
           </span>
-   <form >
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Search here.." id="first_name" type="text" class="validate">
-          <label for="first_name"></label>
-        </div>
-      </div>
-   </form>
-                   <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
+                <form name="searchForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Search here.." ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
+                                id="first_name" type="text" class="validate">
+                            <label for="first_name"></label>
+                        </div>
+                    </div>
+                </form>
+                     <div  ng-show="noInput">
+                    <p style = "word-wrap:break-word;" class = "railway underline">No Input...</p>
 
-                    
-                </div>
+            </div>
+                        <div  ng-show="noSearchResults">
+                    <p style = "word-wrap:break-word;" class = "railway underline">No Search Results...</p>
+
+            </div>
+                           <div  ng-show="searchResults">
+                    <p style = "word-wrap:break-word;" class = "railway underline">Search Results...</p>
+
+            </div>
+                <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
+           
             <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="employeeHome && !employeeListOpen">
                 <div class="underline">
                     <p style="font-size:18px;" class="railway animated fadeIn ">Employees Page</p>
@@ -136,7 +149,7 @@
                             <div class="row">
                                 <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
                                     <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
-                                    <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
+                                        <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
                                     <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
                                     <p ng-show="openJob == $index" ng-click="openDisputesPage($index);" class="railway  truncate " ng-class="{'disputesselected':disputesSelected,'disputesdeselected':!disputesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
 

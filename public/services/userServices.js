@@ -18,6 +18,9 @@ angular.module('userServices',[]).config(function(){
         return $http.get('/api/users')
 
     }
+    userFactory.instaSearch = function(input){
+        return $http.put('/api/users/'+input)
+    }
     userFactory.getUser  = function(userId){
         return $http.put('/api/users/'+userId);
     }

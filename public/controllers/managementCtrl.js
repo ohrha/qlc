@@ -36,6 +36,9 @@
         $scope.disputesPageOpen = false;
         $scope.usersPageIndex = ""
         $scope.userDetailsPageOpened = true;
+        $scope.noInput = false;
+        $scope.searchResults = false;
+        $scope.noSearchResults = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.jobDetails = [];
@@ -55,6 +58,39 @@
             console.log($scope.jobDetails)
             console.log($scope.comments)
         })
+       // console.log($scope.searchForm.searchInput.$pristine)
+        $scope.searchFunction= function(input){
+            console.log(input.$viewValue)
+            if(input.$viewValue != ""){
+                   User.instaSearch(input.$viewValue).then(function(data){
+                console.log(data.data.users.length)
+                if(data.data.users.length ==0){
+                    $scope.searchResults = true;
+                    $scope.noSearchResults = false;
+                    $scope.noInput = false;
+                      $timeout(function(){
+                    $scope.noSearchResults = false;
+                },3000)
+            }else{
+                console.log("dog")
+                $scope.searchResults = true;
+                $scope.noInput = false;
+                $scope.noSearchResults = false;
+                      $timeout(function(){
+                    $scope.searchResults = false;
+                },3000)
+                }
+                  })
+            }else{
+                $scope.noInput = true;
+                console.log("y")
+                $timeout(function(){
+                    $scope.noInput = false;
+                },3000)
+            }
+         
+          
+        }
         $scope.openEmployeeList= function(){
             if($scope.employeeListOpen){
                 $scope.employeeListOpen = false;

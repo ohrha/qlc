@@ -2,6 +2,17 @@ var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
 
+    app.put('/users/:input', function(req,res){
+        User.find({ name: {$regex : "^" + req.params.input}}, function(err,users){
+            if(err)throw err;
+            if(!users){
+                res.json({success: false, message: "Users not found.."})
+            }else{
+                res.json({success: true, message: "Users found", users:users})
+            }
+        })
+    })
+
     app.get('/users', function(req,res){
 
         User.find({}, function(err,users){
