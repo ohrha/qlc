@@ -38,7 +38,7 @@
 
             </div>
             <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
-                <p style="font-size:18px;" class = "railway underline">Employee List</p>
+                <p style="font-size:18px;" class = "railway underline"><i ng-click="closeSearchResults()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee List</p>
                 <br>
                 <span class="railway ">
               Search
@@ -88,7 +88,7 @@
 
                 </div>
                    <div ng-show="!searchResults " class="center-align" >
-                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
+                    
                     <p style="word-wrap:break-word;" class="railway  animated fadeIn">Users...</p>
                     <table >
                         <thead>
