@@ -64,9 +64,9 @@
             if(input.$viewValue != ""){
                    User.instaSearch(input.$viewValue).then(function(data){
                 console.log(data.data.users.length)
-                if(data.data.users.length ==0){
-                    $scope.searchResults = true;
-                    $scope.noSearchResults = false;
+                if(data.data.users.length == 0){
+                    $scope.searchResults = false;
+                    $scope.noSearchResults = true;
                     $scope.noInput = false;
                       $timeout(function(){
                     $scope.noSearchResults = false;
