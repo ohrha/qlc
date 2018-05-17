@@ -38,20 +38,15 @@
                     <span class = "railway ">
               Search
           </span>
-                    <nav style="background-color:white;">
-    <div class="nav-wrapper">
-        
-      <form >
-          
-        <div style="color:black;"class="input-field">
-          <input style="color:black;"id="search" type="search" placeholder="Search" required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
+   <form >
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Search here.." id="first_name" type="text" class="validate">
+          <label for="first_name"></label>
         </div>
-      </form>
-    </div>
-  </nav>
-                <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
+      </div>
+   </form>
+                   <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
 
                     
                 </div>
