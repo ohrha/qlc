@@ -32,12 +32,14 @@
             <div style="border-right:1px solid #ddd" class="col s3 center-align">
                 <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
                 <a style="color:black;" href="#">
-                    <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Search </p>
+                    <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Employee List </p>
                 </a>
 
 
             </div>
             <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
+                <p style="font-size:18px;" class = "railway underline">Employee List</p>
+                <br>
                 <span class="railway ">
               Search
           </span>
@@ -74,7 +76,7 @@
 
                         <tbody>
                             <tr ng-repeat="result in userSearchResults track by $index">
-                                <td><a href="#">{{result.name}}</a></td>
+                                <td ng-click="openUserFile(result.name}"><a href="#">{{result.name}}</a></td>
                                 <td><a href="#">{{result.phonenumber}}</a></td>
                                 <td><a href="#" style="word-break:break-word;">{{result.email}}</a></td>
                             </tr>
@@ -85,29 +87,29 @@
 
 
                 </div>
-                   <div ng-show="!searchResults" >
+                   <div ng-show="!searchResults " class="center-align" >
                     <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
                     <p style="word-wrap:break-word;" class="railway  animated fadeIn">Users...</p>
                     <table >
                         <thead>
-                            <tr>
+                            <tr style="font-family: railway;">
                                 <th>Name</th>
                                 <th>Phonenumber</th>
-                                <th>E-mail</th>
+                                <th >E-mail</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr ng-repeat="user in employees track by $index">
-                                <td><a href="#">{{user.name}}</a></td>
-                                <td><a href="#">{{user.phonenumber}}</a></td>
-                                <td><a href="#" style="word-break:break-word;">{{user.email}}</a></td>
+                                <td><a style="color:black;"href="#">{{$index+1}}.{{user.name}}</a></td>
+                                <td><a style="color:black;" href="#">{{user.phonenumber}}</a></td>
+                                <td style="word-break:break-word;"><a style="color:black;" href="#" style="word-break:break-word;">{{user.email}}</a></td>
                             </tr>
 
 
                         </tbody>
                     </table>
- <ul class="pagination">
+ <ul class="pagination" >
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
     <li class="active"><a href="#!">1</a></li>
     <li class="waves-effect"><a href="#!">2</a></li>

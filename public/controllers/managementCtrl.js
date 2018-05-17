@@ -1,6 +1,6 @@
 (function () {
 
-    var app = angular.module('managementController', ['authServices'])
+    var app = angular.module('managementController', ['authServices','angularUtils.directives.dirPagination'])
     app.config(function () {
 
         console.log("Management Controller Loaded")
@@ -105,13 +105,7 @@
          
           
         }
-        $scope.openEmployeeList= function(){
-            if($scope.employeeListOpen){
-                $scope.employeeListOpen = false;
-            }else{
-                $scope.employeeListOpen = true;
-            }
-        }
+      
         $scope.openDisputesPage=function(index){
             $scope.usersPageIndex = index;
                           if(!$scope.disputesPageOpen){
@@ -236,13 +230,21 @@
                 $scope.commentsPageOpened = false;
             }
         }
+          $scope.openEmployeeList = function(){
+            if($scope.employeeListOpen){
+                $scope.employeeListOpen = false;
+            }else{
+                $scope.employeeListOpen = true;
+            }
+        }
 
         $scope.openEmployeeHome = function(){
             console.log("clicked")
-            if(!$scope.employeeHome){
+           
                 $scope.employeeHome = true;
                 
-            }
+                $scope.employeeListOpen = false;
+          
         }
         $scope.openCloseIssue= function(){
             console.log($scope.openIssue)
