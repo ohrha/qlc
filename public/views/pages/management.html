@@ -70,7 +70,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Phonenumber</th>
-                                <th>E-mail</th>
+                                
                             </tr>
                         </thead>
 
@@ -78,7 +78,6 @@
                             <tr ng-repeat="result in userSearchResults track by $index">
                                 <td ng-click="openUserFile(result.name)"><a style="color:black;"href="#">{{result.name}}</a></td>
                                 <td><a style="color:black;" href="#">{{result.phonenumber}}</a></td>
-                                <td><a style="color:black;" href="#" style="word-break:break-word;">{{result.email}}</a></td>
                             </tr>
 
 
