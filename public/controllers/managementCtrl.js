@@ -15,6 +15,7 @@
         $scope.closeIssue = false;
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
+        $scope.employeeListOpen = false;
         $scope.complaintsOpened = false;
         $scope.complaintsSelected = false;
         $scope.bookedJobsSelected = false;
@@ -54,6 +55,13 @@
             console.log($scope.jobDetails)
             console.log($scope.comments)
         })
+        $scope.openEmployeeList= function(){
+            if($scope.employeeListOpen){
+                $scope.employeeListOpen = false;
+            }else{
+                $scope.employeeListOpen = true;
+            }
+        }
         $scope.openDisputesPage=function(index){
             $scope.usersPageIndex = index;
                           if(!$scope.disputesPageOpen){

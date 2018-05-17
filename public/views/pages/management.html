@@ -30,7 +30,13 @@
 
             <div style="border-right:1px solid #ddd" class="col s3 center-align">
                 <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
+                <a style="color:black;"href="#"<p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Employee List </p></a>
+                <div ng-show="employeeListOpen" class = "row animated fadeIn ">
+                    <div class = "col s12">
                 <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
+
+                    </div>
+                </div>
 
             </div>
             <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="employeeHome">
@@ -41,6 +47,7 @@
                     A Simple way to manage your employees...
                 </p>
             </div>
+
             <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in employees">
 
                 <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
@@ -117,9 +124,10 @@
                             <br>
                             <div class="row">
                                 <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
-                                    <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}"> <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
+                                    <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
+                                    <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
                                     <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
-                                    <p ng-show="openJob == $index" ng-click="openDisputesPage($index);" class="railway  truncate "ng-class="{'disputesselected':disputesSelected,'disputesdeselected':!disputesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
+                                    <p ng-show="openJob == $index" ng-click="openDisputesPage($index);" class="railway  truncate " ng-class="{'disputesselected':disputesSelected,'disputesdeselected':!disputesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
 
                                 </div>
                                 <!--jobsPageOpen && usersPageIndex == $index -->
@@ -139,7 +147,7 @@
                                 <div ng-show="openJob == $index && timesheetsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
                                     <div class="row" ng-show="!jobDetails[openJob].timesheetSubmitted">
                                         <div class="col s12 center-align">
-                                            <i style="font-size:17px;" class="material-icons">error_outline</i>
+                                            <i style="font-size:17px;" class="material-icons animated flash">error_outline</i>
                                             <p class="railway"> No Time Sheet Submitted!</p>
                                             <div class="row">
                                                 <div class="col s6 center-align">
