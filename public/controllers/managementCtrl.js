@@ -43,6 +43,7 @@
         $scope.employees = [];
         $scope.jobDetails = [];
         $scope.comments = [];
+        $scope.userSearchResults = [];
         console.log($scope.jobDetails)
 
         User.getUsers().then(function(data){
@@ -59,6 +60,10 @@
             console.log($scope.comments)
         })
        // console.log($scope.searchForm.searchInput.$pristine)
+       $scope.closeSearchResults = function(){
+           console.log("clicked")
+           $scope.searchResults = false;
+       }
         $scope.searchFunction= function(input){
             console.log(input.$viewValue)
             if(input.$viewValue != ""){
@@ -73,16 +78,20 @@
                 },3000)
             }else{
                 console.log("dog")
+                $scope.userSearchResults=data.data.users
+               
                 $scope.searchResults = true;
                 $scope.noInput = false;
                 $scope.noSearchResults = false;
                       $timeout(function(){
-                    $scope.searchResults = false;
+                    
                 },3000)
                 }
                   })
             }else{
                 $scope.noInput = true;
+                $scope.noSearchResults = false;
+                $scope.searchResults = false;
                 console.log("y")
                 $timeout(function(){
                     $scope.noInput = false;

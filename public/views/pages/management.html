@@ -57,8 +57,29 @@
                     <p style = "word-wrap:break-word;" class = "railway underline">No Search Results...</p>
 
             </div>
-                           <div  ng-show="searchResults">
-                    <p style = "word-wrap:break-word;" class = "railway underline">Search Results...</p>
+                           <div  ng-show="searchResults" class = "animated " ng-class="{'fadeOut':!searchResults}">
+                               <i ng-click="closeSearchResults()" class = "material-icons animated fadeIn">keyboard_return</i>
+                    <p style = "word-wrap:break-word;" class = "railway  animated fadeIn">Search Results...</p>
+                         <table class = "animated fadeIn">
+        <thead>
+          <tr ng-repeat="result in userSearchResults track by $index">
+              <th>Name</th>
+              <th>{{$index}}</th>
+              <th>Item Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="result in userSearchResults track by $index">
+            <td><a href = "#">{{result.name}}</a></td>
+            <td><a href = "#">{{result.phonenumber}}</a></td>
+            <td><a href = "#">{{result.email}}</a></td>
+          </tr>
+       
+       
+        </tbody>
+      </table>
+            
 
             </div>
                 <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
