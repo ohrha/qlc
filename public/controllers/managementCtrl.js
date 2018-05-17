@@ -7,6 +7,7 @@
     })
 
     app.controller('managementCtrl', function ($scope, Auth,$timeout,$location,User) {
+        $scope.loading = false;
         $scope.managementPage = true;
         $scope.clientsPage = false;
         $scope.employeesPage = false;
@@ -65,8 +66,10 @@
            $scope.searchResults = false;
        }
         $scope.searchFunction= function(input){
+            $scope.loading =true;
             console.log(input.$viewValue)
             if(input.$viewValue != ""){
+                $scope.loading = false;
                    User.instaSearch(input.$viewValue).then(function(data){
                 console.log(data.data.users.length)
                 if(data.data.users.length == 0){
@@ -78,6 +81,7 @@
                 },3000)
             }else{
                 console.log("dog")
+                $scope.loading = false;
                 $scope.userSearchResults=data.data.users
                
                 $scope.searchResults = true;
@@ -89,6 +93,7 @@
                 }
                   })
             }else{
+                $scope.loading = false;
                 $scope.noInput = true;
                 $scope.noSearchResults = false;
                 $scope.searchResults = false;

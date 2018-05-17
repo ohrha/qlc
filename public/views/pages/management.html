@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="container">
     <div class="row">
         <div style="border-bottom:1px solid black;" class='col s12 center-align animated fadeIn'>
@@ -49,41 +50,76 @@
                         </div>
                     </div>
                 </form>
-                     <div  ng-show="noInput">
-                    <p style = "word-wrap:break-word;" class = "railway underline">No Input...</p>
+                <div ng-show="noInput">
+                    <p style="word-wrap:break-word;" class="railway underline">No Input...</p>
 
-            </div>
-                        <div  ng-show="noSearchResults">
-                    <p style = "word-wrap:break-word;" class = "railway underline">No Search Results...</p>
+                </div>
+                <div ng-show="noSearchResults">
+                    <p style="word-wrap:break-word;" class="railway underline">No Search Results...</p>
 
-            </div>
-                           <div  ng-show="searchResults" class = "animated " ng-class="{'fadeOut':!searchResults}">
-                               <i ng-click="closeSearchResults()" class = "material-icons animated fadeIn">keyboard_return</i>
-                    <p style = "word-wrap:break-word;" class = "railway  animated fadeIn">Search Results...</p>
-                         <table class = "animated fadeIn">
-        <thead>
-          <tr >
-              <th>Name</th>
-              <th>Phonenumber</th>
-              <th>E-mail</th>
-          </tr>
-        </thead>
+                </div>
+                <div ng-show="loading"class = "align-center">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                </div>
+                <div ng-show="searchResults" >
+                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+                                <th>E-mail</th>
+                            </tr>
+                        </thead>
 
-        <tbody>
-          <tr ng-repeat="result in userSearchResults track by $index">
-            <td><a href = "#">{{result.name}}</a></td>
-            <td><a href = "#">{{result.phonenumber}}</a></td>
-            <td><a href = "#">{{result.email}}</a></td>
-          </tr>
-       
-       
-        </tbody>
-      </table>
-            
+                        <tbody>
+                            <tr ng-repeat="result in userSearchResults track by $index">
+                                <td><a href="#">{{result.name}}</a></td>
+                                <td><a href="#">{{result.phonenumber}}</a></td>
+                                <td><a href="#" style="word-break:break-word;">{{result.email}}</a></td>
+                            </tr>
 
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                   <div ng-show="!searchResults" >
+                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
+                    <p style="word-wrap:break-word;" class="railway  animated fadeIn">Users...</p>
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+                                <th>E-mail</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="user in employees track by $index">
+                                <td><a href="#">{{user.name}}</a></td>
+                                <td><a href="#">{{user.phonenumber}}</a></td>
+                                <td><a href="#" style="word-break:break-word;">{{user.email}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+ <ul class="pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="#!">1</a></li>
+    <li class="waves-effect"><a href="#!">2</a></li>
+    <li class="waves-effect"><a href="#!">3</a></li>
+    <li class="waves-effect"><a href="#!">4</a></li>
+    <li class="waves-effect"><a href="#!">5</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+
+                </div>
             </div>
-            </div>
-               <!-- <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
+            <!-- <p style="word-wrap:break-word; " ng-click="openUserFile(user.name);" ng-repeat="user in employees" class="railway ">{{user.name}} </p>
            -->
             <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="employeeHome && !employeeListOpen">
                 <div class="underline">
