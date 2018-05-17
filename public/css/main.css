@@ -10,6 +10,7 @@ a{
 /* label focus color */
  .input-field input:focus + label {
    color: black !important;
+   height:30%;
  }
  /* label underline focus color */
  .row .input-field input:focus {
