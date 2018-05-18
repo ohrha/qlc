@@ -1,12 +1,12 @@
 (function () {
 
-    var app = angular.module('managementController', ['authServices','angularUtils.directives.dirPagination'])
+    var app = angular.module('managementController', ['authServices'])
     app.config(function () {
 
         console.log("Management Controller Loaded")
     })
 
-    app.controller('managementCtrl', function ($scope, Auth,$timeout,$location,User) {
+    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User) {
         $scope.loading = false;
         $scope.managementPage = true;
         $scope.clientsPage = false;
@@ -43,17 +43,57 @@
         $scope.noSearchResults = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
+        $scope.employeesPaginated = [];
+        $scope.page =0;
+        $scope.pageArray = [];
+        $scope.pageLimit = 4;
+        $scope.currentPage = 1;
+        $scope.numPerPage = 10;
+        $scope.maxSize = 5;
         $scope.jobDetails = [];
         $scope.comments = [];
         $scope.userSearchResults = [];
+
+
+
+
         console.log($scope.jobDetails)
 
-        User.getUsers().then(function(data){
+        User.getUsers().then(function (data) {
             console.log(data)
             $scope.employees = data.data.users;
+            console.log($scope.employees)
+            for (var i = 0; i <= $scope.employees.length; i++) {
+
+                var page = 0;
+               // var pageLimit = 4;
+                if (i < $scope.pageLimit && i<$scope.employees.length) {
+                    if($scope.employees[i]){
+                            $scope.pageArray.push($scope.employees[i])
+                    console.log(i)
+                    console.log("firstCondiation")
+                    console.log($scope.pageArray)
+
+                    }
+                
+
+                } else {
+                    console.log("else")
+                    console.log($scope.pageArray)
+                    $scope.employeesPaginated.push($scope.pageArray)
+                    console.log($scope.employeesPaginated)
+                    $scope.pageArray = [];
+                    //console.log(pageLimit)
+                    $scope.pageLimit = $scope.pageLimit + 4;
+                    //console.log(pageLimit)
+                    page++
+                }
+     
+            }
+            console.log($scope.employeesPaginated)
             $scope.jobDetails = data.data.users.jobDetails;
-            for(var i = 0; i < data.data.users.length; i++){
-                if(data.data.users[i].name == $scope.currentUserFile){
+            for (var i = 0; i < data.data.users.length; i++) {
+                if (data.data.users[i].name == $scope.currentUserFile) {
                     data.data.users[i].jobDetails = $scope.jobDetails;
                     data.data.users[i].comments = $scope.comments;
                 }
@@ -61,133 +101,152 @@
             console.log($scope.jobDetails)
             console.log($scope.comments)
         })
-       // console.log($scope.searchForm.searchInput.$pristine)
-       $scope.closeSearchResults = function(){
-           console.log("clicked")
-           $scope.searchResults = false;
-       }
-        $scope.searchFunction= function(input){
-            $scope.loading =true;
+
+
+        // console.log($scope.searchForm.searchInput.$pristine)
+        $scope.closeSearchResults = function () {
+            console.log("clicked")
+            $scope.searchResults = false;
+        }
+        $scope.changePage= function(){
+            $scope.page++
+            console.log($scope.page)
+        }
+        $scope.decreasePage= function(){
+            if($scope.page >0){
+                $scope.page--
+            console.log($scope.page)
+            }
+            
+        }
+        $scope.lastPage= function(){
+            $scope.page =0;
+        }
+        $scope.firstPage = function(){
+            $scope.page = $scope.employeesPaginated.length-1;
+        }
+        $scope.searchFunction = function (input) {
+            $scope.loading = true;
             console.log(input.$viewValue)
-            if(input.$viewValue != ""){
+            if (input.$viewValue != "") {
                 $scope.loading = false;
-                   User.instaSearch(input.$viewValue).then(function(data){
-                console.log(data.data.users.length)
-                if(data.data.users.length == 0){
-                    $scope.searchResults = false;
-                    $scope.noSearchResults = true;
-                    $scope.noInput = false;
-                      $timeout(function(){
-                    $scope.noSearchResults = false;
-                },3000)
-            }else{
-                console.log("dog")
-                $scope.loading = false;
-                $scope.userList=false;
-                $scope.userSearchResults=data.data.users
-               console.log($scope.userSearchResults)
-                $scope.searchResults = true;
-                $scope.noInput = false;
-                $scope.noSearchResults = false;
-                      $timeout(function(){
-                    
-                },3000)
-                }
-                  })
-            }else{
+                User.instaSearch(input.$viewValue).then(function (data) {
+                    console.log(data.data.users.length)
+                    if (data.data.users.length == 0) {
+                        $scope.searchResults = false;
+                        $scope.noSearchResults = true;
+                        $scope.noInput = false;
+                        $timeout(function () {
+                            $scope.noSearchResults = false;
+                        }, 3000)
+                    } else {
+                        console.log("dog")
+                        $scope.loading = false;
+                        $scope.userList = false;
+                        $scope.userSearchResults = data.data.users
+                        console.log($scope.userSearchResults)
+                        $scope.searchResults = true;
+                        $scope.noInput = false;
+                        $scope.noSearchResults = false;
+                        $timeout(function () {
+
+                        }, 3000)
+                    }
+                })
+            } else {
                 $scope.loading = false;
                 $scope.noInput = true;
                 $scope.noSearchResults = false;
                 $scope.searchResults = false;
                 console.log("y")
-                $timeout(function(){
+                $timeout(function () {
                     $scope.noInput = false;
-                },3000)
+                }, 3000)
             }
-         
-          
-        }
-      
-        $scope.openDisputesPage=function(index){
-            $scope.usersPageIndex = index;
-                          if(!$scope.disputesPageOpen){
-                    $scope.jobsPageOpen = false;
-                    $scope.disputesPageOpen =true;
-                    $scope.timesheetsPageOpen = false;
-                    $scope.timesheetsSelected = false;
-                    $scope.jobsSelected = false;
-                    $scope.disputesSelected = true;
-                }else{
-                    $scope.disputesSelected = false;
-                    
-                }
+
 
         }
-        $scope.increaseDay=function(){
-            $scope.slideout= true;
+
+        $scope.openDisputesPage = function (index) {
+            $scope.usersPageIndex = index;
+            if (!$scope.disputesPageOpen) {
+                $scope.jobsPageOpen = false;
+                $scope.disputesPageOpen = true;
+                $scope.timesheetsPageOpen = false;
+                $scope.timesheetsSelected = false;
+                $scope.jobsSelected = false;
+                $scope.disputesSelected = true;
+            } else {
+                $scope.disputesSelected = false;
+
+            }
+
+        }
+        $scope.increaseDay = function () {
+            $scope.slideout = true;
             $scope.fadeOut = true;
 
-            $timeout(function(){
-                $scope.slideout=false;
+            $timeout(function () {
+                $scope.slideout = false;
                 $scope.fadeOut = false;
                 $scope.slidein = true;
-                            if($scope.openJob <= 5){
+                if ($scope.openJob <= 5) {
 
-                $scope.openJob= $scope.openJob+1;
+                    $scope.openJob = $scope.openJob + 1;
 
 
-            }else{
-              $scope.openJob = 0;
-            }
-            },500)
-            
+                } else {
+                    $scope.openJob = 0;
+                }
+            }, 500)
+
 
             console.log($scope.openJob)
         }
-        $scope.decreaseDay=function(){
-                if($scope.openJob <= 0){
-                $scope.openJob= $scope.openJob-1;
-            }else{
+        $scope.decreaseDay = function () {
+            if ($scope.openJob <= 0) {
+                $scope.openJob = $scope.openJob - 1;
+            } else {
                 $scope.openJob = 0;
             }
         }
-        $scope.openJobsPage = function(index){
-                        $scope.usersPageIndex = index;
+        $scope.openJobsPage = function (index) {
+            $scope.usersPageIndex = index;
 
-                if(!$scope.jobsPageOpen){
-                    $scope.jobsPageOpen = true;
-                    $scope.jobsSelected = true;
-                    $scope.disputesSelected = false;
-                    $scope.timesheetsSelected = false;
-                    $scope.disputesPageOpen =false;
-                    $scope.timesheetsPageOpen = false;
-                }else{
-                    $scope.jobsSelected = false;
+            if (!$scope.jobsPageOpen) {
+                $scope.jobsPageOpen = true;
+                $scope.jobsSelected = true;
+                $scope.disputesSelected = false;
+                $scope.timesheetsSelected = false;
+                $scope.disputesPageOpen = false;
+                $scope.timesheetsPageOpen = false;
+            } else {
+                $scope.jobsSelected = false;
 
-                }
+            }
 
         }
-        $scope.openTimesheetsPage = function(index){
-                        $scope.usersPageIndex = index;
-                        $scope.openJob = index;
-                          if(!$scope.timesheetsPageOpen){
-                    $scope.jobsPageOpen = false;
-                    $scope.disputesPageOpen =false;
-                    $scope.timesheetsPageOpen = true;
-                    $scope.timesheetsSelected = true;
-                    $scope.disputesSelected = false;
-                    $scope.jobsSelected = false;
-                }else{
-                    $scope.timesheetsSelected = false;
-                }
+        $scope.openTimesheetsPage = function (index) {
+            $scope.usersPageIndex = index;
+            $scope.openJob = index;
+            if (!$scope.timesheetsPageOpen) {
+                $scope.jobsPageOpen = false;
+                $scope.disputesPageOpen = false;
+                $scope.timesheetsPageOpen = true;
+                $scope.timesheetsSelected = true;
+                $scope.disputesSelected = false;
+                $scope.jobsSelected = false;
+            } else {
+                $scope.timesheetsSelected = false;
+            }
         }
-        $scope.openCommentsPage = function(index){
+        $scope.openCommentsPage = function (index) {
             $scope.openJob = 0;
-            if($scope.commentsSelected){
+            if ($scope.commentsSelected) {
 
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;
-            }else{
+            } else {
 
                 $scope.commentsSelected = true;
                 $scope.commentsPageOpened = true
@@ -196,15 +255,15 @@
                 $scope.userDetailsPageOpened = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
-                $scope.userDetailsPageOpened=false;
+                $scope.userDetailsPageOpened = false;
             }
         }
-        $scope.openComplaintsPage=function(){
+        $scope.openComplaintsPage = function () {
             $scope.openJob = 0;
-            if($scope.complaintsSelected){
+            if ($scope.complaintsSelected) {
                 $scope.complaintsSelected = false;
                 $scope.complaintsPageOpened = false;
-            }else{
+            } else {
                 $scope.complaintsSelected = true;
                 $scope.complaintsPageOpened = true;
                 $scope.commentsSelected = false;
@@ -214,90 +273,90 @@
 
             }
         }
-                $scope.openBookedJobsPage=function(){
-                    
-            if($scope.bookedJobsSelected){
-                $scope.bookedJobsSelected = false;
-                $scope.bookedJobsPageOpened =false;
+        $scope.openBookedJobsPage = function () {
 
-            }else{
+            if ($scope.bookedJobsSelected) {
+                $scope.bookedJobsSelected = false;
+                $scope.bookedJobsPageOpened = false;
+
+            } else {
                 $scope.bookedJobsSelected = true;
-                              $scope.complaintsPageOpened = false;
+                $scope.complaintsPageOpened = false;
                 $scope.bookedJobsPageOpened = true;
                 $scope.complaintsSelected = false;
-                      $scope.complaintsSelected = false;
-                      $scope.userDetailsPageOpened = false;
+                $scope.complaintsSelected = false;
+                $scope.userDetailsPageOpened = false;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;
             }
         }
-          $scope.openEmployeeList = function(){
-            if($scope.employeeListOpen){
+        $scope.openEmployeeList = function () {
+            if ($scope.employeeListOpen) {
                 $scope.employeeListOpen = false;
-                            $scope.userDetailsPageOpened = false;
+                $scope.userDetailsPageOpened = false;
 
-            }else{
+            } else {
                 $scope.employeeListOpen = true;
-                $scope.userList=true;
+                $scope.userList = true;
             }
         }
 
-        $scope.openEmployeeHome = function(){
+        $scope.openEmployeeHome = function () {
             console.log("clicked")
-           
-                $scope.employeeHome = true;
-                
-                $scope.employeeListOpen = false;
-          
+
+            $scope.employeeHome = true;
+
+            $scope.employeeListOpen = false;
+
         }
-        $scope.openCloseIssue= function(){
+        $scope.openCloseIssue = function () {
             console.log($scope.openIssue)
-           
-            if(!$scope.openIssue){
+
+            if (!$scope.openIssue) {
                 $scope.openIssue = true
                 $scope.closeIssue = false;
-            }else{
+            } else {
                 $scope.openIssue = false
                 $scope.closeIssue = true;
             }
         }
 
-        $scope.openManagementPage = function(){
+        $scope.openManagementPage = function () {
 
-            
-                $scope.managementPage = true;
-                $scope.employeesPage = false;
-                $scope.clientsPage = false;
-            
+
+            $scope.managementPage = true;
+            $scope.employeesPage = false;
+            $scope.clientsPage = false;
+
 
         }
-        $scope.openClientsPage = function(){
+        $scope.openClientsPage = function () {
 
             console.log("clicked")
             $scope.employeeHome = true;
             console.log($scope.clientsPage)
-            if($scope.clientsPage){
+            if ($scope.clientsPage) {
 
                 $scope.clientsPage = false;
-                
-            }else{
+
+            } else {
                 $scope.clientsPage = true;
                 $scope.employeesPage = false;
                 $scope.managementPage = false;
             }
 
         }
-        $scope.openEmployeesPage = function(){
-                        console.log("clicked")
-                        console.log($scope.employeesPage)
+        $scope.openEmployeesPage = function () {
+            console.log("clicked")
+            console.log($scope.employeesPage)
 
-            
-            if($scope.employeesPage){
+
+            if ($scope.employeesPage) {
 
                 $scope.employeesPage = false;
 
-            }else{
+            } else {
                 $scope.employeesPage = true;
                 $scope.currentUserFile = "";
                 $scope.clientsPage = false;
@@ -305,64 +364,64 @@
             }
 
         }
-        $scope.openComplaints = function(){
+        $scope.openComplaints = function () {
             $scope.openJob = 0;
-             if($scope.bookedJobs){
+            if ($scope.bookedJobs) {
                 $scope.bookedJobs = false;
             }
-            if($scope.complaintsOpened){
+            if ($scope.complaintsOpened) {
                 $scope.complaintsOpened = false;
-            }else{
+            } else {
                 $scope.complaintsOpened = true;
 
             }
         }
-        $scope.openCloseBookedJobs= function(){
-            if($scope.complaintsOpened){
+        $scope.openCloseBookedJobs = function () {
+            if ($scope.complaintsOpened) {
                 $scope.complaintsOpened = false;
             }
-            if($scope.bookedJobs){
+            if ($scope.bookedJobs) {
                 $scope.bookedJobs = false;
-            }else{
+            } else {
                 $scope.bookedJobs = true;
             }
         }
-        $scope.openUserFile=function(name){
-           $scope.openJob = 0;
+        $scope.openUserFile = function (name) {
+            $scope.openJob = 0;
             $scope.employeeHome = false;
             $scope.searchResults = false;
             $scope.userList = false;
-            $scope.employeeListOpen=false;
+            $scope.employeeListOpen = false;
             $scope.userDetailsPageOpened = true;
             $scope.bookedJobsPageOpened = false;
             $scope.complaintsPageOpened = false;
             $scope.commentsPageOpened = false;
 
             $scope.currentUserFile = name;
-                   User.getUsers().then(function(data){
-            console.log(data)
-           // $scope.employees = data.data.users;
-            //$scope.jobDetails = data.data.users.jobDetails;
-            for(var i = 0; i < data.data.users.length; i++){
-                if(data.data.users[i].name == $scope.currentUserFile){
-                   $scope.jobDetails=data.data.users[i].jobDetails ;
-                   $scope.comments=data.data.users[i].comments ;
-                   console.log(data.data.users[i].name)
-                   console.log(data.data.users[i].jobDetails)
-                   console.log(data.data.users[i].comments)
+            User.getUsers().then(function (data) {
+                console.log(data)
+                // $scope.employees = data.data.users;
+                //$scope.jobDetails = data.data.users.jobDetails;
+                for (var i = 0; i < data.data.users.length; i++) {
+                    if (data.data.users[i].name == $scope.currentUserFile) {
+                        $scope.jobDetails = data.data.users[i].jobDetails;
+                        $scope.comments = data.data.users[i].comments;
+                        console.log(data.data.users[i].name)
+                        console.log(data.data.users[i].jobDetails)
+                        console.log(data.data.users[i].comments)
+                    }
                 }
-            }
-            console.log($scope.jobDetails)
-        })
+                console.log($scope.jobDetails)
+            })
             console.log(name);
-            console.log("Curent User",$scope.currentUserFile)
-            if(!$scope.userFilePage && $scope.currentUserFile == name){
+            console.log("Curent User", $scope.currentUserFile)
+            if (!$scope.userFilePage && $scope.currentUserFile == name) {
                 $scope.userFilePage = true;
-            }else if(!$scope.userFilePage && $scope.currentUserFile == name){
+            } else if (!$scope.userFilePage && $scope.currentUserFile == name) {
                 $scope.userFilePage = true;
-            }else if($scope.userFilePage && $scope.currentUserFile == name){
+            } else if ($scope.userFilePage && $scope.currentUserFile == name) {
                 $scope.userFilePage = true;
-            }else if($scope.userFilePage && $scope.currentUserFile !== name){
+            } else if ($scope.userFilePage && $scope.currentUserFile !== name) {
                 $scope.currentUserFile = name;
                 $scope.userFilePage = true;
             }

@@ -98,24 +98,27 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr ng-repeat="user in employees track by $index">
-                                <td><a style="color:black;"href="#">{{$index+1}}.{{user.name}}</a></td>
-                                <td><a style="color:black;" href="#">{{user.phonenumber}}</a></td>
+                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                            <tr  >
+                                <td class = "animated fadeIn"><a style="color:black;"href="#">{{$index+1}}.{{page.name}}</a></td>
+                                <td class = "animated fadeIn"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                             </tr>
 
 
                         </tbody>
                     </table>
- <ul class="pagination" >
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+
+<ul class="pagination">
+        <li class="disabled"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+    <li class="disabled"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"ng-repeat="employee in employeesPaginated track by $index"><a href="#!">{{$index}}</a></li>
+
+    <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect" ng-click="lastPage()"><a href="#" ><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
   </ul>
+            
 
                 </div>
             </div>
