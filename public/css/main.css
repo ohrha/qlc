@@ -6,6 +6,10 @@
  main {
      flex: 1 0 auto;
  }
+ th{
+     font-weight: normal;
+     font-family:'Railway';
+ }
 /*GENERIC L RULES */
 a{
     text-decoration:none;
