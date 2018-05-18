@@ -98,9 +98,9 @@
                             </tr>
                         </thead>
 
-                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                        <tbody  ng-repeat="page in employeesPaginated[page] track by $index">
                             <tr  >
-                                <td class = "animated fadeIn"><a style="color:black;"href="#">{{$index+1}}.{{page.name}}</a></td>
+                                <td class = "animated fadeIn"><a style="color:black;"href="#" ng-click="openUserFile(page.name)">{{$index+1}}.{{page.name}}</a></td>
                                 <td class = "animated fadeIn"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                             </tr>
 
@@ -111,8 +111,8 @@
 <ul class="pagination">
         <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
 
-    <li class="disabled"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"ng-repeat="employee in employeesPaginated track by $index"><a href="#!">{{$index}}</a></li>
+    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+    <li ng-class ="{'active':page == $index, 'disabled': page!==$index}"ng-repeat="employee in employeesPaginated track by $index" ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
 
     <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
         <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#" ><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
@@ -179,11 +179,10 @@
                     </div>
                     <div ng-show="complaintsPageOpened" class="col s12">
                         <div class="row">
-                            <div class="col s3">
+                            <div class="col s12">
                                 <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
 
-                            </div>
-                            <div class="col s9">
+                            
                                 <div ng-show="complaintsOpened">
                                     <div style="border:1px solid rgba(0,0,0,.6)">
                                         <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>

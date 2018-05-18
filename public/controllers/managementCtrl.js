@@ -107,6 +107,8 @@
         $scope.closeSearchResults = function () {
             console.log("clicked")
             $scope.searchResults = false;
+            $scope.page=0;
+            $scope.userList = true;
         }
         $scope.changePage= function(){
             $scope.page++
@@ -118,6 +120,9 @@
             console.log($scope.page)
             }
             
+        }
+        $scope.specificPage =function(page){
+            $scope.page = page;
         }
         $scope.lastPage= function(){
             $scope.page =0;
@@ -295,9 +300,11 @@
             if ($scope.employeeListOpen) {
                 $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
+                $scope.userFilePage = false;
 
             } else {
                 $scope.employeeListOpen = true;
+                $scope.userFilePage = false;
                 $scope.userList = true;
             }
         }
