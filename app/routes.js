@@ -1,11 +1,16 @@
 var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
+var fs = require('fs');
 var pdf = require('html-pdf');
-var html = fs.readFileSync('../public/views/pages/management.html', 'utf8');
+var html = fs.readFileSync('./public/views/pages/management.html', 'utf8');
 var options = { format: 'Letter' };
 
 module.exports = function (app) {
 
+    pdf.create(html, options).toFile('./businesscard.pdf', function (err, res) {
+            if (err) return console.log(err);
+            console.log(res); // { filename: '/app/businesscard.pdf' }
+        });
     app.get('/users/generatepdf', function (req, res) {
 
         pdf.create(html, options).toFile('./businesscard.pdf', function (err, res) {
