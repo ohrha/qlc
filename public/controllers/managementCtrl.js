@@ -73,6 +73,10 @@
      
         console.log($scope.jobDetails)
             $scope.export = function(){
+                $scope.pdfLoading = true;
+                $timeout(function(){
+                    $scope.pdfLoading = false;
+                },2000)
                 console.log('clicked')
        var doc = new jsPDF()
 doc.getFontList();

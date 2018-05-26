@@ -221,8 +221,8 @@
                               <p class = "railway" >
                                 Generate Payslip
                             </p>
-                            <i ng-click="export();" class = "medium material-icons animated pulse infinite generatepayslip">attach_money</i>
-                           <!-- <i  class = "large material-icons animated rotateIn infinite">autorenew</i>-->
+                            <i ng-click="export();" ng-show="!pdfLoading" class = "medium material-icons animated pulse infinite ">attach_money</i>
+                            <i ng-show="pdfLoading" class = "large material-icons animated rotateIn infinite">autorenew</i>
 
 
                         </div>
