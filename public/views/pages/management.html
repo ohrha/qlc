@@ -108,7 +108,7 @@
 
                         <tbody ng-repeat="page in employeesPaginated[page] track by $index">
                             <tr>
-                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                             </tr>
 
