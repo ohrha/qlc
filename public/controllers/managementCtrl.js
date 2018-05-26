@@ -51,6 +51,15 @@
         $scope.currentPage = 1;
         $scope.numPerPage = 10;
         $scope.maxSize = 5;
+        $scope.payperiod = 4;
+        $scope.date = new Date();
+        $scope.dateNow = $scope.date.getDate()
+        $scope.month = $scope.date.getMonth() + 1;
+        $scope.monthLiteral= "";
+        $scope.day = $scope.date.getDay();
+       
+        console.log($scope.monthLiteral,"$scope.monthLiteral")
+        $scope.payperiods = [];
         $scope.jobDetails = [];
         $scope.comments = [];
         $scope.userSearchResults = [];
@@ -70,7 +79,11 @@
 
 
 
-     
+        console.log($scope.dateNow,$scope.month, $scope.day)
+         if($scope.month == 5){
+            $scope.monthLiteral = "May";
+            console.log($scope.monthLiteral)
+        }
         console.log($scope.jobDetails)
             $scope.export = function(){
                 $scope.pdfLoading = true;
@@ -102,6 +115,7 @@ doc.addFont('Raleway','Raleway','normal');
         User.getUsers().then(function (data) {
             console.log(data)
             $scope.employees = data.data.users;
+            
             console.log($scope.employees)
             for (var i = 0; i <= $scope.employees.length; i++) {
 
@@ -363,6 +377,7 @@ doc.addFont('Raleway','Raleway','normal');
 
             } else {
                 $scope.employeeListOpen = true;
+                $scope.payslipGenerationOpen = false;
                 $scope.userFilePage = false;
                 $scope.userList = true;
             }
@@ -465,19 +480,44 @@ doc.addFont('Raleway','Raleway','normal');
             console.log(phonenumber)
             $scope.currentUserFile = name;
             $scope.currentUserPhoneNumber = phonenumber;
+             $scope.jobDetails =[];
             User.getUsers().then(function (data) {
                 console.log(data)
                 // $scope.employees = data.data.users;
                 //$scope.jobDetails = data.data.users.jobDetails;
                 for (var i = 0; i < data.data.users.length; i++) {
                     if (data.data.users[i].name == $scope.currentUserFile) {
-                        $scope.jobDetails = data.data.users[i].jobDetails;
+
+                       // $scope.jobDetails = data.data.users[i].jobDetails;
                         $scope.comments = data.data.users[i].comments;
-                        console.log(data.data.users[i].name)
-                        console.log(data.data.users[i].jobDetails)
-                        console.log(data.data.users[i].comments)
+                        $scope.payperiods = data.data.users[i].payperiods;
+                        $scope.payperiod = data.data.users[i].payperiodnum;
+                        for(var k =0; k< $scope.payperiods.length;k++){
+                          //console.log($scope.payperiods[k])
+                          for (var j =0; j<$scope.payperiods[k].length; j++){
+
+                              //console.log($scope.payperiods[k][j].Month)
+                              if($scope.payperiods[k][j].Month  == $scope.monthLiteral && $scope.payperiods[k][j].payperiod == 6){
+
+                                  console.log($scope.payperiods[k][j])
+                                 
+                                  for(var l=0; l<$scope.payperiods[k][j].Job.length;l++){
+                                      if($scope.payperiods[k][j].payperiod == 6){
+
+                                                    $scope.jobDetails.push($scope.payperiods[k][j].Job[l])
+
+                                      }
+                                  }
+                                 // $scope.jobDetails = [];
+                                  
+                              }
+                          }
+                            //if(data.data.payperiods[i].)
+                       }
+                      
                     }
                 }
+                console.log($scope.payperiods)
                 console.log($scope.jobDetails)
             })
             console.log(name);
