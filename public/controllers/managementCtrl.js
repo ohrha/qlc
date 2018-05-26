@@ -79,7 +79,7 @@
         '/6O9+6916x/r/ANDf9He/de69Y/1/6G/6O9+6916x/r/0N/0d7917r1j/AF/6G/6O9+6916x/r/0N/wBHe/de6//R3+Pfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvde9+691737r3Xvfuvdf/9k='
 
 //$('#modal1').modal('open');
-document.getElementById('modalbutton').click();
+//document.getElementById('modalbutton').click();
 
         console.log($scope.dateNow,$scope.month, $scope.day)
          if($scope.month == 5){
