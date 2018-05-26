@@ -28,6 +28,7 @@
         $scope.commentsPageOpened = false;
         $scope.commentsPageOpened = false;
         $scope.commentsSelected = false;
+        $scope.payslipGenerationOpen = false;
         $scope.slidein = false;
         $scope.slideout = false;
         $scope.fadeOut = false;
@@ -44,7 +45,7 @@
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.employeesPaginated = [];
-        $scope.page =0;
+        $scope.page = 0;
         $scope.pageArray = [];
         $scope.pageLimit = 4;
         $scope.currentPage = 1;
@@ -58,6 +59,12 @@
 
 
         console.log($scope.jobDetails)
+        $scope.generatePdf = function(User){
+
+            User.generatePdf().then(function(data){
+                console.log(data)
+            })
+        }
 
         User.getUsers().then(function (data) {
             console.log(data)
@@ -66,16 +73,16 @@
             for (var i = 0; i <= $scope.employees.length; i++) {
 
                 var page = 0;
-               // var pageLimit = 4;
-                if (i < $scope.pageLimit && i<$scope.employees.length) {
-                    if($scope.employees[i]){
-                            $scope.pageArray.push($scope.employees[i])
-                    console.log(i)
-                    console.log("firstCondiation")
-                    console.log($scope.pageArray)
+                // var pageLimit = 4;
+                if (i < $scope.pageLimit && i < $scope.employees.length) {
+                    if ($scope.employees[i]) {
+                        $scope.pageArray.push($scope.employees[i])
+                        console.log(i)
+                        console.log("firstCondiation")
+                        console.log($scope.pageArray)
 
                     }
-                
+
 
                 } else {
                     console.log("else")
@@ -88,7 +95,7 @@
                     //console.log(pageLimit)
                     page++
                 }
-     
+
             }
             console.log($scope.employeesPaginated)
             $scope.jobDetails = data.data.users.jobDetails;
@@ -104,31 +111,32 @@
 
 
         // console.log($scope.searchForm.searchInput.$pristine)
+
         $scope.closeSearchResults = function () {
             console.log("clicked")
             $scope.searchResults = false;
-            $scope.page=0;
+            $scope.page = 0;
             $scope.userList = true;
         }
-        $scope.changePage= function(){
+        $scope.changePage = function () {
             $scope.page++
             console.log($scope.page)
         }
-        $scope.decreasePage= function(){
-            if($scope.page >0){
+        $scope.decreasePage = function () {
+            if ($scope.page > 0) {
                 $scope.page--
-            console.log($scope.page)
+                console.log($scope.page)
             }
-            
+
         }
-        $scope.specificPage =function(page){
+        $scope.specificPage = function (page) {
             $scope.page = page;
         }
-        $scope.lastPage= function(){
-            $scope.page =0;
+        $scope.lastPage = function () {
+            $scope.page = 0;
         }
-        $scope.firstPage = function(){
-            $scope.page = $scope.employeesPaginated.length-1;
+        $scope.firstPage = function () {
+            $scope.page = $scope.employeesPaginated.length - 1;
         }
         $scope.searchFunction = function (input) {
             $scope.loading = true;
@@ -172,6 +180,13 @@
 
         }
 
+        $scope.openPayslipGenerationPage = function () {
+            $scope.payslipGenerationOpen = true;
+            $scope.commentsPageOpened = false;
+            $scope.bookedJobsPageOpened = false;
+            $scope.complaintsPageOpened = false;
+            $scope.userDetailsPageOpened = false;
+        }
         $scope.openDisputesPage = function (index) {
             $scope.usersPageIndex = index;
             if (!$scope.disputesPageOpen) {
@@ -179,6 +194,8 @@
                 $scope.disputesPageOpen = true;
                 $scope.timesheetsPageOpen = false;
                 $scope.timesheetsSelected = false;
+                $scope.payslipGenerationOpen = false;
+
                 $scope.jobsSelected = false;
                 $scope.disputesSelected = true;
             } else {
@@ -225,6 +242,8 @@
                 $scope.timesheetsSelected = false;
                 $scope.disputesPageOpen = false;
                 $scope.timesheetsPageOpen = false;
+                $scope.payslipGenerationOpen = false;
+
             } else {
                 $scope.jobsSelected = false;
 
@@ -240,6 +259,8 @@
                 $scope.timesheetsPageOpen = true;
                 $scope.timesheetsSelected = true;
                 $scope.disputesSelected = false;
+                $scope.payslipGenerationOpen = false;
+
                 $scope.jobsSelected = false;
             } else {
                 $scope.timesheetsSelected = false;
@@ -250,6 +271,7 @@
             if ($scope.commentsSelected) {
 
                 $scope.commentsSelected = false;
+                
                 $scope.commentsPageOpened = false;
             } else {
 
@@ -258,6 +280,8 @@
                 $scope.complaintsPageOpened = false;
                 $scope.complaintsSelected = false;
                 $scope.userDetailsPageOpened = false;
+                                            $scope.payslipGenerationOpen = false;
+
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
                 $scope.userDetailsPageOpened = false;
@@ -274,6 +298,7 @@
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;
                 $scope.bookedJobsPageOpened = false;
+                $scope.payslipGenerationOpen = false;
                 $scope.bookedJobsSelected = false;
 
             }
@@ -291,6 +316,7 @@
                 $scope.complaintsSelected = false;
                 $scope.complaintsSelected = false;
                 $scope.userDetailsPageOpened = false;
+                $scope.payslipGenerationOpen = false;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;

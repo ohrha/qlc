@@ -18,6 +18,9 @@ angular.module('userServices',[]).config(function(){
         return $http.get('/api/users')
 
     }
+    userFactory.generatePdf = function(){
+        return $http.get('/api/generatepdf')
+    }
     userFactory.instaSearch = function(input){
         return $http.put('/api/users/'+input)
     }

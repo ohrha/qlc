@@ -9,7 +9,10 @@
         <div style="border-right:1px solid #ddd" class="col s2 center-align animated fadeIn">
             <span ng-click="openManagementPage()" class=" truncate   " ng-class="{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
             <span ng-click="openClientsPage()" class=" truncate   " ng-class="{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
-            <span ng-click="openEmployeesPage()" class=" truncate   " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
+           <a style="color:black;" href="#">
+                           <span ng-click="openEmployeesPage()" class=" truncate   " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
+
+                    </a>
 
         </div>
         <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
@@ -23,22 +26,25 @@
 
 
         <div ng-show="employeesPage" class="col s10 center-align animated fadeIn">
-            <div class="row">
 
-
-
-            </div>
 
             <div style="border-right:1px solid #ddd" class="col s3 center-align">
+                               <a style="color:black;" href="#">
+ 
                 <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
+                 </a>
                 <a style="color:black;" href="#">
+                    
                     <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Employee List </p>
                 </a>
 
 
             </div>
             <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
-                <p style="font-size:18px;" class = "railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee List</p>
+                <a style="color:black;" href="#">
+                <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee
+                    List</p>
+                </a>
                 <br>
                 <span class="railway ">
               Search
@@ -60,23 +66,25 @@
                     <p style="word-wrap:break-word;" class="railway underline">No Search Results...</p>
 
                 </div>
-                <div ng-show="loading"class = "align-center">
+                <div ng-show="loading" class="align-center">
                     <i class="fas fa-circle-notch fa-spin"></i>
                 </div>
-                <div ng-show="searchResults" >
+                <div ng-show="searchResults">
+                    <a href="#" style="color:black;">
                     <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
-                    <table >
+                    </a>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Phonenumber</th>
-                                
+
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr ng-repeat="result in userSearchResults track by $index">
-                                <td ng-click="openUserFile(result.name)"><a style="color:black;"href="#">{{result.name}}</a></td>
+                                <td ng-click="openUserFile(result.name)"><a style="color:black;" href="#">{{result.name}}</a></td>
                                 <td><a style="color:black;" href="#">{{result.phonenumber}}</a></td>
                             </tr>
 
@@ -86,39 +94,40 @@
 
 
                 </div>
-                   <div ng-show="userList " class="center-align" >
-                    
-                    
-                    <table >
+                <div ng-show="userList " class="center-align">
+
+
+                    <table>
                         <thead style="text-decoration:none;">
                             <tr style="font-family: railway; text-decoration:none;">
                                 <th>Name</th>
                                 <th>Phonenumber</th>
-                                
+
                             </tr>
                         </thead>
 
-                        <tbody  ng-repeat="page in employeesPaginated[page] track by $index">
-                            <tr  >
-                                <td class = "animated fadeIn railway"><a style="color:black;"href="#" ng-click="openUserFile(page.name)">{{$index+1}}.{{page.name}}</a></td>
-                                <td class = "animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
+                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                            <tr>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                             </tr>
 
 
                         </tbody>
                     </table>
 
-<ul class="pagination">
-        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+                    <ul class="pagination">
+                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
 
-    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
-    <li ng-class ="{'active':page == $index, 'disabled': page!==$index}"ng-repeat="employee in employeesPaginated track by $index" ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
 
-    <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
-        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#" ><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
 
-  </ul>
-            
+                    </ul>
+
 
                 </div>
             </div>
@@ -136,20 +145,36 @@
             <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in employees">
 
                 <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
+                    <a href ="#" style="color:black;">
+                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
+                        {{currentUserFile}} |</p>
+                    </a>
 
-                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>| {{currentUserFile}} |</p>
+
                     <div class="row">
                         <div style="opacity:0;" class="col s1">
-
                         </div>
+
+                        <!-- CURRENT USER FILE MENU -->
+
                         <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s10 center-align">
-                            <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
-
-                            <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
-                            <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
-                            <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-
+                            <a href ="#" style="color:black;">
+                                <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
+                            </a>
+                            <a href ="#" style="color:black;">
+                                <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
+                            </a>  
+                             <a href ="#" style="color:black;">
+                                <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
+                            </a> 
+                            <a href ="#" style="color:black;">
+                                <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                            </a>     
                         </div>
+
+                        <!-- CURRENT USER FILE MENU -->
+
+
                         <div class="col s1">
                         </div>
 
@@ -161,6 +186,10 @@
                         <p class="railway animated fadeIn">{{user.phonenumber}}</p>
 
                     </div>
+
+                    <!-- COMMENTS PAGE -->
+
+
                     <div ng-show="commentsPageOpened" class="col s12">
                         <div class="row" ng-repeat="comment in comments">
                             <div class="col s1">
@@ -177,12 +206,42 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- COMMENTS PAGE -->
+
+
+
+
+                    <!-- PAYSLIP GENERATION -->
+
+                    <div ng-show="payslipGenerationOpen" class = "col-s12">
+
+                        <div class = "center-align">
+                            <p class = "railway">
+                                Generate Payslip
+                            </p>
+                            
+                        </div>
+                        <div class = "center-align">
+                            <i ng-click="generatePdf()" class = "large material-icons animated pulse infinite">attach_money</i>
+                            <i  class = "large material-icons animated rotateIn infinite">autorenew</i>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- PAYSLIP GENERATION -->
+
+
                     <div ng-show="complaintsPageOpened" class="col s12">
                         <div class="row">
                             <div class="col s12">
                                 <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
 
-                            
+
                                 <div ng-show="complaintsOpened">
                                     <div style="border:1px solid rgba(0,0,0,.6)">
                                         <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>
@@ -200,9 +259,23 @@
                         </div>
                     </div>
                     <div ng-show="bookedJobsPageOpened" class="col s12">
-                        <i ng-click="increaseDay()" style="padding-right:50px;" class="material-icons">expand_less</i>
-                        <i ng-click="decreaseDay()" class="material-icons">expand_more</i>
+
+                        <!-- SCROLL THROUGH BOOKED JOBS -->
+
+                        <a href ="#" style="color:black;">
+                            <i ng-click="increaseDay()" style="padding-right:50px;" class="material-icons">expand_less</i>
+                        </a>
+                        <a href ="#" style="color:black;">
+                            <i ng-click="decreaseDay()" class="material-icons">expand_more</i>
+                        </a>
                         <br>
+
+                         <!-- SCROLL THROUGH BOOKED JOBS -->
+
+
+
+                         <!-- BOOKED JOBS -->
+
                         <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
                         <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                             <br>
@@ -224,9 +297,7 @@
                                     <span class="railway underline">Location</span>
                                     <p class="railway  "> {{jobDetails[openJob].location}}</p>
                                 </div>
-                                <!--   <div style="border-bottom:1px solid #ddd;  padding-bottom:10px;">
-                            
-                        </div>-->
+                 
 
                                 <div ng-show="openJob == $index && timesheetsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
                                     <div class="row" ng-show="!jobDetails[openJob].timesheetSubmitted">
@@ -294,6 +365,9 @@
                             </div>
 
                         </div>
+
+                        <!-- BOOKED JOBS -->
+
                         <!--
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
 

@@ -1,26 +1,38 @@
 var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
+var pdf = require('html-pdf');
+var html = fs.readFileSync('../public/views/pages/management.html', 'utf8');
+var options = { format: 'Letter' };
+
 module.exports = function (app) {
 
-    app.put('/users/:input', function(req,res){
-        User.find({ name: {$regex : "^" + req.params.input}}, function(err,users){
-            if(err)throw err;
-            if(!users){
-                res.json({success: false, message: "Users not found.."})
-            }else{
-                res.json({success: true, message: "Users found", users:users})
+    app.get('/users/generatepdf', function (req, res) {
+
+        pdf.create(html, options).toFile('./businesscard.pdf', function (err, res) {
+            if (err) return console.log(err);
+            console.log(res); // { filename: '/app/businesscard.pdf' }
+        });
+
+    })
+    app.put('/users/:input', function (req, res) {
+        User.find({ name: { $regex: "^" + req.params.input } }, function (err, users) {
+            if (err) throw err;
+            if (!users) {
+                res.json({ success: false, message: "Users not found.." })
+            } else {
+                res.json({ success: true, message: "Users found", users: users })
             }
         })
     })
 
-    app.get('/users', function(req,res){
+    app.get('/users', function (req, res) {
 
-        User.find({}, function(err,users){
-            if(err)throw err;
-            if(!users){
-                res.json({success: false, message:"Users not found.."})
-            }else{
-                res.json({success: true, message: "Users found..", users})
+        User.find({}, function (err, users) {
+            if (err) throw err;
+            if (!users) {
+                res.json({ success: false, message: "Users not found.." })
+            } else {
+                res.json({ success: true, message: "Users found..", users })
             }
         })
     })
@@ -56,7 +68,7 @@ module.exports = function (app) {
                             }
                         })
                     }
-               
+
                 }
                 //res.json({success: true, message: "User's availability modified", user: user})
             }
@@ -64,54 +76,54 @@ module.exports = function (app) {
         })
 
     })
-   
-    app.post('/bookjob', function(req,res){ 
+
+    app.post('/bookjob', function (req, res) {
         console.log(req.body)
-       User.findOneAndUpdate ({_id: req.body.userid},{$push:{jobDetails: req.body.jobDetails}}, function(err,user){
-            if(err)throw(err)
-            if(!user){
-                res.json({success: false, message:"User not found"})
-                
-            }else{
-                res.json({success: true, message: "User found and updated",user})
+        User.findOneAndUpdate({ _id: req.body.userid }, { $push: { jobDetails: req.body.jobDetails } }, function (err, user) {
+            if (err) throw (err)
+            if (!user) {
+                res.json({ success: false, message: "User not found" })
+
+            } else {
+                res.json({ success: true, message: "User found and updated", user })
             }
         })
-    }) 
-     app.put('/users/:userId/:date/:boolean', function(req,res){
-            
-        User.findOne({_id:req.params.userId},function(err,user){
-            
+    })
+    app.put('/users/:userId/:date/:boolean', function (req, res) {
 
-            if(err)throw err; 
+        User.findOne({ _id: req.params.userId }, function (err, user) {
 
-            if(!user){
-                res.json({success: false, message:"User not found"})
 
-            }else{
-                if(req.params.boolean =="true"){
-                    user.calender[0][req.params.date]=true;
+            if (err) throw err;
+
+            if (!user) {
+                res.json({ success: false, message: "User not found" })
+
+            } else {
+                if (req.params.boolean == "true") {
+                    user.calender[0][req.params.date] = true;
                     console.log(user.calender[0][req.params.date])
-                              User.findOneAndUpdate({_id: req.params.userId},{$set:{calender:user.calender}},function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success:false, message:"User not found"})
-                    }else{
-                        res.json({success: true, message: "User found and updated...",user:user})
-                    }
-                })
-            }else{
-                                    user.calender[0][req.params.date]=false;
+                    User.findOneAndUpdate({ _id: req.params.userId }, { $set: { calender: user.calender } }, function (err, user) {
+                        if (err) throw err;
+                        if (!user) {
+                            res.json({ success: false, message: "User not found" })
+                        } else {
+                            res.json({ success: true, message: "User found and updated...", user: user })
+                        }
+                    })
+                } else {
+                    user.calender[0][req.params.date] = false;
 
-                              User.findOneAndUpdate({_id: req.params.userid},{$set:{calender:user.calender}},function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success:false, message:"User not found"})
-                    }else{
-                        res.json({success: true, message: "User found and updated...",user:user})
-                    }
-                })
+                    User.findOneAndUpdate({ _id: req.params.userid }, { $set: { calender: user.calender } }, function (err, user) {
+                        if (err) throw err;
+                        if (!user) {
+                            res.json({ success: false, message: "User not found" })
+                        } else {
+                            res.json({ success: true, message: "User found and updated...", user: user })
+                        }
+                    })
                 }
-      
+
             }
 
         })
