@@ -66,7 +66,7 @@
                 <form name="searchForm">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input placeholder="Search here.." ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
+                            <input  ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
                                 id="first_name" type="text" class="validate">
                             <label for="first_name"></label>
                         </div>
@@ -108,7 +108,10 @@
 
 
                 </div>
-                <div ng-show="userList " class="center-align">
+                <div ng-show = "loadingUsers"class = "center-align">
+                    <i class="material-icons animated rotateIn infinite">autorenew</i>
+                </div>
+                <div ng-show="userList && !loadingUsers " class="center-align">
 
 
                     <table>
