@@ -14,7 +14,7 @@
     font-size:50px;
     transition:.2s;
  }
-
+ .calendar-text { margin-top: 30%; }
 /*GENERIC L RULES */
 a{
     text-decoration:none;
