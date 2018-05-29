@@ -294,6 +294,7 @@
                             <br>
                             <div class="row">
                                 <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
+                                    
                                     <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
                                         <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
                                     <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>

@@ -1,10 +1,10 @@
 console.log("testing")
-angular.module('userServices',[]).config(function(){
+angular.module('userServices',['authServices']).config(function(){
 
     console.log("UserService")
 
 })
-.factory('User', function($http){
+.factory('User', function($http,Auth,AuthToken){
 
     userFactory = {};
     //User.create(regData)
@@ -18,6 +18,15 @@ angular.module('userServices',[]).config(function(){
         return $http.get('/api/users')
 
     }
+       //User.getPermission();
+ userFactory.getUserClass= function(){
+    if(AuthToken.getToken()){
+        var token = AuthToken.getToken()
+            return $http.put('/api/getuserclass'+token);
+
+    }
+
+ }
     userFactory.generatePdf = function(){
         return $http.get('/api/generatepdf')
     }

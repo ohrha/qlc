@@ -2,7 +2,7 @@
 
 //console.log("app.js loaded");
 
-var app = angular.module('qlc',['appRoutes','managementController', 'htmlToPdfSave','userServices',"calanderController","tapTargetController","profileController","homeController",'registerController','loginController']);
+var app = angular.module('qlc',['appRoutes','managementController', 'mainController','authServices','htmlToPdfSave','userServices',"calanderController","tapTargetController","profileController","homeController",'registerController','loginController']);
 																																																  
 app.config(function($compileProvider){
 
@@ -12,8 +12,11 @@ app.config(function($compileProvider){
 	$compileProvider.preAssignBindingsEnabled(true);
 
 });
-app.controller('QlhController', [  function() {
+app.controller('QlhController', [  function(Auth) {
 console.log("QlhController")
+	Auth.getUser().then(function(data){
+		console.log(data.data)
+	})
 
 }])
 }());

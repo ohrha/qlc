@@ -42,6 +42,7 @@
         $scope.noInput = false;
         $scope.searchResults = false;
         $scope.userList = false;
+        $scope.usersLoaded = false;
         $scope.noSearchResults = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
@@ -118,11 +119,11 @@
         User.getUsers().then(function (data) {
             console.log(data)
             $scope.employees = data.data.users;
-            
+
 
             console.log($scope.employees)
-           
-           // $scope.loadingUsers=false;
+
+            // $scope.loadingUsers=false;
             console.log($scope.employeesPaginated)
             $scope.jobDetails = data.data.users.jobDetails;
             for (var i = 0; i < data.data.users.length; i++) {
@@ -349,51 +350,60 @@
             }
         }
         $scope.openEmployeeList = function () {
-            $scope.loadingUsers = true;
+           
+            
+            //$scope.employeesPaginated = [];
             if ($scope.employeeListOpen) {
-                $scope.employeeListOpen = false;
+               // $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
                 $scope.userFilePage = false;
 
             } else {
-                     $scope.employeeListOpen = true;
+                 $scope.loadingUsers = true;
+                $scope.employeeListOpen = true;
                 $scope.payslipGenerationOpen = false;
                 $scope.userFilePage = false;
                 $scope.userList = true;
-                User.getUsers().then(function(data){
-                              for (var i = 0; i <= $scope.employees.length; i++) {
+                User.getUsers().then(function (data) {
+                    for (var i = 0; i <= $scope.employees.length; i++) {
 
-                var page = 0;
-                // var pageLimit = 4;
-                if (i < $scope.pageLimit && i < $scope.employees.length) {
-                    if ($scope.employees[i]) {
-                        $scope.pageArray.push($scope.employees[i])
-                        console.log(i)
-                        console.log("firstCondiation")
-                        console.log($scope.pageArray)
+                        var page = 0;
+                        // var pageLimit = 4;
+                        if (i < $scope.pageLimit && i < $scope.employees.length) {
+                            if ($scope.employees[i]) {
+                                $scope.pageArray.push($scope.employees[i])
+                                console.log(i)
+                                console.log("firstCondiation")
+                                console.log($scope.pageArray)
+
+                            }
+
+
+                        } else {
+                            if (!$scope.usersLoaded) {
+
+                                console.log("else")
+                                console.log($scope.pageArray)
+                                $scope.loadingUsers = false;
+                                $scope.employeesPaginated.push($scope.pageArray)
+                                console.log($scope.employeesPaginated)
+                                $scope.pageArray = [];
+                                //console.log(pageLimit)
+                                $scope.pageLimit = $scope.pageLimit + 4;
+
+                                page++
+
+                            }
+
+                        }
 
                     }
 
-
-                } else {
-                
-                    console.log("else")
-                    console.log($scope.pageArray)
+                    $scope.usersLoaded = true;
                     $scope.loadingUsers = false;
-                    $scope.employeesPaginated.push($scope.pageArray)
-                    console.log($scope.employeesPaginated)
-                    $scope.pageArray = [];
-                    //console.log(pageLimit)
-                    $scope.pageLimit = $scope.pageLimit + 4;
-                    //console.log(pageLimit)
-                    page++
-                }
-
-            }
-
 
                 })
-               
+
             }
         }
 

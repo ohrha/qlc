@@ -2,23 +2,27 @@ var User = require('./models/user');
 var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var pdf = require('html-pdf');
+var jwt = require('jsonwebtoken');
+var secret = "negus";
 var html = fs.readFileSync('./public/views/pages/management.html', 'utf8');
 var options = { format: 'Letter' };
 
 module.exports = function (app) {
-
-    pdf.create(html, options).toFile('./businesscard.pdf', function (err, res) {
-            if (err) return console.log(err);
-            console.log(res); // { filename: '/app/businesscard.pdf' }
-        });
-    app.get('/users/generatepdf', function (req, res) {
-
+    /*
         pdf.create(html, options).toFile('./businesscard.pdf', function (err, res) {
-            if (err) return console.log(err);
-            console.log(res); // { filename: '/app/businesscard.pdf' }
-        });
-
-    })
+                if (err) return console.log(err);
+                console.log(res); // { filename: '/app/businesscard.pdf' }
+            });
+        app.get('/users/generatepdf', function (req, res) {
+    
+            pdf.create(html, options).toFile('./businesscard.pdf', function (err, res) {
+                if (err) return console.log(err);
+                console.log(res); // { filename: '/app/businesscard.pdf' }
+            });
+    
+        })
+        */
+   
     app.put('/users/:input', function (req, res) {
         User.find({ name: { $regex: "^" + req.params.input } }, function (err, users) {
             if (err) throw err;
@@ -149,7 +153,7 @@ module.exports = function (app) {
         //res.send("testing new route")
         console.log("authenticate Route Hit");
         console.log(req.body)
-        User.findOne({ username: req.body.username }).select('email username password')
+        User.findOne({ username: req.body.username }).select('email username password payperiodnum userclass')
             .exec(function (err, user) {
 
                 if (err) throw err;
@@ -166,7 +170,9 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        res.json({ success: true, message: "User authenticated...", user: user })
+                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass }, secret, { expiresIn: '24h' });
+                        res.json({ success: true, message: 'User authenticated', token: token ,user:user});
+                        //res.json({ success: true, message: "User authenticated...", user: user })
                     }
                 }
             })
@@ -210,6 +216,52 @@ module.exports = function (app) {
         }
 
     })
+     //EXPRESS MIDDLEWARE
+    app.use(function (req, res, next) {
+        console.log(req.body.token)
+        var token = req.body.token || req.body.query || req.headers['x-access-token'];
+        //from jwt documentation
+        if (token) {
+            // verify token
+            jwt.verify(token, secret, function (err, decoded) {
+
+                if (err) {
+                    res.json({ success: false, message: "Token invalid" })
+                } else {
+                    req.decoded = decoded;
+                    next(); //continue to post method...
+                }
+
+            })
+
+        } else {
+            res.json({ success: false, message: "No token provided" });
+        }
+
+
+    });
+    app.post('/me', function (req, res) {
+
+        res.send(req.decoded);
+
+
+
+    });
+        app.put('/api/getuserclass', function (req, res) {
+        User.findOne({ username: req.decoded.username }, function (err, user) {
+
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "No user found..." });
+            } else {
+                res.json({ success: true, userclass: user.userclass });
+            }
+
+        });
+
+
+    });
+
 
 
     return app;

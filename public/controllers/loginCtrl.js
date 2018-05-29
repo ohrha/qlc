@@ -6,10 +6,14 @@
         console.log("login Controller Loaded")
     })
 
-    app.controller('loginCtrl', function ($scope, Auth,$timeout,$location) {
+    app.controller('loginCtrl', function ($scope, Auth,$timeout,$location,$rootScope) {
+        $rootScope.payPeriod = false;
+        $rootScope.isLoggedin = false;
         $scope.successfulLogin = false;
         $scope.failedLogin = false;
         $scope.errorMsg = false;
+        
+
         $scope.loading = false;
         $scope.loginUser = function(loginData, valid){
 
@@ -23,9 +27,12 @@
                 if(data.data.success){
                     $scope.loading = false;
                     $scope.successfulLogin = true;
+                    //$rootScope.isLoggedin = true;
+                    $rootScope.payPeriod = data.data.user.payperiodnum;
                     $timeout(function(){
 
                         $scope.successfulLogin = false;
+                        
                         $location.path('/profile/'+data.data.user._id)
 
                     },3000)
