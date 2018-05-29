@@ -289,7 +289,7 @@
 
                          <!-- BOOKED JOBS -->
 
-                        <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
+                              <strong>   <span ng-click="openCloseBookedJobs()" style="float:left;" style="font-size:18px; text-decoration:bold;"class="railway animated fadeIn ">{{payPeriod}} .</span> </strong> <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
                         <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                             <br>
                             <div class="row">
@@ -303,7 +303,7 @@
                                 </div>
                                 <!--jobsPageOpen && usersPageIndex == $index -->
                                 <div ng-show="openJob == $index && jobsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-                        <span ng-click="openCloseBookedJobs()" style="float:left;" class="railway animated fadeIn ">{{payPeriod}}|</span>
+             
 
                                     <span class="railway  underline">Client</span>
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>

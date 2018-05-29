@@ -180,6 +180,12 @@
             console.log(Auth.isLoggedIn())
             console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
+                Auth.getUser().then(function (data) {
+            console.log(data)
+            $rootScope.payPeriod = data.data.payperiod;
+
+            console.log($rootScope.userClass)
+        })
         })
 
     })
