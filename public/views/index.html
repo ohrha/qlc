@@ -37,7 +37,6 @@
   <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
   <script type="text/javascript" src="../js/saveHtmlToPdf.min.js"></script>
   <script type="text/javascript" src="../js/rasterizehtml.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 
 
 
@@ -84,10 +83,15 @@
         <li ng-show="loggedIn" ng-click="logout()"><a href="#">Logout</a></li>
 
         <li><a href="/contact">Contact</a></li>
-        <li ><a href="/contact"> <span class="fa-stack ">
-  <i  class="fa fa-calendar-o fa-stack-2x"></i>
-  <strong class="fa-stack-1x calendar-text">{{payPeriod}}</strong>
-</span></a></li>
+            <li ng-show="payPeriodIcon" ><a href="/contact">      
+            
+      <span class="fa-stack fa-2x">
+  <i class="fas fa-calendar fa-stack-1x fa-lg"></i>
+  <span class=" fa-stack-2x" style="color:black; font-size:25px; padding-top:10px;">{{payPeriod}}</span>
+</span>
+  
+  
+  </a></li>
 
       </ul>
       <ul class="side-nav railway" id="mobile-demo">
@@ -98,10 +102,13 @@
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
         <li ng-show="loggedIn" ng-click="logout()"><a href="#">Logout</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li ng-show="payPeriodIcon" ><a href="/contact">        <span class="fa-layers fa-fw" style="background:MistyRose">
-    <i class="fas fa-calendar fa-3x"></i>
-    <span class="fa-layers-text fa-inverse" data-fa-transform=" down-4 right-10" style="font-weight:900">{{payPeriod}}</span>
-  </span></a></li>
+        <li ng-show="payPeriodIcon" class ="left-align "><a style="padding-right:20px;" href="/contact">        
+        <span class="fa-stack fa-2x " >
+  <i class="fas fa-calendar fa-stack-1x fa-lg"></i>
+  <span class=" fa-stack-2x" style="color:white; font-size:25px; padding-top:6px; float:left;">{{payPeriod}}</span>
+</span>
+  
+  </a></li>
 
 
       </ul>
