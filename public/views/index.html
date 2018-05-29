@@ -102,10 +102,10 @@
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
         <li ng-show="loggedIn" ng-click="logout()"><a href="#">Logout</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li ng-show="payPeriodIcon" class ="left-align "><a style="padding-right:20px;" href="/contact">        
+        <li ng-show="payPeriodIcon" class ="left-align "><a  href="/contact">        
         <span class="fa-stack fa-2x " >
-  <i class="fas fa-calendar fa-stack-1x fa-lg"></i>
-  <span class=" fa-stack-2x" style="color:white; font-size:25px; padding-top:6px; float:left;">{{payPeriod}}</span>
+  <i style="padding-right:50px;"class="fas fa-calendar fa-stack-1x fa-lg"></i>
+  <span class=" fa-stack-2x" style="color:white; font-size:25px; padding-top:6px; float:left; padding-right:25px;">{{payPeriod}}</span>
 </span>
   
   </a></li>
