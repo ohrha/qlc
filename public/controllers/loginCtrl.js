@@ -26,6 +26,7 @@
               
                 if(data.data.success){
                     $scope.loading = false;
+                    $rootScope.payPeriodIcon = true;
                     $scope.successfulLogin = true;
                     //$rootScope.isLoggedin = true;
                     $rootScope.payPeriod = data.data.user.payperiodnum;

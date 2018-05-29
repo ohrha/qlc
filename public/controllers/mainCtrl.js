@@ -9,9 +9,12 @@
     app.controller('mainCtrl', function ($scope, Auth,$timeout,$location,User,$rootScope,AuthToken) {
 
         $scope.userClass = "";
+        $rootScope.payPeriodIcon = false;
 
         $scope.logout = function(){
             Auth.logout();
+           $location.path('/')
+           $rootScope.payPeriodIcon = false;
         }
         Auth.getUser().then(function(data){
             console.log(data)
