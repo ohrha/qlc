@@ -18,6 +18,8 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.get('/api/users')
 
     }
+
+
        //User.getPermission();
  userFactory.getUserClass= function(){
     if(AuthToken.getToken()){
@@ -31,9 +33,17 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.get('/api/generatepdf')
     }
     userFactory.instaSearch = function(input){
+        console.log(input)
         return $http.put('/api/users/'+input)
     }
+       
+    userFactory.updatePayPeriod = function(payperiod,username){
+        console.log("Hello from userservice")
+        return $http.put('/api/users/updatepayperiod/'+payperiod+'/'+username)
+
+    }
     userFactory.getUser  = function(userId){
+         console.log("Hello from userservice")
         return $http.put('/api/users/'+userId);
     }
     userFactory.changeAvailability = function(userid,month,date,boolean){

@@ -1,4 +1,5 @@
 var User = require('./models/user');
+var PayPeriod = require('./models/payperiod')
 var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var pdf = require('html-pdf');
@@ -22,7 +23,55 @@ module.exports = function (app) {
     
         })
         */
-   
+
+    app.post('/payperiod/createpayperiod', function (req, res) {
+
+        var payperiod = new PayPeriod();
+        //payperiod.date = req.body.date;
+        payperiod.payperiodnum = req.body.payperiod;
+        payperiod.jobDetails = req.body.jobDetails;
+        payperiod.booked= req.body.booked;
+        payperiod.monthName = req.body.month;
+        console.log(payperiod)
+        payperiod.save(function(err,user){
+
+            if(err){
+                res.json({success: false, message:"Save failed...",err:err})
+            }else{
+                res.json({successs: true, message: "Save Successful..."})
+            }
+            
+
+        })
+        
+    })
+    app.get('/payperiod/getallpayperiods', function(req,res){
+        PayPeriod.find({},function(err,payperiods){
+
+            if(err)throw err;
+            if(!payperiods){
+                res.json({success: false, message:"Payperiods not found.."})
+            }else{
+                res.json({success: true, message: "PayPeriods found..", payperiods:payperiods})
+            }
+
+        })
+    })
+    app.put('/users/updatepayperiod/:payperiod/:username', function (req, res) {
+        console.log("hello")
+        console.log("HELLODFLKSDJFKLDJ")
+        User.findOneAndUpdate({ username: req.params.username }, { $inc: { payperiodnum: 1 } }, { new: true }, function (err, user) {
+
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found so not updated.." })
+            } else {
+                res.json({ success: true, message: "User found and updated..", user: user })
+            }
+
+        })
+    })
+
     app.put('/users/:input', function (req, res) {
         User.find({ name: { $regex: "^" + req.params.input } }, function (err, users) {
             if (err) throw err;
@@ -170,8 +219,8 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass }, secret, { expiresIn: '24h' });
-                        res.json({ success: true, message: 'User authenticated', token: token ,user:user});
+                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum }, secret, { expiresIn: '24h' });
+                        res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
                 }
@@ -194,7 +243,9 @@ module.exports = function (app) {
 
         } else {
             console.log("Here i am")
-            user.save(function (err) {
+            PayPeriod.find({},function(err,payperiods){
+                user.payperiods = payperiods;
+                 user.save(function (err) {
                 if (err) {
 
                     //res.send("Ensure all fields input")
@@ -213,10 +264,13 @@ module.exports = function (app) {
 
                 }
             })
+
+            })
+           
         }
 
     })
-     //EXPRESS MIDDLEWARE
+    //EXPRESS MIDDLEWARE
     app.use(function (req, res, next) {
         console.log(req.body.token)
         var token = req.body.token || req.body.query || req.headers['x-access-token'];
@@ -247,7 +301,7 @@ module.exports = function (app) {
 
 
     });
-        app.put('/api/getuserclass', function (req, res) {
+    app.put('/api/getuserclass', function (req, res) {
         User.findOne({ username: req.decoded.username }, function (err, user) {
 
             if (err) throw err;

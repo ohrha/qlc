@@ -16,6 +16,7 @@ var UserSchema = new Schema({
     temporarytoken: {type:String, required: false},
     resettoken:{type:String, required:false, default:'user'},
     viewhistory:{type:Array},
+    payperiods:{type:Array},
     alreadyapplied:{type:Array},
     calender:{type:Object},
     June:{type:Array},

@@ -6,7 +6,9 @@
         console.log("Management Controller Loaded")
     })
 
-    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User) {
+    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope) {
+        $scope.username = "";
+        $scope.payperiod = '';
         $scope.loading = false;
         $scope.loadingUsers = false;
         $scope.managementPage = true;
@@ -47,13 +49,14 @@
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.employeesPaginated = [];
+        $scope.payPeriods = [];
         $scope.page = 0;
         $scope.pageArray = [];
         $scope.pageLimit = 4;
         $scope.currentPage = 1;
         $scope.numPerPage = 10;
         $scope.maxSize = 5;
-        $scope.payperiod = 4;
+        //$rootScope.payPeriod = 0;
         $scope.date = new Date();
         $scope.dateNow = $scope.date.getDate()
         $scope.month = $scope.date.getMonth() + 1;
@@ -88,7 +91,40 @@
             $scope.monthLiteral = "May";
             console.log($scope.monthLiteral)
         }
+        Auth.getUser().then(function(data){
+            console.log(data)
+            if($scope.month == 5 && $scope.dateNow == 29){
+               /* User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {
+                    console.log(data)
+                     $rootScope.payPeriod= data.data.user.payperiodnum
+                     console.log($rootScope.payPeriod)
+                })
+                */
+            }
+              
+        })
+       /* $rootScope.$on('$routeChangeStart', function () {
+
+            console.log(Auth.isLoggedIn())
+            console.log(AuthToken.getToken())
+            Auth.getUser().then(function (data) {
+                console.log(data)
+                $scope.username = data.data.username;
+                $scope.payperiod = data.data.payperiod
+                console.log("username", username, "payperiod", payperiod)
+
+                User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {
+                    console.log(data)
+                    // $rootScope.loggedIn = Auth.isLoggedIn()
+                })
+
+            })
+
+        })
+*/
+     
         console.log($scope.jobDetails)
+
         $scope.export = function () {
             $scope.pdfLoading = true;
             $timeout(function () {
@@ -350,16 +386,16 @@
             }
         }
         $scope.openEmployeeList = function () {
-           
-            
+
+
             //$scope.employeesPaginated = [];
             if ($scope.employeeListOpen) {
-               // $scope.employeeListOpen = false;
+                // $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
                 $scope.userFilePage = false;
 
             } else {
-                 $scope.loadingUsers = true;
+                $scope.loadingUsers = true;
                 $scope.employeeListOpen = true;
                 $scope.payslipGenerationOpen = false;
                 $scope.userFilePage = false;
@@ -516,11 +552,19 @@
                         $scope.comments = data.data.users[i].comments;
                         $scope.payperiods = data.data.users[i].payperiods;
                         $scope.payperiod = data.data.users[i].payperiodnum;
+                    
                         for (var k = 0; k < $scope.payperiods.length; k++) {
-                            //console.log($scope.payperiods[k])
-                            for (var j = 0; j < $scope.payperiods[k].length; j++) {
+                            console.log($scope.payperiods[k].payperiodnum)
+                            console.log($rootScope.payPeriod)
+                            if($scope.payperiods[k].payperiodnum == $rootScope.payPeriod){
+                                console.log($scope.payperiods[k].jobDetails)
+
+                                $scope.jobDetails = $scope.payperiods[k].jobDetails
+                            }
+                      /*      for (var j = 0; j < $scope.payperiods[k].length; j++) {
 
                                 //console.log($scope.payperiods[k][j].Month)
+                                
                                 if ($scope.payperiods[k][j].Month == $scope.monthLiteral && $scope.payperiods[k][j].payperiod == 6) {
 
                                     console.log($scope.payperiods[k][j])
@@ -535,7 +579,7 @@
                                     // $scope.jobDetails = [];
 
                                 }
-                            }
+                            }*/
                             //if(data.data.payperiods[i].)
                         }
 

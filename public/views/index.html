@@ -62,6 +62,8 @@
 
   <script type="text/javascript" src="../services/userServices.js"></script>
   <script type="text/javascript" src="../services/authServices.js"></script>
+    <script type="text/javascript" src="../services/payperiodServices.js"></script>
+
 
 
 
@@ -102,7 +104,7 @@
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
         <li ng-show="loggedIn" ng-click="logout()"><a href="#">Logout</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li ng-show="payPeriodIcon" class ="left-align "><a  href="/contact">        
+        <li  class ="left-align "><a  href="/contact">        
         <span class="fa-stack fa-2x " >
   <i style="padding-right:50px;"class="fas fa-calendar fa-stack-1x fa-lg"></i>
   <span class=" fa-stack-2x" style="color:white; font-size:25px; padding-top:6px; float:left; padding-right:25px;">{{payPeriod}}</span>
@@ -135,8 +137,8 @@
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text railway">Links</h5>
           <ul>
-            <li><a class="grey-text text-lighten-3 railway" href="/">Home</a></li>
-            <li><a class="grey-text text-lighten-3 railway" href="/services">Services</a></li>
+            <li><a ng-click="addPayPeriod();" class="grey-text text-lighten-3 railway" href="#">Home</a></li>
+            <li><a ng-click="addJobDetails();"class="grey-text text-lighten-3 railway" href="/services">Services</a></li>
             <li><a class="grey-text text-lighten-3 railway" href="/contact">Contact</a></li>
           </ul>
         </div>
