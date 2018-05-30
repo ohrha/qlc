@@ -307,46 +307,50 @@
                                 <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                     <div class="row">
-                                        <div class = "col s12 center-align">
-                                            <h2 class = "railway underline"> {{job.day}} {{job.dateNum}}</h2>
+                                        <!--
+                                        <div class = "col s12 center-align show-on-large-only">
+                                         <h2 class = "railway underline ">  {{job.day}} {{job.dateNum}}</h2>
+
+                                        </div>
+                                        -->
+                                                <div class = "col s12 center-align show-on-small-only">
+                                         <p ng-click="createSupervisor()"style="font-size:20px;"class = "railway underline ">  {{job.day}} {{job.dateNum}}</p>
+
                                         </div>
                                    
                                     </div>
                                        <div class="col s12">
       <label for="Sex">Client*</label>
-      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+      <select class="error browser-default" id="sex"ng-model="jobData.client" name="client" required>
                                 				<option value="" disabled selected>Client</option>
-                                				<option value="1">Carlton Party Hire</option>
-                                                <option value="2">Goldriggers</option>
-                                                <option value="3">Displayworks</option>
+                                				<option ng-repeat="client in clients"value="1">{{client.name}}</option>
+                                              
 
                                 			</select>
 
     </div>
          <div class="col s12">
       <label for="Sex">Supervisor *</label>
-      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+      <select class="error browser-default" id="sex"ng-model="jobData.supervisor" name="supervisor" required>
                                 				<option value="" disabled selected>Supervisor</option>
-                                				<option value="1">Hendrix</option>
-                                                <option value="2">Stoves</option>
-                                                <option value="2">Benjamin</option>
+                                				<option ng-repeat="supervisor in supervisors"value="1">{{supervisor.name}}</option>
+
 
                                 			</select>
 
     </div>
          <div class="col s12">
       <label for="Sex">Location *</label>
-      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+      <select class="error browser-default" id="sex"ng-model="jobData.location" name="location" required>
                                 				<option value="" disabled selected>Location</option>
-                                				<option value="1">Hendrix</option>
-                                                <option value="2">Stoves</option>
-                                                <option value="2">Benjamin</option>
+                                 				<option ng-repeat="location in locations"value="1">{{location.name}}</option>
+
 
                                 			</select>
 
     </div>
        <div class = "col s12 center-align">
-                                            <h2 class = "railway underline"> Notes</h2>
+                                            <p style="font-size:20px;"class = "railway underline"> Notes</p>
                                         </div>
       
                                    
@@ -354,12 +358,17 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <textarea id="textarea1" ng-model="jobData.notes" name="notes" class="materialize-textarea"></textarea>
           <label for="textarea1">Textarea</label>
         </div>
       </div>
     </form>
+    <div class = "col s12 center-align">
+                    <a ng-click="addJobData(job.dateNum,job.day,job.date)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
+
+    </div>
   </div>
+
    
                                     <!--
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>

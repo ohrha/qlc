@@ -1,12 +1,12 @@
 (function () {
 
-    var app = angular.module('managementController', ['authServices'])
+    var app = angular.module('managementController', ['authServices', 'supervisorServices', 'locationServices', 'clientServices'])
     app.config(function () {
 
         console.log("Management Controller Loaded")
     })
 
-    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope) {
+    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, Location, Client, Supervisor) {
         $scope.username = "";
         $scope.payperiod = '';
         $scope.loading = false;
@@ -53,6 +53,10 @@
         $scope.payPeriods = [];
         $scope.page = 0;
         $scope.pageArray = [];
+        $scope.clients = [];
+        $scope.locations = [];
+        $scope.supervisors = [];
+        $scope.jobData = {};
         $scope.pageLimit = 4;
         $scope.currentPage = 1;
         $scope.numPerPage = 10;
@@ -92,41 +96,82 @@
             $scope.monthLiteral = "May";
             console.log($scope.monthLiteral)
         }
-        Auth.getUser().then(function(data){
+        Auth.getUser().then(function (data) {
             console.log(data)
-            if($scope.month == 5 && $scope.dateNow == 29){
-               /* User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {
-                    console.log(data)
-                     $rootScope.payPeriod= data.data.user.payperiodnum
-                     console.log($rootScope.payPeriod)
-                })
-                */
+            if ($scope.month == 5 && $scope.dateNow == 29) {
+                /* User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {
+                     console.log(data)
+                      $rootScope.payPeriod= data.data.user.payperiodnum
+                      console.log($rootScope.payPeriod)
+                 })
+                 */
             }
-              
-        })
-       /* $rootScope.$on('$routeChangeStart', function () {
-
-            console.log(Auth.isLoggedIn())
-            console.log(AuthToken.getToken())
-            Auth.getUser().then(function (data) {
-                console.log(data)
-                $scope.username = data.data.username;
-                $scope.payperiod = data.data.payperiod
-                console.log("username", username, "payperiod", payperiod)
-
-                User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {
-                    console.log(data)
-                    // $rootScope.loggedIn = Auth.isLoggedIn()
-                })
-
-            })
 
         })
-*/
-     
+        /* $rootScope.$on('$routeChangeStart', function () {
+ 
+             console.log(Auth.isLoggedIn())
+             console.log(AuthToken.getToken())
+             Auth.getUser().then(function (data) {
+                 console.log(data)
+                 $scope.username = data.data.username;
+                 $scope.payperiod = data.data.payperiod
+                 console.log("username", username, "payperiod", payperiod)
+ 
+                 User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {
+                     console.log(data)
+                     // $rootScope.loggedIn = Auth.isLoggedIn()
+                 })
+ 
+             })
+ 
+         })
+ */
+
         console.log($scope.jobDetails)
-        $scope.openAddJobPage = function(){
-            if(!$scope.addJobPage){
+        Client.getClients().then(function (data) {
+
+            console.log(data)
+            $scope.clients = data.data.clients;
+            console.log($scope.clients)
+        })
+            Location.getLocations().then(function (data) {
+
+            console.log(data)
+            $scope.locations = data.data.location;
+        })
+            Supervisor.getSupervisors().then(function (data) {
+
+            console.log(data)
+            $scope.supervisors = data.data.supervisors;
+        })
+        $scope.createClient = function () {
+            Client.create("Displayworks").then(function (data) {
+                console.log(data);
+                
+            })
+        }
+        $scope.createLocation = function () {
+            Location.create("Sky City").then(function (data) {
+               // console.log(data.data.);
+            })
+        }
+        $scope.createSupervisor = function () {
+            Supervisor.create("Benjamin").then(function (data) {
+                console.log(data);
+            })
+        }
+        $scope.addJobData = function (date, day, fulldate) {
+            $scope.jobData.booked = true;
+            $scope.jobData.timesheetSubmitted = false;
+            $scope.jobData.dateNum = date;
+            $scope.jobData.date = fulldate;
+            $scope.jobData.day = day;
+
+            console.log($scope.jobData)
+        }
+        $scope.openAddJobPage = function () {
+            if (!$scope.addJobPage) {
                 $scope.addJobPageOpen = true;
                 $scope.jobsPageOpen = false;
             }
@@ -561,34 +606,34 @@
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
                         $scope.payperiod = data.data.users[i].payperiodnum;
-                    
+
                         for (var k = 0; k < $scope.payperiods.length; k++) {
                             //console.log($scope.payperiods[k].payperiodnum)
                             //console.log($rootScope.payPeriod)
-                            if($scope.payperiods[k].payperiodnum == $rootScope.payPeriod ){
+                            if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
                                 console.log($scope.payperiods[k].jobDetails)
 
                                 $scope.jobDetails = $scope.payperiods[k].jobDetails
                             }
-                      /*      for (var j = 0; j < $scope.payperiods[k].length; j++) {
-
-                                //console.log($scope.payperiods[k][j].Month)
-                                
-                                if ($scope.payperiods[k][j].Month == $scope.monthLiteral && $scope.payperiods[k][j].payperiod == 6) {
-
-                                    console.log($scope.payperiods[k][j])
-
-                                    for (var l = 0; l < $scope.payperiods[k][j].Job.length; l++) {
-                                        if ($scope.payperiods[k][j].payperiod == 6) {
-
-                                            $scope.jobDetails.push($scope.payperiods[k][j].Job[l])
-
-                                        }
-                                    }
-                                    // $scope.jobDetails = [];
-
-                                }
-                            }*/
+                            /*      for (var j = 0; j < $scope.payperiods[k].length; j++) {
+      
+                                      //console.log($scope.payperiods[k][j].Month)
+                                      
+                                      if ($scope.payperiods[k][j].Month == $scope.monthLiteral && $scope.payperiods[k][j].payperiod == 6) {
+      
+                                          console.log($scope.payperiods[k][j])
+      
+                                          for (var l = 0; l < $scope.payperiods[k][j].Job.length; l++) {
+                                              if ($scope.payperiods[k][j].payperiod == 6) {
+      
+                                                  $scope.jobDetails.push($scope.payperiods[k][j].Job[l])
+      
+                                              }
+                                          }
+                                          // $scope.jobDetails = [];
+      
+                                      }
+                                  }*/
                             //if(data.data.payperiods[i].)
                         }
 

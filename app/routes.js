@@ -1,5 +1,8 @@
 var User = require('./models/user');
 var PayPeriod = require('./models/payperiod')
+var Client = require('./models/client')
+var Location = require('./models/location');
+var Supervisor = require('./models/supervisor')
 var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var pdf = require('html-pdf');
@@ -23,6 +26,81 @@ module.exports = function (app) {
     
         })
         */
+    app.put('/clients/create/:clientName', function(req,res){
+
+        var client = new Client();
+        client.name = req.params.clientName;
+        if( req.params.clientName !== "" || undefined){
+            client.save(function(err,client){
+                if(err){
+                    res.json({success: false, message:"Save failed.."})
+                }else{
+                    res.json({success:true, message:"Save successfull...", client:client})
+                }
+            })
+        }
+    })
+       app.put('/locations/create/:locationName', function(req,res){
+
+        var location = new Location();
+        location.name = req.params.locationName;
+        if( req.params.locationName !== "" || undefined){
+            location.save(function(err,location){
+                if(err){
+                    res.json({success: false, message:"Save failed.."})
+                }else{
+                    res.json({success:true, message:"Save successfull...", location:location})
+                }
+            })
+        }
+    })
+           app.put('/supervisors/create/:supervisorName', function(req,res){
+
+        var supervisor = new Supervisor();
+        supervisor.name = req.params.supervisorName;
+        if( req.params.supervisorName !== "" || undefined){
+            supervisor.save(function(err,supervisor){
+                if(err){
+                    res.json({success: false, message:"Save failed.."})
+                }else{
+                    res.json({success:true, message:"Save successfull...", supervisor:supervisor})
+                }
+            })
+        }
+    })
+    app.get('/clients', function(req,res){
+        Client.find({},function(err,clients){
+
+            if(err)throw err;
+            if(!clients){
+                res.json({success:false, message:"Clients not founds..."})
+            }else{
+                res.json({success: true, message:"Clients found...", clients:clients})
+            }
+        })
+    })
+        app.get('/locations', function(req,res){
+        Location.find({},function(err,location){
+
+            if(err)throw err;
+            if(!location){
+                res.json({success:false, message:"Location not founds..."})
+            }else{
+                res.json({success: true, message:"Location found...", location:location})
+            }
+        })
+    })
+        app.get('/supervisors', function(req,res){
+        Supervisor.find({},function(err,supervisors){
+
+            if(err)throw err;
+            if(!supervisors){
+                res.json({success:false, message:"Supervisors not founds..."})
+            }else{
+                res.json({success: true, message:"Supervisors found...", supervisors:supervisors})
+            }
+        })
+    })
     app.post('/payperiod/updatepayperiodjobdetails',function(req,res){
         console.log(req.body)
         PayPeriod.find({},function(err,payperiods){
