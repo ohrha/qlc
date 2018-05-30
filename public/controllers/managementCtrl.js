@@ -175,7 +175,16 @@
             User.addJob($scope.jobData).then(function(data){
                 console.log(data)
                 if(data.data.success){
+                    $timeout(function(){
+                                                $location.path('/management')
+                                                $scope.jobsPageOpen= false;
+                                                $scope.employeesPage = true;
+                                                $scope.employeeListOpen =true;
+                                                $scope.jobsPageOpen = true;
+
+                    })
                     $scope.loadingNewJob = false;
+                    
                 }
             })
             console.log(index)
