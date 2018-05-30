@@ -337,13 +337,28 @@
 
         }
 
+
+        
+        /* PAYSLIP LOGIC */
+
+
         $scope.openPayslipGenerationPage = function () {
             $scope.payslipGenerationOpen = true;
             $scope.commentsPageOpened = false;
             $scope.bookedJobsPageOpened = false;
             $scope.complaintsPageOpened = false;
             $scope.userDetailsPageOpened = false;
+            User.getUsers().then(function(data){
+                console.log(data)
+                $scope.employees = data.data.users;
+            })
         }
+        /*PAYSLIP LOGIC */
+
+
+
+
+
         $scope.openDisputesPage = function (index) {
             $scope.usersPageIndex = index;
             if (!$scope.disputesPageOpen) {

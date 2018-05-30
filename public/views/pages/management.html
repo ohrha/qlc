@@ -61,6 +61,24 @@
 
         <div ng-show="payslipPageOpen" class="col s10 center-align animated fadeIn">
             <p style="font-size:18px;" class="railway animated fadeIn ">Payslip Page</p>
+            <div class = "col s12">
+                 <form action="#">
+    <p>
+      <input type="checkbox" id="test5" />
+      <label for="test5">Select All</label>
+    </p>
+                 </form>
+            </div>
+                <div class = "col s12" style="border:1px solid black;">
+                    <form action="#">
+    <p ng-repeat = "employee in employees">
+      <input type="checkbox" id="{{employee.name}}" />
+      <label for="{{employee.name}}">{{employee.name}}</label>
+    </p>
+   
+  </form>
+        
+                </div>
         </div>
 
         <!-- PAYSLIP PAGE -->
