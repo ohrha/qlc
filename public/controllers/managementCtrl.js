@@ -13,6 +13,7 @@
         $scope.loadingUsers = false;
         $scope.managementPage = true;
         $scope.clientsPage = false;
+        $scope.payslipPageOpen = false;
         $scope.employeesPage = false;
         $scope.userFilePage = false;
         $scope.openIssue = false;
@@ -163,6 +164,7 @@
                 console.log(data);
             })
         }
+
         $scope.addJobData = function (date, day, fulldate,index) {
             $scope.loadingNewJob = true;
             $scope.jobData.booked = true;
@@ -217,6 +219,7 @@
 
         }
         $scope.export = function () {
+
             $scope.pdfLoading = true;
             $timeout(function () {
                 $scope.pdfLoading = false;
@@ -558,10 +561,19 @@
 
 
             $scope.managementPage = true;
+                        $scope.payslipPageOpen = false;
+
             $scope.employeesPage = false;
             $scope.clientsPage = false;
 
 
+        }
+        $scope.openPayslipPage = function(){
+
+            $scope.payslipPageOpen = true;
+            $scope.managementPage = false;
+            $scope.employeesPage = false;
+            $scope.clientsPage = false;
         }
         $scope.openClientsPage = function () {
 
@@ -576,6 +588,8 @@
                 $scope.clientsPage = true;
                 $scope.employeesPage = false;
                 $scope.managementPage = false;
+                            $scope.payslipPageOpen = false;
+
             }
 
         }

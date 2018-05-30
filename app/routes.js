@@ -420,6 +420,7 @@ module.exports = function (app) {
             PayPeriod.find({},function(err,payperiods){
                 console.log(payperiods)
                 user.payperiods = payperiods;
+                user.payperiodnum = 5;
                  user.save(function (err) {
                 if (err) {
 
