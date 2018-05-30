@@ -338,7 +338,7 @@
         }
 
 
-        
+
         /* PAYSLIP LOGIC */
 
 
@@ -580,6 +580,7 @@
 
             $scope.employeesPage = false;
             $scope.clientsPage = false;
+            $scope.payslipPageOpen= false;
 
 
         }
@@ -597,7 +598,7 @@
             console.log($scope.clientsPage)
             if ($scope.clientsPage) {
 
-                $scope.clientsPage = false;
+                //$scope.clientsPage = false;
 
             } else {
                 $scope.clientsPage = true;
@@ -615,13 +616,14 @@
 
             if ($scope.employeesPage) {
 
-                $scope.employeesPage = false;
+                //$scope.employeesPage = false;
 
             } else {
                 $scope.employeesPage = true;
                 $scope.currentUserFile = "";
                 $scope.clientsPage = false;
                 $scope.managementPage = false;
+                $scope.payslipPageOpen = false;
             }
 
         }

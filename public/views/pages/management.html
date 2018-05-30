@@ -30,7 +30,7 @@
             <span ng-click="openEmployeesPage()" class=" truncate   " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
             </a>
             <a style="color:black;" href="#">
-            <span ng-click="openPayslipPage()" class=" truncate   "style="font-size:15px;" ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="fas fa-hand-holding-usd"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}" style="font-size:19px;"></i> PAYSLIPS </span>
+            <span ng-click="openPayslipPage()" class=" truncate   " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="fas fa-hand-holding-usd"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}" style="font-size:19px;"></i> PAYSLIPS </span>
             </a>
 
         </div>
@@ -69,7 +69,7 @@
     </p>
                  </form>
             </div>
-                <div class = "col s12" style="border:1px solid black;">
+                <div class = "col s12" >
                     <form action="#">
     <p ng-repeat = "employee in employees">
       <input type="checkbox" id="{{employee.name}}" />
