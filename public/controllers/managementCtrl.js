@@ -47,6 +47,7 @@
         $scope.userList = false;
         $scope.usersLoaded = false;
         $scope.noSearchResults = false;
+        $scope.loadingNewJob = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.employeesPaginated = [];
@@ -144,6 +145,7 @@
 
             console.log(data)
             $scope.supervisors = data.data.supervisors;
+            console.log($scope.supervisors[0]._id)
         })
         $scope.createClient = function () {
             Client.create("Displayworks").then(function (data) {
@@ -161,12 +163,22 @@
                 console.log(data);
             })
         }
-        $scope.addJobData = function (date, day, fulldate) {
+        $scope.addJobData = function (date, day, fulldate,index) {
+            $scope.loadingNewJob = true;
             $scope.jobData.booked = true;
             $scope.jobData.timesheetSubmitted = false;
             $scope.jobData.dateNum = date;
             $scope.jobData.date = fulldate;
             $scope.jobData.day = day;
+            $scope.jobData.payperiodIndex = index;
+            $scope.jobData.currentuser = $scope.currentUserFile;
+            User.addJob($scope.jobData).then(function(data){
+                console.log(data)
+                if(data.data.success){
+                    $scope.loadingNewJob = false;
+                }
+            })
+            console.log(index)
 
             console.log($scope.jobData)
         }

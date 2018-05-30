@@ -101,6 +101,58 @@ module.exports = function (app) {
             }
         })
     })
+    app.post('/users/addjob', function(req,res){
+        console.log(req.body)
+        Client.find({_id:req.body.client}, function(err,client){
+             if(err)throw err;
+             if(!client){
+                 res.json({success:false, message:"Client not found.."})
+             }else{
+                // res.json({success: true, message:"Client found...", client:client})
+                Location.find({_id:req.body.location}, function(err,location){
+                    if(err)throw err;
+                    if(!location){
+                        res.json({success: false, message:"Location not found.."})
+                    }else{
+                        Supervisor.find({_id:req.body.supervisor}, function(err,supervisor){
+                            if(err)throw err;
+                            if(!supervisor){
+                                res.json({success: false, message:"Supervisor not found.."})
+                            }else{
+                                console.log(supervisor[0].name,location[0].name,client[0].name)
+                                req.body.client = client[0].name
+                                req.body.location = location[0].name;
+                                req.body.supervisor = supervisor[0].name
+                                User.find({name: req.body.currentuser}, function(err,user){
+                                    if(err)throw err;
+                                    if(!user){
+                                        res.json({success: false, message: "User not found..."})
+                                    }else{
+                                       // console.log(user[0])
+                                        for(var z=0; z< user[0].payperiods.length;z++){
+                                            if(user[0].payperiods[z].payperiodnum == user[0].payperiodnum){
+                                                console.log(user[0].payperiods[z].jobDetails[req.body.payperiodIndex])
+                                                user[0].payperiods[z].jobDetails[req.body.payperiodIndex] = req.body
+                                                User.findOneAndUpdate({name:req.body.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+                                                    if(err)throw err;
+                                                    if(!user){
+                                                        res.json({success: false, message:"User not found.."})
+                                                    }else{
+                                                        res.json({success: true, message:"User found and updated...",user:user})
+                                                    }
+                                                })
+                                            }
+                                        }
+
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+             }
+        })
+    })
     app.post('/payperiod/updatepayperiodjobdetails',function(req,res){
         console.log(req.body)
         PayPeriod.find({},function(err,payperiods){

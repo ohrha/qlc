@@ -306,7 +306,12 @@
                                 <!--jobsPageOpen && usersPageIndex == $index -->
                                 <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-                                    <div class="row">
+                                <div ng-show="loadingNewJob" class = "center-align animated fadeIn">
+                                    <p class = "railway underline animated flash infinite " style="font-size:20px;">LOADING NEW JOB</p>
+
+                            </div>
+                                                            <div ng-show="!loadingNewJob" class = "animated fadeIn">
+                                                                  <div class="row">
                                         <!--
                                         <div class = "col s12 center-align show-on-large-only">
                                          <h2 class = "railway underline ">  {{job.day}} {{job.dateNum}}</h2>
@@ -323,7 +328,7 @@
       <label for="Sex">Client*</label>
       <select class="error browser-default" id="sex"ng-model="jobData.client" name="client" required>
                                 				<option value="" disabled selected>Client</option>
-                                				<option ng-repeat="client in clients"value="1">{{client.name}}</option>
+                                				<option ng-repeat="client in clients"value="{{client._id}}">{{client.name}}</option>
                                               
 
                                 			</select>
@@ -333,7 +338,7 @@
       <label for="Sex">Supervisor *</label>
       <select class="error browser-default" id="sex"ng-model="jobData.supervisor" name="supervisor" required>
                                 				<option value="" disabled selected>Supervisor</option>
-                                				<option ng-repeat="supervisor in supervisors"value="1">{{supervisor.name}}</option>
+                                				<option ng-repeat="supervisor in supervisors"value="{{supervisor._id}}">{{supervisor.name}}</option>
 
 
                                 			</select>
@@ -343,7 +348,7 @@
       <label for="Sex">Location *</label>
       <select class="error browser-default" id="sex"ng-model="jobData.location" name="location" required>
                                 				<option value="" disabled selected>Location</option>
-                                 				<option ng-repeat="location in locations"value="1">{{location.name}}</option>
+                                 				<option ng-repeat="location in locations"value="{{location._id}}">{{location.name}}</option>
 
 
                                 			</select>
@@ -364,9 +369,11 @@
       </div>
     </form>
     <div class = "col s12 center-align">
-                    <a ng-click="addJobData(job.dateNum,job.day,job.date)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
+                    <a ng-click="addJobData(job.dateNum,job.day,job.date,$index)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
 
     </div>
+                            </div>
+                                  
   </div>
 
    

@@ -18,6 +18,9 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.get('/api/users')
 
     }
+    userFactory.addJob = function(jobData){
+        return $http.post('/api/users/addjob',jobData)
+    }
 
 
        //User.getPermission();
