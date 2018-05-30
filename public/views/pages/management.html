@@ -1,20 +1,20 @@
 <!DOCTYPE html>
- <!-- Modal Trigger -->
+<!-- Modal Trigger -->
 
 <div class="container">
     <div class="row">
-       <!--   <a style="opacity:0; display:none;"class="waves-effect waves-light btn modal-trigger" href="#modal1" id="modalbutton">QLH | Info</a>-->
+        <!--   <a style="opacity:0; display:none;"class="waves-effect waves-light btn modal-trigger" href="#modal1" id="modalbutton">QLH | Info</a>-->
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>QLH | Info</h4>
-      <p>A New Pay Period Has Begun..</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>QLH | Info</h4>
+                <p>A New Pay Period Has Begun..</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
         <div style="border-bottom:1px solid black;" class='col s12 center-align animated fadeIn'>
 
             <p class="management-header underline railway animated fadeIn">| Administration |</p>
@@ -23,7 +23,7 @@
         <div style="border-right:1px solid #ddd" class="col s2 center-align animated fadeIn">
             <span ng-click="openManagementPage()" class=" truncate   " ng-class="{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
             <span ng-click="openClientsPage()" class=" truncate   " ng-class="{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
-           <a style="color:black;" href="#">
+            <a style="color:black;" href="#">
                            <span ng-click="openEmployeesPage()" class=" truncate   " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
 
                     </a>
@@ -43,12 +43,12 @@
 
 
             <div style="border-right:1px solid #ddd" class="col s3 center-align">
-                               <a style="color:black;" href="#">
- 
-                <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
-                 </a>
                 <a style="color:black;" href="#">
-                    
+
+                    <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
+                </a>
+                <a style="color:black;" href="#">
+
                     <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Employee List </p>
                 </a>
 
@@ -56,8 +56,9 @@
             </div>
             <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
                 <a style="color:black;" href="#">
-                <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee
-                    List</p>
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee
+                        List
+                    </p>
                 </a>
                 <br>
                 <span class="railway ">
@@ -66,7 +67,7 @@
                 <form name="searchForm">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input  ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
+                            <input ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
                                 id="first_name" type="text" class="validate">
                             <label for="first_name"></label>
                         </div>
@@ -108,7 +109,7 @@
 
 
                 </div>
-                <div ng-show = "loadingUsers"class = "center-align">
+                <div ng-show="loadingUsers" class="center-align">
                     <i class="material-icons animated rotateIn infinite">autorenew</i>
                 </div>
                 <div ng-show="userList && !loadingUsers " class="center-align">
@@ -162,9 +163,9 @@
             <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in employees">
 
                 <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
-                    <a href ="#" style="color:black;">
-                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
-                        {{currentUserFile}} |</p>
+                    <a href="#" style="color:black;">
+                        <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
+                            {{currentUserFile}} |</p>
                     </a>
 
 
@@ -175,18 +176,18 @@
                         <!-- CURRENT USER FILE MENU -->
 
                         <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s10 center-align">
-                            <a href ="#" style="color:black;">
+                            <a href="#" style="color:black;">
                                 <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
                             </a>
-                            <a href ="#" style="color:black;">
+                            <a href="#" style="color:black;">
                                 <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
-                            </a>  
-                             <a href ="#" style="color:black;">
+                            </a>
+                            <a href="#" style="color:black;">
                                 <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
-                            </a> 
-                            <a href ="#" style="color:black;">
+                            </a>
+                            <a href="#" style="color:black;">
                                 <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-                            </a>     
+                            </a>
                         </div>
 
                         <!-- CURRENT USER FILE MENU -->
@@ -231,19 +232,19 @@
 
                     <!-- PAYSLIP GENERATION -->
 
-                    <div ng-show="payslipGenerationOpen" class = "col-s12">
+                    <div ng-show="payslipGenerationOpen" class="col-s12">
 
-                     
-                        <div class = "center-align">
-                              <p class = "railway" >
+
+                        <div class="center-align">
+                            <p class="railway">
                                 Generate Payslip
                             </p>
-                            <i ng-click="export();" ng-show="!pdfLoading" class = "medium material-icons animated pulse infinite ">attach_money</i>
-                            <i ng-show="pdfLoading" class = "medium material-icons animated rotateIn infinite">autorenew</i>
+                            <i ng-click="export();" ng-show="!pdfLoading" class="medium material-icons animated pulse infinite ">attach_money</i>
+                            <i ng-show="pdfLoading" class="medium material-icons animated rotateIn infinite">autorenew</i>
 
 
                         </div>
-                   
+
                     </div>
 
                     <!-- PAYSLIP GENERATION -->
@@ -275,26 +276,27 @@
 
                         <!-- SCROLL THROUGH BOOKED JOBS -->
 
-                        <a href ="#" style="color:black;">
+                        <a href="#" style="color:black;">
                             <i ng-click="increaseDay()" style="padding-right:50px;" class="material-icons">expand_less</i>
                         </a>
-                        <a href ="#" style="color:black;">
+                        <a href="#" style="color:black;">
                             <i ng-click="decreaseDay()" class="material-icons">expand_more</i>
                         </a>
                         <br>
 
-                         <!-- SCROLL THROUGH BOOKED JOBS -->
+                        <!-- SCROLL THROUGH BOOKED JOBS -->
 
 
 
-                         <!-- BOOKED JOBS -->
+                        <!-- BOOKED JOBS -->
 
-                              <strong>   <span ng-click="openCloseBookedJobs()" style="float:left;" style="font-size:18px; text-decoration:bold;"class="railway animated fadeIn ">{{payPeriod}} .</span> </strong> <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
+                        <strong>   <span ng-click="openCloseBookedJobs()" style="float:left;" style="font-size:18px; text-decoration:bold;"class="railway animated fadeIn ">{{payPeriod}} .</span> </strong>
+                        <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
                         <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                             <br>
                             <div class="row">
                                 <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
-                                    
+
                                     <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
                                         <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
                                     <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
@@ -302,14 +304,80 @@
 
                                 </div>
                                 <!--jobsPageOpen && usersPageIndex == $index -->
-                                         <div ng-show="openJob == $index && jobsPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-             
-                                        
+                                <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+
+                                    <div class="row">
+                                        <div class = "col s12 center-align">
+                                            <h2 class = "railway underline"> {{job.day}} {{job.dateNum}}</h2>
+                                        </div>
+                                   
+                                    </div>
+                                       <div class="col s12">
+      <label for="Sex">Client*</label>
+      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+                                				<option value="" disabled selected>Client</option>
+                                				<option value="1">Carlton Party Hire</option>
+                                                <option value="2">Goldriggers</option>
+                                                <option value="3">Displayworks</option>
+
+                                			</select>
+
+    </div>
+         <div class="col s12">
+      <label for="Sex">Supervisor *</label>
+      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+                                				<option value="" disabled selected>Supervisor</option>
+                                				<option value="1">Hendrix</option>
+                                                <option value="2">Stoves</option>
+                                                <option value="2">Benjamin</option>
+
+                                			</select>
+
+    </div>
+         <div class="col s12">
+      <label for="Sex">Location *</label>
+      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+                                				<option value="" disabled selected>Location</option>
+                                				<option value="1">Hendrix</option>
+                                                <option value="2">Stoves</option>
+                                                <option value="2">Benjamin</option>
+
+                                			</select>
+
+    </div>
+       <div class = "col s12 center-align">
+                                            <h2 class = "railway underline"> Notes</h2>
+                                        </div>
+      
+                                   
+                                  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+      </div>
+    </form>
+  </div>
+   
+                                    <!--
+                                    <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
+                                    <span class="railway  underline">Supervisor</span>
+                                    <p class="railway  "> {{jobDetails[openJob].supervisor}}</p>
+                                    <span class="railway underline">Location</span>
+                                    <p class="railway  "> {{jobDetails[openJob].location}}</p>
+                                    -->
+                                </div>
+                                <div ng-show="openJob == $index && jobsPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+
+                                    <p class="railway">{{currentUserFile}} Not Been Booked For This Date...</p>
                                     <span class="railway  underline">Would You Like To Book This Date?</span>
                                     <br>
-                                    <a class="waves-effect waves-light btn grey lighten-4 black-text">Yes</a>
-                                    
-<!--
+                                    <br>
+                                    <a ng-click="openAddJobPage()" class="waves-effect waves-light btn grey lighten-4 black-text">Yes</a>
+
+                                    <!--
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
                                     <span class="railway  underline">Supervisor</span>
                                     <p class="railway  "> {{jobDetails[openJob].supervisor}}</p>
@@ -318,8 +386,8 @@
                                     -->
                                 </div>
                                 <div ng-show="openJob == $index && jobsPageOpen && job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-             
-                                        
+
+
                                     <span class="railway  underline">Client</span>
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
                                     <span class="railway  underline">Supervisor</span>
@@ -327,7 +395,7 @@
                                     <span class="railway underline">Location</span>
                                     <p class="railway  "> {{jobDetails[openJob].location}}</p>
                                 </div>
-                 
+
 
                                 <div ng-show="openJob == $index && timesheetsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
                                     <div class="row" ng-show="!jobDetails[openJob].timesheetSubmitted">
@@ -379,7 +447,7 @@
 
                                         </div>
                                         <div class="col s6 center-align animated fadeIn">
-                                            
+
                                             <p> {{job.timein}}</p>
                                         </div>
                                         <div class="col s6 center-align animated fadeIn">
@@ -479,8 +547,13 @@
     </div>
 </div>
 <script>
-  $(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
-      </script>      
+    $(document).ready(function () {
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+       
+    Materialize.updateTextFields();
+    $('select').material_select();
+ 
+    });
+
+</script>

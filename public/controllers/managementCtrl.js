@@ -30,6 +30,7 @@
         $scope.complaintsPageOpened = false;
         $scope.commentsPageOpened = false;
         $scope.commentsPageOpened = false;
+        $scope.addJobPageOpen = false;
         $scope.commentsSelected = false;
         $scope.payslipGenerationOpen = false;
         $scope.slidein = false;
@@ -124,7 +125,13 @@
 */
      
         console.log($scope.jobDetails)
+        $scope.openAddJobPage = function(){
+            if(!$scope.addJobPage){
+                $scope.addJobPageOpen = true;
+                $scope.jobsPageOpen = false;
+            }
 
+        }
         $scope.export = function () {
             $scope.pdfLoading = true;
             $timeout(function () {
