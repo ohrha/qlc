@@ -551,12 +551,14 @@
                         // $scope.jobDetails = data.data.users[i].jobDetails;
                         $scope.comments = data.data.users[i].comments;
                         $scope.payperiods = data.data.users[i].payperiods;
+                        console.log($scope.payperiods)
+                        console.log($scope.currentUserFile)
                         $scope.payperiod = data.data.users[i].payperiodnum;
                     
                         for (var k = 0; k < $scope.payperiods.length; k++) {
-                            console.log($scope.payperiods[k].payperiodnum)
-                            console.log($rootScope.payPeriod)
-                            if($scope.payperiods[k].payperiodnum == $rootScope.payPeriod){
+                            //console.log($scope.payperiods[k].payperiodnum)
+                            //console.log($rootScope.payPeriod)
+                            if($scope.payperiods[k].payperiodnum == $rootScope.payPeriod ){
                                 console.log($scope.payperiods[k].jobDetails)
 
                                 $scope.jobDetails = $scope.payperiods[k].jobDetails

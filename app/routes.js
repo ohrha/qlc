@@ -23,7 +23,41 @@ module.exports = function (app) {
     
         })
         */
+    app.post('/payperiod/updatepayperiodjobdetails',function(req,res){
+        console.log(req.body)
+        PayPeriod.find({},function(err,payperiods){
+            if(err)throw err;
+            if(!payperiods){
+                res.json({success: false, message:"Payperiods not found.."})
+            }else{
+                console.log(payperiods.length)
+                console.log(payperiods[0].jobDetails.length)
+                for(var i =0; i<payperiods.length;i++){
+                   // console.log(i)
+                  // console.log(payperiods[i])
+                   for(var d = 0; d<payperiods[i].jobDetails.length;d++){
 
+                      
+                      payperiods[51].jobDetails[6] = req.body;
+                      payperiods[i].jobDetails[d].booked = req.body.booked
+                      //console.log(d,payperiods[i].jobDetails[d],payperiods[i].payperiodnum)
+                      console.log(payperiods)
+                      PayPeriod.findOneAndUpdate({payperiodnum: payperiods[i].payperiodnum}, {$set:{jobDetails:payperiods[i].jobDetails[d]}},{new:true}, function(err,payperiod){
+
+                          if(err)throw err;
+                          if(!payperiod){
+                              console.log("payperiod not found...")
+                          }else{
+                              console.log("Payperiod found and updated...")
+                          }
+                      })
+                   }
+                   
+                }
+                res.json({success: true, message: "PayPeriods Successfully Updated", payperiods:payperiods})
+            }
+        })
+    })
     app.post('/payperiod/createpayperiod', function (req, res) {
 
         var payperiod = new PayPeriod();
@@ -244,6 +278,7 @@ module.exports = function (app) {
         } else {
             console.log("Here i am")
             PayPeriod.find({},function(err,payperiods){
+                console.log(payperiods)
                 user.payperiods = payperiods;
                  user.save(function (err) {
                 if (err) {

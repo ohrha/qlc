@@ -302,9 +302,19 @@
 
                                 </div>
                                 <!--jobsPageOpen && usersPageIndex == $index -->
-                                <div ng-show="openJob == $index && jobsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                         <div ng-show="openJob == $index && jobsPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
              
-
+                                        
+                                    <span class="railway  underline">Would You Like To Book This Date?</span>
+                                    <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
+                                    <span class="railway  underline">Supervisor</span>
+                                    <p class="railway  "> {{jobDetails[openJob].supervisor}}</p>
+                                    <span class="railway underline">Location</span>
+                                    <p class="railway  "> {{jobDetails[openJob].location}}</p>
+                                </div>
+                                <div ng-show="openJob == $index && jobsPageOpen && job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+             
+                                        
                                     <span class="railway  underline">Client</span>
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
                                     <span class="railway  underline">Supervisor</span>
@@ -364,7 +374,8 @@
 
                                         </div>
                                         <div class="col s6 center-align animated fadeIn">
-                                            <p>{{job.timein}}</p>
+                                            
+                                            <p> {{job.timein}}</p>
                                         </div>
                                         <div class="col s6 center-align animated fadeIn">
                                             <p>{{job.timeout}}</p>

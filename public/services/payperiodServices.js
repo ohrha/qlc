@@ -16,6 +16,9 @@ angular.module('payperiodServices', []).config(function () {
         return $http.get('api/payperiod/getallpayperiods')
     }
 
+    payPeriodFactory.updatePayPeriodJobDetails = function(jobDetails){
+        return $http.post('api/payperiod/updatepayperiodjobdetails',jobDetails)
+    }
 
     return payPeriodFactory;
 });

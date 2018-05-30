@@ -9,16 +9,33 @@
     app.controller('mainCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, AuthToken, PayPeriod) {
 
         $scope.userClass = "";
-        $scope.date = 25;
-        $scope.month = 11;
-        $scope.monthName = "November"
+        $scope.date = 24;
+        $scope.month = 12;
+        $scope.monthName = "December"
         $scope.booked = true;
+        $rootScope.payPeriodIcon = false;
+
         $scope.day = ""
         $scope.iterator = 0;
-        $scope.payperiod = 47;
+        $scope.payperiod = 43;
 
         $scope.jobDetails = [];
-        $rootScope.payPeriodIcon = false;
+        $scope.jobDetailsObject =
+            {
+
+                date: "12/30/18",
+                booked: true,
+                dateNum: 30,
+                day: "Sunday",
+                location: "ASB SHOWGROUNDS",
+                contractor: "Carlton Events",
+                supervisor: "Stoves",
+                timesheetSubmitted: true,
+                timeout: "6:00pm",
+                timein: "6:00am"
+            };
+
+
 
         $scope.logout = function () {
             Auth.logout();
@@ -31,87 +48,97 @@
 
 
         }
-        PayPeriod.getAllPayPeriods().then(function(data){
+        PayPeriod.getAllPayPeriods().then(function (data) {
+            console.log(data)
+            for (var i = 0; i <= data.data.payperiods.length; i++) {
+
+                console.log(data.data.payperiods[i].jobDetails)
+            }
+        })
+
+        /*
+        PayPeriod.updatePayPeriodJobDetails($scope.jobDetailsObject).then(function (data) {
             console.log(data)
         })
+        */
         $scope.addJobDetails = function () {
 
 
 
             $scope.iterator++
-           // $scope.day = "Monday"
+            // $scope.day = "Monday"
 
 
 
             if ($scope.iterator < 8) {
-                if($scope.date == 30){
+                if ($scope.date == 31) {
                     $scope.date = 1
- if($scope.monthName == ""){
+                    if ($scope.monthName == "") {
                         $scope.monthName = "January"
-                    }else if($scope.monthName == "January"){
+                    } else if ($scope.monthName == "January") {
                         $scope.monthName = "February"
                         console.log($scope.monthName)
-                    }else if ($scope.monthName == "February"){
-                        $scope.monthName ="March"
+                    } else if ($scope.monthName == "February") {
+                        $scope.monthName = "March"
 
-                    }else if ($scope.monthName == "March"){
-                        $scope.monthName ="April"
+                    } else if ($scope.monthName == "March") {
+                        $scope.monthName = "April"
 
-                    }else if ($scope.monthName == "April"){
+                    } else if ($scope.monthName == "April") {
                         $scope.monthName = "May"
 
-                    }else if ($scope.monthName == "May"){
-                        $scope.monthName ="June"
+                    } else if ($scope.monthName == "May") {
+                        $scope.monthName = "June"
 
-                    }else if($scope.monthName == "June"){
-                        $scope.monthName ="July"
+                    } else if ($scope.monthName == "June") {
+                        $scope.monthName = "July"
 
-                    }else if($scope.monthName == "July"){
+                    } else if ($scope.monthName == "July") {
                         $scope.monthName = "August"
 
-                    }else if($scope.monthName == "August"){
+                    } else if ($scope.monthName == "August") {
                         $scope.monthName = "September"
 
-                    }else if($scope.monthName == "September"){
-                        $scope.monthName ="October"
+                    } else if ($scope.monthName == "September") {
+                        $scope.monthName = "October"
 
-                    }else if($scope.monthName == "October"){
+                    } else if ($scope.monthName == "October") {
                         $scope.monthName = "November"
 
-                    }else if($scope.monthName == "November"){
+                    } else if ($scope.monthName == "November") {
                         $scope.monthName = "December"
 
-                    }else if($scope.monthName == "December"){
+                    } else if ($scope.monthName == "December") {
                         $scope.monthName = "January"
 
                     }
                     $scope.month++
-        
-                }else{
+
+                } else {
                     $scope.date++;
                 }
-                
-                if($scope.day == ""){
+
+                if ($scope.day == "") {
                     $scope.day = "Monday";
-                }else if( $scope.day =="Monday"){
+                } else if ($scope.day == "Monday") {
                     $scope.day = "Tuesday";
-                }else if( $scope.day == "Tuesday"){
+                } else if ($scope.day == "Tuesday") {
                     $scope.day = "Wednesday"
-                }else if ( $scope.day == "Wednesday"){
+                } else if ($scope.day == "Wednesday") {
                     $scope.day = "Thursday"
-                }else if ($scope.day == "Thursday"){
+                } else if ($scope.day == "Thursday") {
                     $scope.day = "Friday"
-                }else if ( $scope.day == "Friday"){
+                } else if ($scope.day == "Friday") {
                     $scope.day = "Saturday"
-                }else if ($scope.day == "Saturday"){
+                } else if ($scope.day == "Saturday") {
                     $scope.day = "Sunday"
-                }else if ($scope.day == "Sunday"){
+                } else if ($scope.day == "Sunday") {
                     $scope.day = "Monday"
                 }
-                   
+
                 console.log($scope.date)
-                $scope.fulldate = $scope.month +"/"+ $scope.date + "/18"
-            
+                $scope.fulldate = $scope.month + "/" + $scope.date + "/18"
+
                 console.log($scope.fulldate)
                 $scope.jobDetails.push(
 
@@ -119,6 +146,7 @@
 
                         date: $scope.fulldate,
                         dateNum: $scope.date,
+                        booked:true,
                         day: $scope.day,
                         location: "ASB SHOWGROUNDS",
                         contractor: "Carlton Events",
@@ -132,7 +160,7 @@
                 console.log($scope.jobDetails)
 
             } else {
-                
+
                 $scope.payperiod++
                 $scope.payPeriod = {
 
@@ -144,7 +172,7 @@
                 $scope.payPeriod.monthNum = $scope.month;
                 //$scope.payPeriod.date = $scope.date;
 
-                PayPeriod.createPayPeriod($scope.payPeriod).then(function(data){
+                PayPeriod.createPayPeriod($scope.payPeriod).then(function (data) {
                     $scope.iterator = 0;
                     $scope.jobDetails = [];
                     console.log(data)
@@ -180,12 +208,12 @@
             console.log(Auth.isLoggedIn())
             console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
-                Auth.getUser().then(function (data) {
-            console.log(data)
-            $rootScope.payPeriod = data.data.payperiod;
+            Auth.getUser().then(function (data) {
+                console.log(data)
+                $rootScope.payPeriod = data.data.payperiod;
 
-            console.log($rootScope.userClass)
-        })
+                console.log($rootScope.userClass)
+            })
         })
 
     })
