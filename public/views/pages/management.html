@@ -340,7 +340,7 @@
 
                         <!-- BOOKED JOBS -->
 
-                        <strong>   <span ng-click="openCloseBookedJobs()" style="float:left;" style="font-size:18px; text-decoration:bold;"class="railway animated fadeIn ">{{payPeriod}} .</span> </strong>
+                      
                         <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
                         <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                             <br>
@@ -437,11 +437,11 @@
                                 </div>
                                 <div ng-show="openJob == $index && jobsPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-                                    <p class="railway">{{currentUserFile}} Not Been Booked For This Date...</p>
-                                    <span class="railway  underline">Would You Like To Book This Date?</span>
+                                   
+                                    <span class="railway  ">Would You Like To Book This Date?</span>
                                     <br>
                                     <br>
-                                    <a ng-click="openAddJobPage()" class="waves-effect waves-light btn grey lighten-4 black-text">Yes</a>
+                                    <a ng-click="openAddJobPage()" class="waves-effect waves-light btn ">Yes</a>
 
                                     <!--
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>

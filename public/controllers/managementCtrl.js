@@ -410,6 +410,7 @@
             if (!$scope.jobsPageOpen) {
                 $scope.jobsPageOpen = true;
                 $scope.jobsSelected = true;
+                $scope.addJobPageOpen = false;
                 $scope.disputesSelected = false;
                 $scope.timesheetsSelected = false;
                 $scope.disputesPageOpen = false;
@@ -417,7 +418,7 @@
                 $scope.payslipGenerationOpen = false;
 
             } else {
-                $scope.jobsSelected = false;
+                //$scope.jobsSelected = false;
 
             }
 
@@ -435,16 +436,16 @@
 
                 $scope.jobsSelected = false;
             } else {
-                $scope.timesheetsSelected = false;
+                //$scope.timesheetsSelected = false;
             }
         }
         $scope.openCommentsPage = function (index) {
             $scope.openJob = 0;
             if ($scope.commentsSelected) {
 
-                $scope.commentsSelected = false;
+               // $scope.commentsSelected = false;
 
-                $scope.commentsPageOpened = false;
+                //$scope.commentsPageOpened = false;
             } else {
 
                 $scope.commentsSelected = true;
@@ -480,11 +481,14 @@
             if ($scope.bookedJobsSelected) {
                 $scope.bookedJobsSelected = false;
                 $scope.bookedJobsPageOpened = false;
+                ;
 
             } else {
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.bookedJobsPageOpened = true;
+                $scope.addJobPageOpen = false;
+                $scope.jobsPageOpen = true
                 $scope.complaintsSelected = false;
                 $scope.complaintsSelected = false;
                 $scope.userDetailsPageOpened = false;
