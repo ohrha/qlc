@@ -101,6 +101,16 @@ module.exports = function (app) {
             }
         })
     })
+    app.put('/users/finduser/:name', function(req,res){
+        User.find({name:req.params.name}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found.."})
+            }else{
+                res.json({success: true, message:"User found", user: user})
+            }
+        })
+    })
     app.post('/users/addjob', function(req,res){
         console.log(req.body)
         Client.find({_id:req.body.client}, function(err,client){

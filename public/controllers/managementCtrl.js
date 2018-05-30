@@ -175,15 +175,33 @@
             User.addJob($scope.jobData).then(function(data){
                 console.log(data)
                 if(data.data.success){
-                    $timeout(function(){
-                                                $location.path('/management')
-                                                $scope.jobsPageOpen= false;
+                   // $timeout(function(){
+                                                //$location.path('/management')
+                                                
+                                                User.findUser($scope.currentUserFile).then(function(data){
+                                                    console.log(data.data.user.payperiodnum)
+                                                    for(var z =0;z<data.data.user[0].payperiods.length; z++){
+                                                        if(data.data.user[0].payperiods[z].payperiodnum == data.data.user[0].payperiodnum)
+                                                        {
+                                                            console.log(data.data.user[0].payperiods[z].jobDetails)
+                                                            $scope.jobDetails = data.data.user[0].payperiods[z].jobDetails;
+                                                        }
+                                                    }
+                                                    $scope.loadingNewJob = false;
+                                                $scope.addJobPageOpen = false;
+                                                    $scope.jobsPageOpen = true;
+                                                    
+                                                })
+                                                //$scope.openJobsPage()
+                                                /*$scope.jobsPageOpen= false;
+                                                $scope.addJobPage = false
                                                 $scope.employeesPage = true;
                                                 $scope.employeeListOpen =true;
                                                 $scope.jobsPageOpen = true;
+                                                 */
 
-                    })
-                    $scope.loadingNewJob = false;
+                    //},2000)
+                   
                     
                 }
             })
