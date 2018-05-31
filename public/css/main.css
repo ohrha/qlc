@@ -127,6 +127,14 @@ a{
     opacity:1;
     transition:.2s;
 }
+.payslippageselected{
+    opacity:.4;
+    transition:.2s;
+}
+.payslippageclosed{
+    opacity:1;
+    transition:.2s;
+}
 .management-header{
     font-size: 24px;
 }
