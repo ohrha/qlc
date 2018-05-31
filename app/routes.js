@@ -170,19 +170,21 @@ module.exports = function (app) {
             if(!payperiods){
                 res.json({success: false, message:"Payperiods not found.."})
             }else{
-                console.log(payperiods.length)
-                console.log(payperiods[0].jobDetails.length)
-                for(var i =0; i<payperiods.length;i++){
+               // console.log(payperiods.length)
+               // console.log(req.body.length)
+               // console.log(payperiods[0])
+                //console.log(req.body[0])
+               for(var i =0; i<payperiods.length;i++){
                    // console.log(i)
                   // console.log(payperiods[i])
                    for(var d = 0; d<payperiods[i].jobDetails.length;d++){
 
                       
-                      payperiods[51].jobDetails[6] = req.body;
-                      payperiods[i].jobDetails[d].booked = req.body.booked
+                      //payperiods[51].jobDetails[6] = req.body;
+                      //payperiods[i].jobDetails[d].booked = req.body.booked
                       //console.log(d,payperiods[i].jobDetails[d],payperiods[i].payperiodnum)
                       console.log(payperiods)
-                      PayPeriod.findOneAndUpdate({payperiodnum: payperiods[i].payperiodnum}, {$set:{jobDetails:payperiods[i].jobDetails[d]}},{new:true}, function(err,payperiod){
+                      PayPeriod.findOneAndUpdate({payperiodnum: payperiods[i].payperiodnum}, {$set:{jobDetails:req.body[i].jobDetails}},{new:true}, function(err,payperiod){
 
                           if(err)throw err;
                           if(!payperiod){
@@ -418,8 +420,14 @@ module.exports = function (app) {
         } else {
             console.log("Here i am")
             PayPeriod.find({},function(err,payperiods){
-                console.log(payperiods)
+                console.log("hello",payperiods.length)
+                for(var i =0;i< payperiods.length;i++){
+                    payperiods[i].currentuser= req.body.name;
+                    //console.log(payperiods[0].currentuser)
+                }
+                console.log(payperiods[0].currentuser)
                 user.payperiods = payperiods;
+                console.log(user.payperiods[0].currentuser)
                 user.payperiodnum = 5;
                  user.save(function (err) {
                 if (err) {
@@ -434,7 +442,7 @@ module.exports = function (app) {
                          res.json({success: false, message: "Username or email already exists.."})
                      } else {*/
                     //res.send("userCreated");
-                    res.json({ success: true, message: "User Created Successfully." })
+                    res.json({ success: true, message: "User Created Successfully." ,user:user})
                     /* }*/
 
 

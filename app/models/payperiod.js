@@ -8,6 +8,7 @@ var PayPeriodSchema = new Schema({
 
    
     payperiodnum: {type:Number,  required: true,dropDups:true},
+    currentuser:{type:String},
     jobDetails:{type:Array, required: true},
     monthName:{type:String},
     month:{type:Number},

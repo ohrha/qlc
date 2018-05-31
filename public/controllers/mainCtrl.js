@@ -50,9 +50,24 @@
         }
         PayPeriod.getAllPayPeriods().then(function (data) {
             console.log(data)
-            for (var i = 0; i <= data.data.payperiods.length; i++) {
+            for (var i = 0; i < data.data.payperiods.length; i++) {
 
-                console.log(data.data.payperiods[i].jobDetails)
+                
+                for(var z=0;z<data.data.payperiods[i].jobDetails.length;z++){
+                    if(data.data.payperiods[i].jobDetails[z].timesheetSubmitted){
+                           data.data.payperiods[i].jobDetails[z].timein = "06:00 am";
+                    data.data.payperiods[i].jobDetails[z].timeout = "06:00 pm"
+                    //data.data.payperiods[i].jobDetails[z].lunch = true;
+                                        data.data.payperiods[i].jobDetails[z].booked = true;
+
+                    //console.log(data.data.payperiods[i].jobDetails[z].timein)
+                    }
+                
+                }
+                console.log(i,data.data.payperiods[i].jobDetails)
+           // PayPeriod.updatePayPeriodJobDetails(data.data.payperiods).then(function(data){
+             //   console.log(data)
+              // })
             }
         })
 

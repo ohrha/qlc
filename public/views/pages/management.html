@@ -65,6 +65,9 @@
                 <p ng-show="incompletePayPeriod" style="font-size:30px;"class = "railway animated flash">
                     Incomplete Pay Period
                 </p>
+                <p ng-show="incompletePayPeriod" style="font-size:17px;"class = "railway animated flash">
+                    These days have been been booked, but no timesheet has been submitted...
+                </p>
                 <div ng-repeat="report in reportArray track by $index">
                    <p class = "railway">
                        {{report.name[0]}}
@@ -80,6 +83,11 @@
                         
                     </div>
             </div>
+            <p ng-show="incompletePayPeriod" style="font-size:17px;"class = "railway animated flash">
+                    Generate Payslip?
+                </p>
+                <i ng-click="exportPdf()" class ="material-icons">assignment</i>
+            <!--
             <div class = "col s12">
                  <form action="#">
     <p>
@@ -97,7 +105,7 @@
    
   </form>
         
-                </div>
+                </div>-->
         </div>
 
         <!-- PAYSLIP PAGE -->
