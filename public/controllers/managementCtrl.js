@@ -864,7 +864,7 @@ if($scope.minIterator >= 45){
                 $scope.clientsPage = false;
                 $scope.managementPage = false;
                 $scope.payslipPageSelected = false;
-
+                
                 $scope.payslipPageOpen = false;
             }
 
