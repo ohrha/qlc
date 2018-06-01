@@ -293,15 +293,15 @@
                         <!--<p class="railway animated fadeIn">{{user.delinquenttimesheets}}</p>-->
                         <div class="railway animated fadeIn" ng-repeat = "timesheet in user.delinquenttimesheets">
                             <p class="railway animated fadeIn underline" style="font-size:16px;" ng-repeat = "t in timesheet">{{t.date}}</p>
-<    <div class="col s12">
-      <label for="Sex">Sex *</label>
-      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
-                                				<option value="" disabled selected>Sex</option>
-                                				<option value="1">Male</option>
-                                                <option value="2">Female</option>
-                                			</select>
-
-    </div>
+ <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>
   <!-- Custom select structure --> 
 
                             </div>
