@@ -48,7 +48,7 @@
         $scope.disputesPageOpen = false;
         $scope.incompletePayPeriod = false;
         $scope.incompletePayPeriodPageOpen = false;
-        $scope.chartsPageOpen = false;
+        $scope.chartsPageOpen = true;
         $scope.usersPageIndex = ""
         $scope.userDetailsPageOpened = true;
         $scope.delinquentTimeSheetPageOpened = false;
@@ -203,7 +203,7 @@
         $scope.openChartsPage = function(){
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
-            
+
                         $scope.incompletePayPeriodPageOpen = false;
 
             
