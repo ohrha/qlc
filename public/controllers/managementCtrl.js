@@ -203,6 +203,7 @@
         $scope.openChartsPage = function(){
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
+            
                         $scope.incompletePayPeriodPageOpen = false;
 
             
