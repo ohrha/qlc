@@ -2,7 +2,7 @@
 
 //console.log("app.js loaded");
 
-var app = angular.module('qlc',['appRoutes','managementController','clientServices','locationServices','supervisorServices','angularMoment', 'mainController','payperiodServices','authServices','htmlToPdfSave','userServices',"calanderController","tapTargetController","profileController","homeController",'registerController','loginController']);
+var app = angular.module('qlc',['appRoutes','managementController',"chart.js",'clientServices','locationServices','supervisorServices','angularMoment', 'mainController','payperiodServices','authServices','htmlToPdfSave','userServices',"calanderController","tapTargetController","profileController","homeController",'registerController','loginController']);
 																																																  
 app.config(function($compileProvider){
 

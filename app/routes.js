@@ -26,9 +26,69 @@ module.exports = function (app) {
     
         })
         */
+    app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
+        console.log(req.body.payperiod)
+        console.log(req.body.allEmployeesJobDetails.length)
+        for (var z = 0; z < req.body.allEmployeesJobDetails.length; z++) {
+            var payperiodHistoryEntry = {}
+            payperiodHistoryEntry.payperiod = req.body.payperiod;
+            payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
+            //  payperiodHistoryEntroy.historyentered = true;
+            //  console.log(req.body.allEmployeesJobDetails[z][7].name)
+            if (req.body.allEmployeesJobDetails[z][7].name !== undefined) {
+                //console.log(z)
+                var name = req.body.allEmployeesJobDetails[z][7].name;
+                console.log(name)
+                User.findOne({ name: name }, function (err, user) {
+                    if (err) throw err;
+                    if (!user) {
+                        res.json({ success: false, message: "User not found.." })
+                    } else {
+                        console.log(user.historyupdated)
+                        if (user.historyupdated) {
+                            console.log("History already updated...")
+                        } else {
+                            console.log('history not update'+user.name)
+                            User.findOneAndUpdate({ name: user.name }, { $push: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
+
+                                if (err) throw err;
+                                if (!user) {
+                                    res.json({ success: false, message: "User not found, so not updated" })
+                                } else {
+                                    console.log("User updated..."+user.name)
+                                   // console.log(req.body.allEmployeesJobDetails[z][7].name)
+                                    User.findOneAndUpdate({ name: user.name }, { $set: { historyupdated: true } }, { new: true }, function (err, user) {
+
+                                        if (err) throw err;
+                                        if (!user) {
+                                            res.json({ success: false, message: "User not found, so not updated" })
+                                        } else {
+                                            console.log("User History indicator Updated... "+user.name)
+                                           // console.log(name)
+                                        }
+                                    })
+                                }
+                            })
+                        }
+
+                    }
+                })
+
+            }
+        }
+        User.find({}, function(err,users){
+            if(err)throw err
+            if(!users){
+                res.json({success: false, message:"Users not found..."})
+            }else{
+                res.json({success: true, message:"Users found..", users:users})
+            }
+        })
+        //res.json({ success: true, message: "User Pay Period History Successfully Updated..." })
+    })
     app.post('/users/adddelinquenttimesheet', function (req, res) {
-    console.log(req.body)
-       User.find({ name: req.body.name[0] }, function (err, user) {
+        //console.log(req.body)
+        User.find({ name: req.body.name[0] }, function (err, user) {
             if (err) throw err;
             if (!user) {
                 res.json({ success: false, message: "User not found..." })
@@ -40,52 +100,55 @@ module.exports = function (app) {
                 for (var z = 0; z < req.body.date.length; z++) {
                     console.log("userfound")
 
-                    if(user[0].delinquenttimesheets.length>0){
-                    for (var d = 0; d < user[0].delinquenttimesheets.length; d++) {
-                        console.log("hello")
-                        //console.log(user[0].delinquenttimesheets[d])
-                        for (var s = 0; s < user[0].delinquenttimesheets[d].length; s++) {
+                    if (user[0].delinquenttimesheets.length > 0) {
+                        for (var d = 0; d < user[0].delinquenttimesheets.length; d++) {
+                            console.log("hello")
+                            //console.log(user[0].delinquenttimesheets[d])
+                            for (var s = 0; s < user[0].delinquenttimesheets[d].length; s++) {
 
-                            if (req.body.date[z] == user[0].delinquenttimesheets[d][s].date && user[0].delinquenttimesheets[d][s].date !== undefined) {
+                                if (req.body.date[z] == user[0].delinquenttimesheets[d][s].date && user[0].delinquenttimesheets[d][s].date !== undefined) {
 
-                                console.log("Delinquent Time SHeet Already Exists")
-                            } else {
-                                console.log("COLI")
-                                user[0].delinquenttimesheets.push(req.body.jobDetails)
-                                User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
+                                    console.log("Delinquent Time SHeet Already Exists")
+                                } else {
+                                    console.log("COLI")
+                                    req.body.jobDetails[0].payperiod = req.body.payperiod;
+                                    user[0].delinquenttimesheets.push(req.body.jobDetails)
+                                    User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
 
-                                    if (err) throw err;
-                                    if (!user) {
-                                        res.json({ success: false, message: "User not found, so not updated..." })
-                                    } else {
-                                        res.json({ success: true, message: "User found and updated..", user: user })
-                                    }
-                                })
+                                        if (err) throw err;
+                                        if (!user) {
+                                            res.json({ success: false, message: "User not found, so not updated..." })
+                                        } else {
+                                            res.json({ success: true, message: "User found and updated..", user: user })
+                                        }
+                                    })
+
+                                }
+
 
                             }
-        
-                            
+
+
+
+
                         }
-                                
+                    } else {
+                        req.body.jobDetails[0].payperiod = req.body.payperiod;
 
+                        user[0].delinquenttimesheets.push(req.body.jobDetails)
+                        User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
 
-
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found, so not updated..." })
+                            } else {
+                                res.json({ success: true, message: "User found and updated..", user: user })
+                            }
+                        })
                     }
-                    }else{
-                              user[0].delinquenttimesheets.push(req.body.jobDetails)
-                                User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
 
-                                    if (err) throw err;
-                                    if (!user) {
-                                        res.json({ success: false, message: "User not found, so not updated..." })
-                                    } else {
-                                        res.json({ success: true, message: "User found and updated..", user: user })
-                                    }
-                                })
-                    }
-                    
                     //if(user[0].delinquenttimesheets[z].date == req.body.date)
-                    
+
                 }
 
 

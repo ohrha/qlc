@@ -60,54 +60,68 @@
         <!-- PAYSLIP PAGE -->
 
         <div ng-show="payslipPageOpen" class="col s10 center-align animated fadeIn">
+            <div class = "col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
             <p style="font-size:18px;" class="railway animated fadeIn ">Payslip Page</p>
-            <div class = "col s12">
-                <p ng-show="incompletePayPeriod" style="font-size:30px;"class = "railway animated flash">
+            </div>
+            <div class = "col s12" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
+                        <!-- <a href="#" style="color:black;">
+                                <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
+                            </a>
+                            <a href="#" style="color:black;">
+                                <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
+                            </a>
+                            -->
+                            <a href="#" style="color:black;">
+                                <i ng-click="openChartsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
+                            </a>
+                            <a href="#" style="color:black;">
+                                <i ng-click="openhistoryPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                            </a>
+                            <a ng-show="incompletePayPeriod"href="#" style="color:black;">
+                                <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
+                            </a>
+            </div>
+            <div class = "historyPageOpen" class = "col s12">
+                  <div class = "col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
+            <p style="font-size:18px;" class="railway animated fadeIn ">History Page</p>
+            </div>
+
+            </div>
+            <div  ng-show="incompletePayPeriodPageOpen"class="col s12">
+                <p ng-show="incompletePayPeriod" style="font-size:30px;" class="railway animated flash">
                     Incomplete Pay Period
                 </p>
-                <p ng-show="incompletePayPeriod" style="font-size:17px;"class = "railway animated flash">
+                <p ng-show="incompletePayPeriod" style="font-size:17px;" class="railway animated flash">
                     These days have been been booked, but no timesheet has been submitted...
                 </p>
                 <div ng-repeat="report in reportArray track by $index">
-                   <p class = "railway">
-                       {{report.name[0]}}
-                   </p>
-                   <p class = "railway" ng-repeat="date in report.date"> 
-                    {{date}}
+                    <p class="railway">
+                        {{report.name[0]}}
                     </p>
-                    <div ng-repeat ="name in report track by $index">
+                    <p class="railway" ng-repeat="date in report.date">
+                        {{date}}
+                    </p>
+                    <div ng-repeat="name in report track by $index">
                         {{name.date}}
                         <div ng-repeat="n in name track by $index">
-                          <!--  {{n}}-->
+                            <!--  {{n}}-->
                         </div>
-                        
+
                     </div>
-            </div>
-            <p ng-show="incompletePayPeriod" style="font-size:17px;"class = "railway animated flash">
+                </div>
+                <p ng-show="incompletePayPeriod" style="font-size:17px;" class="railway animated flash">
                     Generate Payslip?
-                                    <i ng-click="exportPdf()" class ="material-icons" style="font-size:17px;">assignment</i>
+                    <i ng-click="exportPdf()" class="material-icons" style="font-size:17px;">assignment</i>
 
                 </p>
-            <!--
-            <div class = "col s12">
-                 <form action="#">
-    <p>
-      <input type="checkbox" id="test5" />
-      <label for="test5">Select All</label>
-    </p>
-                 </form>
+ 
             </div>
-                <div class = "col s12" >
-                    <form action="#">
-    <p ng-repeat = "employee in employees">
-      <input type="checkbox" id="{{employee.name}}" />
-      <label for="{{employee.name}}">{{employee.name}}</label>
-    </p>
-   
-  </form>
-        
-                </div>-->
-        </div>
+               <div class = "col s12 animated fadeIn" ng-show="chartsPageOpen">
+           <canvas id="line" class="chart chart-line" chart-data="data"
+chart-labels="labels" chart-series="series" chart-options="options"
+chart-dataset-override="datasetOverride" chart-click="onClick">
+</canvas>
+    </div>
         </div>
         <!-- PAYSLIP PAGE -->
 
@@ -266,9 +280,10 @@
                             <a href="#" style="color:black;">
                                 <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
-                              <a href="#" style="color:black;">
+                            <a href="#" style="color:black;">
                                 <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
+                            
                         </div>
 
                         <!-- CURRENT USER FILE MENU -->
@@ -287,84 +302,53 @@
                     </div>
 
                     <!-- DELINQUENT TIMESHEET PAGE -->
+                    <div ng-show="delinquentTimeSheetPageOpened && areYouSure" class="col s12 animated fadeIn">
+                        <p class="railway" style="font-size:20px;">Are These Details Correct?</p>
+                        <div class="col s4 center-align">
+                            <span class="railway" style="font-size: 20px;"> In </span>
+                            <p class="railway" style="font-size: 20px;"> {{timeData.hrsIn1}}{{timeData.hrsIn2}}:{{timeData.minsIn1}}{{timeData.minsIn2}}{{timeData.amPm1}} </p>
+                        </div>
+                        <div class="col s4 center-align">
+                            <span class="railway" style="font-size: 20px;"> - </span>
 
-                     <div ng-show="delinquentTimeSheetPageOpened" class="col s12">
+                        </div>
+                        <div class="col s4">
+                            <span class="railway" style="font-size: 20px;"> Out </span>
+
+                            <p class="railway" style="font-size: 20px;"> {{timeData.hrsIn1}}{{timeData.hrsIn2}}:{{timeData.minsIn1}}{{timeData.minsIn2}}{{timeData.amPm1}} </p>
+
+                        </div>
+                        <div class="col s6">
+                        <a ng-click="finishSubmitTimesheet('yes')" class="waves-effect waves-light btn">Yes</a>
+
+                        </div>
+                        <div class="col s6">
+                            <a ng-click="finishSubmitTimesheet('no')" class="waves-effect waves-light btn">No</a>
+
+                        </div>
+                    </div>
+                    <div ng-show="delinquentTimeSheetPageOpened && !areYouSure" class="col s12">
                         <p class="railway animated fadeIn">{{user.email}}</p>
                         <!--<p class="railway animated fadeIn">{{user.delinquenttimesheets}}</p>-->
-                        <div class="railway animated fadeIn" ng-repeat = "timesheet in user.delinquenttimesheets">
-                            <div class = "col s12">
-                    
-                                <p class="railway animated fadeIn underline" style="font-size:16px;" ng-repeat = "t in timesheet">{{t.date}}</p>
-                            </div>
- <div class="input-field col s6">
-    <select>
-      <option value="" disabled selected>0</option>
-      <option value="0">0</option>
-      <option value="1">1</option>
-     
-    </select>
-   
-    <label>Hrs</label>
-  </div>
-   <div class="input-field col s6">
-    <select>
-      <option value="" disabled selected>0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-       <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-       <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-    </select>
-  </div>
-   <div class="input-field col s6">
-    <select>
-         <option value="" disabled selected>0</option>
-         <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-       <option value="4">4</option>
-      <option value="5">5</option>
-    
-    </select>
-    <label>Mins</label>
-  </div>
-   <div class="input-field col s6">
-    <select>
-            <option value="" disabled selected>0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-       <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-       <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-    </select>
-  </div>
-  <div class = "col s12">
-  <span class = "railway"> to </span>
-  </div>
-  <div class="input-field col s6">
-    <select>
-      <option value="" disabled selected>0</option>
-      <option value="0">0</option>
-      <option value="1">1</option>
-     
-    </select>
-   
-    <label>Hrs</label>
-  </div>
-   <div class="input-field col s6">
-    <select>
-      <option value="" disabled selected>0</option>
-            <option value="0">0</option>
+                        <div class="railway animated fadeIn" ng-repeat="timesheet in user.delinquenttimesheets">
+                            <div class="col s12">
 
+                                <p class="railway animated fadeIn underline" style="font-size:16px;" ng-repeat="t in timesheet">{{t.date}}</p>
+                            </div>
+                            <div class="input-field col s6">
+
+                                <select ng-model="timeData.hrsIn1" name="hrsIn1">
+      <option value="" disabled selected>0</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                                <label>Hrs</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.hrsIn2" name="hrsIn2">
+      <option value="" disabled selected>0</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -375,25 +359,54 @@
       <option value="8">8</option>
       <option value="9">9</option>
     </select>
-  </div>
-   <div class="input-field col s6">
-    <select>
+                            </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.minsIn1" name="minsIn1">
          <option value="" disabled selected>0</option>
          <option value="0">0</option>
       <option value="1">1</option>
-      <option value="2">2</option>
       <option value="3">3</option>
        <option value="4">4</option>
-      <option value="5">5</option>
     
     </select>
-    <label>Mins</label>
-  </div>
-   <div class="input-field col s6">
-    <select>
+                                <label>Mins</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.minsIn2" name="minsIn2">
             <option value="" disabled selected>0</option>
                         <option value="0">0</option>
 
+      <option value="5">5</option>
+   
+    </select>
+                            </div>
+                            <div class="input-field col s12">
+                                <select ng-model="timeData.amPm1" name="amPm1">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                            </div>
+                            <div class="col s12">
+                                <span class="railway"> to </span>
+                            </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.hrsOut1" name="hrsOut1">
+      <option value="" disabled selected>0</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                                <label>Hrs</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.hrsOut2" name="hrsOut2">
+      <option value="" disabled selected>0</option>
+            <option value="0" >0</option>
+
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -404,10 +417,43 @@
       <option value="8">8</option>
       <option value="9">9</option>
     </select>
-  </div>
-  <!-- Custom select structure --> 
-
                             </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.minsOut1" name="minsOut1">
+         <option value="" disabled selected>0</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+  
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                                <label>Mins</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <select ng-model="timeData.minsOut1" name="minsOut1">
+            <option value="" disabled selected>0</option>
+                        <option value="0">0</option>
+
+
+      <option value="5">5</option>
+    
+    </select>
+                            </div>
+                            <div class="input-field col s12">
+                                <select ng-model="timeData.amPm2" name="amPm2">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                            </div>
+
+                            <!-- Custom select structure -->
+                            <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit Timesheet</a>
+
+                        </div>
 
 
                     </div>
@@ -500,7 +546,7 @@
 
                         <!-- BOOKED JOBS -->
 
-                      
+
                         <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
                         <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                             <br>
@@ -587,11 +633,11 @@
                                     </div>
 
 
-                        
+
                                 </div>
                                 <div ng-show="openJob == $index && jobsPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-                                   
+
                                     <span class="railway  ">Would You Like To Book This Date?</span>
                                     <br>
                                     <br>
@@ -771,7 +817,7 @@
         // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
 
-        
+
         $('select').material_select();
 
     });

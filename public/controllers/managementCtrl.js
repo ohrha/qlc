@@ -42,10 +42,13 @@
         $scope.slideout = false;
         $scope.fadeOut = false;
         $scope.jobsPageOpen = true;
+        $scope.historyPageOpen = false;
         $scope.openJob = 0;
         $scope.timesheetsPageOpen = false;
         $scope.disputesPageOpen = false;
         $scope.incompletePayPeriod = false;
+        $scope.incompletePayPeriodPageOpen = false;
+        $scope.chartsPageOpen = false;
         $scope.usersPageIndex = ""
         $scope.userDetailsPageOpened = true;
         $scope.delinquentTimeSheetPageOpened = false;
@@ -55,6 +58,7 @@
         $scope.usersLoaded = false;
         $scope.noSearchResults = false;
         $scope.loadingNewJob = false;
+        $scope.areYouSure = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
         $scope.employeesPaginated = [];
@@ -65,6 +69,8 @@
         $scope.locations = [];
         $scope.supervisors = [];
         $scope.jobData = {};
+        $scope.timeData = {};
+        $scope.employeeJobDetails = {};
         $scope.pageLimit = 4;
         $scope.currentPage = 1;
         $scope.numPerPage = 10;
@@ -79,7 +85,34 @@
         $scope.month = $scope.date.getMonth() + 1;
         $scope.monthLiteral = "";
         $scope.day = $scope.date.getDay();
-
+         $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+  $scope.series = ['Series A', 'Series B'];
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40],
+    [28, 48, 40, 19, 86, 27, 90]
+  ];
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
+  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+  $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+        },
+        {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: true,
+          position: 'right'
+        }
+      ]
+    }
+  }
         console.log($scope.monthLiteral, "$scope.monthLiteral")
         $scope.payperiods = [];
         $scope.currentPayPeriod = 0;
@@ -157,6 +190,40 @@
             $scope.supervisors = data.data.supervisors;
             console.log($scope.supervisors[0]._id)
         })
+        $scope.openIncompletePayPeriodPage = function(){
+            $scope.incompletePayPeriodPageOpen = true;
+            $scope.chartsPageOpen = false;
+            $scope.historyPageOpen = false;
+        }
+        $scope.openHistoryPage = function(){
+            $scope.historyPageOpen = true;
+            $scope.chartsPageOpen = false;
+            $scope.incompletePayPeriodPageOpen = false;
+        }
+        $scope.openChartsPage = function(){
+            $scope.chartsPageOpen = true;
+            $scope.historyPageOpen = false;
+                        $scope.incompletePayPeriodPageOpen = false;
+
+            
+        }
+        $scope.finishSubmitTimesheet = function(decision){
+            console.log(decision)
+            if(decision == "yes"){
+                $scope.areYouSure = false;
+            }else{
+                $scope.areYourSure = false;
+            }
+        }
+        $scope.submitTimeSheet= function(timesheet){
+            console.log($scope.timeData)
+            console.log(timesheet)
+            if($scope.timeData.hrsIn1 !== undefined || null && $scope.timeData.hrsIn2 !== undefined || null && 
+               $scope.timeData.minsIn1 !== undefined || null && $scope.timeData.minsIn2 !== undefined || null 
+               &&$scope.timeData.amPm1 !== undefined || null  ){
+                $scope.areYouSure =true;
+            }
+        }
         $scope.createClient = function () {
             Client.create("Displayworks").then(function (data) {
                 console.log(data);
@@ -349,6 +416,13 @@
 
         /* PAYSLIP LOGIC */
 
+        $scope.addPayPeriodToPayPeriodHistory = function(details){
+            $scope.employeeJobDetails.allEmployeesJobDetails = details;
+            $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
+            User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function(data){
+                console.log(data)
+            })
+        }
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
@@ -357,6 +431,7 @@
             $scope.employeesPage = false;
             $scope.clientsPage = false;
             $scope.allEmployeesJobDetails = [];
+            
 
             User.getUsers().then(function (data) {
                 //console.log(data)
@@ -386,6 +461,7 @@
                             $scope.report.date = $scope.dateArray
                             if($scope.jobDetailArray.length >0){
                                 $scope.report.jobDetails = $scope.jobDetailArray
+                                $scope.report.payperiod = $scope.employees[z].payperiodnum;
                             }
                         }
 
@@ -425,6 +501,9 @@
 
 
                     }
+                    
+                    console.log($scope.allEmployeesJobDetails)
+                   
                     for (var s = 0; s < $scope.allEmployeesJobDetails.length; s++) {
                         //console.log(s)
 
@@ -522,6 +601,7 @@
                     // console.log($scope.reportArray)
 
                 }
+                 $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
                 //console.log("$scope.allEmployeesJobDetails", $scope.allEmployeesJobDetails)
                 for (var t = 0; t < $scope.hoursArray.length; t++) {
                     //for(var x = 0; x<$scope.hoursArray[t].length; x++){

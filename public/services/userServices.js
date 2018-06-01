@@ -27,6 +27,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addDelinquentTimeSheet = function(jobDetail){
         return $http.post('/api/users/adddelinquenttimesheet',jobDetail)
     }
+    userFactory.addPayPeriodToPayPeriodHistory = function(payperiod){
+        return $http.post('/api/users/addpayperiodtopayperiodhistory',payperiod)
+    }
 
 
        //User.getPermission();
