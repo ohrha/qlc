@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     password:{type:String, required:true, select:false},
     email:{type:String, required: true, lowercase:true, unique:true, dropDups:true},
     payperiodnum:{type:Number},
+    delinquenttimesheets:{type:Array},
     userclass:{type:String},
     active:{type:Boolean,required: false, default: false},
     temporarytoken: {type:String, required: false},

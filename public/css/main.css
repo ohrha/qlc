@@ -91,6 +91,14 @@ a{
     opacity:1;
     transition:.2s;
 }
+.delinquenttimesheetselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.delinquenttimesheetdeselected{
+    opacity:1;
+    transition:.2s;
+}
 .fadeout{
     opacity:0;
     transition:.6s;
@@ -135,6 +143,14 @@ a{
     opacity:1;
     transition:.2s;
 }
+.payslippageselected{
+    opacity:.4;
+    transition:.2s;
+}
+.payslippageclosed{
+    opacity:1;
+    transition:.2s;
+}
 .management-header{
     font-size: 24px;
 }
@@ -157,6 +173,7 @@ a{
 .pimg3{
 
     background-image:url('../img/background3small.jpg');
+ 
     min-height:400px;
 
 }
@@ -185,3 +202,4 @@ a{
     color:green;
 }
 
+/* Experiment select box */

@@ -266,6 +266,9 @@
                             <a href="#" style="color:black;">
                                 <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
+                              <a href="#" style="color:black;">
+                                <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
+                            </a>
                         </div>
 
                         <!-- CURRENT USER FILE MENU -->
@@ -282,6 +285,32 @@
                         <p class="railway animated fadeIn">{{user.phonenumber}}</p>
 
                     </div>
+
+                    <!-- DELINQUENT TIMESHEET PAGE -->
+
+                     <div ng-show="delinquentTimeSheetPageOpened" class="col s12">
+                        <p class="railway animated fadeIn">{{user.email}}</p>
+                        <!--<p class="railway animated fadeIn">{{user.delinquenttimesheets}}</p>-->
+                        <div class="railway animated fadeIn" ng-repeat = "timesheet in user.delinquenttimesheets">
+                            <p class="railway animated fadeIn underline" style="font-size:16px;" ng-repeat = "t in timesheet">{{t.date}}</p>
+<    <div class="col s12">
+      <label for="Sex">Sex *</label>
+      <select class="error browser-default" id="sex"ng-model="register.regData.sex" name="sex" required>
+                                				<option value="" disabled selected>Sex</option>
+                                				<option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                			</select>
+
+    </div>
+  <!-- Custom select structure --> 
+
+                            </div>
+
+
+                    </div>
+
+                    <!-- DELINQUENT TIMESHEET PAGE -->
+
 
                     <!-- COMMENTS PAGE -->
 
@@ -639,7 +668,7 @@
         // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
 
-        Materialize.updateTextFields();
+        
         $('select').material_select();
 
     });

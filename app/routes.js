@@ -26,129 +26,196 @@ module.exports = function (app) {
     
         })
         */
-    app.put('/clients/create/:clientName', function(req,res){
+    app.post('/users/adddelinquenttimesheet', function (req, res) {
+    console.log(req.body)
+       User.find({ name: req.body.name[0] }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                console.log("userfnd")
+                // console.log(user[0].delinquenttimesheets)
+                //user[0].push(req.body.)
+
+                for (var z = 0; z < req.body.date.length; z++) {
+                    console.log("userfound")
+
+                    if(user[0].delinquenttimesheets.length>0){
+                    for (var d = 0; d < user[0].delinquenttimesheets.length; d++) {
+                        console.log("hello")
+                        //console.log(user[0].delinquenttimesheets[d])
+                        for (var s = 0; s < user[0].delinquenttimesheets[d].length; s++) {
+
+                            if (req.body.date[z] == user[0].delinquenttimesheets[d][s].date && user[0].delinquenttimesheets[d][s].date !== undefined) {
+
+                                console.log("Delinquent Time SHeet Already Exists")
+                            } else {
+                                console.log("COLI")
+                                user[0].delinquenttimesheets.push(req.body.jobDetails)
+                                User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
+
+                                    if (err) throw err;
+                                    if (!user) {
+                                        res.json({ success: false, message: "User not found, so not updated..." })
+                                    } else {
+                                        res.json({ success: true, message: "User found and updated..", user: user })
+                                    }
+                                })
+
+                            }
+        
+                            
+                        }
+                                
+
+
+
+                    }
+                    }else{
+                              user[0].delinquenttimesheets.push(req.body.jobDetails)
+                                User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
+
+                                    if (err) throw err;
+                                    if (!user) {
+                                        res.json({ success: false, message: "User not found, so not updated..." })
+                                    } else {
+                                        res.json({ success: true, message: "User found and updated..", user: user })
+                                    }
+                                })
+                    }
+                    
+                    //if(user[0].delinquenttimesheets[z].date == req.body.date)
+                    
+                }
+
+
+                //res.json({success: true, message: "User found..."})
+            }
+        })
+    })
+    app.put('/clients/create/:clientName', function (req, res) {
 
         var client = new Client();
         client.name = req.params.clientName;
-        if( req.params.clientName !== "" || undefined){
-            client.save(function(err,client){
-                if(err){
-                    res.json({success: false, message:"Save failed.."})
-                }else{
-                    res.json({success:true, message:"Save successfull...", client:client})
+        if (req.params.clientName !== "" || undefined) {
+            client.save(function (err, client) {
+                if (err) {
+                    res.json({ success: false, message: "Save failed.." })
+                } else {
+                    res.json({ success: true, message: "Save successfull...", client: client })
                 }
             })
         }
     })
-       app.put('/locations/create/:locationName', function(req,res){
+    app.put('/locations/create/:locationName', function (req, res) {
 
         var location = new Location();
         location.name = req.params.locationName;
-        if( req.params.locationName !== "" || undefined){
-            location.save(function(err,location){
-                if(err){
-                    res.json({success: false, message:"Save failed.."})
-                }else{
-                    res.json({success:true, message:"Save successfull...", location:location})
+        if (req.params.locationName !== "" || undefined) {
+            location.save(function (err, location) {
+                if (err) {
+                    res.json({ success: false, message: "Save failed.." })
+                } else {
+                    res.json({ success: true, message: "Save successfull...", location: location })
                 }
             })
         }
     })
-           app.put('/supervisors/create/:supervisorName', function(req,res){
+    app.put('/supervisors/create/:supervisorName', function (req, res) {
 
         var supervisor = new Supervisor();
         supervisor.name = req.params.supervisorName;
-        if( req.params.supervisorName !== "" || undefined){
-            supervisor.save(function(err,supervisor){
-                if(err){
-                    res.json({success: false, message:"Save failed.."})
-                }else{
-                    res.json({success:true, message:"Save successfull...", supervisor:supervisor})
+        if (req.params.supervisorName !== "" || undefined) {
+            supervisor.save(function (err, supervisor) {
+                if (err) {
+                    res.json({ success: false, message: "Save failed.." })
+                } else {
+                    res.json({ success: true, message: "Save successfull...", supervisor: supervisor })
                 }
             })
         }
     })
-    app.get('/clients', function(req,res){
-        Client.find({},function(err,clients){
+    app.get('/clients', function (req, res) {
+        Client.find({}, function (err, clients) {
 
-            if(err)throw err;
-            if(!clients){
-                res.json({success:false, message:"Clients not founds..."})
-            }else{
-                res.json({success: true, message:"Clients found...", clients:clients})
+            if (err) throw err;
+            if (!clients) {
+                res.json({ success: false, message: "Clients not founds..." })
+            } else {
+                res.json({ success: true, message: "Clients found...", clients: clients })
             }
         })
     })
-        app.get('/locations', function(req,res){
-        Location.find({},function(err,location){
+    app.get('/locations', function (req, res) {
+        Location.find({}, function (err, location) {
 
-            if(err)throw err;
-            if(!location){
-                res.json({success:false, message:"Location not founds..."})
-            }else{
-                res.json({success: true, message:"Location found...", location:location})
+            if (err) throw err;
+            if (!location) {
+                res.json({ success: false, message: "Location not founds..." })
+            } else {
+                res.json({ success: true, message: "Location found...", location: location })
             }
         })
     })
-        app.get('/supervisors', function(req,res){
-        Supervisor.find({},function(err,supervisors){
+    app.get('/supervisors', function (req, res) {
+        Supervisor.find({}, function (err, supervisors) {
 
-            if(err)throw err;
-            if(!supervisors){
-                res.json({success:false, message:"Supervisors not founds..."})
-            }else{
-                res.json({success: true, message:"Supervisors found...", supervisors:supervisors})
+            if (err) throw err;
+            if (!supervisors) {
+                res.json({ success: false, message: "Supervisors not founds..." })
+            } else {
+                res.json({ success: true, message: "Supervisors found...", supervisors: supervisors })
             }
         })
     })
-    app.put('/users/finduser/:name', function(req,res){
-        User.find({name:req.params.name}, function(err,user){
-            if(err)throw err;
-            if(!user){
-                res.json({success: false, message:"User not found.."})
-            }else{
-                res.json({success: true, message:"User found", user: user})
+    app.put('/users/finduser/:name', function (req, res) {
+        User.find({ name: req.params.name }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found.." })
+            } else {
+                res.json({ success: true, message: "User found", user: user })
             }
         })
     })
-    app.post('/users/addjob', function(req,res){
+    app.post('/users/addjob', function (req, res) {
         console.log(req.body)
-        Client.find({_id:req.body.client}, function(err,client){
-             if(err)throw err;
-             if(!client){
-                 res.json({success:false, message:"Client not found.."})
-             }else{
+        Client.find({ _id: req.body.client }, function (err, client) {
+            if (err) throw err;
+            if (!client) {
+                res.json({ success: false, message: "Client not found.." })
+            } else {
                 // res.json({success: true, message:"Client found...", client:client})
-                Location.find({_id:req.body.location}, function(err,location){
-                    if(err)throw err;
-                    if(!location){
-                        res.json({success: false, message:"Location not found.."})
-                    }else{
-                        Supervisor.find({_id:req.body.supervisor}, function(err,supervisor){
-                            if(err)throw err;
-                            if(!supervisor){
-                                res.json({success: false, message:"Supervisor not found.."})
-                            }else{
-                                console.log(supervisor[0].name,location[0].name,client[0].name)
+                Location.find({ _id: req.body.location }, function (err, location) {
+                    if (err) throw err;
+                    if (!location) {
+                        res.json({ success: false, message: "Location not found.." })
+                    } else {
+                        Supervisor.find({ _id: req.body.supervisor }, function (err, supervisor) {
+                            if (err) throw err;
+                            if (!supervisor) {
+                                res.json({ success: false, message: "Supervisor not found.." })
+                            } else {
+                                console.log(supervisor[0].name, location[0].name, client[0].name)
                                 req.body.client = client[0].name
                                 req.body.location = location[0].name;
                                 req.body.supervisor = supervisor[0].name
-                                User.find({name: req.body.currentuser}, function(err,user){
-                                    if(err)throw err;
-                                    if(!user){
-                                        res.json({success: false, message: "User not found..."})
-                                    }else{
-                                       // console.log(user[0])
-                                        for(var z=0; z< user[0].payperiods.length;z++){
-                                            if(user[0].payperiods[z].payperiodnum == user[0].payperiodnum){
+                                User.find({ name: req.body.currentuser }, function (err, user) {
+                                    if (err) throw err;
+                                    if (!user) {
+                                        res.json({ success: false, message: "User not found..." })
+                                    } else {
+                                        // console.log(user[0])
+                                        for (var z = 0; z < user[0].payperiods.length; z++) {
+                                            if (user[0].payperiods[z].payperiodnum == user[0].payperiodnum) {
                                                 console.log(user[0].payperiods[z].jobDetails[req.body.payperiodIndex])
                                                 user[0].payperiods[z].jobDetails[req.body.payperiodIndex] = req.body
-                                                User.findOneAndUpdate({name:req.body.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                                                    if(err)throw err;
-                                                    if(!user){
-                                                        res.json({success: false, message:"User not found.."})
-                                                    }else{
-                                                        res.json({success: true, message:"User found and updated...",user:user})
+                                                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                                                    if (err) throw err;
+                                                    if (!user) {
+                                                        res.json({ success: false, message: "User not found.." })
+                                                    } else {
+                                                        res.json({ success: true, message: "User found and updated...", user: user })
                                                     }
                                                 })
                                             }
@@ -160,43 +227,43 @@ module.exports = function (app) {
                         })
                     }
                 })
-             }
+            }
         })
     })
-    app.post('/payperiod/updatepayperiodjobdetails',function(req,res){
+    app.post('/payperiod/updatepayperiodjobdetails', function (req, res) {
         console.log(req.body)
-        PayPeriod.find({},function(err,payperiods){
-            if(err)throw err;
-            if(!payperiods){
-                res.json({success: false, message:"Payperiods not found.."})
-            }else{
-               // console.log(payperiods.length)
-               // console.log(req.body.length)
-               // console.log(payperiods[0])
+        PayPeriod.find({}, function (err, payperiods) {
+            if (err) throw err;
+            if (!payperiods) {
+                res.json({ success: false, message: "Payperiods not found.." })
+            } else {
+                // console.log(payperiods.length)
+                // console.log(req.body.length)
+                // console.log(payperiods[0])
                 //console.log(req.body[0])
-               for(var i =0; i<payperiods.length;i++){
-                   // console.log(i)
-                  // console.log(payperiods[i])
-                   for(var d = 0; d<payperiods[i].jobDetails.length;d++){
+                for (var i = 0; i < payperiods.length; i++) {
+                    // console.log(i)
+                    // console.log(payperiods[i])
+                    for (var d = 0; d < payperiods[i].jobDetails.length; d++) {
 
-                      
-                      //payperiods[51].jobDetails[6] = req.body;
-                      //payperiods[i].jobDetails[d].booked = req.body.booked
-                      //console.log(d,payperiods[i].jobDetails[d],payperiods[i].payperiodnum)
-                      console.log(payperiods)
-                      PayPeriod.findOneAndUpdate({payperiodnum: payperiods[i].payperiodnum}, {$set:{jobDetails:req.body[i].jobDetails}},{new:true}, function(err,payperiod){
 
-                          if(err)throw err;
-                          if(!payperiod){
-                              console.log("payperiod not found...")
-                          }else{
-                              console.log("Payperiod found and updated...")
-                          }
-                      })
-                   }
-                   
+                        //payperiods[51].jobDetails[6] = req.body;
+                        //payperiods[i].jobDetails[d].booked = req.body.booked
+                        //console.log(d,payperiods[i].jobDetails[d],payperiods[i].payperiodnum)
+                        console.log(payperiods)
+                        PayPeriod.findOneAndUpdate({ payperiodnum: payperiods[i].payperiodnum }, { $set: { jobDetails: req.body[i].jobDetails } }, { new: true }, function (err, payperiod) {
+
+                            if (err) throw err;
+                            if (!payperiod) {
+                                console.log("payperiod not found...")
+                            } else {
+                                console.log("Payperiod found and updated...")
+                            }
+                        })
+                    }
+
                 }
-                res.json({success: true, message: "PayPeriods Successfully Updated", payperiods:payperiods})
+                res.json({ success: true, message: "PayPeriods Successfully Updated", payperiods: payperiods })
             }
         })
     })
@@ -206,29 +273,29 @@ module.exports = function (app) {
         //payperiod.date = req.body.date;
         payperiod.payperiodnum = req.body.payperiod;
         payperiod.jobDetails = req.body.jobDetails;
-        payperiod.booked= req.body.booked;
+        payperiod.booked = req.body.booked;
         payperiod.monthName = req.body.month;
         console.log(payperiod)
-        payperiod.save(function(err,user){
+        payperiod.save(function (err, user) {
 
-            if(err){
-                res.json({success: false, message:"Save failed...",err:err})
-            }else{
-                res.json({successs: true, message: "Save Successful..."})
+            if (err) {
+                res.json({ success: false, message: "Save failed...", err: err })
+            } else {
+                res.json({ successs: true, message: "Save Successful..." })
             }
-            
+
 
         })
-        
-    })
-    app.get('/payperiod/getallpayperiods', function(req,res){
-        PayPeriod.find({},function(err,payperiods){
 
-            if(err)throw err;
-            if(!payperiods){
-                res.json({success: false, message:"Payperiods not found.."})
-            }else{
-                res.json({success: true, message: "PayPeriods found..", payperiods:payperiods})
+    })
+    app.get('/payperiod/getallpayperiods', function (req, res) {
+        PayPeriod.find({}, function (err, payperiods) {
+
+            if (err) throw err;
+            if (!payperiods) {
+                res.json({ success: false, message: "Payperiods not found.." })
+            } else {
+                res.json({ success: true, message: "PayPeriods found..", payperiods: payperiods })
             }
 
         })
@@ -419,38 +486,38 @@ module.exports = function (app) {
 
         } else {
             console.log("Here i am")
-            PayPeriod.find({},function(err,payperiods){
-                console.log("hello",payperiods.length)
-                for(var i =0;i< payperiods.length;i++){
-                    payperiods[i].currentuser= req.body.name;
+            PayPeriod.find({}, function (err, payperiods) {
+                console.log("hello", payperiods.length)
+                for (var i = 0; i < payperiods.length; i++) {
+                    payperiods[i].currentuser = req.body.name;
                     //console.log(payperiods[0].currentuser)
                 }
                 console.log(payperiods[0].currentuser)
                 user.payperiods = payperiods;
                 console.log(user.payperiods[0].currentuser)
                 user.payperiodnum = 5;
-                 user.save(function (err) {
-                if (err) {
+                user.save(function (err) {
+                    if (err) {
 
-                    //res.send("Ensure all fields input")
-                    res.json({ success: false, message: "There was an error..." })
-                    console.log(err)
-                } else {
+                        //res.send("Ensure all fields input")
+                        res.json({ success: false, message: "There was an error..." })
+                        console.log(err)
+                    } else {
 
-                    /* if (err) {
-                         res.send("Username or email already exists..")
-                         res.json({success: false, message: "Username or email already exists.."})
-                     } else {*/
-                    //res.send("userCreated");
-                    res.json({ success: true, message: "User Created Successfully." ,user:user})
-                    /* }*/
+                        /* if (err) {
+                             res.send("Username or email already exists..")
+                             res.json({success: false, message: "Username or email already exists.."})
+                         } else {*/
+                        //res.send("userCreated");
+                        res.json({ success: true, message: "User Created Successfully.", user: user })
+                        /* }*/
 
 
-                }
+                    }
+                })
+
             })
 
-            })
-           
         }
 
     })

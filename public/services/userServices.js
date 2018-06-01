@@ -24,6 +24,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.findUser = function(name){
         return $http.put('/api/users/finduser/'+name)
     }
+    userFactory.addDelinquentTimeSheet = function(jobDetail){
+        return $http.post('/api/users/adddelinquenttimesheet',jobDetail)
+    }
 
 
        //User.getPermission();
