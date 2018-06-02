@@ -99,13 +99,16 @@
 
                             </div>
                         </div>
-                        <div class = "row "ng-repeat="history in payPeriodHistory">
+                        <div class = "row "ng-repeat="history in payPeriodHistory track by $index">
                             
                             <div class = "col s3">
-                                <p class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+                                <p ng-click="openIndividualPayPeriod($index)" class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
                             </div>
-                            
-                            <div class = "col s9" style="border: 1px solid #ddd;">
+                            <div ng-show="!individualPayPeriodOpen" class= "col s9 animated fadeInDown" style = "border: 1px solid #ddd;">
+                                                           <p ng-click="openIndividualPayPeriod($index)" class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+
+                            </div>
+                            <div ng-show="individualPayPeriodOpen" class = "col s9 animated fadeInUp" style="border: 1px solid #ddd;">
                                                         
                                                        <br>
                                                        <canvas id="bar" class="chart chart-bar"

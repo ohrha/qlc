@@ -20,6 +20,7 @@
         $scope.userFilePage = false;
         $scope.openIssue = false;
         $scope.closeIssue = false;
+        $scope.individualPayPeriodOpen = false;
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
         $scope.employeeListOpen = false;
@@ -195,14 +196,15 @@
             $scope.supervisors = data.data.supervisors;
             console.log($scope.supervisors[0]._id)
         })
-        /* $scope.openHistoryPage = function(){
-             $scope.historyPageOpen = true;
-             $scope.generalHistoryOpen = true;
-             console.log($scope.generalHistoryOpen)
-            $scope.incompletePayPeriodPageOpen = false;
-            $scope.chartsPageOpen = false;
-            $scope.historyPageOpen = false;
-        }*/
+        $scope.openIndividualPayPeriod = function(index){
+            console.log(index)
+            if($scope.individualPayPeriodOpen){
+                $scope.individualPayPeriodOpen = false;
+
+            }else{
+                $scope.individualPayPeriodOpen = true;
+            }
+        }
         $scope.openIncompletePayPeriodPage = function(){
             $scope.incompletePayPeriodPageOpen = true;
             $scope.chartsPageOpen = false;
