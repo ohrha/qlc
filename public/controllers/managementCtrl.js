@@ -11,8 +11,10 @@
         $scope.payperiod = '';
         $scope.payPeriodStartDate = "";
         $scope.payPeriodEndDate = "";
+        $scope.currentUserHistoryFile = "";
         $scope.loading = false;
         $scope.loadingUsers = false;
+        $scope.loadingPersonalHistory = false;
         $scope.managementPage = true;
         $scope.clientsPage = false;
         $scope.payslipPageOpen = false;
@@ -268,15 +270,19 @@
         $scope.openHistoryPage = function(){
             $scope.historyPageOpen = true;
             $scope.chartsPageOpen = false;
+            $scope.personalHistoryOpen = false;
+            $scope.loadingGeneralHistory = true;
             $scope.showChart = true;
              $scope.generalHistoryOpen = true;
              console.log($scope.generalHistoryOpen)
             $scope.incompletePayPeriodPageOpen = false;
+            $scope.employeesPaginated = [];
             User.getUsers().then(function(data){
                 console.log(data)
                 for(var z=0; z< data.data.users.length; z++){
 
                     $scope.employeesForHistory.push(data.data.users[z])
+                    $scope.loadingGeneralHistory = false;
                 }
                  for (var i = 0; i <= $scope.employeesForHistory.length; i++) {
 
@@ -1136,6 +1142,7 @@
           $scope.openUserFileHistory = function (name, phonenumber) {
             $scope.openJob = 0;
             $scope.generalHistoryOpen = false;
+            $scope.loadingPersonalHistory = true;
             $scope.personalHistoryOpen = true;
             $scope.employeeHome = false;
             $scope.searchResults = false;
@@ -1147,9 +1154,11 @@
             $scope.commentsPageOpened = false;
             console.log(phonenumber)
             console.log(name)
-            $scope.currentUserFile = name;
+            //$scope.currentUserFile = name;
+            $scope.currentUserHistoryFile = name;
             $scope.currentUserPhoneNumber = phonenumber;
             $scope.jobDetails = [];
+            
             $scope.hoursArrayForHistory =[];
             User.getUsers().then(function (data) {
                 console.log(data)
@@ -1157,12 +1166,13 @@
                 // $scope.employees = data.data.users;
                 //$scope.jobDetails = data.data.users.jobDetails;
                 for (var i = 0; i < data.data.users.length; i++) {
-                    if (data.data.users[i].name == $scope.currentUserFile) {
+                    if (data.data.users[i].name == $scope.currentUserHistoryFile) {
                         console.log($scope.currentUserFile)
                         // $scope.jobDetails = data.data.users[i].jobDetails;
                         $scope.comments = data.data.users[i].comments;
                         $scope.payperiods = data.data.users[i].payperiods;
                         $scope.payPeriodHistory= data.data.users[i].payperiodhistory
+                        $scope.loadingPersonalHistory = false;
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
                         console.log($scope.payPeriodHistory)
