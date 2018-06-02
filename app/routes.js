@@ -109,6 +109,7 @@ module.exports = function (app) {
                                 if (req.body.date[z] == user[0].delinquenttimesheets[d][s].date && user[0].delinquenttimesheets[d][s].date !== undefined) {
 
                                     console.log("Delinquent Time SHeet Already Exists")
+
                                 } else {
                                     console.log("COLI")
                                     req.body.jobDetails[0].payperiod = req.body.payperiod;
@@ -154,6 +155,7 @@ module.exports = function (app) {
 
                 //res.json({success: true, message: "User found..."})
             }
+            res.json({success: false, message:"User Delinquent Time Sheet Already Exists!"})
         })
     })
     app.put('/clients/create/:clientName', function (req, res) {

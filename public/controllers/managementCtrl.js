@@ -33,6 +33,9 @@
         $scope.jobsSelected = true;
         $scope.bookedJobsPageOpened = false;
         $scope.complaintsPageOpened = false;
+        $scope.historyPageOpen = false;
+        $scope.generalHistoryOpen = false;
+        $scope.personalHistoryOpen = false;
         $scope.commentsPageOpened = false;
         $scope.commentsPageOpened = false;
         $scope.addJobPageOpen = false;
@@ -61,8 +64,10 @@
         $scope.areYouSure = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
+        $scope.employeesForHistory = [];
         $scope.employeesPaginated = [];
         $scope.payPeriods = [];
+        $scope.payPeriodHistory = [];
         $scope.page = 0;
         $scope.pageArray = [];
         $scope.clients = [];
@@ -190,6 +195,14 @@
             $scope.supervisors = data.data.supervisors;
             console.log($scope.supervisors[0]._id)
         })
+        /* $scope.openHistoryPage = function(){
+             $scope.historyPageOpen = true;
+             $scope.generalHistoryOpen = true;
+             console.log($scope.generalHistoryOpen)
+            $scope.incompletePayPeriodPageOpen = false;
+            $scope.chartsPageOpen = false;
+            $scope.historyPageOpen = false;
+        }*/
         $scope.openIncompletePayPeriodPage = function(){
             $scope.incompletePayPeriodPageOpen = true;
             $scope.chartsPageOpen = false;
@@ -198,7 +211,49 @@
         $scope.openHistoryPage = function(){
             $scope.historyPageOpen = true;
             $scope.chartsPageOpen = false;
+             $scope.generalHistoryOpen = true;
+             console.log($scope.generalHistoryOpen)
             $scope.incompletePayPeriodPageOpen = false;
+            User.getUsers().then(function(data){
+                console.log(data)
+                for(var z=0; z< data.data.users.length; z++){
+
+                    $scope.employeesForHistory.push(data.data.users[z])
+                }
+                 for (var i = 0; i <= $scope.employeesForHistory.length; i++) {
+
+                        var page = 0;
+                        // var pageLimit = 4;
+                        if (i < $scope.pageLimit && i < $scope.employeesForHistory.length) {
+                            if ($scope.employeesForHistory[i]) {
+                                $scope.pageArray.push($scope.employeesForHistory[i])
+                                console.log(i)
+                                console.log("firstCondiation")
+                                console.log($scope.pageArray)
+
+                            }
+
+
+                        } else {
+                            if (!$scope.usersLoaded) {
+
+                                console.log("else")
+                                console.log($scope.pageArray)
+                                $scope.loadingUsers = false;
+                                $scope.employeesPaginated.push($scope.pageArray)
+                                console.log($scope.employeesPaginated)
+                                $scope.pageArray = [];
+                                //console.log(pageLimit)
+                                $scope.pageLimit = $scope.pageLimit + 4;
+
+                                page++
+
+                            }
+
+                        }
+
+                    }
+            })
         }
         $scope.openChartsPage = function(){
             $scope.chartsPageOpen = true;
@@ -1012,6 +1067,87 @@
                 $scope.bookedJobs = true;
             }
         }
+          $scope.openUserFileHistory = function (name, phonenumber) {
+            $scope.openJob = 0;
+            $scope.generalHistoryOpen = false;
+            $scope.personalHistoryOpen = true;
+            $scope.employeeHome = false;
+            $scope.searchResults = false;
+            $scope.userList = false;
+            $scope.employeeListOpen = false;
+            $scope.userDetailsPageOpened = true;
+            $scope.bookedJobsPageOpened = false;
+            $scope.complaintsPageOpened = false;
+            $scope.commentsPageOpened = false;
+            console.log(phonenumber)
+            console.log(name)
+            $scope.currentUserFile = name;
+            $scope.currentUserPhoneNumber = phonenumber;
+            $scope.jobDetails = [];
+            User.getUsers().then(function (data) {
+                console.log(data)
+                // $scope.employees = data.data.users;
+                //$scope.jobDetails = data.data.users.jobDetails;
+                for (var i = 0; i < data.data.users.length; i++) {
+                    if (data.data.users[i].name == $scope.currentUserFile) {
+                        console.log($scope.currentUserFile)
+                        // $scope.jobDetails = data.data.users[i].jobDetails;
+                        $scope.comments = data.data.users[i].comments;
+                        $scope.payperiods = data.data.users[i].payperiods;
+                        $scope.payPeriodHistory= data.data.users[i].payperiodhistory
+                        console.log($scope.payperiods)
+                        console.log($scope.currentUserFile)
+                        console.log($scope.payPeriodHistory)
+                        $scope.payperiod = data.data.users[i].payperiodnum;
+
+                        for (var k = 0; k < $scope.payperiods.length; k++) {
+                            //console.log($scope.payperiods[k].payperiodnum)
+                            //console.log($rootScope.payPeriod)
+                            if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
+                                console.log($scope.payperiods[k].jobDetails)
+
+                                $scope.jobDetails = $scope.payperiods[k].jobDetails
+                            }
+                            /*      for (var j = 0; j < $scope.payperiods[k].length; j++) {
+      
+                                      //console.log($scope.payperiods[k][j].Month)
+                                      
+                                      if ($scope.payperiods[k][j].Month == $scope.monthLiteral && $scope.payperiods[k][j].payperiod == 6) {
+      
+                                          console.log($scope.payperiods[k][j])
+      
+                                          for (var l = 0; l < $scope.payperiods[k][j].Job.length; l++) {
+                                              if ($scope.payperiods[k][j].payperiod == 6) {
+      
+                                                  $scope.jobDetails.push($scope.payperiods[k][j].Job[l])
+      
+                                              }
+                                          }
+                                          // $scope.jobDetails = [];
+      
+                                      }
+                                  }*/
+                            //if(data.data.payperiods[i].)
+                        }
+
+                    }
+                }
+                console.log($scope.payperiods)
+                console.log($scope.jobDetails)
+            })
+            console.log(name);
+            console.log("Curent User", $scope.currentUserFile)
+            if (!$scope.userFilePage && $scope.currentUserFile == name) {
+                $scope.userFilePage = true;
+            } else if (!$scope.userFilePage && $scope.currentUserFile == name) {
+                $scope.userFilePage = true;
+            } else if ($scope.userFilePage && $scope.currentUserFile == name) {
+                $scope.userFilePage = true;
+            } else if ($scope.userFilePage && $scope.currentUserFile !== name) {
+                $scope.currentUserFile = name;
+                $scope.userFilePage = true;
+            }
+        }
         $scope.openUserFile = function (name, phonenumber) {
             $scope.openJob = 0;
             $scope.employeeHome = false;
@@ -1023,6 +1159,7 @@
             $scope.complaintsPageOpened = false;
             $scope.commentsPageOpened = false;
             console.log(phonenumber)
+            console.log(name)
             $scope.currentUserFile = name;
             $scope.currentUserPhoneNumber = phonenumber;
             $scope.jobDetails = [];
@@ -1032,12 +1169,14 @@
                 //$scope.jobDetails = data.data.users.jobDetails;
                 for (var i = 0; i < data.data.users.length; i++) {
                     if (data.data.users[i].name == $scope.currentUserFile) {
-
+                        console.log($scope.currentUserFile)
                         // $scope.jobDetails = data.data.users[i].jobDetails;
                         $scope.comments = data.data.users[i].comments;
                         $scope.payperiods = data.data.users[i].payperiods;
+                        $scope.payPeriodHistory= data.data.users[i].payperiodhistory
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
+                        console.log($scope.payPeriodHistory)
                         $scope.payperiod = data.data.users[i].payperiodnum;
 
                         for (var k = 0; k < $scope.payperiods.length; k++) {

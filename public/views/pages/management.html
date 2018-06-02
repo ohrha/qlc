@@ -75,7 +75,7 @@
                                 <i ng-click="openChartsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
                             </a>
                             <a href="#" style="color:black;">
-                                <i ng-click="openhistoryPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                                <i ng-click="openHistoryPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
                             <a ng-show="incompletePayPeriod"href="#" style="color:black;">
                                 <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
@@ -83,7 +83,59 @@
             </div>
             <div ng-show = "historyPageOpen" class = "col s12">
                   <div class = "col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
+
             <p style="font-size:18px;" class="railway animated fadeIn ">History Page</p>
+                <div class = "row ">
+                    <div ng-show="personalHistoryOpen" class = "col s12 center-align">
+                        <div class = "row "ng-repeat="history in payPeriodHistory">
+                            <div class = "col s3">
+                                <p class = "railway" style="font-size:20px;">{{history.payperiod}}</p>
+                            </div>
+                            <div class = "col s9" style="border: 1px solid #ddd;">
+                                                        <p >{{history.payperiod}}</p>
+                                                       <br>
+                                                       <canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-labels="labels"> chart-series="series"
+</canvas>
+
+                            </div>
+                    </div>
+                    </div>
+                    <div ng-show="generalHistoryOpen" class = "col s12">
+                         <div  class="center-align">
+
+
+                    <table>
+                        <thead style="text-decoration:none;">
+                            <tr style="font-family: railway; text-decoration:none;">
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                            <tr>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFileHistory(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination">
+                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                    </ul>
+                    </div>
             </div>
 
             </div>
