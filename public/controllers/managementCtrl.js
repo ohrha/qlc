@@ -21,6 +21,7 @@
         $scope.openIssue = false;
         $scope.closeIssue = false;
         $scope.individualPayPeriodOpen = true;
+        $scope.historyEntryOpen = true;
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
         $scope.employeeListOpen = false;
@@ -57,6 +58,8 @@
         $scope.userDetailsPageOpened = true;
         $scope.delinquentTimeSheetPageOpened = false;
         $scope.noInput = false;
+        $scope.showChart = true;
+        $scope.removeChart = false;
         $scope.searchResults = false;
         $scope.userList = false;
         $scope.usersLoaded = false;
@@ -80,6 +83,7 @@
         $scope.pageLimit = 4;
         $scope.currentPage = 1;
         $scope.curPeriod=null;
+        $scope.curHistory = null;
         $scope.numPerPage = 10;
         $scope.maxSize = 5;
         $scope.hoursWorked = 0;
@@ -93,10 +97,10 @@
         $scope.monthLiteral = "";
         $scope.day = $scope.date.getDay();
          $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-  $scope.series = ['Series A', 'Series B'];
+  $scope.series = ['Series A'];
   $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
+    [65, 59, 80, 81, 56, 55, 40]
+    
   ];
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
@@ -197,6 +201,35 @@
             $scope.supervisors = data.data.supervisors;
             console.log($scope.supervisors[0]._id)
         })
+        $scope.openIndividualHistoryEntry= function(index){
+                console.log(index)
+                //curHistory = index;
+                $scope.showChart = false;
+                $timeout(function(){
+                    $scope.removeChart = true;
+                     if($scope.historyEntryOpen && index !== $scope.curHistory
+            ){
+               // $scope.individualPayPeriodOpen = false;
+                $scope.curHistory = index;
+               console.log("first")
+
+            }
+         
+
+          else   if(!$scope.historyEntryOpen && index == $scope.curHistory ){
+                $scope.historyEntryOpen = true;
+                console.log("second")
+                //$scope.curPeriod = index;
+            }
+              else  if(!$scope.historyEntryOpen && index !== $scope.curHistory ){
+                   console.log("third")
+                $scope.historyEntryOpen = true;
+                $scope.curHistory = index;
+            }else{
+                $scope.curHistory = null
+            }
+                },500)
+        }
         $scope.openIndividualPayPeriod = function(index){
             console.log(index)
             
@@ -219,6 +252,8 @@
                    console.log("third")
                 $scope.individualPayPeriodOpen = true;
                 $scope.curPeriod = index;
+            }else{
+                $scope.curPeriod = null
             }
         }
         $scope.openIncompletePayPeriodPage = function(){
