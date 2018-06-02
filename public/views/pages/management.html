@@ -110,7 +110,7 @@
                             <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
                                 <div class="col s3">
-                                    <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+                                    <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{history.payperiod}}</p>
                                 </div>
                           
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown" style="border: 1px solid #ddd;">
