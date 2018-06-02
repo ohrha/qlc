@@ -1084,8 +1084,10 @@
             $scope.currentUserFile = name;
             $scope.currentUserPhoneNumber = phonenumber;
             $scope.jobDetails = [];
+            $scope.hoursArrayForHistory =[];
             User.getUsers().then(function (data) {
                 console.log(data)
+            
                 // $scope.employees = data.data.users;
                 //$scope.jobDetails = data.data.users.jobDetails;
                 for (var i = 0; i < data.data.users.length; i++) {
@@ -1098,7 +1100,54 @@
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
                         console.log($scope.payPeriodHistory)
+                        
+                        for(var b=0;b<$scope.payPeriodHistory.length;b++){
+                            //$scope.data
+                            
+                           // $scope.data[0][b]= hoursIterator;
+
+                            for(var c=0;c<$scope.payPeriodHistory[b].entry.length;c++){
+                                  var hoursIterator = 0;
+                        var minIterator = 0;
+                                //console.log(c,$scope.payPeriodHistory[b].entry.length)
+                               // console.log("hoursIteratot",hoursIterator)
+                               
+                               
+                                
+                                $scope.labels[c] =$scope.payPeriodHistory[b].entry[c].date
+                               
+                                var startTime = moment($scope.payPeriodHistory[b].entry[c].timein, "HH:mm:ss a");
+                                var endTime = moment($scope.payPeriodHistory[b].entry[c].timeout, "HH:mm:ss a");
+                                var duration = moment.duration(endTime.diff(startTime));
+                                var hours = parseInt(duration.asHours());
+                                var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                                //hoursIterator = hoursIterator + hours;
+                                //minIterator = minIterator + minutes
+                                if(minutes == 15){
+                                    hours+.25
+                                    minIterator =0;
+                                }
+                                if(minutes == 30){
+                                    hours+.30
+                                }
+                                if(minutes == 45){
+                                    hours+.75
+                                }
+                                 $scope.data[0][c]= hours+minutes
+                               
+                                 console.log(hours,minutes)
+                            }
+                             
+                        }
+                        /*
+                         var startTime = moment($scope.allEmployeesJobDetails[s][k].timein, "HH:mm:ss a");
+                                    var endTime = moment($scope.allEmployeesJobDetails[s][k].timeout, "HH:mm:ss a");
+                                    var duration = moment.duration(endTime.diff(startTime));
+                                    var hours = parseInt(duration.asHours());
+                                    var minutes = parseInt(duration.asMinutes()) - hours * 60;
+
                         $scope.payperiod = data.data.users[i].payperiodnum;
+                        */
 
                         for (var k = 0; k < $scope.payperiods.length; k++) {
                             //console.log($scope.payperiods[k].payperiodnum)

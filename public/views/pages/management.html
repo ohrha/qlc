@@ -86,11 +86,25 @@
 
             <p style="font-size:18px;" class="railway animated fadeIn ">History Page</p>
                 <div class = "row ">
+                    
                     <div ng-show="personalHistoryOpen" class = "col s12 center-align">
-                        <div class = "row "ng-repeat="history in payPeriodHistory">
-                            <div class = "col s3">
-                                <p class = "railway" style="font-size:20px;">{{history.payperiod}}</p>
+                        <div class = "row">
+                        <div class = "col s3">
+                                <p style="font-size:14px;" class="railway animated fadeIn ">Pay Period</p>
+
                             </div>
+                            <div class = "col s9">
+                                <p style="font-size:14px;" class="railway animated fadeIn ">Details</p>
+
+
+                            </div>
+                        </div>
+                        <div class = "row "ng-repeat="history in payPeriodHistory">
+                            
+                            <div class = "col s3">
+                                <p class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+                            </div>
+                            
                             <div class = "col s9" style="border: 1px solid #ddd;">
                                                         
                                                        <br>
