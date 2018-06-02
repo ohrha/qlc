@@ -227,6 +227,9 @@
                 $scope.curHistory = index;
             }else{
                 $scope.curHistory = null
+                
+                $scope.showChart = true;
+                $scope.removeChart = false;
             }
                 },500)
         }
@@ -1089,6 +1092,7 @@
 
             } else {
                 $scope.employeesPage = true;
+                console.log($scope.employeesPage)
                 $scope.currentUserFile = "";
                 $scope.clientsPage = false;
                 $scope.managementPage = false;

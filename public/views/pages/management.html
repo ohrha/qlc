@@ -116,24 +116,33 @@
                                 <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll;">
 
                                     <br>
-                                       <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels"> chart-series="series"
+                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                    chart-series="series"
                                     </canvas>
-                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels"> chart-series="series"
+                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                    chart-series="series"
                                     </canvas>
-                                    <div ng-repeat = "entry in history.entry track by $index" class = "row">
-                                    <div class = "col s3">
-                                    <p class = "railway" ng-click="openIndividualHistoryEntry($index)"  >{{entry.date}}</p>
-                                    </div>
-                                    <div ng-show="historyEntryOpen && curHistory == $index"class = "col s9 animated fadeInDown" style="border:1px solid #ddd;">
-                                                                            <p class = "railway" >{{entry.supervisor}}</p>
+                                    <div ng-repeat="entry in history.entry track by $index" class="row">
+                                        <div class="col s3">
+                                            <p class="railway" ng-click="openIndividualHistoryEntry($index)">{{$index+1}}</p>
+                                        </div>
+                                        <div ng-show="historyEntryOpen && curHistory == $index" class="col s9 animated fadeInDown" style="border:1px solid #ddd;">
+                                            <p class="railway" style="text-decoration:underline;">{{entry.location}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.contractor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.supervisor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.timein}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.timeout}}</p>
 
 
-                                    </div>
-                                    <div ng-show="historyEntryOpen && curHistory !== $index"class = "col s9 fadeOutUp" style="border:1px solid #ddd;">
-                                                                            <p class = "railway" >{{entry.location}}</p>
 
 
-                                    </div>
+
+                                        </div>
+                                        <div ng-show="historyEntryOpen && curHistory !== $index" class="col s9 fadeInUp" style="border:1px solid #ddd;">
+                                            <p class="railway">{{entry.date}}</p>
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -211,6 +220,8 @@
                         </canvas>
                     </div>
                 </div>
+            </div>
+        </div>
                 <!-- PAYSLIP PAGE -->
 
 
@@ -395,7 +406,7 @@
                                 <div class="col s4 center-align">
                                     <span class="railway" style="font-size: 20px;"> In </span>
                                     <p class="railway" style="font-size: 20px;"> {{timeData.hrsIn1}}{{timeData.hrsIn2}}:{{timeData.minsIn1}}{{timeData.minsIn2}}{{timeData.amPm1}}
-                                        </p>
+                                    </p>
                                 </div>
                                 <div class="col s4 center-align">
                                     <span class="railway" style="font-size: 20px;"> - </span>
@@ -405,7 +416,7 @@
                                     <span class="railway" style="font-size: 20px;"> Out </span>
 
                                     <p class="railway" style="font-size: 20px;"> {{timeData.hrsIn1}}{{timeData.hrsIn2}}:{{timeData.minsIn1}}{{timeData.minsIn2}}{{timeData.amPm1}}
-                                        </p>
+                                    </p>
 
                                 </div>
                                 <div class="col s6">
@@ -911,5 +922,4 @@
                 $('select').material_select();
 
             });
-
         </script>
