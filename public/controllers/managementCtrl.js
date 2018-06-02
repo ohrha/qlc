@@ -1000,7 +1000,7 @@
             }
             $scope.openEmployeeList = function () {
 
-
+                $scope.delinquentTimeSheet = false;
                 //$scope.employeesPaginated = [];
                 if ($scope.employeeListOpen) {
                     // $scope.employeeListOpen = false;

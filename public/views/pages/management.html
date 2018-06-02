@@ -227,18 +227,22 @@
                                 {{report.name[0]}}
                             </p>
                             </div>
-                            <div class = "col s8">
+                            <div class = "col s4">
                             <p class="railway" ng-repeat="date in report.date">
                                 {{date}}
                             </p>
                             </div>
+                            <div class = "col s4">
+                                <p class = "railway">Text {{report.name[0]}}</p>
+                                <i class = "material-icons">sms</i>
+                            </div>
                       
                         </div>
-                        <p ng-show="incompletePayPeriod" style="font-size:17px;" class="railway animated flash">
+                       <!-- <p ng-show="incompletePayPeriod" style="font-size:17px;" class="railway animated flash">
                             Generate Payslip?
                             <i ng-click="exportPdf()" class="material-icons" style="font-size:17px;">assignment</i>
 
-                        </p>
+                        </p>-->
 
                     </div>
                     <div class="col s12 animated fadeIn" ng-show="chartsPageOpen">
@@ -423,7 +427,7 @@
 
                             <div ng-show="userDetailsPageOpened" class="col s12">
                                 <p class="railway animated fadeIn">{{user.email}}</p>
-                                <p class="railway animated fadeIn">{{user.phonenumber}}</p>
+                                <!--<p class="railway animated fadeIn">{{user.phonenumber}}</p>-->
 
                             </div>
 
