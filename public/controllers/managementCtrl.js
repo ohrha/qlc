@@ -257,6 +257,7 @@
                 $scope.curPeriod = index;
             }else{
                 $scope.curPeriod = null
+                $scope.showChart = true;
             }
         }
         $scope.openIncompletePayPeriodPage = function(){
@@ -267,6 +268,7 @@
         $scope.openHistoryPage = function(){
             $scope.historyPageOpen = true;
             $scope.chartsPageOpen = false;
+            $scope.showChart = true;
              $scope.generalHistoryOpen = true;
              console.log($scope.generalHistoryOpen)
             $scope.incompletePayPeriodPageOpen = false;
@@ -539,6 +541,7 @@
 
             $scope.payslipPageOpen = true;
             $scope.payslipPageSelected = true;
+            $scope.employeePage = false;
             $scope.managementPage = false;
             $scope.employeesPage = false;
             $scope.clientsPage = false;
@@ -1092,6 +1095,12 @@
 
             } else {
                 $scope.employeesPage = true;
+                $scope.employeeListOpen = false;
+                $scope.employeeHome = true;
+                $scope.historyPageOpen = false;
+                $scope.generalHistoryOpen = false;
+                $scope.personalHistoryOpen = false;
+                $scope.curHistory = null;
                 console.log($scope.employeesPage)
                 $scope.currentUserFile = "";
                 $scope.clientsPage = false;
