@@ -1158,6 +1158,7 @@
             $scope.currentUserHistoryFile = name;
             $scope.currentUserPhoneNumber = phonenumber;
             $scope.jobDetails = [];
+            $scope.employeesPaginated = [];
             
             $scope.hoursArrayForHistory =[];
             User.getUsers().then(function (data) {
