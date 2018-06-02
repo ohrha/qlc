@@ -893,6 +893,7 @@
                                     $scope.jobsSelected = false;
                                     $scope.complaintsSelected = false;
                                     $scope.delinquentTimeSheetPageOpened = true;
+                                    $scope.userFilePage = false;
                                     $scope.userDetailsPageOpened = false;
                                     $scope.bookedJobsPageOpened = false;
                                     $scope.complaintsPageOpened = false;
