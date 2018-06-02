@@ -20,7 +20,7 @@
         $scope.userFilePage = false;
         $scope.openIssue = false;
         $scope.closeIssue = false;
-        $scope.individualPayPeriodOpen = false;
+        $scope.individualPayPeriodOpen = true;
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
         $scope.employeeListOpen = false;
@@ -79,6 +79,7 @@
         $scope.employeeJobDetails = {};
         $scope.pageLimit = 4;
         $scope.currentPage = 1;
+        $scope.curPeriod=null;
         $scope.numPerPage = 10;
         $scope.maxSize = 5;
         $scope.hoursWorked = 0;
@@ -198,11 +199,26 @@
         })
         $scope.openIndividualPayPeriod = function(index){
             console.log(index)
-            if($scope.individualPayPeriodOpen){
-                $scope.individualPayPeriodOpen = false;
+            
 
-            }else{
+            if($scope.individualPayPeriodOpen && index !== $scope.curPeriod
+            ){
+               // $scope.individualPayPeriodOpen = false;
+                $scope.curPeriod = index;
+               console.log("first")
+
+            }
+         
+
+          else   if(!$scope.individualPayPeriodOpen && index == $scope.curPeriod ){
                 $scope.individualPayPeriodOpen = true;
+                console.log("second")
+                //$scope.curPeriod = index;
+            }
+              else  if(!$scope.individualPayPeriodOpen && index !== $scope.curPeriod ){
+                   console.log("third")
+                $scope.individualPayPeriodOpen = true;
+                $scope.curPeriod = index;
             }
         }
         $scope.openIncompletePayPeriodPage = function(){

@@ -104,11 +104,16 @@
                             <div class = "col s3">
                                 <p ng-click="openIndividualPayPeriod($index)" class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
                             </div>
-                            <div ng-show="!individualPayPeriodOpen" class= "col s9 animated fadeInDown" style = "border: 1px solid #ddd;">
-                                                           <p ng-click="openIndividualPayPeriod($index)" class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+                                <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index" class= "col s9 animated fadeInDown" style = "border: 1px solid #ddd;">
+                                                           <p  class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
 
                             </div>
-                            <div ng-show="individualPayPeriodOpen" class = "col s9 animated fadeInUp" style="border: 1px solid #ddd;">
+                                   <!-- <div ng-show=" curPeriod !== $index" class= "col s9 animated fadeInDown" style = "border: 1px solid #ddd;">
+                                                           <p  class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+
+                            </div>
+                           -->
+                            <div ng-show="individualPayPeriodOpen && curPeriod == $index" class = "col s9 animated fadeInUp" style="border: 1px solid #ddd;">
                                                         
                                                        <br>
                                                        <canvas id="bar" class="chart chart-bar"
