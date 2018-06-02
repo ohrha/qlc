@@ -68,7 +68,7 @@
                                 <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
                             </a>-->
                 <a href="#" style="color:black;">
-                                <i ng-click="exportPdf()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
                             </a>
 
                 <a href="#" style="color:black;">
@@ -81,10 +81,22 @@
                                 <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
             </div>
+            <div ng-show="generatePaySlipPageOpen" class = "col s12">
+                 <p style="font-size:17px;" class="railway animated fadeIn underline ">Pay Slip Generation</p>
+
+                <div ng-repeat = "employee in employeesForPaySlipGeneration">
+                <div class = "col s3">
+                    {{employee.name}}
+                </div>
+                <div class = "col s9">
+                    
+                </div>
+                </div>
+            </div>
             <div ng-show="historyPageOpen" class="col s12">
                 <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
 
-                    <p style="font-size:15px;" class="railway animated fadeIn underline ">History</p>
+                    <p style="font-size:17px;" class="railway animated fadeIn underline ">History</p>
                     <div class="row ">
                  <div ng-show="loadingPersonalHistory"class = "col s12 center-align">
                                                        <!-- <i class="fas fa-circle-notch fa-spin"></i>-->
@@ -110,7 +122,7 @@
                             <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
                                 <div class="col s3">
-                                    <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{history.payperiod}}</p>
+                                   <a href='#'> <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{history.payperiod}}</p></a>
                                 </div>
                           
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown" style="border: 1px solid #ddd; ">
@@ -135,7 +147,7 @@
                                         
                                         <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
                                             <div class = "right-align">
-                                            <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i>
+                                           <a href="#"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
                                             </div>
                                             <p class="railway" style="text-decoration:underline;">{{entry.location}}</p>
                                             <p class="railway" style="text-decoration:underline;">{{entry.contractor}}</p>
@@ -200,27 +212,27 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
                     <div ng-show="incompletePayPeriodPageOpen" class="col s12">
                         <p ng-show="incompletePayPeriod" style="font-size:30px;" class="railway animated flash">
                             Incomplete Pay Period
                         </p>
                         <p ng-show="incompletePayPeriod" style="font-size:17px;" class="railway animated flash">
-                            These days have been been booked, but no timesheet has been submitted...
+                            These following users have failed to submit timesheets for this pay period..
                         </p>
-                        <div ng-repeat="report in reportArray track by $index">
+                        <div class = "animated flash" ng-repeat="report in reportArray track by $index">
+                            <div class = "col s4">
                             <p class="railway">
                                 {{report.name[0]}}
                             </p>
+                            </div>
+                            <div class = "col s8">
                             <p class="railway" ng-repeat="date in report.date">
                                 {{date}}
                             </p>
-                            <div ng-repeat="name in report track by $index">
-                                {{name.date}}
-                                <div ng-repeat="n in name track by $index">
-                                    <!--  {{n}}-->
-                                </div>
-
                             </div>
+                      
                         </div>
                         <p ng-show="incompletePayPeriod" style="font-size:17px;" class="railway animated flash">
                             Generate Payslip?
@@ -234,8 +246,8 @@
                             chart-dataset-override="datasetOverride" chart-click="onClick">
                         </canvas>
                     </div>
-                </div>
-            </div>
+                
+            
         </div>
                 <!-- PAYSLIP PAGE -->
 
@@ -394,7 +406,7 @@
                                     <a href="#" style="color:black;">
                                 <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
-                                    <a href="#" style="color:black;">
+                                    <a ng-show="delinquentTimeSheet"href="#" style="color:black;">
                                 <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
 
