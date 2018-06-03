@@ -37,9 +37,15 @@
 
         <!-- MANAGEMENT PAGE LINK -->
 
+
+        <!-- PAYPERIOD UPDATED PAGE -->
+        <div ng-show="payPeriodUpdated" class = "col s10 center-align animated flash">
+            <h1> DA PAY PERIOD HAS BEEN UPDATED</h1>
+        </div>
+        <!-- PAYPERIOD UPDATED PAGE <-->
         <!-- MANAGEMENT HOME -->
 
-        <div ng-show="managementPage" class="col s10 center-align animated fadeIn">
+        <div ng-show="managementPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
             <p style="font-size:18px;" class="railway animated fadeIn ">Administration Page</p>
 
         </div>
@@ -49,7 +55,7 @@
 
         <!-- CLIENT PAGE -->
 
-        <div ng-show="clientsPage" class="col s10 center-align animated fadeIn">
+        <div ng-show="clientsPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
             <p style="font-size:18px;" class="railway animated fadeIn ">Clients Page</p>
         </div>
 
@@ -261,7 +267,7 @@
                 <!-- EMPLOYEE PAGE -->
 
 
-                <div ng-show="employeesPage" class="col s10 center-align animated fadeIn">
+                <div ng-show="employeesPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
 
 
                     <div style="border-right:1px solid #ddd" class="col s3 center-align">
@@ -477,9 +483,11 @@
                                 </div>
                                 <div ng-show = "timesheetEntryOpen && curTimesheet == $index"class = "col s9 animated fadeIn">
                             
-         
+         <div style="opacity:0; height:1px; width:1px;">
+    <select>
+    </select>
+</div>
                                     <div class="input-field col s6">
-
 
       
                                         <select ng-model="timeData.hrsIn1" name="hrsIn1">

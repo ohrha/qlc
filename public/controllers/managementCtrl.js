@@ -71,6 +71,7 @@
             $scope.loadingNewJob = false;
             $scope.loadingAddAndRemoveDelinquentTimeSheet = false;
             $scope.areYouSure = false; 
+            $scope.payPeriodUpdated = false;
             $scope.delinquentTimeSheet=false;
             $scope.currentUserFile = "";
             $scope.employees = [];
@@ -93,6 +94,9 @@
             $scope.timeData = {
                
             };
+            $scope.newPayPeriodObject = {
+
+            }
             $scope.employeeJobDetails = {};
             $scope.delinquentJobDetails = {};
             $scope.pageLimit = 4;
@@ -586,6 +590,21 @@
                         data.data.users[i].jobDetails = $scope.jobDetails;
                         data.data.users[i].comments = $scope.comments;
                     }
+                           if($scope.employees[i].payperiodnum == $rootScope.payPeriod){
+                         $scope.newPayPeriodObject.newpayperiod = $rootScope.payPeriod
+
+      User.changeUserPayPeriod($scope.newPayPeriodObject).then(function(data){
+                        console.log(data)
+                        if(data.data.success){
+                            $scope.payPeriodUpdated = true;
+                            //$timeout(function(){
+                            //    $scope.payPeriodUpdated = false;
+                            //},)
+                        }
+                                       //         $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+
+                    })
+ }
                 }
                 console.log($scope.jobDetails)
                 console.log($scope.comments)
@@ -717,10 +736,13 @@
                             }
 
                             console.log("$scope.report",$scope.report)
+                            if($scope.employees[z].payperiodnum == $rootScope.payPeriod){
                             User.addDelinquentTimeSheet($scope.report).then(function(data){
                                 console.log(data)
                                 
                             })
+                            }
+                           
                             $scope.reportArray.push($scope.report)
 
                             console.log("$scope.reportArray", $scope.reportArray)
@@ -850,9 +872,24 @@
                         }
                         var nameVar = $scope.employees[z].name;
                         // console.log($scope.reportArray)
+ if($scope.employees[z].payperiodnum == $rootScope.payPeriod){
+                         $scope.newPayPeriodObject.newpayperiod = $rootScope.payPeriod
 
+      User.changeUserPayPeriod($scope.newPayPeriodObject).then(function(data){
+                        console.log(data)
+                                                $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+
+                    })
+ }
                     }
-                    $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+                   /* if($scope.employees[z].payperiodnum !== $rootScope.payPeriod){
+                        $scope.allEmployeesJobDetails.historyupdated = false;
+                        $scope.allEmployeesJobDetails.newpayperiod = $rootScope.payPeriod
+                        $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+                    }*/
+                  
+                   
+                    
                     //console.log("$scope.allEmployeesJobDetails", $scope.allEmployeesJobDetails)
                     for (var t = 0; t < $scope.hoursArray.length; t++) {
                         //for(var x = 0; x<$scope.hoursArray[t].length; x++){
@@ -1128,6 +1165,7 @@
                     $scope.userFilePage = false;
                     $scope.userList = true;
                     User.getUsers().then(function (data) {
+                        console.log(data)
                         for (var i = 0; i <= $scope.employees.length; i++) {
 
                             var page = 0;
@@ -1161,6 +1199,7 @@
                             }
 
                         }
+                 
 
                         $scope.usersLoaded = true;
                         $scope.loadingUsers = false;

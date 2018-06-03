@@ -26,6 +26,38 @@ module.exports = function (app) {
     
         })
         */
+        app.post('/users/changeuserpayperiod', function(req,res){
+            var currentName = ""
+            User.find({}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message: "User Not Found So Not Updated.."})
+                }else{
+                    for(var z=0; z< user.length; z++){
+                        console.log(user[z].name)
+                        currentName = user[z].name
+                        User.findOneAndUpdate({name: user[z].name},{$set:{historyupdated:false}},{new:true}, function(err,user2){
+                            if(err)throw err;
+                            if(!user2){
+                                res.json({success:false,message:"User not found so not updated..."})
+                            }else{
+                               // res.json({success: true, message:"User found and updated..."})
+                               console.log("User History Updated...")
+                               User.findOneAndUpdate({name: currentName}, {$set:{payperiodnum:req.body.newpayperiod}},{new:true}, function(err,user3){
+                                   if(err)throw err;
+                                   if(!user3){
+                                       res.json({success:false, message:"User not found so not updated.."})
+                                   }else{
+                                       console.log("Pay Period updated...")
+                                   }
+                               })
+                            }
+                        })
+                    }
+                    res.json({success: true, message:"Payperiod Update, and History Updated Parameter Update, Complete...", users:user})
+                }
+            })
+        })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
         console.log(req.body.payperiod)
         console.log(req.body.allEmployeesJobDetails.length)
@@ -151,6 +183,7 @@ console.log(req.body)
     })
     app.post('/users/adddelinquenttimesheet', function (req, res) {
         //console.log(req.body)
+        var delinquentTimeSheetArray = [];
         User.find({ name: req.body.name[0] }, function (err, user) {
             if (err) throw err;
             if (!user) {
@@ -176,7 +209,8 @@ console.log(req.body)
                                 } else {
                                     console.log("COLI")
                                     req.body.jobDetails[0].payperiod = req.body.payperiod;
-                                    user[0].delinquenttimesheets.push(req.body.jobDetails)
+                                    delinquentTimeSheetArray.push(req.body.jobDetails)
+                                    user[0].delinquenttimesheets.push(delinquentTimeSheetArray)
                                     User.findOneAndUpdate({ name: req.body.name[0] }, { $set: { delinquenttimesheets: user[0].delinquenttimesheets } }, { new: true }, function (err, user) {
 
                                         if (err) throw err;
