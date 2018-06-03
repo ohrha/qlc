@@ -474,13 +474,18 @@
                                    <p ng-click ="openIndividualDelinquentTimeSheet($index,timesheet)" class = "railway animated fadeIn"> {{$index+1}}</p>
                                 </div>
                                 <div ng-show = "timesheetEntryOpen && curTimesheet == $index"class = "col s9 animated fadeIn">
-                                   
-                
+                                    <div style="opacity:0; height:1px;">
+                                                                            <select style="opacity:0; ">
+      
+    </select>
+                                    </div>
+         
                                     <div class="input-field col s6">
-<select style="display:none;">
-</select>
+
+
+      
                                         <select ng-model="timeData.hrsIn1" name="hrsIn1">
-      <option value="" disabled selected>0</option>
+      <option value="" disabled selected>#</option>
       <option value="0">0</option>
       <option value="1">1</option>
      
@@ -490,7 +495,7 @@
                                     </div>
                                     <div class="input-field col s6">
                                         <select ng-model="timeData.hrsIn2" name="hrsIn2">
-      <option value="" disabled selected>0</option>
+      <option value="" disabled selected>#</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -504,7 +509,7 @@
                                     </div>
                                     <div class="input-field col s6">
                                         <select ng-model="timeData.minsIn1" name="minsIn1">
-         <option value="" disabled selected>0</option>
+         <option value="" disabled selected>#</option>
          <option value="0">0</option>
       <option value="1">1</option>
       <option value="3">3</option>
@@ -515,7 +520,7 @@
                                     </div>
                                     <div class="input-field col s6">
                                         <select ng-model="timeData.minsIn2" name="minsIn2">
-            <option value="" disabled selected>0</option>
+            <option value="" disabled selected>#</option>
                         <option value="0">0</option>
 
       <option value="5">5</option>
