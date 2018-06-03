@@ -1163,7 +1163,7 @@
                         }
 
                         $scope.usersLoaded = true;
-                        //$scope.loadingUsers = false;
+                        $scope.loadingUsers = false;
 
                     })
 
