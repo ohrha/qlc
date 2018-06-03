@@ -1409,6 +1409,7 @@
                 $scope.userList = false;
                 $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = true;
+                $scope.delinquentTimeSheetPageOpened = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsPageOpened = false;
@@ -1416,6 +1417,7 @@
                 console.log(name)
                 $scope.currentUserFile = name;
                 $scope.currentUserPhoneNumber = phonenumber;
+                $scope.delinquentTimeSheetArray = [];
                 $scope.jobDetails = [];
                 User.getUsers().then(function (data) {
                     console.log(data)
