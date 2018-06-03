@@ -120,6 +120,12 @@
     $scope.onClick = function (points, evt) {
         console.log(points, evt);
     };
+        setTimeout(function () {
+
+        //$('.tap-target').tapTarget('open');
+        $('select').material_select();
+
+      }, 15000);
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
     $scope.options = {
         scales: {
