@@ -655,6 +655,10 @@
         $scope.closePayPeriodUpdatedPage = function(){
 
             $scope.payPeriodUpdated = false;
+            $scope.clientsPage = false;
+            $scope.employeePage = false;
+            $scope.payslipPageOpen = false;
+            $scope.employeeListOpen = false
             $scope.managementPage = true;
 
         }
@@ -846,6 +850,7 @@
             $scope.incompletePayPeriodPageOpen = false;
             //$scope.employeesPaginated = [];
             $scope.employeesForHistory = [];
+            $scope.pageLimit =0;
             //$scope.pageArray=[];
             User.getUsers().then(function (data) {
                 console.log(data)
@@ -858,6 +863,7 @@
 
                     var page = 0;
                     // var pageLimit = 4;
+                    console.log($scope.pageLimit)
                     if (i < $scope.pageLimit && i < $scope.employeesForHistory.length) {
                         if ($scope.employeesForHistory[i]) {
                             $scope.pageArray.push($scope.employeesForHistory[i])
@@ -866,7 +872,7 @@
                             console.log($scope.pageArray)
 
                         }
-
+                       
 
                     } else {
                         if (!$scope.usersLoaded) {
@@ -877,6 +883,7 @@
                             $scope.loadingUsers = false;
                             $scope.employeesPaginated.push($scope.pageArray)
                             console.log($scope.employeesPaginated)
+                            
                             $scope.pageArray = [];
                             //console.log(pageLimit)
                             $scope.pageLimit = $scope.pageLimit + 4;
@@ -888,6 +895,7 @@
                     }
 
                 }
+                $scope.employeesPaginated.push($scope.pageArray)
             })
         }
         $scope.openChartsPage = function () {
@@ -1645,13 +1653,28 @@
                 $scope.payslipGenerationOpen = false;
                 $scope.userFilePage = false;
                 $scope.userList = true;
+                $scope.pageLimit = 4
                 User.getUsers().then(function (data) {
                     console.log(data)
+                    $scope.employees = data.data.users
                     for (var i = 0; i <= $scope.employees.length; i++) {
 
                         var page = 0;
-                        // var pageLimit = 4;
-                        if (i < $scope.pageLimit && i < $scope.employees.length) {
+                       console.log($scope.pageLimit, i, $scope.employees.length)
+                       console.log($scope.employees)
+                        // var pageLimit = 4;//3i
+                        if(i<$scope.pageLimit){
+                            console.log("its less")
+                            
+                        }
+                        if(i<$scope.employees.length){
+                                console.log("yup,less")
+                            }
+
+                        if (i < $scope.pageLimit && i < $scope.employees.length) {//5
+                            console.log("HELLO")
+                            console.log($scope.employees[i])
+                            console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.employees[i]) {
                                 $scope.pageArray.push($scope.employees[i])
                                 console.log(i)
@@ -1659,6 +1682,7 @@
                                 console.log($scope.pageArray)
 
                             }
+
 
 
                         } else {
@@ -1670,8 +1694,12 @@
                                 $scope.employeesPaginated.push($scope.pageArray)
                                 console.log($scope.employeesPaginated)
                                 $scope.pageArray = [];
+                                if($scope.employees[i] !== undefined){
+                                    $scope.pageArray.push($scope.employees[i])
+                                }
                                 //console.log(pageLimit)
                                 $scope.pageLimit = $scope.pageLimit + 4;
+                       console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
