@@ -432,7 +432,9 @@
                             </div>
 
                             <!-- DELINQUENT TIMESHEET PAGE -->
-                      
+                      <div ng-show = "loadingAddAndRemoveDelinquentTimeSheet" class = "col s12">
+                          <p class = "railway animated flash infinite"> LOADING JOB DETAIL</p>
+                      </div>
                             <div ng-show="delinquentTimeSheetPageOpened && areYouSure && !loadingAddAndRemoveDelinquentTimeSheet" class="col s12 animated fadeIn">
 
                                 <p class="railway" style="font-size:20px;">Are These Details Correct?</p>
@@ -474,11 +476,7 @@
                                    <p ng-click ="openIndividualDelinquentTimeSheet($index,timesheet)" class = "railway animated fadeIn"> {{$index+1}}</p>
                                 </div>
                                 <div ng-show = "timesheetEntryOpen && curTimesheet == $index"class = "col s9 animated fadeIn">
-                                    <div style="opacity:0; height:1px; width:1px;">
-                                                                            <select style="opacity:0; ">
-      
-    </select>
-                                    </div>
+                            
          
                                     <div class="input-field col s6">
 
