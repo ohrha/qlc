@@ -110,6 +110,9 @@
             $scope.hourIterator = 0;
             $scope.minIterator = 0;
             //$rootScope.payPeriod = 0;
+            $scope.displayDate = moment().weekday(0)
+           // $scope.displayDay = $scope.displayDate._weekdays[0]
+            console.log($scope.displayDate)
             $scope.date = new Date();
             $scope.dateNow = $scope.date.getDate()
             $scope.month = $scope.date.getMonth() + 1;
@@ -173,6 +176,7 @@
             //document.getElementById('modalbutton').click();
 
             console.log($scope.dateNow, $scope.month, $scope.day)
+            //if($scope.date == )
             if ($scope.month == 5) {
                 $scope.monthLiteral = "May";
                 console.log($scope.monthLiteral)
