@@ -1117,6 +1117,7 @@
                 } else {
                     $scope.loadingUsers = true;
                     $scope.employeeListOpen = true;
+                    $scope.delinquentTimeSheetPageOpened = false;
                     $scope.payslipGenerationOpen = false;
                     $scope.userFilePage = false;
                     $scope.userList = true;
