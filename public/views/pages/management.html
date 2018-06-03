@@ -474,7 +474,7 @@
                                    <p ng-click ="openIndividualDelinquentTimeSheet($index,timesheet)" class = "railway animated fadeIn"> {{$index+1}}</p>
                                 </div>
                                 <div ng-show = "timesheetEntryOpen && curTimesheet == $index"class = "col s9 animated fadeIn">
-                                    <div style="opacity:0; height:1px;">
+                                    <div style="opacity:0; height:1px; width:1px;">
                                                                             <select style="opacity:0; ">
       
     </select>
@@ -484,7 +484,7 @@
 
 
       
-                                        <select >
+                                        <select ng-model="timeData.hrsIn1" name="hrsIn1">
       <option value="" disabled selected>#</option>
       <option value="0">0</option>
       <option value="1">1</option>
@@ -598,7 +598,7 @@
                                     </div>
 
                                 
-                                    <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit Timesheet</a>
+                                    <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit</a>
 
                                 </div>
                                 
