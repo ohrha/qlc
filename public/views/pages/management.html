@@ -432,11 +432,18 @@
                             </div>
 
                             <!-- DELINQUENT TIMESHEET PAGE -->
-                            <div ng-show="delinquentTimeSheetPageOpened && areYouSure" class="col s12 animated fadeIn">
+                            <div ng-show="loadingAddAndRemoveDelinquentTimeSheet" class = "col s12">
+                                                    <p class = "railway animated flash infinite">LOADING USER LIST</p>
+
+                            </div>
+                            <div ng-show="delinquentTimeSheetPageOpened && areYouSure && !loadingAddAndRemoveDelinquentTimeSheet" class="col s12 animated fadeIn">
+
                                 <p class="railway" style="font-size:20px;">Are These Details Correct?</p>
+                                
+
                                 <div class="col s4 center-align">
                                     <span class="railway" style="font-size: 20px;"> In </span>
-                                    <p class="railway" style="font-size: 20px;"> {{timeData.hrsIn1}}{{timeData.hrsIn2}}:{{timeData.minsIn1}}{{timeData.minsIn2}}{{timeData.amPm1}}
+                                    <p class="railway" style="font-size: 20px;"> {{hrVarIn}}:{{minVarIn}}
                                     </p>
                                 </div>
                                 <div class="col s4 center-align">
@@ -446,7 +453,7 @@
                                 <div class="col s4">
                                     <span class="railway" style="font-size: 20px;"> Out </span>
 
-                                    <p class="railway" style="font-size: 20px;"> {{timeData.hrsIn1}}{{timeData.hrsIn2}}:{{timeData.minsIn1}}{{timeData.minsIn2}}{{timeData.amPm1}}
+                                    <p class="railway" style="font-size: 20px;"> {{hrVarOut}}:{{minVarOut}}
                                     </p>
 
                                 </div>
@@ -458,11 +465,147 @@
                                     <a ng-click="finishSubmitTimesheet('no')" class="waves-effect waves-light btn">No</a>
 
                                 </div>
+
                             </div>
-                            <div ng-show="delinquentTimeSheetPageOpened && !areYouSure" class="col s12">
+                            <div ng-show="delinquentTimeSheetPageOpened && !areYouSure && !loadingAddAndRemoveDelinquentTimeSheet" class="col s12">
                                 
+                                <div  ng-repeat= "timesheet in delinquentTimeSheetArray track by $index">
+                                    <div class = "col s12 center-align">
+                                        <p class = "railway "> {{timesheet.date}}</p>
+                                    </div>
+                                <div  class = "col s3">
+                                   <p ng-click ="openIndividualDelinquentTimeSheet($index,timesheet)" class = "railway"> {{$index+1}}</p>
+                                </div>
+                                <div ng-show = "timesheetEntryOpen && curTimesheet == $index"class = "col s9">
+                                   
+                
+                                    <div class="input-field col s6">
+
+                                        <select ng-model="timeData.hrsIn1" name="hrsIn1">
+      <option value="" disabled selected>0</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                                        <label>Hrs</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.hrsIn2" name="hrsIn2">
+      <option value="" disabled selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+       <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.minsIn1" name="minsIn1">
+         <option value="" disabled selected>0</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                                        <label>Mins</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.minsIn2" name="minsIn2">
+            <option value="" disabled selected>0</option>
+                        <option value="0">0</option>
+
+      <option value="5">5</option>
+   
+    </select>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <select ng-model="timeData.amPm1" name="amPm1">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                                    </div>
+                                    <div class="col s12">
+                                        <span class="railway"> to </span>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.hrsOut1" name="hrsOut1">
+      <option value="" disabled selected>0</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                                        <label>Hrs</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.hrsOut2" name="hrsOut2">
+      <option value="" disabled selected>0</option>
+            <option value="0" >0</option>
+
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+       <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.minsOut1" name="minsOut1">
+         <option value="" disabled selected>0</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+  
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                                        <label>Mins</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select ng-model="timeData.minsOut2" name="minsOut2">
+            <option value="" disabled selected>0</option>
+                        <option value="0">0</option>
+
+
+      <option value="5">5</option>
+    
+    </select>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <select ng-model="timeData.amPm2" name="amPm2">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                                    </div>
+
+                                
+                                    <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit Timesheet</a>
+
+                                </div>
+                                
+                                   <div ng-show = "timesheetEntryOpen && curTimesheet !== $index" class = "col s9">
+                                   <p class = "railway">kkk</p>
+                                  
+                                </div>
+                                </div>
                                 <!--<p class="railway animated fadeIn">{{user.delinquenttimesheets}}</p>-->
-                                <div class="railway animated fadeIn" ng-repeat="timesheet in user.delinquenttimesheets">
+                          <!--      <div class="railway animated fadeIn" ng-repeat="timesheet in user.delinquenttimesheets">
                                     <div class="col s12">
 
                                         <p class="railway animated fadeIn underline" style="font-size:16px;" ng-repeat="t in timesheet">{{t.date}}</p>
@@ -582,11 +725,11 @@
     </select>
                                     </div>
 
-                                    <!-- Custom select structure -->
+                                
                                     <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit Timesheet</a>
 
                                 </div>
-
+-->
 
                             </div>
 
@@ -944,13 +1087,4 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function () {
-                // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-                $('.modal').modal();
-
-
-                $('select').material_select();
-
-            });
-        </script>
+     

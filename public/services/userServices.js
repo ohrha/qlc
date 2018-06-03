@@ -30,6 +30,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addPayPeriodToPayPeriodHistory = function(payperiod){
         return $http.post('/api/users/addpayperiodtopayperiodhistory',payperiod)
     }
+    userFactory.addJobToCurrentPayPeriod = function(job){
+        return $http.post('/api/users/addjobtocurrentpayperiod',job)
+    }
 
 
        //User.getPermission();

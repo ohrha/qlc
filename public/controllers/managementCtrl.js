@@ -59,6 +59,8 @@
             $scope.usersPageIndex = ""
             $scope.userDetailsPageOpened = true;
             $scope.delinquentTimeSheetPageOpened = false;
+            $scope.timesheetEntryOpen = true;
+            $scope.curTimesheet = null;
             $scope.noInput = false;
             $scope.showChart = true;
             $scope.removeChart = false;
@@ -67,6 +69,7 @@
             $scope.usersLoaded = false;
             $scope.noSearchResults = false;
             $scope.loadingNewJob = false;
+            $scope.loadingAddAndRemoveDelinquentTimeSheet = false;
             $scope.areYouSure = false; 
             $scope.delinquentTimeSheet=false;
             $scope.currentUserFile = "";
@@ -76,14 +79,22 @@
             $scope.payPeriods = [];
             $scope.payPeriodHistory = [];
             $scope.page = 0;
+            $scope.minVarIn = "";
+            $scope.hrVarIn = "";
+            $scope.hrVarOut = "";
+            $scope.minVarOut = ""
             $scope.numaro=4;
             $scope.pageArray = [];
             $scope.clients = [];
             $scope.locations = [];
             $scope.supervisors = [];
             $scope.jobData = {};
-            $scope.timeData = {};
+            $scope.delinquentTimeSheetArray = [];
+            $scope.timeData = {
+               
+            };
             $scope.employeeJobDetails = {};
+            $scope.delinquentJobDetails = {};
             $scope.pageLimit = 4;
             $scope.currentPage = 1;
             $scope.curPeriod=null;
@@ -218,6 +229,54 @@
                 })
 
             }
+         /*   $scope.openIndividualDelinquentTimeSheet = function(){
+                
+                if($scope.timesheetEntryOpen){
+                    $scope.timesheetEntryOpen  = false;
+                }else{
+                    $scope.timesheetEntryOpen = true;
+                }
+            }*/
+            
+              $scope.openIndividualDelinquentTimeSheet= function(index,timesheetData){
+                   console.log(index)
+                   console.log(timesheetData)
+                    //console.log($scope.timesheet)
+                    //curHistory = index;
+                   // $scope.showChart = false;
+                    //$timeout(function(){
+                        //$scope.removeChart = true;
+                if($scope.timesheetEntryOpen && index !== $scope.curTimesheet
+                ){
+                // $scope.individualPayPeriodOpen = false;
+                    $scope.curTimesheet = index;
+                console.log("first")
+               // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+                }
+            
+
+            else   if(!$scope.timesheetEntryOpen && index == $scope.curTimesheet ){
+                    $scope.timesheetEntryOpen = true;
+                    console.log("second")
+                     console.log($scope.timesheetEntryOpen)
+                    //$scope.curPeriod = index;
+                }
+                else  if(!$scope.timesheetEntryOpen && index !== $scope.curTimesheet ){
+                    console.log("third")
+                    $scope.timesheetEntryOpen = true;
+                     console.log($scope.timesheetEntryOpen)
+                    $scope.curTimesheet = index;
+                }else{
+                    console.log("last")
+                    $scope.curTimesheet = null
+                    
+                   // $scope.showChart = true;
+                    //$scope.removeChart = false;
+                }
+                   // },500)
+            }
             
             $scope.openIndividualHistoryEntry= function(index){
                     console.log(index)
@@ -282,6 +341,7 @@
                 $scope.incompletePayPeriodPageOpen = true;
                 $scope.chartsPageOpen = false;
                 $scope.historyPageOpen = false;
+                $scope.generatePaySlipPageOpen = false;
             }
             $scope.openHistoryPage = function(){
                 $scope.historyPageOpen = true;
@@ -349,19 +409,63 @@
             }
             $scope.finishSubmitTimesheet = function(decision){
                 console.log(decision)
+                console.log($scope.delinquentJobDetails)
+               $scope.loadingAddAndRemoveDelinquentTimeSheet = true;
+                User.addJobToCurrentPayPeriod($scope.delinquentJobDetails).then(function(data){
+                    console.log(data)
+                    if(data.data.success){
+                        $scope.loadingAddAndRemoveDelinquentTimeSheet = false;
+                        $scope.areYouSure = false;
+                        $scope.openEmployeeList()
+                    }else{
+
+                    }
+                })
                 if(decision == "yes"){
                     $scope.areYouSure = false;
+                    
                 }else{
-                    $scope.areYourSure = false;
+                    $scope.areYouSure = false;
                 }
             }
             $scope.submitTimeSheet= function(timesheet){
                 console.log($scope.timeData)
                 console.log(timesheet)
-                if($scope.timeData.hrsIn1 !== undefined || null && $scope.timeData.hrsIn2 !== undefined || null && 
-                $scope.timeData.minsIn1 !== undefined || null && $scope.timeData.minsIn2 !== undefined || null 
-                &&$scope.timeData.amPm1 !== undefined || null  ){
+                $scope.delinquentJobDetails = timesheet;
+                
+                console.log($scope.areYouSure)
+                $scope.minVarOut = "";
+                $scope.minVarIn = "";
+                $scope.hrVarOut = "";
+                $scope.hrVarIn = "";
+
+                if($scope.timeData.hrsIn1 !==  null && $scope.timeData.hrsIn2 !==  null && 
+                $scope.timeData.minsIn1 !==  null && $scope.timeData.minsIn2 !==  null 
+                &&$scope.timeData.amPm1 !==  null
+                &&$scope.timeData.hrsOut1 !==  null
+                &&$scope.timeData.hrsOut2 !==  null
+                &&$scope.timeData.minOut2 !==  null
+                &&$scope.timeData.minsOut2 !==  null 
+                &&$scope.timeData.amPm2 !== null ){
+                    $scope.minVarOut = $scope.timeData.minsOut1 + $scope.timeData.minsOut2+ $scope.timeData.amPm2
+                    $scope.minVarIn =""+ $scope.timeData.minsIn1 + $scope.timeData.minsIn2+$scope.timeData.amPm1
+                    $scope.hrVarOut = $scope.timeData.hrsOut1 + $scope.timeData.hrsOut2
+                    $scope.hrVarIn = $scope.timeData.hrsIn1 + $scope.timeData. hrsIn2 
+                    $scope.delinquentJobDetails.timeout = $scope.hrVarOut +":"+ $scope.minVarOut
+                    $scope.delinquentJobDetails.timein =$scope.hrVarIn +":"+ $scope.minVarIn
+                    $scope.delinquentJobDetails.payperiodnum = $rootScope.payPeriod;
+                    $scope.delinquentJobDetails.user = $scope.currentUserFile;
+                    $scope.delinquentJobDetails.timesheetSubmitted = true;
+                    console.log($scope.hrVarOut)
+                    console.log($scope.hrVarIn)
+                    console.log($scope.minVarOut)
+                    console.log($scope.minVarIn)
+                    console.log($scope.timeData)
                     $scope.areYouSure =true;
+                    console.log($scope.areYouSure)
+
+                }else{
+                    console.log("null")
                 }
             }
             $scope.createClient = function () {
@@ -949,6 +1053,7 @@
                     $scope.commentsPageOpened = true
                     $scope.complaintsPageOpened = false;
                     $scope.delinquentTimeSheetSelected = false;
+                    $scope.delinquentTimeSheetPageOpened = false;
                     $scope.complaintsSelected = false;
                     $scope.userDetailsPageOpened = false;
                     $scope.payslipGenerationOpen = false;
@@ -967,6 +1072,7 @@
                     $scope.complaintsSelected = true;
                     $scope.complaintsPageOpened = true;
                     $scope.commentsSelected = false;
+                    $scope.delinquentTimeSheetPageOpened = false;
                     $scope.commentsPageOpened = false;
                     $scope.bookedJobsPageOpened = false;
                     $scope.delinquentTimeSheetSelected = false;
@@ -987,6 +1093,7 @@
                     $scope.complaintsPageOpened = false;
                     $scope.bookedJobsPageOpened = true;
                     $scope.delinquentTimeSheetSelected = false;
+                    $scope.delinquentTimeSheetPageOpened = false;
                     $scope.addJobPageOpen = false;
                     $scope.jobsPageOpen = true
                     $scope.complaintsSelected = false;
@@ -1320,16 +1427,24 @@
                             $scope.comments = data.data.users[i].comments;
                             $scope.payperiods = data.data.users[i].payperiods;
                             $scope.payPeriodHistory= data.data.users[i].payperiodhistory
+                           // console.log(data.data.users[i].delinquent)
                             if(data.data.users[i].delinquenttimesheets.length>0){
                                 $scope.delinquentTimeSheet = true;
+                                     for(var t = 0;t <data.data.users[i].delinquenttimesheets[0].length; t++){
+                              
+                                $scope.delinquentTimeSheetArray.push(data.data.users[i].delinquenttimesheets[0][t])
+                               
+                            }
                             }else{
                                 $scope.delinquentTimeSheet = false;
                             }
+                             console.log($scope.delinquentTimeSheetArray)
                             console.log($scope.payperiods)
                             console.log($scope.currentUserFile)
                             console.log($scope.payPeriodHistory)
                             $scope.payperiod = data.data.users[i].payperiodnum;
 
+                       
                             for (var k = 0; k < $scope.payperiods.length; k++) {
                                 //console.log($scope.payperiods[k].payperiodnum)
                                 //console.log($rootScope.payPeriod)
