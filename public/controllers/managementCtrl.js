@@ -1365,7 +1365,7 @@
             
 
                 }
-                 User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
+               //  User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
 
               console.log(data)
            })
@@ -2076,7 +2076,6 @@
                         $scope.payperiods = $scope.employees[i].payperiods;
                         $scope.payPeriodHistory = $scope.employees[i].payperiodhistory
                        // $timeout(function(){
-                            $scope.loadingPersonalHistory = false;
                         for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
                             //$scope.data
 
@@ -2116,6 +2115,7 @@
                             }
 
                         }
+                            $scope.loadingPersonalHistory = false;
 
                         //},2000)
                         //$scope.loadingPersonalHistory = false;
