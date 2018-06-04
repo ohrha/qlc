@@ -2111,7 +2111,7 @@
                                 }*/
                                 $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c].hoursCalculated;
 
-                                console.log(hours, minutes)
+                               // console.log(hours, minutes)
                             }
 
                         }
