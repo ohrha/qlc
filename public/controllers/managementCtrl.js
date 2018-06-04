@@ -1386,6 +1386,11 @@
             $scope.clientsPage = false;
             $scope.allEmployeesJobDetails = [];
 
+            if($scopee.usersLoaded){
+
+            }else{
+
+            }
 
             User.getUsers().then(function (data) {
                 //console.log(data)
@@ -1469,7 +1474,7 @@
                             if ($scope.allEmployeesJobDetails[s][k].timesheetSubmitted !== undefined) {
                                 //$scope.employees[z].name
                                 if ($scope.allEmployeesJobDetails[s][k].timesheetSubmitted && $scope.allEmployeesJobDetails[s][7].name == "ohrha harho" && $scope.employees[z].name == "ohrha harho") {
-                                    //console.log("Wet got the time", $scope.allEmployeesJobDetails[s][k])
+                                /*    //console.log("Wet got the time", $scope.allEmployeesJobDetails[s][k])
                                     $scope.timeObject.name = $scope.allEmployeesJobDetails[s][7].name;
                                     $scope.timeArray.push([$scope.allEmployeesJobDetails[s][k].timein, $scope.allEmployeesJobDetails[s][k].timeout])
                                     // console.log($scope.timeArray)
@@ -1483,7 +1488,8 @@
 
                                     $scope.timeObject.time = $scope.timeArray;
                                     // console.log($scope.timeObject)
-                                    for (var g = 0; g < $scope.allEmployeesJobDetails[s].length; g++) {
+                                /*  
+                                  for (var g = 0; g < $scope.allEmployeesJobDetails[s].length; g++) {
                                         //console.log($scope.allEmployeesJobDetails[s][g].timein)
                                         // console.log($scope.allEmployeesJobDetails[s][g].timeout)
                                         if ($scope.allEmployeesJobDetails[s][g].timein !== undefined && $scope.allEmployeesJobDetails[s][g].timeout !== undefined && $scope.allEmployeesJobDetails[s][7].name == "ohrha ahrho") {
@@ -1495,15 +1501,15 @@
                                             var minutes = parseInt(duration.asMinutes()) - hours * 60;
                                             alert(hours + ' hour and ' + minutes + ' minutes.')
 
-                                            /* var result = endTime.diff(startTime, 'hours') + " Hrs and " +
+                                             var result = endTime.diff(startTime, 'hours') + " Hrs and " +
                                                 endTime.diff(startTime, 'minutes') + " Mns";
                                             alert(result)
-                                            */
+                                            
 
-                                        }
+                               }
 
                                     }
-
+*/
 
 
                                 }
@@ -1576,7 +1582,7 @@
 
 
                 //console.log("$scope.allEmployeesJobDetails", $scope.allEmployeesJobDetails)
-                for (var t = 0; t < $scope.hoursArray.length; t++) {
+           /*     for (var t = 0; t < $scope.hoursArray.length; t++) {
                     //for(var x = 0; x<$scope.hoursArray[t].length; x++){
                     $scope.hourIterator = $scope.hourIterator + $scope.hoursArray[t][0];
                     $scope.minIterator = $scope.minIterator + $scope.hoursArray[t][1]
@@ -1604,6 +1610,7 @@
 
                     // }
                 }
+                */
                 if ($scope.minIterator >= 45) {
                 }
                 $scope.exportPdf = function () {
