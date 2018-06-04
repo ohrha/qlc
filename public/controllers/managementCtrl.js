@@ -2009,10 +2009,8 @@
                         $scope.comments = $scope.employees[i].comments;
                         $scope.payperiods = $scope.employees[i].payperiods;
                         $scope.payPeriodHistory = $scope.employees[i].payperiodhistory
-                        console.log($scope.payperiods)
-                        console.log($scope.currentUserFile)
-                        console.log($scope.payPeriodHistory)
-
+                        $timeout(function(){
+                            $scope.loadingPersonalHistory = false;
                         for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
                             //$scope.data
 
@@ -2021,6 +2019,11 @@
                             for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
                                 var hoursIterator = 0;
                                 var minIterator = 0;
+                                //console.log(c,$scope.payPeriodHistory[b].entry.length)
+                                // console.log("hoursIteratot",hoursIterator)
+
+
+
                                 $scope.labels[c] = $scope.payPeriodHistory[b].entry[c].date
 
                                 var startTime = moment($scope.payPeriodHistory[b].entry[c].timein, "HH:mm:ss a");
@@ -2046,20 +2049,12 @@
                             }
 
                         }
-                
 
-                        for (var k = 0; k < $scope.payperiods.length; k++) {
-                            //console.log($scope.payperiods[k].payperiodnum)
-                            //console.log($rootScope.payPeriod)
-                            if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
-                                console.log($scope.payperiods[k].jobDetails)
-
-                                $scope.jobDetails = $scope.payperiods[k].jobDetails
-                            }
-                           
-                        }
-                                                $scope.loadingPersonalHistory = false;
-
+                        },2000)
+                        //$scope.loadingPersonalHistory = false;
+                        console.log($scope.payperiods)
+                        console.log($scope.currentUserFile)
+                        console.log($scope.payPeriodHistory)
 
                     }
                 }
