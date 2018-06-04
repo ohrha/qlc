@@ -852,6 +852,61 @@
             $scope.employeesForHistory = [];
             $scope.pageLimit = 0;
             //$scope.pageArray=[];
+            if($scope.usersLoaded){
+
+                                   for (var i = 0; i <= $scope.employees.length; i++) {
+
+                            var page = 0;
+                            console.log($scope.pageLimit, i, $scope.employees.length)
+                            console.log($scope.employees)
+                            // var pageLimit = 4;//3i
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.employees.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.employees.length) {//5
+                                console.log("HELLO")
+                                console.log($scope.employees[i])
+                                console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.employees[i]) {
+                                    $scope.employeesForHistory.push($scope.employees[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+                                if (!$scope.usersLoaded) {
+
+                                    console.log("else")
+                                    //console.log($scope.pageArray)
+                                    $scope.loadingUsers = false;
+                                    $scope.employeesPaginated.push($scope.employeesForHistory)
+                                    console.log($scope.employeesPaginated)
+                                    $scope.employeesForHistory = [];
+                                    if ($scope.employees[i] !== undefined) {
+                                        $scope.employeesForHistory.push($scope.employees[i])
+                                    }
+                                    //console.log(pageLimit)
+                                    $scope.pageLimit = $scope.pageLimit + 4;
+                                    console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                    page++
+
+                                }
+
+                            }
+
+                        }
+                        $scope.loadingGeneralHistory = false;
+            }else{
             User.getUsers().then(function (data) {
                 console.log(data)
                 for (var z = 0; z < data.data.users.length; z++) {
@@ -897,6 +952,8 @@
                 }
                 $scope.employeesPaginated.push($scope.pageArray)
             })
+            }
+
         }
         $scope.openChartsPage = function () {
             $scope.chartsPageOpen = true;
@@ -1238,9 +1295,13 @@
         $scope.addPayPeriodToPayPeriodHistory = function (details) {
             $scope.employeeJobDetails.allEmployeesJobDetails = details;
             $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
+
             User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
+
                 console.log(data)
+
             })
+
         }
         $scope.openPayslipPage = function () {
 
