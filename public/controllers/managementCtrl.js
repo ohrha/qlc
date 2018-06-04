@@ -1484,7 +1484,7 @@
                     }
                     var nameVar = $scope.employees[z].name;
                     // console.log($scope.reportArray)
-                    if ($scope.employees[z].payperiodnum == $rootScope.payPeriod) {
+                   /* if ($scope.employees[z].payperiodnum == $rootScope.payPeriod) {
                         $scope.newPayPeriodObject.newpayperiod = $rootScope.payPeriod
 
                         User.changeUserPayPeriod($scope.newPayPeriodObject).then(function (data) {
@@ -1493,6 +1493,7 @@
 
                         })
                     }
+                    */
                 }
                 /* if($scope.employees[z].payperiodnum !== $rootScope.payPeriod){
                      $scope.allEmployeesJobDetails.historyupdated = false;

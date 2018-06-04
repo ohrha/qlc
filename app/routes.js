@@ -43,12 +43,12 @@ module.exports = function (app) {
                             }else{
                                // res.json({success: true, message:"User found and updated..."})
                                console.log("User History Updated...")
-                               User.findOneAndUpdate({name: currentName}, {$set:{payperiodnum:req.body.newpayperiod}},{new:true}, function(err,user3){
+                               User.findOneAndUpdate({name: currentName}, {$set:{payperiodnum:req.body.newpayperiod,historyupdated:true}},{new:true}, function(err,user3){
                                    if(err)throw err;
                                    if(!user3){
                                        res.json({success:false, message:"User not found so not updated.."})
                                    }else{
-                                       console.log("Pay Period updated...")
+                                       console.log("Pay Period updated, and History Updated Parameter Changed To True...")
                                    }
                                })
                             }
