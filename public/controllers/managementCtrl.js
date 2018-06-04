@@ -2054,7 +2054,12 @@
             $scope.currentUserPhoneNumber = phonenumber;
             $scope.delinquentTimeSheetArray = [];
             $scope.jobDetails = [];
-            User.getUsers().then(function (data) {
+
+            if($scope.usersLoaded){
+
+            }else{
+
+        User.getUsers().then(function (data) {
                 console.log(data)
                 // $scope.employees = data.data.users;
                 //$scope.jobDetails = data.data.users.jobDetails;
@@ -2118,6 +2123,9 @@
                 console.log($scope.payperiods)
                 console.log($scope.jobDetails)
             })
+            }
+
+    
             console.log(name);
             console.log("Curent User", $scope.currentUserFile)
             if (!$scope.userFilePage && $scope.currentUserFile == name) {
