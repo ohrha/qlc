@@ -844,6 +844,7 @@
         }
         $scope.openHistoryPage = function () {
             $scope.generalHistoryTitle =true;
+            $scope.personalHistoryTitle = false;
             $scope.historyPageOpen = true;
             $scope.chartsPageOpen = false;
             $scope.personalHistoryOpen = false;
@@ -1896,6 +1897,7 @@
 
 
             $scope.managementPage = true;
+            $scope.personalHistoryTitle = false;
             $scope.payslipPageOpen = false;
             $scope.employeesPage = false;
             $scope.payslipPageSelected = false;;
