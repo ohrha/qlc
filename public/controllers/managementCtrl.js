@@ -1365,7 +1365,7 @@
             
 
                 }
-               //  User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
+                 User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
 
               console.log(data)
            })
@@ -1375,7 +1375,7 @@
         
 
         }
-        $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+       // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
