@@ -2009,7 +2009,6 @@
                         $scope.comments = $scope.employees[i].comments;
                         $scope.payperiods = $scope.employees[i].payperiods;
                         $scope.payPeriodHistory = $scope.employees[i].payperiodhistory
-                        $scope.loadingPersonalHistory = false;
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
                         console.log($scope.payPeriodHistory)
@@ -2022,11 +2021,6 @@
                             for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
                                 var hoursIterator = 0;
                                 var minIterator = 0;
-                                //console.log(c,$scope.payPeriodHistory[b].entry.length)
-                                // console.log("hoursIteratot",hoursIterator)
-
-
-
                                 $scope.labels[c] = $scope.payPeriodHistory[b].entry[c].date
 
                                 var startTime = moment($scope.payPeriodHistory[b].entry[c].timein, "HH:mm:ss a");
@@ -2052,15 +2046,7 @@
                             }
 
                         }
-                        /*
-                        var startTime = moment($scope.allEmployeesJobDetails[s][k].timein, "HH:mm:ss a");
-                                    var endTime = moment($scope.allEmployeesJobDetails[s][k].timeout, "HH:mm:ss a");
-                                    var duration = moment.duration(endTime.diff(startTime));
-                                    var hours = parseInt(duration.asHours());
-                                    var minutes = parseInt(duration.asMinutes()) - hours * 60;
-
-                        $scope.payperiod = data.data.users[i].payperiodnum;
-                        */
+                
 
                         for (var k = 0; k < $scope.payperiods.length; k++) {
                             //console.log($scope.payperiods[k].payperiodnum)
@@ -2072,6 +2058,8 @@
                             }
                            
                         }
+                                                $scope.loadingPersonalHistory = false;
+
 
                     }
                 }
