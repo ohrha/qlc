@@ -1980,6 +1980,7 @@
         $scope.openUserFileHistory = function (name, phonenumber) {
             $scope.openJob = 0;
             $scope.generalHistoryOpen = false;
+            $scope.generalHistoryTitle = false;
             $scope.loadingPersonalHistory = true;
             $scope.personalHistoryTitle = true;
             $scope.personalHistoryOpen = true;
