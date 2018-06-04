@@ -631,7 +631,8 @@
 
 
                             <div ng-show="commentsPageOpened" class="col s12">
-                                <div class="row" ng-repeat="comment in comments">
+                               <p ng-show="commentsPageOpened && noComments"class = "railway underline animated fadeIn" style="font-size:20px;"ng-show=" noComments">No Comments Recieved</p>
+                                <div ng-show="!noComments"class="row" ng-repeat="comment in comments">
                                     <div class="col s1">
                                     </div>
                                     <div style="border-bottom:1px solid #ddd" class="col s10 animated fadeIn">
@@ -675,10 +676,12 @@
                             <div ng-show="complaintsPageOpened" class="col s12">
                                 <div class="row">
                                     <div class="col s12">
-                                        <p ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
+                                            <p ng-show="noComplaints"style="font-size:20px;" class = "railway underline animated fadeIn">No Complaints Lodged</p>
 
+                                        <p ng-show="!noComplaints" ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
 
-                                        <div ng-show="complaintsOpened">
+                                        
+                                        <div ng-show="complaintsOpened && !noComplaints">
                                             <div style="border:1px solid rgba(0,0,0,.6)">
                                                 <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>
                                             </div>
@@ -726,7 +729,7 @@
 
                                         </div>
                                         <!--jobsPageOpen && usersPageIndex == $index -->
-                                        <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                        <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated fadeIn" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                             <div ng-show="loadingNewJob" class="center-align animated fadeIn">
                                                 <p class="railway underline animated flash infinite " style="font-size:20px;">BOOKING NEW JOB</p>

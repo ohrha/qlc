@@ -42,6 +42,8 @@
         $scope.personalHistoryOpen = false;
         $scope.commentsPageOpened = false;
         $scope.commentsPageOpened = false;
+        $scope.noComments = false;
+        $scope.noComplaints = false;
         $scope.addJobPageOpen = false;
         $scope.commentsSelected = false;
         $scope.payslipGenerationOpen = false;
@@ -1729,6 +1731,7 @@
                 $scope.complaintsPageOpened = true;
                 $scope.commentsSelected = false;
                 $scope.delinquentTimeSheetPageOpened = false;
+                $scope.userDetailsPageOpened = false;
                 $scope.commentsPageOpened = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.delinquentTimeSheetSelected = false;
@@ -1764,6 +1767,10 @@
         $scope.openEmployeeList = function () {
 
             $scope.delinquentTimeSheet = false;
+            $scope.bookedJobsPageOpened = false;
+            $scope.bookedJobsSelected = false;
+            $scope.complaintsPageOpened = false;
+            $scope.complaintsSelected = false;
             //$scope.employeesPaginated = [];
             if ($scope.employeeListOpen) {
                 // $scope.employeeListOpen = false;
@@ -2125,6 +2132,12 @@
                         console.log($scope.currentUserFile)
                         // $scope.jobDetails = data.data.users[i].jobDetails;
                         $scope.comments = $scope.employees[i].comments;
+                        if($scope.comments.length <1){
+                            $scope.noComments = true;
+                        }
+                        if($scope.employees[i].complaints.length < 1){
+                            $scope.noComplaints = true;
+                        }
                         $scope.payperiods = $scope.employees[i].payperiods;
                         $scope.payPeriodHistory = $scope.employees[i].payperiodhistory
                         $scope.delinquenttimesheets = $scope.employees[i].delinquenttimesheets

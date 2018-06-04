@@ -14,6 +14,8 @@ var UserSchema = new Schema({
     delinquenttimesheets:{type:Array},
     historyupdated:{type:Boolean},
     payperiodhistory:{type:Array},
+    comments:{type:Array},
+    complaints:{type:Array},
     userclass:{type:String},
     active:{type:Boolean,required: false, default: false},
     temporarytoken: {type:String, required: false},

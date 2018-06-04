@@ -932,6 +932,8 @@ console.log(req.body)
             user.email = req.body.email;
         user.name = req.body.name;
         user.payperiodnum = payperiodnum;
+        user.complaints = []
+        user.comments = []
         console.log(user)
 
         if (req.body.userName == null || req.body.userName == "" || req.body.password == null || req.body.password == "" ||
