@@ -15,6 +15,8 @@
         $scope.loading = false;
         $scope.loadingUsers = false;
         $scope.loadingPersonalHistory = false;
+        $scope.generalHistoryTitle = false;
+        $scope.personalHistoryTitle = false;
         $scope.managementPage = true;
         $scope.clientsPage = false;
         $scope.payslipPageOpen = false;
@@ -841,6 +843,7 @@
             $scope.generatePaySlipPageOpen = false;
         }
         $scope.openHistoryPage = function () {
+            $scope.generalHistoryTitle =true;
             $scope.historyPageOpen = true;
             $scope.chartsPageOpen = false;
             $scope.personalHistoryOpen = false;
@@ -1976,6 +1979,7 @@
             $scope.openJob = 0;
             $scope.generalHistoryOpen = false;
             $scope.loadingPersonalHistory = true;
+            $scope.personalHistoryTitle = true;
             $scope.personalHistoryOpen = true;
             $scope.employeeHome = false;
             $scope.searchResults = false;
