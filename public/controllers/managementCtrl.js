@@ -844,6 +844,7 @@
             $scope.personalHistoryOpen = false;
             $scope.generatePaySlipPageOpen = false;
             $scope.loadingGeneralHistory = true;
+            $scope.loadingPersonalHistory= false;
             $scope.showChart = true;
             $scope.generalHistoryOpen = true;
             console.log($scope.generalHistoryOpen)
