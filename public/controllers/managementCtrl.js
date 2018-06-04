@@ -1386,7 +1386,7 @@
             $scope.clientsPage = false;
             $scope.allEmployeesJobDetails = [];
 
-            if($scopee.usersLoaded){
+            if($scope.usersLoaded){
 
             }else{
 
@@ -1444,7 +1444,11 @@
                     $scope.dateArray = []
                     $scope.jobDetailArray = []
                     $scope.report = {}
-                    for (var d = 0; d < $scope.employees[z].payperiods.length; d++) {
+
+
+
+                    /*changed*/
+                  /*  for (var d = 0; d < $scope.employees[z].payperiods.length; d++) {
 
                         if ($scope.employees[z].payperiods[d].payperiodnum == $scope.payPeriod) {
 
@@ -1463,7 +1467,7 @@
 
 
                     }
-
+*/
                     console.log($scope.allEmployeesJobDetails)
 
                     for (var s = 0; s < $scope.allEmployeesJobDetails.length; s++) {
@@ -2250,8 +2254,48 @@
             $scope.jobDetails = [];
 
             if ($scope.usersLoaded) {
+                console.log("users loaded")
+                User.findUser($scope.currentUserFile).then(function(data){
+                    console.log(data)
+                    $scope.comments = data.data.user[0].comments
+                      if($scope.comments.length <1){
+                            $scope.noComments = true;
+                        }
+                        if(data.data.user[0].complaints.length < 1){
+                            $scope.noComplaints = true;
+                        }
+                        $scope.payperiods = data.data.user[0].payperiods;
+                        $scope.payPeriodHistory = data.data.user[0].payperiodhistory
+                        $scope.delinquenttimesheets= data.data.user[0].delinquenttimesheets
+                          if ($scope.delinquenttimesheets.length > 0) {
+                            $scope.delinquentTimeSheet = true;
+                            for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
 
-                for (var i = 0; i < $scope.employees.length; i++) {
+                                $scope.delinquentTimeSheetArray.push($scope.delinquenttimesheets[0][t])
+
+                            }
+                        } else {
+                            $scope.delinquentTimeSheet = false;
+                        }
+                        console.log($scope.delinquentTimeSheetArray)
+                        console.log($scope.payperiods)
+                        console.log($scope.currentUserFile)
+                        console.log($scope.payPeriodHistory)
+                        $scope.payperiod = data.data.user[0].payperiodnum;
+
+
+                        for (var k = 0; k < $scope.payperiods.length; k++) {
+                            //console.log($scope.payperiods[k].payperiodnum)
+                            //console.log($rootScope.payPeriod)
+                            if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
+                                console.log($scope.payperiods[k].jobDetails)
+
+                                $scope.jobDetails = $scope.payperiods[k].jobDetails
+                            }
+
+                        }
+                })
+             /*   for (var i = 0; i < $scope.employees.length; i++) {
                     if ($scope.employees[i].name == $scope.currentUserFile) {
                         console.log($scope.currentUserFile)
                         // $scope.jobDetails = data.data.users[i].jobDetails;
@@ -2295,7 +2339,7 @@
                         }
 
                     }
-                }
+                }*/
             } else {
 
                 User.getUsers().then(function (data) {
