@@ -28,6 +28,7 @@ module.exports = function (app) {
         */
         app.post('/users/changeuserpayperiod', function(req,res){
             var currentName = ""
+            console.log(req.body.newpayperiod)
             User.find({}, function(err,user){
                 if(err)throw err;
                 if(!user){
@@ -635,10 +636,302 @@ console.log(req.body)
     app.post('/users', function (req, res) {
         console.log("Route Hit")
         var user = new User();
+        var date = new Date();
+        var dateNow = date.getDate()
+        var month = date.getMonth() + 1;
+        var payperiodnum =0;
+
+        if (month == 6) {
+
+            if (dateNow == 1 || dateNow == 2 || dateNow == 3) {
+
+                payperiodnum = 1;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 4 || dateNow == 5 || dateNow == 6 || dateNow == 7 || dateNow == 8 || dateNow == 9 || dateNow == 10) {
+
+                payperiodnum = 2;
+                console.log("payperiodnum", payperiodnum)
+                newPPObject = {}
+                newPPObject.newpayperiod = payperiodnum;
+                /* User.getUsers().then(function(data){
+                     for(var z= 0; z< data.data.users.length;z++){
+                         for(var d = 0; d< data.data.users[z].length; d++){
+ 
+                         }
+                     }
+                 })
+                 */
+              /*  User.changeUserPayPeriod(newPPObject).then(function (data) {
+                    console.log(data)
+                    if (data.data.success) {
+                        payPeriodUpdated = true;
+                        //$timeout(function(){
+                        //    payPeriodUpdated = false;
+                        //},)
+                    }
+                })
+                */
+
+            }
+            if (dateNow == 11 || dateNow == 12 || dateNow == 13 || dateNow == 14 || dateNow == 15 || dateNow == 16 || dateNow == 17) {
+
+                payperiodnum = 3;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 18 || dateNow == 19 || dateNow == 20 || dateNow == 21 || dateNow == 22 || dateNow == 23 || dateNow == 24) {
+
+                payperiodnum = 4;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 25 || dateNow == 26 || dateNow == 27 || dateNow == 28 || dateNow == 39 || dateNow == 30) {
+
+                payperiodnum = 5;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+        if (month == 7) {
+            if (dateNow == 1) {
+
+                payperiodnum = 5;
+                console.log("payperiodnum", payperiodnum)
+
+            }
+            if (dateNow == 2 || 3 || 4 || 5 || 6 || 7 || 8) {
+
+                payperiodnum = 6;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 9 || 10 || 11 || 12 || 13 || 14 || 15) {
+
+                payperiodnum = 7;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 16 || 17 || 18 || 19 || 20 || 21 || 22) {
+
+                payperiodnum = 8;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 23 || 24 || 25 || 26 || 27 || 28 || 29) {
+
+                payperiodnum = 9;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 30 || 31) {
+
+                payperiodnum = 10;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+        if (month == 8) {
+            if (dateNow == 1 || 2 || 3 || 4 || 5) {
+
+                payperiodnum = 10;
+                console.log("payperiodnum", payperiodnum)
+
+            }
+            if (dateNow == 6 || 7 || 8 || 9 || 10 || 11 || 12) {
+
+                payperiodnum = 11;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 13 || 14 || 15 || 16 || 17 || 18 || 19) {
+
+                payperiodnum = 12;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 20 || 21 || 22 || 23 || 24 || 25 || 26) {
+
+                payperiodnum = 13;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 27 || 28 || 29 || 30 || 31) {
+
+                payperiodnum = 14;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+        if (month == 9) {
+            if (dateNow == 1 || 2) {
+
+                payperiodnum = 15;
+                console.log("payperiodnum", payperiodnum)
+
+            }
+            if (dateNow == 3 || 4 || 5 || 6 || 7 || 8 || 9) {
+
+                payperiodnum = 16;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 10 || 11 || 12 || 13 || 14 || 15 || 16) {
+
+                payperiodnum = 17;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 17 || 18 || 19 || 20 || 21 || 22 || 23) {
+
+                payperiodnum = 18;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 24 || 25 || 26 || 27 || 28 || 29 || 30) {
+
+                payperiodnum = 19;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+        if (month == 10) {
+            if (dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
+
+                payperiodnum = 20;
+                console.log("payperiodnum", payperiodnum)
+
+            }
+            if (dateNow == 8 || 9 || 10 || 11 || 12 || 13 || 14) {
+
+                payperiodnum = 21;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 15 || 16 || 17 || 18 || 19 || 20 || 21) {
+
+                payperiodnum = 22;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 22 || 23 || 24 || 25 || 26 || 27 || 28) {
+
+                payperiodnum = 23;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 29 || 30 || 31) {
+
+                payperiodnum = 24;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+        if (month == 11) {
+            if (dateNow == 1 || 2 || 3 || 4) {
+
+                payperiodnum = 24;
+                console.log("payperiodnum", payperiodnum)
+
+            }
+            if (dateNow == 5 || 6 || 7 || 8 || 9 || 10 || 11) {
+
+                payperiodnum = 25;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 12 || 13 || 14 || 15 || 16 || 17 || 18) {
+
+                payperiodnum = 26;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 19 || 20 || 21 || 22 || 23 || 24 || 25) {
+
+                payperiodnum = 27;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 26 || 27 || 28 || 29 || 30) {
+
+                payperiodnum = 28;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+        if (month == 12) {
+            if (dateNow == 1 || 2) {
+
+                payperiodnum = 29;
+                console.log("payperiodnum", payperiodnum)
+
+            }
+            if (dateNow == 3 || 4 || 5 || 6 || 7 || 8 || 9) {
+
+                payperiodnum = 30;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 10 || 11 || 12 || 13 || 14 || 15 || 16) {
+
+                payperiodnum = 31;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 17 || 18 || 19 || 20 || 21 || 22 || 23) {
+
+                payperiodnum = 32;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 24 || 25 || 26 || 27 || 28 || 29 || 30) {
+
+                payperiodnum = 33;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+        }
+
+
+
+
+
+
         user.username = req.body.userName;
         user.password = req.body.password.toString(),
             user.email = req.body.email;
         user.name = req.body.name;
+        user.payperiodnum = payperiodnum;
         console.log(user)
 
         if (req.body.userName == null || req.body.userName == "" || req.body.password == null || req.body.password == "" ||
@@ -657,7 +950,7 @@ console.log(req.body)
                 console.log(payperiods[0].currentuser)
                 user.payperiods = payperiods;
                 console.log(user.payperiods[0].currentuser)
-                user.payperiodnum = 5;
+                //user.payperiodnum = 5;
                 user.save(function (err) {
                     if (err) {
 
