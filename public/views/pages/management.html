@@ -438,53 +438,7 @@
                                <div ng-show="loadingCurrentEmployee" class="col s12">
                                 <p class="railway animated flash infinite" >LOADING</p>
                             </div>
-                    </div>
-                   <!-- <div ng-show = "!employeeHome &&loadingCurrentEmployee" class = "col s9" style="border-right:1px solidd #ddd">
-                            <a href="#" style="color:black;">
-                                <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
-                                    {{currentUserFile}} |</p>
-                            </a>
-                            <div class="row">
-                                <div style="opacity:0;" class="col s1">
-                                </div>
-                    -->
-                                <!-- CURRENT USER FILE MENU -->
-                    <!--
-                                <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s10 center-align">
-                                    <a href="#" style="color:black;">
-                                <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
-                            </a>
-                                    <a href="#" style="color:black;">
-                                <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
-                            </a>
-                                    <a href="#" style="color:black;">
-                                <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
-                            </a>
-                                    <a href="#" style="color:black;">
-                                <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-                            </a>
-                                    <a ng-show="delinquentTimeSheet"href="#" style="color:black;">
-                                <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                            </a>
-
-                                </div>
-                                -->
-                                <!-- CURRENT USER FILE MENU -->
-
-                        <!--
-                                <div class="col s1">
-                                </div>
-
-
-                            </div>
-
-                                                  <p class = "railway animated flash infinite"> LOADING JOB DETAIL</p>
-                                                  
-
-                        
-                    </div>
-                    -->
-                    <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
+                               <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
 
                         <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
                            
@@ -1032,6 +986,53 @@
                         <!--<p class="railway">Main Page</p>-->
                     </div>
 
+                    </div>
+                   <!-- <div ng-show = "!employeeHome &&loadingCurrentEmployee" class = "col s9" style="border-right:1px solidd #ddd">
+                            <a href="#" style="color:black;">
+                                <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
+                                    {{currentUserFile}} |</p>
+                            </a>
+                            <div class="row">
+                                <div style="opacity:0;" class="col s1">
+                                </div>
+                    -->
+                                <!-- CURRENT USER FILE MENU -->
+                    <!--
+                                <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s10 center-align">
+                                    <a href="#" style="color:black;">
+                                <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
+                            </a>
+                                    <a href="#" style="color:black;">
+                                <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
+                            </a>
+                                    <a href="#" style="color:black;">
+                                <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
+                            </a>
+                                    <a href="#" style="color:black;">
+                                <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                            </a>
+                                    <a ng-show="delinquentTimeSheet"href="#" style="color:black;">
+                                <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
+                            </a>
+
+                                </div>
+                                -->
+                                <!-- CURRENT USER FILE MENU -->
+
+                        <!--
+                                <div class="col s1">
+                                </div>
+
+
+                            </div>
+
+                                                  <p class = "railway animated flash infinite"> LOADING JOB DETAIL</p>
+                                                  
+
+                        
+                    </div>
+                    -->
+                 
 
 
                 </div>
