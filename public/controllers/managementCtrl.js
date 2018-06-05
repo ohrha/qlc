@@ -1106,7 +1106,7 @@
                 console.log(data)
                 userDetails.phonenumber =data.data.user[0].phonenumber
                 userDetails.from = "Hannah @ QLH"
-                userDetails.text = "You've been booked for"+date+"@"+location+"for"+client+". Please text to confirm..."
+                userDetails.text = "You've been booked for "+date+" @ "+location+" for "+client+". Please text to confirm..."
                 User.sendSms(userDetails).then(function(data){
                     console.log(data)
                 })
