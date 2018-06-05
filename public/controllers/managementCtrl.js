@@ -2267,7 +2267,7 @@
                         $scope.payperiods = data.data.user[0].payperiods;
                         $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                         $scope.delinquenttimesheets= data.data.user[0].delinquenttimesheets
-                          if ($scope.delinquenttimesheets.length > 0) {
+                         /* if ($scope.delinquenttimesheets.length > 0) {
                             $scope.delinquentTimeSheet = true;
                             for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
 
@@ -2277,6 +2277,7 @@
                         } else {
                             $scope.delinquentTimeSheet = false;
                         }
+                        */
                         console.log($scope.delinquentTimeSheetArray)
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
