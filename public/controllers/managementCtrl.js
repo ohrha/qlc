@@ -79,6 +79,7 @@
         $scope.delinquentTimeSheet = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
+        $scope.currentEmployee = [];
         $scope.employeesForHistory = [];
         $scope.employeesPaginated = [];
         $scope.payPeriods = [];
@@ -2257,6 +2258,7 @@
                 console.log("users loaded")
                 User.findUser($scope.currentUserFile).then(function(data){
                     console.log(data)
+                    $scope.currentEmployee = data.data.user[0]
                     $scope.comments = data.data.user[0].comments
                       if($scope.comments.length <1){
                             $scope.noComments = true;

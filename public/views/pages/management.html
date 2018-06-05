@@ -397,7 +397,7 @@
                         </p>
                     </div>
 
-                    <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in employees">
+                    <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
 
                         <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
                             <a href="#" style="color:black;">
