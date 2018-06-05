@@ -2315,17 +2315,17 @@
                         $scope.payperiods = data.data.user[0].payperiods;
                         $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                         $scope.delinquenttimesheets= data.data.user[0].delinquenttimesheets
-                         /* if ($scope.delinquenttimesheets.length > 0) {
-                            $scope.delinquentTimeSheet = true;
-                            for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
+                        if($scope.delinquenttimesheets.length>0){
+                             $scope.delinquentTimeSheet = true;
+                               for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
 
                                 $scope.delinquentTimeSheetArray.push($scope.delinquenttimesheets[0][t])
 
                             }
-                        } else {
+                        }else{
                             $scope.delinquentTimeSheet = false;
                         }
-                        */
+                  
                         console.log($scope.delinquentTimeSheetArray)
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
