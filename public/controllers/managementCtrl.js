@@ -2237,13 +2237,15 @@
             }
         }
         $scope.openUserFile = function (name, phonenumber) {
+             $scope.employeeListOpen = false;
             $scope.openJob = 0;
             
             $scope.employeeHome = false;
+                       
+
             $scope.loadingCurrentEmployee = true;
             $scope.searchResults = false;
             $scope.userList = false;
-            $scope.employeeListOpen = false;
             $scope.userDetailsPageOpened = true;
             $scope.delinquentTimeSheetPageOpened = false;
             $scope.bookedJobsPageOpened = false;
