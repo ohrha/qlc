@@ -1078,19 +1078,22 @@
             var date = $scope.jobData.date;
             var location = $scope.jobData.location
             var client = $scope.jobData.client
-            User.findUser($scope.jobData.currentuser).then(function(data){
+           
                 console.log(data)
                 userDetails.phonenumber =data.data.user[0].phonenumber
                 userDetails.from = "Hannah @ QLH"
                 userDetails.text = "You've been booked for "+date+" @ "+location+" for "+client+". Please text to confirm..."
                 User.sendSms(userDetails).then(function(data){
                     console.log(data)
+                    var userDetails = {}
+                      userDetails.phonenumber =data.data.user[0].phonenumber
+                userDetails.from = "Hannah @ QLH"
                     userDetails.text = $scope.jobData.notes;
                     User.sendSms(userDetails).then(function(data){
                         console.log(data)
                     })
                 })
-            })
+            
                         $scope.loadingNewJob = false;
                         $scope.addJobPageOpen = false;
                         $scope.jobsPageOpen = true;
