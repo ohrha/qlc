@@ -2237,6 +2237,8 @@
             }
         }
         $scope.openUserFile = function (name, phonenumber) {
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+
             $scope.openJob = 0;
             
             $scope.employeeHome = false;
