@@ -61,6 +61,7 @@
         $scope.incompletePayPeriodPageOpen = false;
         $scope.chartsPageOpen = true;
         $scope.usersPageIndex = ""
+        $scope.textName = ""
         $scope.userDetailsPageOpened = true;
         $scope.delinquentTimeSheetPageOpened = false;
         $scope.timesheetEntryOpen = true;
@@ -1057,6 +1058,7 @@ console.log(userData
 $scope.loadingText = true;
             var userDetails = {}
             userDetails.name = userData.jobDetails[0].currentuser
+            $scope.textName = userData.jobDetails[0].currentuser
               User.findUser(userData.jobDetails[0].currentuser).then(function (data) {
                         console.log(data.data.user.payperiodnum)
                       
