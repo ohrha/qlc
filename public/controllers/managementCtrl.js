@@ -2284,7 +2284,10 @@
                         $scope.payperiod = data.data.user[0].payperiodnum;
 
 
-                        for (var k = 0; k < $scope.payperiods.length; k++) {
+
+                /* NOT NEEDED WHEN ONLY ONE PAY PERIOD EXISTS... */
+                
+                       /* for (var k = 0; k < $scope.payperiods.length; k++) {
                             //console.log($scope.payperiods[k].payperiodnum)
                             //console.log($rootScope.payPeriod)
                             if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
@@ -2294,6 +2297,12 @@
                             }
 
                         }
+                        */
+                        $scope.jobDetails = $scope.payperiods[0].jobDetails
+                        
+
+               /*NOT NEEDED WHEN ONLY ONE PAY PERIOD EXISTS...*/         
+
                 })
              /*   for (var i = 0; i < $scope.employees.length; i++) {
                     if ($scope.employees[i].name == $scope.currentUserFile) {
