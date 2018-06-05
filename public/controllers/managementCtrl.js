@@ -2242,7 +2242,7 @@
             }
         }
         $scope.openUserFile = function (name, phonenumber) {
-            $('html, body').animate({ scrollTop: 0 }, 'slow');
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
 
             $scope.openJob = 0;
             
