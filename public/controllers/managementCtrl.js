@@ -2258,7 +2258,8 @@
                 console.log("users loaded")
                 User.findUser($scope.currentUserFile).then(function(data){
                     console.log(data)
-                    $scope.currentEmployee = data.data.user[0]
+                    $scope.currentEmployee = data.data.user
+                   // console.log
                     $scope.comments = data.data.user[0].comments
                       if($scope.comments.length <1){
                             $scope.noComments = true;
