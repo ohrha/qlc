@@ -1070,6 +1070,7 @@ $scope.loadingText = true;
                           }
                       })
 })
+        }
         $scope.addJobData = function (date, day, fulldate, index) {
             $scope.loadingNewJob = true;
             $scope.jobData.booked = true;
