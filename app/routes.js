@@ -242,6 +242,7 @@ console.log(req.body)
                                 res.json({ success: false, message: "User not found, so not updated..." })
                             } else {
                                 res.json({ success: true, message: "User found and updated..", user: user })
+                               //console.log("user found and updated..")
                             }
                         })
                     }
@@ -253,7 +254,7 @@ console.log(req.body)
 
                 //res.json({success: true, message: "User found..."})
             }
-            res.json({success: false, message:"User Delinquent Time Sheet Already Exists!"})
+           // res.json({success: false, message:"User Delinquent Time Sheet Already Exists!"})
         })
     })
     app.put('/clients/create/:clientName', function (req, res) {
