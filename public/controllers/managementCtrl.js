@@ -1058,7 +1058,7 @@ console.log(userData
 $scope.loadingText = true;
             var userDetails = {}
             userDetails.name = userData.jobDetails[0].currentuser
-            $scope.textName = userData.jobDetails[0].currentuser
+            $scope.textName = userData.name[0]
               User.findUser(userData.jobDetails[0].currentuser).then(function (data) {
                         console.log(data.data.user.payperiodnum)
                       
