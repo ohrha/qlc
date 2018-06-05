@@ -1051,6 +1051,25 @@
             })
         }
 
+        $scope.sendTimeSheetReminderText = function(date,userData){
+console.log(userData
+)
+$scope.loadingText = true;
+            var userDetails = {}
+            userDetails.name = userData.jobDetails[0].currentuser
+              User.findUser(userData.jobDetails[0].currentuser).then(function (data) {
+                        console.log(data.data.user.payperiodnum)
+                      
+                      userDetails.phonenumber =  data.data.user[0].phonenumber
+                      userDetails.from = "Hannah @ QLH"
+                      userDetails.text = "Just, a reminder that you're timesheet for "+userData.jobDetails[0].date+" (Benjamin @ SkyCity), has not been submitted, please submit by Sunday Evening, or it will be placed on a later pay period. Thanks...-Hannah @ QLH."
+                      User.sendSms(userDetails).then(function(data){
+                          if(data.data.success){
+                              $scope.loadingText = false;
+                              console.log(data)
+                          }
+                      })
+})
         $scope.addJobData = function (date, day, fulldate, index) {
             $scope.loadingNewJob = true;
             $scope.jobData.booked = true;

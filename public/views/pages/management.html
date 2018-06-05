@@ -237,6 +237,10 @@
                             These following users have failed to submit timesheets for this pay period..
                         </p>
                         <div class = "animated flash" ng-repeat="report in reportArray track by $index">
+                            <div ng-show="loadingText">
+                                <p class = "railway animated flash infinite"> SENDING SMS TO {{report.name[0]}}</p>
+                            </div>
+                            <div ng-show="!loadingText">
                             <div class = "col s4">
                             <p class="railway">
                                 {{report.name[0]}}
@@ -249,7 +253,8 @@
                             </div>
                             <div class = "col s4">
                                 <p class = "railway">Text {{report.name[0]}}</p>
-                                <i class = "material-icons">sms</i>
+                                <i ng-click ="sendTimeSheetReminderText(date,report)" class = "material-icons">sms</i>
+                            </div>
                             </div>
                       
                         </div>
