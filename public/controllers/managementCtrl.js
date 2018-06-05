@@ -1096,7 +1096,21 @@
 
             console.log($scope.jobData)
         }
-        $scope.openAddJobPage = function () {
+        $scope.openAddJobPage = function (job) {
+            console.log(job)
+            var userDetails = {}
+            var date = job.date;
+            var location = job.location
+            var client = job.client
+            User.findUser(job.currentuser).then(function(data){
+                console.log(data)
+                userDetails.phonenumber =data.data.user[0].phonenumber
+                userDetails.from = "Hannah @ QLH"
+                userDetails.text = "You've been booked for"+date+"@"+location+"for"+client+". Please text to confirm..."
+                User.sendSms(userDetails).then(function(data){
+                    console.log(data)
+                })
+            })
             if (!$scope.addJobPage) {
                 $scope.addJobPageOpen = true;
                 $scope.jobsPageOpen = false;

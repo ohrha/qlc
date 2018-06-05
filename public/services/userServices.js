@@ -36,6 +36,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.changeUserPayPeriod= function(details){
         return $http.post('/api/users/changeuserpayperiod',details)
     }
+    userFactory.sendSms = function(userDetails){
+        return $http.post('/api/users/sendsms', userDetails)
+    }
 
 
        //User.getPermission();

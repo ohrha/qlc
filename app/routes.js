@@ -10,6 +10,12 @@ var jwt = require('jsonwebtoken');
 var secret = "negus";
 var html = fs.readFileSync('./public/views/pages/management.html', 'utf8');
 var options = { format: 'Letter' };
+const Nexmo = require('nexmo')
+
+const nexmo = new Nexmo({
+  apiKey: "77cb479c",
+  apiSecret: "v9aUDYrRVOEMYIDA"
+})
 
 module.exports = function (app) {
     /*
@@ -26,6 +32,16 @@ module.exports = function (app) {
     
         })
         */
+        app.post('/users/sendsms', function(req,res){
+
+            const from = req.body.from
+const to = req.body.phonenumber
+const text = req.body.text
+
+nexmo.message.sendSms(from, to, text)
+res.send({success: true, message: "Text Message Successfully Sent"})
+
+        })
         app.post('/users/changeuserpayperiod', function(req,res){
             var currentName = ""
             console.log(req.body.newpayperiod)
