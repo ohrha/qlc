@@ -915,6 +915,7 @@ console.log(req.body)
             user.email = req.body.email;
         user.name = req.body.name;
         user.payperiodnum = payperiodnum;
+        user.historyupdated = false;
         user.complaints = []
         user.comments = []
         console.log(user)

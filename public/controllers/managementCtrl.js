@@ -1848,6 +1848,7 @@
         }
         $scope.openEmployeeList = function () {
 
+            
             $scope.delinquentTimeSheet = false;
             $scope.bookedJobsPageOpened = false;
             $scope.bookedJobsSelected = false;
@@ -1858,6 +1859,8 @@
                 // $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
                 $scope.userFilePage = false;
+                $scope.employeeHome= false;
+                console.log($scope.employeeHome)
 
             } else {
                 if (!$scope.usersLoaded) {
@@ -1932,12 +1935,14 @@
                 } else {
                     console.log("HERE")
                     $scope.loadingUsers = true;
+                    $scope.employeeHome = false;
                     $timeout(function () {
                         $scope.loadingUsers = false;
                         $scope.usersLoaded = true;
+                        
                     }, 1000)
                     $scope.employeeListOpen = true;
-
+                    
                     $scope.delinquentTimeSheetPageOpened = false;
                     $scope.payslipGenerationOpen = false;
                     $scope.userFilePage = false;
@@ -2240,6 +2245,7 @@
             $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             $scope.openJob = 0;
+            
             
             $scope.employeeHome = false;
             $scope.loadingCurrentEmployee = true;
