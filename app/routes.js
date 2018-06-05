@@ -656,24 +656,7 @@ console.log(req.body)
                 console.log("payperiodnum", payperiodnum)
                 newPPObject = {}
                 newPPObject.newpayperiod = payperiodnum;
-                /* User.getUsers().then(function(data){
-                     for(var z= 0; z< data.data.users.length;z++){
-                         for(var d = 0; d< data.data.users[z].length; d++){
- 
-                         }
-                     }
-                 })
-                 */
-              /*  User.changeUserPayPeriod(newPPObject).then(function (data) {
-                    console.log(data)
-                    if (data.data.success) {
-                        payPeriodUpdated = true;
-                        //$timeout(function(){
-                        //    payPeriodUpdated = false;
-                        //},)
-                    }
-                })
-                */
+            
 
             }
             if (dateNow == 11 || dateNow == 12 || dateNow == 13 || dateNow == 14 || dateNow == 15 || dateNow == 16 || dateNow == 17) {
@@ -943,7 +926,27 @@ console.log(req.body)
 
         } else {
             console.log("Here i am")
-            PayPeriod.find({}, function (err, payperiods) {
+            PayPeriod.find({payperiodnum:payperiodnum}, function(err,payperiod){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"Pay Period Not Found..."})
+                }else{
+
+                    console.log(payperiod)
+                    user.payperiods = payperiod
+                    user.save(function(err){
+                        if(err){
+                            res.json({success: false, message:"Save Failed..."})
+                        }else{
+                            res.json({success:true,message:"Save Successful,", user:user})
+                        }
+
+                   })
+
+                }
+
+            })
+           /* PayPeriod.find({payperiodnum:payperiodnum}, function (err, payperiods) {
                 console.log("hello", payperiods.length)
                 for (var i = 0; i < payperiods.length; i++) {
                     payperiods[i].currentuser = req.body.name;
@@ -966,14 +969,14 @@ console.log(req.body)
                              res.json({success: false, message: "Username or email already exists.."})
                          } else {*/
                         //res.send("userCreated");
-                        res.json({ success: true, message: "User Created Successfully.", user: user })
+                        //res.json({ success: true, message: "User Created Successfully.", user: user })
                         /* }*/
 
 
-                    }
+                  /*  }
                 })
 
-            })
+            })*/
 
         }
 

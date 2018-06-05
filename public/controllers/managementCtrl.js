@@ -2269,11 +2269,11 @@
                         $scope.delinquenttimesheets= data.data.user[0].delinquenttimesheets
                           if ($scope.delinquenttimesheets.length > 0) {
                             $scope.delinquentTimeSheet = true;
-                           /* for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
+                            for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
 
                                 $scope.delinquentTimeSheetArray.push($scope.delinquenttimesheets[0][t])
 
-                            }*/
+                            }
                         } else {
                             $scope.delinquentTimeSheet = false;
                         }
