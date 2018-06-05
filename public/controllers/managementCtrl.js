@@ -1315,13 +1315,13 @@
 
                      for (var k = 0; k < data.data.users[d].payperiods.length; k++) {
 
-                            if (data.data.users[d].payperiods[k].payperiodnum == $rootScope.payPeriod) {
+                            if (data.data.users[d].payperiods[0].payperiodnum == $rootScope.payPeriod) {
 
 
                                    $scope.nameObject = {}
                             $scope.nameObject.name = $scope.employees[d].name
-                            data.data.users[d].payperiods[k].jobDetails.push($scope.nameObject)
-                            $scope.allEmployeesJobDetails.push(data.data.users[d].payperiods[k].jobDetails)
+                            data.data.users[d].payperiods[0].jobDetails.push($scope.nameObject)
+                            $scope.allEmployeesJobDetails.push(data.data.users[d].payperiods[0].jobDetails)
                         }
                         
                      }
@@ -1376,7 +1376,7 @@
         
 
         }
-       // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+        $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
