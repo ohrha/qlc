@@ -922,6 +922,7 @@ console.log(req.body)
 
 
         user.username = req.body.userName;
+        user.phonenumber = req.body.phonenumber;
         user.password = req.body.password.toString(),
             user.email = req.body.email;
         user.name = req.body.name;

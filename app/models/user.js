@@ -13,6 +13,7 @@ var UserSchema = new Schema({
     payperiodnum:{type:Number},
     delinquenttimesheets:{type:Array},
     historyupdated:{type:Boolean},
+    phonenumber:{type:Number},
     payperiodhistory:{type:Array},
     comments:{type:Array},
     complaints:{type:Array},
