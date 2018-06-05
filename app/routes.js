@@ -39,7 +39,7 @@ const to = req.body.phonenumber
 const text = req.body.text
 
 nexmo.message.sendSms(from, to, text)
-res.send({success: true, message: "Text Message Successfully Sent"})
+res.send({success: true, message: "Text Message Successfully Sent", text:text})
 
         })
         app.post('/users/changeuserpayperiod', function(req,res){
