@@ -396,8 +396,12 @@
                             A Simple way to manage your employees...
                         </p>
                     </div>
+                    <div ng-show = "!employeeHome &&loadingCurrentEmployee" class = "col s9" style="border-right:1px solidd #ddd">
+                                                  <p class = "railway animated flash infinite"> LOADING JOB DETAIL</p>
 
-                    <div ng-show="!employeeHome" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
+                        
+                    </div>
+                    <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s9" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
 
                         <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
                             <a href="#" style="color:black;">

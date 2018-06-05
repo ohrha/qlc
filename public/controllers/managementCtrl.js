@@ -2238,7 +2238,9 @@
         }
         $scope.openUserFile = function (name, phonenumber) {
             $scope.openJob = 0;
+            
             $scope.employeeHome = false;
+            $scope.loadingCurrentEmployee = true;
             $scope.searchResults = false;
             $scope.userList = false;
             $scope.employeeListOpen = false;
@@ -2259,6 +2261,7 @@
                 User.findUser($scope.currentUserFile).then(function(data){
                     console.log(data)
                     $scope.currentEmployee = data.data.user
+                    $scope.loadingCurrentEmployee = false;
                    // console.log
                     $scope.comments = data.data.user[0].comments
                       if($scope.comments.length <1){
