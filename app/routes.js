@@ -11,11 +11,21 @@ var secret = "negus";
 var html = fs.readFileSync('./public/views/pages/management.html', 'utf8');
 var options = { format: 'Letter' };
 const Nexmo = require('nexmo')
+var text = require('textbelt');
+var opts = {};
+opts.region = 'intl'
+console.log(text)
 
+ /*text.sendText('9491234567', 'A sample text message!', undefined, function(err) {
+  if (err) {
+    console.log(err);
+  }
+});*/
 const nexmo = new Nexmo({
   apiKey: "77cb479c",
   apiSecret: "v9aUDYrRVOEMYIDA"
 })
+
 
 module.exports = function (app) {
     /*

@@ -820,14 +820,26 @@
 
 
                                         </div>
-                                        <div ng-show="openJob == $index && jobsPageOpen && !job.booked " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                        <!-- <div ng-show="openJob == $index && jobsPageOpen && !job.booked && job.dateHasPassed " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
+                                        
 
+                                        </div>-->
+                                        <div ng-show="openJob == $index && jobsPageOpen && !job.booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+
+                                            <div ng-show="!job.dateHasPassed">
                                             <span class="railway  ">Would You Like To Book This Date?</span>
                                             <br>
                                             <br>
                                             <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
-
+                                            </div>
+                                                 <div ng-show="job.dateHasPassed">
+                                                    <br>
+                                            <br>
+                                            <span class="railway  " style="color:grey; opacity:.5; font-size:17px;">Date Has Passed</span>
+                                            <br>
+                                            <br>
+                                            </div>
                                             <!--
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
                                     <span class="railway  underline">Supervisor</span>
@@ -838,13 +850,22 @@
                                         </div>
                                         <div ng-show="openJob == $index && jobsPageOpen && job.booked " class="col s9 animated fadeInF" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-
+                                            
+                                            <div ng-show="!job.dateHasPassed">
                                             <span class="railway  underline">Client</span>
                                             <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
                                             <span class="railway  underline">Supervisor</span>
                                             <p class="railway  "> {{jobDetails[openJob].supervisor}}</p>
                                             <span class="railway underline">Location</span>
                                             <p class="railway  "> {{jobDetails[openJob].location}}</p>
+                                            </div>
+                                            <div ng-show="job.dateHasPassed">
+                                                    <br>
+                                            <br>
+                                            <span class="railway  " style="color:grey; opacity:.5; font-size:17px;">Date Has Passed</span>
+                                            <br>
+                                            <br>
+                                            </div>
                                         </div>
 
 

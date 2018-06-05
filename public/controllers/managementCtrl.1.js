@@ -2476,78 +2476,50 @@ $scope.loadingText = true;
                 }*/
             } else {
 
-                 User.findUser($scope.currentUserFile).then(function(data){
+                User.getUsers().then(function (data) {
                     console.log(data)
-                    $scope.currentEmployee = data.data.user
-                    $scope.loadingCurrentEmployee = false;
-                   // console.log
-                    $scope.comments = data.data.user[0].comments
-                      if($scope.comments.length <1){
-                            $scope.noComments = true;
-                        }
-                        if(data.data.user[0].complaints.length < 1){
-                            $scope.noComplaints = true;
-                        }
-                        $scope.payperiods = data.data.user[0].payperiods;
-                        $scope.payPeriodHistory = data.data.user[0].payperiodhistory
-                        $scope.delinquenttimesheets= data.data.user[0].delinquenttimesheets
-                        if($scope.delinquenttimesheets.length>0){
-                             $scope.delinquentTimeSheet = true;
-                               for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
+                    // $scope.employees = data.data.users;
+                    //$scope.jobDetails = data.data.users.jobDetails;
+                    for (var i = 0; i < data.data.users.length; i++) {
+                        if (data.data.users[i].name == $scope.currentUserFile) {
+                            console.log($scope.currentUserFile)
+                            // $scope.jobDetails = data.data.users[i].jobDetails;
+                            $scope.comments = data.data.users[i].comments;
+                            $scope.payperiods = data.data.users[i].payperiods;
+                            $scope.payPeriodHistory = data.data.users[i].payperiodhistory
+                            // console.log(data.data.users[i].delinquent)
+                            if (data.data.users[i].delinquenttimesheets.length > 0) {
+                                $scope.delinquentTimeSheet = true;
+                                for (var t = 0; t < data.data.users[i].delinquenttimesheets[0].length; t++) {
 
-                                $scope.delinquentTimeSheetArray.push($scope.delinquenttimesheets[0][t])
+                                    $scope.delinquentTimeSheetArray.push(data.data.users[i].delinquenttimesheets[0][t])
 
+                                }
+                            } else {
+                                $scope.delinquentTimeSheet = false;
                             }
-                        }else{
-                            $scope.delinquentTimeSheet = false;
-                        }
-                  
-                        console.log($scope.delinquentTimeSheetArray)
-                        console.log($scope.payperiods)
-                        console.log($scope.currentUserFile)
-                        console.log($scope.payPeriodHistory)
-                        $scope.payperiod = data.data.user[0].payperiodnum;
+                            console.log($scope.delinquentTimeSheetArray)
+                            console.log($scope.payperiods)
+                            console.log($scope.currentUserFile)
+                            console.log($scope.payPeriodHistory)
+                            $scope.payperiod = data.data.users[i].payperiodnum;
 
 
+                            for (var k = 0; k < $scope.payperiods.length; k++) {
+                                //console.log($scope.payperiods[k].payperiodnum)
+                                //console.log($rootScope.payPeriod)
+                                if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
+                                    console.log($scope.payperiods[k].jobDetails)
 
-                /* NOT NEEDED WHEN ONLY ONE PAY PERIOD EXISTS... */
-                
-                       /* for (var k = 0; k < $scope.payperiods.length; k++) {
-                            //console.log($scope.payperiods[k].payperiodnum)
-                            //console.log($rootScope.payPeriod)
-                            if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
-                                console.log($scope.payperiods[k].jobDetails)
-
-                                $scope.jobDetails = $scope.payperiods[k].jobDetails
-                            }
-
-                        }
-                        */
-
-                        /*CHECK IF THE JOBDETAIL DATE HAS PASSED AND DISABLE IF TRUE*/
-
-                        
-                        
-                        for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
-                           // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
-                           
-                            if($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow){
-                                  //  console.log($scope.jobDetails[u])
-                                $scope.payperiods[0].jobDetails[u].dateHasPassed = true;
-
-                            }else{
-                               $scope.payperiods[0].jobDetails[u].dateHasPassed = false;
+                                    $scope.jobDetails = $scope.payperiods[k].jobDetails
+                                }
 
                             }
 
                         }
-                        $scope.jobDetails = $scope.payperiods[0].jobDetails
-
-                        /*CHECK IF THE JOBDETAIL DATE HAS PASSED AND DISABLE IF TRUE*/
-                        
-
-               /*NOT NEEDED WHEN ONLY ONE PAY PERIOD EXISTS...*/         
-
+                    }
+                    console.log($scope.payperiods)
+                    console.log($scope.jobDetails)
                 })
             }
 
