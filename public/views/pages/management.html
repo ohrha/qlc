@@ -741,7 +741,7 @@
                                             <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
 
                                         </div>
-                                        <div ng-show="openJob == $index" class =  "col s9">
+                                        <div ng-show="openJob == $index && !timesheetsPageOpen" class =  "col s9">
                                                 <span class = " railway underline" > {{job[currentJobInDate].date}}</span>
 
 <div ng-show = "job.length>1"class = "row">
@@ -761,7 +761,7 @@
                                                         
                                                     </div>
                                                     
-<div ng-show = "job.length<1"class = "row">
+<div ng-show = "job.length<2"class = "row">
                                                         <div class = "col s6">
 
                                                        <div class = "left-align">
