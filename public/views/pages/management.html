@@ -894,8 +894,49 @@
                                             </div>
                                         
                                         </div>
-<div class = "col s9">
-</div>
+                                            <div ng-show="notesPageOpen && openJob == $index" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                                
+<div ng-show = "job.length>1"class = "row animated flash">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                           <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                        <i class = "material-icons">chevron_right</i>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+<div ng-show = "job.length<2"class = "row ">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                           <i  style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                        <i class = "material-icons" style="color:grey; opacity:.8;">chevron_right</i>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                <p ng-show="jobDetails[openJob][currentJobInDate].notes"class="railway">
+                                                   {{jobDetails[openJob][currentJobInDate].notes}}
+                                                </p>
+                                                  <p ng-show="!jobDetails[openJob][currentJobInDate].notes"class="railway">
+                                                   No notes input for this job...
+                                                </p>
+                                            </div>
+
 
 
                                         <!--jobsPageOpen && usersPageIndex == $index -->
@@ -1030,48 +1071,7 @@
 
 
                                      
-                                            <div ng-show="notesPageOpen && openJob == $index" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-                                                
-<div ng-show = "job.length>1"class = "row animated flash">
-                                                        <div class = "col s6">
-
-                                                       <div class = "left-align">
-                                                           <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i>
-                                                       </div>
-                                                        </div>
-                                                        <div class = "col s6">
-                                                       <div class = "right-align">
-                                                        <i class = "material-icons">chevron_right</i>
-
-                                                       </div>
-
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    
-<div ng-show = "job.length<2"class = "row ">
-                                                        <div class = "col s6">
-
-                                                       <div class = "left-align">
-                                                           <i  style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
-                                                       </div>
-                                                        </div>
-                                                        <div class = "col s6">
-                                                       <div class = "right-align">
-                                                        <i class = "material-icons" style="color:grey; opacity:.8;">chevron_right</i>
-
-                                                       </div>
-
-                                                        </div>
-                                                        
-                                                    </div>
-                                                <p ng-show="jobDetails[openJob][currentJobInDate].notes"class="railway">
-                                                   {{jobDetails[openJob][currentJobInDate].notes}}
-                                                </p>
-                                                  <p ng-show="!jobDetails[openJob][currentJobInDate].notes"class="railway">
-                                                   No notes input for this job...
-                                                </p>
-                                            </div>
+                                        
                                     </div>
 
                                 </div>
