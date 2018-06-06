@@ -111,6 +111,10 @@ a{
     opacity:0;
     transition:.6s;
 }
+.fadein2{
+    opacity:1;
+    transition:.6s;
+}
 .fadeout2{
     opacity:0;
     transition:.3s;

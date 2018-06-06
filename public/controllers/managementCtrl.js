@@ -1804,7 +1804,8 @@ $scope.loadingText = true;
             $scope.fadeOut2 = true;
             $timeout(function(){
                 $scope.slideOut = false;
-                $scope.fadeOut2 = false;
+                $scope.fadeOut2 = false
+                $scope.fadeIn2 = true;
                 $scope.slideIn = true;
             },500)
             if($scope.currentJobInDate == 0){
