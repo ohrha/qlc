@@ -450,7 +450,7 @@
 
                             <!-- USER DETAILS PAGE -->
 
-                            <div ng-show="userDetailsPageOpened" style="border-right:1px solid black;" class="col s12">
+                            <div ng-show="userDetailsPageOpened" class="col s12">
                                 <p class="railway animated fadeIn truncate">{{user.email}}</p>
                             </div>
 
@@ -733,7 +733,7 @@
                                 <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                                     <br>
                                     <div class="row">
-                                        <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd; border-left:1px solid #ddd;">
+                                        <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
                                             <!-- remove border left -->
                                             <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
                                                 <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
@@ -765,7 +765,7 @@
                                                         <div class = "col s6">
 
                                                        <div class = "left-align">
-                                                           <i ng-click="changeJobInDate($index)" style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                           <i style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
                                                        </div>
                                                         </div>
                                                         <div class = "col s6">
@@ -823,7 +823,7 @@
                                                         <div class = "col s6">
 
                                                        <div class = "left-align">
-                                                           <i ng-click="changeJobInDate($index)" style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                           <i style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
                                                        </div>
                                                         </div>
                                                         <div class = "col s6">
@@ -1053,7 +1053,7 @@
                                                         <div class = "col s6">
 
                                                        <div class = "left-align">
-                                                           <i ng-click="changeJobInDate($index)" style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                           <i  style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
                                                        </div>
                                                         </div>
                                                         <div class = "col s6">
