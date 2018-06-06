@@ -442,17 +442,18 @@
                                 <p class="railway animated flash infinite" >LOADING</p>
                             </div>
                                <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
-
-                        <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
+                               <div class = "row">
+                        <div  ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
                            
 
 <!-- EMPLOYEE DETAILS INFO BEGINS -->
 
                             <!-- USER DETAILS PAGE -->
 
-                            <div ng-show="userDetailsPageOpened" class="col s12">
+                            <div ng-show="userDetailsPageOpened" style="border-right:1px solid black;" class="col s12">
                                 <p class="railway animated fadeIn truncate">{{user.email}}</p>
                             </div>
+
 
                             <!-- USER DETAILS PAGE -->
 
@@ -710,7 +711,7 @@
                                     <br>
                                 </div>
                             </div>
-                            <div ng-show="bookedJobsPageOpened" class="col s12">
+                            <div ng-show="bookedJobsPageOpened" class="col s12" style="border-left:1px solid #ddd;">
 
                                 <!-- SCROLL THROUGH BOOKED JOBS -->
 
@@ -727,8 +728,7 @@
 
 
                                 <!-- BOOKED JOBS -->
-
-
+<div class = "row">
                                 <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
                                 <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                                     <br>
@@ -1006,7 +1006,7 @@
                                     </div>
 
                                 </div>
-
+                            </div>
                                 <!-- BOOKED JOBS -->
 
                                 <!--
@@ -1080,6 +1080,7 @@
                             </div>
 
                         </div>
+                               </div>
                         <!--<p class="railway">Main Page</p>-->
                     </div>
 
