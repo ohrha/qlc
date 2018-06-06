@@ -1074,6 +1074,8 @@ $scope.loadingText = true;
 })
         }
         $scope.addJobData = function (date, day, fulldate, index) {
+                        $('html, body').animate({ scrollTop: 0 }, 'fast');
+
             $scope.loadingNewJob = true;
             $scope.jobData.booked = true;
             $scope.jobData.timesheetSubmitted = false;
