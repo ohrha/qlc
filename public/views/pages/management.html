@@ -761,13 +761,15 @@
                                                         </div>
                                                         
                                                     </div>
-                                                   <span class = "animated railway underline" ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}"> {{job[currentJobInDate].date}}</span>
-                                                   <span class = "animated railway underline" ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}"> Client</span>
-                                                     <p class="railway animated "ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}"> {{job[currentJobInDate].contractor}}</p>
-                                                    <span class="railway animated underline"ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}">Supervisor</span>
-                                                    <p class="railway animated  "ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}"> {{job[currentJobInDate].supervisor}}</p>
-                                                     <span class="railway animated underline"ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}">Location</span>
-                                                    <p class="railway animated "ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}"> {{job[currentJobInDate].location}}</p>
+                                                    <div class = "col s12 animated"ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2, 'slideInRight':slideIn}">
+                                                   <span class = " railway underline" > {{job[currentJobInDate].date}}</span>
+                                                   <span class = "railway underline" > Client</span>
+                                                     <p class="railway  "> {{job[currentJobInDate].contractor}}</p>
+                                                    <span class="railway  underline">Supervisor</span>
+                                                    <p class="railway   "> {{job[currentJobInDate].supervisor}}</p>
+                                                     <span class="railway  underline">Location</span>
+                                                    <p class="railway  "> {{job[currentJobInDate].location}}</p>
+                                                    </div>
                                          <!--   <div ng-repeat="j in job track by $index" class = "row">
                                                 <div class='col s12'>
                                                     
