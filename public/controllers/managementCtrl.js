@@ -2439,18 +2439,18 @@ $scope.loadingText = true;
 
                         
                         
-                       /* for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
+                        for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
                            // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
-                            for(var v =0; $scope.payperiods[0].jobDetails[u].length;v++){
-                                if($scope.payperiods[0].jobDetails[u][v].dateNum < $scope.dateNow){
+                            //for(var v =0; $scope.payperiods[0].jobDetails[u].length;v++){
+                                if($scope.payperiods[0].jobDetails[u][0].dateNum < $scope.dateNow){
                                      console.log($scope.jobDetails[u])
-                                $scope.payperiods[0].jobDetails[u][v].dateHasPassed = true;
+                                $scope.payperiods[0].jobDetails[u][0].dateHasPassed = true;
                                 }else{
-                                 $scope.payperiods[0].jobDetails[u][v].dateHasPassed = false;
+                                 $scope.payperiods[0].jobDetails[u][0].dateHasPassed = false;
 
                                 }
-                            }
-                               */                             //$scope.jobDetails.push($scope.payperiods[0].jobDetails[u])
+                           // }
+                               }                           //$scope.jobDetails.push($scope.payperiods[0].jobDetails[u])
 
                           /*  if($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow){
                             console.log($scope.jobDetails[u])

@@ -744,7 +744,7 @@
                                         <div ng-show="openJob == $index" class =  "col s9">
                                                 <span class = " railway underline" > {{job[currentJobInDate].date}}</span>
 
-<div class = "row">
+<div ng-show = "job.length>1"class = "row">
                                                         <div class = "col s6">
 
                                                        <div class = "left-align">
@@ -760,51 +760,51 @@
                                                         </div>
                                                         
                                                     </div>
-                                                    <div class = "col s12 animated"ng-class="{'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                                    
+<div ng-show = "job.length<1"class = "row">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                           <i ng-click="changeJobInDate($index)" style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                        <i class = "material-icons" style="color:grey; opacity:.8;">chevron_right</i>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div ng-show="!job[0].dateHasPassed"class = "col s12 animated"ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                                    
                                                    <span class = "railway underline" > Client</span>
-                                                     <p class="railway  "> {{job[currentJobInDate].contractor}}</p>
+                                                     <p class="railway  "> {{jobDetails[openJob][currentJobInDate].contractor}}</p>
                                                     <span class="railway  underline">Supervisor</span>
-                                                    <p class="railway   "> {{job[currentJobInDate].supervisor}}</p>
+                                                    <p class="railway   "> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
                                                      <span class="railway  underline">Location</span>
-                                                    <p class="railway  "> {{job[currentJobInDate].location}}</p>
+                                                    <p class="railway  "> {{jobDetails[openJob][currentJobInDate].location}}</p>
                                                     </div>
-                                         <!--   <div ng-repeat="j in job track by $index" class = "row">
-                                                <div class='col s12'>
-                                                    
-                                                                                  <div ng-show="currentJobInDate == $index"class = "row animated fadeIn">
-                                                        <div class = "col s12 animated fadeIn" style="border:1px solid #ddd">
-
-                                                      2
-                                                        </div>
-                                                    
-                                                        
+                                           <div ng-show="job[0].dateHasPassed" class = "col s12 animated"ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                                   
+                                                   <span class = "railway underline" style="color:grey; opacity:0.8;" > Client!</span>
+                                                     <p class="railway  "style="color:grey; opacity:0.8;" > {{jobDetails[openJob][currentJobInDate].contractor}}</p>
+                                                    <span class="railway  underline"style="color:grey; opacity:0.8;" >Supervisor</span>
+                                                    <p class="railway   "style="color:grey; opacity:0.8;" > {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
+                                                     <span class="railway  underline"style="color:grey; opacity:0.8;" >Location</span>
+                                                    <p class="railway  "style="color:grey; opacity:0.8;" > {{jobDetails[openJob][currentJobInDate].location}}</p>
                                                     </div>
-                                                 
-                                                 <!--   <div ng-repeat="j in job"class = "col 6 center-align">
-                                                        
-                                            <!--<div ng-show="!job.dateHasPassed">
-                                            <span class="railway  underline">Client</span>
-                                            <p class="railway  "> {{j.contractor}}</p>
-                                            <span class="railway  underline">Supervisor</span>
-                                            <p class="railway  "> {{j.supervisor}}</p>
-                                            <span class="railway underline">Location</span>
-                                            <p class="railway  "> {{j.location}}</p>
-
-                                            </div>-->
-                                            
-                                                 <!--   <p>{{job[0].date}}</p>
-                                                
-                                                
-                                            
-                                    
                                        
-                                                </div>-->
-                                          <!--      </div>
-                                            </div>-->
+
+
+
 
 
                                         </div>
+<div class = "col s9">
+</div>
+
 
                                         <!--jobsPageOpen && usersPageIndex == $index -->
                                         <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated fadeIn" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
@@ -887,6 +887,7 @@
                                         
 
                                         </div>-->
+                                        <!--
                                         <div ng-show="openJob == $index && jobsPageOpen && !job.booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                             <div ng-show="!job.dateHasPassed">
@@ -902,6 +903,7 @@
                                             <br>
                                             <br>
                                             </div>
+                                            -->
                                             <!--
                                     <p class="railway  "> {{jobDetails[openJob].contractor}}</p>
                                     <span class="railway  underline">Supervisor</span>
