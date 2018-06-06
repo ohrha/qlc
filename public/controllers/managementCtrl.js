@@ -1803,12 +1803,7 @@ $scope.loadingText = true;
             $scope.slideOut= true;
             $scope.fadeOut2 = true;
             $timeout(function(){
-                $scope.slideOut = false;
-                $scope.fadeOut2 = false
-                $scope.fadeIn2 = true;
-                $scope.slideIn = true;
-            },500)
-            if($scope.currentJobInDate == 0){
+                     if($scope.currentJobInDate == 0){
                             $scope.currentJobInDate++;
 
             }else{
@@ -1816,6 +1811,12 @@ $scope.loadingText = true;
             }
             console.log($scope.currentJobInDate
             )
+                $scope.slideOut = false;
+                $scope.fadeOut2 = false
+                $scope.fadeIn2 = true;
+                $scope.slideIn = true;
+            },500)
+       
         }
         $scope.increaseDay = function () {
             $scope.slideout = true;
