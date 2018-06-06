@@ -741,7 +741,7 @@
                                             <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Notes |</p>
 
                                         </div>
-                                        <div ng-show="openJob == $index && !timesheetsPageOpen" class =  "col s9">
+                                        <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen" class =  "col s9">
                                                 <span class = " railway underline" > {{job[currentJobInDate].date}}</span>
 
 <div ng-show = "job.length>1"class = "row animated flash">
@@ -802,7 +802,7 @@
 
 
                                         </div>
-                                           <div ng-show="openJob == $index && timesheetsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                           <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                             <div ng-show = "job.length>1"class = "row animated flash">
                                                         <div class = "col s6">
 
