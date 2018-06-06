@@ -111,6 +111,10 @@ a{
     opacity:0;
     transition:.6s;
 }
+.fadeout2{
+    opacity:0;
+    transition:.3s;
+}
 .bookedjobsselected{
     opacity:0.4;
     transition:.2s;

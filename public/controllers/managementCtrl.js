@@ -50,11 +50,15 @@
         $scope.commentsSelected = false;
         $scope.payslipGenerationOpen = false;
         $scope.slidein = false;
+        $scope.slideIn = false;
         $scope.slideout = false;
         $scope.fadeOut = false;
+        $scope.fadeOut2 = false;
         $scope.jobsPageOpen = true;
+        
         $scope.historyPageOpen = false;
         $scope.openJob = 0;
+        $scope.currentJobInDate=0;
         $scope.timesheetsPageOpen = false;
         $scope.disputesPageOpen = false;
         $scope.incompletePayPeriod = false;
@@ -1795,6 +1799,23 @@ $scope.loadingText = true;
             }
 
         }
+        $scope.changeJobInDate = function(index){
+            $scope.slideOut= true;
+            $scope.fadeOut2 = true;
+            $timeout(function(){
+                $scope.slideOut = false;
+                $scope.fadeOut2 = false;
+                $scope.slideIn = true;
+            },500)
+            if($scope.currentJobInDate == 0){
+                            $scope.currentJobInDate++;
+
+            }else{
+                $scope.currentJobInDate = 0
+            }
+            console.log($scope.currentJobInDate
+            )
+        }
         $scope.increaseDay = function () {
             $scope.slideout = true;
             $scope.fadeOut = true;
@@ -2416,20 +2437,31 @@ $scope.loadingText = true;
 
                         
                         
-                        for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
+                       /* for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
                            // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
-                           
-                            if($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow){
+                            for(var v =0; $scope.payperiods[0].jobDetails[u].length;v++){
+                                if($scope.payperiods[0].jobDetails[u][v].dateNum < $scope.dateNow){
+                                     console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[u][v].dateHasPassed = true;
+                                }else{
+                                 $scope.payperiods[0].jobDetails[u][v].dateHasPassed = false;
+
+                                }
+                            }
+                               */                             //$scope.jobDetails.push($scope.payperiods[0].jobDetails[u])
+
+                          /*  if($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow){
                             console.log($scope.jobDetails[u])
                                 $scope.payperiods[0].jobDetails[u].dateHasPassed = true;
 
                             }else{
                                $scope.payperiods[0].jobDetails[u].dateHasPassed = false;
 
-                            }
+                            }*/
 
-                        }
+                //}
                         $scope.jobDetails = $scope.payperiods[0].jobDetails
+                        console.log($scope.jobDetails)
 
                         /*CHECK IF THE JOBDETAIL DATE HAS PASSED AND DISABLE IF TRUE*/
                         
