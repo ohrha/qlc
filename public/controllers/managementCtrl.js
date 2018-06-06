@@ -1976,6 +1976,8 @@ $scope.loadingText = true;
             $scope.bookedJobsPageOpened = false;
             $scope.bookedJobsSelected = false;
             $scope.complaintsPageOpened = false;
+            $scope.timesheetsPageOpen = false;
+            $scope.notesPageOpen = false;
             $scope.complaintsSelected = false;
             //$scope.employeesPaginated = [];
             if ($scope.employeeListOpen) {
