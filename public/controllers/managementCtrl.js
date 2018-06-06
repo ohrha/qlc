@@ -1819,6 +1819,7 @@ $scope.loadingText = true;
        
         }
         $scope.increaseDay = function () {
+            $scope.currentJobInDate = 0;
             $scope.fadeIn2 = false;
             $scope.slideout = true;
             $scope.fadeOut = true;
