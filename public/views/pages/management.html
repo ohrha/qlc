@@ -741,7 +741,7 @@
                                             <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
                                                 <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
                                             <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
-                                            <p ng-show="openJob == $index" ng-click="openDisputesPage($index);" class="railway  truncate " ng-class="{'disputesselected':disputesSelected,'disputesdeselected':!disputesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
+                                            <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
 
                                         </div>
                                         <!--jobsPageOpen && usersPageIndex == $index -->
@@ -860,13 +860,17 @@
                                             <p class="railway  "> {{jobDetails[openJob].location}}</p>
                                             </div>
                                             <div ng-show="job.dateHasPassed">
-                                                    <br>
-                                            <br>
-                                            <span class="railway  " style="color:grey; opacity:.5; font-size:17px;">Date Has Passed</span>
+                                             <span  style="color:grey; opacity:.5;"class="railway  underline">Client</span>
+                                            <p class="railway  "style="color:grey; opacity:.8;"> {{jobDetails[openJob].contractor}}</p>
+                                            <span class="railway  underline"style="color:grey; opacity:.8;">Supervisor</span>
+                                            <p class="railway  "style="color:grey; opacity:.8;"> {{jobDetails[openJob].supervisor}}</p>
+                                            <span class="railway underline"style="color:grey; opacity:.8;">Location</span>
+                                            <p class="railway  "style="color:grey; opacity:.8;"> {{jobDetails[openJob].location}}</p>
+                                            </div>
                                             <br>
                                             <br>
                                             </div>
-                                        </div>
+                                       
 
 
                                         <div ng-show="openJob == $index && timesheetsPageOpen" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
@@ -927,12 +931,16 @@
                                                 </div>
 
                                             </div>
-                                            <div ng-show="disputesPageOpen && usersPageIndex == $index" class="col s9">
-                                                <p class="railway">
-                                                    Disputes Open!
+                                        
+                                        </div>
+                                            <div ng-show="notesPageOpen && openJob == $index" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                                <p ng-show="job.notes"class="railway">
+                                                   {{job.notes}}
+                                                </p>
+                                                  <p ng-show="!job.notes"class="railway">
+                                                   No notes input for this job...
                                                 </p>
                                             </div>
-                                        </div>
                                     </div>
 
                                 </div>

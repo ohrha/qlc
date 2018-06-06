@@ -1776,19 +1776,21 @@ $scope.loadingText = true;
 
 
 
-        $scope.openDisputesPage = function (index) {
+        $scope.openNotesPage = function (index) {
             $scope.usersPageIndex = index;
             if (!$scope.disputesPageOpen) {
                 $scope.jobsPageOpen = false;
-                $scope.disputesPageOpen = true;
+                $scope.notesPageOpen = true;
                 $scope.timesheetsPageOpen = false;
                 $scope.timesheetsSelected = false;
                 $scope.payslipGenerationOpen = false;
-
                 $scope.jobsSelected = false;
-                $scope.disputesSelected = true;
-            } else {
+                $scope.notesSelected = true;
+                $scope.delinquentTimeSheetSelected = false;
                 $scope.disputesSelected = false;
+                $scope.disputesPageOpen = false;
+            } else {
+                $scope.notesSelected = false;
 
             }
 
@@ -1847,6 +1849,7 @@ $scope.loadingText = true;
                 $scope.timesheetsSelected = false;
                 $scope.disputesPageOpen = false;
                 $scope.timesheetsPageOpen = false;
+                $scope.notesPageOpen=false;
                 $scope.payslipGenerationOpen = false;
 
             } else {
@@ -1868,6 +1871,9 @@ $scope.loadingText = true;
                 $scope.payslipGenerationOpen = false;
 
                 $scope.jobsSelected = false;
+
+                $scope.addJobPageOpen = false;
+                $scope.notesPageOpen=false;
             } else {
                 //$scope.timesheetsSelected = false;
             }
@@ -2414,7 +2420,7 @@ $scope.loadingText = true;
                            // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
                            
                             if($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow){
-                                  //  console.log($scope.jobDetails[u])
+                            console.log($scope.jobDetails[u])
                                 $scope.payperiods[0].jobDetails[u].dateHasPassed = true;
 
                             }else{

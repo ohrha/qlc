@@ -59,6 +59,14 @@ a{
     opacity:1;
     transition:.2s;
 }
+.nptessselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.notesdeselected{
+    opacity:1;
+    transition:.2s;
+}
 .timesheetsselected{
  opacity:0.4;
     transition:.2s;

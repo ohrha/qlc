@@ -940,11 +940,14 @@ console.log(req.body)
         } else {
             console.log("Here i am")
             PayPeriod.find({payperiodnum:payperiodnum}, function(err,payperiod){
+
                 if(err)throw err;
                 if(!user){
                     res.json({success: false, message:"Pay Period Not Found..."})
                 }else{
-
+                    for( var z= 0; z<payperiod[0].jobDetails.length;z++){
+                        payperiod[0].jobDetails[z].currentuser = req.body.name
+                    }
                     console.log(payperiod)
                     user.payperiods = payperiod
                     user.save(function(err){
