@@ -738,7 +738,7 @@
                                             <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
                                                 <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
                                             <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |</p>
-                                            <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Disputes |</p>
+                                            <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Notes |</p>
 
                                         </div>
                                         <div ng-show="openJob == $index && !timesheetsPageOpen" class =  "col s9">
@@ -1030,11 +1030,45 @@
 
 
                                      
-                                            <div ng-show="notesPageOpen && openJob == $index" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-                                                <p ng-show="job.notes"class="railway">
-                                                   {{job.notes}}
+                                            <div ng-show="notesPageOpen && openJob == $index" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                                
+<div ng-show = "job.length>1"class = "row">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                           <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                        <i class = "material-icons">chevron_right</i>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+<div ng-show = "job.length<2"class = "row">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                           <i ng-click="changeJobInDate($index)" style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                        <i class = "material-icons" style="color:grey; opacity:.8;">chevron_right</i>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                <p ng-show="jobDetails[openJob][currentJobInDate].notes"class="railway">
+                                                   {{jobDetails[openJob][currentJobInDate].notes}}
                                                 </p>
-                                                  <p ng-show="!job.notes"class="railway">
+                                                  <p ng-show="!jobDetails[openJob][currentJobInDate].notes"class="railway">
                                                    No notes input for this job...
                                                 </p>
                                             </div>
