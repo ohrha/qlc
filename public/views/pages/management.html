@@ -136,19 +136,62 @@
                             </div>
                             <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
-                                <div class="col s3">
-                                   <a href='#' style="color:black;"> <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{history.payperiod}}</p></a>
+ <div class="col s3">
+                                   <a href='#' style="color:black;"> <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p></a>
                                 </div>
                           
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown" style="border: 1px solid #ddd; ">
-                                    <p class="railway underline" style="font-size:20px; opacity:0;">#{{history.payperiod}}</p>
+                                    <p class="railway underline" style="font-size:20px; opacity:0;">#{{$index}}</p>
 
                                 </div>
-                                <!-- <div ng-show=" curPeriod !== $index" class= "col s9 animated fadeInDown" style = "border: 1px solid #ddd;">
-                                                           <p  class = "railway underline" style="font-size:20px;">#{{history.payperiod}}</p>
+                       
+                                <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:275px;" >
 
-                            </div>
-                           -->
+                                    <br>
+                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                    chart-series="series"
+                                    </canvas>
+                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                    chart-series="series"
+                                    </canvas>
+                                    <div ng-repeat="entry in history.entry track by $index" class="row">
+                                        
+                                        <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                            <div class = "right-align">
+                                           <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+                                           <a href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
+                                           
+                                            </div>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timeout}}</p>
+
+
+
+
+
+                                        </div>
+                                        <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+                                            <a href="#" style="color:black;"><p class="railway underline">{{entry[currentJobInDate].date}}</p></a>
+
+
+                                        </div>
+                                    </div>
+                                </div>                              
+                                
+
+                                <!--
+                                <div class="col s3">
+                                   <a href='#' style="color:black;"> <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p></a>
+                                </div>
+                          
+                                <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown" style="border: 1px solid #ddd; ">
+                                    <p class="railway underline" style="font-size:20px; opacity:0;">#{{$index}}</p>
+
+                                </div>
+                       
                                 <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:250px;" >
 
                                     <br>
@@ -181,7 +224,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <div ng-show="loadingGeneralHistory"class = "col s12 center-align">

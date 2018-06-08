@@ -788,6 +788,8 @@
         $scope.openIndividualHistoryEntry = function (index) {
             console.log(index)
             //curHistory = index;
+           // $('html, body').animate({ scrollTop: 0 }, 'fast');
+
             $scope.showChart = false;
             $timeout(function () {
                 $scope.removeChart = true;
@@ -863,10 +865,8 @@
             $scope.generalHistoryOpen = true;
             console.log($scope.generalHistoryOpen)
             $scope.incompletePayPeriodPageOpen = false;
-            //$scope.employeesPaginated = [];
             $scope.employeesForHistory = [];
             $scope.pageLimit = 0;
-            //$scope.pageArray=[];
             if($scope.usersLoaded){
 
                                    for (var i = 0; i <= $scope.employees.length; i++) {
@@ -874,7 +874,6 @@
                             var page = 0;
                             console.log($scope.pageLimit, i, $scope.employees.length)
                             console.log($scope.employees)
-                            // var pageLimit = 4;//3i
                             if (i < $scope.pageLimit) {
                                 console.log("its less")
 
@@ -901,7 +900,6 @@
                                 if (!$scope.usersLoaded) {
 
                                     console.log("else")
-                                    //console.log($scope.pageArray)
                                     $scope.loadingUsers = false;
                                     $scope.employeesPaginated.push($scope.employeesForHistory)
                                     console.log($scope.employeesPaginated)
@@ -909,7 +907,6 @@
                                     if ($scope.employees[i] !== undefined) {
                                         $scope.employeesForHistory.push($scope.employees[i])
                                     }
-                                    //console.log(pageLimit)
                                     $scope.pageLimit = $scope.pageLimit + 4;
                                     console.log($scope.pageLimit, i, $scope.employees.length)
 
@@ -1655,10 +1652,10 @@ $scope.loadingText = true;
                         console.log("HELLOooooooooooooooooooooooooo")
                         console.log("$scope.report", $scope.report)
                         if ($scope.employees[z].payperiodnum !== $rootScope.payPeriod) {
-                            User.addDelinquentTimeSheet($scope.report).then(function (data) {
-                              console.log(data)
+                           // User.addDelinquentTimeSheet($scope.report).then(function (data) {
+                            //  console.log(data)
 
-                        })
+                        //})
                         }
                       }
                     var nameVar = $scope.employees[z].name;
@@ -2210,14 +2207,12 @@ $scope.loadingText = true;
 
             $scope.hoursArrayForHistory = [];
             if($scope.usersLoaded ){
-                 for (var i = 0; i < $scope.employees.length; i++) {
-                    if ($scope.employees[i].name == $scope.currentUserHistoryFile) {
-                        console.log($scope.currentUserFile)
-                        // $scope.jobDetails = data.data.users[i].jobDetails;
-                        $scope.comments = $scope.employees[i].comments;
-                        $scope.payperiods = $scope.employees[i].payperiods;
-                        $scope.payPeriodHistory = $scope.employees[i].payperiodhistory
-                       // $timeout(function(){
+                User.findUser($scope.currentUserHistoryFile).then(function(data){
+
+                    $scope.payPeriodHistory = data.data.user[0].payperiodhistory
+console.log(data)
+               
+console.log($scope.payPeriodHistory)
                         for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
                             //$scope.data
 
@@ -2225,6 +2220,23 @@ $scope.loadingText = true;
 
 
                             for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
+
+                                for(var x=0; x< $scope.payPeriodHistory[b].entry[x].length;x++){
+                                    if($scope.payPeriodHistory[b].entry[c][0].date!== undefined){
+
+                                           $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
+                                           if($scope.payPeriodHistory[b].entry[c][x+1] !== undefined){
+    
+                                                   $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1];
+
+                                                 
+                                           }
+
+
+
+                                    }
+
+                                }
                                 var hoursIterator = 0;
                                 var minIterator = 0;
                                 //console.log(c,$scope.payPeriodHistory[b].entry.length)
@@ -2232,7 +2244,7 @@ $scope.loadingText = true;
 
 
 
-                                $scope.labels[c] = $scope.payPeriodHistory[b].entry[c].date
+                               
 /*
                                 var startTime = moment($scope.payPeriodHistory[b].entry[c].timein, "HH:mm:ss a");
                                 var endTime = moment($scope.payPeriodHistory[b].entry[c].timeout, "HH:mm:ss a");
@@ -2251,7 +2263,6 @@ $scope.loadingText = true;
                                 if (minutes == 45) {
                                     hours + .75
                                 }*/
-                                $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c].hoursCalculated;
 
                                // console.log(hours, minutes)
                             }
@@ -2264,9 +2275,8 @@ $scope.loadingText = true;
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
                         console.log($scope.payPeriodHistory)
-
-                    }
-                }
+ })
+                  
 
             }else{
                  User.getUsers().then(function (data) {
