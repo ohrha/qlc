@@ -853,6 +853,7 @@
             $scope.generatePaySlipPageOpen = false;
         }
         $scope.openHistoryPage = function () {
+            $scope.curPeriod =null;
             $scope.generalHistoryTitle =true;
             $scope.personalHistoryTitle = false;
             $scope.historyPageOpen = true;
@@ -2220,16 +2221,23 @@ console.log($scope.payPeriodHistory)
 
 
                             for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
-
+$scope.hoursCalcIterator = 0;
                                 for(var x=0; x< $scope.payPeriodHistory[b].entry[x].length;x++){
+                                    
                                     if($scope.payPeriodHistory[b].entry[c][0].date!== undefined){
 
                                            $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
                                            if($scope.payPeriodHistory[b].entry[c][x+1] !== undefined){
-    
-                                                   $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1];
+                                            console.log("HOlk")
+                                                    $scope.hoursCalIterator = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1];
+                                                 console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated)
+                                                   $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated;
 
                                                  
+                                           }else{
+                                               console.log("choOlk")
+                                                                                                  $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated ;
+
                                            }
 
 

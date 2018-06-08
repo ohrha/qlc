@@ -159,8 +159,9 @@
                                         <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                             <div class = "right-align">
                                            <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
-                                           <a href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
-                                           
+                                           <a  ng-show="entry.length>1"href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
+                                            <a ng-show="entry.length<2" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
+
                                             </div>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
