@@ -854,6 +854,7 @@
         }
         $scope.openHistoryPage = function () {
             $scope.curPeriod =null;
+            $scope.openIndividualHistoryEntry = false;
             $scope.generalHistoryTitle =true;
             $scope.personalHistoryTitle = false;
             $scope.historyPageOpen = true;
