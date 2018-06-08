@@ -789,7 +789,7 @@
             console.log(index)
             //curHistory = index;
            // $('html, body').animate({ scrollTop: 0 }, 'fast');
-$scope.curHistory = null;
+
             $scope.showChart = false;
             $timeout(function () {
                 $scope.removeChart = true;
