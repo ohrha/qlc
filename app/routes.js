@@ -87,14 +87,16 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
         })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
         console.log(req.body.payperiod)
-        console.log(req.body.allEmployeesJobDetails.length)
+        console.log(req.body.allEmployeesJobDetails.length) 
+       
         for (var z = 0; z < req.body.allEmployeesJobDetails.length; z++) {
-            var payperiodHistoryEntry = {}
-            payperiodHistoryEntry.payperiod = req.body.payperiod;
-            payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
-            //  payperiodHistoryEntroy.historyentered = true;
-            //  console.log(req.body.allEmployeesJobDetails[z][7].name)
-            if (req.body.allEmployeesJobDetails[z][7].name !== undefined) {
+             console.log(req.body.allEmployeesJobDetails[z])
+         //  for (var d= 0; d < req.body.allEmployeesJobDetails[z].length;d++){
+ //console.log(req.body.allEmployeesJobDetails[z][d])
+                var payperiodHistoryEntry = {}
+                payperiodHistoryEntry.payperiod = req.body.payperiod;
+                payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
+                   if (req.body.allEmployeesJobDetails[z][7].name !== undefined) {
                 //console.log(z)
                 var name = req.body.allEmployeesJobDetails[z][7].name;
                 console.log(name)
@@ -134,8 +136,14 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
                 })
 
             }
+
+          // }
+           
+            //  payperiodHistoryEntroy.historyentered = true;
+            //  console.log(req.body.allEmployeesJobDetails[z][7].name)
+         
         }
-        User.find({}, function(err,users){
+       User.find({}, function(err,users){
             if(err)throw err
             if(!users){
                 res.json({success: false, message:"Users not found..."})

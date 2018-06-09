@@ -821,8 +821,8 @@
         }
         $scope.openIndividualPayPeriod = function (index) {
             console.log(index)
-
-
+            
+           // $scope.historyEntryOpen = false;
             if ($scope.individualPayPeriodOpen && index !== $scope.curPeriod
             ) {
                 // $scope.individualPayPeriodOpen = false;
@@ -842,6 +842,8 @@
                 $scope.individualPayPeriodOpen = true;
                 $scope.curPeriod = index;
             } else {
+                console.log("fourth")
+                $scope.curHistory = null;
                 $scope.curPeriod = null
                 $scope.showChart = true;
             }
@@ -854,6 +856,7 @@
         }
         $scope.openHistoryPage = function () {
             $scope.curPeriod =null;
+            $scope.curHistory = null;
             $scope.generalHistoryTitle =true;
             $scope.personalHistoryTitle = false;
             $scope.historyPageOpen = true;
@@ -1364,12 +1367,9 @@ $scope.loadingText = true;
 
         $scope.addPayPeriodToPayPeriodHistory = function (details) {
             console.log(details)
-            //$scope.employeeJobDetails.allEmployeesJobDetails = details;
             $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
             $scope.allEmployeesJobDetails =[]
             User.getUsers().then(function(data){                                                    
-
-
 
                 for(var d=0; d<data.data.users.length;d++){
 
@@ -1379,7 +1379,7 @@ $scope.loadingText = true;
 
 
                                    $scope.nameObject = {}
-                            $scope.nameObject.name = $scope.employees[d].name
+                            $scope.nameObject.name = data.data.users[d].name
                             data.data.users[d].payperiods[0].jobDetails.push($scope.nameObject)
                             $scope.allEmployeesJobDetails.push(data.data.users[d].payperiods[0].jobDetails)
                         }
@@ -1393,19 +1393,21 @@ $scope.loadingText = true;
                             //$scope.data
 
                             // $scope.data[0][b]= hoursIterator;
-
-
                                   for(var x=0;x<$scope.employeeJobDetails.allEmployeesJobDetails[z].length;x++){
                                       
-                    var startTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x].timein, "HH:mm:ss a");
-                                var endTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x].timeout, "HH:mm:ss a");
+                                      for(var y=0; y< $scope.employeeJobDetails.allEmployeesJobDetails[z][x].length;y++){
+                                          console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
+
+                                          
+                    var startTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timein, "HH:mm:ss a");
+                                var endTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timeout, "HH:mm:ss a");
                                 var duration = moment.duration(endTime.diff(startTime));
                                 var hours = parseInt(duration.asHours());
                                 var minutes = parseInt(duration.asMinutes()) - hours * 60;
                                 console.log(hours)
                                 console.log(minutes)
-                                //hoursIterator = hoursIterator + hours;
-                                //minIterator = minIterator + minutes
+                            
+
                                 if (minutes == 15) {
                                     hours + .25
                                     minIterator = 0;
@@ -1416,27 +1418,31 @@ $scope.loadingText = true;
                                 if (minutes == 45) {
                                     hours + .75
                                 }
-                                               $scope.employeeJobDetails.allEmployeesJobDetails[z][x].hoursCalculated = hours+minutes;
+
+                                 $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated = hours+minutes;
 
                             }
                             }
                           
                 
+                                      }
+
                console.log($scope.employeeJobDetails)
             
 
                 }
-                 User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
+
+           User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
 
               console.log(data)
            })
    
-            })
+    })
             
         
 
         }
-        //$scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+        $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
@@ -2213,7 +2219,7 @@ $scope.loadingText = true;
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
 console.log(data)
                
-console.log($scope.payPeriodHistory)
+
                         for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
                             //$scope.data
 
@@ -2224,7 +2230,8 @@ console.log($scope.payPeriodHistory)
 $scope.hoursCalcIterator = 0;
                                 for(var x=0; x< $scope.payPeriodHistory[b].entry[x].length;x++){
                                     
-                                    if($scope.payPeriodHistory[b].entry[c][0].date!== undefined){
+                                    console.log($scope.payPeriodHistory[b].entry[c])
+                                    if($scope.payPeriodHistory[b].entry[c][0]!== undefined){
 
                                            $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
                                            if($scope.payPeriodHistory[b].entry[c][x+1] !== undefined){
