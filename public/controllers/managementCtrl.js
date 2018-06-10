@@ -2239,7 +2239,7 @@ $scope.loadingText = true;
                 User.findUser($scope.currentUserHistoryFile).then(function(data){
 
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
-console.log(data)
+console.log($scope.payPeriodHistory)
                
 
                         for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
