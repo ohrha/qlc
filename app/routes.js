@@ -389,10 +389,11 @@ console.log(req.body)
                                     } else {
                                         // console.log(user[0])
                                        // for (var z = 0; z < user[0].payperiods[0].length; z++) {
-                                           if (user[0].payperiods[0].payperiodnum == user[0].payperiodnum) {
+                                           //if (user[0].payperiods[0].payperiodnum == user[0].payperiodnum) {
                                                 console.log(user[0].payperiods[0].jobDetails[req.body.payperiodIndex])
-                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex] = req.body
-                                                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex].push(req.body)
+                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].booked = true;
+                                                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods,  } }, { new: true }, function (err, user) {
                                                     if (err) throw err;
                                                     if (!user) {
                                                         res.json({ success: false, message: "User not found.." })
@@ -400,7 +401,7 @@ console.log(req.body)
                                                         res.json({ success: true, message: "User found and updated...", user: user })
                                                     }
                                                 })
-                                            }
+                                            //}
                                         //}
 
                                     }

@@ -1097,12 +1097,12 @@ $scope.loadingText = true;
 
                     User.findUser($scope.currentUserFile).then(function (data) {
                         console.log(data.data.user.payperiodnum)
-                        for (var z = 0; z < data.data.user[0].payperiods.length; z++) {
-                            if (data.data.user[0].payperiods[z].payperiodnum == data.data.user[0].payperiodnum) {
-                                console.log(data.data.user[0].payperiods[z].jobDetails)
-                                $scope.jobDetails = data.data.user[0].payperiods[z].jobDetails;
-                            }
-                        }
+                        //for (var z = 0; z < data.data.user[0].payperiods.length; z++) {
+                          //  if (data.data.user[0].payperiods[z].payperiodnum == data.data.user[0].payperiodnum) {
+                                //console.log(data.data.user[0].payperiods[z].jobDetails)
+                                $scope.jobDetails = data.data.user[0].payperiods[0].jobDetails;
+                            //}
+                       // }
                               var userDetails = {}
             var date = $scope.jobData.date;
             var location = $scope.jobData.location
