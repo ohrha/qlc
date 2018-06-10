@@ -449,14 +449,14 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
 
                     res.json({success: false, message: "Cannot delete default job.."})
                 }*/
-                                    User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+                                /*    User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
                     if(err)throw err;
                     if(!user){
                         res.json({success: false, message:"User not found so not updated..."})
                     }else{
                         res.json({success: true, message:"User updated", user:user})
                     }
-                })
+                })*/
                 }
 
             }
