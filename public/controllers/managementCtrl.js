@@ -1096,8 +1096,9 @@ $scope.loadingText = true;
 
             })
         }
-        $scope.addJobData = function (date, day, fulldate, index) {
+        $scope.addJobData = function (date, day, fulldate, index,indexofdate) {
                         $('html, body').animate({ scrollTop: 0 }, 'fast');
+
 
             $scope.loadingNewJob = true;
             $scope.jobData.booked = true;
@@ -1106,7 +1107,9 @@ $scope.loadingText = true;
             $scope.jobData.date = fulldate;
             $scope.jobData.day = day;
             $scope.jobData.payperiodIndex = index;
+            $scope.jobData.indexofdate =indexofdate;
             $scope.jobData.currentuser = $scope.currentUserFile;
+            console.log($scope.jobData)
             User.addJob($scope.jobData).then(function (data) {
                 console.log(data)
                 if (data.data.success) {
@@ -2493,8 +2496,10 @@ $scope.hoursCalcIterator = 0;
                                 if($scope.payperiods[0].jobDetails[u][0].dateNum < $scope.dateNow){
                                      console.log($scope.jobDetails[u])
                                 $scope.payperiods[0].jobDetails[u][0].dateHasPassed = true;
+                                $scope.payperiods[0].jobDetails[u][1].dateHasPassed = true;
                                 }else{
                                  $scope.payperiods[0].jobDetails[u][0].dateHasPassed = false;
+                                 $scope.payperiods[0].jobDetails[u][1].dateHasPassed = false;
 
                                 }
                            // }

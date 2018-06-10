@@ -785,7 +785,7 @@
                                             <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Notes |</p>
 
                                         </div>
-                                        <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen &&job[0].booked" class =  "col s9">
+                                        <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen &&job[currentJobInDate].booked" class =  "col s9">
                                                 <span class = " railway underline" > {{job[currentJobInDate].date}}</span>
 
 <div ng-show = "job.length>1"class = "row animated flash">
@@ -825,7 +825,7 @@
                                                 <p class="railway underline animated flash infinite " >REMOVING JOB</p>
 
                                             </div>
-                                                    <div ng-show="!job[0].dateHasPassed && !removingJob"class = "col s12 animated"ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                                    <div ng-show="!job[currentJobInDate].dateHasPassed && !removingJob"class = "col s12 animated"ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                                    
                                                    <span class = "railway underline" > Client</span>
                                                      <p class="railway  "> {{jobDetails[openJob][currentJobInDate].client}}</p>
@@ -851,10 +851,43 @@
 
 
                                         </div>
-                                          <div ng-show="openJob == $index && jobsPageOpen && !job[0].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                          <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-                                            <div ng-show="!job[0].dateHasPassed && !job[0].booked ">
-                                            <span class="railway  ">Would You Like To Book This Date?</span>
+<div ng-show = "job.length>1 && !job[currentJobInDate].booked"class = "row animated flash">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                         <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                       <a href="#" style="color:black;"> <i class = "material-icons">chevron_right</i></a>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+<div ng-show = "job.length<2 && !job[currentJobInDate].booked"class = "row">
+                                                        <div class = "col s6">
+
+                                                       <div class = "left-align">
+                                                           <i style="color:grey; opacity:.8;" class = "material-icons">chevron_left</i>
+                                                       </div>
+                                                        </div>
+                                                        <div class = "col s6">
+                                                       <div class = "right-align">
+                                                        <i class = "material-icons" style="color:grey; opacity:.8;">chevron_right</i>
+
+                                                       </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                            <div ng-show="!job[currentJobInDate].dateHasPassed && !job[currentJobInDate].booked ">
+                                            <span class="railway  ">Would You Like To Book This Date?{{currentJobInDate}}</span>
                                             <br>
                                             <br>
                                             <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
@@ -1172,7 +1205,7 @@
                                                         </div>
                                                     </form>
                                                     <div class="col s12 center-align">
-                                                        <a ng-click="addJobData(job[0].dateNum,job[0].day,job[0].date,$index)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
+                                                        <a ng-click="addJobData(job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
 
                                                     </div>
                                                 </div>
