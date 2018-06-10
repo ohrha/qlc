@@ -1088,7 +1088,7 @@ $scope.loadingText = true;
             }
             User.removeJob(jobData).then(function(data){
                 console.log(data)
-                                                $scope.jobDetails = data.data.user[0].payperiods[0].jobDetails;
+                                                $scope.jobDetails = data.data.user.payperiods[0].jobDetails;
                                                 $scope.removingJob = false;
 
 
