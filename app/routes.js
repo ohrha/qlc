@@ -376,6 +376,51 @@ console.log(req.body)
             }
         })
     })
+    app.post('/users/removejob', function(req,res){
+        console.log(req.body)
+        User.find({name: req.body.job.currentuser}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success:false, message: "User not found..."})
+            }else{
+                console.log(user)
+                user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
+                if(user[0].payperiods[0].jobDetails[req.body.jobindex].length==0){
+                    
+                    var defaultJobDetail= {
+                        date:req.body.job.date,
+                        booked:false,
+                        default: true,
+                        timesheetSubmitted: false,
+
+                    }
+user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
+                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found so not updated..."})
+                    }else{
+                        res.json({success: true, message:"User updated", user:user})
+                    }
+                })
+            }else{
+                if(user[0].payperiods[0].jobDetails[req.body.jobindex][0].default){
+
+                    res.json({success: false, message: "Cannot delete default job.."})
+                }
+                                    User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found so not updated..."})
+                    }else{
+                        res.json({success: true, message:"User updated", user:user})
+                    }
+                })
+                }
+
+            }
+        })
+    })
     app.post('/users/addjob', function (req, res) {
         console.log(req.body)
        console.log("HOLLA")
@@ -391,8 +436,14 @@ console.log(req.body)
                                        // for (var z = 0; z < user[0].payperiods[0].length; z++) {
                                            //if (user[0].payperiods[0].payperiodnum == user[0].payperiodnum) {
                                                 console.log(user[0].payperiods[0].jobDetails[req.body.payperiodIndex])
+                                            if(user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].default){
+                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0]= req.body
+                                            }else{
                                                 user[0].payperiods[0].jobDetails[req.body.payperiodIndex].push(req.body)
                                                 user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].booked = true;
+
+                                            }
+                                                
                                                 User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods,  } }, { new: true }, function (err, user) {
                                                     if (err) throw err;
                                                     if (!user) {

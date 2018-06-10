@@ -1078,6 +1078,24 @@ $scope.loadingText = true;
                       })
 })
         }
+        $scope.removeJob = function(job,jobindex,indexofjob){
+            $scope.removingJob = true;
+           // console.log(job,index)
+            var jobData = {
+                job:job,
+                jobindex:jobindex,
+                indexofjob: indexofjob
+            }
+            User.removeJob(jobData).then(function(data){
+                console.log(data)
+                                                $scope.jobDetails = data.data.user[0].payperiods[0].jobDetails;
+                                                $scope.removingJob = false;
+
+
+                                        
+
+            })
+        }
         $scope.addJobData = function (date, day, fulldate, index) {
                         $('html, body').animate({ scrollTop: 0 }, 'fast');
 
@@ -1101,6 +1119,7 @@ $scope.loadingText = true;
                           //  if (data.data.user[0].payperiods[z].payperiodnum == data.data.user[0].payperiodnum) {
                                 //console.log(data.data.user[0].payperiods[z].jobDetails)
                                 $scope.jobDetails = data.data.user[0].payperiods[0].jobDetails;
+                                //$scope.removingNewJob = false;
                             //}
                        // }
                               var userDetails = {}
