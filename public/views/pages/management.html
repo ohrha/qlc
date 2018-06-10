@@ -822,18 +822,18 @@
                                                         
                                                     </div>
                                                                              <div ng-show="!job[0].dateHasPassed && removingJob" class=" col s12 center-align animated fadeIn">
-                                                <p class="railway underline animated flash infinite " style="font-size:20px;">REMOVING JOB</p>
+                                                <p class="railway underline animated flash infinite " >REMOVING JOB</p>
 
                                             </div>
                                                     <div ng-show="!job[0].dateHasPassed && !removingJob"class = "col s12 animated"ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                                    
                                                    <span class = "railway underline" > Client</span>
-                                                     <p class="railway  "> {{jobDetails[openJob][currentJobInDate].contractor}}</p>
+                                                     <p class="railway  "> {{jobDetails[openJob][currentJobInDate].client}}</p>
                                                     <span class="railway  underline">Supervisor</span>
                                                     <p class="railway   "> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
                                                      <span class="railway  underline">Location</span>
                                                     <p class="railway  "> {{jobDetails[openJob][currentJobInDate].location}}</p>
-                                                    <i style = "color:red;"ng-click="removeJob(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"class = "material-icons">delete</i>
+                                                    <i  class =" material-icons red-text text-lighten-2"ng-click="removeJob(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"class = "material-icons">delete</i>
                                                     </div>
                                            <div ng-show="job[0].dateHasPassed && !removingJob" class = "col s12 animated"ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                                    
