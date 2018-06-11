@@ -54,23 +54,32 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
         })
         app.post('/users/changeuserpayperiod', function(req,res){
             var currentName = ""
-            console.log(req.body.newpayperiod)
-            User.find({}, function(err,user){
-                if(err)throw err;
-                if(!user){
-                    res.json({success: false, message: "User Not Found So Not Updated.."})
-                }else{
-                    for(var z=0; z< user.length; z++){
-                        console.log(user[z].name)
-                        currentName = user[z].name
-                        User.findOneAndUpdate({name: user[z].name},{$set:{historyupdated:false}},{new:true}, function(err,user2){
+            console.log(req.body.currentusernamearray)
+            
+               
+             
+                    //console.log(user.length)
+                    PayPeriod.find({payperiodnum: req.body.newpayperiod}, function(err, payperiod){
+                        var newJobDetails = payperiod.jobDetails
+                       
+                        for(var i=0;i<req.body.currentusernamearray.length;i++){
+                            console.log(req.body.currentusernamearray[i])
+ var currentName = req.body.currentusernamearray[i]
+
+ User.findOneAndUpdate({name: req.body.currentusernamearray[i]},{$set:{historyupdated:false}},{new:true}, function(err,user2){
                             if(err)throw err;
                             if(!user2){
                                 res.json({success:false,message:"User not found so not updated..."})
                             }else{
+                                                        
+
                                // res.json({success: true, message:"User found and updated..."})
                                console.log("User History Updated...")
-                               User.findOneAndUpdate({name: currentName}, {$set:{payperiodnum:req.body.newpayperiod,historyupdated:true}},{new:true}, function(err,user3){
+                              // console.log(payperiod[0].jobDetails)
+                               console.log(user2)
+                               
+                               user2.payperiods[0].jobDetails = payperiod[0].jobDetails
+                            User.findOneAndUpdate({name:user2.name}, {$set:{payperiods:user2.payperiods,historyupdated:true}},{new:true}, function(err,user3){
                                    if(err)throw err;
                                    if(!user3){
                                        res.json({success:false, message:"User not found so not updated.."})
@@ -80,10 +89,16 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
                                })
                             }
                         })
-                    }
-                    res.json({success: true, message:"Payperiod Update, and History Updated Parameter Update, Complete...", users:user})
-                }
-            })
+
+                        }
+                       
+                    
+                        console.log(payperiod)
+                    })
+                   
+                   res.json({success: true, message:"Payperiod Update, and History Updated Parameter Update, Complete...", users:user})
+                
+           
         })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
         console.log(req.body.payperiod)

@@ -87,6 +87,7 @@
         $scope.currentEmployee = [];
         $scope.employeesForHistory = [];
         $scope.employeesPaginated = [];
+        $scope.currentusernameArray = [];
         $scope.payPeriods = [];
         $scope.payPeriodHistory = [];
         $scope.page = 0;
@@ -1215,6 +1216,40 @@ $scope.loadingText = true;
                 console.log(data)
             })
         }
+        User.getUsers().then(function (data) {
+            console.log(data.data.users.length)
+                 for (var i = 0; i < data.data.users.length; i++) {
+                if (data.data.users[i].name == $scope.currentUserFile) {
+                    data.data.users[i].jobDetails = $scope.jobDetails;
+                    data.data.users[i].comments = $scope.comments;
+                }
+               // if (data.data.users[i].payperiodnum !== $rootScope.payPeriod) {
+                    //console.log($scope.employees[i])
+                    $scope.newPayPeriodObject.newpayperiod = $rootScope.payPeriod
+                    $scope.newPayPeriodObject.currentusername = data.data.users[i].name
+                    
+                    $scope.currentusernameArray.push(data.data.users[i].name)
+                    $scope.newPayPeriodObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
+
+
+                        console.log( $scope.newPayPeriodObject)
+
+           
+               // }
+            }
+                     User.changeUserPayPeriod($scope.newPayPeriodObject).then(function (data) {
+                        console.log(data)
+                        if (data.data.success) {
+                            $scope.payPeriodUpdated = true;
+                            //$timeout(function(){
+                            //    $scope.payPeriodUpdated = false;
+                            //},)
+                        }
+                        //         $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+
+                    })
+
+        })
 
         User.getUsers().then(function (data) {
             console.log(data)
@@ -1293,8 +1328,14 @@ $scope.loadingText = true;
                     data.data.users[i].comments = $scope.comments;
                 }
                 if ($scope.employees[i].payperiodnum !== $rootScope.payPeriod) {
+                    console.log($scope.employees[i])
                     $scope.newPayPeriodObject.newpayperiod = $rootScope.payPeriod
+                    $scope.newPayPeriodObject.currentusername = data.data.users[i].name
+                                        $scope.newPayPeriodObject.lootch = $scope.employees[i].name
 
+
+                        console.log( $scope.newPayPeriodObject)
+/*
                     User.changeUserPayPeriod($scope.newPayPeriodObject).then(function (data) {
                         console.log(data)
                         if (data.data.success) {
@@ -1305,7 +1346,7 @@ $scope.loadingText = true;
                         }
                         //         $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
 
-                    })
+                    })*/
                 }
             }
             console.log($scope.jobDetails)
