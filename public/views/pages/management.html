@@ -676,14 +676,148 @@
       
     </select>
                                         </div>
+                                                               <div class="input-field col s12">
+                                            <select ng-model="timeData.lunch" name="lunch">
+            <option value="" disabled selected>Lunch?</option>
+
+      <option value="true">yes</option>
+      <option value="false">no</option>
+      
+    </select>
+                                        </div>
 
 
-                                        <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit</a>
+                                        <a ng-click="submitTimeSheet(timesheet,$index)" class="waves-effect waves-light btn">Submit</a>
 
                                     </div>
 
                                     <div ng-show="timesheetEntryOpen && curTimesheet !== $index" class="col s9">
                                         <p class="railway">kkk</p>
+                                     
+                                        <div style="opacity:0; height:1px; width:1px;">
+                                            <select>
+    </select>
+                                        </div>
+                                         <!--  
+                                        <div class="input-field col s6">
+
+
+                                            <select ng-model="timeData.hrsIn1" name="hrsIn1">
+      <option value="" disabled selected>#</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                                            <label>Hrs</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.hrsIn2" name="hrsIn2">
+      <option value="" disabled selected>#</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+       <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.minsIn1" name="minsIn1">
+         <option value="" disabled selected>#</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                                            <label>Mins</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.minsIn2" name="minsIn2">
+            <option value="" disabled selected>#</option>
+                        <option value="0">0</option>
+
+      <option value="5">5</option>
+   
+    </select>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <select ng-model="timeData.amPm1" name="amPm1">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                                        </div>
+                                        <div class="col s12">
+                                            <span class="railway"> to </span>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.hrsOut1" name="hrsOut1">
+      <option value="" disabled selected>0</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                                            <label>Hrs</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.hrsOut2" name="hrsOut2">
+      <option value="" disabled selected>0</option>
+            <option value="0" >0</option>
+
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+       <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.minsOut1" name="minsOut1">
+         <option value="" disabled selected>0</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+  
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                                            <label>Mins</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select ng-model="timeData.minsOut2" name="minsOut2">
+            <option value="" disabled selected>0</option>
+                        <option value="0">0</option>
+
+
+      <option value="5">5</option>
+    
+    </select>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <select ng-model="timeData.amPm2" name="amPm2">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                                        </div>
+
+
+                                        <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit</a>
+-->
 
                                     </div>
                                 </div>
@@ -783,7 +917,8 @@
 
                             <!-- DATE OF BOOKED JOB -->
 
-                                <span class="railway animated fadeIn underline">{{jobDetails[openJob][currentJobInDate].date}}</span>
+                                <span ng-show="!jobDetails[openJob][0].delinquent"  class="railway animated fadeIn underline">{{jobDetails[openJob][currentJobInDate].date}}</span>
+                                <span ng-show="jobDetails[openJob][0].delinquent"  class="railway animated fadeIn underline red-text lighten-3">{{jobDetails[openJob][currentJobInDate].date}}</span>
 
                             
                             <!-- DATE OF BOOKED JOB -->

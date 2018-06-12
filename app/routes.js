@@ -174,19 +174,17 @@ console.log(req.body)
         User.find({name: req.body.user}, function(err,user){
 
             if(err)throw err;
-            if(!user){
-                res.json({success: false, message: "User not found..."})
+            if(!user){ 
+                res.json({success: false, message: "User not found..."}) 
             }else{
-               // res.json({success: true, message: "User fou"})
-               //console.log(user)
-               for(var z=0;z<user[0].payperiods.length;z++){
-                  // console.log(user[0].payperiods[z].payperiodnum)
-                                      //console.log(user[0].payperiods[z].jobDetails)
-                                      if(user[0].payperiods[z].payperiodnum == req.body.payperiodnum){
-                                          //consolconsole.log(user[0].payperiods[z].jobDetails)
-                                        console.log(z)
-                                        user[0].payperiods[z].jobDetails.push(req.body)
-                                          User.findOneAndUpdate({name: req.body.user},{$set:{payperiods:user[0].payperiods}}, function(err,user){
+               // res.json({success: true, message: "User fou"}
+               console.log(user[0].payperiods[0].jobDetails[0])
+                                        user[0].payperiods[0].jobDetails[7].push(req.body)
+                            
+                                        user[0].delinquenttimesheets.splice(req.body.index,1)
+                                          User.findOneAndUpdate({name: req.body.user},
+                                          {$set:{payperiods:user[0].payperiods, 
+                                                 delinquenttimesheets:user[0].delinquenttimesheets}}, function(err,user){
 
                                               if(err)throw err;
                                               if(!user){
@@ -194,8 +192,10 @@ console.log(req.body)
                                                   res.json({success: false, message:"User not found so not updated.."})
                                               }else{
                                                 console.log("herer")
+                                                 res.json({success: true, message:"Current Pay Period Successfully Updated With Delinquent Time Sheet", user:user})
+
                                                   //res.json({success: true, message:"User found and updated..", user: user})
-                                                  User.find({name: req.body.user}, function(err,user){
+                                                 /* User.find({name: req.body.user}, function(err,user){
 
                                                       for(var z=0; z< user[0].delinquenttimesheets.length;z++){
                                                           console.log("Holaa")
@@ -219,15 +219,14 @@ console.log(req.body)
                                                             }
                                                           }
                                                       }
-                                                  })
+                                                  })*/
                                               }
                                           })
-                                      }
+                                      
 
 
                   
-               }
-               res.json({success: true, message:"Current Pay Period Successfully Updated With Delinquent Time Sheet", user:user})
+               
             }
         })
     })

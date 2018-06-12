@@ -749,6 +749,7 @@
         $scope.openIndividualDelinquentTimeSheet = function (index, timesheetData) {
             console.log(index)
             console.log(timesheetData)
+              $('select').material_select();
             //console.log($scope.timesheet)
             //curHistory = index;
             // $scope.showChart = false;
@@ -1001,10 +1002,13 @@
                 $scope.areYouSure = false;
             }
         }
-        $scope.submitTimeSheet = function (timesheet) {
+        $scope.submitTimeSheet = function (timesheet,index) {
             console.log($scope.timeData)
             console.log(timesheet)
             $scope.delinquentJobDetails = timesheet;
+            $scope.delinquentJobDetails.index = index;
+            $scope.delinquentJobDetails.currentuser = $scope.currentUserFile;
+            $scope.delinquentJobDetails.delinquent = true;
 
             console.log($scope.areYouSure)
             $scope.minVarOut = "";
@@ -1895,9 +1899,14 @@ $scope.loadingText = true;
                 $scope.slideout = false;
                 $scope.fadeOut = false;
                 $scope.slidein = true;
-                if ($scope.openJob <= 5) {
+                if ($scope.openJob <= 6) {
+                    if($scope.jobDetails[$scope.openJob].length<1){
 
+                        $scope.openJob = 0;
+                    }else{
                     $scope.openJob = $scope.openJob + 1;
+
+                    }
 
 
                 } else {
@@ -1937,6 +1946,7 @@ $scope.loadingText = true;
                 $scope.jobsSelected = true;
                 $scope.addJobPageOpen = false;
                 $scope.delinquentTimeSheetSelected = false;
+                $scope.timeSheetEntryOpen = false;
                 $scope.disputesSelected = false;
                 $scope.timesheetsSelected = false;
                 $scope.disputesPageOpen = false;
@@ -2496,9 +2506,9 @@ $scope.hoursCalcIterator = 0;
                         $scope.delinquenttimesheets= data.data.user[0].delinquenttimesheets
                         if($scope.delinquenttimesheets.length>0){
                              $scope.delinquentTimeSheet = true;
-                               for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
+                               for (var t = 0; t <$scope.delinquenttimesheets.length; t++) {
 
-                                $scope.delinquentTimeSheetArray.push($scope.delinquenttimesheets[0][t])
+                                $scope.delinquentTimeSheetArray.push($scope.delinquenttimesheets[t])
 
                             }
                         }else{
@@ -2534,7 +2544,7 @@ $scope.hoursCalcIterator = 0;
                         for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
                            // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
                             //for(var v =0; $scope.payperiods[0].jobDetails[u].length;v++){
-                                if($scope.payperiods[0].jobDetails[u][0].dateNum < $scope.dateNow){
+                          /*      if($scope.payperiods[0].jobDetails[u][0].dateNum < $scope.dateNow){
                                      console.log($scope.jobDetails[u])
                                 $scope.payperiods[0].jobDetails[u][0].dateHasPassed = true;
                                 $scope.payperiods[0].jobDetails[u][1].dateHasPassed = true;
@@ -2543,6 +2553,7 @@ $scope.hoursCalcIterator = 0;
                                  $scope.payperiods[0].jobDetails[u][1].dateHasPassed = false;
 
                                 }
+                                */
                            // }
                                }                           //$scope.jobDetails.push($scope.payperiods[0].jobDetails[u])
 
