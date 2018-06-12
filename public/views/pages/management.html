@@ -553,7 +553,7 @@
                                         <p class="railway animated fadeIn "> {{timesheet.date}}</p>
                                     </div>
                                     <div class="col s3">
-                                        <p ng-click="openIndividualDelinquentTimeSheet($index,timesheet)" class="railway animated fadeIn"> {{$index+1}}</p>
+                                        <p ng-click="openIndividualDelinquentTimeSheet($index,timesheet)"   style="border-right:1px solid #ddd;"class="railway animated fadeIn underline"> {{$index+1}}.</p>
                                     </div>
                                     <div ng-show="timesheetEntryOpen && curTimesheet == $index" class="col s9 animated fadeIn">
 
@@ -691,7 +691,7 @@
 
                                     </div>
 
-                                    <div ng-show="timesheetEntryOpen && curTimesheet !== $index" class="col s9" style="border-right:1px solid #ddd;">
+                                    <div ng-show="timesheetEntryOpen && curTimesheet !== $index" class="col s9" style="border-left:1px solid #ddd;">
                                         
                                      
                                         <div style="opacity:0; height:1px; width:1px;">
