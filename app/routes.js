@@ -503,14 +503,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
 
 
                                                 }
-                                         /*   if(user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].default){
-                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0]= req.body
-                                            }else{
-                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex].push(req.body)
-                                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].booked = true;
-
-                                            }
-                                            */
+                                
                                                 
                                                 User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods,  } }, { new: true }, function (err, user) {
                                                     if (err) throw err;

@@ -1505,7 +1505,7 @@ $scope.loadingText = true;
         
 
         }
-        $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+       // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;

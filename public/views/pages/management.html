@@ -764,28 +764,46 @@
                                     <br>
                                 </div>
                             </div>
+
+                            <!-- BOOKED JOBS PAGE -->
+
                             <div ng-show="bookedJobsPageOpened" class="col s12">
 
-                                <!-- SCROLL THROUGH BOOKED JOBS -->
+                            <!-- SCROLL THROUGH BOOKED JOBS -->
 
                                 <a href="#" style="color:black;">
-                            <i ng-click="increaseDay()" style="padding-right:50px;" class="material-icons">expand_less</i>
-                        </a>
+                                    <i ng-click="increaseDay()" style="padding-right:50px;" class="material-icons">expand_less</i>
+                                </a>
                                 <a href="#" style="color:black;">
-                            <i ng-click="decreaseDay()" class="material-icons">expand_more</i>
-                        </a>
+                                    <i ng-click="decreaseDay()" class="material-icons">expand_more</i>
+                                </a>
                                 <br>
 
-                                <!-- SCROLL THROUGH BOOKED JOBS -->
+                            <!-- SCROLL THROUGH BOOKED JOBS -->
+
+                            <!-- DATE OF BOOKED JOB -->
+
+                                <span class="railway animated fadeIn underline">{{jobDetails[openJob][currentJobInDate].date}}</span>
+
+                            
+                            <!-- DATE OF BOOKED JOB -->
+
+                            <!-- SCROLL THROUGH BOOKED JOBS -->
 
 
 
-                                <!-- BOOKED JOBS -->
+                            <!-- LIST OF BOOKED JOBS -->
+
+
                                 <div class="row">
-                                    <p ng-click="openCloseBookedJobs()" class="railway animated fadeIn underline">{{jobDetails[openJob].date}}</p>
+
                                     <div ng-show="openJob == $index" ng-repeat="job in jobDetails track by $index" style="   padding-bottom:10px;" class='col s12'>
                                         <br>
+
                                         <div class="row">
+
+                            <!-- BOOKED JOBS MENU --> 
+
                                             <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
                                                 <!-- remove border left -->
                                                 <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
@@ -794,14 +812,18 @@
                                                     |</p>
                                                 <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Notes
                                                     |</p>
-
                                             </div>
-                                            <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen &&job[currentJobInDate].booked" class="col s9">
-                                                <span class=" railway underline"> {{job[currentJobInDate].date}}</span>
 
+                            <!-- BOOKED JOBS MENU -->
+
+                             <!-- DATE BOOKED  -->
+
+                             <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen &&job[currentJobInDate].booked" class="col s9">
+                            
+                             <!-- DATE BOOKED ARROWS --> 
+                               
                                                 <div ng-show="job.length>1" class="row animated flash">
                                                     <div class="col s6">
-
                                                         <div class="left-align">
                                                             <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
                                                         </div>
@@ -809,16 +831,12 @@
                                                     <div class="col s6">
                                                         <div class="right-align">
                                                             <a href="#" style="color:black;"> <i class = "material-icons">chevron_right</i></a>
-
                                                         </div>
-
                                                     </div>
-
                                                 </div>
 
                                                 <div ng-show="job.length<2" class="row">
                                                     <div class="col s6">
-
                                                         <div class="left-align">
                                                             <i style="color:grey; opacity:.8;" class="material-icons">chevron_left</i>
                                                         </div>
@@ -826,16 +844,23 @@
                                                     <div class="col s6">
                                                         <div class="right-align">
                                                             <i class="material-icons" style="color:grey; opacity:.8;">chevron_right</i>
-
                                                         </div>
-
                                                     </div>
-
                                                 </div>
+
+                        <!-- DATE BOOKED ARROWS --> 
+
+                        <!-- DATE BOOKED REMOVING JOB -->
+
                                                 <div ng-show="!job[0].dateHasPassed && removingJob" class=" col s12 center-align animated fadeIn">
                                                     <p class="railway underline animated flash infinite ">REMOVING JOB</p>
-
                                                 </div>
+
+                        <!--DATE BOOKED REMOVING JOB -->
+
+                        <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
+
+
                                                 <div ng-show="!job[currentJobInDate].dateHasPassed && !removingJob" class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
                                                     <span class="railway underline"> Client</span>
@@ -847,6 +872,12 @@
                                                     <i class=" material-icons red-text text-lighten-2" ng-click="removeJob(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
                                                         class="material-icons">delete</i>
                                                 </div>
+
+                     <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->  
+
+                     <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
+
+
                                                 <div ng-show="job[0].dateHasPassed && !removingJob" class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
                                                     <span class="railway underline" style="color:grey; opacity:0.8;"> Client!</span>
@@ -857,19 +888,24 @@
                                                     <p class="railway  " style="color:grey; opacity:0.8;"> {{jobDetails[openJob][currentJobInDate].location}}</p>
                                                 </div>
 
+                    <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->
+
+
+                    </div>
+
+                    <!-- DATE BOOKED -->
 
 
 
+                    <!--WOULD YOU LIKE TO BOOK THIS DATE -->
 
 
-                                            </div>
                                             <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-                                                <span class=" railway underline"> {{job[currentJobInDate].date}}!</span>
+                   
+                    <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
                                                 <div ng-show="job.length>1 && !job[currentJobInDate].booked" class="row animated flash">
-
                                                     <div class="col s6">
-
                                                         <div class="left-align">
                                                             <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
                                                         </div>
@@ -877,16 +913,12 @@
                                                     <div class="col s6">
                                                         <div class="right-align">
                                                             <a href="#" style="color:black;"> <i class = "material-icons">chevron_right</i></a>
-
                                                         </div>
-
                                                     </div>
-
                                                 </div>
 
                                                 <div ng-show="job.length<2 && !job[currentJobInDate].booked" class="row">
                                                     <div class="col s6">
-
                                                         <div class="left-align">
                                                             <i style="color:grey; opacity:.8;" class="material-icons">chevron_left</i>
                                                         </div>
@@ -894,12 +926,12 @@
                                                     <div class="col s6">
                                                         <div class="right-align">
                                                             <i class="material-icons" style="color:grey; opacity:.8;">chevron_right</i>
-
                                                         </div>
-
                                                     </div>
-
                                                 </div>
+
+                    <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
+
                                                 <div ng-show="!job[currentJobInDate].dateHasPassed && !job[currentJobInDate].booked ">
                                                     <span class="railway  ">Would You Like To Book This Date?</span>
                                                     <br>
@@ -915,6 +947,7 @@
                                                 </div>
 
                                             </div>
+                    <!--WOULD YOU LIKE TO BOOK THIS DATE -->
                                             <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                                 <div ng-show="!job[0].dateHasPassed && !job[0].booked ">
@@ -1020,7 +1053,6 @@
 
                                         </div>-->
                                             <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && job[0].booked" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-                                                <span class=" railway underline"> {{job[currentJobInDate].date}}</span>
 
                                                 <div ng-show="job.length>1 " class="row animated flash">
                                                     <div class="col s6">
@@ -1156,7 +1188,6 @@
 
                                             </div>
                                             <div ng-show="notesPageOpen && openJob == $index && job[0].booked" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-                                                <span class=" railway underline"> {{job[currentJobInDate].date}}</span>
 
                                                 <div ng-show="job.length>1" class="row animated flash">
                                                     <div class="col s6">
@@ -1208,8 +1239,8 @@
                                             </div>
 
 
+                    <!-- ADD JOBS PAGE -->
 
-                                            <!--jobsPageOpen && usersPageIndex == $index -->
                                             <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated fadeIn" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                                 <div ng-show="loadingNewJob" class="center-align animated fadeIn">
@@ -1273,6 +1304,7 @@
 
 
                                             </div>
+                            
                                             <!-- <div ng-show="openJob == $index && jobsPageOpen && !job.booked && job.dateHasPassed " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                         
@@ -1313,75 +1345,10 @@
                                 </div>
                                 <!-- BOOKED JOBS -->
 
-                                <!--
-<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
-
-<table>
-  <tr>
-    <th class="day-name">Sun</th>
-    <th class="day-name">Mon</th>
-    <th class="day-name">Tue</th>
-    <th class="day-name">Wed</th>
-    <th class="day-name">Thu</th>
-    <th class="day-name">Fri</th>
-    <th class="day-name">Sat</th>
-  </tr>
-  <tr>
-    <td class="day"><span class="number">31</span></td>
-    <td class="day"><span class="number">1</span><span class="event"></span><span class="event"></span></td>
-    <td class="day"><span class="number">2</span></td>
-    <td class="day"><span class="number">3</span><span class="event event-multiday-start"></span></td>
-    <td class="day"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass" style="background-color:#5a9ab2;"></span><span class="event"></td>
-    <td class="day"><span class="number">5</span><span class="event event-multiday-finish"></span><span class="event event-multiday eventclass" style="background-color:#5a9ab2;"></span></td>
-    <td class="day"><span class="number">6</span><span class="event event-ghost"></span><span class="event event-multiday-finish eventclass" style="background-color:#5a9ab2;"></span></td>
-  </tr>
-  <tr>
-    <td class="day"><span class="number">7</span></td>
-    <td class="day"><span class="number">8</span><span class="event"></span></td>
-    <td class="day"><span class="number">9</span></td>
-    <td class="day"><span class="number">10</span></td>
-    <td class="day"><span class="number">11</span></td>
-    <td class="day"><span class="number">12</span></td>
-    <td class="day"><span class="number">13</span></td>
-  </tr>
-  <tr>
-    <td class="day"><span class="number">14</span></td>
-    <td class="day"><span class="number">15</span></td>
-    <td class="day"><span class="number">16</span><span class="event"></span></td>
-    <td class="day"><span class="number">17</span><span class="event"></span></td>
-    <td class="day"><span class="number">18</span></td>
-    <td class="day"><span class="number">19</span></td>
-    <td class="day"><span class="number">20</span></td>
-  </tr>
-  <tr>
-    <td class="day"><span class="number">21</span></td>
-    <td class="day"><span class="number">22</span></td>
-    <td class="day"><span class="number">23</span></td>
-    <td class="day"><span class="number">24</span></td>
-    <td class="day"><span class="number">25</span></td>
-    <td class="day"><span class="number">26</span></td>
-    <td class="day"><span class="number">27</span><span class="event event-multiday-start" style="background-color:#da5f5f;"></td>
-  </tr>
-  <tr>
-    <td class="day"><span class="number">28</span><span class="event event-multiday" style="background-color:#da5f5f;"></td>
-    <td class="day today"><span class="number">29</span><span class="event event-multiday-finish" style="background-color:#da5f5f;"></td>
-    <td class="day"><span class="number">30</span></td>
-    <td class="day"><span class="number">1</span></td>
-    <td class="day"><span class="number">2</span></td>
-    <td class="day"><span class="number">3</span></td>
-    <td class="day"><span class="number">4</span></td>
-  </tr>
-  <tr>
-    <td class="day"><span class="number">5</span></td>
-    <td class="day"><span class="number">6</span><span class="event"></span></td>
-    <td class="day"><span class="number">7</span></td>
-    <td class="day"><span class="number">8</span></td>
-    <td class="day"><span class="number">9</span></td>
-    <td class="day"><span class="number">10</span></td>
-    <td class="day"><span class="number">11</span></td>
-  </tr>
-</table>-->
+  
                             </div>
+
+                            <!-- BOOKED JOBS PAGE -->
 
                         </div>
                     </div>
