@@ -1094,6 +1094,7 @@ $scope.loadingText = true;
             User.removeJob(jobData).then(function(data){
                 console.log(data)
                                                 $scope.jobDetails = data.data.user.payperiods[0].jobDetails;
+                                                $scope.increaseDay();
                                                 $scope.removingJob = false;
 
 
@@ -1241,7 +1242,10 @@ $scope.loadingText = true;
            
                // }
             }
-                     User.changeUserPayPeriod($scope.newPayPeriodObject).then(function (data) {
+
+
+            //RE ACTIVATE LATER //
+                    /* User.changeUserPayPeriod($scope.newPayPeriodObject).then(function (data) {
                         console.log(data)
                         if (data.data.success) {
                             $scope.payPeriodUpdated = true;
@@ -1251,7 +1255,11 @@ $scope.loadingText = true;
                         }
                         //         $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
 
-                    })
+                    })*/
+
+        //RE ACTIVATE LATER//
+
+
 
         })
 
@@ -1899,9 +1907,10 @@ $scope.loadingText = true;
                 $scope.slideout = false;
                 $scope.fadeOut = false;
                 $scope.slidein = true;
+                console.log($scope.jobDetails.length)
                 if ($scope.openJob <= 6) {
-                    if($scope.jobDetails[$scope.openJob].length<1){
-
+                    if($scope.jobDetails[$scope.openJob+1].length<1){
+                        console.log("Oy")
                         $scope.openJob = 0;
                     }else{
                     $scope.openJob = $scope.openJob + 1;

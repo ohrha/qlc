@@ -408,7 +408,8 @@ console.log(req.body)
                         timesheetSubmitted: false,
 
                     }
-user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
+                    if(req.body.jobindex == 7){
+                        user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
                 User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
                     if(err)throw err;
                     if(!user){
@@ -417,8 +418,33 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
                         res.json({success: true, message:"User updated", user:user})
                     }
                 })
+                    
+                    }else{
+                        user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
+                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found so not updated..."})
+                    }else{
+                        res.json({success: true, message:"User updated", user:user})
+                    }
+                })
+                    }
+
             }else{
-                if(req.body.indexofjob == 1){
+                if(req.body.jobindex == 7){
+                       user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
+                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found so not updated..."})
+                    }else{
+                        res.json({success: true, message:"User updated", user:user})
+                    }
+                })
+
+                }else{
+  if(req.body.indexofjob == 1){
 user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
                       var defaultJobDetail= {
                         date:req.body.job.date,
@@ -459,6 +485,8 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
 
             }
             
+                }
+              
                /* if(user[0].payperiods[0].jobDetails[req.body.jobindex][0].default){
 
                     res.json({success: false, message: "Cannot delete default job.."})
