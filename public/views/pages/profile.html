@@ -12,7 +12,7 @@
             </div>
                <div class = "col s10 center-align" style=" border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
                 <i ng-click="openHistoryPageProfile()"class = "material-icons">access_time</i>
-                <i class = "material-icons">timeline</i>
+                <i ng-click="openChartsPage()" class = "material-icons">timeline</i>
 
                 <div class = "row">
                        <div ng-show="historyPageOpenProfile" class="col s12">
@@ -199,6 +199,12 @@
 
                     </div>
                 </div>
+            </div>
+
+               <div class="col s12 animated fadeIn" ng-show="chartsPageOpen">
+                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options"
+                    chart-dataset-override="datasetOverride" chart-click="onClick">
+                </canvas>
             </div>
                 </div>
             </div>

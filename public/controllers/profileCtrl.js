@@ -91,6 +91,66 @@
            $scope.user_id=$routeParams.userid
            console.log($scope.user_id)
        })
+               $scope.openChartsPage = function () {
+            $scope.chartsPageOpen = true;
+            $scope.historyPageOpen = false;
+
+            $scope.incompletePayPeriodPageOpen = false;
+
+               User.findUser($scope.name).then(function(data){
+                console.log(data)
+                      $scope.payPeriodHistory = data.data.user[0].payperiodhistory
+console.log($scope.payPeriodHistory)
+               
+
+                        for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
+                            //$scope.data
+$scope.hoursCalcIterator = 0;
+
+                            // $scope.data[0][b]= hoursIterator;
+                                    console.log($scope.payPeriodHistory[b].entry[0][0].date+"-"+$scope.payPeriodHistory[b].entry[6][0].date)
+                                    $scope.labels[b] =$scope.payPeriodHistory[b].entry[0][0].date+"-"+$scope.payPeriodHistory[b].entry[6][0].date
+
+                            for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
+console.log($scope.payPeriodHistory.length)
+
+                                for(var x=0; x< $scope.payPeriodHistory[b].entry[c].length;x++){
+                                    
+                                    console.log($scope.payPeriodHistory[b].entry[c])
+                                    $scope.hoursCalcIterator= $scope.hoursCalcIterator + $scope.payPeriodHistory[b].entry[c][x].hoursCalculated
+                                /*    if($scope.payPeriodHistory[b].entry[c][0]!== undefined){
+
+                                           $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
+                                           if($scope.payPeriodHistory[b].entry[c][x+1] !== undefined){
+                                            console.log("HOlk")
+                                                    $scope.hoursCalIterator = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1];
+                                                 console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated)
+                                                   $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated;
+
+                                                 
+                                           }else{
+                                               console.log("choOlk")
+                                                                                                  $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated ;
+
+                                           }
+
+
+
+                                    }*/
+console.log($scope.hoursCalcIterator,b)
+$scope.data[b] = $scope.hoursCalcIterator
+                                }
+                                
+                                var hoursIterator = 0;
+                                var minIterator = 0;
+                          
+                            }
+
+                        }
+            })
+
+
+        }
           $scope.openHistoryPageProfile = function () {
 $scope.openJob = 0;
             $scope.generalHistoryOpen = false;
