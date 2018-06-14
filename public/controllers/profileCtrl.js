@@ -578,6 +578,7 @@ $scope.hoursCalcIterator = 0;
                $scope.openChartsPage = function () {
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
+            $scope.messagePageOpen = false;
             $scope.historyPageOpenProfile = false;
             $scope.bookedJobsPageOpened = false;
 
