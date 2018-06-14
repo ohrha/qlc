@@ -43,6 +43,8 @@
         $scope.june17 = false;
         $scope.june18 = false;
         $scope.historyEntryOpen = true;
+        $scope.showChart = true;
+        //$scope.individualPayPeriodOpen = false;
            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.series = ['Series A'];
         $scope.data = [
