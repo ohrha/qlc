@@ -105,6 +105,7 @@
                 ;
 
             } else {
+                console.log("second")
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.bookedJobsPageOpened = true;
@@ -353,8 +354,7 @@ $scope.hoursCalcIterator = 0;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;
-            }
-            $scope.openJob = 0;
+                  $scope.openJob = 0;
             
             
             $scope.employeeHome = false;
@@ -499,7 +499,11 @@ $scope.hoursCalcIterator = 0;
             
 
 
+            }
+          
             console.log(name);
+            console.log($scope.bookedJobsPageOpened)
+            
             console.log("Curent User", $scope.currentUserFile)
             if (!$scope.userFilePage && $scope.currentUserFile == name) {
                 $scope.userFilePage = true;
@@ -516,6 +520,7 @@ $scope.hoursCalcIterator = 0;
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
             $scope.historyPageOpenProfile = false;
+            $scope.bookedJobsPageOpened = false;
 
             $scope.incompletePayPeriodPageOpen = false;
 
@@ -573,6 +578,35 @@ $scope.data2[b] = $scope.hoursCalcIterator
 
 
         }
+         $scope.increaseDay = function () {
+            $scope.currentJobInDate = 0;
+            $scope.fadeIn2 = false;
+            $scope.slideout = true;
+            $scope.fadeOut = true;
+
+            $timeout(function () {
+                $scope.slideout = false;
+                $scope.fadeOut = false;
+                $scope.slidein = true;
+                console.log($scope.jobDetails.length)
+                if ($scope.openJob <= 6) {
+                    if($scope.jobDetails[$scope.openJob+1].length<1){
+                        console.log("Oy")
+                        $scope.openJob = 0;
+                    }else{
+                    $scope.openJob = $scope.openJob + 1;
+
+                    }
+
+
+                } else {
+                    $scope.openJob = 0;
+                }
+            }, 500)
+
+
+            console.log($scope.openJob)
+        }
           $scope.openHistoryPageProfile = function () {
 $scope.openJob = 0;
 $scope.chartsPageOpen = false;
@@ -580,6 +614,7 @@ $scope.chartsPageOpen = false;
             $scope.generalHistoryTitle = false;
             $scope.historyPageOpenProfile = true;
             $scope.bookedJobsPageOpened = false;
+            $scope.bookedJobsSelected = false;
             $scope.loadingPersonalHistory = true;
             $scope.personalHistoryTitle = true;
             $scope.personalHistoryOpen = true;
@@ -662,7 +697,7 @@ $scope.hoursCalcIterator = 0;
                         }
             })
           $scope.loadingPersonalHistory =false;
-
+          console.log($scope.bookedJobsPageOpened)
         }
           $scope.openIndividualHistoryEntry = function (index) {
             console.log(index)
