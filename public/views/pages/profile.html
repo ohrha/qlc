@@ -27,7 +27,7 @@
                         <div ng-show="loadingPersonalHistory" class="col s12 center-align">
                             <!-- <i class="fas fa-circle-notch fa-spin"></i>-->
                             <p class="railway animated flash infinite">LOADING HISTORY</p>
-                            <p class="railway animated flash infinite">({{name}})</p>
+                            <p class="railway animated flash infinite truncate">({{name}})</p>
 
 
 
@@ -52,11 +52,18 @@
                                         <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
                                     </a>
                                 </div>
+                                <div class = "col s9">
+                                    <p class = "railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
+                                     <p ng-show="history.entry[0][0].paid" class="railway  green-text lighten-3">PAID</p>
+                                     
+
+                                </div>
 
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown"
                                     style="border: 1px solid #ddd; ">
-                                    <p class="railway underline" style="font-size:20px; opacity:0;">#{{$index}}</p>
-
+                                            <!--    <p ng-show="entry[0].paid" class="railway  green-text lighten-3">PAID</p>
+-->
+                                    
                                 </div>
 
                                 <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:275px;">
@@ -93,6 +100,8 @@
                                             style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
                                             <a href="#" style="color:black;">
                                                 <p class="railway underline">{{entry[0].date}}</p>
+                                                <p ng-show="entry[0].paid" class="railway  green-text lighten-3">PAID</p>
+
                                             </a>
 
 
