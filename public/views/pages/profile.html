@@ -52,7 +52,7 @@
                                         <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
                                     </a>
                                 </div>
-                                <div class = "col s9">
+                                <div ng-show="curPeriod !== $index"class = "col s9">
                                     <p class = "railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                      <p ng-show="history.entry[0][0].paid" class="railway  green-text lighten-3">PAID</p>
                                      
