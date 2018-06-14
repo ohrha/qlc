@@ -1,16 +1,18 @@
 <div class = "container animated fadeIn">
 
-
+<br>
+<br>
     <div class = "row">
-
-      
-            <div class = "col s2 left-align" style="border:1px solid #ddd">
+        <div class = "col s2 left-align" style="border:1px solid #ddd">
                 <div class = "left-align">
                     <i class = "material-icons">account_circle</i>
                 <p class="raileway underline" > Hello {{name}}</p>
                 </div>
             </div>
-               <div class = "col s10 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
+      <div class = "col s10 center-align">
+          <p style="font-size:18px;" class ="railway animated fadeIn">Profile Page</p>
+    
+               <div class = "col s12 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
                                                    <i ng-click="openUserFile(name)"  class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
 
                 <i ng-click="openHistoryPageProfile()"class = "material-icons">access_time</i>
@@ -20,16 +22,15 @@
 
 
 </div>
-<div class = "col s2">
-</div>
-                            <div ng-show="messagePageOpen && messagesLoading" class = "col s10 center-align animated fadeIn">
+
+                            <div ng-show="messagePageOpen && messagesLoading" class = "col s12 center-align animated fadeIn">
                    <p class = "railway flash infinite" style="font-size:20px;"> LOADING</p>
    
   </div>
 
-               <div ng-show="messagePageOpen && !messagesLoading" class = "col s10 center-align animated fadeIn">
+               <div ng-show="messagePageOpen && !messagesLoading" class = "col s12 center-align animated fadeIn">
                    
-                       <div  class="col s12">
+                       <div  class="col s12" style="border-right:1px solid #ddd;">
                             <div class="center-align">
 
 
@@ -105,7 +106,7 @@
                </div>
                             <!-- BOOKED JOBS PAGE -->
 
-                            <div ng-show="bookedJobsPageOpened " class="col s10 center-align">
+                            <div ng-show="bookedJobsPageOpened " class="col s122 center-align">
 
                             <!-- SCROLL THROUGH BOOKED JOBS -->
 
