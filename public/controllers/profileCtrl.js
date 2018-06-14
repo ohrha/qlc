@@ -7,7 +7,7 @@
         console.log("Profile Controller Loaded")
     })
 
-    app.controller('profileCtrl', function ($scope, User, $routeParams) {
+    app.controller('profileCtrl', function ($scope, User, $routeParams,Auth) {
         $scope.$on('$routeChangeSuccess', function () {
             $('.carousel').carousel();
         });
@@ -40,121 +40,170 @@
         $scope.june16 = false;
         $scope.june17 = false;
         $scope.june18 = false;
+           $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+        $scope.series = ['Series A'];
+        $scope.data = [
+            [65, 59, 80, 81, 56, 55, 40]
+
+        ];
+        $scope.onClick = function (points, evt) {
+            console.log(points, evt);
+        };
         console.log($routeParams)
-        User.getUser($routeParams.userid).then(function (data) {
 
-            console.log(data)
-            $scope.name = data.data.user.name;
-            $scope.userObject = data.data.user;
-            $scope.user_id = data.data.user._id;
-            //$scope.userObject
-            for (var i = 0; i < data.data.user.June.length; i++) {
-                
-                   /*  if (data.data.user.june[2] === true) {
-                        $scope.june3 = true;
-                    }
-                    if (data.data.user.june[3] === true) {
-                        $scope.june4 = true;
-                    }
-                    if (data.data.user.june[4] === true) {
-                        $scope.june5 = true;
-                    }
-                    if (data.data.user.june[5] === true) {
-                        $scope.june6 = true;
-                    }
-                    if (data.data.user.june[6] === true) {
-                        $scope.june7 = true;
-                    }
-                    if (data.data.user.june[7] === true) {
-                        $scope.june8 = true;
-                    }
-                    if (data.data.user.june[8] === true) {
-                        $scope.june9 = true;
-                    }
-                    if (data.data.user.june[9] === true) {
-                        $scope.june110 = true;
-                    }
-                    if (data.data.user.june[10] === true) {
-                        $scope.june11 = true;
-                    }
-                    if (data.data.user.june[11] === true) {
-                        $scope.june12 = true;
-                    }
-                    if (data.data.user.june[12] === true) {
-                        $scope.june13 = true;
-                    }
-                    if (data.data.user.june[13] === true) {
-                        $scope.june14 = true;
-                    }
-                    if (data.data.user.june[14] === true) {
-                        $scope.june15 = true;
-                    }
-                    if (data.data.user.june[15] === true) {
-                        $scope.june16 = true;
-                    }
-                    if (data.data.user.june[16] === true) {
-                        $scope.june17 = true;
-                    }
-                    if (data.data.user.june[17] === true) {
-                        $scope.june18 = true;
-                    }*/
-                if (i < 8)
-                    $scope.calander[0].push(data.data.user.June[i])
-          
 
-                if (i > 8) {
-                    $scope.calander[1].push(data.data.user.June[i])
-                } if (i > 16) {
-                    $scope.calander[2].push(data.data.user.June[i])
-                }
 
+        
+        setTimeout(function () {
+
+            //$('.tap-target').tapTarget('open');
+            $('select').material_select();
+
+        }, 15000);
+        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+        $scope.options = {
+            scales: {
+                yAxes: [
+                    {
+                        id: 'y-axis-1',
+                        type: 'linear',
+                        display: true,
+                        position: 'left'
+                    },
+                    {
+                        id: 'y-axis-2',
+                        type: 'linear',
+                        display: true,
+                        position: 'right'
+                    }
+                ]
             }
+        }
+       
+       Auth.getUser().then(function(data){
+           console.log(data)
+           $scope.name = data.data.name;
+           $scope.user_id=$routeParams.userid
+           console.log($scope.user_id)
+       })
+          $scope.openHistoryPageProfile = function () {
+$scope.openJob = 0;
+            $scope.generalHistoryOpen = false;
+            $scope.generalHistoryTitle = false;
+            $scope.historyPageOpenProfile = true;
+            $scope.loadingPersonalHistory = true;
+            $scope.personalHistoryTitle = true;
+            $scope.personalHistoryOpen = true;
+            $scope.employeeHome = false;
+            $scope.searchResults = false;
+            $scope.userList = false;
+            $scope.employeeListOpen = false;
+            $scope.userDetailsPageOpened = true;
+            $scope.bookedJobsPageOpened = false;
+            $scope.complaintsPageOpened = false;
+            $scope.commentsPageOpened = false;
+              User.findUser($scope.name).then(function(data){
+                console.log(data)
+                      $scope.payPeriodHistory = data.data.user[0].payperiodhistory
+console.log($scope.payPeriodHistory)
+               
+
+                        for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
+                            //$scope.data
+
+                            // $scope.data[0][b]= hoursIterator;
+
+
+                            for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
+$scope.hoursCalcIterator = 0;
+                                for(var x=0; x< $scope.payPeriodHistory[b].entry[x].length;x++){
+                                    
+                                    console.log($scope.payPeriodHistory[b].entry[c])
+                                    if($scope.payPeriodHistory[b].entry[c][0]!== undefined){
+
+                                           $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
+                                           if($scope.payPeriodHistory[b].entry[c][x+1] !== undefined){
+                                            console.log("HOlk")
+                                                    $scope.hoursCalIterator = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1];
+                                                 console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated)
+                                                   $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated;
+
+                                                 
+                                           }else{
+                                               console.log("choOlk")
+                                                                                                  $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated ;
+
+                                           }
+
+
+
+                                    }
+
+                                }
+                                var hoursIterator = 0;
+                                var minIterator = 0;
+                                //console.log(c,$scope.payPeriodHistory[b].entry.length)
+                                // console.log("hoursIteratot",hoursIterator)
+
+
+
+                               
+/*
+                                var startTime = moment($scope.payPeriodHistory[b].entry[c].timein, "HH:mm:ss a");
+                                var endTime = moment($scope.payPeriodHistory[b].entry[c].timeout, "HH:mm:ss a");
+                                var duration = moment.duration(endTime.diff(startTime));
+                                var hours = parseInt(duration.asHours());
+                                var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                                //hoursIterator = hoursIterator + hours;
+                                //minIterator = minIterator + minutes
+                                if (minutes == 15) {
+                                    hours + .25
+                                    minIterator = 0;
+                                }
+                                if (minutes == 30) {
+                                    hours + .30
+                                }
+                                if (minutes == 45) {
+                                    hours + .75
+                                }*/
+
+                               // console.log(hours, minutes)
+                            }
+
+                        }
+            })
+          $scope.loadingPersonalHistory =false;
+
+        }
+        $scope.openIndividualPayPeriod = function (index) {
+            console.log(index)
             
-                if(data.data.user.calender[0]["1"]){
-                    $scope.june1Booked = true;
-                }
-                 if(data.data.user.calender[0]["2"]){
-                    $scope.june2Booked = true;
-                }
-           
-            for(var i =0; i< $scope.calander[0].length;i++){
+           // $scope.historyEntryOpen = false;
+            if ($scope.individualPayPeriodOpen && index !== $scope.curPeriod
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                $scope.curPeriod = index;
+                console.log("first")
 
-                    if ($scope.calander[0][0] === true) {
-                        $scope.june1 = true;
-                        console.log($scope.calander[0][i])
-                    }
-                    if ($scope.calander[0][1] === true) {
-                        $scope.june2 = true;
-                        console.log(data.data.user.june[1])
-                    }
-                    if ($scope.calander[0][1] === true) {
-                        $scope.june2 = true;
-                        console.log(data.data.user.june[1])
-                    } 
-                                        if ($scope.calander[0][1] === true) {
-                        $scope.june2 = true;
-                        console.log(data.data.user.june[1])
-                    } 
-                                        if ($scope.calander[0][1] === true) {
-                        $scope.june2 = true;
-                        console.log(data.data.user.june[1])
-                    } 
-                                        if ($scope.calander[0][1] === true) {
-                        $scope.june2 = true;
-                        console.log(data.data.user.june[1])
-                    } 
-                                        if ($scope.calander[0][1] === true) {
-                        $scope.june2 = true;
-                        console.log(data.data.user.june[1])
-                    } 
-                     
             }
-            //$scope.calander.push(data.data.user.june);
-            console.log($scope.calander)
-            console.log($scope.calander[0])
-            console.log($scope.calander[1])
-            console.log($scope.calander[2])
-        })
+
+
+            else if (!$scope.individualPayPeriodOpen && index == $scope.curPeriod) {
+                $scope.individualPayPeriodOpen = true;
+                console.log("second")
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.individualPayPeriodOpen && index !== $scope.curPeriod) {
+                console.log("third")
+                $scope.individualPayPeriodOpen = true;
+                $scope.curPeriod = index;
+            } else {
+                console.log("fourth")
+                $scope.curHistory = null;
+                $scope.curPeriod = null
+                $scope.showChart = true;
+            }
+        }
         
         $scope.areYouAvailable = function () {
             if ($scope.availability == 1) {

@@ -873,6 +873,8 @@
             $scope.incompletePayPeriodPageOpen = false;
             $scope.employeesForHistory = [];
             $scope.pageLimit = 0;
+
+          
             if($scope.usersLoaded){
 
                                    for (var i = 0; i <= $scope.employees.length; i++) {
@@ -1464,7 +1466,7 @@ $scope.loadingText = true;
                       console.log($scope.allEmployeesJobDetails)
                     $scope.payPeriodHistory = data.data.users[d].payperiodhistory
                     console.log($scope.payPeriodHistory)
-                    for(var z=0; z<$scope.employeeJobDetails.allEmployeesJobDetails.length;z++ ){
+                  for(var z=0; z<$scope.employeeJobDetails.allEmployeesJobDetails.length;z++ ){
                             //$scope.data
 
                             // $scope.data[0][b]= hoursIterator;
@@ -1472,8 +1474,9 @@ $scope.loadingText = true;
                                       
                                       for(var y=0; y< $scope.employeeJobDetails.allEmployeesJobDetails[z][x].length;y++){
                                           console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
+                                          if($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timeSheetSubmitted){
 
-                                          
+                                                               
                     var startTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timein, "HH:mm:ss a");
                                 var endTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timeout, "HH:mm:ss a");
                                 var duration = moment.duration(endTime.diff(startTime));
@@ -1496,13 +1499,22 @@ $scope.loadingText = true;
 
                                  $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated = hours+minutes;
 
+
+                                          }else{
+
+                                             $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated = 0;
+                                             $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].datebooked = false;
+
+                                          }
+
+                         
                             }
                             }
                           
                 
-                                      }
+                    }
 
-               console.log($scope.employeeJobDetails)
+               //console.log($scope.employeeJobDetails)
             
 
                 }
@@ -1517,7 +1529,7 @@ $scope.loadingText = true;
         
 
         }
-       // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+        $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
@@ -2273,6 +2285,7 @@ $scope.loadingText = true;
         }
         $scope.openUserFileHistory = function (name, phonenumber) {
             $scope.openJob = 0;
+            $scope.historyPageOpenProfile = true;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
             $scope.loadingPersonalHistory = true;
@@ -2550,30 +2563,123 @@ $scope.hoursCalcIterator = 0;
 
                         
                         
-                        for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
-                           // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
-                            //for(var v =0; $scope.payperiods[0].jobDetails[u].length;v++){
-                          /*      if($scope.payperiods[0].jobDetails[u][0].dateNum < $scope.dateNow){
-                                     console.log($scope.jobDetails[u])
-                                $scope.payperiods[0].jobDetails[u][0].dateHasPassed = true;
-                                $scope.payperiods[0].jobDetails[u][1].dateHasPassed = true;
-                                }else{
-                                 $scope.payperiods[0].jobDetails[u][0].dateHasPassed = false;
-                                 $scope.payperiods[0].jobDetails[u][1].dateHasPassed = false;
-
-                                }
-                                */
-                           // }
+                       for(var u=0;u<$scope.payperiods[0].jobDetails.length;u++){
+                            console.log($scope.payperiods[0].jobDetails[u],$scope.dateNow)
+                        
                                }                           //$scope.jobDetails.push($scope.payperiods[0].jobDetails[u])
 
-                          /*  if($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow){
+                           if($scope.payperiods[0].jobDetails[0][0].dateNum < $scope.dateNow){
                             console.log($scope.jobDetails[u])
-                                $scope.payperiods[0].jobDetails[u].dateHasPassed = true;
+                                $scope.payperiods[0].jobDetails[0][0].dateHasPassed = true;
 
                             }else{
-                               $scope.payperiods[0].jobDetails[u].dateHasPassed = false;
+                               $scope.payperiods[0].jobDetails[0][0].dateHasPassed = false;
 
-                            }*/
+                            }
+                                    if($scope.payperiods[0].jobDetails[0][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[0][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[0][1].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[1][0].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[1][0].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[1][0].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[1][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[1][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[1][1].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[2][0].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[2][0].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[2][0].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[2][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[2][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[2][1].dateHasPassed = false;
+
+                            }
+                                     if($scope.payperiods[0].jobDetails[3][0].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[3][0].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[3][0].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[3][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[3][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[3][1].dateHasPassed = false;
+
+                            }
+                                     if($scope.payperiods[0].jobDetails[4][0].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[4][0].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[4][0].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[4][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[4][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[4][1].dateHasPassed = false;
+
+                            }
+                                     if($scope.payperiods[0].jobDetails[5][0].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[5][0].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[5][0].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[5][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[5][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[5][1].dateHasPassed = false;
+
+                            }
+                                     if($scope.payperiods[0].jobDetails[6][0].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[6][0].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[6][0].dateHasPassed = false;
+
+                            }
+                                    if($scope.payperiods[0].jobDetails[6][1].dateNum < $scope.dateNow){
+                            console.log($scope.jobDetails[u])
+                                $scope.payperiods[0].jobDetails[6][1].dateHasPassed = true;
+
+                            }else{
+                               $scope.payperiods[0].jobDetails[6][1].dateHasPassed = false;
+
+                            }
 
                 //}
                         $scope.jobDetails = $scope.payperiods[0].jobDetails

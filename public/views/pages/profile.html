@@ -1,192 +1,200 @@
-<div class="container">
-    <div class="row">
-        <!--<div style="height:500px; border-right:1px solid black" class="col s3 animated fadeIn">
-            <div class="row">
-                <div style="height: 50px;border-bottom:1px solid black" class="col s12">
+<div class = "container">
 
+
+    <div class = "row">
+
+      
+            <div class = "col s2 left-align" style="border:1px solid #ddd">
+                <div class = "left-align">
+                    <i class = "material-icons">account_circle</i>
+                <h1 > Hello {{name}}</h1>
                 </div>
             </div>
-        </div>-->
-        <div style=" border-bottom:1px solid black;" class="col s12 ">
-            <h4 class="center-align animated fadeIn">{{name}}</h4>
-            <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
-            <div class="row center-align">
-                <div class="col s4">
-                    <i ng-click="previousMonth()" class="material-icons center-align">chevron_left</i>
-                </div>
-                <div class="col s4">
-                    <span ng-show="monthPosition ===1" class="center-align animated fadeIn">JANUARY</span>
-                    <span ng-show="monthPosition ===2" class="center-align animated fadeIn">FEBRUARY</span>
-                    <span ng-show="monthPosition ===3" class="center-align animated fadeIn">MARCH</span>
-                    <span ng-show="monthPosition ===4" class="center-align animated fadeIn">APRIL</span>
-                    <span ng-show="monthPosition ===5" class="center-align animated fadeIn">MAY</span>
-                    <span ng-show="monthPosition ===6" class="center-align animated fadeIn">JUNE</span>
-                    <span ng-show="monthPosition ===7" class="center-align animated fadeIn">JULY</span>
-                    <span ng-show="monthPosition ===8" class="center-align animated fadeIn">AUGUST</span>
-                    <span ng-show="monthPosition ===9" class="center-align animated fadeIn">SEPTEMBER</span>
-                    <span ng-show="monthPosition ===10" class="center-align animated fadeIn">OCTOVER</span>
-                    <span ng-show="monthPosition ===11" class="center-align animated fadeIn">NOVEMBER</span>
-                    <span ng-show="monthPosition ===12" class="center-align animated fadeIn">DECEMBER</span>
+               <div class = "col s10 center-align" style="border-bottom:1px solid #ddd">
+                <i ng-click="openHistoryPageProfile()"class = "material-icons">access_time</i>
+                <i class = "material-icons">timeline</i>
 
-                    <!-- <span class = "center-align">{{currentMonth}}</span>-->
+                <div class = "row">
+                       <div ng-show="historyPageOpenProfile" class="col s12">
+                <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
+
+                    <p ng-show="generalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>History
+                        page</p>
+
+                    <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openHistoryPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Work
+                        History</p>
+                    <div class="row ">
+                        <div ng-show="loadingPersonalHistory" class="col s12 center-align">
+                            <!-- <i class="fas fa-circle-notch fa-spin"></i>-->
+                            <p class="railway animated flash infinite">LOADING HISTORY</p>
+                            <p class="railway animated flash infinite">({{name}})</p>
+
+
+
+
+                        </div>
+                        <div ng-show="personalHistoryOpen && !loadingPersonalHistory" class="col s12 center-align">
+                            <div class="row">
+                                <div class="col s3">
+                                    <p style="font-size:14px;" class="railway animated fadeIn ">Pay Period</p>
+
+                                </div>
+                                <div class="col s9">
+                                    <p style="font-size:14px;" class="railway animated fadeIn ">Details</p>
+
+
+                                </div>
+                            </div>
+                            <div class="row " ng-repeat="history in payPeriodHistory track by $index">
+
+                                <div class="col s3">
+                                    <a href='#' style="color:black;">
+                                        <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
+                                    </a>
+                                </div>
+
+                                <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown"
+                                    style="border: 1px solid #ddd; ">
+                                    <p class="railway underline" style="font-size:20px; opacity:0;">#{{$index}}</p>
+
+                                </div>
+
+                                <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:275px;">
+
+                                    <br>
+                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                        chart-series="series"
+                                    </canvas>
+                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                        chart-series="series"
+                                    </canvas>
+                                    <div ng-repeat="entry in history.entry track by $index" class="row">
+
+                                        <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                            ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                            <div class="right-align">
+                                                <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
+                                                <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
+
+                                            </div>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timeout}}</p>
+
+
+
+
+
+                                        </div>
+                                        <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp"
+                                            style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+                                            <a href="#" style="color:black;">
+                                                <p class="railway underline">{{entry[currentJobInDate].date}}</p>
+                                            </a>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--
+                                <div class="col s3">
+                                   <a href='#' style="color:black;"> <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p></a>
+                                </div>
+                          
+                                <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown" style="border: 1px solid #ddd; ">
+                                    <p class="railway underline" style="font-size:20px; opacity:0;">#{{$index}}</p>
+
+                                </div>
+                       
+                                <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:250px;" >
+
+                                    <br>
+                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                    chart-series="series"
+                                    </canvas>
+                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                    chart-series="series"
+                                    </canvas>
+                                    <div ng-repeat="entry in history.entry track by $index" class="row">
+                                        
+                                        <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+                                            <div class = "right-align">
+                                           <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+                                            </div>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.location}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.contractor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.supervisor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.timein}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry.timeout}}</p>
+
+
+
+
+
+                                        </div>
+                                        <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
+                                            <a href="#" style="color:black;"><p class="railway underline">{{entry.date}}</p></a>
+
+
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div ng-show="loadingGeneralHistory" class="col s12 center-align">
+                            <!--<i class="fas fa-circle-notch fa-spin"></i>-->
+                            <p class="railway animated flash infinite">LOADING USER LIST</p>
+
+                        </div>
+                        <div ng-show="generalHistoryOpen && !loadingGeneralHistory" class="col s12">
+                            <div class="center-align">
+
+
+                                <table>
+                                    <thead style="text-decoration:none;">
+                                        <tr style="font-family: railway; text-decoration:none;">
+                                            <th>Name</th>
+                                            <th>Phonenumber</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                                        <tr>
+                                            <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFileHistory(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                                            <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                                <ul class="pagination">
+                                    <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                                    <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                        ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                    <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                                    <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="col s4">
-                    <i ng-click="nextMonth()" class="material-icons center-align">chevron_right</i>
+            </div>
                 </div>
             </div>
 
-
-
-            <table class="animated fadeIn center-align">
-
-                <tr>
-                    <th class="day-name">Sun</th>
-                    <th class="day-name">Mon</th>
-                    <th class="day-name">Tue</th>
-                    <th class="day-name">Wed</th>
-                    <th class="day-name">Thu</th>
-                    <th class="day-name">Fri</th>
-                    <th class="day-name">Sat</th>
-                </tr>
-                <tr>
-
-                    <td class="day" ng-class="{available: june1, notavailable: !june1, pending: availability == 2}"><a href ="/calander/{{user_id}}/June/1"><span ng-show="june1Booked" class="number align-right">1<span  style="float:right;font-size:17px;"class = "material-icons align-right animated pulse infinite">access_alarms</span></span><span class="event"></span></a><span class="event"></span></td>
-                    <td class="day" ng-class="{available: june2, notavailable: !june2, pending: availability == 2}"><a href="/calander/{{user_id}}/June/2"><span class="number">2<span ng-show="june2Booked"  style="float:right;font-size:17px;"class = "material-icons align-right animated pulse infinite">access_alarms</span></span></a></td>
-                    <td class="day" ng-class="{available: june3, notavailable: !june3, pending: availability == 2}"><span class="number">3</span><span class="event event-multiday-start"></span></td>
-                    <td class="day" ng-class="{available: june4, notavailable: !june4, pending: availability == 2}"><span class="number">4</span><span class="event event-multiday"></span><span class="event event-multiday-start eventclass"
-                            style="background-color:#5a9ab2;"></span><span class="event"></td>
-                    <td class="day" ng-class = "{available: june5, notavailable: !june5, pending: availability == 2}"><span class="number">5</span><span
-                            class="event event-multiday-finish"></span><span class="event event-multiday eventclass" style="background-color:#5a9ab2;"></span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june6, pending: availability == 2}"><span class="number">6</span><span class="event event-ghost"></span><span class="event event-multiday-finish eventclass"
-                            style="background-color:#5a9ab2;"></span></td>
-                                                <td class="day" ng-class="{available: june6, notavailable: !june7, pending: availability == 2}"><span class="number">7</span></td>
-
-                </tr>
-                <tr>
-                    <td class="day" ng-class="{available: june6, notavailable: !june8, pending: availability == 2}"><span class="number">8</span><span class="event"></span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june9, pending: availability == 2}"><span class="number">9</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june10, pending: availability == 2}"><span class="number">10</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june11, pending: availability == 2}"><span class="number">11</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june12, pending: availability == 2}"><span class="number">12</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june13, pending: availability == 2}"><span class="number">13</span></td>
-                </tr>
-                <tr>
-                    <td class="day" ng-class="{available: june6, notavailable: !june14, pending: availability == 2}"><span class="number">14</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june15, pending: availability == 2}"><span class="number">15</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june16, pending: availability == 2}"><span class="number">16</span><span class="event"></span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june17, pending: availability == 2}"><span class="number">17</span><span class="event"></span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june18, pending: availability == 2}"><span class="number">18</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june19, pending: availability == 2}"><span class="number">19</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june20, pending: availability == 2}"><span class="number">20</span></td>
-                </tr>
-                <tr>
-                    <td class="day" ng-class="{available: june6, notavailable: !june21, pending: availability == 2}"><span class="number">21</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june22, pending: availability == 2}"><span class="number">22</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june23, pending: availability == 2}"><span class="number">23</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june24, pending: availability == 2}"><span class="number">24</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june25, pending: availability == 2}"><span class="number">25</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june26, pending: availability == 2}"><span class="number">26</span></td>
-                    <td class="day" ng-class="{available: june6, notavailable: !june27, pending: availability == 2}"><span class="number">27</span><span class="event event-multiday-start" style="background-color:#da5f5f;"></td>
-  </tr>
-  <tr>
-    <td  class="day animated fadeIn"><span class="number">28</span><span class="event event-multiday" style="background-color:#da5f5f;"></td>
-    <td ng-show="monthPosition !== 2" class="day today animated fadeIn"><span class="number">29</span><span class="event event-multiday-finish"
-                            style="background-color:#da5f5f;"></td>
-    <td ng-show="monthPosition !== 2" class="day animated fadeIn"><span class="number">30</span></td>
-                    <td ng-show="monthPosition !== 2 && monthPosition !== 4 && monthPosition !== 6 && monthPosition !== 9 && monthPosition !== 11"
-                        class="day animated fadeIn"><span class="number">31</span></td>
-
-                </tr>
-
-            </table>
-          
-        </div>
-        <h1 class="animated fadeInDown"><i class="icon icon-arrow-down"></i></h1>
-
-<h1 class="animated rotateIn">PURE CSS SELECT</h1>
-<p>1. Normal</p>
-<div class="select animated zoomIn">
-    <!-- You can toggle select (disabled) -->
-    <input type="radio" name="option">
-    <i class="toggle icon icon-arrow-down"></i>
-    <i class="toggle icon icon-arrow-up"></i>
-    <span class="placeholder">Choose...</span>
-    <label class="option">
-        <input type="radio" name="option">
-        <span class="title animated fadeIn"><i class="icon icon-speedometer"></i>Speedometer</span>
-    </label>
-    <label class="option">
-        <input type="radio" name="option">
-        <span class="title animated fadeIn"><i class="icon icon-fire"></i>Fire</span>
-    </label>
-    <label class="option">
-        <input type="radio" name="option" disabled>
-        <span class="title animated fadeIn"><i class="icon icon-handbag"></i>Handbag</span>
-    </label>
-    <label class="option">
-        <input type="radio" name="option">
-        <span class="title animated fadeIn"><i class="icon icon-badge"></i>Badge</span>
-    </label>
-</div>
-<br>
-<br>
-<p>2. Disabled</p>
-<div class="select animated zoomIn">
-    <!-- You can toggle select (disabled) -->
-    <input type="radio" name="option" disabled>
-    <i class="toggle icon icon-arrow-down"></i>
-    <i class="toggle icon icon-arrow-up"></i>
-    <span class="placeholder">Choose...</span>
-    <label class="option">
-        <input type="radio" name="option">
-        <span class="title"><i class="icon icon-speedometer"></i>Speedometer</span>
-    </label>
-    <label class="option">
-        <input type="radio" name="option">
-        <span class="title"><i class="icon icon-fire"></i>Fire</span>
-    </label>
-    <label class="option">
-        <input type="radio" name="option" disabled>
-        <span class="title"><i class="icon icon-handbag"></i>Handbag</span>
-    </label>
-    <label class="option">
-        <input type="radio" name="option">
-        <span class="title"><i class="icon icon-badge"></i>Badge</span>
-    </label>
-</div>
-<br>
-<br>
-<p>3. Toggle & Confirm</p>
-<div class="select2 animated zoomIn">
-    <!-- You can toggle select (disabled) -->
-    <label>
-        <input type="checkbox" name="placeholder">
-        <i class="toggle icon icon-plus"></i>
-        <i class="toggle icon icon-minus"></i>
-        <span class="placeholder">Choose...</span>
-        <label class="option">
-            <input type="radio" name="option">
-            <span class="title animated fadeIn"><i class="icon icon-speedometer"></i>Speedometer</span>
-        </label>
-
-        <label class="option">
-            <input type="radio" name="option">
-            <span class="title animated fadeIn"><i class="icon icon-fire"></i>Fire</span>
-        </label>
-        <label class="option">
-            <input type="radio" name="option" disabled>
-            <span class="title animated fadeIn"><i class="icon icon-handbag"></i>Handbag</span>
-        </label>
-        <label class="option">
-            <input type="radio" name="option">
-            <span class="title animated fadeIn"><i class="icon icon-badge"></i>Badge</span>
-        </label>
-    </label>
-</div>
-<br>
-<br>
-<br>
-
-<p><img src="http://aoyue.com.tw/images/logo.svg" width="25" height="25">powered by Aoyue Design</p>
     </div>
+
+
 </div>

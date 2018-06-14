@@ -60,6 +60,7 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
              
                     //console.log(user.length)
                     PayPeriod.find({payperiodnum: req.body.newpayperiod}, function(err, payperiod){
+                        payperiod.jobDetails.push([])
                         var newJobDetails = payperiod.jobDetails
                        
                         for(var i=0;i<req.body.currentusernamearray.length;i++){
@@ -111,9 +112,9 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
                 var payperiodHistoryEntry = {}
                 payperiodHistoryEntry.payperiod = req.body.payperiod;
                 payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
-                   if (req.body.allEmployeesJobDetails[z][7].name !== undefined) {
+                   if (req.body.allEmployeesJobDetails[z][8].name !== undefined) {
                 //console.log(z)
-                var name = req.body.allEmployeesJobDetails[z][7].name;
+                var name = req.body.allEmployeesJobDetails[z][8].name;
                 console.log(name)
                 User.findOne({ name: name }, function (err, user) {
                     if (err) throw err;
@@ -121,9 +122,6 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
                         res.json({ success: false, message: "User not found.." })
                     } else {
                         console.log(user.historyupdated)
-                        if (user.historyupdated) {
-                            console.log("History already updated...")
-                        } else {
                             console.log('history not update'+user.name)
                             User.findOneAndUpdate({ name: user.name }, { $push: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
 
@@ -145,7 +143,7 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
                                     })
                                 }
                             })
-                        }
+                        
 
                     }
                 })
@@ -752,7 +750,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
         })
     })
     app.put('/users/:userid', function (req, res) {
-
+       // console.log(req.params.userid,"OU")
         User.findOne({ _id: req.params.userid }, function (err, user) {
             if (!user) {
                 res.json({ success: false, message: "User not found..." })
@@ -767,7 +765,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
         //res.send("testing new route")
         console.log("authenticate Route Hit");
         console.log(req.body)
-        User.findOne({ username: req.body.username }).select('email username password payperiodnum userclass')
+        User.findOne({ username: req.body.username }).select('email username password name payperiodnum userclass')
             .exec(function (err, user) {
 
                 if (err) throw err;
@@ -784,7 +782,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum }, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum,name :user.name }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
