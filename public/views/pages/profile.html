@@ -10,16 +10,23 @@
                 <p class="raileway underline" > Hello {{name}}</p>
                 </div>
             </div>
-               <div class = "col s10 center-align" style=" border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
+               <div class = "col s10 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
                                                    <i ng-click="openUserFile(name)"  class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
 
                 <i ng-click="openHistoryPageProfile()"class = "material-icons">access_time</i>
                 <i ng-click="openChartsPage()" class = "material-icons">timeline</i>
+                                <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class = "material-icons">email</i>
+                            <i ng-show="messagePageSelected"ng-click="openMessagePage()" class = "material-icons">drafts</i>
+
+
 </div>
 <div class = "col s2">
 </div>
 
                
+               <div ng-show="messagePageOpen" class = "col s10 center-align">
+                   <h1> MESSAGE CENTER</h1>
+               </div>
                             <!-- BOOKED JOBS PAGE -->
 
                             <div ng-show="bookedJobsPageOpened" class="col s10 center-align">

@@ -43,6 +43,8 @@
         $scope.june17 = false;
         $scope.june18 = false;
         $scope.historyEntryOpen = true;
+        $scope.messagePageOpen = false;
+        $scope.messagePageSelected = false;
         $scope.showChart = true;
         //$scope.individualPayPeriodOpen = false;
            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -606,6 +608,15 @@ $scope.data2[b] = $scope.hoursCalcIterator
 
 
             console.log($scope.openJob)
+        }
+        $scope.openMessagePage = function(){
+            if($scope.messagePageOpen ){
+                $scope.messagePageOpen = false;
+                $scope.messagePageSelected = false;
+            }else{
+                $scope.messagePageOpen = true;
+                $scope.messagePageSelected = true;
+            }
         }
           $scope.openHistoryPageProfile = function () {
 $scope.openJob = 0;
