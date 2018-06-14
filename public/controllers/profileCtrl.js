@@ -7,11 +7,13 @@
         console.log("Profile Controller Loaded")
     })
 
-    app.controller('profileCtrl', function ($scope, User, $routeParams,Auth) {
+    app.controller('profileCtrl', function ($scope, User, $routeParams,Auth, $timeout) {
         $scope.$on('$routeChangeSuccess', function () {
             $('.carousel').carousel();
         });
         $scope.name = "";
+        $scope.currentJobInDate = 0;
+        $scope.test = "tes"
         $scope.monthPosition = 1;
         $scope.currentMonth = "JANUARY";
         $scope.availability
@@ -40,6 +42,7 @@
         $scope.june16 = false;
         $scope.june17 = false;
         $scope.june18 = false;
+        $scope.historyEntryOpen = true;
            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.series = ['Series A'];
         $scope.data = [
@@ -174,6 +177,40 @@ $scope.hoursCalcIterator = 0;
             })
           $scope.loadingPersonalHistory =false;
 
+        }
+          $scope.openIndividualHistoryEntry = function (index) {
+            console.log(index)
+            //curHistory = index;
+           // $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+            $scope.showChart = false;
+            $timeout(function () {
+                $scope.removeChart = true;
+                if ($scope.historyEntryOpen && index !== $scope.curHistory
+                ) {
+                    // $scope.individualPayPeriodOpen = false;
+                    $scope.curHistory = index;
+                    console.log("first")
+
+                }
+
+
+                else if (!$scope.historyEntryOpen && index == $scope.curHistory) {
+                    $scope.historyEntryOpen = true;
+                    console.log("second")
+                    //$scope.curPeriod = index;
+                }
+                else if (!$scope.historyEntryOpen && index !== $scope.curHistory) {
+                    console.log("third")
+                    $scope.historyEntryOpen = true;
+                    $scope.curHistory = index;
+                } else {
+                    $scope.curHistory = null
+
+                    $scope.showChart = true;
+                    $scope.removeChart = false;
+                }
+            }, 500)
         }
         $scope.openIndividualPayPeriod = function (index) {
             console.log(index)

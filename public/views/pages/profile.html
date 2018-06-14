@@ -7,10 +7,10 @@
             <div class = "col s2 left-align" style="border:1px solid #ddd">
                 <div class = "left-align">
                     <i class = "material-icons">account_circle</i>
-                <h1 > Hello {{name}}</h1>
+                <p class="raileway underline" > Hello {{name}}</p>
                 </div>
             </div>
-               <div class = "col s10 center-align" style="border-bottom:1px solid #ddd">
+               <div class = "col s10 center-align" style=" border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
                 <i ng-click="openHistoryPageProfile()"class = "material-icons">access_time</i>
                 <i class = "material-icons">timeline</i>
 
@@ -92,7 +92,7 @@
                                         <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp"
                                             style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
                                             <a href="#" style="color:black;">
-                                                <p class="railway underline">{{entry[currentJobInDate].date}}</p>
+                                                <p class="railway underline">{{entry[0].date}}</p>
                                             </a>
 
 

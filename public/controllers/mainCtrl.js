@@ -64,7 +64,7 @@
                     }
                 
                 }
-                console.log(i,data.data.payperiods[i].jobDetails)
+               // console.log(i,data.data.payperiods[i].jobDetails)
            // PayPeriod.updatePayPeriodJobDetails(data.data.payperiods).then(function(data){
              //   console.log(data)
               // })
@@ -210,8 +210,8 @@
         Auth.getUser().then(function (data) {
             console.log(data)
             $rootScope.userClass = data.data.userclass;
-
-            console.log($rootScope.userClass)
+            $rootScope.user_id = data.data._id
+            console.log($rootScope.user_id)
         })
         User.getUserClass().then(function (data) {
 

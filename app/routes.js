@@ -782,7 +782,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum,name :user.name }, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum,name :user.name ,_id:user._id}, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
