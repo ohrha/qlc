@@ -39,13 +39,13 @@
                                     <div class = "col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                                         <div class = "row">
                                             <div ng-show="!page.read" class = "col s2">  
-                                            <i ng-click="openMessage($index,true)" class = "material-icons">email<span style="color:black;"  ng-click="openMessage($index,true)">{{$index+1}}.{{page.name}}</span></i>
+                                            <i ng-click="openMessage($index,true)" class = "material-icons">email<span   >{{$index+1}}.{{page.name}}</span></i>
                                             </div>
                                              <div ng-show="page.read" class = "col s2">  
-                                            <i ng-click="openMessage($index,true)" class = "material-icons">drafts<span style="color:black;" >{{$index+1}}.</span></i>
+                                            <i ng-click="openMessage($index,true)" class = "material-icons">drafts<span >{{$index+1}}.</span></i>
                                             </div>
                                             <div class = "col s10">
-                                            <p class="animated fadeIn railway"><a style="color:black;" href="#">{{page.subject}}</a></p>
+                                            <p ng-click="openMessage($index,true)" class="animated fadeIn railway"><a style="color:black;" href="#">{{page.subject}}</a></p>
                                             </div>
 
                                        
@@ -62,7 +62,7 @@
                                                                                       
 
                                             </div>
-                                                     <div class ="col s10"  ng-show="messageOpen && currentIndex !== $index" style="height:100px;">
+                                                     <div class ="col s10"  ng-show="messageOpen && currentIndex !== $index" style=" border-top:1px solid #ddd; height:100px;">
                                    
                                             <p  class="animated fadeIn railway"><a style="color:black;" href="#">X</a></p>
 
