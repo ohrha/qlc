@@ -48,7 +48,7 @@
            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.series = ['Series A'];
         $scope.data = [
-            [65, 59, 80, 81, 56, 55, 40]
+            [0, 0, 0, 81, 56, 55, 40]
 
         ];
         $scope.onClick = function (points, evt) {
@@ -94,6 +94,7 @@
                $scope.openChartsPage = function () {
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
+            $scope.historyPageOpenProfile = false;
 
             $scope.incompletePayPeriodPageOpen = false;
 
