@@ -110,7 +110,7 @@ $scope.hoursCalcIterator = 0;
 
                             // $scope.data[0][b]= hoursIterator;
                                     console.log($scope.payPeriodHistory[b].entry[0][0].date+"-"+$scope.payPeriodHistory[b].entry[6][0].date)
-                                    $scope.labels[b] =$scope.payPeriodHistory[b].entry[0][0].date+"-"+$scope.payPeriodHistory[b].entry[6][0].date
+                                    $scope.labels2[b] =$scope.payPeriodHistory[b].entry[0][0].date+"-"+$scope.payPeriodHistory[b].entry[6][0].date
 
                             for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
 console.log($scope.payPeriodHistory.length)
@@ -139,7 +139,7 @@ console.log($scope.payPeriodHistory.length)
 
                                     }*/
 console.log($scope.hoursCalcIterator,b)
-$scope.data[b] = $scope.hoursCalcIterator
+$scope.data2[b] = $scope.hoursCalcIterator
                                 }
                                 
                                 var hoursIterator = 0;
@@ -154,6 +154,7 @@ $scope.data[b] = $scope.hoursCalcIterator
         }
           $scope.openHistoryPageProfile = function () {
 $scope.openJob = 0;
+$scope.chartsPageOpen = false;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
             $scope.historyPageOpenProfile = true;

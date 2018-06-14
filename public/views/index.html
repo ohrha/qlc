@@ -111,6 +111,7 @@
       <ul class="side-nav railway" id="mobile-demo">
         <li><a href="/">Home</a></li>
         <li ng-show="loggedIn" ><a href="/management">Management</a></li>
+        <li ng-show="loggedIn" ><a ng-href="/profile/{{user_id}}">Profile</a></li>
         <li><a href="/services">Services</a></li>
         <li ng-show="!loggedIn"><a href="/register">Register</a></li>
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
