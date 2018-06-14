@@ -46,8 +46,14 @@
         $scope.showChart = true;
         //$scope.individualPayPeriodOpen = false;
            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+                      $scope.labels2 = ["January", "February", "March", "April", "May", "June", "July"];
+
         $scope.series = ['Series A'];
         $scope.data = [
+            [0, 0, 0, 81, 56, 55, 40]
+
+        ];
+            $scope.data2 = [
             [0, 0, 0, 81, 56, 55, 40]
 
         ];

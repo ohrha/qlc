@@ -1,4 +1,4 @@
-<div class = "container">
+<div class = "container animated fadeIn">
 
 
     <div class = "row">
@@ -47,12 +47,12 @@
                             </div>
                             <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
-                                <div class="col s3">
+                                <div class="col s3 animated fadeIn">
                                     <a href='#' style="color:black;">
                                         <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
                                     </a>
                                 </div>
-                                <div ng-show="curPeriod !== $index"class = "col s9">
+                                <div ng-show="curPeriod !== $index"class = "col s9 animated fadeIn">
                                     <p class = "railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                      <p ng-show="history.entry[0][0].paid" class="railway  green-text lighten-3">PAID</p>
                                      
