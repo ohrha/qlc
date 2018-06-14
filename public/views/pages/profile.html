@@ -22,14 +22,84 @@
 </div>
 <div class = "col s2">
 </div>
+                            <div ng-show="messagePageOpen && messagesLoading" class = "col s10 center-align animated fadeIn">
+                   <p class = "railway flash infinite" style="font-size:20px;"> LOADING</p>
+   
+  </div>
 
-               
-               <div ng-show="messagePageOpen" class = "col s10 center-align">
-                   <h1> MESSAGE CENTER</h1>
+               <div ng-show="messagePageOpen && !messagesLoading" class = "col s10 center-align animated fadeIn">
+                   
+                       <div  class="col s12">
+                            <div class="center-align">
+
+
+                                <div class = "row">
+                               
+
+                                    <div class = "col s12" ng-repeat="page in messagesPaginated[page] track by $index">
+                                        <div class = "row">
+                                            <div ng-show="!page.read" class = "col s2">  
+                                            <i ng-click="openMessage($index,true)" class = "material-icons">email</i><a style="color:black;" href="#" ng-click="openMessage($index,true)">{{$index+1}}.{{page.name}}</a>
+                                            </div>
+                                             <div ng-show="page.read" class = "col s2">  
+                                            <i ng-click="openMessage($index,true)" class = "material-icons">drafts</i><a style="color:black;" href="#" >{{$index+1}}.</a>
+                                            </div>
+                                            <div class = "col s10">
+                                            <p class="animated fadeIn railway"><a style="color:black;" href="#">{{page.subject}}</a></p>
+                                            </div>
+
+                                       
+                                            <div class = "col s2" ng-show="messageOpen && currentIndex == $index"style="height:100px;">
+                                                
+                                            </div>
+                                                     <div class ="col s10"  ng-show="messageOpen && currentIndex == $index" style="height:100px; border:1px solid #ddd;">
+                                   
+                                            <p  class="animated fadeIn railway"><a style="color:black;" href="#">{{page.body}}</a></p>
+
+                                        </div>
+                                                             
+                                            <div class = "col s2" ng-show="messageOpen && currentIndex !== $index"style="height:100px;">
+                                                                                      
+
+                                            </div>
+                                                     <div class ="col s10"  ng-show="messageOpen && currentIndex !== $index" style="height:100px;">
+                                   
+                                            <p  class="animated fadeIn railway"><a style="color:black;" href="#">X</a></p>
+
+                                        </div>
+
+ </div>
+                                    </div>
+                                </div>
+
+                                <ul class="pagination">
+                                    <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                                    <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                        ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                    <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                                    <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+      </div>
+    </form>
+  </div>
                </div>
                             <!-- BOOKED JOBS PAGE -->
 
-                            <div ng-show="bookedJobsPageOpened" class="col s10 center-align">
+                            <div ng-show="bookedJobsPageOpened " class="col s10 center-align">
 
                             <!-- SCROLL THROUGH BOOKED JOBS -->
 
@@ -758,6 +828,7 @@
                             <p class="railway animated flash infinite">LOADING USER LIST</p>
 
                         </div>
+                        
                         <div ng-show="generalHistoryOpen && !loadingGeneralHistory" class="col s12">
                             <div class="center-align">
 

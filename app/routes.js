@@ -42,6 +42,37 @@ module.exports = function (app) {
     
         })
         */
+        app.put('/users/changemessagetoread/:name/:index', function(req,res){
+            User.find({name: req.params.name}, function(err,user){
+                if(err) throw err;
+                if(!user){
+                    res.json({success: false, message: "User not found..."})
+                }else{
+                    //res.json({success: true,})
+                    user[0].comments[req.params.index].read = true;
+                    User.findOneAndUpdate({name: req.params.name}, {$set:{comments:user[0].comments}}, {new:true}, function(err, user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"User found and updated..."})
+                        }else{
+                            res.json({success: true, message:"Message Read Status Changed To true...", user:user})
+                        }
+                    })
+                }
+            })
+        })
+        app.put('/users/getmessages/:name', function(req,res){
+
+            User.find({name:req.params.name}, function(err,user){
+                if(err) throw err;
+                if(!user){
+                    res.json({success: false, message:"User not found..."})
+                }else{
+                    res.json({success: true, message: "User found...",messages:user[0].comments})
+                }
+            })
+
+        })
         app.post('/users/sendsms', function(req,res){
 
             const from = req.body.from

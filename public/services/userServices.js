@@ -76,6 +76,13 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.put('/api/users/'+userid+'/'+month+'/'+date+'/'+boolean);
 
     }
+    userFactory.getMessages = function(name){
+
+        return $http.put('/api/users/getmessages/'+name)
+    }
+    userFactory.changeMessageToRead = function(name,index){
+        return $http.put('/api/users/changemessagetoread/'+name+"/"+index)
+    }
     userFactory.addBookedJob = function(jobObject){
         console.log(jobObject)
                 return $http.post('/api/bookjob',jobObject);

@@ -43,8 +43,14 @@
         $scope.june17 = false;
         $scope.june18 = false;
         $scope.historyEntryOpen = true;
+        $scope.messagesArray = []
+        $scope.messagesPaginated = [];
         $scope.messagePageOpen = false;
         $scope.messagePageSelected = false;
+        $scope.messagesLoading = false;
+        $scope.messageOpen = true;
+        $scope.currentIndex = null;
+        $scope.page = 0;
         $scope.showChart = true;
         //$scope.individualPayPeriodOpen = false;
            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -99,6 +105,57 @@
            $scope.user_id=$routeParams.userid
            console.log($scope.user_id)
        })
+        $scope.openMessage= function (index, timesheetData) {
+            console.log(index)
+            console.log(timesheetData)
+              $('select').material_select();
+            //console.log($scope.timesheet)
+            //curHistory = index;
+            // $scope.showChart = false;
+            //$timeout(function(){
+            //$scope.removeChart = true;
+            if ($scope.messageOpen && index !== $scope.currentIndex
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                $scope.currentIndex = index;
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+            }
+
+
+            else if (!$scope.messageOpen && index == $scope.currentIndex) {
+                $scope.messageOpen = true;
+                console.log("second")
+                console.log($scope.timesheetEntryOpen)
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.messageOpen && index !== $scope.currentIndex) {
+                console.log("third")
+                $scope.messageOpen = true;
+                console.log($scope.timesheetEntryOpen)
+                $scope.currentIndex = index;
+            } else {
+                console.log("last")
+                $scope.currentIndex = null
+
+                // $scope.showChart = true;
+                //$scope.removeChart = false;
+            }
+            // },500)
+        }
+        /*
+       $scope.openMessage = function(index,truecondition){
+
+        $scope.currentIndex = index;
+        User.changeMessageToRead($scope.name,$scope.currentIndex).then(function(data){
+            console.log(data)
+           $scope.messagesArray= data.data.user.comments;
+           $scope.openMessagePage2();
+        })
+
+       }*/
         $scope.openBookedJobsPage = function () {
 
             if ($scope.bookedJobsSelected) {
@@ -609,6 +666,67 @@ $scope.data2[b] = $scope.hoursCalcIterator
 
             console.log($scope.openJob)
         }
+        $scope.openMessagePage2 = function(){
+            $scope.currentIndex=null;
+              $scope.messagePageOpen = true;
+                $scope.messagePageSelected = true;
+                $scope.messagesLoading = true;
+                $scope.messageForPagination = [];
+                $scope.pageLimit = 4;
+                User.getMessages($scope.name).then(function(data){
+                    console.log(data)
+                    $scope.messagesArray = data.data.messages;
+                    $scope.messagesLoading = false;
+                           for (var i = 0; i <= $scope.messagesArray.length; i++) {
+
+                            var page = 0;
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
+                            console.log($scope.employees)
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.messagesArray.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
+                                console.log("HELLO")
+                                //console.log($scope.employees[i])
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.messagesArray[i]) {
+                                    $scope.messageForPagination.push($scope.messagesArray[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+                                if (!$scope.usersLoaded) {
+
+                                    console.log("else")
+                                    $scope.loadingUsers = false;
+                                    $scope.messagesPaginated.push($scope.messageForPagination)
+                                    console.log($scope.messagesPaginated)
+                                    $scope.messageForPagination = [];
+                                    if ($scope.messagesArray[i] !== undefined) {
+                                        $scope.messageForPagination.push($scope.messagesArray[i])
+                                    }
+                                    $scope.pageLimit = $scope.pageLimit + 4;
+                                    //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                    page++
+
+                                }
+
+                            }
+
+                        }
+                })
+        }
         $scope.openMessagePage = function(){
             if($scope.messagePageOpen ){
                 $scope.messagePageOpen = false;
@@ -616,6 +734,62 @@ $scope.data2[b] = $scope.hoursCalcIterator
             }else{
                 $scope.messagePageOpen = true;
                 $scope.messagePageSelected = true;
+                $scope.messagesLoading = true;
+                $scope.messageForPagination = [];
+                $scope.pageLimit = 4;
+                User.getMessages($scope.name).then(function(data){
+                    console.log(data)
+                    $scope.messagesArray = data.data.messages;
+                    $scope.messagesLoading = false;
+                           for (var i = 0; i <= $scope.messagesArray.length; i++) {
+
+                            var page = 0;
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
+                            console.log($scope.employees)
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.messagesArray.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
+                                console.log("HELLO")
+                                //console.log($scope.employees[i])
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.messagesArray[i]) {
+                                    $scope.messageForPagination.push($scope.messagesArray[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+                                if (!$scope.usersLoaded) {
+
+                                    console.log("else")
+                                    $scope.loadingUsers = false;
+                                    $scope.messagesPaginated.push($scope.messageForPagination)
+                                    console.log($scope.messagesPaginated)
+                                    $scope.messageForPagination = [];
+                                    if ($scope.messagesArray[i] !== undefined) {
+                                        $scope.messageForPagination.push($scope.messagesArray[i])
+                                    }
+                                    $scope.pageLimit = $scope.pageLimit + 4;
+                                    //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                    page++
+
+                                }
+
+                            }
+
+                        }
+                })
             }
         }
           $scope.openHistoryPageProfile = function () {
