@@ -40,10 +40,10 @@
                                     <div class = "col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                                         <div class = "row">
                                             <div ng-show="!page.read" class = "col s2">  
-                                            <i ng-click="openMessage($index,true)" class = "material-icons">email<span   >{{$index+1}}.{{page.name}}</span></i>
+                                            <i ng-click="openMessage($index,true)" class = "material-icons">email<span   >{{$index+1}}</span></i>
                                             </div>
                                              <div ng-show="page.read" class = "col s2">  
-                                            <i ng-click="openMessage($index,true)" class = "material-icons">drafts<span >{{$index+1}}.</span></i>
+                                            <i ng-click="openMessage($index,true)" class = "material-icons">drafts<span >{{$index+1}}</span></i>
                                             </div>
                                             <div class = "col s10">
                                             <p ng-click="openMessage($index,true)" class="animated fadeIn railway"><a style="color:black;" href="#">{{page.subject}}</a></p>
