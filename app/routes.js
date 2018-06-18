@@ -42,6 +42,28 @@ module.exports = function (app) {
     
         })
         */
+        app.post('/users/addhourstobookedjob', function(req,res){
+            console.log(req.body)
+            User.find({name: req.body.currentuser}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"User not found..."})
+                }else{
+                    console.log(user)
+                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
+                    User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiods: user[0].payperiods}},{new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"User not found..."})
+                        }else{
+                            res.json({success: true, message: "User found and updated...",user:user})
+                        }
+                    })
+
+                }
+            })
+
+        })
     app.put('/users/changemessagetoread/:name/:index', function (req, res) {
         User.find({ name: req.params.name }, function (err, user) {
             if (err) throw err;

@@ -33,8 +33,12 @@
                        <div  class="col s12" style="border-right:1px solid #ddd;">
                             <div class="center-align">
 
-
-                                <div class = "row">
+                                <div class = "row" ng-show="!messagesPaginated.length">
+                                    <div class = "col s12 center-align">
+                                        <p class = "railway" style="color:#ddd;">( No Messages )
+                                    </div>
+                                </div>
+                                <div class = "row" ng-show="messagesPaginated.length">
                                
 
                                     <div class = "col s12" ng-repeat="page in messagesPaginated[page] track by $index">
@@ -199,24 +203,56 @@
 
                         <!-- DATE BOOKED REMOVING JOB -->
 
-                                                <div ng-show="!job[0].dateHasPassed && removingJob" class=" col s12 center-align animated fadeIn">
-                                                    <p class="railway underline animated flash infinite ">REMOVING JOB</p>
-                                                </div>
+                                          
 
                         <!--DATE BOOKED REMOVING JOB -->
 
                         <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
 
 
-                                                <div ng-show="!job[currentJobInDate].dateHasPassed && !removingJob" class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-
+                <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked " class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                          <div ng-show="loadingAddHours" class="col s12">
+                                <p class="railway animated flash infinite"> ADDING HOURS</p>
+                            </div>
                         <!-- ADD TIMESHEET PAGE -->
+                             <div ng-show="addHoursPageOpen && areYouSure && !loadingAddHours " class="col s12 animated fadeIn">
 
-                                 <div ng-show="addHoursPageOpen" class="col s12">
+                                <p class="railway" style="font-size:20px;">Are These Details Correct?</p>
+
+
+                                <div class="col s4 center-align">
+                                    <span class="railway" style="font-size: 20px;"> In </span>
+                                    <p class="railway" style="font-size: 20px;"> {{hrVarIn}}:{{minVarIn}}
+                                    </p>
+                                </div>
+                                <div class="col s4 center-align">
+                                    <span class="railway" style="font-size: 20px;"> - </span>
+
+                                </div>
+                                <div class="col s4">
+                                    <span class="railway" style="font-size: 20px;"> Out </span>
+
+                                    <p class="railway" style="font-size: 20px;"> {{hrVarOut}}:{{minVarOut}}
+                                    </p>
+
+                                </div>
+                                <div class="col s6">
+                                    <a ng-click="finishSubmitTimesheet('yes')" class="waves-effect waves-light btn">Yes</a>
+
+                                </div>
+                                <div class="col s6">
+                                    <a ng-click="finishSubmitTimesheet('no')" class="waves-effect waves-light btn">No</a>
+
+                                </div>
+
+                            </div>
+                                 <div ng-show="addHoursPageOpen && !areYouSure && !loadingAddHours" class="col s12">
 
                    
                                     <div class="col s12 center-align">
-                                        <p class="railway animated fadeIn "> Date</p>
+                                        <p class="railway animated fadeIn "> Add Hours</p>
+                                        <p class="railway animated fadeIn "> Job #{{currentJobInDate+1}}</p>
+                                        
                                     </div>
                                    
                                     <div  class="col s12 animated fadeIn">
@@ -351,25 +387,14 @@
                                         </div>
 
 
-                                        <a ng-click="submitTimeSheet(timesheet,$index)" class="waves-effect waves-light btn">Submit</a>
-
+                                        <a ng-click="addHours(currentJobInDate,$index,job[currentJobInDate])" class="waves-effect waves-light btn">Submit</a>
+                                        <br>
+                                        <a href="#" ng-click="closeAddHours()"style="color:black;"><p class="railway underline">Cancel</p></a>
                                     </div>
 
-                                    <div  class="col s9" style="height:50px;border-left:1px solid #ddd;">
-                                        
-                                     
-                                        <div style="opacity:0; height:1px; width:1px;">
-                                            <select>
-    </select>
-                                        </div>
-                                
-
-                                    </div>
+             
                                 </div>
 
-
-                            </div>
-                        <!-- ADD TIMESHEET PAGE -->
 <div  ng-show="!addHoursPageOpen"class = "row animated fadeIn">
 <div class = "col s12" >
                                                     <span class="railway underline"> Client</span>
@@ -383,12 +408,16 @@
                                                     <div ng-show="!addHoursPageOpen" class = "row animated fadeIn">
                                                         <div class = "col s12" style="border:1px solid #ddd">
 
-                                                    <p ng-show="!jobDetails[openJob][currentJobInDate].timesheetSubmitted"class=" railway red-text text-lighten-2" ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
+                                                    <p ng-show="!jobDetails[openJob][currentJobInDate].timesheetSubmitted"class=" railway red-text text-lighten-2 underline" ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
                                                        >ADD HOURS</p>
-                                                    <p ng-show="!jobDetails[openJob][currentJobInDate].timesheetSubmitted"class=" railway green-text text-lighten-2" ng-click="removeJob(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
+                                                    <p ng-show="jobDetails[openJob][currentJobInDate].timesheetSubmitted"class=" railway green-text text-lighten-2 " ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
                                                        >HOURS SUBMITTED</p>
                                                         </div>
+                                                       <a ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)" style="color:black;"href="#"> <i class ="material-icons">edit</i></a>
                                                     </div>
+                            </div>
+                        <!-- ADD TIMESHEET PAGE -->
+
                                                 </div>
 
                      <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->  
@@ -396,29 +425,10 @@
                      <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
 
 
-                                                <div ng-show="job[0].dateHasPassed && !removingJob" class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-
-                                                    <span class="railway underline" style="color:grey; opacity:0.8;"> Client!</span>
-                                                    <p class="railway  " style="color:grey; opacity:0.8;"> {{jobDetails[openJob][currentJobInDate].contractor}}</p>
-                                                    <span class="railway  underline" style="color:grey; opacity:0.8;">Supervisor</span>
-                                                    <p class="railway   " style="color:grey; opacity:0.8;"> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
-                                                    <span class="railway  underline" style="color:grey; opacity:0.8;">Location</span>
-                                                    <p class="railway  " style="color:grey; opacity:0.8;"> {{jobDetails[openJob][currentJobInDate].location}}</p>
-                                                </div>
+                                         
 
                     <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->
-
-
-                    </div>
-
-                    <!-- DATE BOOKED -->
-
-
-
-                    <!--WOULD YOU LIKE TO BOOK THIS DATE -->
-
-
-                                            <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+        <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
                    
                     <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
@@ -435,26 +445,14 @@
                                                     </div>
                                                 </div>
 
-                                                <div ng-show="job.length<2 && !job[currentJobInDate].booked" class="row">
-                                                    <div class="col s6">
-                                                        <div class="left-align">
-                                                            <i style="color:grey; opacity:.8;" class="material-icons">chevron_left</i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col s6">
-                                                        <div class="right-align">
-                                                            <i class="material-icons" style="color:grey; opacity:.8;">chevron_right</i>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                          
 
                     <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
-                                                <div ng-show="!job[currentJobInDate].dateHasPassed && !job[currentJobInDate].booked ">
-                                                    <span class="railway  ">Would You Like To Book This Date?</span>
+                                                <div ng-show=" !job[currentJobInDate].booked ">
+                                                    <span style="font-size:16px;" class="railway  ">Job {{currentJobInDate+1}} Not Yet Booked</span>
                                                     <br>
                                                     <br>
-                                                    <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
                                                 </div>
                                                 <div ng-show="job[0].dateHasPassed ">
                                                     <br>
@@ -465,6 +463,17 @@
                                                 </div>
 
                                             </div>
+
+                    </div>
+
+                    <!-- DATE BOOKED -->
+
+
+
+                    <!--WOULD YOU LIKE TO BOOK THIS DATE -->
+
+
+                                    
                     <!--WOULD YOU LIKE TO BOOK THIS DATE -->
                                             <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
@@ -864,10 +873,6 @@
                                 <!-- BOOKED JOBS -->
 
   
-                            </div>
-
-                            <!-- BOOKED JOBS PAGE -->
-
                        <div ng-show="historyPageOpenProfile" class="col s10 center-align">
                 <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
 
@@ -1061,6 +1066,10 @@
                 </canvas>
             </div>
             
+                            </div>
+
+                            <!-- BOOKED JOBS PAGE -->
+
     </div>
 
 

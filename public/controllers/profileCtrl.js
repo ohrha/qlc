@@ -49,11 +49,14 @@
         $scope.messagesPaginated = [];
         $scope.currentusernameArray =[];
         $scope.employeeJobDetails = {};
+        $scope.jobData = {};
         $scope.messagePageOpen = false;
         $scope.messagePageSelected = false;
         $scope.messagesLoading = false;
         $scope.messageOpen = true;
+        $scope.areYouSure = false;
         $scope.addHoursPageOpen = false;
+        $scope.timeData = {};
         $scope.currentIndex = null;
         $scope.page = 0;
            $scope.date = new Date();
@@ -834,6 +837,10 @@
         })
 
        }*/
+       $scope.closeAddHours = function(){
+           $scope.addHoursPageOpen = false;
+           
+       }
         $scope.openBookedJobsPage = function () {
 
             if ($scope.bookedJobsSelected) {
@@ -1065,6 +1072,85 @@
                 $scope.userFilePage = true;
             }
         }
+            $scope.changeJobInDate = function(index){
+            $scope.slideOut= true;
+            $scope.fadeOut2 = true;
+            $timeout(function(){
+                     if($scope.currentJobInDate == 0){
+                            $scope.currentJobInDate++;
+
+            }else{
+                $scope.currentJobInDate = 0
+            }
+            console.log($scope.currentJobInDate
+            )
+                $scope.slideOut = false;
+                $scope.fadeOut2 = false
+                $scope.fadeIn2 = true;
+                $scope.slideIn = true;
+            },500)
+       
+        }
+          $scope.finishSubmitTimesheet = function (decision) {
+            console.log(decision)
+           /// console.log($scope.delinquentJobDetails)
+            $scope.loadingAddHours = true;
+     
+            
+            if (decision == "yes") {
+                $scope.areYouSure = false;
+
+       User.addHoursToBookedJob($scope.jobData).then(function (data) {
+                console.log(data)
+                if (data.data.success) {
+                    $scope.loadingAddHours = false;
+                    $scope.areYouSure = false;
+                    $scope.openUserFile($scope.name)
+                } else {
+
+                }
+       })
+            } else {
+                $scope.areYouSure = false;
+            }
+        }
+        $scope.addHours = function(currentJobInDate,index,jobData){
+           console.log($scope.timeData)
+           // console.log($scope.currentJobInDate)
+           console.log(jobData)
+
+               if ($scope.timeData.hrsIn1 !== null && $scope.timeData.hrsIn2 !== null &&
+                $scope.timeData.minsIn1 !== null && $scope.timeData.minsIn2 !== null
+                && $scope.timeData.amPm1 !== null
+                && $scope.timeData.hrsOut1 !== null
+                && $scope.timeData.hrsOut2 !== null
+                && $scope.timeData.minOut2 !== null
+                && $scope.timeData.minsOut2 !== null
+                && $scope.timeData.amPm2 !== null) {
+                $scope.minVarOut = $scope.timeData.minsOut1 + $scope.timeData.minsOut2 + $scope.timeData.amPm2
+                $scope.minVarIn = "" + $scope.timeData.minsIn1 + $scope.timeData.minsIn2 + $scope.timeData.amPm1
+                $scope.hrVarOut = $scope.timeData.hrsOut1 + $scope.timeData.hrsOut2
+                $scope.hrVarIn = $scope.timeData.hrsIn1 + $scope.timeData.hrsIn2
+                jobData.timein =""+ $scope.timeData.hrsIn1+$scope.timeData.hrsIn2+$scope.timeData.minsIn1+$scope.timeData.minsIn2+$scope.timeData.amPm1
+                jobData.timeout =""+ $scope.timeData.hrsOut1+$scope.timeData.hrsOut2+$scope.timeData.minsOut1+$scope.timeData.minsOut2+$scope.timeData.amPm2
+                jobData.payperiodnum = $rootScope.payPeriod;
+                jobData.currentuser = $scope.name;
+                jobData.lunch = $scope.timeData.lunch;
+                jobData.booked = true;
+                jobData.timesheetSubmitted = true;
+                $scope.jobData = jobData;
+                console.log($scope.hrVarOut)
+                console.log($scope.hrVarIn)
+                console.log($scope.minVarOut)
+                console.log($scope.minVarIn)
+                console.log($scope.timeData)
+                $scope.areYouSure = true;
+                console.log($scope.areYouSure)
+
+            } else {
+                console.log("null")
+            }
+        }
         $scope.openAddHoursPage = function(){
                         $('select').material_select();
 
@@ -1091,7 +1177,8 @@
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.bookedJobsPageOpened = true;
-
+                $scope.addHoursPageOpen = false;
+                $scope.messagePageOpen = false;
                 $scope.chartsPageOpen = false;
                 $scope.historyPageOpenProfile = false;
                 console.log($scope.bookedJobsPageOpened)
@@ -1505,6 +1592,7 @@
             $scope.generalHistoryTitle = false;
             $scope.historyPageOpenProfile = true;
             $scope.bookedJobsPageOpened = false;
+            $scope.messagePageOpen = false;
             $scope.bookedJobsSelected = false;
             $scope.loadingPersonalHistory = true;
             $scope.personalHistoryTitle = true;
