@@ -6,9 +6,11 @@
         console.log("Main Controller Loaded")
     })
 
-    app.controller('mainCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, AuthToken, PayPeriod) {
+    app.controller('mainCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, AuthToken, PayPeriod, $window) {
+
 
         $scope.userClass = "";
+        $scope.userToken = "";
         $scope.date = 24;
         $scope.month = 12;
         $scope.monthName = "December"
@@ -48,26 +50,29 @@
 
 
         }
+        console.log($window.localStorage.getItem('token'))
+      
+
         PayPeriod.getAllPayPeriods().then(function (data) {
             console.log(data)
             for (var i = 0; i < data.data.payperiods.length; i++) {
 
-                
-                for(var z=0;z<data.data.payperiods[i].jobDetails.length;z++){
-                    if(data.data.payperiods[i].jobDetails[z].timesheetSubmitted){
-                           data.data.payperiods[i].jobDetails[z].timein = "06:00 am";
-                    data.data.payperiods[i].jobDetails[z].timeout = "06:00 pm"
-                    //data.data.payperiods[i].jobDetails[z].lunch = true;
-                                        data.data.payperiods[i].jobDetails[z].booked = true;
 
-                    //console.log(data.data.payperiods[i].jobDetails[z].timein)
+                for (var z = 0; z < data.data.payperiods[i].jobDetails.length; z++) {
+                    if (data.data.payperiods[i].jobDetails[z].timesheetSubmitted) {
+                        data.data.payperiods[i].jobDetails[z].timein = "06:00 am";
+                        data.data.payperiods[i].jobDetails[z].timeout = "06:00 pm"
+                        //data.data.payperiods[i].jobDetails[z].lunch = true;
+                        data.data.payperiods[i].jobDetails[z].booked = true;
+
+                        //console.log(data.data.payperiods[i].jobDetails[z].timein)
                     }
-                
+
                 }
-               // console.log(i,data.data.payperiods[i].jobDetails)
-           // PayPeriod.updatePayPeriodJobDetails(data.data.payperiods).then(function(data){
-             //   console.log(data)
-              // })
+                // console.log(i,data.data.payperiods[i].jobDetails)
+                // PayPeriod.updatePayPeriodJobDetails(data.data.payperiods).then(function(data){
+                //   console.log(data)
+                // })
             }
         })
 
@@ -161,7 +166,7 @@
 
                         date: $scope.fulldate,
                         dateNum: $scope.date,
-                        booked:true,
+                        booked: true,
                         day: $scope.day,
                         location: "ASB SHOWGROUNDS",
                         contractor: "Carlton Events",

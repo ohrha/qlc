@@ -16,14 +16,14 @@ var opts = {};
 opts.region = 'intl'
 console.log(text)
 
- /*text.sendText('9491234567', 'A sample text message!', undefined, function(err) {
-  if (err) {
-    console.log(err);
-  }
+/*text.sendText('9491234567', 'A sample text message!', undefined, function(err) {
+ if (err) {
+   console.log(err);
+ }
 });*/
 const nexmo = new Nexmo({
-  apiKey: "77cb479c",
-  apiSecret: "v9aUDYrRVOEMYIDA"
+    apiKey: "77cb479c",
+    apiSecret: "v9aUDYrRVOEMYIDA"
 })
 
 
@@ -42,108 +42,113 @@ module.exports = function (app) {
     
         })
         */
-        app.put('/users/changemessagetoread/:name/:index', function(req,res){
-            User.find({name: req.params.name}, function(err,user){
-                if(err) throw err;
-                if(!user){
-                    res.json({success: false, message: "User not found..."})
-                }else{
-                    //res.json({success: true,})
-                    user[0].comments[req.params.index].read = true;
-                    User.findOneAndUpdate({name: req.params.name}, {$set:{comments:user[0].comments}}, {new:true}, function(err, user){
-                        if(err)throw err;
-                        if(!user){
-                            res.json({success: false, message:"User found and updated..."})
-                        }else{
-                            res.json({success: true, message:"Message Read Status Changed To true...", user:user})
-                        }
-                    })
-                }
-            })
+    app.put('/users/changemessagetoread/:name/:index', function (req, res) {
+        User.find({ name: req.params.name }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                //res.json({success: true,})
+                user[0].comments[req.params.index].read = true;
+                User.findOneAndUpdate({ name: req.params.name }, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
+                    if (err) throw err;
+                    if (!user) {
+                        res.json({ success: false, message: "User found and updated..." })
+                    } else {
+                        res.json({ success: true, message: "Message Read Status Changed To true...", user: user })
+                    }
+                })
+            }
         })
-        app.put('/users/getmessages/:name', function(req,res){
+    })
+    app.put('/users/getmessages/:name', function (req, res) {
 
-            User.find({name:req.params.name}, function(err,user){
-                if(err) throw err;
-                if(!user){
-                    res.json({success: false, message:"User not found..."})
-                }else{
-                    res.json({success: true, message: "User found...",messages:user[0].comments})
-                }
-            })
-
+        User.find({ name: req.params.name }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                res.json({ success: true, message: "User found...", messages: user[0].comments })
+            }
         })
-        app.post('/users/sendsms', function(req,res){
 
-            const from = req.body.from
-const to = req.body.phonenumber
-const text = req.body.text
+    })
+    app.post('/users/sendsms', function (req, res) {
 
-nexmo.message.sendSms(from, to, text)
-res.send({success: true, message: "Text Message Successfully Sent", text:text})
+        const from = req.body.from
+        const to = req.body.phonenumber
+        const text = req.body.text
 
-        })
-        app.post('/users/changeuserpayperiod', function(req,res){
-            var currentName = ""
-            console.log(req.body.currentusernamearray)
-            
-               
-             
-                    //console.log(user.length)
-                    PayPeriod.find({payperiodnum: req.body.newpayperiod}, function(err, payperiod){
-                        payperiod.jobDetails.push([])
-                        var newJobDetails = payperiod.jobDetails
-                       
-                        for(var i=0;i<req.body.currentusernamearray.length;i++){
-                            console.log(req.body.currentusernamearray[i])
- var currentName = req.body.currentusernamearray[i]
+        nexmo.message.sendSms(from, to, text)
+        res.send({ success: true, message: "Text Message Successfully Sent", text: text })
 
- User.findOneAndUpdate({name: req.body.currentusernamearray[i]},{$set:{historyupdated:false}},{new:true}, function(err,user2){
-                            if(err)throw err;
-                            if(!user2){
-                                res.json({success:false,message:"User not found so not updated..."})
-                            }else{
-                                                        
+    })
+    app.post('/users/changeuserpayperiod', function (req, res) {
+        var currentName = ""
+        console.log(req.body.currentusernamearray)
 
-                               // res.json({success: true, message:"User found and updated..."})
-                               console.log("User History Updated...")
-                              // console.log(payperiod[0].jobDetails)
-                               console.log(user2)
-                               
-                               user2.payperiods[0].jobDetails = payperiod[0].jobDetails
-                            User.findOneAndUpdate({name:user2.name}, {$set:{payperiods:user2.payperiods,historyupdated:true}},{new:true}, function(err,user3){
-                                   if(err)throw err;
-                                   if(!user3){
-                                       res.json({success:false, message:"User not found so not updated.."})
-                                   }else{
-                                       console.log("Pay Period updated, and History Updated Parameter Changed To True...")
-                                   }
-                               })
+
+        PayPeriod.find({ payperiodnum: req.body.newpayperiod }, function (err, payperiod) {
+           // payperiod.jobDetails.push([])
+            var newJobDetails = payperiod.jobDetails
+
+            for (var i = 0; i < req.body.currentusernamearray.length; i++) {
+                console.log(req.body.currentusernamearray[i])
+                var currentName = req.body.currentusernamearray[i]
+
+                User.findOneAndUpdate({ name: req.body.currentusernamearray[i] }, { $set: { historyupdated: false,payperiodnum: req.body.newpayperiod } }, { new: true }, function (err, user2) {
+                    if (err) throw err;
+                    if (!user2) {
+                        res.json({ success: false, message: "User not found so not updated..." })
+                    } else {
+
+
+                        // res.json({success: true, message:"User found and updated..."})
+                        console.log("User History Updated...")
+                        // console.log(payperiod[0].jobDetails)
+                        console.log(user2)
+
+                        user2.payperiods[0].jobDetails = payperiod[0].jobDetails
+                        User.findOneAndUpdate({ name: user2.name }, { $set: { payperiods: user2.payperiods, historyupdated: true } }, { new: true }, function (err, user3) {
+                            if (err) throw err;
+                            if (!user3) {
+                                res.json({ success: false, message: "User not found so not updated.." })
+                            } else {
+                                console.log("Pay Period updated, and History Updated Parameter Changed To True...")
                             }
                         })
+                    }
+                })
 
-                        }
-                       
-                    
-                        console.log(payperiod)
-                    })
-                   
-                   res.json({success: true, message:"Payperiod Update, and History Updated Parameter Update, Complete...", users:user})
-                
-           
+            }
+
+
+            console.log(payperiod)
         })
+        User.find({}, function(err, users){
+            if(err)throw err;
+            if(!users){
+                res.json({success: false, message: "Users not found..."})
+            }else{
+                res.json({success: true, message: "Users found..", users:users})
+            }
+        })
+        //res.json({ success: true, message: "Payperiod Update, and History Updated Parameter Update, Complete...", users: user })
+
+
+    })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
         console.log(req.body.payperiod)
-        console.log(req.body.allEmployeesJobDetails.length) 
-       
+        console.log(req.body.allEmployeesJobDetails.length)
+
         for (var z = 0; z < req.body.allEmployeesJobDetails.length; z++) {
-             console.log(req.body.allEmployeesJobDetails[z])
-         //  for (var d= 0; d < req.body.allEmployeesJobDetails[z].length;d++){
- //console.log(req.body.allEmployeesJobDetails[z][d])
-                var payperiodHistoryEntry = {}
-                payperiodHistoryEntry.payperiod = req.body.payperiod;
-                payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
-                   if (req.body.allEmployeesJobDetails[z][8].name !== undefined) {
+            console.log(req.body.allEmployeesJobDetails[z])
+            //  for (var d= 0; d < req.body.allEmployeesJobDetails[z].length;d++){
+            //console.log(req.body.allEmployeesJobDetails[z][d])
+            var payperiodHistoryEntry = {}
+            payperiodHistoryEntry.payperiod = req.body.payperiod;
+            payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
+            if (req.body.allEmployeesJobDetails[z][8].name !== undefined) {
                 //console.log(z)
                 var name = req.body.allEmployeesJobDetails[z][8].name;
                 console.log(name)
@@ -153,109 +158,113 @@ res.send({success: true, message: "Text Message Successfully Sent", text:text})
                         res.json({ success: false, message: "User not found.." })
                     } else {
                         console.log(user.historyupdated)
-                            console.log('history not update'+user.name)
-                            User.findOneAndUpdate({ name: user.name }, { $push: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
+                        console.log('history not update' + user.name)
+                        User.findOneAndUpdate({ name: user.name }, { $push: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
 
-                                if (err) throw err;
-                                if (!user) {
-                                    res.json({ success: false, message: "User not found, so not updated" })
-                                } else {
-                                    console.log("User updated..."+user.name)
-                                   // console.log(req.body.allEmployeesJobDetails[z][7].name)
-                                    User.findOneAndUpdate({ name: user.name }, { $set: { historyupdated: true } }, { new: true }, function (err, user) {
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found, so not updated" })
+                            } else {
+                                console.log("User updated..." + user.name)
+                                // console.log(req.body.allEmployeesJobDetails[z][7].name)
+                                User.findOneAndUpdate({ name: user.name }, { $set: { historyupdated: true } }, { new: true }, function (err, user) {
 
-                                        if (err) throw err;
-                                        if (!user) {
-                                            res.json({ success: false, message: "User not found, so not updated" })
-                                        } else {
-                                            console.log("User History indicator Updated... "+user.name)
-                                           // console.log(name)
-                                        }
-                                    })
-                                }
-                            })
-                        
+                                    if (err) throw err;
+                                    if (!user) {
+                                        res.json({ success: false, message: "User not found, so not updated" })
+                                    } else {
+                                        console.log("User History indicator Updated... " + user.name)
+                                        // console.log(name)
+                                    }
+                                })
+                            }
+                        })
+
 
                     }
                 })
 
             }
 
-          // }
-           
+            // }
+
             //  payperiodHistoryEntroy.historyentered = true;
             //  console.log(req.body.allEmployeesJobDetails[z][7].name)
-         
+
         }
-       User.find({}, function(err,users){
-            if(err)throw err
-            if(!users){
-                res.json({success: false, message:"Users not found..."})
-            }else{
-                res.json({success: true, message:"Users found..", users:users})
+        User.find({}, function (err, users) {
+            if (err) throw err
+            if (!users) {
+                res.json({ success: false, message: "Users not found..." })
+            } else {
+                res.json({ success: true, message: "Users found..", users: users })
             }
         })
         //res.json({ success: true, message: "User Pay Period History Successfully Updated..." })
     })
-    app.post('/users/addjobtocurrentpayperiod',function(req,res){
-console.log(req.body)
+    app.post('/users/addjobtocurrentpayperiod', function (req, res) {
+        console.log(req.body)
 
-        User.find({name: req.body.user}, function(err,user){
+        User.find({ name: req.body.user }, function (err, user) {
 
-            if(err)throw err;
-            if(!user){ 
-                res.json({success: false, message: "User not found..."}) 
-            }else{
-               // res.json({success: true, message: "User fou"}
-               console.log(user[0].payperiods[0].jobDetails[0])
-                                        user[0].payperiods[0].jobDetails[7].push(req.body)
-                            
-                                        user[0].delinquenttimesheets.splice(req.body.index,1)
-                                          User.findOneAndUpdate({name: req.body.user},
-                                          {$set:{payperiods:user[0].payperiods, 
-                                                 delinquenttimesheets:user[0].delinquenttimesheets}}, function(err,user){
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                // res.json({success: true, message: "User fou"}
+                console.log(user[0].payperiods[0].jobDetails[0])
+                user[0].payperiods[0].jobDetails[7].push(req.body)
 
-                                              if(err)throw err;
-                                              if(!user){
-                                                  console.log("here")
-                                                  res.json({success: false, message:"User not found so not updated.."})
-                                              }else{
-                                                console.log("herer")
-                                                 res.json({success: true, message:"Current Pay Period Successfully Updated With Delinquent Time Sheet", user:user})
+                user[0].delinquenttimesheets.splice(req.body.index, 1)
+                User.findOneAndUpdate({ name: req.body.user },
+                    {
+                        $set: {
+                            payperiods: user[0].payperiods,
+                            delinquenttimesheets: user[0].delinquenttimesheets
+                        }
+                    }, function (err, user) {
 
-                                                  //res.json({success: true, message:"User found and updated..", user: user})
-                                                 /* User.find({name: req.body.user}, function(err,user){
+                        if (err) throw err;
+                        if (!user) {
+                            console.log("here")
+                            res.json({ success: false, message: "User not found so not updated.." })
+                        } else {
+                            console.log("herer")
+                            res.json({ success: true, message: "Current Pay Period Successfully Updated With Delinquent Time Sheet", user: user })
 
-                                                      for(var z=0; z< user[0].delinquenttimesheets.length;z++){
-                                                          console.log("Holaa")
-                                                         // console.log(user[0].delinquenttimesheets[z].payperiod)
-                                                          for(var d=0; d< user[0].delinquenttimesheets[z].length;d++){
-                                                              console.log(user[0].delinquenttimesheets[z][d])
-                                                            if(user[0].delinquenttimesheets[z][d].date == req.body.date){
-                                                                console.log("2")
-                                                                user[0].delinquenttimesheets[z].splice(user[0].delinquenttimesheets[z].indexOf(user[0].delinquenttimesheets[z][d]),1)
-                                                                console.log(user[0].delinquenttimesheets[z])
-                                                                User.findOneAndUpdate({name: req.body.user}, {$set:{delinquenttimesheets: user[0].delinquenttimesheets[z]}},{new:true}, function(err,user){
-                                                                    if(err)throw err;
-                                                                    if(!user){
-                                                                        res.json({success: false, message:"User not found so no updated.."})
-                                                                    }else{
+                            //res.json({success: true, message:"User found and updated..", user: user})
+                            /* User.find({name: req.body.user}, function(err,user){
 
-                                                                       // res.json({success: true, message:"User found "})
-                                                                       console.log("Delinquent Timesheet Removed..")
-                                                                    }
-                                                                })
-                                                            }
-                                                          }
-                                                      }
-                                                  })*/
-                                              }
-                                          })
-                                      
+                                 for(var z=0; z< user[0].delinquenttimesheets.length;z++){
+                                     console.log("Holaa")
+                                    // console.log(user[0].delinquenttimesheets[z].payperiod)
+                                     for(var d=0; d< user[0].delinquenttimesheets[z].length;d++){
+                                         console.log(user[0].delinquenttimesheets[z][d])
+                                       if(user[0].delinquenttimesheets[z][d].date == req.body.date){
+                                           console.log("2")
+                                           user[0].delinquenttimesheets[z].splice(user[0].delinquenttimesheets[z].indexOf(user[0].delinquenttimesheets[z][d]),1)
+                                           console.log(user[0].delinquenttimesheets[z])
+                                           User.findOneAndUpdate({name: req.body.user}, {$set:{delinquenttimesheets: user[0].delinquenttimesheets[z]}},{new:true}, function(err,user){
+                                               if(err)throw err;
+                                               if(!user){
+                                                   res.json({success: false, message:"User not found so no updated.."})
+                                               }else{
+
+                                                  // res.json({success: true, message:"User found "})
+                                                  console.log("Delinquent Timesheet Removed..")
+                                               }
+                                           })
+                                       }
+                                     }
+                                 }
+                             })*/
+                        }
+                    })
 
 
-                  
-               
+
+
+
             }
         })
     })
@@ -319,7 +328,7 @@ console.log(req.body)
                                 res.json({ success: false, message: "User not found, so not updated..." })
                             } else {
                                 res.json({ success: true, message: "User found and updated..", user: user })
-                               //console.log("user found and updated..")
+                                //console.log("user found and updated..")
                             }
                         })
                     }
@@ -331,7 +340,7 @@ console.log(req.body)
 
                 //res.json({success: true, message: "User found..."})
             }
-           // res.json({success: false, message:"User Delinquent Time Sheet Already Exists!"})
+            // res.json({success: false, message:"User Delinquent Time Sheet Already Exists!"})
         })
     })
     app.put('/clients/create/:clientName', function (req, res) {
@@ -419,115 +428,115 @@ console.log(req.body)
             }
         })
     })
-    app.post('/users/removejob', function(req,res){
+    app.post('/users/removejob', function (req, res) {
         console.log(req.body)
-        User.find({name: req.body.job.currentuser}, function(err,user){
-            if(err)throw err;
-            if(!user){
-                res.json({success:false, message: "User not found..."})
-            }else{
+        User.find({ name: req.body.job.currentuser }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
                 console.log(user)
-               // user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
-                if(user[0].payperiods[0].jobDetails[req.body.jobindex].length==0){
-                    
-                    var defaultJobDetail= {
-                        date:req.body.job.date,
-                        booked:false,
+                // user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
+                if (user[0].payperiods[0].jobDetails[req.body.jobindex].length == 0) {
+
+                    var defaultJobDetail = {
+                        date: req.body.job.date,
+                        booked: false,
                         default: true,
                         timesheetSubmitted: false,
 
                     }
-                    if(req.body.jobindex == 7){
-                        user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
-                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success: false, message:"User not found so not updated..."})
-                    }else{
-                        res.json({success: true, message:"User updated", user:user})
-                    }
-                })
-                    
-                    }else{
+                    if (req.body.jobindex == 7) {
+                        user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob, 1)
+                        User.findOneAndUpdate({ name: req.body.job.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found so not updated..." })
+                            } else {
+                                res.json({ success: true, message: "User updated", user: user })
+                            }
+                        })
+
+                    } else {
                         user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
-                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success: false, message:"User not found so not updated..."})
-                    }else{
-                        res.json({success: true, message:"User updated", user:user})
-                    }
-                })
+                        User.findOneAndUpdate({ name: req.body.job.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found so not updated..." })
+                            } else {
+                                res.json({ success: true, message: "User updated", user: user })
+                            }
+                        })
                     }
 
-            }else{
-                if(req.body.jobindex == 7){
-                       user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
-                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success: false, message:"User not found so not updated..."})
-                    }else{
-                        res.json({success: true, message:"User updated", user:user})
-                    }
-                })
+                } else {
+                    if (req.body.jobindex == 7) {
+                        user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob, 1)
+                        User.findOneAndUpdate({ name: req.body.job.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                            if (err) throw err;
+                            if (!user) {
+                                res.json({ success: false, message: "User not found so not updated..." })
+                            } else {
+                                res.json({ success: true, message: "User updated", user: user })
+                            }
+                        })
 
-                }else{
-  if(req.body.indexofjob == 1){
-user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
-                      var defaultJobDetail= {
-                        date:req.body.job.date,
-                        booked:false,
-                        default: true,
-                        timesheetSubmitted: false,
+                    } else {
+                        if (req.body.indexofjob == 1) {
+                            user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob, 1)
+                            var defaultJobDetail = {
+                                date: req.body.job.date,
+                                booked: false,
+                                default: true,
+                                timesheetSubmitted: false,
+
+                            }
+                            user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
+                            User.findOneAndUpdate({ name: req.body.job.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                                if (err) throw err;
+                                if (!user) {
+                                    res.json({ success: false, message: "User not found so not updated..." })
+                                } else {
+                                    res.json({ success: true, message: "User updated", user: user })
+                                }
+                            })
+
+                        }
+                        if (req.body.indexofjob == 0) {
+                            user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob, 1)
+                            var defaultJobDetail = {
+                                date: req.body.job.date,
+                                booked: false,
+                                default: true,
+                                timesheetSubmitted: false,
+
+                            }
+                            user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
+                            User.findOneAndUpdate({ name: req.body.job.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                                if (err) throw err;
+                                if (!user) {
+                                    res.json({ success: false, message: "User not found so not updated..." })
+                                } else {
+                                    res.json({ success: true, message: "User updated", user: user })
+                                }
+                            })
+
+                        }
 
                     }
-user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
-                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success: false, message:"User not found so not updated..."})
-                    }else{
-                        res.json({success: true, message:"User updated", user:user})
-                    }
-                })
 
-            }
-            if(req.body.indexofjob == 0){
-user[0].payperiods[0].jobDetails[req.body.jobindex].splice(req.body.indexofjob,1)
-                      var defaultJobDetail= {
-                        date:req.body.job.date,
-                        booked:false,
-                        default: true,
-                        timesheetSubmitted: false,
-
-                    }
-user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
-                User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success: false, message:"User not found so not updated..."})
-                    }else{
-                        res.json({success: true, message:"User updated", user:user})
-                    }
-                })
-
-            }
-            
-                }
-              
-               /* if(user[0].payperiods[0].jobDetails[req.body.jobindex][0].default){
-
-                    res.json({success: false, message: "Cannot delete default job.."})
-                }*/
-                                /*    User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
-                    if(err)throw err;
-                    if(!user){
-                        res.json({success: false, message:"User not found so not updated..."})
-                    }else{
-                        res.json({success: true, message:"User updated", user:user})
-                    }
-                })*/
+                    /* if(user[0].payperiods[0].jobDetails[req.body.jobindex][0].default){
+     
+                         res.json({success: false, message: "Cannot delete default job.."})
+                     }*/
+                    /*    User.findOneAndUpdate({name: req.body.job.currentuser},{$set:{payperiods:user[0].payperiods}},{new:true}, function(err,user){
+        if(err)throw err;
+        if(!user){
+            res.json({success: false, message:"User not found so not updated..."})
+        }else{
+            res.json({success: true, message:"User updated", user:user})
+        }
+    })*/
                 }
 
             }
@@ -535,51 +544,51 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
     })
     app.post('/users/addjob', function (req, res) {
         console.log(req.body)
-       console.log("HOLLA")
-                // res.json({success: true, message:"Client found...", client:client})
-                
-                             
-                                User.find({ name: req.body.currentuser }, function (err, user) {
-                                    if (err) throw err;
-                                    if (!user) {
-                                        res.json({ success: false, message: "User not found..." })
-                                    } else {
-                                        // console.log(user[0])
-                                       // for (var z = 0; z < user[0].payperiods[0].length; z++) {
-                                           //if (user[0].payperiods[0].payperiodnum == user[0].payperiodnum) {
-                                                console.log(user[0].payperiods[0].jobDetails[req.body.payperiodIndex])
-                                                if(req.body.indexofdate ==0){
-                                                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0] = req.body
-                                                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].booked = true;
-                                                }
-                                                if(req.body.indexofdate == 1){
-                                                    console.log("Here")
-                                                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][1] = req.body
-                                                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][1].booked = true;
+        console.log("HOLLA")
+        // res.json({success: true, message:"Client found...", client:client})
 
 
-                                                }
-                                
-                                                
-                                                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods,  } }, { new: true }, function (err, user) {
-                                                    if (err) throw err;
-                                                    if (!user) {
-                                                        res.json({ success: false, message: "User not found.." })
-                                                    } else {
-                                                        res.json({ success: true, message: "User found and updated...", user: user })
-                                                    }
-                                                })
-                                            //}
-                                        //}
+        User.find({ name: req.body.currentuser }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                // console.log(user[0])
+                // for (var z = 0; z < user[0].payperiods[0].length; z++) {
+                //if (user[0].payperiods[0].payperiodnum == user[0].payperiodnum) {
+                console.log(user[0].payperiods[0].jobDetails[req.body.payperiodIndex])
+                if (req.body.indexofdate == 0) {
+                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0] = req.body
+                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].booked = true;
+                }
+                if (req.body.indexofdate == 1) {
+                    console.log("Here")
+                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][1] = req.body
+                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][1].booked = true;
 
-                                    }
-                                })
-                            
-                      
-                    
-                
-            
-        
+
+                }
+
+
+                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods, } }, { new: true }, function (err, user) {
+                    if (err) throw err;
+                    if (!user) {
+                        res.json({ success: false, message: "User not found.." })
+                    } else {
+                        res.json({ success: true, message: "User found and updated...", user: user })
+                    }
+                })
+                //}
+                //}
+
+            }
+        })
+
+
+
+
+
+
     })
     app.post('/payperiod/updatepayperiodjobdetails', function (req, res) {
         console.log(req.body)
@@ -781,7 +790,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
         })
     })
     app.put('/users/:userid', function (req, res) {
-       // console.log(req.params.userid,"OU")
+        // console.log(req.params.userid,"OU")
         User.findOne({ _id: req.params.userid }, function (err, user) {
             if (!user) {
                 res.json({ success: false, message: "User not found..." })
@@ -813,7 +822,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum,name :user.name ,_id:user._id}, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
@@ -827,7 +836,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
         var date = new Date();
         var dateNow = date.getDate()
         var month = date.getMonth() + 1;
-        var payperiodnum =0;
+        var payperiodnum = 0;
 
         if (month == 6) {
 
@@ -844,7 +853,7 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
                 console.log("payperiodnum", payperiodnum)
                 newPPObject = {}
                 newPPObject.newpayperiod = payperiodnum;
-            
+
 
             }
             if (dateNow == 11 || dateNow == 12 || dateNow == 13 || dateNow == 14 || dateNow == 15 || dateNow == 16 || dateNow == 17) {
@@ -1116,60 +1125,60 @@ user[0].payperiods[0].jobDetails[req.body.jobindex].push(defaultJobDetail)
 
         } else {
             console.log("Here i am")
-            PayPeriod.find({payperiodnum:payperiodnum}, function(err,payperiod){
+            PayPeriod.find({ payperiodnum: payperiodnum }, function (err, payperiod) {
 
-                if(err)throw err;
-                if(!user){
-                    res.json({success: false, message:"Pay Period Not Found..."})
-                }else{
-                    for( var z= 0; z<payperiod[0].jobDetails.length;z++){
+                if (err) throw err;
+                if (!user) {
+                    res.json({ success: false, message: "Pay Period Not Found..." })
+                } else {
+                    for (var z = 0; z < payperiod[0].jobDetails.length; z++) {
                         payperiod[0].jobDetails[z].currentuser = req.body.name
                     }
                     console.log(payperiod)
                     user.payperiods = payperiod
-                    user.save(function(err){
-                        if(err){
-                            res.json({success: false, message:"Save Failed..."})
-                        }else{
-                            res.json({success:true,message:"Save Successful,", user:user})
+                    user.save(function (err) {
+                        if (err) {
+                            res.json({ success: false, message: "Save Failed..." })
+                        } else {
+                            res.json({ success: true, message: "Save Successful,", user: user })
                         }
 
-                   })
+                    })
 
                 }
 
             })
-           /* PayPeriod.find({payperiodnum:payperiodnum}, function (err, payperiods) {
-                console.log("hello", payperiods.length)
-                for (var i = 0; i < payperiods.length; i++) {
-                    payperiods[i].currentuser = req.body.name;
-                    //console.log(payperiods[0].currentuser)
-                }
-                console.log(payperiods[0].currentuser)
-                user.payperiods = payperiods;
-                console.log(user.payperiods[0].currentuser)
-                //user.payperiodnum = 5;
-                user.save(function (err) {
-                    if (err) {
+            /* PayPeriod.find({payperiodnum:payperiodnum}, function (err, payperiods) {
+                 console.log("hello", payperiods.length)
+                 for (var i = 0; i < payperiods.length; i++) {
+                     payperiods[i].currentuser = req.body.name;
+                     //console.log(payperiods[0].currentuser)
+                 }
+                 console.log(payperiods[0].currentuser)
+                 user.payperiods = payperiods;
+                 console.log(user.payperiods[0].currentuser)
+                 //user.payperiodnum = 5;
+                 user.save(function (err) {
+                     if (err) {
+ 
+                         //res.send("Ensure all fields input")
+                         res.json({ success: false, message: "There was an error..." })
+                         console.log(err)
+                     } else {
+ 
+                         /* if (err) {
+                              res.send("Username or email already exists..")
+                              res.json({success: false, message: "Username or email already exists.."})
+                          } else {*/
+            //res.send("userCreated");
+            //res.json({ success: true, message: "User Created Successfully.", user: user })
+            /* }*/
 
-                        //res.send("Ensure all fields input")
-                        res.json({ success: false, message: "There was an error..." })
-                        console.log(err)
-                    } else {
 
-                        /* if (err) {
-                             res.send("Username or email already exists..")
-                             res.json({success: false, message: "Username or email already exists.."})
-                         } else {*/
-                        //res.send("userCreated");
-                        //res.json({ success: true, message: "User Created Successfully.", user: user })
-                        /* }*/
+            /*  }
+          })
 
-
-                  /*  }
-                })
-
-            })*/
+      })*/
 
         }
 
