@@ -61,7 +61,10 @@
         $scope.areYouSure = false;
         $scope.addHoursPageOpen = false;
         $scope.timeData = {};
-        $scope.message = {};
+        $scope.message = {
+            message:null,
+            subject:null
+        };
         $scope.currentIndex = null;
         $scope.currentIndex = null;
         $scope.page = 0;
@@ -1167,8 +1170,7 @@
         $scope.submitMessage = function(name){
             console.log($scope.message)
             console.log($scope.name)
-            $scope.sendMessageLoading = true;
-            if($scope.message.subject!==null || $scope.message.body !== null){
+            if($scope.message.subject==null || $scope.message.body == null){
                 $scope.allFieldsMustBeInput = true;
                 $timeout(function(){
 
@@ -1177,6 +1179,8 @@
             }else{
 
                  if($scope.message.subject!==null && $scope.message.body !== null ){
+                                 $scope.sendMessageLoading = true;
+
                 $scope.message.to = name
                 $scope.message.from = $scope.name;
                 $scope.message.read = false;
@@ -1184,6 +1188,9 @@
                 User.sendMessage($scope.message).then(function(data){
                     console.log(data)
                     $scope.sendMessageLoading = false;
+                    $scope.message.from = null;
+                    $scope.message.body = null;
+                    $scope.message.subject = null;
                 })
 
             }

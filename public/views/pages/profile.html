@@ -59,11 +59,15 @@
                                     <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading" class="col s10 center-align animated fadeIn">
 
                                         <div class="row">
+                                           
                                             <div class = "col 12 right-align" style="float:right;">
                                                 
                                                  <i ng-click="openMessageCompositionPage($index,true)" class = "material-icons">clear</i>
 
                                             </div>
+                                                <div class = "col s12 center-align">
+                                                            <p class = "railway"> {{page.name}}</p>
+                                                        </div>
                                             <div class="input-field col s6">
                                                 
                                                 <input id="first_name2" ng-model="message.subject" type="text" class="validate">
@@ -76,6 +80,7 @@
                                             <div class="row">
                                                 <form class="col s12">
                                                     <div class="row">
+                                                       
                                                         <div class="input-field col s12">
                                                             <textarea id="textarea1" ng-model="message.body" name="body" class="materialize-textarea"></textarea>
                                                             <label for="textarea1">Message</label>
