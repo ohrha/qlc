@@ -91,6 +91,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.changeMessageToUnRead = function(name,index){
         return $http.put('/api/users/changemessagetounread/'+name+"/"+index)
     }
+       userFactory.removeMessage = function(name,index){
+        return $http.put('/api/users/removemessage/'+name+"/"+index)
+    }
     userFactory.addBookedJob = function(jobObject){
         console.log(jobObject)
                 return $http.post('/api/bookjob',jobObject);

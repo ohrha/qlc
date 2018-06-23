@@ -25,6 +25,7 @@
         $scope.calander = [[], [], []];
         $scope.june1 = false;
         $scope.june1Booked = false;
+        $scope.areYouSure = false;
         $scope.composeMessagePage = false;
         $scope.sendMessageLoading = false;
         $scope.allFieldsMustBeInput = false;
@@ -811,6 +812,82 @@
 
         }
 
+        $scope.openAreYouSure = function(index){
+            if(!$scope.areYouSure){
+                $scope.areYouSure = true;
+
+            }else{
+               // $scope.areYouSure 
+            }
+        }
+        $scope.closeAreYouSure = function(index){
+            $scope.areYouSure = false;
+        }
+        $scope.removeMessage = function(index){
+            $scope.messageLoading = true;
+                $scope.currentIndex = index;
+                $scope.areYouSure = false;
+
+                 User.removeMessage($scope.name,$scope.currentIndex).then(function(data){
+                             console.log(data)
+                               $scope.pageLimit = 4;
+                               $scope.messagesPaginated = [];
+                               $scope.messageForPagination = [];
+                            $scope.messagesArray= data.data.user.comments;
+                             for (var i = 0; i <= $scope.messagesArray.length; i++) {
+
+                    var page = 0;
+                    ////console.log($scope.pageLimit, i, $scope.employees.length)
+                    console.log($scope.employees)
+                    if (i < $scope.pageLimit) {
+                        console.log("its less")
+
+                    }
+                    if (i < $scope.messagesArray.length) {
+                        console.log("yup,less")
+                    }
+
+                    if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
+                        console.log("HELLO")
+                        //console.log($scope.employees[i])
+                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        if ($scope.messagesArray[i]) {
+                            $scope.messageForPagination.push($scope.messagesArray[i])
+                            console.log(i)
+                            console.log("firstCondiation")
+                            console.log($scope.pageArray)
+
+                        }
+
+
+
+                    } else {
+                        if (!$scope.usersLoaded) {
+
+                            console.log("else")
+                            $scope.loadingUsers = false;
+                            $scope.messagesPaginated.push($scope.messageForPagination)
+                            console.log($scope.messagesPaginated)
+                            $scope.messageForPagination = [];
+                            if ($scope.messagesArray[i] !== undefined) {
+                                $scope.messageForPagination.push($scope.messagesArray[i])
+                            }
+                            $scope.pageLimit = $scope.pageLimit + 4;
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                            page++
+
+                        }
+
+                    }
+
+                }
+
+                            $scope.messageLoading = false;
+                            $scope.currentIndex = null;
+                            //$scope.openMessagePage2();
+                         })
+        }
          $scope.markAsUnread = function(index){
              $scope.messageLoading = true;
                 $scope.currentIndex = index;

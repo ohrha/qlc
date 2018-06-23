@@ -182,16 +182,32 @@
                                     </div>
                                     <div class="col s10" ng-show="messageOpen && currentIndex == $index && !messageLoading " style="height:100px; border:1px solid #ddd;">
 
-                                        <p class="animated fadeIn railway"><a style="color:black;" href="#">{{page.body}}</a></p>
-                                       <div class = "row">
+                                        <p ng-show="!areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">{{page.body}}</a></p>
+                                        <p ng-show="areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">Are You Sure?</a></p>
+                                       <div class = "row" ng-show="!areYouSure">
                                            <div class = "col s6 left-align">
                                                <i ng-click="markAsUnread($index)"class="material-icons">undo</i>
-                                               <span class = "railway">Mark As Unread</span>
+                                         
                                         </div>
                                         <div class = "col s6 right-align">
-                                            <i class="far fa-trash-alt"></i>
+                                            <i ng-click="openAreYouSure($index)"style="font-size:18px;" class="far fa-trash-alt red-text lighten-4"></i>
 
                                         </div>
+                                       
+                                    
+                                    
+                                       </div>
+                                        <div class = "row" ng-show="areYouSure">
+                                           <div class = "col s6 left-align">
+                                               <a ng-click="removeMessage($index)" class="waves-effect waves-light btn">yes</a>
+
+                                         
+                                        </div>
+                                        <div class = "col s6 right-align">
+<a class="waves-effect waves-light btn" ng-click = "closeAreYouSure()"  >no</a>
+
+                                        </div>
+                                       
                                     
                                     
                                        </div>
