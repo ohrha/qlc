@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     password:{type:String, required:true, select:false},
     email:{type:String, required: true, lowercase:true, unique:true, dropDups:true},
     payperiodnum:{type:Number},
+    payrate:{type:Number},
     delinquenttimesheets:{type:Array},
     historyupdated:{type:Boolean},
     phonenumber:{type:Number},

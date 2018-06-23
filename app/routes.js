@@ -42,6 +42,25 @@ module.exports = function (app) {
     
         })
         */
+        app.post('/users/changepayperiodhistoryentrytopaid', function(req,res){
+            //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
+            User.find({name:req.body.name}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"user not found so not updated..."})
+                }else{
+                    user[0].payperiodhistory[req.body.index].entry[0][0].paid = true;
+                    User.findOneAndUpdate({name: req.body.name}, {$set:{payperiodhistory:user[0].payperiodhistory}},{new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message: "User not found"})
+                        }else{
+                            res.json({success: true, message:"User found and updated..", user:user})
+                        }
+                    })
+                }
+            })
+        })
         app.post('/users/addhourstobookedjob', function(req,res){
             console.log(req.body)
             User.find({name: req.body.currentuser}, function(err,user){
@@ -874,12 +893,13 @@ module.exports = function (app) {
         })
 
     })
+
     app.post('/authenticate', function (req, res) {
 
         //res.send("testing new route")
         console.log("authenticate Route Hit");
         console.log(req.body)
-        User.findOne({ username: req.body.username }).select('email username password name payperiodnum userclass')
+        User.findOne({ username: req.body.username }).select('email username password name payrate payperiodnum userclass phonenumber')
             .exec(function (err, user) {
 
                 if (err) throw err;
@@ -896,7 +916,7 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id }, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email,payrate:user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id,phonenumber:user.phonenumber }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }

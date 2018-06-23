@@ -205,7 +205,20 @@
         }
         //OOPS DOESN'T INCLUDE MONDAY REMEMBER THAT...
 
-      
+        $scope.markAsPaid= function(index,historyentry){
+            console.log(historyentry.entry[0][0])
+            console.log(index)
+            console.log($scope.currentUserHistoryFile)
+            var payPeriodDetails = {
+                name: $scope.currentUserHistoryFile,
+                index:index,
+
+            }
+            historyentry.entry[0][0].paid = true;
+            User.changePayPeriodHistoryEntryToPaid(payPeriodDetails).then(function(data){
+                console.log(data)
+            })
+        }
         $scope.closePayPeriodUpdatedPage = function () {
 
             $scope.payPeriodUpdated = false;

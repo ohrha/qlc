@@ -49,6 +49,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addHoursToBookedJob = function(jobData){
         return $http.post('/api/users/addhourstobookedjob', jobData)
     }
+    userFactory.changePayPeriodHistoryEntryToPaid = function(payperiodDetails){
+        return $http.post('/api/users/changepayperiodhistoryentrytopaid', payperiodDetails)
+    }
 
        //User.getPermission();
  userFactory.getUserClass= function(){
