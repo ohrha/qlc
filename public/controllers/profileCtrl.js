@@ -27,6 +27,7 @@
         $scope.june1Booked = false;
         $scope.composeMessagePage = false;
         $scope.sendMessageLoading = false;
+        $scope.allFieldsMustBeInput = false;
         $scope.june2 = false;
         $scope.june2Booked = false;
         $scope.june3 = false;
@@ -1167,6 +1168,13 @@
             console.log($scope.message)
             console.log($scope.name)
             $scope.sendMessageLoading = true;
+            if($scope.message.subject!==null || $scope.message.body !== null){
+                $scope.allFieldsMustBeInput = true;
+                $timeout(function(){
+
+                    $scope.allFieldsMustBeInput = false;
+                },2000)
+            }
             if($scope.message.subject!==null && $scope.message.body !== null ){
                 $scope.message.to = name
                 $scope.message.from = $scope.name;

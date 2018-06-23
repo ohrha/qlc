@@ -67,6 +67,7 @@
                                             <div class="input-field col s6">
                                                 
                                                 <input id="first_name2" ng-model="message.subject" type="text" class="validate">
+                                              
                                                 <label class="active" for="first_name2">Subject</label>
 
                                             </div>
@@ -85,7 +86,9 @@
                                                     <a ng-click="submitMessage(page.name)" class="waves-effect waves-light btn">Send</a>
                                                 </div>
 
-
+                                                 <div ng-show="allFieldsMustBeInput"class = "col s12">
+                                                <p> All Fields Must Be Input </p>
+                                               </div>
                                             </div>
 
                                         </div>
