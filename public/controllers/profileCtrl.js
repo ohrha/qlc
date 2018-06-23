@@ -934,6 +934,7 @@
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.messageCompositionPageOpen = false;
+                $scope.messagePageOpen = false;
                 $scope.bookedJobsPageOpened = true;
                 $scope.delinquentTimeSheetSelected = false;
                 $scope.historyPageOpenProfile = false;
@@ -1570,6 +1571,7 @@ $scope.page++
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
             $scope.messagePageOpen = false;
+            $scope.openComposeMessagePage = false;
             $scope.historyPageOpenProfile = false;
             $scope.bookedJobsPageOpened = false;
             $scope.messageCompositionPageOpen = false;
@@ -1730,6 +1732,7 @@ $scope.page++
             } else {
                 $scope.messagePageOpen = true;
                 $scope.messagePageSelected = true;
+                $scope.composeMessagePageOpen = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
                 $scope.chartsPageOpen = false;
@@ -1800,6 +1803,7 @@ $scope.page++
             $scope.generalHistoryTitle = false;
             $scope.historyPageOpenProfile = true;
             $scope.bookedJobsPageOpened = false;
+            $scope.composeMessagePageOpen = false;
             $scope.messageCompositionPageOpen = false;
             $scope.messagePageOpen = false;
             $scope.bookedJobsSelected = false;
