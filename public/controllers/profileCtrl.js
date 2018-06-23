@@ -1088,6 +1088,25 @@
                 //$scope.timesheetsSelected = false;
             }
         }
+         $scope.openNotesPage = function (index) {
+            $scope.usersPageIndex = index;
+            if (!$scope.disputesPageOpen) {
+                $scope.jobsPageOpen = false;
+                $scope.notesPageOpen = true;
+                $scope.timesheetsPageOpen = false;
+                $scope.timesheetsSelected = false;
+                $scope.payslipGenerationOpen = false;
+                $scope.jobsSelected = false;
+                $scope.notesSelected = true;
+                $scope.delinquentTimeSheetSelected = false;
+                $scope.disputesSelected = false;
+                $scope.disputesPageOpen = false;
+            } else {
+                $scope.notesSelected = false;
+
+            }
+
+        }
          $scope.openJobsPage = function (index) {
             $scope.usersPageIndex = index;
 
