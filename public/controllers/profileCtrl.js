@@ -26,6 +26,7 @@
         $scope.june1 = false;
         $scope.june1Booked = false;
         $scope.composeMessagePage = false;
+        $scope.sendMessageLoading = false;
         $scope.june2 = false;
         $scope.june2Booked = false;
         $scope.june3 = false;
@@ -1165,6 +1166,7 @@
         $scope.submitMessage = function(name){
             console.log($scope.message)
             console.log($scope.name)
+            $scope.sendMessageLoading = true;
             if($scope.message.subject!==null && $scope.message.body !== null ){
                 $scope.message.to = name
                 $scope.message.from = $scope.name;
@@ -1172,6 +1174,7 @@
                 
                 User.sendMessage($scope.message).then(function(data){
                     console.log(data)
+                    $scope.sendMessageLoading = false;
                 })
 
             }
