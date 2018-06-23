@@ -827,6 +827,7 @@
             $scope.messageLoading = true;
                 $scope.currentIndex = index;
                 $scope.areYouSure = false;
+                console.log(index)
 
                  User.removeMessage($scope.name,$scope.currentIndex).then(function(data){
                              console.log(data)
@@ -866,8 +867,12 @@
 
                             console.log("else")
                             $scope.loadingUsers = false;
-                            $scope.messagesPaginated.push($scope.messageForPagination)
+                            if($scope.messageForPagination.length > 0){
+                                                            $scope.messagesPaginated.push($scope.messageForPagination)
+
+                            }
                             console.log($scope.messagesPaginated)
+                            console.log($scope.messagesPaginated.length)
                             $scope.messageForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
                                 $scope.messageForPagination.push($scope.messagesArray[i])
@@ -1063,6 +1068,48 @@
            $scope.addHoursPageOpen = false;
            
        }
+         $scope.openTimesheetsPage = function (index) {
+            $scope.usersPageIndex = index;
+            $scope.openJob = index;
+            if (!$scope.timesheetsPageOpen) {
+                $scope.jobsPageOpen = false;
+                $scope.disputesPageOpen = false;
+                $scope.timesheetsPageOpen = true;
+                $scope.timesheetsSelected = true;
+                $scope.disputesSelected = false;
+                $scope.delinquentTimeSheetSelected = false;
+                $scope.payslipGenerationOpen = false;
+
+                $scope.jobsSelected = false;
+
+                $scope.addJobPageOpen = false;
+                $scope.notesPageOpen=false;
+            } else {
+                //$scope.timesheetsSelected = false;
+            }
+        }
+         $scope.openJobsPage = function (index) {
+            $scope.usersPageIndex = index;
+
+            if (!$scope.jobsPageOpen) {
+                $scope.jobsPageOpen = true;
+                $scope.jobsSelected = true;
+                $scope.addJobPageOpen = false;
+                $scope.delinquentTimeSheetSelected = false;
+                $scope.timeSheetEntryOpen = false;
+                $scope.disputesSelected = false;
+                $scope.timesheetsSelected = false;
+                $scope.disputesPageOpen = false;
+                $scope.timesheetsPageOpen = false;
+                $scope.notesPageOpen=false;
+                $scope.payslipGenerationOpen = false;
+
+            } else {
+                //$scope.jobsSelected = false;
+
+            }
+
+        }
         $scope.openBookedJobsPage = function () {
 
             if ($scope.bookedJobsSelected) {
@@ -1899,6 +1946,7 @@
                 $scope.historyPageOpenProfile = false;
                 $scope.messagesLoading = true;
                 $scope.currentIndex = null;
+                $scope.messagesPaginated = [];
                 $scope.messageForPagination = [];
                 $scope.pageLimit = 4;
                 User.getMessages($scope.name).then(function (data) {
@@ -1939,6 +1987,8 @@
                                 $scope.loadingUsers = false;
                                 $scope.messagesPaginated.push($scope.messageForPagination)
                                 console.log($scope.messagesPaginated)
+                                                            console.log($scope.messagesPaginated.length)
+
                                 $scope.messageForPagination = [];
                                 if ($scope.messagesArray[i] !== undefined) {
                                     $scope.messageForPagination.push($scope.messagesArray[i])

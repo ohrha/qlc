@@ -71,8 +71,11 @@ module.exports = function (app) {
                 res.json({ success: false, message: "User not found..." })
             } else {
                 //res.json({success: true,})
+                console.log(req.params.index)
+                console.log(user[0].comments[req.params.index])
                 user[0].comments[req.params.index].read = false;
-                user[0].comments= user[0].comments.splice(req.params.index,1)
+                user[0].comments.splice(req.params.index,1)
+                console.log(user[0].comments[req.params.index])
                 User.findOneAndUpdate({ name: req.params.name }, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
                     if (err) throw err;
                     if (!user) {
