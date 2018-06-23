@@ -42,6 +42,7 @@
         $scope.june1Booked = false;
         $scope.areYouSure = false;
         $scope.composeMessagePage = false;
+        $scope.composeMessagePageLoading=false;
         $scope.sendMessageLoading = false;
         $scope.allFieldsMustBeInput = false;
         $scope.june2 = false;
@@ -1149,8 +1150,8 @@
         $scope.openBookedJobsPage = function () {
 
             if ($scope.bookedJobsSelected) {
-                $scope.bookedJobsSelected = false;
-                $scope.bookedJobsPageOpened = false;
+                //$scope.bookedJobsSelected = false;
+                //$scope.bookedJobsPageOpened = false;
                 ;
 
             } else {
@@ -1158,6 +1159,7 @@
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.messageCompositionPageOpen = false;
+                $scope.composeMessagePageOpen = false;
                 $scope.messagePageSelected = false;
                 $scope.messagePageOpen = false;
                 $scope.bookedJobsPageOpened = true;
@@ -1426,6 +1428,9 @@
 
                  if($scope.message.subject!==null && $scope.message.body !== null ){
                                  $scope.sendMessageLoading = true;
+                                 $timeout(function(data){
+                                    $scope.sendMessageLoading = false;
+                                 },1500)
 
                 $scope.message.to = name
                 $scope.message.from = $scope.name;
@@ -1433,7 +1438,7 @@
                 
                 User.sendMessage($scope.message).then(function(data){
                     console.log(data)
-                    $scope.sendMessageLoading = false;
+                   // $scope.sendMessageLoading = false;
                     $scope.message.from = null;
                     $scope.message.body = null;
                     $scope.message.subject = null;
@@ -1448,13 +1453,14 @@
 
 
             if(!$scope.composeMessagePageOpen){
-
+                $scope.composeMessagePageLoading = true;
                 $scope.composeMessagePageOpen = true;
                 $scope.messagePageOpen = false;
                 $scope.historyPageOpen = false;
+                $scope.chartsPageOpen = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.messagePageSelected = false;
-                
+                $scope.currentIndex = null;
                 $scope.usersPaginated = [];
                 $scope.usersLoading = true;
             $scope.usersForPagination = [];
@@ -1498,6 +1504,7 @@
                             $scope.usersForPagination = [];
                             if ($scope.usersArray[i] !== undefined) {
                                 $scope.usersForPagination.push($scope.usersArray[i])
+                               
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
                             //console.log($scope.pageLimit, i, $scope.employees.length)
@@ -1509,13 +1516,12 @@
                     }
 
                 }
-
+                 $scope.composeMessagePageLoading = false;
                 
             })
 
             }else{
-                $scope.composeMessagePageOpen = false;
-
+               
             }
 
            
@@ -1771,17 +1777,26 @@
 
                         }
                         if ($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow) {
-                            //  console.log($scope.jobDetails[u])
+                             console.log($scope.jobDetails[u])
                             $scope.payperiods[0].jobDetails[u].dateHasPassed = true;
 
                         } else {
-                            $scope.payperiods[0].jobDetails[u].dateHasPassed = false;
+                            //$scope.payperiods[0].jobDetails[u].dateHasPassed = false;
+                            if($scope.payperiods[0].jobDetails[u][0]){
+                                if($scope.payperiods[0].jobDetails[u][0].dateNum<$scope.dateNow){
+                                    $scope.payperiods[0].jobDetails[u][0].dateHasPassed = true;
+                                }else{
+                                            $scope.payperiods[0].jobDetails[u][0].dateHasPassed = false;
 
+                                }
+                                console.log($scope.payperiods[0].jobDetails[u][0])
+                            }
+ 
                         }
 
                     }
                     $scope.jobDetails = $scope.payperiods[0].jobDetails
-
+console.log($scope.jobDetails)
                     /*CHECK IF THE JOBDETAIL DATE HAS PASSED AND DISABLE IF TRUE*/
 
 
@@ -1794,6 +1809,7 @@
             }
 
             console.log(name);
+            
             console.log($scope.bookedJobsPageOpened)
 
             console.log("Curent User", $scope.currentUserFile)
@@ -2267,8 +2283,65 @@
                 }
             }, 500)
         }
-        $scope.openIndividualPayPeriod = function (index) {
+        $scope.openIndividualPayPeriod = function (index,history) {
             console.log(index)
+            console.log(history)
+            $scope.labels[0]= history.entry[0][0].date
+            $scope.labels[1]= history.entry[1][0].date
+            $scope.labels[2]= history.entry[2][0].date
+            $scope.labels[3]= history.entry[3][0].date
+            $scope.labels[4]= history.entry[4][0].date
+            $scope.labels[5]= history.entry[5][0].date
+            $scope.labels[6]= history.entry[6][0].date
+            $scope.data[0]= history.entry[0][0].hoursCalculated
+             if($scope.data[0]= history.entry[0][1]){
+                $scope.data[0]= history.entry[0][0].hoursCalculated + history.entry[0][1].hoursCalculated
+            }else{
+                $scope.data[0]= history.entry[0][0].hoursCalculated
+
+            }
+            $scope.data[1]= history.entry[1][0].date
+             if($scope.data[1]= history.entry[1][1]){
+                $scope.data[1]= history.entry[1][0].hoursCalculated + history.entry[1][1].hoursCalculated
+            }else{
+                $scope.data[1]= history.entry[1][0].hoursCalculated
+
+            }
+            $scope.data[2]= history.entry[2][0].date
+              if($scope.data[2]= history.entry[2][1]){
+                $scope.data[2]= history.entry[2][0].hoursCalculated + history.entry[2][1].hoursCalculated
+            }else{
+                $scope.data[2]= history.entry[2][0].hoursCalculated
+
+            }
+            $scope.data[3]= history.entry[3][0].date
+             if($scope.data[3]= history.entry[3][1]){
+                $scope.data[3]= history.entry[3][0].hoursCalculated + history.entry[3][1].hoursCalculated
+            }else{
+                $scope.data[3]= history.entry[3][0].hoursCalculated
+
+            }
+            $scope.data[4]= history.entry[4][0].date
+              if($scope.data[4]= history.entry[4][1]){
+                $scope.data[4]= history.entry[4][0].hoursCalculated + history.entry[4][1].hoursCalculated
+            }else{
+                $scope.data[4]= history.entry[4][0].hoursCalculated
+
+            }
+            $scope.data[5]= history.entry[5][0].hoursCalculated
+              if($scope.data[5]= history.entry[5][1]){
+                $scope.data[5]= history.entry[5][0].hoursCalculated + history.entry[5][1].hoursCalculated
+            }else{
+                $scope.data[5]= history.entry[5][0].hoursCalculated
+
+            }
+             if($scope.data[6]= history.entry[6][1]){
+                $scope.data[6]= history.entry[6][0].hoursCalculated + history.entry[6][1].hoursCalculated
+            }else{
+                $scope.data[6]= history.entry[6][0].hoursCalculated
+
+            }
+
 
             // $scope.historyEntryOpen = false;
             if ($scope.individualPayPeriodOpen && index !== $scope.curPeriod

@@ -49,8 +49,6 @@
         $scope.addJobPageOpen = false;
         $scope.commentsSelected = false;
         $scope.payslipGenerationOpen = false;
-        $scope.payPeriodPaidSwitch = false;
-        $scope.payPeriodUnPaidSwitch = false;
         $scope.slidein = false;
         $scope.slideIn = false;
         $scope.slideout = false;
@@ -207,83 +205,6 @@
         }
         //OOPS DOESN'T INCLUDE MONDAY REMEMBER THAT...
 
- $scope.openMessagePage = function () {
-            if ($scope.messagePageOpen) {
-                $scope.messagePageOpen = false;
-                $scope.messagePageSelected = false;
-            } else {
-                $scope.messagePageOpen = true;
-                $scope.messagePageSelected = true;
-                $scope.composeMessagePageOpen = false;
-                $scope.bookedJobsPageOpened = false;
-                $scope.bookedJobsSelected = false;
-                $scope.jobsPageOpen = true;
-                $scope.timesheetsPageOpen = false;
-                $scope.notesPageOpen = false;
-                $scope.chartsPageOpen = false;
-                $scope.historyPageOpenProfile = false;
-                $scope.messagesLoading = true;
-                $scope.currentIndex = null;
-                $scope.messagesPaginated = [];
-                $scope.messageForPagination = [];
-                $scope.pageLimit = 4;
-                User.getMessages($scope.name).then(function (data) {
-                    console.log(data)
-                    $scope.messagesArray = data.data.messages;
-                    $scope.messagesLoading = false;
-                    for (var i = 0; i <= $scope.messagesArray.length; i++) {
-
-                        var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        console.log($scope.employees)
-                        if (i < $scope.pageLimit) {
-                            console.log("its less")
-
-                        }
-                        if (i < $scope.messagesArray.length) {
-                            console.log("yup,less")
-                        }
-
-                        if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
-                            if ($scope.messagesArray[i]) {
-                                $scope.messageForPagination.push($scope.messagesArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
-
-                            }
-
-
-
-                        } else {
-                            if (!$scope.usersLoaded) {
-
-                                console.log("else")
-                                $scope.loadingUsers = false;
-                                $scope.messagesPaginated.push($scope.messageForPagination)
-                                console.log($scope.messagesPaginated)
-                                                            console.log($scope.messagesPaginated.length)
-
-                                $scope.messageForPagination = [];
-                                if ($scope.messagesArray[i] !== undefined) {
-                                    $scope.messageForPagination.push($scope.messagesArray[i])
-                                }
-                                $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
-
-                                page++
-
-                            }
-
-                        }
-
-                    }
-                })
-            }
-        }
   $scope.markAsUnPaid= function(index,historyentry){
             console.log(historyentry.entry[0][0])
             console.log(index)
@@ -294,13 +215,12 @@
 
             }
             historyentry.entry[0][0].paid = true;
-            $scope.payPeriodUnPaidSwitch = true;
             User.changePayPeriodHistoryEntryToUnPaid(payPeriodDetails).then(function(data){
                 console.log(data)
-               $scope.payPeriodHistory = []
+                $scope.payPeriodHistory = data.data.user.payperiodhistory
                 var name = $scope.currentUserHistoryFile
                 var phonenumber = "#"
-                $scope.openUserFileHistory2(name,phonenumber)
+                $scope.openUserFileHistory(name,phonenumber)
                  //$scope.currentUserHistoryFile() 
             })
         }
@@ -313,13 +233,10 @@
                 index:index,
 
             }
-           $scope.payPeriodPaidSwitch = true;
+            historyentry.entry[0][0].paid = true;
             User.changePayPeriodHistoryEntryToPaid(payPeriodDetails).then(function(data){
                 console.log(data)
-                              $scope.payPeriodHistory = [];
-                                  var name = $scope.currentUserHistoryFile
-                var phonenumber = "#"
-                $scope.openUserFileHistory2(name,phonenumber)
+                                $scope.payPeriodHistory = data.data.user.payperiodhistory
 
             })
         }
@@ -1016,36 +933,17 @@ $scope.loadingText = true;
             $scope.page = 0;
             $scope.userList = true;
         }
-    
         $scope.changePage = function () {
-                
-                if($scope.page <$scope.employeesPaginated.length-1){
-                        $scope.page++
-                }
+            $scope.page++
+            console.log($scope.page)
+        }
+        $scope.decreasePage = function () {
+            if ($scope.page > 0) {
+                $scope.page--
                 console.log($scope.page)
             }
-            $scope.decreasePage = function () {
-                if ($scope.page > 0) {
-                    $scope.page--
-                    console.log($scope.page)
-                }
 
-            }
-        
-        $scope.changePage2 = function () {
-                
-                if($scope.page <$scope.employeesPaginated.length-1){
-                        $scope.page++
-                }
-                console.log($scope.page)
-            }
-            $scope.decreasePage2 = function () {
-                if ($scope.page > 0) {
-                    $scope.page--
-                    console.log($scope.page)
-                }
-
-            }
+        }
         $scope.specificPage = function (page) {
             $scope.page = page;
         }
@@ -1942,7 +1840,7 @@ $scope.loadingText = true;
                 $scope.bookedJobs = true;
             }
         }
-          $scope.openUserFileHistory = function (name, phonenumber) {
+        $scope.openUserFileHistory = function (name, phonenumber) {
             $scope.openJob = 0;
             $scope.historyPageOpenProfile = true;
             $scope.generalHistoryOpen = false;
@@ -1967,7 +1865,7 @@ $scope.loadingText = true;
             //$scope.employeesPaginated = [];
 
             $scope.hoursArrayForHistory = [];
-           
+            if($scope.usersLoaded ){
                 User.findUser($scope.currentUserHistoryFile).then(function(data){
 
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
@@ -2047,65 +1945,90 @@ $scope.hoursCalcIterator = 0;
  })
                   
 
-            
-           
-            console.log(name);
-            console.log("Curent User", $scope.currentUserFile)
-            if (!$scope.userFilePage && $scope.currentUserFile == name) {
-                $scope.userFilePage = true;
-            } else if (!$scope.userFilePage && $scope.currentUserFile == name) {
-                $scope.userFilePage = true;
-            } else if ($scope.userFilePage && $scope.currentUserFile == name) {
-                $scope.userFilePage = true;
-            } else if ($scope.userFilePage && $scope.currentUserFile !== name) {
-                $scope.currentUserFile = name;
-                $scope.userFilePage = true;
-            }
-        }
-        $scope.openUserFileHistory2 = function (name, phonenumber) {
-            $scope.openJob = 0;
-            $scope.historyPageOpenProfile = true;
-            $scope.generalHistoryOpen = false;
-            $scope.generalHistoryTitle = false;
-            $scope.loadingPersonalHistory = true;
-            $scope.personalHistoryTitle = true;
-            $scope.personalHistoryOpen = true;
-            $scope.employeeHome = false;
-            $scope.searchResults = false;
-            $scope.userList = false;
-            $scope.employeeListOpen = false;
-            $scope.userDetailsPageOpened = true;
-            $scope.bookedJobsPageOpened = false;
-            $scope.complaintsPageOpened = false;
-            $scope.commentsPageOpened = false;
-            console.log(phonenumber)
-            console.log(name)
-            //$scope.currentUserFile = name;
-            $scope.currentUserHistoryFile = name;
-            $scope.currentUserPhoneNumber = phonenumber;
-            $scope.jobDetails = [];
-            //$scope.employeesPaginated = [];
+            }else{
+                 User.getUsers().then(function (data) {
+                console.log(data)
 
-            $scope.hoursArrayForHistory = [];
-           
-                User.findUser($scope.currentUserHistoryFile).then(function(data){
-
-                    $scope.payPeriodHistory = data.data.user[0].payperiodhistory
-console.log($scope.payPeriodHistory)
-               
-
-                       
-                            $scope.loadingPersonalHistory = false;
-
-                        //},2000)
-                        //$scope.loadingPersonalHistory = false;
+                // $scope.employees = data.data.users;
+                //$scope.jobDetails = data.data.users.jobDetails;
+                for (var i = 0; i < data.data.users.length; i++) {
+                    if (data.data.users[i].name == $scope.currentUserHistoryFile) {
+                        console.log($scope.currentUserFile)
+                        // $scope.jobDetails = data.data.users[i].jobDetails;
+                        $scope.comments = data.data.users[i].comments;
+                        $scope.payperiods = data.data.users[i].payperiods;
+                        $scope.payPeriodHistory = data.data.users[i].payperiodhistory
+                        $scope.loadingPersonalHistory = false;
                         console.log($scope.payperiods)
                         console.log($scope.currentUserFile)
-                        //console.log($scope.payPeriodHistory)
- })
-                  
+                        console.log($scope.payPeriodHistory)
 
-            
+                        for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
+                            //$scope.data
+
+                            // $scope.data[0][b]= hoursIterator;
+
+                            for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
+                                var hoursIterator = 0;
+                                var minIterator = 0;
+                                //console.log(c,$scope.payPeriodHistory[b].entry.length)
+                                // console.log("hoursIteratot",hoursIterator)
+
+
+
+                                $scope.labels[c] = $scope.payPeriodHistory[b].entry[c].date
+
+                                var startTime = moment($scope.payPeriodHistory[b].entry[c].timein, "HH:mm:ss a");
+                                var endTime = moment($scope.payPeriodHistory[b].entry[c].timeout, "HH:mm:ss a");
+                                var duration = moment.duration(endTime.diff(startTime));
+                                var hours = parseInt(duration.asHours());
+                                var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                                //hoursIterator = hoursIterator + hours;
+                                //minIterator = minIterator + minutes
+                                if (minutes == 15) {
+                                    hours + .25
+                                    minIterator = 0;
+                                }
+                                if (minutes == 30) {
+                                    hours + .30
+                                }
+                                if (minutes == 45) {
+                                    hours + .75
+                                }
+                                $scope.data[0][c] = hours + minutes
+
+                                console.log(hours, minutes)
+                            }
+
+                        }
+                        /*
+                        var startTime = moment($scope.allEmployeesJobDetails[s][k].timein, "HH:mm:ss a");
+                                    var endTime = moment($scope.allEmployeesJobDetails[s][k].timeout, "HH:mm:ss a");
+                                    var duration = moment.duration(endTime.diff(startTime));
+                                    var hours = parseInt(duration.asHours());
+                                    var minutes = parseInt(duration.asMinutes()) - hours * 60;
+
+                        $scope.payperiod = data.data.users[i].payperiodnum;
+                        */
+
+                        for (var k = 0; k < $scope.payperiods.length; k++) {
+                            //console.log($scope.payperiods[k].payperiodnum)
+                            //console.log($rootScope.payPeriod)
+                            if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
+                                console.log($scope.payperiods[k].jobDetails)
+
+                                $scope.jobDetails = $scope.payperiods[k].jobDetails
+                            }
+                           
+                        }
+
+                    }
+                }
+                console.log($scope.payperiods)
+                console.log($scope.jobDetails)
+            })
+
+            }
            
             console.log(name);
             console.log("Curent User", $scope.currentUserFile)

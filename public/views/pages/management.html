@@ -53,8 +53,29 @@
         <!-- MANAGEMENT HOME -->
 
         <div ng-show="managementPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
-            <p style="font-size:18px;" class="railway animated fadeIn ">Administration Page</p>
+ <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+                <p style="font-size:18px;" class="railway animated fadeIn ">Administration Page</p>
+            </div>
+            <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
+                <!-- <a href="#" style="color:black;">
+                                <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
+                            </a>-->
+                <a href="#" style="color:black;">
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                            </a>
 
+                <a href="#" style="color:black;">
+                                <i ng-click="openChartsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
+                            </a>
+                <a href="#" style="color:black;">
+                                <i ng-click="openHistoryPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                            </a>
+                <a ng-show="incompletePayPeriod" href="#" style="color:black;">
+                                <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
+                            </a>
+            </div>
+            <div class = "col s12">
+            </div>
         </div>
 
         <!--MANAGEMENT HOME -->
@@ -149,6 +170,10 @@
                                     <p class="railway underline" style="font-size:20px;">{{history.entry[0][0].date}}-{{history.entry[6][0].date}}</p>
                                     <div ng-show ="{{history.entry[0][0].paid}}">
                                     <span class = "railway "><i ng-click="markAsPaid($index,history)" class="material-icons green-text lighten-3" style="font-size:20px;">check</i>PAID</span>
+                                    
+                                    </div>
+                                           <div ng-show ="{{history.entry[0][0].paid}}">
+                                    <span class = "railway " ng-click="markAsUnPaid($index,history)">MARK AS UNPAID</span>
                                     </div>
                                        <div ng-show ="{{!history.entry[0][0].paid}}">
                                     <span class = "railway " ng-click="markAsPaid($index,history)">MARK AS PAID</span>
@@ -232,11 +257,11 @@
                                 <ul class="pagination">
                                     <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
 
-                                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
                                     <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
                                         ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
 
-                                    <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                                    <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
                                     <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
 
                                 </ul>
@@ -440,9 +465,7 @@
                     <a href="#" style="color:black;">
                                 <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
                             </a>
-                    <a href="#" style="color:black;">
-                                <i ng-click="openPayslipGenerationPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-                            </a>
+                  
                     <a ng-show="delinquentTimeSheet" href="#" style="color:black;">
                                 <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
@@ -501,11 +524,11 @@
 
                                 </div>
                                 <div class="col s6">
-                                    <a ng-click="finishSubmitTimesheet('yes')" class="waves-effect waves-light btn">Yes</a>
+                                    <i ng-click="finishSubmitTimesheet('yes')" class="material-icons">check</i>
 
                                 </div>
                                 <div class="col s6">
-                                    <a ng-click="finishSubmitTimesheet('no')" class="waves-effect waves-light btn">No</a>
+                                    <i ng-click="finishSubmitTimesheet('no')" class="material-icons">clear</i>
 
                                 </div>
 
@@ -585,7 +608,7 @@
                                         </div>
                                         <div class="input-field col s6">
                                             <select ng-model="timeData.hrsOut1" name="hrsOut1">
-      <option value="" disabled selected>0</option>
+      <option value="" disabled selected>#</option>
       <option value="0">0</option>
       <option value="1">1</option>
      
@@ -595,7 +618,7 @@
                                         </div>
                                         <div class="input-field col s6">
                                             <select ng-model="timeData.hrsOut2" name="hrsOut2">
-      <option value="" disabled selected>0</option>
+      <option value="" disabled selected>#</option>
             <option value="0" >0</option>
 
       <option value="1">1</option>
@@ -611,7 +634,7 @@
                                         </div>
                                         <div class="input-field col s6">
                                             <select ng-model="timeData.minsOut1" name="minsOut1">
-         <option value="" disabled selected>0</option>
+         <option value="" disabled selected>#</option>
          <option value="0">0</option>
       <option value="1">1</option>
   
@@ -623,7 +646,7 @@
                                         </div>
                                         <div class="input-field col s6">
                                             <select ng-model="timeData.minsOut2" name="minsOut2">
-            <option value="" disabled selected>0</option>
+            <option value="" disabled selected>#</option>
                         <option value="0">0</option>
 
 

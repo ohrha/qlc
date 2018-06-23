@@ -42,6 +42,25 @@ module.exports = function (app) {
     
         })
         */
+        app.post('/users/changepayperiodhistoryentrytounpaid', function(req,res){
+            //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
+            User.find({name:req.body.name}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"user not found so not updated..."})
+                }else{
+                    user[0].payperiodhistory[req.body.index].entry[0][0].paid = false;
+                    User.findOneAndUpdate({name: req.body.name}, {$set:{payperiodhistory:user[0].payperiodhistory}},{new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message: "User not found"})
+                        }else{
+                            res.json({success: true, message:"User found and updated..", user:user})
+                        }
+                    })
+                }
+            })
+        })
         app.post('/users/changepayperiodhistoryentrytopaid', function(req,res){
             //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
             User.find({name:req.body.name}, function(err,user){
@@ -309,7 +328,7 @@ module.exports = function (app) {
                 user[0].payperiods[0].jobDetails[7].push(req.body)
 
                 user[0].delinquenttimesheets.splice(req.body.index, 1)
-                User.findOneAndUpdate({ name: req.body.user },
+                User.findOneAndUpdate({ name: req.body.user }, 
                     {
                         $set: {
                             payperiods: user[0].payperiods,

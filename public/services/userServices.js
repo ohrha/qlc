@@ -52,6 +52,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.changePayPeriodHistoryEntryToPaid = function(payperiodDetails){
         return $http.post('/api/users/changepayperiodhistoryentrytopaid', payperiodDetails)
     }
+    userFactory.changePayPeriodHistoryEntryToUnPaid = function(payperiodDetails){
+        return $http.post('/api/users/changepayperiodhistoryentrytounpaid', payperiodDetails)
+    }
 
        //User.getPermission();
  userFactory.getUserClass= function(){
