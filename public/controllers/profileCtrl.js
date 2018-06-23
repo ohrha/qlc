@@ -1797,6 +1797,9 @@
             $scope.historyPageOpen = false;
             $scope.messagePageOpen = false;
             $scope.messagePageSelected = false;
+            $scope.timesheetsPageOpen = false;
+            $scope.notesPageOpen = false;
+            $scope.jobsPageOpen = true;
            // $scope.openComposeMessagePage = false;
             $scope.historyPageOpenProfile = false;
             $scope.bookedJobsPageOpened = false;
@@ -1961,6 +1964,9 @@
                 $scope.composeMessagePageOpen = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
+                $scope.jobsPageOpen = true;
+                $scope.timesheetsPageOpen = false;
+                $scope.notesPageOpen = false;
                 $scope.chartsPageOpen = false;
                 $scope.historyPageOpenProfile = false;
                 $scope.messagesLoading = true;
@@ -2025,12 +2031,23 @@
                 })
             }
         }
+        $scope.generatePaySlip = function(index){
+            console.log(index)
+            console.log($scope.payPeriodHistory[index])
+            for(var z=0;z<$scope.payPeriodHistory[index].entry.length;z++){
+
+            }
+
+        }
         $scope.openHistoryPageProfile = function () {
             $scope.openJob = 0;
             $scope.chartsPageOpen = false;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
             $scope.historyPageOpenProfile = true;
+            $scope.timesheetsPageOpen = false;
+            $scope.notesPageOpen = false;
+            $scope.jobsPageOpen = true;
             $scope.bookedJobsPageOpened = false;
             $scope.composeMessagePageOpen = false;
             $scope.messageCompositionPageOpen = false;

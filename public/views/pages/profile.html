@@ -1054,7 +1054,7 @@
                                 <div ng-show="curPeriod !== $index" class="col s9 animated fadeIn">
                                     <p class="railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                     <p ng-show="history.entry[0][0].paid" class="railway  green-text lighten-3">PAID</p>
-
+                                    <p ng-show="history.entry[0][0].paid" ng-click="generatePaySlip($index)" class="railway  green-text lighten-3">Generate Payslip</p>
 
                                 </div>
 
