@@ -780,7 +780,7 @@
             //$scope.currentIndex2 = index;
             console.log(index)
            // $scope.messageCopositionPageOpen = true;;
-               $timeout(function () {
+            
                // $scope.removeChart = true;
                 if ($scope.messageCopositionPageOpen && index !== $scope.currentIndex2
                 ) {
@@ -806,7 +806,7 @@
                     $scope.showChart = true;
                     $scope.removeChart = false;
                 }
-            }, 500)
+          
 
 
         }
@@ -933,6 +933,7 @@
                 console.log("second")
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
+                $scope.messageCompositionPageOpen = false;
                 $scope.bookedJobsPageOpened = true;
                 $scope.delinquentTimeSheetSelected = false;
                 $scope.historyPageOpenProfile = false;
@@ -1156,8 +1157,12 @@
 
 
         $scope.changePage = function () {
-            $scope.page++
+            
+            if($scope.page <$scope.usersPaginated.length-1){
+$scope.page++
+            }
             console.log($scope.page)
+            console.log($scope.usersPaginated.length)
         }
         $scope.decreasePage = function () {
             if ($scope.page > 0) {
@@ -1200,12 +1205,14 @@
         }
         $scope.openComposeMessagePage = function(){
 
+
             if(!$scope.composeMessagePageOpen){
 
                 $scope.composeMessagePageOpen = true;
                 $scope.messagePageOpen = false;
                 $scope.historyPageOpen = false;
                 $scope.bookedJobsPageOpened = false;
+                
                 $scope.usersPaginated = [];
                 $scope.usersLoading = true;
             $scope.usersForPagination = [];
@@ -1565,6 +1572,7 @@
             $scope.messagePageOpen = false;
             $scope.historyPageOpenProfile = false;
             $scope.bookedJobsPageOpened = false;
+            $scope.messageCompositionPageOpen = false;
 
             $scope.incompletePayPeriodPageOpen = false;
 
@@ -1792,6 +1800,7 @@
             $scope.generalHistoryTitle = false;
             $scope.historyPageOpenProfile = true;
             $scope.bookedJobsPageOpened = false;
+            $scope.messageCompositionPageOpen = false;
             $scope.messagePageOpen = false;
             $scope.bookedJobsSelected = false;
             $scope.loadingPersonalHistory = true;
