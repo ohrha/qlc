@@ -42,15 +42,15 @@
                             <div class="col s12" ng-repeat="page in usersPaginated[page] track by $index">
                                 <div class="row">
                                     <div class="col s2" style="border-right:1px solid #ddd">
-                                    <a class = "btn tooltipped" data-position="bottom" data-tooltip = "{{page.name}}"></a>
                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate">{{page.name}}</p>
                                     </div>
-                                    <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align">
-
+                                    <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn">
+                                        <br>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class= "railway underline" style="color:#ddd">||{{page.name}}||</p>
                                     </div>
 
 
-                                    <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index" class="col s10 center-align">
+                                    <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index" class="col s10 center-align animated fadeIn">
 
                                         <div class="row">
                                             <div class="input-field col s6">
