@@ -1174,8 +1174,9 @@
 
                     $scope.allFieldsMustBeInput = false;
                 },2000)
-            }
-            if($scope.message.subject!==null && $scope.message.body !== null ){
+            }else{
+
+                 if($scope.message.subject!==null && $scope.message.body !== null ){
                 $scope.message.to = name
                 $scope.message.from = $scope.name;
                 $scope.message.read = false;
@@ -1186,6 +1187,9 @@
                 })
 
             }
+
+            }
+           
         }
         $scope.openComposeMessagePage = function(){
 
