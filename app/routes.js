@@ -95,6 +95,16 @@ module.exports = function (app) {
         })
 
     })
+    app.post('/users/sendmessage', function(req,res){
+        User.findOneAndUpdate({name:req.body.to}, {$push:{comments:req.body}},{new:true}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false,message:"User not found"})
+            }else{
+                res.json({success: true, message:"User found and updated...",user:user})
+            }
+        })
+    })
     app.post('/users/sendsms', function (req, res) {
 
         const from = req.body.from

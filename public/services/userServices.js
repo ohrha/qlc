@@ -43,6 +43,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.sendSms = function(userDetails){
         return $http.post('/api/users/sendsms', userDetails)
     }
+    userFactory.sendMessage = function(messageDetails){
+        return $http.post('/api/users/sendmessage',messageDetails)
+    }
     userFactory.addHoursToBookedJob = function(jobData){
         return $http.post('/api/users/addhourstobookedjob', jobData)
     }

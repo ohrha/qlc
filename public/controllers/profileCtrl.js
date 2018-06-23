@@ -25,7 +25,7 @@
         $scope.calander = [[], [], []];
         $scope.june1 = false;
         $scope.june1Booked = false;
-
+        $scope.composeMessagePage = false;
         $scope.june2 = false;
         $scope.june2Booked = false;
         $scope.june3 = false;
@@ -46,7 +46,9 @@
         $scope.june18 = false;
         $scope.historyEntryOpen = true;
         $scope.messagesArray = []
+        $scope.messageCompositionPageOpen = false;
         $scope.messagesPaginated = [];
+        $scope.usersArray = [];
         $scope.currentusernameArray =[];
         $scope.employeeJobDetails = {};
         $scope.jobData = {};
@@ -57,8 +59,11 @@
         $scope.areYouSure = false;
         $scope.addHoursPageOpen = false;
         $scope.timeData = {};
+        $scope.message = {};
+        $scope.currentIndex = null;
         $scope.currentIndex = null;
         $scope.page = 0;
+
            $scope.date = new Date();
         $scope.dateNow = $scope.date.getDate()
          $scope.month = $scope.date.getMonth() + 1;
@@ -730,6 +735,77 @@
 
 
                                     }
+
+ $scope.openIndividualHistoryEntry = function (index) {
+            console.log(index)
+            //curHistory = index;
+            // $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+            $scope.showChart = false;
+            $timeout(function () {
+                $scope.removeChart = true;
+                if ($scope.historyEntryOpen && index !== $scope.curHistory
+                ) {
+                    // $scope.individualPayPeriodOpen = false;
+                    $scope.curHistory = index;
+                    console.log("first")
+
+                }
+
+
+                else if (!$scope.historyEntryOpen && index == $scope.curHistory) {
+                    $scope.historyEntryOpen = true;
+                    console.log("second")
+                    //$scope.curPeriod = index;
+                }
+                else if (!$scope.historyEntryOpen && index !== $scope.curHistory) {
+                    console.log("third")
+                    $scope.historyEntryOpen = true;
+                    $scope.curHistory = index;
+                } else {
+                    $scope.curHistory = null
+
+                    $scope.showChart = true;
+                    $scope.removeChart = false;
+                }
+            }, 500)
+        }
+        $scope.openMessageCompositionPage = function(index){
+
+            //$scope.currentIndex2 = index;
+            console.log(index)
+           // $scope.messageCopositionPageOpen = true;;
+               $timeout(function () {
+               // $scope.removeChart = true;
+                if ($scope.messageCopositionPageOpen && index !== $scope.currentIndex2
+                ) {
+                    // $scope.individualPayPeriodOpen = false;
+                    $scope.currentIndex2 = index;
+                    console.log("first")
+
+                }
+
+
+                else if (!$scope.messageCopositionPageOpen && index == $scope.currentIndex2) {
+                    $scope.messageCopositionPageOpen = true;
+                    console.log("second")
+                    //$scope.curPeriod = index;
+                }
+                else if (!$scope.messageCopositionPageOpen && index !== $scope.currentIndex2) {
+                    console.log("third")
+                    $scope.messageCopositionPageOpen = true;
+                    $scope.currentIndex2 = index;
+                } else {
+                    $scope.currentIndex2 = null
+
+                    $scope.showChart = true;
+                    $scope.removeChart = false;
+                }
+            }, 500)
+
+
+        }
+
         $scope.openMessage = function (index, timesheetData) {
             console.log(index)
             console.log(timesheetData)
@@ -1071,6 +1147,108 @@
                 $scope.currentUserFile = name;
                 $scope.userFilePage = true;
             }
+        }
+
+
+        $scope.changePage = function () {
+            $scope.page++
+            console.log($scope.page)
+        }
+        $scope.decreasePage = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+
+        $scope.submitMessage = function(name){
+            console.log($scope.message)
+            console.log($scope.name)
+            if($scope.message.subject!==null && $scope.message.body !== null ){
+                $scope.message.to = name
+                $scope.message.from = $scope.name;
+                $scope.message.read = false;
+                
+                User.sendMessage($scope.message).then(function(data){
+                    console.log(data)
+                })
+
+            }
+        }
+        $scope.openComposeMessagePage = function(){
+
+            if(!$scope.composeMessagePageOpen){
+
+                $scope.composeMessagePageOpen = true;
+                $scope.messagePageOpen = false;
+                $scope.historyPageOpen = false;
+                $scope.bookedJobsPageOpened = false;
+                $scope.usersPaginated = [];
+                $scope.usersLoading = true;
+            $scope.usersForPagination = [];
+            $scope.pageLimit = 4;
+                 User.getUsers().then(function(data){
+                console.log(data)
+                $scope.usersArray = data.data.users;
+                   for (var i = 0; i <= $scope.usersArray.length; i++) {
+
+                    var page = 0;
+               
+                    if (i < $scope.pageLimit) {
+                        console.log("its less")
+
+                    }
+                    if (i < $scope.usersArray.length) {
+                        console.log("yup,less")
+                    }
+
+                    if (i < $scope.pageLimit && i < $scope.usersArray.length) {//5
+                        console.log("HELLO")
+                        //console.log($scope.employees[i])
+                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        if ($scope.usersArray[i]) {
+                            $scope.usersForPagination.push($scope.usersArray[i])
+                            console.log(i)
+                            console.log("firstCondiation")
+                            console.log($scope.pageArray)
+
+                        }
+
+
+
+                    } else {
+                        if (!$scope.usersLoaded) {
+
+                            console.log("else")
+                            $scope.loadingUsers = false;
+                            $scope.usersPaginated.push($scope.usersForPagination)
+                           // console.log($scope.messagesPaginated)
+                            $scope.usersForPagination = [];
+                            if ($scope.usersArray[i] !== undefined) {
+                                $scope.usersForPagination.push($scope.usersArray[i])
+                            }
+                            $scope.pageLimit = $scope.pageLimit + 4;
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                            page++
+
+                        }
+
+                    }
+
+                }
+
+                
+            })
+
+            }else{
+                $scope.composeMessagePageOpen = false;
+
+            }
+
+           
+
         }
             $scope.changeJobInDate = function(index){
             $scope.slideOut= true;
