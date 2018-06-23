@@ -771,7 +771,7 @@
             }, 500)
         }
         $scope.openMessageCompositionPage = function(index){
-
+            $('.tooltipped').tooltip();
             //$scope.currentIndex2 = index;
             console.log(index)
            // $scope.messageCopositionPageOpen = true;;
