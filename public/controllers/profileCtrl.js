@@ -811,6 +811,70 @@
 
         }
 
+         $scope.markAsUnread = function(index){
+             $scope.messageLoading = true;
+                $scope.currentIndex = index;
+                        
+                        User.changeMessageToUnRead($scope.name,$scope.currentIndex).then(function(data){
+                             console.log(data)
+                               $scope.pageLimit = 4;
+                               $scope.messagesPaginated = [];
+                               $scope.messageForPagination = [];
+                            $scope.messagesArray= data.data.user.comments;
+                             for (var i = 0; i <= $scope.messagesArray.length; i++) {
+
+                    var page = 0;
+                    ////console.log($scope.pageLimit, i, $scope.employees.length)
+                    console.log($scope.employees)
+                    if (i < $scope.pageLimit) {
+                        console.log("its less")
+
+                    }
+                    if (i < $scope.messagesArray.length) {
+                        console.log("yup,less")
+                    }
+
+                    if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
+                        console.log("HELLO")
+                        //console.log($scope.employees[i])
+                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        if ($scope.messagesArray[i]) {
+                            $scope.messageForPagination.push($scope.messagesArray[i])
+                            console.log(i)
+                            console.log("firstCondiation")
+                            console.log($scope.pageArray)
+
+                        }
+
+
+
+                    } else {
+                        if (!$scope.usersLoaded) {
+
+                            console.log("else")
+                            $scope.loadingUsers = false;
+                            $scope.messagesPaginated.push($scope.messageForPagination)
+                            console.log($scope.messagesPaginated)
+                            $scope.messageForPagination = [];
+                            if ($scope.messagesArray[i] !== undefined) {
+                                $scope.messageForPagination.push($scope.messagesArray[i])
+                            }
+                            $scope.pageLimit = $scope.pageLimit + 4;
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                            page++
+
+                        }
+
+                    }
+
+                }
+
+                            $scope.messageLoading = false;
+                            $scope.currentIndex = null;
+                            //$scope.openMessagePage2();
+                         })
+        }
         $scope.openMessage = function (index, timesheetData) {
             console.log(index)
             console.log(timesheetData)
@@ -821,7 +885,7 @@
                 // $scope.individualPayPeriodOpen = false;
                 $scope.messageLoading = true;
                 $scope.currentIndex = index;
-
+                        
                         User.changeMessageToRead($scope.name,$scope.currentIndex).then(function(data){
                              console.log(data)
                                $scope.pageLimit = 4;
@@ -934,6 +998,7 @@
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.messageCompositionPageOpen = false;
+                $scope.messagePageSelected = false;
                 $scope.messagePageOpen = false;
                 $scope.bookedJobsPageOpened = true;
                 $scope.delinquentTimeSheetSelected = false;
@@ -1158,20 +1223,35 @@
 
 
         $scope.changePage = function () {
-            
-            if($scope.page <$scope.usersPaginated.length-1){
-$scope.page++
-            }
-            console.log($scope.page)
-            console.log($scope.usersPaginated.length)
-        }
-        $scope.decreasePage = function () {
-            if ($scope.page > 0) {
-                $scope.page--
+                
+                if($scope.page <$scope.messagesPaginated.length-1){
+                        $scope.page++
+                }
                 console.log($scope.page)
             }
+            $scope.decreasePage = function () {
+                if ($scope.page > 0) {
+                    $scope.page--
+                    console.log($scope.page)
+                }
 
-        }
+            }
+              $scope.changePage2 = function () {
+                
+                if($scope.page <$scope.usersPaginated.length-1){
+                        $scope.page++
+                }
+                console.log($scope.page)
+                console.log($scope.usersPaginated.length)
+            }
+            $scope.decreasePage2 = function () {
+                if ($scope.page > 0) {
+                    $scope.page--
+                    console.log($scope.page)
+                }
+
+            }
+
 
         $scope.submitMessage = function(name){
             console.log($scope.message)
@@ -1213,6 +1293,7 @@ $scope.page++
                 $scope.messagePageOpen = false;
                 $scope.historyPageOpen = false;
                 $scope.bookedJobsPageOpened = false;
+                $scope.messagePageSelected = false;
                 
                 $scope.usersPaginated = [];
                 $scope.usersLoading = true;
@@ -1567,11 +1648,13 @@ $scope.page++
                 $scope.userFilePage = true;
             }
         }
+       
         $scope.openChartsPage = function () {
             $scope.chartsPageOpen = true;
             $scope.historyPageOpen = false;
             $scope.messagePageOpen = false;
-            $scope.openComposeMessagePage = false;
+            $scope.messagePageSelected = false;
+           // $scope.openComposeMessagePage = false;
             $scope.historyPageOpenProfile = false;
             $scope.bookedJobsPageOpened = false;
             $scope.messageCompositionPageOpen = false;
@@ -1806,6 +1889,7 @@ $scope.page++
             $scope.composeMessagePageOpen = false;
             $scope.messageCompositionPageOpen = false;
             $scope.messagePageOpen = false;
+            $scope.messagePageSelected = false;
             $scope.bookedJobsSelected = false;
             $scope.loadingPersonalHistory = true;
             $scope.personalHistoryTitle = true;
