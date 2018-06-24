@@ -8,7 +8,9 @@
             <div class="col s2 left-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd;">
                 <div class="left-align">
                     <i class="material-icons">account_circle</i>
-                    <p class="raileway underline"> Hello {{name}}</p>
+                    <p class="railway "> Hello {{name}}!</p>
+                        <span class="railway underline"> {{email}}</span>
+
                 </div>
             </div>
             <div class="col s10 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
@@ -150,7 +152,7 @@
                 </div>
             </div>
             <div ng-show="messagePageOpen && !messagesLoading" class="col s10 center-align animated fadeIn">
-
+<br>
                 <div class="col s12" style="border-right:1px solid #ddd;">
                     <div class="center-align">
 
@@ -186,8 +188,12 @@
                                         <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
                                     </div>
                                     <div class="col s10" ng-show="messageOpen && currentIndex == $index && !messageLoading " style="height:100px; border:1px solid #ddd;">
-
-                                        <p ng-show="!areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">{{page.body}}</a></p>
+                                        <div class = "col s12" style="border-bottom:1px dashed #ddd;">
+                                            <span class ="railway "style="float:left;">From: {{page.from}}</span>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <p ng-show="!areYouSure" class="railway"><a style="color:black;" href="#">{{page.body}}</a></p>
                                         <p ng-show="areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">Are You Sure?</a></p>
                                        <div class = "row" ng-show="!areYouSure">
                                            <div class = "col s6 left-align" style="border-top:1px dashed #ddd;">
@@ -216,6 +222,7 @@
                                     
                                     
                                        </div>
+                                       <br>
                                     </div>
 
                                     <div class="col s2" ng-show="messageOpen && currentIndex !== $index " style="height:100px;">
@@ -224,7 +231,7 @@
                                     </div>
                                     <div class="col s10" ng-show="messageOpen && currentIndex !== $index" style=" border-top:1px solid #ddd; height:100px;">
 
-                                        <p class="animated fadeIn railway"><a style="color:black;" href="#">X</a></p>
+                            
 
                                     </div>
 

@@ -12,6 +12,7 @@
             $('.carousel').carousel();
         });
         $scope.name = "";
+        $scope.email = "";
         $scope.userClass = "";
         $scope.userToken = "";
         $scope.userPhoneNumber = "";
@@ -669,6 +670,7 @@
         Auth.getUser().then(function (data) {
             console.log(data)
             $scope.name = data.data.name;
+            $scope.email = data.data.email;
             $scope.user_id = $routeParams.userid
             console.log($scope.user_id)
         })
