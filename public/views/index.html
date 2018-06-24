@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
     crossorigin="anonymous">
-
-
   <link rel="stylesheet" href="../css/main.css">
   <!-- <link rel="stylesheet" href="../css/bootstrap.css">-->
 
@@ -68,7 +66,7 @@
   <script type="text/javascript" src="../services/userServices.js"></script>
   <script type="text/javascript" src="../services/authServices.js"></script>
     <script type="text/javascript" src="../services/payperiodServices.js"></script>
-      <script type="text/javascript" src="../services/supervisorServices.js"></script>
+  <script type="text/javascript" src="../services/supervisorServices.js"></script>
   <script type="text/javascript" src="../services/locationServices.js"></script>
   <script type="text/javascript" src="../services/clientServices.js"></script>
 
@@ -102,6 +100,15 @@
       <span class="fa-stack fa-2x">
   <i class="fas fa-calendar fa-stack-1x fa-lg"></i>
   <span class=" fa-stack-2x" style="color:black; font-size:25px; padding-top:10px;">{{payPeriod}}</span>
+</span>
+  
+  
+  </a></li>
+           <li ng-show="payPeriodIcon" ><a href="/contact">      
+            
+      <span class="fa-stack fa-2x">
+  <i class="far fa-comment-alt fa-stack-1x fa-lg"></i>
+  <span class=" fa-stack-2x" style="color:black; font-size:20px; padding-bottom:20px;">{{messageCount}}</span>
 </span>
   
   

@@ -216,6 +216,7 @@
             console.log(data)
             $rootScope.userClass = data.data.userclass;
             $rootScope.user_id = data.data._id
+            $rootScope.messageCount = data.data.messages.length
             console.log($rootScope.user_id)
         })
         User.getUserClass().then(function (data) {

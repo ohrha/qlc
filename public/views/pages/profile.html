@@ -14,13 +14,12 @@
                 </div>
             </div>
             <div class="col s10 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
-                <i ng-click="openUserFile(name)" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
-
-                <i ng-click="openHistoryPageProfile()" class="material-icons">access_time</i>
-                <i ng-click="openChartsPage()" class="material-icons">timeline</i>
-                <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i>
-                <i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i>
-                <i ng-click="openComposeMessagePage()" class="material-icons">create</i>
+               <a href="#"style="color:black;"> <i ng-click="openUserFile(name)" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
+                <a href="#"style="color:black;"><i ng-click="openHistoryPageProfile()" class="material-icons">access_time</i></a>
+                <a href="#"style="color:black;"><i ng-click="openChartsPage()" class="material-icons">timeline</i></a>
+                <a href="#"style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
+                <a href="#"style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
+               <a href="#"style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
 
 
 
@@ -49,10 +48,10 @@
                             <div class="col s12" ng-repeat="page in usersPaginated[page] track by $index">
                                 <div class="row">
                                     <div class="col s2" style="border-right:1px solid #ddd">
-                                       <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate">{{page.name}}</p>
+                                     <a href="#"style="color:black;">  <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate">{{page.name}}</p></a>
                                     </div>
                                     <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn">
-                                        <p ng-click="openMessageCompositionPage($index,true)" class= "railway underline" style="color:#ddd">{{page.name}}</p>
+                                      <a href="#"style="color:black;">  <p ng-click="openMessageCompositionPage($index,true)" class= "railway underline" style="color:#ddd">{{page.name}}</p></a>
                                     </div>
 
 
@@ -69,7 +68,7 @@
                                            
                                             <div class = "col 12 right-align " style="float:right;">
                                                 
-                                                 <i ng-click="openMessageCompositionPage($index,true)" class = "material-icons">clear</i>
+                                                 <a href="#"style="color:black; "><i ng-click="openMessageCompositionPage($index,true)" class = "material-icons underline">clear</i></a>
 
                                             </div>
                                                 <div class = "col s12 center-align">
@@ -166,11 +165,11 @@
 
                             <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                                 <div class="row">
-                                    <div ng-show="!page.read" class="col s2">
-                                        <i ng-click="openMessage($index,true)" class="material-icons">email<span   >{{$index+1}}</span></i>
+                                    <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
+                                       <a href="#"style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">email</i></a>
                                     </div>
-                                    <div ng-show="page.read" class="col s2">
-                                        <i ng-click="openMessage($index,true)" class="material-icons">drafts<span >{{$index+1}}</span></i>
+                                    <div ng-show="page.read" class="col s2"style="border-right:1px solid #ddd">
+                                       <a href="#"style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">drafts</i></a>
                                     </div>
                                     <div class="col s10">
                                         <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#">{{page.subject}}</a></p>
@@ -182,46 +181,48 @@
                                     <div class="col s2" ng-show="messageOpen && currentIndex == $index " style="height:100px;">
 
                                     </div>
-                                    <div class="col s10" ng-show="messageOpen && currentIndex == $index && messageLoading" style="height:100px; border:1px solid #ddd;">
-                                        <br>
+                                    <div class="col s10" ng-show="messageOpen && currentIndex == $index && messageLoading" >
+                                        
 
                                         <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
                                     </div>
-                                    <div class="col s10" ng-show="messageOpen && currentIndex == $index && !messageLoading " style="height:100px; border:1px solid #ddd;">
+                                    <div class="col s10" ng-show="messageOpen && currentIndex == $index && !messageLoading " style=" border-bottom:1px solid #ddd;">
                                         <div class = "col s12" style="border-bottom:1px dashed #ddd;">
                                             <span class ="railway "style="float:left;">From: {{page.from}}</span>
                                             <br>
+                                             <span class ="railway "style="float:left;">Subject: {{page.subject}}</span>
+                                             <br>
                                         </div>
+                                        <br>
                                         <br>
                                         <p ng-show="!areYouSure" class="railway"><a style="color:black;" href="#">{{page.body}}</a></p>
                                         <p ng-show="areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">Are You Sure?</a></p>
                                        <div class = "row" ng-show="!areYouSure">
                                            <div class = "col s6 left-align" style="border-top:1px dashed #ddd;">
-                                               <i ng-click="markAsUnread($index)"class="material-icons">undo</i>
+                                              <a href="#"style="color:black;"> <i ng-click="markAsUnread($index)"class="material-icons">undo</i></a>
                                          
                                         </div>
                                         <div class = "col s6 right-align" style="border-top:1px dashed #ddd; ">
-                                            <i ng-click="openAreYouSure($index)"style="font-size:18px;" class="far fa-trash-alt red-text lighten-4"></i>
+                                           <a href="#"style="color:black;"> <i ng-click="openAreYouSure($index)"style="font-size:18px;" class="far fa-trash-alt red-text lighten-4"></i></a>
 
                                         </div>
                                        
                                     
                                     
                                        </div>
-                                        <div class = "row" ng-show="areYouSure">
-                                           <div class = "col s6 left-align">
+                                        <div class = "row" >
+                                           <div class = "col s6 left-align" ng-show="areYouSure">
                                                <a ng-click="removeMessage($index)" class="waves-effect waves-light btn">yes</a>
 
                                          
                                         </div>
-                                        <div class = "col s6 right-align">
+                                        <div class = "col s6 right-align" ng-show="areYouSure">
 <a class="waves-effect waves-light btn" ng-click = "closeAreYouSure()"  >no</a>
 
                                         </div>
                                        
-                                    
-                                    
                                        </div>
+
                                        <br>
                                     </div>
 
@@ -305,12 +306,12 @@
 
                             <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
                                 <!-- remove border left -->
-                                <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
-                                    <i style="font-size:10px;" class="material-icons">mail</i>Job |</p>
-                                <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:10px;" class="material-icons">schedule</i> Timesheets |
-                                </p>
-                                <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:10px;" class="material-icons">announcement</i> Notes |
-                                </p>
+                                <a href="#" style="color:black;"><p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
+                                    <i style="font-size:15px;" class="material-icons">mail</i>Job |</p></a>
+                               <a href="#" style="color:black;"> <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:15px;" class="material-icons">schedule</i> Timesheets |
+                                </p></a>
+                                <a href="#" style="color:black;"><p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:15px;" class="material-icons">announcement</i> Notes |
+                                </p></a>
                             </div>
 
                             <!-- BOOKED JOBS MENU -->
@@ -1054,14 +1055,14 @@
             <!-- BOOKED JOBS -->
 
 
-            <div ng-show="historyPageOpenProfile" class="col s10 center-align">
+            <div ng-show="historyPageOpenProfile" class="col s10 center-align animated fadeIn">
                 <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
 
                     <p ng-show="generalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>History
                         page
                     </p>
 
-                    <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openHistoryPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Work
+                    <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline ">Work
                         History
                     </p>
                     <div class="row ">
@@ -1075,20 +1076,20 @@
 
                         </div>
                         <div ng-show="personalHistoryOpen && !loadingPersonalHistory" class="col s12 center-align">
-                            <div class="row">
-                                <div class="col s3">
-                                    <p style="font-size:14px;" class="railway animated fadeIn ">Pay Period</p>
+                            
+                                <div class="col s3 center-align">
+                                    <p style="font-size:14px;" class="railway animated fadeIn underline ">Pay Period</p>
 
                                 </div>
-                                <div class="col s9">
-                                    <p style="font-size:14px;" class="railway animated fadeIn ">Details</p>
+                                <div class="col s9 center-align">
+                                    <p style="font-size:14px;" class="railway animated fadeIn underline ">Details</p>
 
 
                                 </div>
-                            </div>
+                            
                             <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
-                                <div class="col s3 animated fadeIn">
+                                <div class="col s3 animated fadeIn" style="border-right:1px solid #ddd">
                                     <a href='#' style="color:black;">
                                         <p ng-click="openIndividualPayPeriod($index ,history)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
                                     </a>
@@ -1101,12 +1102,7 @@
                                 </div>
 
 
-                                <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown"
-                                    style="border: 1px solid #ddd; ">
-                                    <!--    <p ng-show="entry[0].paid" class="railway  green-text lighten-3">PAID</p>
--->
-
-                                </div>
+                          
 
                                 <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:275px;">
 
