@@ -82,6 +82,7 @@
         $scope.loadingNewJob = false;
         $scope.loadingAddAndRemoveDelinquentTimeSheet = false;
         $scope.areYouSure = false;
+        $scope.areYouSureRemove2 = false;
         $scope.payPeriodUpdated = false;
         $scope.delinquentTimeSheet = false;
         $scope.currentUserFile = "";
@@ -104,6 +105,7 @@
         $scope.supervisors = [];
         $scope.jobData = {};
         $scope.delinquentTimeSheetArray = [];
+        $scope.jobData2 = {};
         $scope.timeData = {
 
         };
@@ -725,14 +727,23 @@ $scope.loadingText = true;
                       })
 })
         }
+        $scope.areYouSureRemove= function(job,jobindex,indexofjob){
+            $scope.areYouSureRemove2 = true;
+
+               $scope.jobData = {
+
+                job:job,
+                jobindex:jobindex,
+                indexofjob:indexofjob
+
+           }
+
+        }
         $scope.removeJob = function(job,jobindex,indexofjob){
             $scope.removingJob = true;
            // console.log(job,index)
-            var jobData = {
-                job:job,
-                jobindex:jobindex,
-                indexofjob: indexofjob
-            }
+        
+          
             User.removeJob(jobData).then(function(data){
                 console.log(data)
                                                 $scope.jobDetails = data.data.user.payperiods[0].jobDetails;
