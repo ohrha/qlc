@@ -727,6 +727,10 @@ $scope.loadingText = true;
                       })
 })
         }
+        $scope.closeAreYouSureRemove = function(){
+
+            $scope.areYouSureRemove2 =false;
+        }
         $scope.areYouSureRemove= function(job,jobindex,indexofjob){
             $scope.areYouSureRemove2 = true;
 
