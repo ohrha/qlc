@@ -8,12 +8,83 @@
                <a href="#"style="color:black;"> <i ng-click="openRequestEmployeePage()" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
                 <a href="#"style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
                 <a href="#"style="color:black;"><i ng-click="openComplaintsPageClient()" class="material-icons">timeline</i></a>
+                 <a href="#"style="color:black;"><i ng-click="openAddLocationPage()" class="material-icons">timeline</i></a>
+               
                 <a href="#"style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
                 <a href="#"style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
                <a href="#"style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
 <br>
 
 
+            </div>
+            <div class = "col s12 center-align" ng-show="addLocationPageOpen">
+                <br>
+                    <form class="col s12">
+      <div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Location Name</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+      
+      </div>
+        <div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Location Address</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+       
+      </div>
+              <div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Location Contact</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+       
+      </div>
+            <div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Location Phone Number</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+       
+      </div>
+                    </form>
             </div>
                 <div class ="col s12 center-align" ng-show="requestEmployeePageOpen">
                   
@@ -41,12 +112,26 @@
           <label for="password">Password</label>
         </div>
       </div>
+                  <div class = "row">
+
+           <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+          
+    </select>
+    <label>Supervisor</label>
+  </div>
+      </div>
                  <div class="row">
         <div class="input-field col s12">
           <textarea id="textarea1" class="materialize-textarea"></textarea>
           <label for="textarea1">Worksite Details</label>
         </div>
       </div>
+
       <div class = "row">
 
            <div class="input-field col s12">

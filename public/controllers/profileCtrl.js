@@ -70,6 +70,8 @@
         $scope.messagesArray = []
         $scope.messageCompositionPageOpen = false;
         $scope.requestEmployeePageOpen = false;
+        $scope.addLocationPageOpen = false;
+        
         $scope.messagesPaginated = [];
         $scope.usersArray = [];
         $scope.currentusernameArray =[];
@@ -1128,6 +1130,16 @@
                             $scope.currentIndex = null;
                             //$scope.openMessagePage2();
                          })
+        }
+        $scope.openAddLocationPage = function(){
+            if(!$scope.addLocationPageOpen){
+                $scope.addLocationPageOpen = true;
+            }else{
+                $scope.addLocationPageOpen = false
+                $scope.requestEmployeePageOpen= false;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.complaintsPageClientOpen =false;
+            }
         }
         $scope.openMessage = function (index, timesheetData) {
             console.log(index)
