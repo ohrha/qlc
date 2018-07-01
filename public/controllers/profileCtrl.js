@@ -233,6 +233,7 @@
                         if ($scope.dateNow == 5 || 6 || 7 || 8 || 9 || 10 || 11) {
 
                             $rootScope.payPeriod = 10;
+                            console.log('imm here')
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
@@ -377,43 +378,36 @@
 
                         }
                         if ($scope.dateNow == 18 || $scope.dateNow == 19 || $scope.dateNow == 20 || $scope.dateNow == 21 || $scope.dateNow == 22 || $scope.dateNow == 23 || $scope.dateNow == 24) {
-  $scope.newPPObject = {}
-                                $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
+                            
+                            $scope.newPPObject = {}
+                            $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
                             $rootScope.payPeriod = 4;
+
                             if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                 $scope.userPayPeriod = $rootScope.payPeriod
                                 console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                                    User.getUsers().then(function (data) {
-            console.log(data.data.users.length)
-                 for (var i = 0; i < data.data.users.length; i++) {
-              
-              
-                    $scope.newPPObject.newpayperiod = $rootScope.payPeriod
-                    $scope.newPPObject.currentusername = data.data.users[i].name
-                    
-                    $scope.currentusernameArray.push(data.data.users[i].name)
-                    $scope.newPPObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
+  
+                                            for (var i = 0; i < data.data.users.length; i++) {
+                                        
+                                        
+                                                $scope.newPPObject.newpayperiod = $rootScope.payPeriod
+                                                $scope.newPPObject.currentusername = data.data.users[i].name
+                                                
+                                                $scope.currentusernameArray.push(data.data.users[i].name)
+                                                $scope.newPPObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
 
 
-                       // console.log( $scope.newPayPeriodObject)
+                                                }
 
-           
-               // }
-            }
+                                            User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
 
+                                                console.log(data)
+                                                $scope.addPayPeriodToPayPeriodHistory();
+                                            
 
-    
-
- 
-                                User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
-
-                                    console.log(data)
-                                    $scope.addPayPeriodToPayPeriodHistory();
-                                 
-
-                                })
-
-        })
+                                            })
+                                        })
                              
 
                             }else{
@@ -429,46 +423,162 @@
 
                             $rootScope.payPeriod = 5;
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                                       
+                            $scope.newPPObject = {}
+                            $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
+                            
+                            if ($scope.userPayPeriod !== $rootScope.payPeriod) {
+                                $scope.userPayPeriod = $rootScope.payPeriod
+                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                   User.getUsers().then(function (data) {
+  
+                                            for (var i = 0; i < data.data.users.length; i++) {
+                                        
+                                        
+                                                $scope.newPPObject.newpayperiod = $rootScope.payPeriod
+                                                $scope.newPPObject.currentusername = data.data.users[i].name
+                                                
+                                                $scope.currentusernameArray.push(data.data.users[i].name)
+                                                $scope.newPPObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
+
+
+                                                }
+
+                                            User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
+
+                                                console.log(data)
+                                                $scope.addPayPeriodToPayPeriodHistory();
+                                            
+
+                                            })
+                                        })
+                             
+
+                            }else{
+
+                                console.log("Pay Periods Match")
+
+                            }
+
 
 
                         }
                     }
                     if ($scope.month == 7) {
+
+
                         if ($scope.dateNow == 1) {
 
                             $rootScope.payPeriod = 5;
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                                       
+                            $scope.newPPObject = {}
+                            $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
+                            
+                            
+                            if ($scope.userPayPeriod !== $rootScope.payPeriod) {
+                                $scope.userPayPeriod = $rootScope.payPeriod
+                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                   User.getUsers().then(function (data) {
+  
+                                            for (var i = 0; i < data.data.users.length; i++) {
+                                        
+                                        
+                                                $scope.newPPObject.newpayperiod = $rootScope.payPeriod
+                                                $scope.newPPObject.currentusername = data.data.users[i].name
+                                                
+                                                $scope.currentusernameArray.push(data.data.users[i].name)
+                                                $scope.newPPObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
+
+
+                                                }
+
+                                            User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
+
+                                                console.log(data)
+                                                $scope.addPayPeriodToPayPeriodHistory();
+                                            
+
+                                            })
+                                        })
+                             
+
+                            }else{
+
+                                console.log("Pay Periods Match")
+
+                            }
+
 
                         }
-                        if ($scope.dateNow == 2 || 3 || 4 || 5 || 6 || 7 || 8) {
+                        if ($scope.dateNow == 2 || $scope.dateNow ==  3 || $scope.dateNow ==  4 || $scope.dateNow ==  5 || $scope.dateNow ==  6 || $scope.dateNow ==  7 || $scope.dateNow ==  8) {
 
                             $rootScope.payPeriod = 6;
+                            console.log($scope.dateNow)
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                                       
+                            $scope.newPPObject = {}
+                            $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
+                            
+                            
+                            if ($scope.userPayPeriod !== $rootScope.payPeriod) {
+                                $scope.userPayPeriod = $rootScope.payPeriod
+                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                   User.getUsers().then(function (data) {
+  
+                                            for (var i = 0; i < data.data.users.length; i++) {
+                                        
+                                        
+                                                $scope.newPPObject.newpayperiod = $rootScope.payPeriod
+                                                $scope.newPPObject.currentusername = data.data.users[i].name
+                                                
+                                                $scope.currentusernameArray.push(data.data.users[i].name)
+                                                $scope.newPPObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
+
+
+                                                }
+
+                                            User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
+
+                                                console.log(data)
+                                                $scope.addPayPeriodToPayPeriodHistory();
+                                            
+
+                                            })
+                                        })
+                             
+
+                            }else{
+
+                                console.log("Pay Periods Match")
+
+                            }
+
 
 
                         }
-                        if ($scope.dateNow == 9 || 10 || 11 || 12 || 13 || 14 || 15) {
+                        if ($scope.dateNow == 9 ||$scope.dateNow ==  10 ||$scope.dateNow ==  11 ||$scope.dateNow ==  12 ||$scope.dateNow ==  13 ||$scope.dateNow ==  14 ||$scope.dateNow ==  15) {
 
                             $rootScope.payPeriod = 7;
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
-                        if ($scope.dateNow == 16 || 17 || 18 || 19 || 20 || 21 || 22) {
+                        if ($scope.dateNow == 16 ||$scope.dateNow ==  17 ||$scope.dateNow ==  18 ||$scope.dateNow ==  19 ||$scope.dateNow ==  20 ||$scope.dateNow ==  21 ||$scope.dateNow ==  22) {
 
                             $rootScope.payPeriod = 8;
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
-                        if ($scope.dateNow == 23 || 24 || 25 || 26 || 27 || 28 || 29) {
+                        if ($scope.dateNow == 23 ||$scope.dateNow ==  24 ||$scope.dateNow ==  25 ||$scope.dateNow ==  26 ||$scope.dateNow ==  27 ||$scope.dateNow ==  28 ||$scope.dateNow ==  29) {
 
                             $rootScope.payPeriod = 9;
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
-                        if ($scope.dateNow == 30 || 31) {
+                        if ($scope.dateNow == 30 ||$scope.dateNow ==  31) {
 
                             $rootScope.payPeriod = 10;
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)

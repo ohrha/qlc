@@ -53,7 +53,7 @@
         <!-- MANAGEMENT HOME -->
 
         <div ng-show="managementPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
- <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+            <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
                 <p style="font-size:18px;" class="railway animated fadeIn ">Administration Page</p>
             </div>
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
@@ -74,7 +74,7 @@
                                 <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
             </div>
-            <div class = "col s12">
+            <div class="col s12">
             </div>
         </div>
 
@@ -131,10 +131,12 @@
                 <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
 
                     <p ng-show="generalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>History
-                        page</p>
+                        page
+                    </p>
 
                     <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openHistoryPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Work
-                        History</p>
+                        History
+                    </p>
                     <div class="row ">
                         <div ng-show="loadingPersonalHistory" class="col s12 center-align">
                             <!-- <i class="fas fa-circle-notch fa-spin"></i>-->
@@ -168,15 +170,15 @@
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown"
                                     style="border: 1px solid #ddd; ">
                                     <p class="railway underline" style="font-size:20px;">{{history.entry[0][0].date}}-{{history.entry[6][0].date}}</p>
-                                    <div ng-show ="{{history.entry[0][0].paid}}">
-                                    <span class = "railway "><i ng-click="markAsPaid($index,history)" class="material-icons green-text lighten-3" style="font-size:20px;">check</i>PAID</span>
-                                    
+                                    <div ng-show="{{history.entry[0][0].paid}}">
+                                        <span class="railway "><i ng-click="markAsPaid($index,history)" class="material-icons green-text lighten-3" style="font-size:20px;">check</i>PAID</span>
+
                                     </div>
-                                           <div ng-show ="{{history.entry[0][0].paid}}">
-                                    <span class = "railway " ng-click="markAsUnPaid($index,history)">MARK AS UNPAID</span>
+                                    <div ng-show="{{history.entry[0][0].paid}}">
+                                        <span class="railway " ng-click="markAsUnPaid($index,history)">MARK AS UNPAID</span>
                                     </div>
-                                       <div ng-show ="{{!history.entry[0][0].paid}}">
-                                    <span class = "railway " ng-click="markAsPaid($index,history)">MARK AS PAID</span>
+                                    <div ng-show="{{!history.entry[0][0].paid}}">
+                                        <span class="railway " ng-click="markAsPaid($index,history)">MARK AS PAID</span>
                                     </div>
 
 
@@ -458,17 +460,21 @@
                 <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s12 center-align">
                     <a href="#" style="color:black;">
                                 <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
-                            </a>
+                    </a>
                     <a href="#" style="color:black;">
                                 <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
-                            </a>
+                    </a>
                     <a href="#" style="color:black;">
                                 <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
-                            </a>
-                  
+                    </a>
+
+
                     <a ng-show="delinquentTimeSheet" href="#" style="color:black;">
                                 <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                            </a>
+                    </a>
+                    <a href="#" style="color:black;">
+                                <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
+                    </a>
 
                 </div>
 
@@ -481,7 +487,7 @@
                 <div ng-show="loadingCurrentEmployee" class="col s12">
                     <p class="railway animated flash infinite">LOADING</p>
                 </div>
-                <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12" style="border-right: 1px solid #ddd;" ng-repeat="user in currentEmployee">
+                <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12"  ng-repeat="user in currentEmployee">
                     <div class="row">
                         <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
 
@@ -490,8 +496,84 @@
 
                             <!-- USER DETAILS PAGE -->
 
-                            <div ng-show="userDetailsPageOpened" class="col s12">
-                                <p class="railway animated fadeIn truncate">{{user.email}}</p>
+                            <div ng-show="userDetailsPageOpened" class="col s12 animated fadeIn">
+                                <div class="row">
+                                          <div class = "col s12" ng-show="editEmailLoading">
+                                    
+                                <p  class="railway truncate animated flash infinite">LOADING</p>
+                                </div>
+                                <div class = "col s12" ng-show="editEmailPageOpen">
+                                              <div class="row">
+                                         <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                            <i ng-click = "closeEditEmailPage()" class = "material-icons" > clear</i>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input value="{{user.email}}" id="first_name2" type="text" class="validate">
+                                            <label class="active" for="first_name2">Email</label>
+                                        </div>
+                                        <div class = "col s12 center-align">
+                                            <a ng-click="submitNewEmail();" class="waves-effect waves-light btn">submit</a>
+
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class = "col s12" ng-show="!editEmailPageOpen">
+                                    <p ng-show="!editEmailPageOpen" class="railway  truncate">{{user.email}}</p>
+                                    <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
+                                </div>
+                                <div class = "col s12" ng-show="editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+                                              <div class="row">
+                                         <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                            <i ng-click = "closeEditPhoneNumberPage()" class = "material-icons" > clear</i>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input value="{{user.phonenumber}}" id="first_name2" type="number" class="validate">
+                                            <label class="active" for="first_name2">Phone Number</label>
+                                        </div>
+                                            <div class = "col s12 center-align">
+                                            <a ng-click="submitNewPhoneNumber();" class="waves-effect waves-light btn">submit</a>
+
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class = "col s12" ng-show="editPhoneNumberLoading">
+                                    
+                                <p  class="railway truncate animated flash infinite">LOADING</p>
+                                </div>
+                                <div class = "col s12" ng-show="!editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+                                    
+                                <p ng-show="!editPhoneNumberPageOpen" class="railway truncate">{{user.phonenumber}}</p>
+                                <a ng-click="openEditPhoneNumberPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
+                                </div>
+                                    <div class = "col s12" ng-show="editPayRateLoading">
+                                    
+                                <p  class="railway truncate animated flash infinite">LOADING</p>
+                                </div>
+                                <div class = "col s12" ng-show="editPayRatePageOpen ">
+                                    <div class="row">
+                                         <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                            <i ng-click = "closeEditPayRatePage()" class = "material-icons" > clear</i>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input value="{{user.payrate}}" id="first_name2" type="number"name ="payrate" ng-model="payRateData.payrate" class="validate">
+                                            <label class="active" for="first_name2">First Name</label>
+                                        </div>
+                                        <div class = "col s12 center-align">
+                                            <a ng-click="submitNewPayRate();" class="waves-effect waves-light btn">submit</a>
+
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <div class = "col s12"ng-show="!editPayRatePageOpen">
+                                    <p class="railway truncate">{{user.payrate | currency}}</p>
+                                    <a ng-click="openEditPayRatePage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
+                                </div>
+                                </div>
+
                             </div>
 
 
@@ -540,7 +622,7 @@
                                         <p class="railway animated fadeIn "> {{timesheet.date}}</p>
                                     </div>
                                     <div class="col s3">
-                                        <p ng-click="openIndividualDelinquentTimeSheet($index,timesheet)"   class="railway animated fadeIn underline"> {{$index+1}}.</p>
+                                        <p ng-click="openIndividualDelinquentTimeSheet($index,timesheet)" class="railway animated fadeIn underline"> {{$index+1}}.</p>
                                     </div>
                                     <div ng-show="timesheetEntryOpen && curTimesheet == $index" class="col s9 animated fadeIn">
 
@@ -663,7 +745,7 @@
       
     </select>
                                         </div>
-                                                               <div class="input-field col s12">
+                                        <div class="input-field col s12">
                                             <select ng-model="timeData.lunch" name="lunch">
             <option value="" disabled selected>Lunch?</option>
 
@@ -679,132 +761,13 @@
                                     </div>
 
                                     <div ng-show="timesheetEntryOpen && curTimesheet !== $index" class="col s9" style="height:50px;border-left:1px solid #ddd;">
-                                        
-                                     
+
+
                                         <div style="opacity:0; height:1px; width:1px;">
                                             <select>
     </select>
                                         </div>
-                                         <!--  
-                                        <div class="input-field col s6">
 
-
-                                            <select ng-model="timeData.hrsIn1" name="hrsIn1">
-      <option value="" disabled selected>#</option>
-      <option value="0">0</option>
-      <option value="1">1</option>
-     
-    </select>
-
-                                            <label>Hrs</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.hrsIn2" name="hrsIn2">
-      <option value="" disabled selected>#</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-       <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-       <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-    </select>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.minsIn1" name="minsIn1">
-         <option value="" disabled selected>#</option>
-         <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="3">3</option>
-       <option value="4">4</option>
-    
-    </select>
-                                            <label>Mins</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.minsIn2" name="minsIn2">
-            <option value="" disabled selected>#</option>
-                        <option value="0">0</option>
-
-      <option value="5">5</option>
-   
-    </select>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <select ng-model="timeData.amPm1" name="amPm1">
-            <option value="" disabled selected>am/pm</option>
-
-      <option value=" am">am</option>
-      <option value=" pm">pm</option>
-      
-    </select>
-                                        </div>
-                                        <div class="col s12">
-                                            <span class="railway"> to </span>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.hrsOut1" name="hrsOut1">
-      <option value="" disabled selected>0</option>
-      <option value="0">0</option>
-      <option value="1">1</option>
-     
-    </select>
-
-                                            <label>Hrs</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.hrsOut2" name="hrsOut2">
-      <option value="" disabled selected>0</option>
-            <option value="0" >0</option>
-
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-       <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-       <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-    </select>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.minsOut1" name="minsOut1">
-         <option value="" disabled selected>0</option>
-         <option value="0">0</option>
-      <option value="1">1</option>
-  
-      <option value="3">3</option>
-       <option value="4">4</option>
-    
-    </select>
-                                            <label>Mins</label>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <select ng-model="timeData.minsOut2" name="minsOut2">
-            <option value="" disabled selected>0</option>
-                        <option value="0">0</option>
-
-
-      <option value="5">5</option>
-    
-    </select>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <select ng-model="timeData.amPm2" name="amPm2">
-            <option value="" disabled selected>am/pm</option>
-
-      <option value=" am">am</option>
-      <option value=" pm">pm</option>
-      
-    </select>
-                                        </div>
-
-
-                                        <a ng-click="submitTimeSheet(timesheet)" class="waves-effect waves-light btn">Submit</a>
--->
 
                                     </div>
                                 </div>
@@ -814,6 +777,14 @@
 
                             <!-- DELINQUENT TIMESHEET PAGE -->
 
+                            <!-- REMOVE USER PAGE -->
+
+                            <div class="col s12" ng-show="removeUserPageOpened">
+                                <h1> REMOVE USER PAGE WORKS </h1>
+                            </div>
+
+
+                            <!-- REMOVE USER PAGE -->
 
                             <!-- COMMENTS PAGE -->
 
@@ -890,7 +861,7 @@
 
                             <div ng-show="bookedJobsPageOpened" class="col s12">
 
-                            <!-- SCROLL THROUGH BOOKED JOBS -->
+                                <!-- SCROLL THROUGH BOOKED JOBS -->
 
                                 <a href="#" style="color:black;">
                                     <i ng-click="increaseDay()" style="padding-right:50px;" class="material-icons">expand_less</i>
@@ -900,21 +871,21 @@
                                 </a>
                                 <br>
 
-                            <!-- SCROLL THROUGH BOOKED JOBS -->
+                                <!-- SCROLL THROUGH BOOKED JOBS -->
 
-                            <!-- DATE OF BOOKED JOB -->
+                                <!-- DATE OF BOOKED JOB -->
 
-                                <p ng-show="!jobDetails[openJob][0].delinquent"  class="railway animated fadeIn underline" style="font-size:15px;">{{jobDetails[openJob][currentJobInDate].date}}</p>
-                                <p ng-show="jobDetails[openJob][0].delinquent"  class="railway animated fadeIn underline red-text lighten-3"style="font-size:15px;">{{jobDetails[openJob][currentJobInDate].date}}</p>
-
-                            
-                            <!-- DATE OF BOOKED JOB -->
-
-                            <!-- SCROLL THROUGH BOOKED JOBS -->
+                                <p ng-show="!jobDetails[openJob][0].delinquent" class="railway animated fadeIn underline" style="font-size:15px;">{{jobDetails[openJob][currentJobInDate].date}}</p>
+                                <p ng-show="jobDetails[openJob][0].delinquent" class="railway animated fadeIn underline red-text lighten-3" style="font-size:15px;">{{jobDetails[openJob][currentJobInDate].date}}</p>
 
 
+                                <!-- DATE OF BOOKED JOB -->
 
-                            <!-- LIST OF BOOKED JOBS -->
+                                <!-- SCROLL THROUGH BOOKED JOBS -->
+
+
+
+                                <!-- LIST OF BOOKED JOBS -->
 
 
                                 <div class="row">
@@ -924,22 +895,33 @@
 
                                         <div class="row">
 
-                            <!-- BOOKED JOBS MENU --> 
+                                            <!-- BOOKED JOBS MENU -->
 
                                             <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
                                                 <!-- remove border left -->
-                                               <a href="#"style="color:black;"> <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
-                                                    <i style="font-size:14px;" class="material-icons">mail</i>Job |</p></a>
-                                               <a href="#"style="color:black;"> <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:14px;" class="material-icons">schedule</i> Timesheets
-                                                    |</p></a>
-                                               <a href="#"style="color:black;"> <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:14px;" class="material-icons">announcement</i> Notes
-                                                    |</p></a>
+                                                <a href="#" style="color:black;">
+                                                    <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate"
+                                                        ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
+                                                        <i style="font-size:14px;" class="material-icons">mail</i>Job |</p>
+                                                </a>
+                                                <a href="#" style="color:black;">
+                                                    <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate "
+                                                        ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:14px;" class="material-icons">schedule</i> Timesheets
+                                                        |
+                                                    </p>
+                                                </a>
+                                                <a href="#" style="color:black;">
+                                                    <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate "
+                                                        ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:14px;" class="material-icons">announcement</i> Notes
+                                                        |
+                                                    </p>
+                                                </a>
                                             </div>
 
-                            <!-- BOOKED JOBS MENU -->
+                                            <!-- BOOKED JOBS MENU -->
 
-                            <div ng-show="openJob == $index && timesheetsPageOpen || openJob == $index  && notesPageOpen || openJob == $index  " class = "col s9">
-                                  <div ng-show="job.length>1 " class="row animated flash">
+                                            <div ng-show="openJob == $index && timesheetsPageOpen || openJob == $index  && notesPageOpen || openJob == $index  " class="col s9 animated fadeIn">
+                                                <div ng-show="job.length>1 " class="row animated flash">
                                                     <div class="col s6">
                                                         <div class="left-align">
                                                             <a href="#" style="color:black; border-right:1px solid #ddd">    <i ng-click="changeJobInDate($index)" class = "material-icons" style="font-size:27px;">chevron_left</i></a>
@@ -964,29 +946,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                            </div>
-                             <!-- DATE BOOKED  -->
+                                            </div>
+                                            <!-- DATE BOOKED  -->
 
-                             <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen &&job[currentJobInDate].booked" class="col s9">
-                            
-                             <!-- DATE BOOKED ARROWS --> 
-                               
-                                              
+                                            <div ng-show="openJob == $index && !timesheetsPageOpen && !notesPageOpen &&job[currentJobInDate].booked" class="col s9">
 
-                        <!-- DATE BOOKED ARROWS --> 
+                                                <!-- DATE BOOKED ARROWS -->
 
-                        <!-- DATE BOOKED REMOVING JOB -->
+
+
+                                                <!-- DATE BOOKED ARROWS -->
+
+                                                <!-- DATE BOOKED REMOVING JOB -->
 
                                                 <div ng-show="!job[0].dateHasPassed && removingJob" class=" col s12 center-align animated fadeIn">
                                                     <p class="railway underline animated flash infinite ">REMOVING JOB</p>
                                                 </div>
 
-                        <!--DATE BOOKED REMOVING JOB -->
+                                                <!--DATE BOOKED REMOVING JOB -->
 
-                        <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
+                                                <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
 
 
-                                                <div ng-show="!job[currentJobInDate].dateHasPassed && !removingJob" class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                                <div ng-show="!job[currentJobInDate].dateHasPassed && !removingJob && !areYouSureRemove2" class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
                                                     <span class="railway underline"> Client</span>
                                                     <p class="railway  "> {{jobDetails[openJob][currentJobInDate].client}}</p>
@@ -994,26 +976,43 @@
                                                     <p class="railway   "> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
                                                     <span class="railway  underline">Location</span>
                                                     <p class="railway  "> {{jobDetails[openJob][currentJobInDate].location}}</p>
-                                                    <i class=" material-icons red-text text-lighten-2" ng-click="removeJob(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
-                                                        class="material-icons">delete</i>
+                                                    <a href="#" style="color: black;"><i class=" material-icons red-text text-lighten-2" ng-click="areYouSureRemove(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
+                                                        class="material-icons">delete</i></a>
                                                 </div>
 
-                     <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->  
+                                                <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->
 
-                     <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
+                                                <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
 
-                                                <div ng-show="job[0].dateHasPassed && !removingJob && areYouSureRemove2" class = "col s12 animated fadeIn">
+                                                <div ng-show="job[0].dateHasPassed && !removingJob && areYouSureRemove2" class="col s12 animated fadeIn">
 
-                                                    <div class = "row">
-                                                        <div class = "col s12 center-align">
-                                                            <p class ="railway underline"> Are You Sure?</p>
+                                                    <div class="row">
+                                                        <div class="col s12 center-align">
+                                                            <p class="railway underline"> Are You Sure?</p>
                                                         </div>
-                                                        <div class = "col s6 center-align">
-                                                            <i class = "material-icons">check_circle</i>
+                                                        <div class="col s6 center-align">
+                                                            <a href="#" style="color: black;">  <i class = "material-icons">check_circle</i></a>
                                                         </div>
-                                                        <div class = "col s6 center-align">
-                                                                                      
-                                                      <i ng-click="closeAreYouSureRemove()" class = "material-icons">cancel</i>
+                                                        <div class="col s6 center-align">
+
+                                                            <a href="#" style="color: black;"><i ng-click="closeAreYouSureRemove()" class = "material-icons">cancel</i></a>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div ng-show="!job[0].dateHasPassed && !removingJob && areYouSureRemove2" class="col s12 animated fadeIn">
+
+                                                    <div class="row">
+                                                        <div class="col s12 center-align">
+                                                            <p class="railway underline"> Are You Sure?</p>
+                                                        </div>
+                                                        <div class="col s6 center-align">
+                                                            <a href="#" style="color: black;" ng-click="removeJob()">  <i class = "material-icons">check_circle</i></a>
+                                                        </div>
+                                                        <div class="col s6 center-align">
+
+                                                            <a href="#" style="color: black;"><i ng-click="closeAreYouSureRemove()" class = "material-icons">cancel</i></a>
 
                                                         </div>
                                                     </div>
@@ -1027,65 +1026,69 @@
                                                     <p class="railway   " style="color:grey; opacity:0.8;"> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
                                                     <span class="railway  underline" style="color:grey; opacity:0.8;">Location</span>
                                                     <p class="railway  " style="color:grey; opacity:0.8;"> {{jobDetails[openJob][currentJobInDate].location}}</p>
-                                                  <i class=" material-icons red-text text-lighten-2" ng-click="areYouSureRemove(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
-                                                        class="material-icons">delete</i>
+                                                    <a href="#" style="color: black;">  <i class=" material-icons red-text text-lighten-2" ng-click="areYouSureRemove(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
+                                                        class="material-icons">delete</i></a>
                                                 </div>
 
-                    <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->
+                                                <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->
 
 
-                    </div>
+                                            </div>
 
-                    <!-- DATE BOOKED -->
+                                            <!-- DATE BOOKED -->
 
 
 
-                    <!--WOULD YOU LIKE TO BOOK THIS DATE -->
+                                            <!--WOULD YOU LIKE TO BOOK THIS DATE -->
 
 
                                             <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-                   
-                    <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
-                                              
+                                                <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
-                    <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
+
+
+                                                <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
                                                 <div ng-show="!job[currentJobInDate].dateHasPassed && !job[currentJobInDate].booked ">
                                                     <span class="railway  ">Would You Like To Book This Date?</span>
+                                                    <p class="railway">(Job #{{currentJobInDate+1}})</p>
                                                     <br>
                                                     <br>
                                                     <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
                                                 </div>
                                                 <div ng-show="job[0].dateHasPassed ">
-                                                  
-                                                    <span class="railway  " style="color:grey; opacity:.8; font-size:17px;">Date Has Passed</span>
-                                                   
+
+                                                    <span class="railway  " style="color:grey;  font-size:17px;">Date Has Passed</span>
+
                                                 </div>
 
                                             </div>
-                    <!--WOULD YOU LIKE TO BOOK THIS DATE -->
+                                            <!--WOULD YOU LIKE TO BOOK THIS DATE -->
 
 
-                                            <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked && !job[0].dateHasPassed && !job[0].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-      
-                                                    <span class="railway  ">Would You Like To Book This Date?</span>
-                                                    <br>
-                                                    <br>
-                                                    <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
-                                                
-                                               
+                                            <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked && !job[0].dateHasPassed && !job[0].booked  "
+                                                class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+
+                                                <span class="railway  ">Would You Like To Book This Date?</span>
+                                                <p class="railway">(Job #{{currentJobInDate+1}})</p>
+
+                                                <br>
+                                                <br>
+                                                <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
+
+
 
                                             </div>
 
-                                            <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked && job[0].dateHasPassed   " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                                            <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked && job[0].dateHasPassed   " class="col s9 animated"
+                                                ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-                                                
-                                                    <br>
-                                                    <br>
-                                                    <span class="railway  " style="color:grey; opacity:.8; font-size:17px;">Date Has Passed</span>
-                                                    
-                                               
+
+
+                                                <span class="railway  " style="color:grey; font-size:17px;">Date Has Passed</span>
+
+
 
                                             </div>
 
@@ -1097,14 +1100,16 @@
 
                                                 <div ng-show="!job[0].dateHasPassed && !job[0].booked ">
                                                     <span class="railway  ">Would You Like To Book This Date?</span>
+                                                    <p class="railway">(Job #{{currentJobInDate+1}})</p>
+
                                                     <br>
                                                     <br>
                                                     <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
                                                 </div>
                                                 <div ng-show="job[0].dateHasPassed ">
-                                                    
-                                                    <span class="railway  " style="color:grey; opacity:.5; font-size:17px;">Date Has Passed</span>
-                                                    
+
+                                                    <span class="railway  " style="color:grey;  font-size:17px;">Date Has Passed</span>
+
                                                 </div>
 
                                             </div>
@@ -1180,7 +1185,7 @@
                                         </div>-->
                                             <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && job[0].booked" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
-                                             
+
                                                 <!-- NO TIMESHEET SUBMITTED AND DATE HAS PASSED -->
 
 
@@ -1278,13 +1283,13 @@
                                                     <!-- TIMESHEET SUBMITTED AND DATE HAS NOT PASSED -->
 
                                                 </div>
-                                                
+
                                                 <!-- TIMESHEET SUBMITTED  -->
 
                                             </div>
                                             <div ng-show="notesPageOpen && openJob == $index && job[0].booked" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
-                                            
+
                                                 <p ng-show="jobDetails[openJob][currentJobInDate].notes && job[0].booked && job[0].dateHasNotPassed" class="railway">
                                                     {{jobDetails[openJob][currentJobInDate].notes}}
                                                 </p>
@@ -1302,7 +1307,7 @@
                                             </div>
 
 
-                    <!-- ADD JOBS PAGE -->
+                                            <!-- ADD JOBS PAGE -->
 
                                             <div ng-show="openJob == $index && addJobPageOpen && !job.booked " class="col s9 animated fadeIn" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
@@ -1357,7 +1362,7 @@
                                                             </div>
                                                         </form>
                                                         <div class="col s12 center-align">
-                                                            <a ng-click="addJobData(job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
+                                                            <a ng-click="addJobData(job[0].monthNum,job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
 
                                                         </div>
                                                     </div>
@@ -1367,7 +1372,7 @@
 
 
                                             </div>
-                            
+
                                             <!-- <div ng-show="openJob == $index && jobsPageOpen && !job.booked && job.dateHasPassed " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                                         
@@ -1408,7 +1413,7 @@
                                 </div>
                                 <!-- BOOKED JOBS -->
 
-  
+
                             </div>
 
                             <!-- BOOKED JOBS PAGE -->
