@@ -9,11 +9,64 @@
                 <a href="#"style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
                 <a href="#"style="color:black;"><i ng-click="openComplaintsPageClient()" class="material-icons">timeline</i></a>
                  <a href="#"style="color:black;"><i ng-click="openAddLocationPage()" class="material-icons">timeline</i></a>
-               
+                <a href="#"style="color:black;"><i ng-click="openAddSupervisorPage()" class="material-icons">timeline</i></a>
+
                 <a href="#"style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
                 <a href="#"style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
                <a href="#"style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
 <br>
+
+
+            </div>
+            <div class = "col s12 center-align" ng-show="addSupervisorPageOpen">
+<div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Supervisor Name</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+      
+      </div>
+      <div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Supervisor Phone Number</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+      
+      </div>
+      <div class="row">
+          <div class = "col s2 center-align">
+                            <i class = "material-icons">arrow_back</i>
+
+          </div>
+        <div class="input-field col s8">
+            <div class = "animated slideInRight">
+          <input  id="first_name" type="text" class="validate">
+          <label for="first_name">Supervisor Email</label>
+            </div>
+        </div>
+          <div class = "col s2 center-align">
+              <i class = "material-icons">arrow_forward</i>
+          </div>
+      
+      </div>
 
 
             </div>

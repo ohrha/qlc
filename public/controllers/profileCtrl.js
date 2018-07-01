@@ -71,7 +71,7 @@
         $scope.messageCompositionPageOpen = false;
         $scope.requestEmployeePageOpen = false;
         $scope.addLocationPageOpen = false;
-        
+        $scope.addSupervisorPageOpen = false;
         $scope.messagesPaginated = [];
         $scope.usersArray = [];
         $scope.currentusernameArray =[];
@@ -793,6 +793,8 @@
                 $scope.complaintsPageClientOpen = true;
                 $scope.requestEmployeePageOpen = false;
                                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                                                $scope.addSupervisorPageOpen = false;
+
 
             }else{
                 $scope.complaintsPageClientOpen = false;
@@ -802,6 +804,8 @@
         $scope.openReviewSubmittedTimeSheetsPage= function(){
             if(!$scope.reviewSubmittedTimeSheetsPageOpen){
                 $scope.reviewSubmittedTimeSheetsPageOpen = true;
+                                $scope.addSupervisorPageOpen = false;
+
                 $scope.requestEmployeePageOpen = false;
                 $scope.complaintsPageClientOpen = false;
             }else{
@@ -1131,10 +1135,29 @@
                             //$scope.openMessagePage2();
                          })
         }
+        $scope.openAddSupervisorPage = function(){
+                   if(!$scope.addSupervisorPageOpen){
+                $scope.addSupervisorPageOpen = true;
+                $scope.addLocationPageOpen = false
+                $scope.requestEmployeePageOpen= false;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.complaintsPageClientOpen =false;
+            }else{
+                $scope.addSupervisorPageOpen = false;
+                $scope.addLocationPageOpen = false
+                $scope.requestEmployeePageOpen= false;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.complaintsPageClientOpen =false;
+            }
+        }
         $scope.openAddLocationPage = function(){
             if(!$scope.addLocationPageOpen){
                 $scope.addLocationPageOpen = true;
+                                                $scope.addSupervisorPageOpen = false;
+
             }else{
+                                $scope.addSupervisorPageOpen = false;
+
                 $scope.addLocationPageOpen = false
                 $scope.requestEmployeePageOpen= false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
