@@ -40,6 +40,15 @@ angular.module('userServices',['authServices']).config(function(){
         console.log(details)
         return $http.post('/api/users/changeuserpayperiod',details)
     }
+    userFactory.editPayRate = function(newinfo){
+        return $http.post('/api/users/editpayrate',newinfo)
+    }
+    userFactory.editPhoneNumber = function(newinfo){
+        return $http.post('/api/users/editphonenumber',newinfo)
+    }
+    userFactory.editEmail = function(newinfo){
+        return $http.post('/api/users/editemail/',newinfo)
+    }
     userFactory.sendSms = function(userDetails){
         return $http.post('/api/users/sendsms', userDetails)
     }

@@ -473,7 +473,7 @@
                                 <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                     </a>
                     <a href="#" style="color:black;">
-                                <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
+                                <i ng-click="openRemoveUserPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
                     </a>
 
                 </div>
@@ -487,91 +487,155 @@
                 <div ng-show="loadingCurrentEmployee" class="col s12">
                     <p class="railway animated flash infinite">LOADING</p>
                 </div>
-                <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12"  ng-repeat="user in currentEmployee">
+                <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12" ng-repeat="user in currentEmployee">
                     <div class="row">
                         <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
 
 
                             <!-- EMPLOYEE DETAILS INFO BEGINS -->
 
+                            <!-- REMOVE USER PAGE -->
+                            <div ng-show="removeUserPageOpen" class = "col s12 animated fadeIn">
+
+                                <div class = "row">
+                                <div class = "col s12 center-align">
+
+                                   <p class = "railway"> Remove User </p>
+
+                                </div>
+
+                                </div>
+                                <div class = "row">
+                                    <div class = "col s12">
+                                    </div>
+                                    <div class = "col s12">
+                                        <span class = "railway">DELETE {{user.name}}</span>
+                                        <i class = "material-icons" style="font-size:20px;"> delete</i>
+                                    </div>
+
+                            </div>
+                            </div>
+                            <!-- REMOVE USER PAGE -->
+
+
                             <!-- USER DETAILS PAGE -->
 
                             <div ng-show="userDetailsPageOpened" class="col s12 animated fadeIn">
                                 <div class="row">
-                                          <div class = "col s12" ng-show="editEmailLoading">
-                                    
-                                <p  class="railway truncate animated flash infinite">LOADING</p>
-                                </div>
-                                <div class = "col s12" ng-show="editEmailPageOpen && !editEmailLoading">
-                                              <div class="row">
-                                         <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
-                                            <i ng-click = "closeEditEmailPage()" class = "material-icons" > clear</i>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input value="{{user.email}}" id="first_name2" type="text" class="validate">
-                                            <label class="active" for="first_name2">Email</label>
-                                        </div>
-                                        <div class = "col s12 center-align">
-                                            <a ng-click="submitNewEmail();" class="waves-effect waves-light btn">submit</a>
+                                    <div class="col s12" ng-show="editEmailLoading">
 
-                                        </div>
-                                       
+                                        <p class="railway truncate animated flash infinite">LOADING</p>
                                     </div>
-                                </div>
-                                <div class = "col s12" ng-show="!editEmailPageOpen && !editEmailLoading">
-                                    <p ng-show="!editEmailPageOpen" class="railway  truncate">{{user.email}}</p>
-                                    <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
-                                </div>
-                                <div class = "col s12" ng-show="editPhoneNumberPageOpen &&!editPhoneNumberLoading">
-                                              <div class="row">
-                                         <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
-                                            <i ng-click = "closeEditPhoneNumberPage()" class = "material-icons" > clear</i>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input value="{{user.phonenumber}}" id="first_name2" type="number" class="validate">
-                                            <label class="active" for="first_name2">Phone Number</label>
-                                        </div>
-                                            <div class = "col s12 center-align">
-                                            <a ng-click="submitNewPhoneNumber();" class="waves-effect waves-light btn">submit</a>
+                                    <div class="col s12" ng-show="editEmailPageOpen && !editEmailLoading">
+                                        <div class="row">
+                                            <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                                <i ng-click="closeEditEmailPage()" class="material-icons"> clear</i>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input value="{{user.email}}" id="first_name2" type="text"name="email" ng-model="emailData.email"class="validate">
+                                                <label class="active" for="first_name2">Email</label>
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitNewEmail(user.name);" class="waves-effect waves-light btn">submit</a>
+
+                                            </div>
 
                                         </div>
-                                       
                                     </div>
-                                </div>
-
-                                <div class = "col s12" ng-show="editPhoneNumberLoading">
-                                    
-                                <p  class="railway truncate animated flash infinite">LOADING</p>
-                                </div>
-                                <div class = "col s12" ng-show="!editPhoneNumberPageOpen &&!editPhoneNumberLoading">
-                                    
-                                <p ng-show="!editPhoneNumberPageOpen" class="railway truncate">{{user.phonenumber}}</p>
-                                <a ng-click="openEditPhoneNumberPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
-                                </div>
-                                    <div class = "col s12" ng-show="editPayRateLoading">
-                                    
-                                <p  class="railway truncate animated flash infinite">LOADING</p>
-                                </div>
-                                <div class = "col s12" ng-show="editPayRatePageOpen&& !editPayRateLoading ">
                                     <div class="row">
-                                         <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
-                                            <i ng-click = "closeEditPayRatePage()" class = "material-icons" > clear</i>
+                                        <div class="col s2">
                                         </div>
-                                        <div class="input-field col s12">
-                                            <input value="{{user.payrate}}" id="first_name2" type="number"name ="payrate" ng-model="payRateData.payrate" class="validate">
-                                            <label class="active" for="first_name2">First Name</label>
+                                        <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                            <p class="railway underline">EMAIL</p>
                                         </div>
-                                        <div class = "col s12 center-align">
-                                            <a ng-click="submitNewPayRate();" class="waves-effect waves-light btn">submit</a>
+                                        <div class="col s2">
+                                        </div>
+                                    </div>
+                                    <div class="col s12" ng-show="!editEmailPageOpen && !editEmailLoading">
+                                        
+                                        <soan ng-show="!editEmailPageOpen" class="railway  truncate">{{user.email}}</span>
+                                        <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s2">
+                                        </div>
+                                        <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                            <p class="railway underline"> PHONENUMBER</p>
+                                        </div>
+                                        <div class="col s2">
+                                        </div>
+                                    </div>
+                                    <div class="col s12" ng-show="editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+                                        <div class="row">
+                                            <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                                <i ng-click="closeEditPhoneNumberPage()" class="material-icons"> clear</i>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input value="{{user.phonenumber}}" id="first_name2" type="number"name = "phonenumber" ng-model="phoneNumberData.phonenumber" class="validate">
+                                                <label class="active" for="first_name2">Phone Number</label>
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitNewPhoneNumber(user.name);" class="waves-effect waves-light btn">submit</a>
+
+                                            </div>
 
                                         </div>
-                                       
                                     </div>
-                                </div>
-                                <div class = "col s12"ng-show="!editPayRatePageOpen && !editPayRateLoading">
-                                    <p class="railway truncate">{{user.payrate | currency}}</p>
-                                    <a ng-click="openEditPayRatePage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
-                                </div>
+
+                                    <div class="col s12" ng-show="editPhoneNumberLoading">
+
+                                        <p class="railway truncate animated flash infinite">LOADING</p>
+                                    </div>
+                                    <div class="col s12" ng-show="!editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+
+                                        <span ng-show="!editPhoneNumberPageOpen" class="railway truncate">{{user.phonenumber}}</span>
+                                        <a ng-click="openEditPhoneNumberPage();" href="#" style="color:green;"><span class = "railway"> edit</span></a>
+
+                                
+                                    </div>
+                                                                                                 <div class = "row">
+
+                                        <div class = "col s2">
+                                        </div>
+                                        <div class="col s8" style="border-bottom:1px solid #ddd;">
+                                        </div>
+                                        <div class = "col s2">
+                                        </div>
+                                        </div>
+                                    <div class="col s12" ng-show="editPayRateLoading">
+
+                                        <p class="railway truncate animated flash infinite">LOADING</p>
+                                    </div>
+                                    <div class="col s12" ng-show="editPayRatePageOpen&& !editPayRateLoading ">
+                                        <div class="row">
+                                            <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                                <i ng-click="closeEditPayRatePage()" class="material-icons"> clear</i>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input value="{{user.payrate}}" id="first_name2" type="number" name="payrate" ng-model="payRateData.payrate" class="validate">
+                                                <label class="active" for="first_name2">First Name</label>
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitNewPayRate(user.name);" class="waves-effect waves-light btn">submit</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col s12" ng-show="!editPayRatePageOpen && !editPayRateLoading">
+                                        <div class="row">
+                                            <div class="col s2">
+                                            </div>
+                                            <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                                <p class="railway underline"> PAYRATE</p>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+                                        </div>
+                                        <span class="railway truncate">{{user.payrate | currency}}</span>
+                                        <a ng-click="openEditPayRatePage();" href="#" style="color:green;"><span class = "railway"> edit</span></a>
+                                    </div>
                                 </div>
 
                             </div>
@@ -900,19 +964,16 @@
                                             <div ng-show="openJob == $index" class="col s3" style="border-right: 1px solid #ddd;">
                                                 <!-- remove border left -->
                                                 <a href="#" style="color:black;">
-                                                    <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate"
-                                                        ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
+                                                    <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
                                                         <i style="font-size:14px;" class="material-icons">mail</i>Job |</p>
                                                 </a>
                                                 <a href="#" style="color:black;">
-                                                    <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate "
-                                                        ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:14px;" class="material-icons">schedule</i> Timesheets
+                                                    <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate " ng-class="{'timesheetsselected':timesheetsSelected,'timesheetsdeselected':!timesheetsSelected}"><i style="font-size:14px;" class="material-icons">schedule</i> Timesheets
                                                         |
                                                     </p>
                                                 </a>
                                                 <a href="#" style="color:black;">
-                                                    <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate "
-                                                        ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:14px;" class="material-icons">announcement</i> Notes
+                                                    <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:14px;" class="material-icons">announcement</i> Notes
                                                         |
                                                     </p>
                                                 </a>

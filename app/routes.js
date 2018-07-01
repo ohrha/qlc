@@ -540,6 +540,39 @@ module.exports = function (app) {
             }
         })
     })
+
+    app.post('/users/editphonenumber', function(req,res){
+
+        User.findOneAndUpdate({name: req.body.name},{$set:{phonenumber: req.body.newphonenumber}},{new:true}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                res.json({success: true, message: "User found and updated..", user:user})
+            }
+        })
+
+    })
+    app.post('/users/editemail', function(req,res){
+                User.findOneAndUpdate({name: req.body.name},{$set:{email: req.body.newemail}},{new:true}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                res.json({success: true, message: "User found and updated..", user:user})
+            }
+        })
+    })
+    app.post('/users/editpayrate', function(req,res){
+                User.findOneAndUpdate({name: req.body.name},{$set:{payrate: req.body.newpayrate}},{new:true}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                res.json({success: true, message: "User found and updated..", user:user})
+            }
+        })
+    })
     app.post('/users/removejob', function (req, res) {
         console.log(req.body)
         User.find({ name: req.body.job.currentuser }, function (err, user) {

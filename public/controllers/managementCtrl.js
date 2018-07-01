@@ -62,6 +62,7 @@
         $scope.openJob = 0;
         $scope.currentJobInDate = 0;
         $scope.timesheetsPageOpen = false;
+        $scope.removeUserPageOpen = false;
         $scope.disputesPageOpen = false;
         $scope.incompletePayPeriod = false;
         $scope.incompletePayPeriodPageOpen = false;
@@ -738,18 +739,71 @@
             })
         }
         
-        $scope.submitNewPayRate = function(){
+        $scope.openRemoveUserPage = function(){
+            if(!$scope.removeUserPageOpen)  {
+                $scope.removeUserPageOpen = true;
+                $scope.userDetailsPageOpened = false;
+
+            }else{
+                $scope.userDetailsPageOpened = true;
+                $scope.removeUserPageOpen = false;
+            }
+        }
+        $scope.submitNewPayRate = function(name){
             console.log($scope.payRateData)
-            $scope.editPayRateLoading =true;
             
+            var newinfo = {
+                name:name
+
+            }
+        if($scope.payRateData.payrate !== undefined && $scope.payRateData.payrate !== null){
+            $scope.editPayRateLoading =true;
+            newinfo.newpayrate= $scope.payRateData.payrate
+            User.editPayRate(newinfo).then(function(data){
+                console.log(data)
+                $scope.editPayRateLoading = false;
+                $scope.openUserFile(name)
+                $scope.closeEditPayRatePage()
+            })
         }
-        $scope.submitNewPhoneNumber = function(){
+        }
+        $scope.submitNewPhoneNumber = function(name){
             console.log($scope.phoneNumberData)
-            $scope.editPhoneNumberLoading =true;
+                //$scope.editEmailLoading =true;
+            var newinfo = {
+                name:name
+
+            }
+        if($scope.phoneNumberData.phonenumber !== undefined && $scope.phoneNumberData.phonenumber !== null){
+                        $scope.editPhoneNumberLoading =true;
+
+            newinfo.newphonenumber= $scope.phoneNumberData.phonenumber
+            User.editPhoneNumber(newinfo).then(function(data){
+                console.log(data)
+                $scope.editPhoneNumberLoading = false;
+                 $scope.openUserFile(name)
+                $scope.closeEditPhoneNumberPage()
+            })
         }
-        $scope.submitNewEmail = function(){
+        }
+        $scope.submitNewEmail = function(name){
             console.log($scope.emailData)
-            $scope.editEmailLoading =true;
+            var newinfo = {
+                name:name
+
+            }
+        if($scope.emailData.email !== undefined && $scope.emailData.email !== null){
+                        $scope.editEmailLoading =true;
+
+            newinfo.newemail= $scope.emailData.email
+            User.editEmail(newinfo).then(function(data){
+                console.log(data)
+                $scope.editEmailLoading = false;
+                                $scope.openUserFile(name)
+                $scope.closeEditEmailPage()
+            })
+        }
+
         }
 
         $scope.closeEditPayRatePage = function(){
