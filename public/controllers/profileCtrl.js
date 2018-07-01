@@ -13,6 +13,7 @@
         });
         $scope.name = "";
         $scope.email = "";
+        $scope.clientPage = false;
         $scope.userClass = "";
         $scope.userToken = "";
         $scope.userPhoneNumber = "";
@@ -43,6 +44,7 @@
         $scope.june1Booked = false;
         $scope.areYouSure = false;
         $scope.composeMessagePage = false;
+        $scope.reviewSubmittedTimeSheetsPageOpen = false;
         $scope.composeMessagePageLoading=false;
         $scope.sendMessageLoading = false;
         $scope.allFieldsMustBeInput = false;
@@ -67,12 +69,15 @@
         $scope.historyEntryOpen = true;
         $scope.messagesArray = []
         $scope.messageCompositionPageOpen = false;
+        $scope.requestEmployeePageOpen = false;
         $scope.messagesPaginated = [];
         $scope.usersArray = [];
         $scope.currentusernameArray =[];
         $scope.employeeJobDetails = {};
         $scope.jobData = {};
         $scope.messagePageOpen = false;
+        $scope.complaintsPageClientOpen = false;
+
         $scope.messagePageSelected = false;
         $scope.messagesLoading = false;
         $scope.messageOpen = true;
@@ -143,12 +148,13 @@
             $scope.userToken = $window.localStorage.getItem('token');
             Auth.getUser($scope.userToken).then(function (data) {
                 console.log(data)
+                $scope.userName = data.data.name;
                 $scope.userClass = data.data.userclass;
                 $scope.userPayPeriod = data.data.payperiod
                 $scope.userPhoneNumber = data.data.phonenumber
                 $scope.userPayRate = data.data.payrate;
 
-                if ($scope.userClass = "admin") {
+                if ($scope.userClass == "admin") {
 
                     if ($scope.month == 1) {
                         if ($scope.dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
@@ -767,6 +773,9 @@
                         }
                     }
 
+                }else if($scope.userClass == "client"){
+                    console.log("YOU DA CLIENT")
+                    $scope.clientPage = true;
                 }
 
 
@@ -775,8 +784,41 @@
 
         } else {
             console.log("Not Logged In")
+            
         }
+        $scope.openComplaintsPageClient = function(){
+                 if(!$scope.complaintsPageClientOpen){
+                $scope.complaintsPageClientOpen = true;
+                $scope.requestEmployeePageOpen = false;
+                                $scope.reviewSubmittedTimeSheetsPageOpen = false;
 
+            }else{
+                $scope.complaintsPageClientOpen = false;
+
+            }
+        }
+        $scope.openReviewSubmittedTimeSheetsPage= function(){
+            if(!$scope.reviewSubmittedTimeSheetsPageOpen){
+                $scope.reviewSubmittedTimeSheetsPageOpen = true;
+                $scope.requestEmployeePageOpen = false;
+                $scope.complaintsPageClientOpen = false;
+            }else{
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+
+            }
+        }
+        $scope.openRequestEmployeePage = function(){
+            $('select').material_select();
+
+            if(!$scope.requestEmployeePageOpen){
+                $scope.requestEmployeePageOpen = true;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.complaintsPageClientOpen = false;
+
+            }else{
+                $scope.requestEmployeePageOpen = false;
+            }
+        }
         Auth.getUser().then(function (data) {
             console.log(data)
             $scope.name = data.data.name;

@@ -16,6 +16,13 @@
            
             if(valid){
                 console.log(this.regData)
+                if(this.regData.userclass == 1){
+                this.regData.userclass = "client"
+
+                }
+                if(this.regData.userclass == 2){
+                    this.regData.userclass = "employee"
+                }
                 $scope.loading= true;
                 User.create(this.regData).then(function(data){
                     console.log(data.data)

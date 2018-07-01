@@ -7,7 +7,8 @@ var bcrypt = require('bcryptjs');
 var ClientSchema = new Schema({
 
    
-    name: {type:String,  required: true,dropDups:true}
+    name: {type:String,  required: true,dropDups:true},
+    
  
 
 

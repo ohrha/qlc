@@ -746,6 +746,8 @@
             User.removeUser(name).then(function(data){
                 console.log(data)
                 $scope.loadingRemoveUser = false;
+                $scope.openRemoveUserPage = false;
+                $scope.openEmployeeList();
             })
         }
         $scope.closeAreYouSureRemove2 = function(){
@@ -761,6 +763,8 @@
             if(!$scope.removeUserPageOpen)  {
                 $scope.removeUserPageOpen = true;
                 $scope.userDetailsPageOpened = false;
+                $scope.commentsPageOpened = false;
+                $scope.notesPageOpen = false;
 
             }else{
                 $scope.userDetailsPageOpened = true;
@@ -1679,6 +1683,7 @@
                 $scope.timesheetsPageOpen = false;
                 $scope.timesheetsSelected = false;
                 $scope.payslipGenerationOpen = false;
+                $scope.removeUserPageOpen =false;
                 $scope.jobsSelected = false;
                 $scope.notesSelected = true;
                 $scope.delinquentTimeSheetSelected = false;
@@ -1803,11 +1808,13 @@
         }
         $scope.openCommentsPage = function (index) {
             $scope.openJob = 0;
-            if ($scope.commentsSelected) {
-
+            if ($scope.commentsPageOpened) {
+                
                 // $scope.commentsSelected = false;
+                $scope.userDetailsPageOpened = true;
 
-                //$scope.commentsPageOpened = false;
+
+                $scope.commentsPageOpened = false;
             } else {
 
                 $scope.commentsSelected = true;
@@ -1815,6 +1822,7 @@
                 $scope.complaintsPageOpened = false;
                 $scope.delinquentTimeSheetSelected = false;
                 $scope.delinquentTimeSheetPageOpened = false;
+                $scope.removeUserPageOpen = false;
                 $scope.complaintsSelected = false;
                 $scope.userDetailsPageOpened = false;
                 $scope.payslipGenerationOpen = false;
@@ -1829,6 +1837,8 @@
             if ($scope.complaintsSelected) {
                 $scope.complaintsSelected = false;
                 $scope.complaintsPageOpened = false;
+                                $scope.userDetailsPageOpened = true;
+
             } else {
                 $scope.complaintsSelected = true;
                 $scope.complaintsPageOpened = true;
@@ -1849,6 +1859,7 @@
                 $scope.bookedJobsSelected = false;
                 $scope.bookedJobsPageOpened = false;
                 ;
+                $scope.userDetailsPageOpened = true;
 
             } else {
                 $scope.bookedJobsSelected = true;
@@ -1856,6 +1867,7 @@
                 $scope.bookedJobsPageOpened = true;
                 $scope.delinquentTimeSheetSelected = false;
                 $scope.delinquentTimeSheetPageOpened = false;
+                $scope.removeUserPageOpen = false;
                 $scope.addJobPageOpen = false;
                 $scope.jobsPageOpen = true
                 $scope.complaintsSelected = false;

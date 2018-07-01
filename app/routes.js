@@ -81,12 +81,12 @@ module.exports = function (app) {
             })
         })
         app.put('/users/removeuser/:name', function(req,res){
-            User.findOneAndRemove({name:req.params.name}, {new:true}, function(err,user){
+            User.findOneAndRemove({name:req.params.name},  function(err,user){
                 if(err)throw err;
                 if(!user){
                     res.json({success: false, message:"User not found.."} )
                 }else{
-                    res.json({success: true, message: "User fond and deleted..", users:user})
+                    res.json({success: true, message: "User fond and deleted..", user:user})
                 }
             })
         })
@@ -978,7 +978,7 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email,payrate:user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id,phonenumber:user.phonenumber,messages: user.comments }, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email,payrate:user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id,phonenumber:user.phonenumber,messages: user.comments}, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
@@ -1267,6 +1267,7 @@ module.exports = function (app) {
         user.phonenumber = req.body.phonenumber;
         user.password = req.body.password.toString(),
             user.email = req.body.email;
+            user.userclass = req.body.userclass;
         user.name = req.body.name;
         user.payperiodnum = payperiodnum;
         user.historyupdated = false;

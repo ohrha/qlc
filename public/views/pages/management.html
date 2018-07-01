@@ -473,7 +473,7 @@
                                 <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                     </a>
                     <a href="#" style="color:black;">
-                                <i ng-click="openRemoveUserPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
+                                <i ng-click="openRemoveUserPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons red-text lighten-5" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
                     </a>
 
                 </div>
@@ -497,17 +497,7 @@
                             <!-- REMOVE USER PAGE -->
                             <div ng-show="removeUserPageOpen" class = "col s12 animated fadeIn">
 
-                               
-                                    <div class = "row">
-                                        <div class = "col s2">
-                                        </div>
-                                        <div class = "col s8" style="border-bottom:1px solid #ddd;">
-
-                                   <p class = "railway"> Remove User </p>
-                                        </div>
-                                        <div class = "col s2">
-                                        </div>
-                                    </div>
+                            
 
                                       <div class = "row" ng-show="loadingRemoveUser">
                                   

@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 //var config = require('./config');
 
 var database = require('./config/database');
-var port = process.env.PORT || 8081;
+var port = process.env.PORT || 8080;
 
 mongoose.connect(database.url, function(err){
     if(err){
