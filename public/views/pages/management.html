@@ -502,7 +502,7 @@
                                     
                                 <p  class="railway truncate animated flash infinite">LOADING</p>
                                 </div>
-                                <div class = "col s12" ng-show="editEmailPageOpen">
+                                <div class = "col s12" ng-show="editEmailPageOpen && !editEmailLoading">
                                               <div class="row">
                                          <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
                                             <i ng-click = "closeEditEmailPage()" class = "material-icons" > clear</i>
@@ -518,7 +518,7 @@
                                        
                                     </div>
                                 </div>
-                                <div class = "col s12" ng-show="!editEmailPageOpen">
+                                <div class = "col s12" ng-show="!editEmailPageOpen && !editEmailLoading">
                                     <p ng-show="!editEmailPageOpen" class="railway  truncate">{{user.email}}</p>
                                     <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
                                 </div>
@@ -552,7 +552,7 @@
                                     
                                 <p  class="railway truncate animated flash infinite">LOADING</p>
                                 </div>
-                                <div class = "col s12" ng-show="editPayRatePageOpen ">
+                                <div class = "col s12" ng-show="editPayRatePageOpen&& !editPayRateLoading ">
                                     <div class="row">
                                          <div class = "col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
                                             <i ng-click = "closeEditPayRatePage()" class = "material-icons" > clear</i>
@@ -568,7 +568,7 @@
                                        
                                     </div>
                                 </div>
-                                <div class = "col s12"ng-show="!editPayRatePageOpen">
+                                <div class = "col s12"ng-show="!editPayRatePageOpen && !editPayRateLoading">
                                     <p class="railway truncate">{{user.payrate | currency}}</p>
                                     <a ng-click="openEditPayRatePage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
                                 </div>
