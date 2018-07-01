@@ -497,22 +497,56 @@
                             <!-- REMOVE USER PAGE -->
                             <div ng-show="removeUserPageOpen" class = "col s12 animated fadeIn">
 
-                                <div class = "row">
-                                <div class = "col s12 center-align">
+                               
+                                    <div class = "row">
+                                        <div class = "col s2">
+                                        </div>
+                                        <div class = "col s8" style="border-bottom:1px solid #ddd;">
 
                                    <p class = "railway"> Remove User </p>
-
-                                </div>
-
-                                </div>
-                                <div class = "row">
-                                    <div class = "col s12">
-                                    </div>
-                                    <div class = "col s12">
-                                        <span class = "railway">DELETE {{user.name}}</span>
-                                        <i class = "material-icons" style="font-size:20px;"> delete</i>
+                                        </div>
+                                        <div class = "col s2">
+                                        </div>
                                     </div>
 
+                                      <div class = "row" ng-show="loadingRemoveUser">
+                                  
+                                    <div class = "col s12">
+                                        <p class = "railway animated flash infinite" style="font-size:20px;">REMOVING USER</p>
+                                       
+                                    </div>
+
+                            </div>
+                                <div class = "row" ng-show="!areYouSureRemove3 && !loadingRemoveUser">
+                                  
+                                    <div class = "col s12">
+                                        <p class = "railway">Delete {{user.name}}.</p>
+                                        <div class = "col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+                                        <i ng-click="openAreYouSureRemove();"class = "material-icons red-text lighten-3" style="font-size:20px;"> delete</i>
+                                        </div>
+                                    </div>
+
+                            </div>
+                                           
+                                <div class = "row" ng-show="areYouSureRemove3 && !loadingRemoveUser">
+                                  
+                                    <div class = "col s12">
+                                        <p class = "railway">Are You Sure You Want to Delete {{user.name}}?</p>
+                                        <span class = "railway">(This Action Is Irreversible)</span>
+                                        <div class = "col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+                                            <div class = "row">
+                                            <div class = "col s6 right-align" style="border-bottom:1px solid #ddd;">
+                                            <i ng-click="closeAreYouSureRemove2();"class = "material-icons green-text lighten-3" style="font-size:20px;">cancel </i>
+
+                                            </div>
+                                              <div class = "col s6 left-align" style="border-bottom:1px solid #ddd;">
+                                            <i ng-click="removeUser(user.name);"class = "material-icons red-text lighten-3" style="font-size:20px;"> check_circle</i>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </div>
                             </div>
                             </div>
                             <!-- REMOVE USER PAGE -->

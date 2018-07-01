@@ -15,6 +15,7 @@
         $scope.loading = false;
         $scope.loadingUsers = false;
         $scope.loadingPersonalHistory = false;
+         $scope.loadingRemoveUser = false;
         $scope.generalHistoryTitle = false;
         $scope.personalHistoryTitle = false;
         $scope.managementPage = true;
@@ -63,6 +64,8 @@
         $scope.currentJobInDate = 0;
         $scope.timesheetsPageOpen = false;
         $scope.removeUserPageOpen = false;
+        $scope.areYouSureRemove = false;
+        $scope.areYouSureRemove3 = false;
         $scope.disputesPageOpen = false;
         $scope.incompletePayPeriod = false;
         $scope.incompletePayPeriodPageOpen = false;
@@ -738,7 +741,22 @@
                 })
             })
         }
-        
+        $scope.removeUser = function(name){
+            $scope.loadingRemoveUser = true;
+            User.removeUser(name).then(function(data){
+                console.log(data)
+                $scope.loadingRemoveUser = false;
+            })
+        }
+        $scope.closeAreYouSureRemove2 = function(){
+            console.log("HELo")
+            $scope.areYouSureRemove3= false;
+        }
+        $scope.openAreYouSureRemove = function(){
+            if(!$scope.areYouSureRemove3){
+                $scope.areYouSureRemove3 = true;
+            }
+        }
         $scope.openRemoveUserPage = function(){
             if(!$scope.removeUserPageOpen)  {
                 $scope.removeUserPageOpen = true;

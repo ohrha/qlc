@@ -80,6 +80,16 @@ module.exports = function (app) {
                 }
             })
         })
+        app.put('/users/removeuser/:name', function(req,res){
+            User.findOneAndRemove({name:req.params.name}, {new:true}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"User not found.."} )
+                }else{
+                    res.json({success: true, message: "User fond and deleted..", users:user})
+                }
+            })
+        })
         app.post('/users/addhourstobookedjob', function(req,res){
             console.log(req.body)
             User.find({name: req.body.currentuser}, function(err,user){
