@@ -72,6 +72,11 @@
         $scope.editPayRatePageOpen = false;
         $scope.editPhoneNumberPageOpen = false
         $scope.editPhoneNumberLoading = false;
+        $scope.locationsListLoading = false;
+        $scope.loadingLists = false;
+        $scope.supervisorListLoading = false;
+        $scope.locationsListOn = false;
+        $scope.supervisorsListOn = false;
         $scope.editEmailLoading = false;
         $scope.editPayRateLoading = false;
         $scope.phoneNumberData = {}
@@ -101,6 +106,7 @@
         $scope.delinquentTimeSheet = false;
         $scope.currentUserFile = "";
         $scope.employees = [];
+        $scope.selectedItem ={};
         $scope.currentEmployee = [];
         $scope.employeesForHistory = [];
         $scope.employeesPaginated = [];
@@ -363,12 +369,12 @@
         })
 
 
-        Client.getClients().then(function (data) {
+     /*   Client.getClients().then(function (data) {
 
             console.log(data)
             $scope.clients = data.data.clients;
             console.log($scope.clients)
-        })
+        })*/
         Location.getLocations().then(function (data) {
 
             console.log(data)
@@ -757,6 +763,7 @@
         $scope.openAreYouSureRemove = function(){
             if(!$scope.areYouSureRemove3){
                 $scope.areYouSureRemove3 = true;
+               $scope.addJobPageOpen = false;
             }
         }
         $scope.openRemoveUserPage = function(){
@@ -962,6 +969,7 @@
         }
         $scope.openAddJobPage = function (job) {
             console.log(job)
+            console.log($scope.clients)
             var userDetails = {}
             var date = job.date;
             var location = job.location
@@ -1063,8 +1071,11 @@
 
             console.log(data)
             $scope.employees = data.data.users
-            for (var i = 0; i <= $scope.employees.length; i++) {
-
+            for (var i = 0; i < $scope.employees.length; i++) {
+                if($scope.employees[i].userclass == "client"){
+                    $scope.clients.push($scope.employees[i].name)
+                    console.log($scope.clients)
+                }
                 var page = 0;
                 console.log($scope.pageLimit, i, $scope.employees.length)
                 console.log($scope.employees)
@@ -1114,6 +1125,7 @@
                 }
 
             }
+            console.log($scope.clients)
 
 
             $scope.usersLoaded = true;
@@ -1334,6 +1346,35 @@
 
         }
         //  $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+       
+        $scope.getLocations = function(name){
+            $scope.supervisorListLoading = true;
+            $scope.loadingLists = true;
+            
+            /*User.getLocations(name).then(function(data){
+                console.log(data)
+            })*/
+            console.log($scope.selectedItem)
+            console.log($scope.jobData)
+            $scope.jobData.client =  $scope.selectedItem.name
+            $
+            User.getSupervisors($scope.selectedItem.name).then(function(data){
+                $scope.locationsListLoading = true;
+                                $scope.supervisorListLoading = false;
+
+                $scope.supervisors = data.data.supervisors
+                $scope.supervisorsListOn = true;
+                 User.getLocations($scope.selectedItem.name).then(function(data){
+                    $scope.locationsListLoading = false;
+                    $scope.loadingLists = false;
+                $scope.locations= data.data.locations;
+                $scope.locationsListOn = true;
+                $scope.
+                console.log(data)
+            })
+            })
+           
+        }
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
@@ -1698,6 +1739,10 @@
         $scope.changeJobInDate = function (index) {
             $scope.slideOut = true;
             $scope.fadeOut2 = true;
+            $scope.addJobPageOpen = false;
+           
+            $scope.areYouSureRemove2 = false;
+            //$scope.closeAreYouSureRemove();
             $timeout(function () {
                 if ($scope.currentJobInDate == 0) {
                     $scope.currentJobInDate++;
@@ -1711,6 +1756,7 @@
                 $scope.fadeOut2 = false
                 $scope.fadeIn2 = true;
                 $scope.slideIn = true;
+                 $scope.jobsPageOpen = true;
             }, 500)
 
         }
@@ -2295,7 +2341,7 @@
             $scope.currentUserPhoneNumber = phonenumber;
             $scope.delinquentTimeSheetArray = [];
             $scope.jobDetails = [];
-
+      
             if ($scope.usersLoaded) {
                 console.log("users loaded")
                 User.findUser($scope.currentUserFile).then(function (data) {

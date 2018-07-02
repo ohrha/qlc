@@ -77,6 +77,26 @@
         $scope.currentusernameArray = [];
         $scope.employeeJobDetails = {};
 
+        $scope.requestEmployeePageLoading = false;
+        $scope.requestedJobData = {
+            client:null,
+            worksitedetails:null,
+            ppe:null,
+            descriptionofwork:null,
+            supervisor:null,
+            location:null,
+            amPm1:null,
+            amPm2:null,
+            hrsIn1:null,
+            hrsIn2: null,
+            hrsOut1:null,
+            hrsOut2:null,
+            minsIn1:null,
+            minsIn2:null,
+            minsOut1:null,
+            minsOut2:null
+        }
+
         $scope.locationData = {
             name: null,
             email: null,
@@ -91,7 +111,11 @@
         };
         $scope.submitSupervisorPageOpen = false;
         $scope.individualSupervisorOpen = true;
+        $scope.submitLocationPageOpen = false;
+        $scope.individualLocationOpen = true;
+
         $scope.subconIndex = null;
+        $scope.locationIndex = null;
         $scope.removeLocationLoading = false;
         $scope.removeSupervisorLoading = false;
         $scope.supervisorsArray = []
@@ -186,6 +210,7 @@
             Auth.getUser($scope.userToken).then(function (data) {
                 console.log(data)
                 $scope.userName = data.data.name;
+                $scope.requestedJobData.client = $scope.userName
                 $scope.userClass = data.data.userclass;
                 $scope.userPayPeriod = data.data.payperiod
                 $scope.userPhoneNumber = data.data.phonenumber
@@ -824,6 +849,58 @@
 
         }
 
+        $scope.submitRequest = function(){
+            console.log($scope.requestedJobData)
+             $scope.requestedJobData = {
+            client:null,
+            worksitedetails:null,
+            ppe:null,
+            descriptionofwork:null,
+            supervisor:null,
+            location:null,
+            amPm1:null,
+            amPm2:null,
+            hrsIn1:null,
+            hrsIn2: null,
+            hrsOut1:null,
+            hrsOut2:null,
+            minsIn1:null,
+            minsIn2:null,
+            minsOut1:null,
+            minsOut2:null
+        }
+           if($scope.requestedJobData.ppe == null){
+            $scope.ppeCannotBeEmpty = true;
+        }
+         if($scope.requestedJobData.worksitedetails == null){
+            $scope.worksiteDetailsCannotBeEmpty = true;
+        }
+         if($scope.requestedJobData.worksitedetails == null){
+            $scope.worksiteAddressCannotBeEmpty = true;
+        }
+         if($scope.requestedJobData.client == null){
+            $scope.clientCannotBeEmpty = true;
+        }
+        if($scope.requestedJobData.supervisor == null){
+            $scope.supervisorCannotBeEmpty = true;
+        }
+        if($scope.requestedJobData.location == null){
+            $scope.locationCannotBeEmpty = true;
+        }
+            if( $scope.requestedJobData.hrsIn1 == null ||
+            $scope.requestedJobData.hrsIn2 == null ||
+            $scope.requestedJobData.hrsOut1 == null ||
+            $scope.requestedJobData.hrsOut1 == null ||
+            $scope.requestedJobData.minsIn1 == null ||
+            $scope.requestedJobData.minsIn2 == null ||
+            $scope.requestedJobData.minsOut1 == null ||
+            $scope.requestedJobData.minsOut2 == null ||
+            $scope.requestedJobData.amPm1 == null ||
+            $scope.requestedJobData.amPm2 == null ){
+                $scope.timeDataCannotBeEmpty = true;
+            }
+            
+        }
         $scope.submitSupervisor = function () {
             console.log("Clicked")
             console.log($scope.supervisorData)
@@ -872,10 +949,23 @@
                         $scope.submitSupervisorLoading = false;
                         $scope.addSupervisorSuccessful = false;
                                     $scope.addSupervisorPageOpen = false;
+                          $scope.supervisorData = {
+            name: null,
+            email: null,
+            phonenumber: null
+        };
                         $scope.openAddSupervisorPage();
 
                     }, 1500)
                 })
+            }
+        }
+        $scope.openSubmitLocationPage = function(){
+                 if(!$scope.submitLocationPageOpen){
+                $scope.submitLocationPageOpen = true;
+            }else{
+                $scope.submitLocationPageOpen = false;
+
             }
         }
         $scope.openSubmitSupervisorPage = function(){
@@ -950,6 +1040,14 @@
                         $scope.submitLocationLoading = false;
                         $scope.addLocationSuccessful = false;
                         $scope.addLocationPageOpen = false;
+                          $scope.locationData = {
+            name: null,
+            email: null,
+            phonenumber: null,
+            address: null,
+            contact: null
+        };
+      
                         $scope.openAddLocationPage();
                     }, 1500)
                 })
@@ -981,9 +1079,18 @@
             }
         }
         $scope.openRequestEmployeePage = function () {
-            $('select').material_select();
+            
+            $scope.requestEmployeePageLoading = true;
+          
+                $('select').material_select();
+                                console.log($scope.supervisorsArray)
 
-            if (!$scope.requestEmployeePageOpen) {
+                 
+                $('select').material_select();
+                console.log($scope.locationsArray)
+                $scope.requestEmployeePageLoading = false;
+                      if (!$scope.requestEmployeePageOpen) {
+                          $('select').material_select();
                 $scope.requestEmployeePageOpen = true;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
@@ -991,12 +1098,20 @@
             } else {
                 $scope.requestEmployeePageOpen = false;
             }
+                
+           
+
+            
+           
+      
         }
         Auth.getUser().then(function (data) {
             console.log(data)
             $scope.name = data.data.name;
             $scope.email = data.data.email;
             $scope.user_id = $routeParams.userid
+            $scope.locationsArray = data.data.locations;
+            $scope.supervisorsArray = data.data.supervisors
             console.log($scope.user_id)
         })
         $scope.addPayPeriodToPayPeriodHistory = function () {
@@ -1312,6 +1427,7 @@
                 console.log(data)
                 $scope.removeSupervisorLoading = false;
                 $scope.addSupervisorPageOpen =false;
+                $scope.subconIndex = null;
                 $scope.openAddSupervisorPage();
             })
         }
@@ -1322,10 +1438,48 @@
                 name:$scope.userName
             }
 
-            User.removeLovation(locationData).then(function(data){
+            User.removeLocation(locationData).then(function(data){
                 console.log(data)
                 $scope.removeLocationLoading = false;
+                $scope.addLocationPageOpen =false;
+                $scope.locationIndex = null;
+                $scope.openAddLocationPage();
             })
+        }
+        $scope.openIndividualLocation = function(index){
+            
+             if ($scope.individualLocationOpen && index !== $scope.locationIndex
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                $scope.locationIndex = index;
+
+             
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+            }
+
+
+            else if (!$scope.individualLocationOpen && index == $scope.locationIndex) {
+                $scope.individualLocationOpen = true;
+                console.log("second")
+                console.log($scope.timesheetEntryOpen)
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.individualLocationOpen && index !== $scope.locationIndex) {
+                console.log("third")
+                $scope.individualLocationOpen = true;
+                console.log($scope.timesheetEntryOpen)
+                $scope.locationIndex = index;
+            } else {
+                console.log("last")
+                $scope.locationIndex = null
+
+                // $scope.showChart = true;
+                //$scope.removeChart = false;
+            }
+
         }
         $scope.openIndividualSupervisor = function(index){
  if ($scope.individualSupervisorOpen && index !== $scope.subconIndex
@@ -1535,8 +1689,70 @@
                 User.getLocations($scope.userName).then(function (data) {
                     console.log(data)
                     $scope.locationsArray = data.data.locations;
-                    
+                    //$scope.locationIndex = index;
+
+                    $scope.pageLimit = 4;
+                    $scope.locationsPaginated = [];
+                    $scope.locationsForPagination = [];
+                    for (var i = 0; i <= $scope.locationsArray.length; i++) {
+
+                        var page = 0;
+                        ////console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log($scope.employees)
+                        if (i < $scope.pageLimit) {
+                            console.log("its less")
+
+                        }
+                        if (i < $scope.locationsArray.length) {
+                            console.log("yup,less")
+                        }
+
+                        if (i < $scope.pageLimit && i < $scope.locationsArray.length) {//5
+                            console.log("HELLO")
+                            //console.log($scope.employees[i])
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            if ($scope.locationsArray[i]) {
+                                $scope.locationsForPagination.push($scope.locationsArray[i])
+                                console.log(i)
+                                console.log("firstCondiation")
+                                console.log($scope.pageArray)
+
+                            }
+
+
+
+                        } else {
+                            if (!$scope.usersLoaded) {
+
+                                console.log("else")
+                                $scope.loadingUsers = false;
+                                $scope.locationsPaginated.push($scope.locationsForPagination)
+                                console.log($scope.locationsPaginated)
+                                $scope.locationsForPagination = [];
+                                if ($scope.locationsArray[i] !== undefined) {
+                                    $scope.locationsForPagination.push($scope.locationsArray[i])
+                                }
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                page++
+
+                            }
+
+                        }
+
+                    }
+
+                
+             
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+
                 })
+                    
+               
 
             } else {
                 $scope.addSupervisorPageOpen = false;

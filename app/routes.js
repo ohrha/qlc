@@ -1040,7 +1040,7 @@ module.exports = function (app) {
         //res.send("testing new route")
         console.log("authenticate Route Hit");
         console.log(req.body)
-        User.findOne({ username: req.body.username }).select('email username password name payrate payperiodnum userclass phonenumber comments')
+        User.findOne({ username: req.body.username }).select('email username password name payrate payperiodnum userclass phonenumber comments supervisors locations')
             .exec(function (err, user) {
 
                 if (err) throw err;
@@ -1057,7 +1057,7 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments }, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments, locations:user.locations, supervisors:user.supervisors }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
