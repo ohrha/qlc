@@ -39,6 +39,24 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addJobToCurrentPayPeriod = function(job){
         return $http.post('/api/users/addjobtocurrentpayperiod',job)
     }
+    userFactory.addLocation= function(locationData){
+        return $http.post('/api/users/addlocation',locationData)
+    }
+    userFactory.getLocations = function(username){
+        return $http.put('/api/users/getlocations/'+username)
+    }
+    userFactory.getSupervisors = function(username){
+        return $http.put('/api/users/getsupervisors/'+username)
+    }
+    userFactory.removeLocation = function(locationData){
+        return $http.post('/api/users/removelocation', locationData)
+    }
+    userFactory.removeSupervisor = function(supervisorData){
+        return $http.post('/api/users/removesupervisor', supervisorData)
+    }
+    userFactory.addSupervisor = function(supervisorData){
+        return $http.post('/api/users/addsupervisor',supervisorData)
+    }
     userFactory.changeUserPayPeriod= function(details){
         console.log(details)
         return $http.post('/api/users/changeuserpayperiod',details)

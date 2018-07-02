@@ -57,6 +57,13 @@
                 controllerAs: 'profile'
 
             })
+            .when('/clientprofile/:userid', {
+                templateUrl: '../views/pages/clientprofile.html',
+                name: "QLH | CLIENT",
+                controller: "profileCtrl",
+                controllerAs: 'profile'
+
+            })
             .when('/calander/:userid/:month/:date', {
                 templateUrl: '../views/pages/calander.html',
                 name: "QLH | Calander",

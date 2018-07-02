@@ -115,6 +115,9 @@ a{
     opacity:1;
     transition:.6s;
 }
+.threed{
+    box-shadow: 2px 2px 2px grey;
+}
 .fadeout2{
     opacity:0;
     transition:.3s;

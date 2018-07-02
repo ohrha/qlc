@@ -1,0 +1,663 @@
+<div class="row" ng-show="clientPage">
+    <div class="col s3">
+    </div>
+    <div ng-show="clientPage" class="col s9 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
+        <br>
+        <a href="#" style="color:black;"> <i ng-click="openRequestEmployeePage()" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
+        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
+        <a href="#" style="color:black;" ng-click="openComplaintsPageClient()"><i  class="material-icons">timeline</i></a>
+        <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
+                    </a>
+        <a href="#" style="color:black;">
+                    <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+
+                <a href="#"style="color:black;">
+                    <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
+        <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
+        <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
+        <br>
+
+
+    </div>
+
+ <div class = "col s12 center-align " ng-show="submitLocationLoading">
+        <p ng-show="!addLocationSuccessful" class = "railway animated flash infinite" style="font-size:20px;"> INSERTING LOCATION </p>
+        <p ng-show="addLocationSuccessful"class = "railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Location Successfully Inserted! </p>
+
+    </div>
+ 
+    <div class="col s12 center-align" ng-show="addSupervisorPageOpen ">
+
+        <br>
+     <div class = "row">
+     
+            <div class = "col s12 center-align" >
+                <br>
+                   <div ng-show="individualSupervisorOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
+                            <div class="center-align">
+
+
+                               
+                              
+                                    <div class = "row">
+                                        <div class = "col s2" style="border-bottom:1px solid #ddd;">
+                                           <p class = "railway underline" style="font-size:18px;"> Name</p>
+                                        </div>
+                                        <div class = "col s10" style="border-bottom:1px solid #ddd;">
+                                            <p class = "railway underline" style="font-size:18px;">Details</p>
+                                        </div>
+                                    <div ng-show="supervisorsPaginated[0].length == 0" class = "col s12" >
+                                        <br>
+                                       
+                                        <div class = "row">
+
+                                            <div class=" col s2 animated fadeIn railway truncate">
+                                                </div>
+                                       
+                                               <div  class = "col s10  railway" >
+                                             <p class = "railway"> ( No Supervisors Added )</p>
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div ng-show="supervisorsPaginated[0].length>0" class = "col s12"  ng-repeat="page in supervisorsPaginated[page] track by $index">
+                                        <br>
+                                        <div class = "row">
+
+                                            <div class=" col s2 animated fadeIn railway truncate"><a style="color:black;" href="#" ng-click="openIndividualSupervisor($index)"><p class = "railway underline" style="font-size:17px;">{{$index+1}}.{{page.name}}</p></a></div>
+                                                        <div class = "col s10" ng-show="individualSupervisorOpen && subconIndex == $index && removeSupervisorLoading ">
+                  <p class = "railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING SUPERVISOR</p>
+              </div>
+                                            <div ng-show="individualSupervisorOpen && subconIndex == $index && !removeSupervisorLoading" class = "col s10 railway" style="border-bottom:1px solid #ddd;">
+                                               <p class = "railway"> {{page.name}}</p>
+                                               <p class = "railway"> {{page.email}}</p>
+                                               <p class = "railway"> {{page.phonenumber}}</p>
+                                               <i ng-click="removeSupervisor($index)"class = "material-icons red-text text-lighten-3"> delete</i>
+                                            </div>
+                                               <div ng-show="individualSupervisorOpen && subconIndex !== $index" class = "col s10  railway" >
+                                             
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                
+                                        <div class = "col s2">
+                                        </div>
+                                    <div class = "col s10 center-align">
+                                <ul class="pagination">
+                                    <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                                    <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                        ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                    <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
+                                    <li class="waves-effect hide-on-small-only"style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                                </ul>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+
+ 
+    </div>
+  
+        </div>
+        <div class = "row">
+            <div class = "col s12">
+                <div class = "center-align">
+            <div class = "row">
+                <div class = "col s2 center-align">
+                    <i ng-click="openSubmitSupervisorPage()" class = "material-icons animated flash threed "style="font-size:28px;"> add</i>
+                    
+                </div>
+                <div class = " col s10 center-align">
+                    <div class = "row">
+                        
+                        <div class = "col s12 center-align">
+                    <p class = "railway underline">Add Supervisor</p>
+                        <div class = "col s12 center-align " ng-show="submitSupervisorLoading">
+        <p ng-show="!addSupervisorSuccessful"class = "railway animated flash infinite" style="font-size:20px;"> INSERTING SUPERVISOR </p>
+      <p ng-show="addSupervisorSuccessful"class = "railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Supervisor Successfully Inserted! </p>
+
+    </div>
+ <div ng-show="submitSupervisorPageOpen && !submitSupervisorLoading">
+
+            <div class="row">
+            
+                <div class="col s2 center-align">
+
+                </div>
+               
+                <div class="input-field col s8 "style="border-top:1px solid black;">
+                    <br>
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "name" ng-model="supervisorData.name" class="validate">
+                        <label for="first_name">Supervisor Name</label>
+                    </div>
+                       <div class = "animated flash">
+                        <span ng-show='supervisorNameNotProvided'class = "railway animated flash"> A Supervisor Name Must Be Provided </span>
+                    </div>
+                </div>
+                <div class = "col s2">
+                </div>
+                
+
+            </div>
+            <div class="row">
+                <div class="col s2 center-align">
+
+                </div>
+                <div class="input-field col s8">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name="phonenumber" ng-model = "supervisorData.phonenumber" class="validate">
+                        <label for="first_name">Supervisor Phone Number</label>
+                    </div>
+                       <div class = "animated flash">
+                        <span ng-show='supervisorPhoneNumberNotProvided'class = "railway animated flash"> A Supervisor Phone Number Must Be Provided </span>
+                    </div>
+                </div>
+                <div class = "col s2">
+                </div>
+                
+
+            </div>
+            <div class="row">
+                <div class="col s2 center-align">
+
+                </div>
+                <div class="input-field col s8 center-align" style="border-bottom:1px solid black;">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "email" ng-model="supervisorData.email"class="validate">
+                        <label for="first_name">Supervisor Email</label>
+                    </div>
+                       <div class = "animated flash">
+                        <span ng-show='supervisorEmailNotProvided'class = "railway animated flash"> A Supervisor Name Must Be Provided </span>
+                    </div>
+                    <br>
+                </div>
+                 <div class = "col s2">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <a ng-click = "submitSupervisor()" class="waves-effect waves-light btn">Add Supervisor</a>
+
+
+                </div>
+
+
+            </div>
+        </div>
+        
+
+                        </div>
+                   
+                    
+                </div>
+                 
+            </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <!-- ADD LOCATION PAGE -->
+
+    <div class="col s12 center-align" ng-show="addLocationPageOpen && !submitLocationLoading">
+        <br>
+          <div class = "row">
+
+        <div class = "col s2 center-align">
+        </div>
+            <div class = "col s8 center-align" style="border:1px solid #ddd;">
+                <div class = "row" >
+                    <div class = "col s12 center-align" ng-repeat = "location in locationsArray">
+                        {{location.name}}
+                    </div>
+                </div>
+ 
+    </div>
+    <div class = "col s2 center-align">
+<i class = "material-icons">clear</i>
+    </div>
+        </div>
+            <div class="row">
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_back</i>
+
+                </div>
+                <div class="input-field col s8">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "name" ng-model = "locationData.name" class="validate">
+                        <label for="first_name">Location Name</label>
+                    </div>
+                     <div class = "animated flash">
+                        <span ng-show='locationNameNotProvided'class = "railway"> A Location Name Must Be Provided </span>
+                    </div>
+                </div>
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_forward</i>
+                </div>
+
+            </div>
+   
+            <div class="row">
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_back</i>
+
+                </div>
+                <div class="input-field col s8">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "contact" ng-model="locationData.contact"class="validate">
+                        <label for="first_name">Location Contact</label>
+                    </div>
+                    <div class = "animated flash">
+                        <span ng-show='locationContactNotProvided'class = "railway animated flash"> A Location Contact Must Be Provided </span>
+                    </div>
+                </div>
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_forward</i>
+                </div>
+
+            </div>
+                     <div class="row">
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_back</i>
+
+                </div>
+                <div class="input-field col s8">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "address" ng-model="locationData.address"class="validate">
+                        <label for="first_name">Location Address</label>
+                    </div>
+                     <div class = "animated flash">
+                        <span ng-show='locationAddressNotProvided'class = "railway animated flash"> A Location Address Must Be Provided </span>
+                    </div>
+                </div>
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_forward</i>
+                </div>
+
+            </div>
+                        <div class="row">
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_back</i>
+
+                </div>
+                <div class="input-field col s8">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "email" ng-model="locationData.email" class="validate">
+                        <label for="first_name">Contact Email</label>
+                    </div>
+                     <div class = "animated flash">
+                        <span ng-show='locationEmailNotProvided'class = "railway animated flash"> A Contact Email Must Be Provided </span>
+                    </div>
+                </div>
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_forward</i>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_back</i>
+
+                </div>
+                <div class="input-field col s8">
+                    <div class="animated slideInRight">
+                        <input id="first_name" type="text" name = "phonenumber" ng-model="locationData.phonenumber" class="validate">
+                        <label for="first_name">Contact Phone Number</label>
+                    </div>
+                     <div class = "animated flash">
+                        <span ng-show='locationPhoneNumberNotProvided'class = "railway animated flash"> A Contact Phone Number Must Be Provided </span>
+                    </div>
+                </div>
+                <div class="col s2 center-align">
+                    <i class="material-icons">arrow_forward</i>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <a ng-click="submitLocation();" class="waves-effect waves-light btn">Add Location</a>
+
+
+                </div>
+
+
+            </div>
+       
+    </div>
+
+    <!-- ADD LOCATION PAGE -->
+
+
+
+
+
+    <div class="col s12 center-align" ng-show="requestEmployeePageOpen">
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{userName}}" id="first_name" type="text" class="validate">
+                        <label for="first_name">Client</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" value="{{userPhoneNumber}}" type="number" class="validate">
+                        <label for="last_name">Phone Number</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+                        <label for="disabled">Disabled</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+          
+    </select>
+                        <label>Supervisor</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Worksite Details</label>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+          
+    </select>
+                        <label>Special PPE Required?</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Worksite Address</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Description Of Work</label>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+                    <label>Materialize Select</label>
+                </div>
+                <div class="input-field col s5">
+                    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+                    <label>Materialize Select</label>
+                </div>
+                <div class="col s1">
+                    <span class="railway">-</span>
+                </div>
+                <div class="input-field col s5">
+                    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+                    <label>Materialize Select</label>
+                </div>
+                <div class="input-field col s6">
+
+
+                    <select ng-model="timeData.hrsIn1" name="hrsIn1">
+      <option value="" disabled selected>#</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                    <label>Hrs</label>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.hrsIn2" name="hrsIn2">
+      <option value="" disabled selected>#</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+       <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.minsIn1" name="minsIn1">
+         <option value="" disabled selected>#</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                    <label>Mins</label>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.minsIn2" name="minsIn2">
+            <option value="" disabled selected>#</option>
+                        <option value="0">0</option>
+
+      <option value="5">5</option>
+   
+    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select ng-model="timeData.amPm1" name="amPm1">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                </div>
+                <div class="col s12">
+                    <span class="railway"> to </span>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.hrsOut1" name="hrsOut1">
+      <option value="" disabled selected>#</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+     
+    </select>
+
+                    <label>Hrs</label>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.hrsOut2" name="hrsOut2">
+      <option value="" disabled selected>#</option>
+            <option value="0" >0</option>
+
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+       <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+       <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.minsOut1" name="minsOut1">
+         <option value="" disabled selected>#</option>
+         <option value="0">0</option>
+      <option value="1">1</option>
+  
+      <option value="3">3</option>
+       <option value="4">4</option>
+    
+    </select>
+                    <label>Mins</label>
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="timeData.minsOut2" name="minsOut2">
+            <option value="" disabled selected>#</option>
+                        <option value="0">0</option>
+
+
+      <option value="5">5</option>
+    
+    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select ng-model="timeData.amPm2" name="amPm2">
+            <option value="" disabled selected>am/pm</option>
+
+      <option value=" am">am</option>
+      <option value=" pm">pm</option>
+      
+    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select ng-model="timeData.lunch" name="lunch">
+            <option value="" disabled selected>Lunch?</option>
+
+      <option value="true">yes</option>
+      <option value="false">no</option>
+      
+    </select>
+                </div>
+
+
+            </form>
+        </div>
+
+
+    </div>
+    <div class="col s12 center-align" ng-show="reviewSubmittedTimeSheetsPageOpen">
+        <div class="row">
+            <p class="railway underline" style="font-size:25px;"> Review Submitted Time Sheets</p>
+        </div>
+
+    </div>
+    <div class="col s12 center-align" ng-show="complaintsPageClientOpen">
+        <div class="row">
+            <p class="railway underline" style="font-size:25px;"> Complaints</p>
+        </div>
+
+    </div>
+
+</div>

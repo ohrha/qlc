@@ -42,77 +42,156 @@ module.exports = function (app) {
     
         })
         */
-        app.post('/users/changepayperiodhistoryentrytounpaid', function(req,res){
-            //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
-            User.find({name:req.body.name}, function(err,user){
-                if(err)throw err;
-                if(!user){
-                    res.json({success: false, message:"user not found so not updated..."})
-                }else{
-                    user[0].payperiodhistory[req.body.index].entry[0][0].paid = false;
-                    User.findOneAndUpdate({name: req.body.name}, {$set:{payperiodhistory:user[0].payperiodhistory}},{new:true}, function(err,user){
-                        if(err)throw err;
-                        if(!user){
-                            res.json({success: false, message: "User not found"})
-                        }else{
-                            res.json({success: true, message:"User found and updated..", user:user})
-                        }
-                    })
-                }
-            })
+    app.post('/users/changepayperiodhistoryentrytounpaid', function (req, res) {
+        //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
+        User.find({ name: req.body.name }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "user not found so not updated..." })
+            } else {
+                user[0].payperiodhistory[req.body.index].entry[0][0].paid = false;
+                User.findOneAndUpdate({ name: req.body.name }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
+                    if (err) throw err;
+                    if (!user) {
+                        res.json({ success: false, message: "User not found" })
+                    } else {
+                        res.json({ success: true, message: "User found and updated..", user: user })
+                    }
+                })
+            }
         })
-        app.post('/users/changepayperiodhistoryentrytopaid', function(req,res){
-            //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
-            User.find({name:req.body.name}, function(err,user){
-                if(err)throw err;
-                if(!user){
-                    res.json({success: false, message:"user not found so not updated..."})
-                }else{
-                    user[0].payperiodhistory[req.body.index].entry[0][0].paid = true;
-                    User.findOneAndUpdate({name: req.body.name}, {$set:{payperiodhistory:user[0].payperiodhistory}},{new:true}, function(err,user){
-                        if(err)throw err;
-                        if(!user){
-                            res.json({success: false, message: "User not found"})
-                        }else{
-                            res.json({success: true, message:"User found and updated..", user:user})
-                        }
-                    })
-                }
-            })
+    })
+    app.post('/users/changepayperiodhistoryentrytopaid', function (req, res) {
+        //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
+        User.find({ name: req.body.name }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "user not found so not updated..." })
+            } else {
+                user[0].payperiodhistory[req.body.index].entry[0][0].paid = true;
+                User.findOneAndUpdate({ name: req.body.name }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
+                    if (err) throw err;
+                    if (!user) {
+                        res.json({ success: false, message: "User not found" })
+                    } else {
+                        res.json({ success: true, message: "User found and updated..", user: user })
+                    }
+                })
+            }
         })
-        app.put('/users/removeuser/:name', function(req,res){
-            User.findOneAndRemove({name:req.params.name},  function(err,user){
-                if(err)throw err;
-                if(!user){
-                    res.json({success: false, message:"User not found.."} )
-                }else{
-                    res.json({success: true, message: "User fond and deleted..", user:user})
-                }
-            })
+    })
+    app.put('/users/removeuser/:name', function (req, res) {
+        User.findOneAndRemove({ name: req.params.name }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found.." })
+            } else {
+                res.json({ success: true, message: "User fond and deleted..", user: user })
+            }
         })
-        app.post('/users/addhourstobookedjob', function(req,res){
-            console.log(req.body)
-            User.find({name: req.body.currentuser}, function(err,user){
-                if(err)throw err;
-                if(!user){
-                    res.json({success: false, message:"User not found..."})
-                }else{
-                    console.log(user)
-                    user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
-                    User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiods: user[0].payperiods}},{new:true}, function(err,user){
-                        if(err)throw err;
-                        if(!user){
-                            res.json({success: false, message:"User not found..."})
-                        }else{
-                            res.json({success: true, message: "User found and updated...",user:user})
-                        }
-                    })
+    })
+    app.post('/users/addlocation', function (req, res) {
+        User.findOneAndUpdate({ name: req.body.username }, { $push: { locations: req.body } }, { new: true }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found" })
+            } else {
+                res.json({ success: true, message: "Location Successfully Loaded..", user: user })
+            }
+        })
+    })
+    app.put('/users/getlocations/:username', function (req, res) {
+        User.find({ name: req.params.username },  function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found" })
+            } else {
+                res.json({ success: true, message: "Location Successfully Loaded..", locations: user[0].locations })
+            }
+        })
+    })
+        app.post('/users/removelocation', function(req,res){
+        User.find({name:req.body.name}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                user[0].locations.splice(req.body.index,1)
+                User.findOneAndUpdate({name:req.body.name}, {$set:{locations:user[0].locations }},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found..."})
+                    }else{
+                        res.json({success: true, message:"User found and updated", user:user})
+                    }
+                })
+            }
+        })
+    })
+        app.put('/users/getsupervisors/:username', function (req, res) {
+        console.log("here")
+           User.find({ name: req.params.username },  function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found" })
+            } else {
+                res.json({ success: true, message: "Supervisors Successfully Loaded..", supervisors: user[0].supervisors })
+            }
+        })
+    })
 
-                }
-            })
-
+    app.post("/users/addsupervisor", function (req, res) {
+        User.findOneAndUpdate({ name: req.body.username }, { $push: { supervisors: req.body } }, { new: true }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found.." })
+            } else {
+                res.json({ success: true, message: "Supervisor Successfully Loaded...", user: user })
+            }
         })
-           app.put('/users/removemessage/:name/:index', function (req, res) {
+    })
+        app.post('/users/removesupervisor', function(req,res){
+        User.find({name:req.body.name}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                user[0].supervisors.splice(req.body.index,1)
+                User.findOneAndUpdate({name:req.body.name}, {$set:{supervisors:user[0].supervisors }},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found..."})
+                    }else{
+                        res.json({success: true, message:"User found and updated", user:user})
+                    }
+                })
+            }
+        })
+    })
+
+    app.post('/users/addhourstobookedjob', function (req, res) {
+        console.log(req.body)
+        User.find({ name: req.body.currentuser }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                console.log(user)
+                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
+                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                    if (err) throw err;
+                    if (!user) {
+                        res.json({ success: false, message: "User not found..." })
+                    } else {
+                        res.json({ success: true, message: "User found and updated...", user: user })
+                    }
+                })
+
+            }
+        })
+
+    })
+    app.put('/users/removemessage/:name/:index', function (req, res) {
         User.find({ name: req.params.name }, function (err, user) {
             if (err) throw err;
             if (!user) {
@@ -122,7 +201,7 @@ module.exports = function (app) {
                 console.log(req.params.index)
                 console.log(user[0].comments[req.params.index])
                 user[0].comments[req.params.index].read = false;
-                user[0].comments.splice(req.params.index,1)
+                user[0].comments.splice(req.params.index, 1)
                 console.log(user[0].comments[req.params.index])
                 User.findOneAndUpdate({ name: req.params.name }, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
                     if (err) throw err;
@@ -135,7 +214,7 @@ module.exports = function (app) {
             }
         })
     })
-        app.put('/users/changemessagetounread/:name/:index', function (req, res) {
+    app.put('/users/changemessagetounread/:name/:index', function (req, res) {
         User.find({ name: req.params.name }, function (err, user) {
             if (err) throw err;
             if (!user) {
@@ -185,13 +264,13 @@ module.exports = function (app) {
         })
 
     })
-    app.post('/users/sendmessage', function(req,res){
-        User.findOneAndUpdate({name:req.body.to}, {$push:{comments:req.body}},{new:true}, function(err,user){
-            if(err)throw err;
-            if(!user){
-                res.json({success: false,message:"User not found"})
-            }else{
-                res.json({success: true, message:"User found and updated...",user:user})
+    app.post('/users/sendmessage', function (req, res) {
+        User.findOneAndUpdate({ name: req.body.to }, { $push: { comments: req.body } }, { new: true }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found" })
+            } else {
+                res.json({ success: true, message: "User found and updated...", user: user })
             }
         })
     })
@@ -211,14 +290,14 @@ module.exports = function (app) {
 
 
         PayPeriod.find({ payperiodnum: req.body.newpayperiod }, function (err, payperiod) {
-           // payperiod.jobDetails.push([])
+            // payperiod.jobDetails.push([])
             var newJobDetails = payperiod.jobDetails
 
             for (var i = 0; i < req.body.currentusernamearray.length; i++) {
                 console.log(req.body.currentusernamearray[i])
                 var currentName = req.body.currentusernamearray[i]
 
-                User.findOneAndUpdate({ name: req.body.currentusernamearray[i] }, { $set: { historyupdated: false,payperiodnum: req.body.newpayperiod } }, { new: true }, function (err, user2) {
+                User.findOneAndUpdate({ name: req.body.currentusernamearray[i] }, { $set: { historyupdated: false, payperiodnum: req.body.newpayperiod } }, { new: true }, function (err, user2) {
                     if (err) throw err;
                     if (!user2) {
                         res.json({ success: false, message: "User not found so not updated..." })
@@ -247,12 +326,12 @@ module.exports = function (app) {
 
             console.log(payperiod)
         })
-        User.find({}, function(err, users){
-            if(err)throw err;
-            if(!users){
-                res.json({success: false, message: "Users not found..."})
-            }else{
-                res.json({success: true, message: "Users found..", users:users})
+        User.find({}, function (err, users) {
+            if (err) throw err;
+            if (!users) {
+                res.json({ success: false, message: "Users not found..." })
+            } else {
+                res.json({ success: true, message: "Users found..", users: users })
             }
         })
         //res.json({ success: true, message: "Payperiod Update, and History Updated Parameter Update, Complete...", users: user })
@@ -338,7 +417,7 @@ module.exports = function (app) {
                 user[0].payperiods[0].jobDetails[7].push(req.body)
 
                 user[0].delinquenttimesheets.splice(req.body.index, 1)
-                User.findOneAndUpdate({ name: req.body.user }, 
+                User.findOneAndUpdate({ name: req.body.user },
                     {
                         $set: {
                             payperiods: user[0].payperiods,
@@ -551,35 +630,35 @@ module.exports = function (app) {
         })
     })
 
-    app.post('/users/editphonenumber', function(req,res){
+    app.post('/users/editphonenumber', function (req, res) {
 
-        User.findOneAndUpdate({name: req.body.name},{$set:{phonenumber: req.body.newphonenumber}},{new:true}, function(err,user){
-            if(err)throw err;
-            if(!user){
-                res.json({success: false, message:"User not found..."})
-            }else{
-                res.json({success: true, message: "User found and updated..", user:user})
+        User.findOneAndUpdate({ name: req.body.name }, { $set: { phonenumber: req.body.newphonenumber } }, { new: true }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                res.json({ success: true, message: "User found and updated..", user: user })
             }
         })
 
     })
-    app.post('/users/editemail', function(req,res){
-                User.findOneAndUpdate({name: req.body.name},{$set:{email: req.body.newemail}},{new:true}, function(err,user){
-            if(err)throw err;
-            if(!user){
-                res.json({success: false, message:"User not found..."})
-            }else{
-                res.json({success: true, message: "User found and updated..", user:user})
+    app.post('/users/editemail', function (req, res) {
+        User.findOneAndUpdate({ name: req.body.name }, { $set: { email: req.body.newemail } }, { new: true }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                res.json({ success: true, message: "User found and updated..", user: user })
             }
         })
     })
-    app.post('/users/editpayrate', function(req,res){
-                User.findOneAndUpdate({name: req.body.name},{$set:{payrate: req.body.newpayrate}},{new:true}, function(err,user){
-            if(err)throw err;
-            if(!user){
-                res.json({success: false, message:"User not found..."})
-            }else{
-                res.json({success: true, message: "User found and updated..", user:user})
+    app.post('/users/editpayrate', function (req, res) {
+        User.findOneAndUpdate({ name: req.body.name }, { $set: { payrate: req.body.newpayrate } }, { new: true }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                res.json({ success: true, message: "User found and updated..", user: user })
             }
         })
     })
@@ -978,7 +1057,7 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email,payrate:user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id,phonenumber:user.phonenumber,messages: user.comments}, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
@@ -1267,7 +1346,7 @@ module.exports = function (app) {
         user.phonenumber = req.body.phonenumber;
         user.password = req.body.password.toString(),
             user.email = req.body.email;
-            user.userclass = req.body.userclass;
+        user.userclass = req.body.userclass;
         user.name = req.body.name;
         user.payperiodnum = payperiodnum;
         user.historyupdated = false;
