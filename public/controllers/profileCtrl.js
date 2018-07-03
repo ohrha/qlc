@@ -78,6 +78,8 @@
         $scope.employeeJobDetails = {};
 
         $scope.requestEmployeePageLoading = false;
+         $scope.loadingRequestJob = false;
+                    $scope.loadingRequestJobSuccessful = false;
         $scope.requestedJobData = {
             client:null,
             worksitedetails:null,
@@ -109,11 +111,15 @@
             email: null,
             phonenumber: null
         };
+        $scope.submitJobDetailsPageOpen = false;
         $scope.submitSupervisorPageOpen = false;
         $scope.individualSupervisorOpen = true;
         $scope.submitLocationPageOpen = false;
         $scope.individualLocationOpen = true;
-
+            $scope.areYouSureSubmitRequestJob = false;
+            
+                $scope.individualRequestedJobOpen = true;
+            $scope.requestIndex = null;
         $scope.subconIndex = null;
         $scope.locationIndex = null;
         $scope.removeLocationLoading = false;
@@ -124,6 +130,15 @@
         $scope.addSupervisorSuccessful = false;
         $scope.submitLocationLoading = false;
         $scope.submitSupervisorLoading = false;
+        $scope.ppeCannotBeEmpty = false;
+        $scope.worksiteDetailsCannotBeEmpty = false;
+        $scope.descriptionOfWorkCannotBeEmpty = false;
+        $scope.numberOfWorkersCannotBeEmpty = false
+        $scope.worksiteAddressCannotBeEmpty = false;
+        $scope.clientCannotBeEmpty = false;
+        $scope.supervisorCannotBeEmpty = false;
+        $scope.locationCannotBeEmpty = false;
+        $scope.timeDataCannotBeEmpty = false;
         $scope.locationNameNotProvided = false;
         $scope.locationAddressNotProvided = false;
         $scope.locationPhoneNumberNotProvided = false;
@@ -848,10 +863,22 @@
             console.log("Not Logged In")
 
         }
-
-        $scope.submitRequest = function(){
+        $scope.submitRequest= function(){
+            $scope.loadingRequestJob = true;
             console.log($scope.requestedJobData)
-             $scope.requestedJobData = {
+            $scope.requestedJobData.approved = false;
+            User.requestJob($scope.requestedJobData).then(function(data){
+                console.log(data)
+                if(data.data.success){
+                    $scope.loadingRequestJob = false;
+                    $scope.areYouSureSubmitRequestJob = false
+                    $scope.loadingRequestJobSuccessful = true;
+                    $timeout(function(){
+                        $scope.loadingRequestJobSuccessful = false;
+                    })
+
+                }
+                 $scope.requestedJobData = {
             client:null,
             worksitedetails:null,
             ppe:null,
@@ -869,13 +896,28 @@
             minsOut1:null,
             minsOut2:null
         }
+            })
+        }
+        $scope.closeAreYouSureSubmitRequest = function(){
+            $scope.areYouSureSubmitRequestJob = false;
+        }
+        $scope.areYouSureSubmitRequest = function(){
+            console.log($scope.requestedJobData)
+           $('select').material_select();
+        
            if($scope.requestedJobData.ppe == null){
             $scope.ppeCannotBeEmpty = true;
         }
          if($scope.requestedJobData.worksitedetails == null){
             $scope.worksiteDetailsCannotBeEmpty = true;
         }
-         if($scope.requestedJobData.worksitedetails == null){
+          if($scope.requestedJobData.descriptionofwork == null){
+            $scope.descriptionOfWorkCannotBeEmpty = true;
+        }
+           if($scope.requestedJobData.numberofworkers == null){
+            $scope.numberOfWorkersCannotBeEmpty = true;
+        }
+         if($scope.requestedJobData.workdetails == null){
             $scope.worksiteAddressCannotBeEmpty = true;
         }
          if($scope.requestedJobData.client == null){
@@ -887,18 +929,52 @@
         if($scope.requestedJobData.location == null){
             $scope.locationCannotBeEmpty = true;
         }
+  
             if( $scope.requestedJobData.hrsIn1 == null ||
             $scope.requestedJobData.hrsIn2 == null ||
             $scope.requestedJobData.hrsOut1 == null ||
-            $scope.requestedJobData.hrsOut1 == null ||
+            $scope.requestedJobData.hrsOut2 == null ||
             $scope.requestedJobData.minsIn1 == null ||
             $scope.requestedJobData.minsIn2 == null ||
             $scope.requestedJobData.minsOut1 == null ||
             $scope.requestedJobData.minsOut2 == null ||
             $scope.requestedJobData.amPm1 == null ||
             $scope.requestedJobData.amPm2 == null ){
+
                 $scope.timeDataCannotBeEmpty = true;
             }
+            if($scope.requestedJobData.hrsIn1 !== null &&
+            $scope.requestedJobData.hrsIn2 !== null &&
+            $scope.requestedJobData.hrsOut1 !== null &&
+            $scope.requestedJobData.hrsOut2 !== null &&
+            $scope.requestedJobData.minsIn1 !== null &&
+            $scope.requestedJobData.minsIn2 !== null &&
+            $scope.requestedJobData.minsOut1 !== null &&
+            $scope.requestedJobData.minsOut2 !== null &&
+            $scope.requestedJobData.amPm1 !== null &&
+            $scope.requestedJobData.amPm2 !== null ){
+
+                $scope.requestedJobData.hours = 
+                $scope.requestedJobData.hrsIn1+$scope.requestedJobData.hrsIn2+":"+
+                $scope.requestedJobData.minsIn1+$scope.requestedJobData.minsIn2+$scope.requestedJobData.amPm1+" - "+
+                $scope.requestedJobData.hrsOut1+$scope.requestedJobData.hrsOut2+":"+
+                $scope.requestedJobData.minsOut1+$scope.requestedJobData.minsOut2+$scope.requestedJobData.amPm1
+                console.log($scope.requestedJobData.hours)
+                  if($scope.requestedJobData.location !== null &&
+           $scope.requestedJobData.supervisor !== null&&
+           $scope.requestedJobData.client !== null &&
+           $scope.requestedJobData.workdetails !== null &&
+           $scope.requestedJobData.numberofworkers !== null &&
+           $scope.requestedJobData.descriptionofwork !== null &&
+           $scope.requestedJobData.ppe !== null
+
+            ){
+                console.log($scope.requestJobDetails)
+                 $scope.areYouSureSubmitRequestJob = true;
+            }
+
+            }
+                
             
         }
         $scope.submitSupervisor = function () {
@@ -1094,6 +1170,77 @@
                 $scope.requestEmployeePageOpen = true;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
+                
+                $scope.addSupervisorPageOpen = false;
+                User.getRequestedJobs($scope.userName).then(function (data) {
+                    console.log(data)
+                    $scope.requestedJobsArray = data.data.requestedjobs;
+                    //$scope.locationIndex = index;
+
+                    $scope.pageLimit = 4;
+                    $scope.requestedJobsPaginated = [];
+                    $scope.requestedJobsForPagination = [];
+                    for (var i = 0; i <= $scope.requestedJobsArray.length; i++) {
+
+                        var page = 0;
+                        ////console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log($scope.employees)
+                        if (i < $scope.pageLimit) {
+                            console.log("its less")
+
+                        }
+                        if (i < $scope.requestedJobsArray.length) {
+                            console.log("yup,less")
+                        }
+
+                        if (i < $scope.pageLimit && i < $scope.requestedJobsArray.length) {//5
+                            console.log("HELLO")
+                            //console.log($scope.employees[i])
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            if ($scope.requestedJobsArray[i]) {
+                                $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
+                                console.log(i)
+                                console.log("firstCondiation")
+                                console.log($scope.pageArray)
+
+                            }
+
+
+
+                        } else {
+                            if (!$scope.usersLoaded) {
+
+                                console.log("else")
+                                $scope.loadingUsers = false;
+                                $scope.requestedJobsPaginated.push($scope.requestedJobsForPagination)
+                            console.log($scope.requestedJobsPaginated)
+                                $scope.requestedJobsForPagination = [];
+                                if ($scope.requestedJobsArray[i] !== undefined) {
+                                    $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
+                                }
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                page++
+
+                            }
+
+                        }
+
+                    }
+
+                
+             
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+
+                })
+                    
+               
+
+            
 
             } else {
                 $scope.requestEmployeePageOpen = false;
@@ -1110,10 +1257,16 @@
             $scope.name = data.data.name;
             $scope.email = data.data.email;
             $scope.user_id = $routeParams.userid
-            $scope.locationsArray = data.data.locations;
-            $scope.supervisorsArray = data.data.supervisors
+          
             console.log($scope.user_id)
+             User.findUser($scope.name).then(function(data){
+            console.log(data)
+              $scope.locationsArray = data.data.user[0].locations;
+            $scope.supervisorsArray = data.data.user[0].supervisors
+
         })
+        })
+       
         $scope.addPayPeriodToPayPeriodHistory = function () {
             // console.log(details)
             $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
@@ -1425,6 +1578,8 @@
             }
             User.removeSupervisor(supervisorData).then(function(data){
                 console.log(data)
+                 $scope.supervisorsArray = data.data.supervisors;
+
                 $scope.removeSupervisorLoading = false;
                 $scope.addSupervisorPageOpen =false;
                 $scope.subconIndex = null;
@@ -1440,6 +1595,7 @@
 
             User.removeLocation(locationData).then(function(data){
                 console.log(data)
+                $scope.locationsArray = data.data.locations;
                 $scope.removeLocationLoading = false;
                 $scope.addLocationPageOpen =false;
                 $scope.locationIndex = null;
@@ -1480,6 +1636,42 @@
                 //$scope.removeChart = false;
             }
 
+        }
+        $scope.openIndividualRequestedJob = function(index){
+
+            if ($scope.individualRequestedJobOpen && index !== $scope.requestIndex
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                $scope.messageLoading = true;
+                $scope.requestIndex = index;
+                individualRequestedJobOpen
+
+               
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+            }
+
+
+            else if (!$scope.individualRequestedJobOpen && index == $scope.requestIndex) {
+                $scope.individualSupervisorOpen = true;
+                console.log("second")
+                console.log($scope.timesheetEntryOpen)
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.individualRequestedJobOpen && index !== $scope.requestIndex) {
+                console.log("third")
+                $scope.individualRequestedJobOpen = true;
+                console.log($scope.timesheetEntryOpen)
+                $scope.requestIndex = index;
+            } else {
+                console.log("last")
+                $scope.requestIndex = null
+
+                // $scope.showChart = true;
+                //$scope.removeChart = false;
+            }
         }
         $scope.openIndividualSupervisor = function(index){
  if ($scope.individualSupervisorOpen && index !== $scope.subconIndex
@@ -1682,6 +1874,7 @@
                 $scope.complaintsPageClientOpen = false;
             }
         }
+
         $scope.openAddLocationPage = function () {
             if (!$scope.addLocationPageOpen) {
                 $scope.addLocationPageOpen = true;

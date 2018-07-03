@@ -18,6 +18,12 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.get('/api/users')
 
     }
+    userFactory.requestJob = function(jobData){
+        return $http.post('/api/users/requestjob', jobData)
+    }
+    userFactory.getRequestedJobs = function(client){
+        return $http.put('/api/users/getrequestedjobs/'+client)
+    }
     userFactory.addJob = function(jobData){
         return $http.post('/api/users/addjob',jobData)
     }
@@ -25,6 +31,7 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.post('/api/users/removejob',jobData)
     }
     userFactory.findUser = function(name){
+        console.log(name)
         return $http.put('/api/users/finduser/'+name)
     }
     userFactory.removeUser = function(name){

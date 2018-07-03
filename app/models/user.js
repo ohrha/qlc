@@ -29,6 +29,8 @@ var UserSchema = new Schema({
     June:{type:Array},
     jobDetails:{type:Array},
     supervisors:{type:Array},
+    requestedjobs:{type:Array},
+    approvedjobs:{type:Array},
     locations:{type:Array}
 
 

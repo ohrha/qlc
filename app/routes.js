@@ -41,7 +41,45 @@ module.exports = function (app) {
             });
     
         })
+
         */
+        app.put('/users/getrequestedjobs/:client', function(req,res){
+            User.find({name:req.params.client}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"User not found..."})
+                }else{
+                    res.json({success: true, message:"Requested Jobs Found..", requestedjobs:user[0].requestedjobs} )
+                }
+            })
+        })
+        app.post('/users/requestjob', function(req,res){
+
+            User.find({userclass:"admin"}, function(err,user){
+                if(err)throw err
+                if(!user){
+                    res.json({success: false, message:"User not found"})
+                }else{
+                    console.log(user[0])
+                    user[0].requestedjobs.push(req.body)
+                    User.findOneAndUpdate({userclass: "admin"},{$set:{requestedjobs:user[0].requestedjobs}}, {new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"User not found"})
+                        }else{
+                            User.findOneAndUpdate({name:req.body.client}, {$push:{requestedjobs: req.body}},{new:true}, function(err,user){
+                                if(err)throw err;
+                                if(!user){
+                                    res.json({success: false,message:"User not found.."})
+                                }else{
+                                    res.json({success: true, message: "User Found And uPDated...", user:user})
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        })
     app.post('/users/changepayperiodhistoryentrytounpaid', function (req, res) {
         //User.findOneAndUpdate({name:req.body.name}, {$set:{}})
         User.find({ name: req.body.name }, function (err, user) {
@@ -620,6 +658,7 @@ module.exports = function (app) {
         })
     })
     app.put('/users/finduser/:name', function (req, res) {
+        console.log(req.params.name)
         User.find({ name: req.params.name }, function (err, user) {
             if (err) throw err;
             if (!user) {
