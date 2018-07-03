@@ -111,6 +111,9 @@
             email: null,
             phonenumber: null
         };
+        $scope.iAgreeData={
+            yes:false
+        }
         $scope.submitJobDetailsPageOpen = false;
         $scope.submitSupervisorPageOpen = false;
         $scope.individualSupervisorOpen = true;
@@ -149,6 +152,7 @@
         $scope.supervisorNameNotProvided = false;
         $scope.supervisorEmailNotProvided = false;
         $scope.supervisorPhoneNumberNotProvided = false;
+        $scope.shakeOn = false;
 
 
 
@@ -192,9 +196,21 @@
         };
         console.log($routeParams)
 
+        $scope.iAgreeFunc = function(){
+            console.log($scope.iAgreeData)
+        }
+        $scope.continueRegistration = function(){
+            if($scope.iAgreeData.yes){
+                console.log("You Agree! >:)")
+            }else{
+                    $scope.shakeOn = true;
+            $timeout(function(){
+$scope.shakeOn = false;
+            },2000)
 
-
-
+            }
+        
+        }
         setTimeout(function () {
 
             //$('.tap-target').tapTarget('open');
@@ -890,6 +906,8 @@
             $scope.loadingRequestJob = true;
             console.log($scope.requestedJobData)
             $scope.requestedJobData.approved = false;
+            $scope.requestedJobData.dateNum = $scope.dateNow;
+            $scope.requestedJobData.monthNum =$scope.month;
             User.requestJob($scope.requestedJobData).then(function(data){
                 console.log(data)
                 if(data.data.success){

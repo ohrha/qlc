@@ -444,194 +444,195 @@
     <!-- ADD LOCATION PAGE -->
 
 
-<!-- REQUEST EMPLOYEE PAGE -->
+    <!-- REQUEST EMPLOYEE PAGE -->
 
 
     <div class="col s12 center-align " ng-show="requestEmployeePageLoading ">
         <p class="railway animated flash infinite" style="font-size:20px;"> LOADING</p>
     </div>
     <div class="col s12 center-align animated fadeIn" ng-show="requestEmployeePageOpen && !requestEmployeePageLoading">
-        
-                        <div class="row">
-                            <div class="col s2" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;"> Name</p>
-                            </div>
-                            <div class="col s10" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;">Details</p>
-                            </div>
-                            <div ng-show="requestedJobsPaginated[0].length == 0" class="col s12">
-                                <br>
 
-                                <div class="row">
+        <div class="row">
+            <div class="col s2" style="border-bottom:1px solid #ddd;">
+                <p class="railway underline" style="font-size:18px;"> Name</p>
+            </div>
+            <div class="col s10" style="border-bottom:1px solid #ddd;">
+                <p class="railway underline" style="font-size:18px;">Details</p>
+            </div>
+            <div ng-show="requestedJobsPaginated[0].length == 0" class="col s12">
+                <br>
 
-                                    <div class=" col s2 animated fadeIn railway truncate">
-                                    </div>
+                <div class="row">
 
-                                    <div class="col s10  railway">
-                                        <p class="railway"> ( No Jobs Requested  )</p>
-                                    </div>
+                    <div class=" col s2 animated fadeIn railway truncate">
+                    </div>
 
-                                </div>
+                    <div class="col s10  railway">
+                        <p class="railway"> ( No Jobs Requested )</p>
+                    </div>
 
-                            </div>
-                            <div ng-show="requestedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in requestedJobsPaginated[page] track by $index">
-                                <br>
-                                <div class="row">
-                                    
+                </div>
 
-                                    <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
-                                        <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                            <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
-                                        </a>
-                                    </div>
-                                     <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
-                                        <p class="railway green-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REQUESTED JOB SUCCESSFULLY REMOVED</p>
-                                    </div>
-                                    <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && removeRequestedJobLoading && !removeRequestedJobSuccessful ">
-                                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING REQUESTED JOB</p>
-                                    </div>
-                                    <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful" class="col s10 railway" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway"> {{page.location}}</p>
-                                        <p class="railway"> {{page.supervisor}}</p>
-                                        <p class="railway"> {{page.hours}}</p>
-                                        <div ng-show="!page.approved">
-                                            <span class = "railway underline">Status</span>
-                                            <p class = "railway red-text  text-lighten-3"> Not Yet Approved</p>
-                                        <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
-                                    </div>
-                                         <div ng-show="page.approved">
-                                            <span class = "railway underline">Status</span>
-                                            <p class = "railway red-text text-lighten-3"> Job Requirements Have Been Approved And Booked</p>
-                                        <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
-                                    </div>
-                                    <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
+            </div>
+            <div ng-show="requestedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in requestedJobsPaginated[page] track by $index">
+                <br>
+                <div class="row">
 
-                                    </div>
 
-                                </div>
-
-                            </div>
+                    <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
+                        <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
+                            <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
+                        </a>
+                    </div>
+                    <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
+                        <p class="railway green-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REQUESTED JOB SUCCESSFULLY REMOVED</p>
+                    </div>
+                    <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && removeRequestedJobLoading && !removeRequestedJobSuccessful ">
+                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING REQUESTED JOB</p>
+                    </div>
+                    <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
+                        class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                        <p class="railway"> {{page.location}}</p>
+                        <p class="railway"> {{page.supervisor}}</p>
+                        <p class="railway"> {{page.hours}}</p>
+                        <div ng-show="!page.approved">
+                            <span class="railway underline">Status</span>
+                            <p class="railway red-text  text-lighten-3"> Not Yet Approved</p>
+                            <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                         </div>
-
-                        <div class="col s2">
+                        <div ng-show="page.approved">
+                            <span class="railway underline">Status</span>
+                            <p class="railway red-text text-lighten-3"> Job Requirements Have Been Approved And Booked</p>
+                            <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                         </div>
-                        <div class="col s10 center-align">
-                            <ul class="pagination">
-                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+                        <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
 
-                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
-                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
-
-                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
-                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
-
-                            </ul>
                         </div>
 
                     </div>
-             
 
-
-            
-
-    
-
-        <div class = "row" >
-            <div class = "col s2">
+                </div>
             </div>
-            <div class = "col s10  center-align">
-                <p class = "railway underline" style="font-size:20px;"> Request A Job </p>
+
+            <div class="col s2">
             </div>
-        </div>     
-           <div class = "row " ng-show="loadingRequestJobSuccessful">
-               <div class = "col s2">
-               </div>
-             <div class ="col s10 center-align">
-            <p class = "railway underline animated flash  text-green text-lighten-3" style="font-size:20px;"> JOB SUCCESSFULLY REQUESTED </p>
-            <p class = "railway underline   " style="font-size:17px;"> (You Will Be Notified Upon Approval) </p>
+            <div class="col s10 center-align">
+                <ul class="pagination">
+                    <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                    <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                        ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                    <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                </ul>
+            </div>
+
+        </div>
 
 
 
+
+
+
+
+        <div class="row">
+            <div class="col s2">
             </div>
-        </div>   
-        <div class = "row " ng-show="loadingRequestJob && !loadingRequestJobSuccessful">
-            <div class = "col s2">
+            <div class="col s10  center-align">
+                <p class="railway underline" style="font-size:20px;"> Request A Job </p>
             </div>
-             <div class ="col s10 center-align">
-            <p class = "railway underline animated flash infinite " style="font-size:20px;"> LOADING JOB REQUEST </p>
+        </div>
+        <div class="row " ng-show="loadingRequestJobSuccessful">
+            <div class="col s2">
+            </div>
+            <div class="col s10 center-align">
+                <p class="railway underline animated flash  text-green text-lighten-3" style="font-size:20px;"> JOB SUCCESSFULLY REQUESTED </p>
+                <p class="railway underline   " style="font-size:17px;"> (You Will Be Notified Upon Approval) </p>
 
 
 
             </div>
         </div>
-        <div class ="row animated fadeIn" ng-show="areYouSureSubmitRequestJob && !loadingRequestJob && !loadingRequestJobSuccessful">
-            <div class ="col s2">
+        <div class="row " ng-show="loadingRequestJob && !loadingRequestJobSuccessful">
+            <div class="col s2">
             </div>
-            <div class ="col s10 center-align">
-            <p class = "railway underline" style="font-size:20px;"> Are These Details Correct? </p>
+            <div class="col s10 center-align">
+                <p class="railway underline animated flash infinite " style="font-size:20px;"> LOADING JOB REQUEST </p>
 
 
 
             </div>
-            <div class = "col s2">
+        </div>
+        <div class="row animated fadeIn" ng-show="areYouSureSubmitRequestJob && !loadingRequestJob && !loadingRequestJobSuccessful">
+            <div class="col s2">
             </div>
-            <div class = "col s10 center-align">
-                <p class = "railway " style="font-size:17px; text-decoration:underline;">Client</p>
-                <span class = "railway" style="font-size:15px;">{{requestedJobData.client}}</span>
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">Supervisor</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.supervisor}}</span>
-
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">Location</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.location}}</span>
+            <div class="col s10 center-align">
+                <p class="railway underline" style="font-size:20px;"> Are These Details Correct? </p>
 
 
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">Approximate Hours</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.hours}}</span>
 
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">Worksite Details</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.workdetails}}</span>
-
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">Description Of Work</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.descriptionofwork}}</span>
-
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">Number Of Workers Requested</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.numberofworkers}}</span>
-
-                <p class = "railway " style="font-size:17px;text-decoration:underline;">PPE?</p>
-                                <span class = "railway" style="font-size:15px;">{{requestedJobData.ppe}}</span>
-                            <div class = "row">
-                                <div class = "col s6 center-align">
-                                    <i ng-click="submitRequest()" class = "material-icons green-text text-lighten-3">check_circle</i>
-                                </div>
-                                <div class = "col s6 center-align">
-                                <i  ng-click = "closeAreYouSureSubmitRequest()"class = "material-icons red-text text-lighten-3">cancel</i>
-
-                                </div> 
-                            </div>
             </div>
-        
+            <div class="col s2">
+            </div>
+            <div class="col s10 center-align">
+                <p class="railway " style="font-size:17px; text-decoration:underline;">Client</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.client}}</span>
+                <p class="railway " style="font-size:17px;text-decoration:underline;">Supervisor</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.supervisor}}</span>
+
+                <p class="railway " style="font-size:17px;text-decoration:underline;">Location</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.location}}</span>
+
+
+                <p class="railway " style="font-size:17px;text-decoration:underline;">Approximate Hours</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.hours}}</span>
+
+                <p class="railway " style="font-size:17px;text-decoration:underline;">Worksite Details</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.workdetails}}</span>
+
+                <p class="railway " style="font-size:17px;text-decoration:underline;">Description Of Work</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.descriptionofwork}}</span>
+
+                <p class="railway " style="font-size:17px;text-decoration:underline;">Number Of Workers Requested</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.numberofworkers}}</span>
+
+                <p class="railway " style="font-size:17px;text-decoration:underline;">PPE?</p>
+                <span class="railway" style="font-size:15px;">{{requestedJobData.ppe}}</span>
+                <div class="row">
+                    <div class="col s6 center-align">
+                        <i ng-click="submitRequest()" class="material-icons green-text text-lighten-3">check_circle</i>
+                    </div>
+                    <div class="col s6 center-align">
+                        <i ng-click="closeAreYouSureSubmitRequest()" class="material-icons red-text text-lighten-3">cancel</i>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="row" ng-show="!areYouSureSubmitRequestJob &&!loadingRequestJob && !loadingRequestJobSuccessful">
 
 
-<div class = "col s2">
-</div>
+            <div class="col s2">
+            </div>
             <form class="col s10">
                 <div class="row">
                     <div class="input-field col s12">
-                        
-                        <input value="{{userName}}" id="first_name" name="client" ng-model="requestedJobData.client"type="text" class="validate">
+
+                        <input value="{{userName}}" id="first_name" name="client" ng-model="requestedJobData.client" type="text" class="validate">
                         <label for="first_name">Client</label>
                     </div>
-                   
+
                 </div>
-         
-           
+
+
                 <div class="row">
 
                     <div class="input-field col s12">
-                        <select ng-model="requestedJobData.supervisor"name="supervisor">
+                        <select ng-model="requestedJobData.supervisor" name="supervisor">
       <option value="" disabled selected>Choose a Supervisor</option>
       <option ng-repeat ="supervisor in supervisorsArray"value="{{supervisor.name}}">{{supervisor.name}}</option>
       
@@ -639,16 +640,16 @@
     </select>
                         <label>Supervisor</label>
                         <div class="animated flash">
-                             <span ng-show='supervisorCannotBeEmpty' class="railway"> A Supervisor Must Be Provided </span>
-                             <span ng-show='!supervisorsArray.length' class="railway"> You Must First Load Supervisors In The Add Locations Page </span>
+                            <span ng-show='supervisorCannotBeEmpty' class="railway"> A Supervisor Must Be Provided </span>
+                            <span ng-show='!supervisorsArray.length' class="railway"> You Must First Load Supervisors In The Add Locations Page </span>
 
-                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
 
                     <div class="input-field col s12">
-                        <select ng-model="requestedJobData.location"name="location">
+                        <select ng-model="requestedJobData.location" name="location">
       <option value="" disabled selected>Choose a Location</option>
       <option ng-repeat ="location in locationsArray"value="{{location.name}}">{{location.name}}</option>
       <div class="animated flash">
@@ -658,61 +659,102 @@
             
     </select>
                         <label>Location</label>
-                         <div class="animated flash">
-                             <span ng-show='locationCannotBeEmpty' class="railway"> A Worksite Location Must Be Provided </span>
-                            </div>
+                        <div class="animated flash">
+                            <span ng-show='locationCannotBeEmpty' class="railway"> A Worksite Location Must Be Provided </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <select ng-model="requestedJobData.date" name="date">
+      <option value="" disabled selected>Yes/No</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+         <option value="3">3</option>
+      <option value="4">4</option>
+         <option value="5">5</option>
+      <option value="6">6</option>
+         <option value="7">7</option>
+      <option value="8">8</option>
+         <option value="9">9</option>
+      <option value="10">10</option>
+         <option value="11">11</option>
+      <option value="12">12</option>
+         <option value="13">13</option>
+      <option value="14">14</option>
+         <option value="15">15</option>
+      <option value="16">16</option>
+         <option value="17">17</option>
+      <option value="18">18</option>
+         <option value="19">19</option>
+      <option value="20">20</option>
+         <option value="21">21</option>
+      <option value="22">22</option>
+         <option value="23">23</option>
+      <option value="24">24</option>
+         <option value="25">25</option>
+      <option value="26">26</option>
+         <option value="27">27</option>
+      <option value="28">28</option>
+         <option value="29">29</option>
+      <option value="30">30</option>
+         <option value="31">31</option>
+          
+    </select>
+                    <label>Special PPE Required?</label>
+                    <div class="animated flash">
+                        <span ng-show='ppeCannotBeEmpty' class="railway"> PPE Requirement Must Be Specified </span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea" ng-model="requestedJobData.workdetails"name="workdetails"></textarea>
+                        <textarea id="textarea1" class="materialize-textarea" ng-model="requestedJobData.workdetails" name="workdetails"></textarea>
                         <label for="textarea1">Worksite Details</label>
-                           <div class="animated flash">
-                             <span ng-show='worksiteDetailsCannotBeEmpty' class="railway"> A Worksite Details Must Be Provided </span>
-                            </div>
+                        <div class="animated flash">
+                            <span ng-show='worksiteDetailsCannotBeEmpty' class="railway"> A Worksite Details Must Be Provided </span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
 
                     <div class="input-field col s12">
-                        <select ng-model="requestedJobData.ppe"name="ppe">
+                        <select ng-model="requestedJobData.ppe" name="ppe">
       <option value="" disabled selected>Yes/No</option>
       <option value="Yes">Yes</option>
       <option value="No">No</option>
           
     </select>
                         <label>Special PPE Required?</label>
-                           <div class="animated flash">
-                             <span ng-show='ppeCannotBeEmpty' class="railway"> PPE Requirement Must Be Specified </span>
-                            </div>
+                        <div class="animated flash">
+                            <span ng-show='ppeCannotBeEmpty' class="railway"> PPE Requirement Must Be Specified </span>
+                        </div>
                     </div>
                 </div>
-        
+
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea" name="descriptionofwork"ng-model="requestedJobData.descriptionofwork"></textarea>
+                        <textarea id="textarea1" class="materialize-textarea" name="descriptionofwork" ng-model="requestedJobData.descriptionofwork"></textarea>
                         <label for="textarea1">Description Of Work</label>
-                         <div class="animated flash">
-                             <span ng-show='descriptionOfWorkCannotBeEmpty' class="railway"> Description Of Work Must Be Provided </span>
-                            </div>
+                        <div class="animated flash">
+                            <span ng-show='descriptionOfWorkCannotBeEmpty' class="railway"> Description Of Work Must Be Provided </span>
+                        </div>
                     </div>
                 </div>
-                         <div class="row">
+                <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="number" name = "numberofworkers" ng-model="requestedJobData.numberofworkers" class="validate">
+                        <input id="email" type="number" name="numberofworkers" ng-model="requestedJobData.numberofworkers" class="validate">
                         <label for="email"># Of Workers Requested</label>
-                         <div class="animated flash">
-                             <span ng-show='numberOfWorkersCannotBeEmpty' class="railway"> Number Of Workers Must Be Provided </span>
-                            </div>
+                        <div class="animated flash">
+                            <span ng-show='numberOfWorkersCannotBeEmpty' class="railway"> Number Of Workers Must Be Provided </span>
+                        </div>
                     </div>
                 </div>
-                    
+
                 <!-- START TIMES -->
-                <div class = "row">
-                    <div class = "col s12 center-align">
-                            <p class = "railway underline" style="font-size:17px;"> Approximate Start/End Time</p>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <p class="railway underline" style="font-size:17px;"> Approximate Start/End Time</p>
                     </div>
                 </div>
 
@@ -841,35 +883,35 @@
     </select>
                 </div>
 
- <div class="animated flash">
-                             <span ng-show='timeDataCannotBeEmpty' class="railway"> Time Data Must Be Completed </span>
-                            </div>
-                    </div>
-
-                <!-- BOOKING HOURS -->
-
-            
-
-<a ng-click="areYouSureSubmitRequest()" class="waves-effect waves-light btn">Submit Request</a>
-
-            </form>
-        </div>
-        </div>
+                <div class="animated flash">
+                    <span ng-show='timeDataCannotBeEmpty' class="railway"> Time Data Must Be Completed </span>
+                </div>
         </div>
 
+        <!-- BOOKING HOURS -->
 
+
+
+        <a ng-click="areYouSureSubmitRequest()" class="waves-effect waves-light btn">Submit Request</a>
+
+        </form>
     </div>
-    <div class="col s12 center-align" ng-show="reviewSubmittedTimeSheetsPageOpen">
-        <div class="row">
-            <p class="railway underline" style="font-size:25px;"> Review Submitted Time Sheets</p>
-        </div>
+</div>
+</div>
 
-    </div>
-    <div class="col s12 center-align" ng-show="complaintsPageClientOpen">
-        <div class="row">
-            <p class="railway underline" style="font-size:25px;"> Complaints</p>
-        </div>
 
+</div>
+<div class="col s12 center-align" ng-show="reviewSubmittedTimeSheetsPageOpen">
+    <div class="row">
+        <p class="railway underline" style="font-size:25px;"> Review Submitted Time Sheets</p>
     </div>
+
+</div>
+<div class="col s12 center-align" ng-show="complaintsPageClientOpen">
+    <div class="row">
+        <p class="railway underline" style="font-size:25px;"> Complaints</p>
+    </div>
+
+</div>
 
 </div>

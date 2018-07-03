@@ -57,6 +57,13 @@
                 controllerAs: 'profile'
 
             })
+                 .when('/clientregister', {
+                templateUrl: '../views/pages/clientregister.html',
+                name: "QLH | CLIENT REGISTRATION",
+                controller: "profileCtrl",
+                controllerAs: 'profile'
+
+            })
             .when('/clientprofile/:userid', {
                 templateUrl: '../views/pages/clientprofile.html',
                 name: "QLH | CLIENT",

@@ -38,6 +38,8 @@ $scope.requestedJobsPageOpen = false;
 $scope.requestedJobsPageSelected = false;
 $scope.individualRequestedJobOpen = true;
 $scope.requestIndex = null;
+$scope.approvingRequest = false;
+$scope.disApprovingRequest =false;
         $scope.clientHome = true;
         $scope.clientListOpen = false;
         $scope.employeeListOpen = false;
@@ -2439,9 +2441,37 @@ $scope.requestIndex = null;
                 $scope.userFilePage = true;
             }
         }
-        $scope.approveJob= function(job){
-            job.approved = true;
+        $scope.approveJob= function(job,index){
+            //job.approved = true;
+            job.index = index;
+            $scope.approvingRequest = true;
             console.log(job)
+            User.changeRequestedJobToApproved(job).then(function(data){
+                console.log(data)
+                $scope.requestedJobsArray = data.data.user.requestedjobs
+                $scope.approvingRequest = false;
+                $scope.requestedJobsPageOpen = false;
+                $scope.openRequestedJobsPage();
+
+
+            })
+
+        }
+                $scope.disApproveJob= function(job,index){
+            //job.approved = true;
+            job.index = index;
+            $scope.disApprovingRequest = true;
+            console.log(job)
+            User.changeRequestedJobToDisApproved(job).then(function(data){
+                console.log(data)
+                $scope.requestedJobsArray = data.data.user.requestedjobs
+                $scope.disApprovingRequest = false;
+                $scope.requestedJobsPageOpen = false;
+                $scope.openRequestedJobsPage();
+
+
+            })
+
         }
          $scope.openIndividualRequestedJob = function(index){
 

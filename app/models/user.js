@@ -31,6 +31,7 @@ var UserSchema = new Schema({
     supervisors:{type:Array},
     requestedjobs:{type:Array},
     approvedjobs:{type:Array},
+    approvednotbooked:{type:Array},
     locations:{type:Array}
 
 

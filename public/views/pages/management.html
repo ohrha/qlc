@@ -284,25 +284,43 @@
                                         <div ng-show="!page.approved">
                                             <span class = "railway underline">Status</span>
                                             <p class = "railway red-text  text-lighten-3"> Not Yet Approved</p>
-                                            <div class = "row">
+                                            <div class = "row" ng-show="approvingRequest">
+                                                <div class = "col s12 center-align">
+                                                    <p class = "railway animated flash infinite green-text text-lighten-3"> APPROVING JOB </p>
+                                                </div>
+                                            </div>
+                                                <div class = "row" ng-show="disApprovingRequest">
+                                                <div class = "col s12 center-align">
+                                                    <p class = "railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
+                                                </div>
+                                            </div>
+                                            <div class = "row" ng-show="!approvingRequest && !disApprovingRequest">
                                                 <div class = "col s12 center-align">
                                                     <p class = "railway"> Do You Approve Of This Request?</p>
                                                 </div>
                                             <div class = "col s6 center-align">
-                                                <i ng-click ="approveJob(page);"class = "material-icons green-text text-lighten-3">check_circle</i>
+                                                <i ng-click ="approveJob(page,$index);"class = "material-icons green-text text-lighten-3">check_circle</i>
                                             </div>
                                             <div class = "col s6 center-align">
-                                            <i class = "material-icons red-text text-lighten-3">cancel</i>
+                                            <i ng-click ="disApproveJob(page,$index);"class = "material-icons red-text text-lighten-3">cancel</i>
 
                                             </div>
                                             </div>
 
                                         <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                                     </div>
-                                         <div ng-show="page.approved ">
+                                         <div class = "row" ng-show="disApprovingRequest">
+                                                <div class = "col s12 center-align">
+                                                    <p class = "railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
+                                                </div>
+                                            </div>
+                                         <div ng-show="page.approved &&!disApprovingRequest ">
                                             <span class = "railway underline">Status</span>
+                                            
                                             <p class = "railway green-text text-lighten-3"> Job Has Been Approved</p>
                                             <span ng-show="page.booked" class = "railway black-text text-lighten-3"> (Job Has Been Booked)</span>
+                                             <p ng-click="disApproveJob(page,$index)"  class = "railway black-text text-lighten-3 " style="text-decoration:underline;"> undo</p>
+
                                            <span ng-show="!page.booked" class = "railway red-text text-lighten-3"> (Not Yet Booked)</span>
                                            <br>
                                         <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>

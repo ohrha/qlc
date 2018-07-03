@@ -55,6 +55,12 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.getSupervisors = function(username){
         return $http.put('/api/users/getsupervisors/'+username)
     }
+    userFactory.changeRequestedJobToApproved = function(jobData){
+        return $http.post('/api/users/changerequestedjobtoapproved',jobData)
+    }
+      userFactory.changeRequestedJobToDisApproved = function(jobData){
+        return $http.post('/api/users/changerequestedjobtodisapproved',jobData)
+    }
     userFactory.removeLocation = function(locationData){
         return $http.post('/api/users/removelocation', locationData)
     }
