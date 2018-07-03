@@ -29,6 +29,15 @@
         $scope.historyEntryOpen = true;
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
+        $scope.loadingCurrentClient = false;
+            
+        $scope.clientDetailsPageOpen = false;
+        $scope.currentClientFile = "";
+$scope.requestedJobsArray = [];
+$scope.requestedJobsPageOpen = false;
+$scope.requestedJobsPageSelected = false;
+$scope.individualRequestedJobOpen = true;
+$scope.requestIndex = null;
         $scope.clientHome = true;
         $scope.clientListOpen = false;
         $scope.employeeListOpen = false;
@@ -2429,6 +2438,113 @@
                 $scope.currentUserFile = name;
                 $scope.userFilePage = true;
             }
+        }
+         $scope.openIndividualRequestedJob = function(index){
+
+            if ($scope.individualRequestedJobOpen && index !== $scope.requestIndex
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                $scope.messageLoading = true;
+                $scope.requestIndex = index;
+                individualRequestedJobOpen
+
+               
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+            }
+
+
+            else if (!$scope.individualRequestedJobOpen && index == $scope.requestIndex) {
+                $scope.individualSupervisorOpen = true;
+                console.log("second")
+                console.log($scope.timesheetEntryOpen)
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.individualRequestedJobOpen && index !== $scope.requestIndex) {
+                console.log("third")
+                $scope.individualRequestedJobOpen = true;
+                console.log($scope.timesheetEntryOpen)
+                $scope.requestIndex = index;
+            } else {
+                console.log("last")
+                $scope.requestIndex = null
+
+                // $scope.showChart = true;
+                //$scope.removeChart = false;
+            }
+        }
+        $scope.openRequestedJobsPage = function(){
+            console.log($scope.requestedJobsArray)
+            $scope.requestedJobsPageSelected = true;
+            if(!$scope.requestedJobsPageOpen){
+                $scope.requestedJobsPageOpen = true;
+
+                  $scope.pageLimit = 4;
+                    $scope.requestedJobsPaginated = [];
+                    $scope.requestedJobsForPagination = [];
+                    for (var i = 0; i <= $scope.requestedJobsArray.length; i++) {
+
+                        var page = 0;
+                        ////console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log($scope.employees)
+                        if (i < $scope.pageLimit) {
+                            console.log("its less")
+
+                        }
+                        if (i < $scope.requestedJobsArray.length) {
+                            console.log("yup,less")
+                        }
+
+                        if (i < $scope.pageLimit && i < $scope.requestedJobsArray.length) {//5
+                            console.log("HELLO")
+                            //console.log($scope.employees[i])
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            if ($scope.requestedJobsArray[i]) {
+                                $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
+                                console.log(i)
+                                console.log("firstCondiation")
+                                console.log($scope.pageArray)
+
+                            }
+
+
+
+                        } else {
+
+                                console.log("else")
+                                $scope.loadingUsers = false;
+                                $scope.requestedJobsPaginated.push($scope.requestedJobsForPagination)
+                            console.log($scope.requestedJobsPaginated)
+                                $scope.requestedJobsForPagination = [];
+                                if ($scope.requestedJobsArray[i] !== undefined) {
+                                    $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
+                                }
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                page++
+
+                            
+
+                        }
+
+                    }
+                
+            }
+        }
+        $scope.openClientFile = function(name){
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+            $scope.clientHome = false;
+            $scope.clientListOpen = false;
+            $scope.loadingCurrentClient = true;
+            $scope.currentClientFile = name
+            $scope.clientDetailsPageOpen = true;
+            User.findUser($scope.currentClientFile).then(function(data){
+                console.log(data)
+                $scope.requestedJobsArray = data.data.user[0].requestedjobs
+            })
         }
         $scope.openUserFile = function (name, phonenumber) {
             $('html, body').animate({ scrollTop: 0 }, 'fast');
