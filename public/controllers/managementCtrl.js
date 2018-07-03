@@ -2439,6 +2439,10 @@ $scope.requestIndex = null;
                 $scope.userFilePage = true;
             }
         }
+        $scope.approveJob= function(job){
+            job.approved = true;
+            console.log(job)
+        }
          $scope.openIndividualRequestedJob = function(index){
 
             if ($scope.individualRequestedJobOpen && index !== $scope.requestIndex
