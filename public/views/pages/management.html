@@ -276,9 +276,27 @@
                                         <p class="railway"> {{page.location}}</p>
                                         <p class="railway"> {{page.supervisor}}</p>
                                         <p class="railway"> {{page.hours}}</p>
+                                        <p class="railway"> {{page.descriptionofwork}}</p>
+                                        <p class="railway"> {{page.numberofworkers}}</p>
+                                        <p class="railway"> {{page.ppe}}</p>
+
+                       
                                         <div ng-show="!page.approved">
                                             <span class = "railway underline">Status</span>
                                             <p class = "railway red-text  text-lighten-3"> Not Yet Approved</p>
+                                            <div class = "row">
+                                                <div class = "col s12 center-align">
+                                                    <p class = "railway"> Do You Approve Of This Request?</p>
+                                                </div>
+                                            <div class = "col s6 center-align">
+                                                <i class = "material-icons green-text text-lighten-3">check_circle</i>
+                                            </div>
+                                            <div class = "col s6 center-align">
+                                            <i class = "material-icons red-text text-lighten-3">cancel</i>
+
+                                            </div>
+                                            </div>
+
                                         <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                                     </div>
                                          <div ng-show="page.approved">
