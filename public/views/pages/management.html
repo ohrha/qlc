@@ -93,10 +93,10 @@
                 </a>
                 <a style="color:black;" href="#">
 
-                    <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Client List </p>
+                    <p style="word-wrap:break-word; " ng-click="openClientList()" class=" railway  "> Client List </p>
                 </a>
                 </div>
-                            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="employeeHome && !employeeListOpen">
+                            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="clientHome && !employeeListOpen">
                 <div class="underline">
                     <p style="font-size:18px;" class="railway animated fadeIn ">Clients Page</p>
                 </div>
@@ -104,9 +104,9 @@
                     A Simple way to manage your employees...
                 </p>
             </div>
-                 <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
+                 <div ng-show="clientListOpen" class="col s9 animated fadeIn ">
                 <a style="color:black;" href="#">
-                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Client
                         List
                     </p>
                 </a>
@@ -174,7 +174,7 @@
                             </tr>
                         </thead>
 
-                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                        <tbody ng-repeat="page in clientsPaginated[page] track by $index">
                             <tr>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>

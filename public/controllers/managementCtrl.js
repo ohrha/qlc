@@ -29,6 +29,8 @@
         $scope.historyEntryOpen = true;
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
+        $scope.clientHome = true;
+        $scope.clientListOpen = false;
         $scope.employeeListOpen = false;
         $scope.complaintsOpened = false;
         $scope.complaintsSelected = false;
@@ -1923,6 +1925,115 @@
                 $scope.complaintsPageOpened = false;
                 $scope.commentsSelected = false;
                 $scope.commentsPageOpened = false;
+            }
+        }
+        $scope.openClientList = function(){
+           
+                if ($scope.clientListOpen) {
+                // $scope.employeeListOpen = false;
+                $scope.userDetailsPageOpened = false;
+                $scope.userFilePage = false;
+                $scope.clientHome = false;
+                console.log($scope.employeeHome)
+
+            }else{
+                //if (!$scope.usersLoaded) {
+                    $scope.loadingUsers = true;
+                    $scope.clientListOpen = true;
+                    $scope.delinquentTimeSheetPageOpened = false;
+                    $scope.payslipGenerationOpen = false;
+                    $scope.userFilePage = false;
+                    $scope.userList = true;
+                    $scope.pageLimit = 4
+                    $scope.clientsForPagination = [];
+                    $scope.clientsPaginated =[];
+
+                    User.getUsers().then(function (data) {
+                        console.log(data)
+                        $scope.employees = data.data.users
+                        for (var i = 0; i <= $scope.employees.length; i++) {
+
+                            var page = 0;
+                            console.log($scope.pageLimit, i, $scope.employees.length)
+                            console.log($scope.employees)
+                            // var pageLimit = 4;//3i
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.employees.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.employees.length) {//5
+                                console.log("HELLO")
+                                
+                                console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.employees[i]) {
+                                    if($scope.employees[i].userclass == "client"){
+                                    $scope.clientsForPagination.push($scope.employees[i])
+
+                                    console.log($scope.employees[i])
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+                                    }
+                                   
+
+                                }
+
+
+
+                            } else {
+                                
+
+                                    console.log("else")
+                                    //console.log($scope.pageArray)
+                                    $scope.loadingUsers = false;
+                                    $scope.clientsPaginated.push($scope.clientsForPagination)
+                                    console.log($scope.clientsPaginated)
+                                    $scope.pageArray = [];
+                                    if ($scope.employees[i] !== undefined && $scope.employees[i].userclass =="client") {
+                                        $scope.clientsForPagination.push($scope.employees[i])
+                                    }
+                                    //console.log(pageLimit)
+                                    $scope.pageLimit = $scope.pageLimit + 4;
+                                    console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                    page++
+
+                             
+
+                            }
+
+                        }
+
+
+                        $scope.usersLoaded = true;
+                        $scope.loadingUsers = false;
+
+                    })
+                //}
+                /*else {
+                    console.log("HERE")
+                    $scope.loadingUsers = true;
+                    $scope.employeeHome = false;
+                    $timeout(function () {
+                        $scope.loadingUsers = false;
+                        $scope.usersLoaded = true;
+
+                    }, 1000)
+                    $scope.employeeListOpen = true;
+
+                    $scope.delinquentTimeSheetPageOpened = false;
+                    $scope.payslipGenerationOpen = false;
+                    $scope.userFilePage = false;
+                    $scope.userList = true;
+                    $scope.pageLimit = 4
+
+
+                }
+*/
+
             }
         }
         $scope.openEmployeeList = function () {
