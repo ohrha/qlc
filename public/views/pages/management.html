@@ -84,7 +84,124 @@
         <!-- CLIENT PAGE -->
 
         <div ng-show="clientsPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
-            <p style="font-size:18px;" class="railway animated fadeIn ">Clients Page</p>
+        
+        
+            <div style="border-right:1px solid #ddd" class="col s3 center-align">
+                <a style="color:black;" href="#">
+
+                    <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
+                </a>
+                <a style="color:black;" href="#">
+
+                    <p style="word-wrap:break-word; " ng-click="openEmployeeList()" class=" railway  "> Client List </p>
+                </a>
+                </div>
+                            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="employeeHome && !employeeListOpen">
+                <div class="underline">
+                    <p style="font-size:18px;" class="railway animated fadeIn ">Clients Page</p>
+                </div>
+                <p class="railway">
+                    A Simple way to manage your employees...
+                </p>
+            </div>
+                 <div ng-show="employeeListOpen" class="col s9 animated fadeIn ">
+                <a style="color:black;" href="#">
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Employee
+                        List
+                    </p>
+                </a>
+                <br>
+                <span class="railway ">
+              Search
+          </span>
+                <form name="searchForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
+                                id="first_name" type="text" class="validate">
+                            <label for="first_name"></label>
+                        </div>
+                    </div>
+                </form>
+                <div ng-show="noInput">
+                    <p style="word-wrap:break-word;" class="railway underline">No Input...</p>
+
+                </div>
+                <div ng-show="noSearchResults">
+                    <p style="word-wrap:break-word;" class="railway underline">No Search Results...</p>
+
+                </div>
+                <div ng-show="loading" class="align-center">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                </div>
+                <div ng-show="searchResults">
+                    <a href="#" style="color:black;">
+                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
+                    </a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="result in userSearchResults track by $index">
+                                <td ng-click="openUserFile(result.name)"><a style="color:black;" href="#">{{result.name}}</a></td>
+                                <td><a style="color:black;" href="#">{{result.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div ng-show="loadingUsers" class="center-align">
+                    <i class="material-icons animated rotateIn infinite">autorenew</i>
+                </div>
+                <div ng-show="userList && !loadingUsers " class="center-align">
+
+
+                    <table>
+                        <thead style="text-decoration:none;">
+                            <tr style="font-family: railway; text-decoration:none;">
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                            <tr>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination">
+                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+
+
+            
         </div>
 
         <!-- CLIENT PAGE -->

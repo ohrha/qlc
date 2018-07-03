@@ -898,6 +898,7 @@
                     $scope.loadingRequestJobSuccessful = true;
                     $timeout(function(){
                         $scope.loadingRequestJobSuccessful = false;
+                        $scope.openRequestEmployeePage();
                     })
 
                 }
