@@ -53,6 +53,42 @@ module.exports = function (app) {
                 }
             })
         })
+        app.post('/users/removerequestedjob', function(req,res){
+            
+            User.find({userclass: "admin"}, function(err,user){
+
+                if(err)throw err;
+                if(!user)
+                {res.json({success: false, message:"User Not Found"})}
+                else{
+                    user[0].requestedjobs.splice(req.body.index,1)
+                    User.findOneAndUpdate({userclass:"admin"}, {$set:{requestedjobs:user[0].requestedjobs}},{new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message: "User not found"})
+                        }else{
+                            User.find({name:req.body.name}, function(err,user){
+                                if(err)throw err;
+                                if(!user){
+                                    res.json({success: false, message:"User not found.."})
+                                }else{
+                                    user[0].requestedjobs.splice(req.body.index,1)
+                                    User.findOneAndUpdate({name:req.body.name}, {$set:{requestedjobs:user[0].requestedjobs}}, {new:true}, function(err,user){
+                                        if(err)throw err;
+                                        if(!user){
+                                            res.json({success: false, message:"User not found.."})
+                                        }else{
+                                            res.json({success: true, message:"User found and updated", user:user})
+                                        }
+                                    })
+
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        })
         app.post('/users/requestjob', function(req,res){
 
             User.find({userclass:"admin"}, function(err,user){

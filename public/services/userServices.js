@@ -58,6 +58,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.removeLocation = function(locationData){
         return $http.post('/api/users/removelocation', locationData)
     }
+    userFactory.removeRequestedJob = function(jobData){
+        return $http.post('/api/users/removerequestedjob', jobData)
+    }
     userFactory.removeSupervisor = function(supervisorData){
         return $http.post('/api/users/removesupervisor', supervisorData)
     }

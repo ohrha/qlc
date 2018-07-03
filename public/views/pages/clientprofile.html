@@ -468,7 +468,7 @@
                                     </div>
 
                                     <div class="col s10  railway">
-                                        <p class="railway"> ( No Jobs Requested Added )</p>
+                                        <p class="railway"> ( No Jobs Requested  )</p>
                                     </div>
 
                                 </div>
@@ -484,10 +484,13 @@
                                             <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
                                         </a>
                                     </div>
-                                    <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && removeRequestedJobLoading ">
+                                     <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
+                                        <p class="railway green-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REQUESTED JOB SUCCESSFULLY REMOVED</p>
+                                    </div>
+                                    <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && removeRequestedJobLoading && !removeRequestedJobSuccessful ">
                                         <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING REQUESTED JOB</p>
                                     </div>
-                                    <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                                    <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful" class="col s10 railway" style="border-bottom:1px solid #ddd;">
                                         <p class="railway"> {{page.location}}</p>
                                         <p class="railway"> {{page.supervisor}}</p>
                                         <p class="railway"> {{page.hours}}</p>

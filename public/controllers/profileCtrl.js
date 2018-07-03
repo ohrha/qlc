@@ -124,6 +124,8 @@
         $scope.locationIndex = null;
         $scope.removeLocationLoading = false;
         $scope.removeSupervisorLoading = false;
+         $scope.removeRequestedJobLoading = false;
+        $scope.removeRequestedJobSuccessful = false;
         $scope.supervisorsArray = []
         $scope.locationsArray = [];
         $scope.addLocationSuccessful = false;
@@ -861,6 +863,27 @@
 
         } else {
             console.log("Not Logged In")
+
+        }
+        $scope.removeRequestedJob= function(index){
+
+                var jobData = {
+                index:index,
+                name:$scope.userName
+            }
+            $scope.removeRequestedJobLoading = true;
+            $scope.removeRequestedJobSuccessful = false;
+            User.removeRequestedJob(jobData).then(function(data){
+                console.log(data)
+                if(data.data.success){
+                    $scope.removeRequestedJobLoading = false;
+                    $scope.removeRequestedJobSuccessful = true;
+                    $timeout(function(){
+                        $scope.removeRequestedJobSuccessful = false;
+                        $scope.openRequestEmployeePage()
+                    },2000)
+                }
+            })
 
         }
         $scope.submitRequest= function(){
