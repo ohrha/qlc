@@ -520,7 +520,7 @@
                     </div>
                     <div class="col s2">
                         <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3">email</i></a>
-                        <a href="#" style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
+                        <a href="#" style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3">drafts</i></a>
                         <div class="hide-on-small-only">
                             <a href="#" style="color:black;"> <span class="railway underline">Messages</span></a>
                         </div>
@@ -749,7 +749,7 @@
                         <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                             <div class="row">
                                 <div ng-show="!page.read" class="col s3 " >
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons"  >email</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons "  >email</i></a>
                                 </div>
                                 <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;">
                                     <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >drafts</i></a>

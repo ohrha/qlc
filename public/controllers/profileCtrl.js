@@ -3210,9 +3210,11 @@
         $scope.openMessagePage = function () {
             if ($scope.messagePageOpen) {
                 $scope.messagePageOpen = false;
+                $scope.profileHome = true;
                 $scope.messagePageSelected = false;
             } else {
                 $scope.messagePageOpen = true;
+                $scope.profileHome = false;
                 $scope.messagePageSelected = true;
                 $scope.composeMessagePageOpen = false;
                 $scope.bookedJobsPageOpened = false;
