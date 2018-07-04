@@ -17,6 +17,7 @@
         $scope.userClass = "";
         $scope.userToken = "";
         $scope.userPhoneNumber = "";
+        $scope.userEmail = ""
         $scope.userPayRate = "";
         $scope.currentJobInDate = 0;
         $scope.test = "tes"
@@ -83,6 +84,71 @@
         $scope.submittedTimeSheetsArray=[]
         $scope.individualSubmittedTimeSheetOpen = true;
         $scope.submittedIndex = null;
+        $scope.editEmailPageOpen = false;
+        $scope.editPhoneNumberPageOpen = false;
+        $scope.phoneData = {
+            newphonenumber:null
+        }
+        $scope.emailData = {
+            email:null
+        }
+        $scope.phoneDataCannotBeEmpty = false;
+        $scope.emailDataCannotBeEmpty = false;
+        $scope.submitNewPhoneNumber = function(){
+  $scope.phoneData.name = $scope.userName;
+
+            if($scope.phoneData.newphonenumber !== null  ){
+                console.log($scope.phoneData)
+                User.editPhoneNumber($scope.phoneData).then(function(data){
+                    console.log(data)
+                    $scope.userPhoneNumber = data.data.user.phonenumber
+                    $scope.closeEditPhoneNumberPage();
+                })
+            }else{
+                $scope.phoneDataCannotBeEmpty = true;
+                $timeout(function(){
+                    $scope.phoneDataCannotBeEmpty = false;
+                },1000)
+            }
+        }
+        $scope.submitNewEmailAddress = function(){
+            $scope.emailData.name = $scope.userName;
+
+            if($scope.emailData.email !== null  ){
+                console.log($scope.emailData)
+                $scope.emailData.newemail = $scope.emailData.email
+                User.editEmail($scope.emailData).then(function(data){
+                    console.log(data)
+                    $scope.userEmail = data.data.user.email
+                    $scope.closeEditEmailPage();
+                })
+            }else{
+                $scope.emailDataCannotBeEmpty = true;
+                $timeout(function(){
+                    $scope.emailDataCannotBeEmpty = false;
+                },1000)
+            }
+        }
+        $scope.openEditEmailPage = function(){
+            if(!$scope.editEmailPageOpen){
+                $scope.editEmailPageOpen = true;
+            }
+        }
+           $scope.closeEditEmailPage = function(){
+            if($scope.editEmailPageOpen){
+                $scope.editEmailPageOpen = false;
+            }
+        }
+            $scope.openEditPhoneNumberPage = function(){
+            if(!$scope.editPhoneNumberPageOpen){
+                $scope.editPhoneNumberPageOpen = true;
+            }
+        }
+           $scope.closeEditPhoneNumberPage = function(){
+            if($scope.editPhoneNumberPageOpen){
+                $scope.editPhoneNumberPageOpen = false;
+            }
+        }
 
         $scope.markAsApproved = function(index,timesheet){
             timesheet.disputed = false
@@ -354,9 +420,16 @@
                 $scope.userName = data.data.name;
                 $scope.requestedJobData.client = $scope.userName
                 $scope.userClass = data.data.userclass;
-                $scope.userPayPeriod = data.data.payperiod
-                $scope.userPhoneNumber = data.data.phonenumber
+                
                 $scope.userPayRate = data.data.payrate;
+                User.findUser($scope.userName).then(function(data){
+                    console.log(data)
+                                    $scope.userPhoneNumber = data.data.user[0].phonenumber
+                                    $scope.userPayPeriod = data.data.user[0].payperiod
+                                    $scope.userEmail = data.data.user[0].email
+
+
+                })
                 
                 $scope.submittedTimeSheetsArray = data.data.submittedtimesheets
                 console.log($scope.submittedTimeSheetsArray)
@@ -2761,11 +2834,13 @@
             $('html, body').animate({ scrollTop: 0 }, 'fast');
             if ($scope.bookedJobsSelected) {
                 $scope.bookedJobsSelected = false;
+                $scope.profileHome = true;
                 $scope.bookedJobsPageOpened = false;
                 ;
 
             } else {
                 $scope.bookedJobsSelected = true;
+                $scope.profileHome=false;
                 $scope.complaintsPageOpened = false;
                 $scope.bookedJobsPageOpened = true;
                 $scope.addHoursPageOpen = false;
@@ -2962,7 +3037,10 @@
         }
 
         $scope.openChartsPage = function () {
-            $scope.chartsPageOpen = true;
+
+            if(!$scope.chartsPageOpen){
+ $scope.chartsPageOpen = true;
+ $scope.profileHome= false;
             $scope.historyPageOpen = false;
             $scope.messagePageOpen = false;
             $scope.messagePageSelected = false;
@@ -3028,6 +3106,11 @@
                 }
             })
 
+            }else{
+                $scope.chartsPageOpen = false;
+                $scope.profileHome = true;
+            }
+           
 
         }
         $scope.increaseDay = function () {
@@ -3287,10 +3370,13 @@
 
         }
         $scope.openHistoryPageProfile = function () {
-            $scope.openJob = 0;
+
+            if(!$scope.historyPageOpenProfile){
+                $scope.openJob = 0;
             $scope.chartsPageOpen = false;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
+            $scope.profileHome = false;
             $scope.historyPageOpenProfile = true;
             $scope.timesheetsPageOpen = false;
             $scope.notesPageOpen = false;
@@ -3384,6 +3470,11 @@
             })
             $scope.loadingPersonalHistory = false;
             console.log($scope.bookedJobsPageOpened)
+            }else{
+                $scope.profileHome = true;
+                $scope.historyPageOpenProfile = false;
+            }
+            
         }
         $scope.openIndividualHistoryEntry = function (index) {
             console.log(index)
