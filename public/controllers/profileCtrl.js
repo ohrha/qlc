@@ -84,6 +84,7 @@
         $scope.submittedTimeSheetsArray=[]
         $scope.individualSubmittedTimeSheetOpen = true;
         $scope.submittedIndex = null;
+        $scope.curPeriod = null;
         $scope.editEmailPageOpen = false;
         $scope.editPhoneNumberPageOpen = false;
         $scope.phoneData = {
