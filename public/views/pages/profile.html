@@ -749,12 +749,12 @@
                         <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                             <div class="row">
                                 <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">email</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >email</i></a>
                                 </div>
                                 <div ng-show="page.read" class="col s2" style="border-left:1px solid #ddd;border-right:1px solid #ddd">
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">drafts</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >drafts</i></a>
                                 </div>
-                                <div class="col s10">
+                                <div class="col s10" style='border-top:1px solid #ddd;'>
                                     <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#"></a></p>
                                 </div>
 
@@ -808,7 +808,7 @@
 
                                     <br>
                                 </div>
-
+<!--
                                 <div class="col s2" ng-show="messageOpen && currentIndex !== $index " style="height:100px;">
 
 
@@ -817,7 +817,7 @@
 
 
 
-                                </div>
+                                </div>-->
 
                             </div>
                         </div>
