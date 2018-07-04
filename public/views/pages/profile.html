@@ -748,10 +748,10 @@
 
                         <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                             <div class="row">
-                                <div ng-show="!page.read" class="col s3 " style="border-right:1px solid #ddd">
+                                <div ng-show="!page.read" class="col s3 " >
                                     <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons"  >email</i></a>
                                 </div>
-                                <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;border-right:1px solid #ddd">
+                                <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;">
                                     <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >drafts</i></a>
                                 </div>
                                 <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;'>
