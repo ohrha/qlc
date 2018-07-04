@@ -554,7 +554,7 @@
 
 
             </div>
-            <div ng-show="composeMessagePageOpen &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
+            <div ng-show="composeMessagePageOpen &&!profileHome &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
 
 
                 <div class="col s12" style="border-right:1px solid #ddd;">
@@ -669,7 +669,15 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="messagePageOpen && !messagesLoading" class="col s10 center-align animated fadeIn">
+            <div class = "col s10 center-align animated fadeIn" ng-show="profileHome">
+                <div class = "row">
+                    <div class = "col s2" style="border-right:1px solid #ddd;">
+                    </div>
+                    <div class = "col s10">
+                    </div>
+                </div>
+            </div>
+            <div ng-show="messagePageOpen &&!profileHome && !messagesLoading" class="col s10 center-align animated fadeIn">
 <br>
                 <div class="col s12" style="border-right:1px solid #ddd;">
                     <div class="center-align">
@@ -785,7 +793,7 @@
  <div ng-show="loadingCurrentEmployee" class="col s10">
                                         <p class="railway animated flash infinite" style="font-size:20px;"> LOADING</p>
                                     </div>
-            <div ng-show="bookedJobsPageOpened && !loadingCurrentEmployee " class="col s10 center-align">
+            <div ng-show="bookedJobsPageOpened &&!profileHome && !loadingCurrentEmployee " class="col s10 center-align">
 
                 <!-- SCROLL THROUGH BOOKED JOBS -->
 

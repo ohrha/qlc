@@ -76,7 +76,7 @@
         $scope.usersArray = [];
         $scope.currentusernameArray = [];
         $scope.employeeJobDetails = {};
-
+        $scope.profileHome = true;
         $scope.requestEmployeePageLoading = false;
          $scope.loadingRequestJob = false;
                     $scope.loadingRequestJobSuccessful = false;
