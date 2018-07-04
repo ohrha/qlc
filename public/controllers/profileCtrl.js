@@ -111,9 +111,7 @@
             email: null,
             phonenumber: null
         };
-        $scope.iAgreeData={
-            yes:false
-        }
+
         $scope.submitJobDetailsPageOpen = false;
         $scope.submitSupervisorPageOpen = false;
         $scope.individualSupervisorOpen = true;
@@ -196,21 +194,7 @@
         };
         console.log($routeParams)
 
-        $scope.iAgreeFunc = function(){
-            console.log($scope.iAgreeData)
-        }
-        $scope.continueRegistration = function(){
-            if($scope.iAgreeData.yes){
-                console.log("You Agree! >:)")
-            }else{
-                    $scope.shakeOn = true;
-            $timeout(function(){
-$scope.shakeOn = false;
-            },2000)
-
-            }
-        
-        }
+       
         setTimeout(function () {
 
             //$('.tap-target').tapTarget('open');

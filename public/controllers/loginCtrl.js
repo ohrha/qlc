@@ -11,10 +11,11 @@
         $rootScope.isLoggedin = false;
         $scope.successfulLogin = false;
         $scope.failedLogin = false;
+                $scope.loading = false;
+
         $scope.errorMsg = false;
+      
 
-
-        $scope.loading = false;
         $scope.loginUser = function (loginData, valid) {
 
             console.log(this.loginData)

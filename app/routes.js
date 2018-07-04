@@ -43,6 +43,16 @@ module.exports = function (app) {
         })
 
         */
+            app.put('/users/getapprovedjobs/:client', function (req, res) {
+        User.find({ name: req.params.client }, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: "User not found..." })
+            } else {
+                res.json({ success: true, message: "Requested Jobs Found..", approvednotbooked: user[0].approvednotbooked })
+            }
+        })
+    })
     app.put('/users/getrequestedjobs/:client', function (req, res) {
         User.find({ name: req.params.client }, function (err, user) {
             if (err) throw err;
@@ -1190,7 +1200,7 @@ module.exports = function (app) {
         //res.send("testing new route")
         console.log("authenticate Route Hit");
         console.log(req.body)
-        User.findOne({ username: req.body.username }).select('email username password name payrate payperiodnum userclass phonenumber comments supervisors locations')
+        User.findOne({ username: req.body.username }).select('email username password name payrate payperiodnum userclass phonenumber comments supervisors locations approvednotbooked requestedjobs')
             .exec(function (err, user) {
 
                 if (err) throw err;
@@ -1207,7 +1217,7 @@ module.exports = function (app) {
                     if (!validPassword) {
                         res.json({ success: false, message: "Could not authenticate password" })
                     } else {
-                        var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments, locations: user.locations, supervisors: user.supervisors }, secret, { expiresIn: '24h' });
+                        var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments, locations: user.locations, supervisors: user.supervisors,approvednotbooked:user.approvednotbooked,requestedjobs:user.requestedjobs }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
@@ -1221,6 +1231,7 @@ module.exports = function (app) {
         var date = new Date();
         var dateNow = date.getDate()
         var month = date.getMonth() + 1;
+        console.log(month)
         var payperiodnum = 0;
 
         if (month == 6) {
@@ -1270,35 +1281,35 @@ module.exports = function (app) {
                 console.log("payperiodnum", payperiodnum)
 
             }
-            if (dateNow == 2 || 3 || 4 || 5 || 6 || 7 || 8) {
+            if (dateNow == 2 || dateNow == 3 || dateNow == 4 || dateNow == 5 ||  dateNow ==6 || dateNow == 7 ||  dateNow ==8) {
 
                 payperiodnum = 6;
                 console.log("payperiodnum", payperiodnum)
 
 
             }
-            if (dateNow == 9 || 10 || 11 || 12 || 13 || 14 || 15) {
+            if (dateNow == 9 || dateNow == 10 || dateNow == 11 ||  dateNow ==12 ||  dateNow ==13 || dateNow == 14 ||  dateNow ==15) {
 
                 payperiodnum = 7;
                 console.log("payperiodnum", payperiodnum)
 
 
             }
-            if (dateNow == 16 || 17 || 18 || 19 || 20 || 21 || 22) {
+            if (dateNow == 16 ||  dateNow == 17 ||  dateNow ==18 ||  dateNow ==19 ||  dateNow ==20 || dateNow == 21 ||  dateNow ==22) {
 
                 payperiodnum = 8;
                 console.log("payperiodnum", payperiodnum)
 
 
             }
-            if (dateNow == 23 || 24 || 25 || 26 || 27 || 28 || 29) {
+            if (dateNow == 23 || dateNow == 24 || dateNow == 25 || dateNow == 26 || dateNow == 27 || dateNow == 28 || dateNow == 29) {
 
                 payperiodnum = 9;
                 console.log("payperiodnum", payperiodnum)
 
 
             }
-            if (dateNow == 30 || 31) {
+            if (dateNow == 30 || dateNow ==  31) {
 
                 payperiodnum = 10;
                 console.log("payperiodnum", payperiodnum)
@@ -1495,8 +1506,12 @@ module.exports = function (app) {
         user.username = req.body.userName;
         user.phonenumber = req.body.phonenumber;
         user.password = req.body.password.toString(),
-            user.email = req.body.email;
+        user.email = req.body.email;
         user.userclass = req.body.userclass;
+        user.delinquenttimesheets=[];
+        user.payrate = 17;
+        user.requestedjobs =[];
+        user.approvedjobs = [];
         user.name = req.body.name;
         user.payperiodnum = payperiodnum;
         user.historyupdated = false;

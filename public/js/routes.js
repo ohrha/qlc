@@ -57,11 +57,18 @@
                 controllerAs: 'profile'
 
             })
-                 .when('/clientregister', {
+                 .when('/clienttoc', {
+                templateUrl: '../views/pages/clienttoc.html',
+                name: "QLH | CLIENT TOC",
+                controller: "registerCtrl",
+                controllerAs: 'register'
+
+            })
+                             .when('/clientregister', {
                 templateUrl: '../views/pages/clientregister.html',
                 name: "QLH | CLIENT REGISTRATION",
-                controller: "profileCtrl",
-                controllerAs: 'profile'
+                controller: "registerCtrl",
+                controllerAs: 'register'
 
             })
             .when('/clientprofile/:userid', {

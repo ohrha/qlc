@@ -11,18 +11,78 @@
         $scope.failReg = false;
        $scope.errorMsg = false;
         $scope.successMsg = false;
+  
+                $scope.iAgreeData={
+            yes:false
+        }
+        $scope.shakeOn = false;
 
-        this.regUser=function(regData,valid,regForm){
+
+
+        $scope.iAgreeFunc = function () {
+            console.log($scope.iAgreeData)
+        }
+        $scope.continueRegistration = function () {
+            if ($scope.iAgreeData.yes) {
+                console.log("You Agree! >:)")
+                console.log($scope.regData)
+                $location.path('/clientregister');
+            } else {
+                $scope.shakeOn = true;
+                $timeout(function () {
+                    $scope.shakeOn = false;
+                }, 2000)
+
+            }
+
+        }
+         this.regEmployee=function(regData,valid,regForm){
            
             if(valid){
                 console.log(this.regData)
-                if(this.regData.userclass == 1){
-                this.regData.userclass = "client"
-
-                }
-                if(this.regData.userclass == 2){
+             
+                
                     this.regData.userclass = "employee"
-                }
+                
+               /* $scope.loading= true;
+                User.create(this.regData).then(function(data){
+                    console.log(data.data)
+                    if(data.data.success){
+                        $scope.loading = false;
+                        $scope.successReg = true;
+                        console.log(this.successReg)
+                        $scope.successMsg = data.data.message;
+                        $timeout(function(){
+                            $scope.successReg = false;
+                            $scope.successMsg = false;
+                            $location.path('/login');
+                        },3000)
+                    }else{
+                        $scope.loading = false;
+                        $scope.failReg = true;
+                        $scope.errorMsg = data.data.message;
+                        console.log($scope.failReg,$scope.errorMsg)
+                        setTimeout(function(){
+                            $scope.failReg = false;
+                            $scope.errorMsg = false;
+                            console.log($scope.failReg)
+                        },3000)
+                    }
+                })*/
+            }else{
+                console.log("Incomplete form..")
+            }
+        }
+        this.regClient=function(regData,valid,regForm){
+           
+            if(valid){
+                console.log(this.regData)
+                
+                this.regData.userclass = "client"
+                this.regData.iagree = true;
+                $location.path('/clientregister')
+
+              
                 $scope.loading= true;
                 User.create(this.regData).then(function(data){
                     console.log(data.data)

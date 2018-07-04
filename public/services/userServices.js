@@ -24,6 +24,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.getRequestedJobs = function(client){
         return $http.put('/api/users/getrequestedjobs/'+client)
     }
+    userFactory.getApprovedJobs = function(name){
+        return $http.put('/api/users/getapprovedjobs/'+name)
+    }
     userFactory.addJob = function(jobData){
         return $http.post('/api/users/addjob',jobData)
     }

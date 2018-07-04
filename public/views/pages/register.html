@@ -1,9 +1,9 @@
 <div class="row animated fadeIn">
-  <div style="border-bottom:1px solid black;"class="col s12 ">
-    <p class="center-align railway" style="font-size:24px;">Sign-up!</p>
+  <div style="border-bottom:1px solid black;"class="col s12 center-align ">
+    <p class=" railway underline" style="font-size:24px;">Employee Registration</p>
 
   </div>
-  <form name="regForm" ng-submit="register.regUser(regData,regForm.$valid,regForm)" id="registrationForm" class="col s12" novalidate>
+  <form name="regForm" ng-submit="register.regEmployee(regData,regForm.$valid,regForm)" id="registrationForm" class="col s12" novalidate>
     <div class="row">
       <div class="input-field col s12">
         <input id="first_name" name="name" ng-model="register.regData.name" type="text" class="validate" ng-pattern="/^(([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})+)+$/" ng-minLength="1" ng-maxLength="20"
