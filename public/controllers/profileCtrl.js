@@ -2729,6 +2729,7 @@
 
                 jobData.timesheetSubmitted = true;
                 $scope.jobData = jobData;
+                $scope.jobData.disputed = false;
                 console.log($scope.hrVarOut)
                 console.log($scope.hrVarIn)
                 console.log($scope.minVarOut)
