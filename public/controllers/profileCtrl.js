@@ -80,6 +80,130 @@
         $scope.requestEmployeePageLoading = false;
          $scope.loadingRequestJob = false;
                     $scope.loadingRequestJobSuccessful = false;
+        $scope.submittedTimeSheetsArray=[]
+        $scope.individualSubmittedTimeSheetOpen = true;
+        $scope.submittedIndex = null;
+
+        $scope.markAsApproved = function(index,timesheet){
+            timesheet.disputed = false
+            timesheet.submittedtimesheetsindex =index;
+            console.log(timesheet)
+                 User.markTimeSheetAsApproved(timesheet).then(function(data){
+               console.log(data)
+           })
+
+        }
+        $scope.markAsDisputed = function(index,timesheet){
+            timesheet.disputed = true;
+            timesheet.submittedtimesheetsindex =index;
+
+           User.markTimeSheetAsDisputed(timesheet).then(function(data){
+               console.log(data)
+           })
+            
+        }
+
+     $scope.openIndividualSubmittedTimeSheet = function(index){
+            
+             if ($scope.individualSubmittedTimeSheetOpen && index !== $scope.submittedIndex
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                $scope.submittedIndex = index;
+
+             
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+            }
+
+
+            else if (!$scope.individualSubmittedTimeSheetOpen && index == $scope.submittedIndex) {
+                $scope.individualSubmittedTimeSheetOpen = true;
+                console.log("second")
+                console.log($scope.timesheetEntryOpen)
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.individualSubmittedTimeSheetOpen && index !== $scope.submittedIndex) {
+                console.log("third")
+                $scope.individualSubmittedTimeSheetOpen = true;
+                console.log($scope.timesheetEntryOpen)
+                $scope.submittedIndex = index;
+            } else {
+                console.log("last")
+                $scope.submittedIndex = null
+
+                // $scope.showChart = true;
+                //$scope.removeChart = false;
+            }
+
+        }     
+    $scope.openReviewSubmittedTimeSheetsPage = function () {
+            if (!$scope.reviewSubmittedTimeSheetsPageOpen) {
+                $scope.reviewSubmittedTimeSheetsPageOpen = true;
+                $scope.addSupervisorPageOpen = false;
+
+                $scope.requestEmployeePageOpen = false;
+                $scope.complaintsPageClientOpen = false;
+                
+                        $scope.pageLimit = 4;
+                        $scope.submittedTimeSheetsPaginated = [];
+                        $scope.submittedTimeSheetsForPagination = [];
+                        for (var i = 0; i <= $scope.submittedTimeSheetsArray.length; i++) {
+
+                            var page = 0;
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log($scope.employees)
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.submittedTimeSheetsArray.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.submittedTimeSheetsArray.length) {//5
+                                console.log("HELLO")
+                                //console.log($scope.employees[i])
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.submittedTimeSheetsArray[i]) {
+                                    $scope.submittedTimeSheetsForPagination.push($scope.submittedTimeSheetsArray[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+
+                                    console.log("else")
+                                    $scope.loadingUsers = false;
+                                    $scope.submittedTimeSheetsPaginated.push($scope.submittedTimeSheetsForPagination)
+                                    console.log($scope.submittedTimeSheetsPaginated)
+                                    $scope.submittedTimeSheetsForPagination = [];
+                                    if ($scope.submittedTimeSheetsArray[i] !== undefined) {
+                                        $scope.submittedTimeSheetsForPagination.push($scope.submittedTimeSheetsArray[i])
+                                    }
+                                    $scope.pageLimit = $scope.pageLimit + 4;
+                                    //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                    page++
+
+                                
+
+                            }
+
+                        }
+
+            } else {
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+
+            }
+        }
+
+
         $scope.requestedJobData = {
             client:null,
             worksitedetails:null,
@@ -129,6 +253,7 @@
         $scope.removeRequestedJobSuccessful = false;
         $scope.supervisorsArray = []
         $scope.locationsArray = [];
+        $scope.submittedTimeSheetsArray = [];
         $scope.addLocationSuccessful = false;
         $scope.addSupervisorSuccessful = false;
         $scope.submitLocationLoading = false;
@@ -232,6 +357,9 @@
                 $scope.userPayPeriod = data.data.payperiod
                 $scope.userPhoneNumber = data.data.phonenumber
                 $scope.userPayRate = data.data.payrate;
+                
+                $scope.submittedTimeSheetsArray = data.data.submittedtimesheets
+                console.log($scope.submittedTimeSheetsArray)
 
                 if ($scope.userClass == "admin") {
 
@@ -1168,18 +1296,16 @@
 
             }
         }
-        $scope.openReviewSubmittedTimeSheetsPage = function () {
-            if (!$scope.reviewSubmittedTimeSheetsPageOpen) {
-                $scope.reviewSubmittedTimeSheetsPageOpen = true;
-                $scope.addSupervisorPageOpen = false;
+        
+          
 
-                $scope.requestEmployeePageOpen = false;
-                $scope.complaintsPageClientOpen = false;
-            } else {
-                $scope.reviewSubmittedTimeSheetsPageOpen = false;
 
-            }
-        }
+
+
+
+
+        
+        
         $scope.openRequestEmployeePage = function () {
             
             $scope.requestEmployeePageLoading = true;
@@ -2580,6 +2706,7 @@
             console.log($scope.timeData)
             // console.log($scope.currentJobInDate)
             console.log(jobData)
+            console.log($scope.userName)
 
             if ($scope.timeData.hrsIn1 !== null && $scope.timeData.hrsIn2 !== null &&
                 $scope.timeData.minsIn1 !== null && $scope.timeData.minsIn2 !== null
@@ -2599,6 +2726,7 @@
                 jobData.currentuser = $scope.name;
                 jobData.lunch = $scope.timeData.lunch;
                 jobData.booked = true;
+
                 jobData.timesheetSubmitted = true;
                 $scope.jobData = jobData;
                 console.log($scope.hrVarOut)

@@ -905,6 +905,74 @@
     <div class="row">
         <p class="railway underline" style="font-size:25px;"> Review Submitted Time Sheets</p>
     </div>
+      <div class="row">
+                            <div class="col s2" style="border-bottom:1px solid #ddd;">
+                                <p class="railway underline" style="font-size:18px;"> Name</p>
+                            </div>
+                            <div class="col s10" style="border-bottom:1px solid #ddd;">
+                                <p class="railway underline" style="font-size:18px;">Details</p>
+                            </div>
+                            <div ng-show="submittedTimeSheetsPaginated[0].length == 0" class="col s12">
+                                <br>
+
+                                <div class="row">
+
+                                    <div class=" col s2 animated fadeIn railway truncate">
+                                    </div>
+
+                                    <div class="col s10  railway">
+                                        <p class="railway"> ( No Locations Added )</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div ng-show="submittedTimeSheetsPaginated[0].length>0" class="col s12" ng-repeat="page in submittedTimeSheetsPaginated[page] track by $index">
+                                <br>
+                                <div class="row">
+
+                                    <div class=" col s2 animated fadeIn railway truncate">
+                                        <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
+                                            <p ng-click="openIndividualSubmittedTimeSheet($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.name}}</p>
+                                        </a>
+                                    </div>
+                                    <div class="col s10" ng-show="individualSubmittedTimeSheetOpen &&submittedIndex == $index && removeLocationLoading ">
+                                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING LOCATION</p>
+                                    </div>
+                                    <div ng-show="individualSubmittedTimeSheetOpen && submittedIndex == $index && !removeLocationLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                                        <p class="railway"> {{page.currentuser}}</p>
+                                        <p class="railway"> {{page.location}}</p>
+                                        <p class="railway"> {{page.supervisor}}</p>
+                                        <div class = "row">
+                                            <div class = "col s5 right-align">
+                                                {{page.timein}}
+                                            </div>
+                                            <div class = "col s2">
+                                                -
+                                            </div>
+                                        <div class = "col s5 left-align">
+                                            {{page.timeout}}
+                                        </div>
+                                        </div>
+                                        <div ng-show="page.disputed">
+                                    <i ng-click="markAsApproved($index,page)" class="material-icons red-text text-lighten-3"> delete</i>
+                                     <p class = "railway">Disputed</p>
+
+                                        </div>
+                                        <div ng-show="!page.disputed">
+                                            
+                                        <i ng-click="markAsDisputed($index,page)" class="material-icons green-text text-lighten-3"> check</i>
+                                        <p class = "railway">Approved</p>
+                                        </div>
+                                    </div>
+                                    <div ng-show="individualSubmittedTimeSheetOpen && submittedIndex !== $index" class="col s10  railway">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
 
 </div>
 <div class="col s12 center-align" ng-show="complaintsPageClientOpen">

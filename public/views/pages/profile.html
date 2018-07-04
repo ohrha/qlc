@@ -1036,6 +1036,8 @@
                                             <p class="railway   "> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
                                             <span class="railway  underline">Location</span>
                                             <p class="railway  "> {{jobDetails[openJob][currentJobInDate].location}}</p>
+                                           
+                                        
                                         </div>
                                     </div>
                                     <div ng-show="!addHoursPageOpen" class="row animated fadeIn">
@@ -1044,8 +1046,21 @@
                                             <p ng-show="!jobDetails[openJob][currentJobInDate].timesheetSubmitted" class=" railway red-text text-lighten-2 underline"
                                                 ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)">ADD HOURS</p>
                                             <p ng-show="jobDetails[openJob][currentJobInDate].timesheetSubmitted" class=" railway green-text text-lighten-2 " ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)">HOURS SUBMITTED</p>
+                                                     <div class = "row" ng-show="jobDetails[openJob][currentJobInDate].disputed">
+                                             <div class = "col s12 center-align">
+                                                 <i class = "material-icons animated flash red-text text-lighten-3">error_outline</i>
+                                                 <p class = "railway">A Dispute Has Been Raised Regarding Your Submission</p>
+                                                 <p class = "railway">Would You Like to Edit Your Time Sheet?</p>
+
+                                             </div>
+                                             <div class = "col s12 center-align">
+                                                <a ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)" style="color:black;" href="#"> <i class ="material-icons">edit</i></a>
+
+                                             </div>
+                                            </div>
                                         </div>
-                                        <a ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)" style="color:black;" href="#"> <i class ="material-icons">edit</i></a>
+                                        <a ng-show="!jobDetails[openJob][currentJobInDate].disputed"ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)" style="color:black;" href="#"> <i class ="material-icons">edit</i></a>
+                                       
                                     </div>
                                 </div>
                                 <!-- ADD TIMESHEET PAGE -->

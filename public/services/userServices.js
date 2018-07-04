@@ -18,6 +18,12 @@ angular.module('userServices',['authServices']).config(function(){
         return $http.get('/api/users')
 
     }
+    userFactory.markTimeSheetAsDisputed = function(timesheet){
+        return $http.post('/api/users/marktimesheetasdisputed',timesheet)
+    }
+       userFactory.markTimeSheetAsApproved = function(timesheet){
+        return $http.post('/api/users/marktimesheetasapproved',timesheet)
+    }
     userFactory.requestJob = function(jobData){
         return $http.post('/api/users/requestjob', jobData)
     }
