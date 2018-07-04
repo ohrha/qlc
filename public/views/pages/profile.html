@@ -754,7 +754,7 @@
                                 <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;border-right:1px solid #ddd">
                                     <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >drafts</i></a>
                                 </div>
-                                <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;'>
+                                <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;'>
                                     <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#"></a></p>
                                 </div>
 
@@ -764,12 +764,12 @@
                                 <div class="col s3" ng-show="messageOpen && currentIndex == $index " style="height:100px;">
 
                                 </div>
-                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && messageLoading">
+                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && messageLoading" >
 
 
                                     <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
                                 </div>
-                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && !messageLoading ">
+                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && !messageLoading "style="border-left:1px solid #ddd;border-right:1px solid #ddd;">
                                     <div class="col s12" style=" border-bottom:1px dashed #ddd;">
                                         <span class="railway " style="float:left;">From: {{page.from}}</span>
                                         <br>
@@ -793,7 +793,7 @@
 
 
                                     </div>
-                                    <div class="row">
+                                    <div class="row" ng-show="areYouSure">
                                         <div class="col s6 left-align" ng-show="areYouSure">
                                             <a ng-click="removeMessage($index)" class="waves-effect waves-light btn">yes</a>
 
