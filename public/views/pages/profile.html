@@ -754,7 +754,7 @@
                                 <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;border-right:1px solid #ddd">
                                     <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >drafts</i></a>
                                 </div>
-                                <div class="col s9" style='border-top:1px solid #ddd;'>
+                                <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd;'>
                                     <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#"></a></p>
                                 </div>
 
@@ -764,13 +764,13 @@
                                 <div class="col s3" ng-show="messageOpen && currentIndex == $index " style="height:100px;">
 
                                 </div>
-                                <div class="col s10" ng-show="messageOpen && currentIndex == $index && messageLoading">
+                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && messageLoading">
 
 
                                     <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
                                 </div>
                                 <div class="col s9" ng-show="messageOpen && currentIndex == $index && !messageLoading ">
-                                    <div class="col s12" style=" border-top:1px solid #ddd;border-bottom:1px dashed #ddd;">
+                                    <div class="col s12" style=" border-bottom:1px dashed #ddd;">
                                         <span class="railway " style="float:left;">From: {{page.from}}</span>
                                         <br>
                                         <span class="railway " style="float:left;">Subject: {{page.subject}}</span>
@@ -780,8 +780,8 @@
                                     <br>
                                     <p ng-show="!areYouSure" class="railway"><a style="color:black;" href="#">{{page.body}}</a></p>
                                     <p ng-show="areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">Are You Sure?</a></p>
-                                    <div class="row" ng-show="!areYouSure">
-                                        <div class="col s6 left-align" style="border-top:1px dashed #ddd;">
+                                    <div class="row" ng-show="!areYouSure" style="border-bottom:1px solid #ddd;">
+                                        <div class="col s6 left-align" style="border-top:1px dashed #ddd; ">
                                             <a href="#" style="color:black;"> <i ng-click="markAsUnread($index)"class="material-icons">undo</i></a>
 
                                         </div>
