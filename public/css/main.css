@@ -220,5 +220,16 @@ a{
 .green{
     color:green;
 }
+.removeonsmall{
+    transition:.3s;
+}
+@media(max-width:600px){
+
+    .removeonsmall{
+        display:none;
+    }
+
+}
+
 
 /* Experiment select box */

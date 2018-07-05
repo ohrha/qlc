@@ -758,6 +758,8 @@ console.log("here")
             $scope.adminMessagesArray = data.data.messages;
             $scope.requestedJobsArray = data.data.requestedjobs
             $scope.approvedJobsArray = data.data.approvednotbooked;
+                        $rootScope.user_id = data.data._id
+
             $scope.name = data.data.name
             if ($scope.month == 5 && $scope.dateNow == 29) {
                 /* User.updatePayPeriod(data.data.payperiod, data.data.username).then(function (data) {

@@ -421,6 +421,8 @@
                 $scope.userName = data.data.name;
                 $scope.requestedJobData.client = $scope.userName
                 $scope.userClass = data.data.userclass;
+                $rootScope.user_id = data.data._id
+
                 
                 $scope.userPayRate = data.data.payrate;
                 User.findUser($scope.userName).then(function(data){
