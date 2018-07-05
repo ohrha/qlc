@@ -61,29 +61,57 @@
                                 <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
                             </a>-->
                 <div class="row animated " ng-class="{fadeIn:fadeIn, fadeOut:!fadeIn}" ng-show="adminHome">
-                    <div class="col s3">
+                   <div class="col s3 ">
                         <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:25px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
                             </a>
                     </div>
                     <div class="col s3">
 
                         <a href="#" style="color:black;">
-                                <i ng-click="openChartsPage()" style="font-size:17px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">check</i>
+                                <i ng-click="openApprovedJobsPage();" style="font-size:25px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">check</i>
                             </a>
                     </div>
                     <div class="col s3">
                         <a href="#" style="color:black;">
-                                <i ng-click="openHistoryPage()" style="font-size:17px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                                <i ng-click="openHistoryPage()" style="font-size:25px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
                     </div>
                     <div class="col s3">
+                        <a ng-show="incompletePayPeriod" href="#" style="color:black;">
+                                <i ng-click="openIncompletePayPeriodPage()" style="font-size:25px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
+                            </a>
+                    </div>
+
+                    <div class="col s3">
+
+                        <a href="#" style="color:black;">
+                                <i  ng-click="openAdminMessagesPage();" style="font-size:25px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
+                            </a>
+                    </div>
+                    <div class="col s3 hide-on-small-only">
+                        <a href="#" style="color:black;">
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                            </a>
+                    </div>
+                    <div class="col s3 hide-on-small-only">
+
+                        <a href="#" style="color:black;">
+                                <i ng-click="openApprovedJobsPage();" style="font-size:17px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">check</i>
+                            </a>
+                    </div>
+                    <div class="col s3 hide-on-small-only">
+                        <a href="#" style="color:black;">
+                                <i ng-click="openHistoryPage()" style="font-size:17px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                            </a>
+                    </div>
+                    <div class="col s3 hide-on-small-only">
                         <a ng-show="incompletePayPeriod" href="#" style="color:black;">
                                 <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
                     </div>
 
-                    <div class="col s3">
+                    <div class="col s3 hide-on-small-only">
 
                         <a href="#" style="color:black;">
                                 <i  ng-click="openAdminMessagesPage();" style="font-size:17px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
@@ -97,7 +125,7 @@
                     </div>
                     <div class="col s3  hide-on-small-only">
                         <a href="#" ng-click="openApprovedJobsPage();" style="color:black;">
-<span class = "railway underline">Approved Jobs ({{approvedJobsArray.length+1}})</span>                            
+<span ng-click="openApprovedJobsPage();"class = "railway underline">Approved Jobs ({{approvedJobsArray.length+1}})</span>                            
 </a>
                     </div>
                     <div class="col s3  hide-on-small-only">
@@ -1009,7 +1037,7 @@
                     <div class="row">
               
                         <div class="input-field col s12">
-                                        <span class="railway ">
+                                        <span class="railway underline ">
               Search
           </span>
                             <input ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
