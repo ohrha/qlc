@@ -600,20 +600,20 @@ module.exports = function (app) {
 
     })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
-        console.log(req.body.payperiod)
-        console.log(req.body.allEmployeesJobDetails.length)
-
-        for (var z = 0; z < req.body.allEmployeesJobDetails.length; z++) {
-            console.log(req.body.allEmployeesJobDetails[z])
+      console.log(req.body)
+            //console.log(req.body.allEmployeesJobDetails[z])
             //  for (var d= 0; d < req.body.allEmployeesJobDetails[z].length;d++){
             //console.log(req.body.allEmployeesJobDetails[z][d])
-            var payperiodHistoryEntry = {}
-            payperiodHistoryEntry.payperiod = req.body.payperiod;
-            payperiodHistoryEntry.entry = req.body.allEmployeesJobDetails[z];
-            if (req.body.allEmployeesJobDetails[z][8].name !== undefined) {
+     
+            if (req.body.entry[8].name !== undefined) {
                 //console.log(z)
-                var name = req.body.allEmployeesJobDetails[z][8].name;
-                console.log(name)
+                var name = req.body.entry[8].name;
+                                        var payperiodHistoryEntry = {}
+            payperiodHistoryEntry.payperiod = req.body.payperiod;
+            payperiodHistoryEntry.entry = req.body.entry
+            //console.log("ITS PAY PERIOD HISTORY TIME!!!", payperiodHistoryEntry.entry[3])
+             
+                console.log("ITS NAME TIME",name)
                 User.findOne({ name: name }, function (err, user) {
                     if (err) throw err;
                     if (!user) {
@@ -621,7 +621,9 @@ module.exports = function (app) {
                     } else {
                         console.log(user.historyupdated)
                         console.log('history not update' + user.name)
-                        User.findOneAndUpdate({ name: user.name }, { $push: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
+//console.log("ITS PAY PERIOD HISTORY TIME!!!2222222", payperiodHistoryEntry.entry[3])
+            
+                        User.findOneAndUpdate({ name: user.name }, { $set: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
 
                             if (err) throw err;
                             if (!user) {
@@ -653,7 +655,7 @@ module.exports = function (app) {
             //  payperiodHistoryEntroy.historyentered = true;
             //  console.log(req.body.allEmployeesJobDetails[z][7].name)
 
-        }
+        
         User.find({}, function (err, users) {
             if (err) throw err
             if (!users) {
