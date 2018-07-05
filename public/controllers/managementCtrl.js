@@ -1834,7 +1834,7 @@ console.log(data)
 
 
         }
-          $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+         // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
 
         $scope.getLocations = function (name) {
             $scope.supervisorListLoading = true;

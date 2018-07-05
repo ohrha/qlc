@@ -623,7 +623,7 @@ module.exports = function (app) {
                         console.log('history not update' + user.name)
 //console.log("ITS PAY PERIOD HISTORY TIME!!!2222222", payperiodHistoryEntry.entry[3])
             
-                        User.findOneAndUpdate({ name: user.name }, { $set: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
+                        User.findOneAndUpdate({ name: user.name }, { $push: { payperiodhistory: payperiodHistoryEntry } }, { new: true }, function (err, user) {
 
                             if (err) throw err;
                             if (!user) {
