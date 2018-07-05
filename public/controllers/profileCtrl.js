@@ -2796,8 +2796,8 @@
                 $scope.minVarIn = "" + $scope.timeData.minsIn1 + $scope.timeData.minsIn2 + $scope.timeData.amPm1
                 $scope.hrVarOut = $scope.timeData.hrsOut1 + $scope.timeData.hrsOut2
                 $scope.hrVarIn = $scope.timeData.hrsIn1 + $scope.timeData.hrsIn2
-                jobData.timein = "" + $scope.timeData.hrsIn1 + $scope.timeData.hrsIn2 + $scope.timeData.minsIn1 + $scope.timeData.minsIn2 + $scope.timeData.amPm1
-                jobData.timeout = "" + $scope.timeData.hrsOut1 + $scope.timeData.hrsOut2 + $scope.timeData.minsOut1 + $scope.timeData.minsOut2 + $scope.timeData.amPm2
+                jobData.timein = "" + $scope.timeData.hrsIn1 + $scope.timeData.hrsIn2 +":"+ $scope.timeData.minsIn1 + $scope.timeData.minsIn2 + $scope.timeData.amPm1
+                jobData.timeout = "" + $scope.timeData.hrsOut1 + $scope.timeData.hrsOut2+":" + $scope.timeData.minsOut1 + $scope.timeData.minsOut2 + $scope.timeData.amPm2
                 jobData.payperiodnum = $rootScope.payPeriod;
                 jobData.currentuser = $scope.name;
                 jobData.lunch = $scope.timeData.lunch;
