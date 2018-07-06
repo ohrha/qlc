@@ -354,6 +354,8 @@
         $scope.messagesLoading = false;
         $scope.messageOpen = true;
         $scope.areYouSure = false;
+        $scope.removeRightBorder = false
+        
         $scope.addHoursPageOpen = false;
         $scope.timeData = {};
         $scope.message = {
@@ -428,15 +430,10 @@
                 User.findUser($scope.userName).then(function(data){
                     console.log(data)
                                     $scope.userPhoneNumber = data.data.user[0].phonenumber
-                                    $scope.userPayPeriod = data.data.user[0].payperiod
+                                    $scope.userPayPeriod = data.data.user[0].payperiodnum
                                     $scope.userEmail = data.data.user[0].email
 
-
-                })
-                
-                $scope.submittedTimeSheetsArray = data.data.submittedtimesheets
-                console.log($scope.submittedTimeSheetsArray)
-
+                                    
                 if ($scope.userClass == "admin") {
 
                     if ($scope.month == 1) {
@@ -805,6 +802,7 @@
                             $rootScope.payPeriod = 6;
                             console.log($scope.dateNow)
                             console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.userPayPeriod", $rootScope.userPayPeriod)
 
                             $scope.newPPObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
@@ -817,6 +815,14 @@
 
                                     for (var i = 0; i < data.data.users.length; i++) {
 
+                                        $scope.nameObjectForNewPayPeriodHistoryEntry = {
+                                            name: data.data.users[i].name
+                                        }
+
+                                        data.data.users[i].jobDetails.push( $scope.nameObjectForNewPayPeriodHistoryEntry)
+                                        $scope.newPayPeriodHistoryEntry = {
+                                            entry: data.data.users[i].jobDetails
+                                        }
 
                                         $scope.newPPObject.newpayperiod = $rootScope.payPeriod
                                         $scope.newPPObject.currentusername = data.data.users[i].name
@@ -830,6 +836,7 @@
                                     User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
 
                                         console.log(data)
+                                        console.log($scope.newPayPeriodHistoryEntry)
                                         $scope.addPayPeriodToPayPeriodHistory();
 
 
@@ -1060,6 +1067,12 @@
                     console.log("YOU DA CLIENT")
                     $scope.clientPage = true;
                 }
+
+                })
+                
+                $scope.submittedTimeSheetsArray = data.data.submittedtimesheets
+                console.log($scope.submittedTimeSheetsArray)
+
 
 
 
@@ -1495,17 +1508,18 @@
         })
         })
        
-        $scope.addPayPeriodToPayPeriodHistory = function () {
-            // console.log(details)
+         $scope.addPayPeriodToPayPeriodHistory = function (details) {
+            console.log(details)
             $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
             $scope.allEmployeesJobDetails = []
+
             User.getUsers().then(function (data) {
 
                 for (var d = 0; d < data.data.users.length; d++) {
 
                     for (var k = 0; k < data.data.users[d].payperiods.length; k++) {
 
-                        if (data.data.users[d].payperiods[0].payperiodnum == $rootScope.payPeriod) {
+                        if (data.data.users[d].payperiods[0].payperiodnum !== $rootScope.payPeriod) {
 
 
                             $scope.nameObject = {}
@@ -1526,8 +1540,8 @@
                         for (var x = 0; x < $scope.employeeJobDetails.allEmployeesJobDetails[z].length; x++) {
 
                             for (var y = 0; y < $scope.employeeJobDetails.allEmployeesJobDetails[z][x].length; y++) {
-                                console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
-                                if ($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timeSheetSubmitted) {
+                                //console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
+                                if ($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timesheetSubmitted) {
 
 
                                     var startTime = moment($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timein, "HH:mm:ss a");
@@ -1551,7 +1565,9 @@
                                     }
 
                                     $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated = hours + minutes;
-
+                                    if($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].lunch){
+                                        $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated = $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated - .5
+                                    }
 
                                 } else {
 
@@ -1563,19 +1579,23 @@
 
                             }
                         }
+                        $scope.payPeriodObject = {
+                            entry:$scope.employeeJobDetails.allEmployeesJobDetails[z]
+                        }
+console.log($scope.payPeriodObject)
+    User.addPayPeriodToPayPeriodHistory($scope.payPeriodObject).then(function (data) {
 
-
+console.log(data)
+                })
                     }
 
-                    //console.log($scope.employeeJobDetails)
-
+               
 
                 }
+               
 
-                User.addPayPeriodToPayPeriodHistory($scope.employeeJobDetails).then(function (data) {
-
-                    console.log(data)
-                })
+                console.log("OYYYYYY!!!!!!!!!!!!!!!!!!!!!",$scope.employeeJobDetails)
+              
 
             })
 
@@ -1595,7 +1615,9 @@
                 ) {
                     // $scope.individualPayPeriodOpen = false;
                     $scope.curHistory = index;
+                    
                     console.log("first")
+                  
 
                 }
 
@@ -3580,6 +3602,8 @@
             ) {
                 // $scope.individualPayPeriodOpen = false;
                 $scope.curPeriod = index;
+                  $scope.removeRightBorder= true;
+                    console.log($scope.removeRightBorder)
                 console.log("first")
 
             }
@@ -3592,13 +3616,18 @@
             }
             else if (!$scope.individualPayPeriodOpen && index !== $scope.curPeriod) {
                 console.log("third")
+                 $scope.removeRightBorder= true;
+                    console.log($scope.removeRightBorder)
                 $scope.individualPayPeriodOpen = true;
                 $scope.curPeriod = index;
             } else {
                 console.log("fourth")
+                  
                 $scope.curHistory = null;
                 $scope.curPeriod = null
                 $scope.showChart = true;
+                 $scope.removeRightBorder= false;
+                    console.log($scope.removeRightBorder)
             }
         }
 

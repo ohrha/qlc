@@ -870,7 +870,7 @@
 
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown"
                                     style="border: 1px solid #ddd; ">
-                                    <p class="railway underline" style="font-size:20px;">{{history.entry[0][0].date}}-{{history.entry[6][0].date}}</p>
+                                    <p class="railway underline" style="font-size:18px;">{{history.entry[0][0].date}}-{{history.entry[6][0].date}}</p>
                                     <div ng-show="{{history.entry[0][0].paid}}">
                                         <span class="railway "><i ng-click="markAsPaid($index,history)" class="material-icons green-text lighten-3" style="font-size:20px;">check</i>PAID</span>
 
@@ -888,12 +888,14 @@
                                 <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:275px;">
 
                                     <br>
-                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                    
+                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data"  chart-labels="labels">
                                         chart-series="series"
                                     </canvas>
                                     <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
                                         chart-series="series"
                                     </canvas>
+                                    
                                     <div ng-repeat="entry in history.entry track by $index" class="row">
 
                                         <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
@@ -922,7 +924,7 @@
                                             <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
 
                                             </div>
-                                            <p class="railway grey-text text-lighten-2" style="text-decoration:underline;">Date Was Never Booked</p>
+                                            <p class="railway grey-text " style="text-decoration:underline;">Date Was Never Booked</p>
                                            
                                          </div>
                                         </div>

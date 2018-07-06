@@ -1767,7 +1767,11 @@ console.log($scope.data)
                     console.log($scope.allEmployeesJobDetails)
                     $scope.payPeriodHistory = data.data.users[d].payperiodhistory
                     console.log($scope.payPeriodHistory)
-                    for (var z = 0; z < $scope.employeeJobDetails.allEmployeesJobDetails.length; z++) {
+                   
+
+                }
+               
+                 for (var z = 0; z < $scope.employeeJobDetails.allEmployeesJobDetails.length; z++) {
                         //$scope.data
 
                         // $scope.data[0][b]= hoursIterator;
@@ -1788,18 +1792,22 @@ console.log($scope.data)
 
 
                                     if (minutes == 15) {
-                                        hours + .25
+                                       hours= hours + .25
                                         minIterator = 0;
                                     }
                                     if (minutes == 30) {
-                                        hours + .30
+
+                                        hours = hours + .50
+                                        console.log("we're here")
                                     }
                                     if (minutes == 45) {
-                                        hours + .75
+                                       hours = hours + .75
                                     }
-
-                                    $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated = hours + minutes;
-
+ if($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].lunch){
+                                        hours = hours - .5
+                                    }
+                                    $scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].hoursCalculated =hours;
+                                   
 
                                 } else {
 
@@ -1822,10 +1830,6 @@ console.log(data)
                     }
 
                
-
-                }
-               
-
                 console.log("OYYYYYY!!!!!!!!!!!!!!!!!!!!!",$scope.employeeJobDetails)
               
 
@@ -1834,7 +1838,7 @@ console.log(data)
 
 
         }
-         // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
+        // $scope.addPayPeriodToPayPeriodHistory($scope.allEmployeesJobDetails)
 
         $scope.getLocations = function (name) {
             $scope.supervisorListLoading = true;

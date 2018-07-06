@@ -202,6 +202,12 @@ a{
     min-height:400px;
 
 }
+.removerightborder{
+    border-right:0px solid white;
+}
+.addrightborder{
+    border-right:1px solid #ddd;
+}
 /*
 .carousel-slider {
     height: 400px !important;

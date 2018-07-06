@@ -1696,7 +1696,7 @@
 </div>
                         <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
-                            <div class="col s3 animated fadeIn" style="border-right:1px solid #ddd">
+                            <div class="col s3 animated fadeIn" ng-class="{removerightborder:removeRightBorder, addrightborder:!removeRightBorder}" >
                                 <a href='#' style="color:black;">
                                     <p ng-click="openIndividualPayPeriod($index ,history)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
                                 </a>
@@ -1711,32 +1711,48 @@
 
 
 
-                            <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:275px;">
-
+                            <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:450px;">
+                            <div class = "show-on-small-only">               
                                 <br>
+                            </div>
                                 <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
                                     chart-series="series"
                                 </canvas>
                                 <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
                                     chart-series="series"
                                 </canvas>
+                                
                                 <div ng-repeat="entry in history.entry track by $index" class="row">
 
                                     <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-                                        <div class="right-align">
-                                            <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+                                    <div ng-show="entry[currentJobInDate].booked">
+
+                                            <div class="right-align">
+                                                <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+                                            
                                             <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
                                             <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
 
-                                        </div>
-                                        <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
-                                        <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
-                                        <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
-                                        <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}</p>
-                                        <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timeout}}</p>
+                                            </div>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}</p>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timeout}}</p>
+                                         </div>
+                                                     <div ng-show="!entry[currentJobInDate].booked">
 
+                                            <div class="right-align">
+                                                <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+                                            
+                                            <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
+                                            <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
 
+                                            </div>
+                                            <p class="railway grey-text " style="text-decoration:underline;">Date Was Never Booked</p>
+                                           
+                                         </div>
 
 
 
