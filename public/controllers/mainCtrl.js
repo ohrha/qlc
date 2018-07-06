@@ -41,6 +41,7 @@
 
         $scope.logout = function () {
             Auth.logout();
+            $rootScope.loggedIn = false;
             $location.path('/')
             $rootScope.payPeriodIcon = false;
         }
