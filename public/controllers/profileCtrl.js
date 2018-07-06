@@ -2759,6 +2759,26 @@ console.log(data)
 
 
         }
+        $scope.decreaseJobInDate = function(){
+
+             $scope.slideOut = true;
+            $scope.fadeOut2 = true;
+            $timeout(function () {
+                if ($scope.currentJobInDate == 0) {
+                    $scope.currentJobInDate++;
+
+                } else {
+                    $scope.currentJobInDate = 0
+                }
+                console.log($scope.currentJobInDate
+                )
+                $scope.slideOut = false;
+                $scope.fadeOut2 = false
+                $scope.fadeIn2 = true;
+                $scope.slideIn = true;
+            }, 500)
+
+        }
         $scope.changeJobInDate = function (index) {
             $scope.slideOut = true;
             $scope.fadeOut2 = true;
@@ -3143,6 +3163,36 @@ console.log(data)
            
 
         }
+        $scope.decreaseDate = function () {
+            $scope.currentJobInDate = 0;
+            $scope.fadeIn2 = false;
+            $scope.slideout = true;
+            $scope.fadeOut = true;
+
+            $timeout(function () {
+                $scope.slideout = false;
+                $scope.fadeOut = false;
+                $scope.slidein = true;
+                console.log($scope.jobDetails.length)
+                if ($scope.openJob <= 6) {
+                    if ($scope.jobDetails[$scope.openJob + 1].length < 1) {
+                        console.log("Oy")
+                        $scope.openJob = 0;
+                    } else {
+                        $scope.openJob = $scope.openJob + 1;
+
+                    }
+
+
+                } else {
+                    $scope.openJob = 0;
+                }
+            }, 500)
+
+
+            console.log($scope.openJob)
+        }
+
         $scope.increaseDay = function () {
             $scope.currentJobInDate = 0;
             $scope.fadeIn2 = false;

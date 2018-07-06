@@ -956,31 +956,31 @@
                                 <!-- ADD TIMESHEET PAGE -->
                                 <div ng-show="addHoursPageOpen && areYouSure && !loadingAddHours " class="col s12 animated fadeIn">
 
-                                    <p class="railway" style="font-size:20px;">Are These Details Correct?</p>
+                                    <p class="railway" style="font-size:18px;">Are These Details Correct?</p>
 
 
-                                    <div class="col s4 center-align">
-                                        <span class="railway" style="font-size: 20px;"> In </span>
-                                        <p class="railway" style="font-size: 20px;"> {{hrVarIn}}:{{minVarIn}}
+                                    <div class="col s4 right-align">
+                                        <span class="railway" style="font-size: 17px;"> In </span>
+                                        <p class="railway" style="font-size: 17px;"> {{hrVarIn}}:{{minVarIn}}
                                         </p>
                                     </div>
                                     <div class="col s4 center-align">
-                                        <span class="railway" style="font-size: 20px;"> - </span>
+                                        <span class="railway" style="font-size: 17px;"> - </span>
 
                                     </div>
-                                    <div class="col s4">
-                                        <span class="railway" style="font-size: 20px;"> Out </span>
+                                    <div class="col s4 left-align">
+                                        <span class="railway" style="font-size: 17px;"> Out </span>
 
-                                        <p class="railway" style="font-size: 20px;"> {{hrVarOut}}:{{minVarOut}}
+                                        <p class="railway" style="font-size: 17px;"> {{hrVarOut}}:{{minVarOut}}
                                         </p>
 
                                     </div>
-                                    <div class="col s6">
-                                        <a ng-click="finishSubmitTimesheet('yes')" class="waves-effect waves-light btn">Yes</a>
+                                    <div class="col s6 center-align">
+                                        <i ng-click="finishSubmitTimesheet('yes')" class="material-icons green-text text-lighten-2">check_circle</i>
 
                                     </div>
-                                    <div class="col s6">
-                                        <a ng-click="finishSubmitTimesheet('no')" class="waves-effect waves-light btn">No</a>
+                                    <div class="col s6 center-align">
+                                        <i ng-click="finishSubmitTimesheet('no')" class="material-icons red-text text-lighten-2">cancel</i>
 
                                     </div>
 
