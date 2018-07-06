@@ -208,6 +208,10 @@ a{
 .addrightborder{
     border-right:1px solid #ddd;
 }
+.montserrat{
+    font-family: 'Montserrat';
+    
+}
 /*
 .carousel-slider {
     height: 400px !important;

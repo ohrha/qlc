@@ -503,33 +503,33 @@
                     <div class="col s2">
                         <a href="#" style="color:black;"> <i ng-click="openUserFile(name)" class="material-icons blue-text text-lighten-3" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black;"> <span class="railway underline">Booked Jobs</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"> <span class=" underline">Booked Jobs</span></a>
                         </div>
                     </div>
                     <div class="col s2">
                         <a href="#" style="color:black;"><i ng-click="openHistoryPageProfile()" class="material-icons green-text text-lighten-3">access_time</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black;"> <span class="railway underline">Work History</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Work History</span></a>
                         </div>
                     </div>
                     <div class="col s2">
                         <a href="#" style="color:black;"><i ng-click="openChartsPage()" class="material-icons">timeline</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black;"> <span class="railway underline">Metrics</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Metrics</span></a>
                         </div>
                     </div>
                     <div class="col s2">
                         <a href="#" style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3">email</i></a>
                         <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3">drafts</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black;"> <span class="railway underline">Messages</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Messages</span></a>
                         </div>
                     </div>
 
                     <div class="col s2">
                         <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons pink-text text-lighten-3">create</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black;"> <span class="railway underline">Compose</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Compose</span></a>
                         </div>
                     </div>
                     <div class="col s1 " >
@@ -565,7 +565,7 @@
                         </div>
                     </div>
                     <div ng-show="!editEmailPageOpen">
-                        <span class="railway underline">Email</span>
+                        <span class="montserrat underline">Email</span>
                         <p class="railway"> {{userEmail}}</p>
                         <div class="center-align">
                             <span ng-click="openEditEmailPage()" class="railway underline green-text text-lighten-3"> edit</span>
@@ -593,7 +593,7 @@
                         </div>
                     </div>
                     <div ng-show="!editPhoneNumberPageOpen">
-                    <span class="railway underline">Phone Number</span>
+                    <span class="montserrat underline">Phone Number</span>
                     <p class="railway">{{userPhoneNumber}}</p>
                     <div class="center-align">
                         <span ng-click="openEditPhoneNumberPage()" class="railway underline green-text text-lighten-3"> edit</span>
@@ -1666,13 +1666,13 @@
 
 
         <div ng-show="historyPageOpenProfile" class="col s10 center-align animated fadeIn">
-            <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
+            <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
 
                 <p ng-show="generalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>History
                     page
                 </p>
 
-                <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline ">Work History
+                <p ng-show="personalHistoryTitle" style="font-size:17px; " class="montserrat animated fadeIn underline ">Work History
                 </p>
                 <div class="row ">
                     <div ng-show="loadingPersonalHistory" class="col s12 center-align">
@@ -1687,11 +1687,11 @@
                     <div ng-show="personalHistoryOpen && !loadingPersonalHistory" class="col s12 center-align">
 <div class = "row">
                         <div class="col s3 center-align">
-                            <p style="font-size:14px;" class="railway animated fadeIn underline ">Pay Period</p>
+                            <p style="font-size:14px;" class="montserrat animated fadeIn underline ">Pay Period</p>
 
                         </div>
                         <div class="col s9 center-align">
-                            <p style="font-size:14px;" class="railway animated fadeIn underline ">Details</p>
+                            <p style="font-size:14px;" class="montserrat animated fadeIn underline ">Details</p>
 
 
                         </div>
