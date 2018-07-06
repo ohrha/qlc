@@ -900,6 +900,8 @@ console.log("here")
                 // $scope.individualPayPeriodOpen = false;
                 $scope.curPeriod = index;
                 console.log("first")
+                  $scope.removeRightBorder= true;
+                    console.log($scope.removeRightBorder)
  User.findUser($scope.currentUserHistoryFile).then(function (data) {
 
                 $scope.payPeriodHistory = data.data.user[0].payperiodhistory
@@ -989,11 +991,15 @@ console.log($scope.data)
                 console.log("third")
                 $scope.individualPayPeriodOpen = true;
                 $scope.curPeriod = index;
+                 $scope.removeRightBorder= true;
+                    console.log($scope.removeRightBorder)
             } else {
                 console.log("fourth")
                 $scope.curHistory = null;
                 $scope.curPeriod = null
                 $scope.showChart = true;
+                 $scope.removeRightBorder= false;
+                    console.log($scope.removeRightBorder)
             }
         }
         $scope.openIncompletePayPeriodPage = function () {

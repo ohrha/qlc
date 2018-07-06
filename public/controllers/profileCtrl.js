@@ -83,6 +83,7 @@
                     $scope.loadingRequestJobSuccessful = false;
         $scope.submittedTimeSheetsArray=[]
         $scope.individualSubmittedTimeSheetOpen = true;
+        $scope.timeSheetDataNotComplete = false;
         $scope.submittedIndex = null;
         $scope.curPeriod = null;
         $scope.editEmailPageOpen = false;
@@ -2838,6 +2839,10 @@ console.log(data)
 
             } else {
                 console.log("null")
+                $scope.timeSheetDataNotComplete = true;
+                $timeout(function(){
+                    $scope.timeSheetDataNotComplete = false;
+                },3000)
             }
         }
         $scope.openAddHoursPage = function () {

@@ -861,16 +861,15 @@
                                 </div>
                             </div>
                             <div class="row " ng-repeat="history in payPeriodHistory track by $index">
-
-                                <div class="col s3">
-                                    <a href='#' style="color:black;">
-                                        <p ng-click="openIndividualPayPeriod($index)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
-                                    </a>
-                                </div>
+    <div class="col s3 animated fadeIn" ng-class="{removerightborder:removeRightBorder, addrightborder:!removeRightBorder}" >
+                                <a href='#' style="color:black;">
+                                    <p ng-click="openIndividualPayPeriod($index ,history)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
+                                </a>
+                            </div>
 
                                 <div ng-show=" individualPayPeriodOpen &&curPeriod !== $index && !loadingPersonalHistory " class="col s9 animated fadeInDown"
                                     style="border: 1px solid #ddd; ">
-                                    <p class="railway underline" style="font-size:18px;">{{history.entry[0][0].date}}-{{history.entry[6][0].date}}</p>
+                                    <p class="railway underline" >{{history.entry[0][0].date}}-{{history.entry[6][0].date}}</p>
                                     <div ng-show="{{history.entry[0][0].paid}}">
                                         <span class="railway "><i ng-click="markAsPaid($index,history)" class="material-icons green-text lighten-3" style="font-size:20px;">check</i>PAID</span>
 

@@ -989,8 +989,8 @@
 
 
                                     <div class="col s12 center-align">
-                                        <p class="railway animated fadeIn "> Add Hours</p>
-                                        <p class="railway animated fadeIn "> Job #{{currentJobInDate+1}}</p>
+                                        <span class="railway animated fadeIn "> Add Hours</span>
+                                        <span class="railway animated fadeIn "> (Job #{{currentJobInDate+1}})</span>
 
                                     </div>
 
@@ -1133,6 +1133,9 @@
                                         <a href="#" ng-click="closeAddHours()" style="color:black;">
                                             <p class="railway underline">Cancel</p>
                                         </a>
+                                        <div class = "col s12 animated flash"ng-show="timeSheetDataNotComplete">
+                                            <span class ="railway red-text text-lighten-2" style="font-size:17px;">Time Sheet Form Must Be Complete.</span>
+                                        </div>
                                     </div>
 
 
@@ -1153,9 +1156,9 @@
                                 <div ng-show="!addHoursPageOpen" class="row animated fadeIn">
                                     <div class="col s12" style="border:1px solid #ddd">
 
-                                        <p ng-show="!jobDetails[openJob][currentJobInDate].timesheetSubmitted" class=" railway red-text text-lighten-2 underline"
-                                            ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)">ADD HOURS</p>
-                                        <p ng-show="jobDetails[openJob][currentJobInDate].timesheetSubmitted" class=" railway green-text text-lighten-2 " ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)">HOURS SUBMITTED</p>
+                                        <a href="#"style="color:black;"><p ng-show="!jobDetails[openJob][currentJobInDate].timesheetSubmitted" class=" railway red-text text-lighten-2 underline"
+                                            ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)">ADD HOURS</p></a>
+                                       <a href="#"style="color:black;"> <p ng-show="jobDetails[openJob][currentJobInDate].timesheetSubmitted" class=" railway green-text text-lighten-2 underline " ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)">HOURS SUBMITTED</p></a>
                                         <div class="row" ng-show="jobDetails[openJob][currentJobInDate].disputed">
                                             <div class="col s12 center-align">
                                                 <i class="material-icons animated flash red-text text-lighten-3">error_outline</i>
@@ -1168,9 +1171,10 @@
 
                                             </div>
                                         </div>
+                                                <a ng-show="!jobDetails[openJob][currentJobInDate].disputed" ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
+                                        style="color:black;" href="#"> <i class ="material-icons" style="font-size:14px;">edit</i></a>
                                     </div>
-                                    <a ng-show="!jobDetails[openJob][currentJobInDate].disputed" ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
-                                        style="color:black;" href="#"> <i class ="material-icons">edit</i></a>
+                            
 
                                 </div>
                             </div>
