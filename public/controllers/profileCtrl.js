@@ -2423,6 +2423,7 @@ console.log(data)
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.messageCompositionPageOpen = false;
+
                 $scope.composeMessagePageOpen = false;
                 $scope.messagePageSelected = false;
                 $scope.messagePageOpen = false;
@@ -2725,6 +2726,7 @@ console.log(data)
             if (!$scope.composeMessagePageOpen) {
                 $scope.composeMessagePageLoading = true;
                 $scope.composeMessagePageOpen = true;
+                $scope.profileHome = false;
                 $scope.messagePageOpen = false;
                 $scope.historyPageOpen = false;
                 $scope.chartsPageOpen = false;
@@ -2949,6 +2951,8 @@ console.log(data)
                 $scope.bookedJobsSelected = true;
                 $scope.profileHome=false;
                 $scope.complaintsPageOpened = false;
+                $scope.composeMessagePage = false;
+                
                 $scope.bookedJobsPageOpened = true;
                 $scope.addHoursPageOpen = false;
                 $scope.messagePageOpen = false;
