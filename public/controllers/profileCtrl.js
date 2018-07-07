@@ -2691,6 +2691,7 @@ console.log(data)
             } else {
 
                 if ($scope.message.subject !== null && $scope.message.body !== null) {
+                     $('html, body').animate({ scrollTop: 0 }, 'fast');
                     $scope.sendMessageLoading = true;
                    
                     $scope.message.to = name
