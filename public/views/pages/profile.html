@@ -645,7 +645,7 @@
                                     </a>
                                 </div>
 
-                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s12 center-align animated fadeIn show-on-small-only" style="border-bottom:1px solid #ddd;">
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index " class="col s12 center-align animated fadeIn show-on-small-only" style="border-bottom:1px solid #ddd;">
                                     <a href="#" style="color:black;">
                                         <p ng-click="openMessageCompositionPage($index,true)" class="railway underline hide-on-med-and-up" >{{page.name}}</p>
                                         <p ng-click="openMessageCompositionPage($index,true)" class="railway  show-on-med-and-up" style="color:white;">{{page.name}}</p>
@@ -653,20 +653,28 @@
                                     </a>
                                 </div>
 
-                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && sendMessageLoading" class="col s10 center-align animated fadeIn">
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && sendMessageLoading && !messageSuccessfullySent" class="col s10 center-align animated fadeIn">
                                     <br>
                                     <i class="material-icons animated flash infinite">chevron_right</i>
                                     <i class="material-icons animated flash infinite">chevron_right</i>
 
                                     <i class="material-icons animated slideOutRight infinite">email</i>
                                 </div>
-                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading" class="col s12 center-align animated fadeIn">
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading && messageSuccessfullySent" class="col s12 center-align animated fadeIn underline">
+                                    <div class = "row">
+                                        <div class = "col s12 center-align">
+                                            <p class = "railway animated flash green-text text-lighten-2" style="font-size: 17px;"> Message Successfully Sent!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading && !messageSuccessfullySent" class="col s12 center-align animated fadeIn">
 
                                     <div class="row">
 
                                         <div class="col 12 right-align " style="float:right;">
 
-                                            <a href="#" style="color:black; "><i ng-click="openMessageCompositionPage($index,true)" style="font-size:15px;"class = "material-icons underline">clear</i></a>
+                                            <a href="#" style="color:black; ">
+                                                <i ng-click="openMessageCompositionPage($index,true)" style="font-size:15px;"class = "material-icons underline">clear</i></a>
 
                                         </div>
                                         <div class="col s12 center-align">

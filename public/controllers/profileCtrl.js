@@ -47,6 +47,7 @@
         $scope.composeMessagePage = false;
         $scope.reviewSubmittedTimeSheetsPageOpen = false;
         $scope.composeMessagePageLoading = false;
+        $scope.messageSuccessfullySent = false;
         $scope.sendMessageLoading = false;
         $scope.allFieldsMustBeInput = false;
         $scope.june2 = false;
@@ -2702,9 +2703,15 @@ console.log(data)
                     User.sendMessage($scope.message).then(function (data) {
                         console.log(data)
                         // $scope.sendMessageLoading = false;
-                        $scope.message.from = null;
+                        $scope.messageSuccessfullySent= true;
+                        $timeout(function(){
+                            $scope.messageSuccessfullySent = false;
+                              $scope.message.from = null;
                         $scope.message.body = null;
                         $scope.message.subject = null;
+                        $scope.openMessageCompositionPage()
+                        },2500)
+                      
                     })
 
                 }
