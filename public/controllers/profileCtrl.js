@@ -68,6 +68,10 @@
         $scope.june17 = false;
         $scope.june18 = false;
         $scope.historyEntryOpen = true;
+        $scope.slideOutDown= false;
+        $scope.slidedownout = false;
+        $scope.slidedownin = false;
+        $scope.slideInDown = false;
         $scope.messagesArray = []
         $scope.messageCompositionPageOpen = false;
         $scope.requestEmployeePageOpen = false;
@@ -3252,29 +3256,35 @@ console.log("position 1")
            
 
         }
-        $scope.decreaseDate = function () {
+        $scope.decreaseDay = function () {
             $scope.currentJobInDate = 0;
             $scope.fadeIn2 = false;
-            $scope.slideout = true;
+            $scope.slidein = false;
+            $scope.slidedownout = true;
             $scope.fadeOut = true;
 
             $timeout(function () {
-                $scope.slideout = false;
+                $scope.slidedownout = false;
                 $scope.fadeOut = false;
-                $scope.slidein = true;
+                $scope.slidedownin = true;
                 console.log($scope.jobDetails.length)
-                if ($scope.openJob <= 6) {
-                    if ($scope.jobDetails[$scope.openJob + 1].length < 1) {
+                if ($scope.openJob > 0) {
+                   // if ($scope.jobDetails[$scope.openJob - 1].length < 1) {
                         console.log("Oy")
-                        $scope.openJob = 0;
-                    } else {
-                        $scope.openJob = $scope.openJob + 1;
+                     //   $scope.openJob = $scope.jobDetails.length-1;
+                   // } else {
+                        $scope.openJob = $scope.openJob - 1;
 
-                    }
+                   // }
 
 
                 } else {
-                    $scope.openJob = 0;
+                    if($scope.jobDetails[$scope.jobDetails.length-1].length>1){
+                        $scope.openJob = $scope.jobDetails.length-1;
+                    }else{
+                        $scope.openJob = $scope.jobDetails.length -2
+                    }
+                   
                 }
             }, 500)
 

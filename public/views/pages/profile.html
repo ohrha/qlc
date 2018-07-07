@@ -958,7 +958,7 @@
                             <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
 
 
-                            <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked " class="col s12 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                            <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked " class="col s12 animated" ng-class="{'slideInDown':slidedownin,'slideOutDown':slidedownout,'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                 <div ng-show="loadingAddHours" class="col s12">
                                     <p class="railway animated flash infinite"> ADDING HOURS</p>
                                 </div>
@@ -1199,7 +1199,7 @@
 
 
                         <!-- DATE BOOKED INFORMATION DATE HAS PASSED -->
-                        <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
+                        <div ng-show="openJob == $index && jobsPageOpen && !job[currentJobInDate].booked  " class="col s9 animated" ng-class="{ 'slideInDown':slidedownin, 'slideOutDown':slidedownout,'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
                             <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
