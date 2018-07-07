@@ -1872,7 +1872,7 @@
         </div>
 
         <div class="col s10 animated fadeIn" ng-show="chartsPageOpen">
-            <div class = "row">
+            <div class = "row hide-on-small-only">
                 <div class="col s2">
                 </div>
                 <div class = "col s8">
@@ -1883,6 +1883,17 @@
                 </div>
             <div class = "col s2">
             </div>
+
+            </div>
+                      <div class = "row show-on-small-only">
+                
+                <div class = "col s12">
+                    <br>
+            <canvas id="line" class="chart chart-line" chart-data="dataForChartsPage" chart-labels="labelsForChartsPage" chart-series="series2" chart-options="optionsLineChart"
+                chart-dataset-override="datasetOverrideLineChart" chart-click="onClick">
+            </canvas>
+                </div>
+            
 
             </div>
         </div>
