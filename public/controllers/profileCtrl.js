@@ -3118,6 +3118,7 @@ console.log(data)
             if(!$scope.chartsPageOpen){
  $scope.chartsPageOpen = true;
  $scope.profileHome= false;
+ $scope.composeMessagePageOpen = false;
             $scope.historyPageOpen = false;
             $scope.messagePageOpen = false;
             $scope.messagePageSelected = false;
