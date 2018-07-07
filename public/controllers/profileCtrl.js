@@ -2260,6 +2260,7 @@ console.log(data)
                 //]
                 
                 $scope.messageIndex = messageindex
+                $scope.messageLoading = false;
 
                 User.changeMessageToRead($scope.name, $scope.messageIndex).then(function (data) {
                     console.log(data)
@@ -2318,7 +2319,7 @@ console.log(data)
 
                     }
 
-                    $scope.messageLoading = false;
+                    
                     //$scope.openMessagePage2();
                 })
                 console.log("first")
@@ -2743,6 +2744,7 @@ console.log(data)
                 $scope.messagePageOpen = false;
                 $scope.historyPageOpen = false;
                 $scope.chartsPageOpen = false;
+                $scope.historyPageOpenProfile = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.messagePageSelected = false;
                 $scope.currentIndex = null;

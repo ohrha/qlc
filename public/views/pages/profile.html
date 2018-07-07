@@ -622,22 +622,31 @@
         <div ng-show="composeMessagePageOpen &&!profileHome &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
 
             
-            <div class="col s12" style="border-right:1px solid #ddd;">
+            <div class="col s12" >
                 <div class="center-align">
 
 
                     <div class="row" ng-show="usersPaginated.length">
+                      
 
+                        <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index " class = "col s2 center-align hide-on-small-only">
+                           <p class = "montserrat underline" style="font-size:17px;"> User</p>
+                        </div>
+                        <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index "class = "col s10 center-align hide-on-small-only">
 
+                        </div>
+                        <div  ng-show="!messageCompositionPageOpen && currentIndex2 == $index "class = "col s12" style="border-bottom:1px solid black;">
+                        </div>
                         <div class="col s12" ng-repeat="page in usersPaginated[page] track by $index">
                             <div class="row">
                                 <br>
-                                <div class="col s2 hide-on-small-only" ng-show="!messageCompositionPageOpen && currentIndex2 !== $index ">
+                                
+                                <div class="col s2 hide-on-small-only" style="border-left:1px solid #ddd;" ng-show="!messageCompositionPageOpen && currentIndex2 !== $index ">
                                     <a href="#" style="color:black;">
-                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate">{{page.name}}</p>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate underline">{{page.name}}</p>
                                     </a>
                                 </div>
-                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn hide-on-small-only" style="border-bottom:1px solid #ddd;">
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn hide-on-small-only" >
                                     <a href="#" style="color:black;">
                                         <p ng-click="openMessageCompositionPage($index,true)" class="railway underline hide-on-med-and-up" >{{page.name}}</p>
                                         <p ng-click="openMessageCompositionPage($index,true)" class="railway  show-on-med-and-up" style="color:white;">{{page.name}}</p>
@@ -688,7 +697,7 @@
                                         <div class="col 12 right-align " style="float:right;">
 
                                             <a href="#" style="color:black; ">
-                                                <i ng-click="openMessageCompositionPage($index,true)" style="font-size:15px;"class = "material-icons underline">clear</i></a>
+                                                <i ng-click="openMessageCompositionPage($index,true)" style="font-size:17px;"class = "material-icons underline">clear</i></a>
 
                                         </div>
                                         <div class="col s12 center-align">
@@ -791,7 +800,7 @@
 
                         <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                             <div class="row">
-                                <div ng-show="!page.read" class="col s3 " >
+                                <div ng-show="!page.read" class="col s3 " style="border-left:1px solid #ddd;" >
                                     <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons "  >email</i></a>
                                 </div>
                                 <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;">
