@@ -2692,10 +2692,7 @@ console.log(data)
 
                 if ($scope.message.subject !== null && $scope.message.body !== null) {
                     $scope.sendMessageLoading = true;
-                    $timeout(function (data) {
-                        $scope.sendMessageLoading = false;
-                    }, 1500)
-
+                   
                     $scope.message.to = name
                     $scope.message.from = $scope.name;
                     $scope.message.read = false;
@@ -2703,8 +2700,10 @@ console.log(data)
                     User.sendMessage($scope.message).then(function (data) {
                         console.log(data)
                         // $scope.sendMessageLoading = false;
+                        $scope.sendMessageLoading = false;
                         $scope.messageSuccessfullySent= true;
                         $timeout(function(){
+                            
                             $scope.messageSuccessfullySent = false;
                               $scope.message.from = null;
                         $scope.message.body = null;
