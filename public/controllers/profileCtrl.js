@@ -2744,6 +2744,7 @@ console.log(data)
                 $scope.composeMessagePageOpen = true;
                 $scope.profileHome = false;
                 $scope.messagePageOpen = false;
+                $scope.bookedJobsSelected = false;
                 $scope.historyPageOpen = false;
                 $scope.chartsPageOpen = false;
                 $scope.historyPageOpenProfile = false;
@@ -2966,11 +2967,12 @@ console.log(data)
 
             } else {
                 $scope.bookedJobsSelected = true;
+                $scope.bookedJobsPageOpened = true;
                 $scope.profileHome=false;
                 $scope.complaintsPageOpened = false;
-                $scope.composeMessagePage = false;
+                $scope.composeMessagePageOpen = false;
                 
-                $scope.bookedJobsPageOpened = true;
+                
                 $scope.addHoursPageOpen = false;
                 $scope.messagePageOpen = false;
                 $scope.chartsPageOpen = false;
@@ -3171,6 +3173,7 @@ console.log(data)
  $scope.profileHome= false;
  $scope.composeMessagePageOpen = false;
             $scope.historyPageOpen = false;
+            $scope.bookedJobsSelected = false;
             $scope.messagePageOpen = false;
             $scope.messagePageSelected = false;
             $scope.timesheetsPageOpen = false;
@@ -3606,6 +3609,7 @@ console.log("position 1")
             $scope.chartsPageOpen = false;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
+        $scope.bookedJobsSelected = false;
             $scope.profileHome = false;
             $scope.historyPageOpenProfile = true;
             $scope.loadingWorkHistoryProfile = true;
