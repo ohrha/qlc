@@ -627,7 +627,7 @@
  
         <div ng-show="composeMessagePageOpen &&!profileHome &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
 
-
+            
             <div class="col s12" style="border-right:1px solid #ddd;">
                 <div class="center-align">
 
@@ -637,17 +637,27 @@
 
                         <div class="col s12" ng-repeat="page in usersPaginated[page] track by $index">
                             <div class="row">
-                                <div class="col s2" style="border-right:1px solid #ddd">
+                                <br>
+                                <div class="col s2 hide-on-small-only" ng-show="!messageCompositionPageOpen && currentIndex2 !== $index ">
                                     <a href="#" style="color:black;">
                                         <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate">{{page.name}}</p>
                                     </a>
                                 </div>
-                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn">
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn hide-on-small-only" style="border-bottom:1px solid #ddd;">
                                     <a href="#" style="color:black;">
-                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway underline" style="color:#ddd">{{page.name}}</p>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway underline hide-on-med-and-up" >{{page.name}}</p>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway  show-on-med-and-up" style="color:white;">{{page.name}}</p>
+
                                     </a>
                                 </div>
 
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s12 center-align animated fadeIn show-on-small-only" style="border-bottom:1px solid #ddd;">
+                                    <a href="#" style="color:black;">
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway underline hide-on-med-and-up" >{{page.name}}</p>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway  show-on-med-and-up" style="color:white;">{{page.name}}</p>
+
+                                    </a>
+                                </div>
 
                                 <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && sendMessageLoading" class="col s10 center-align animated fadeIn">
                                     <br>
@@ -656,40 +666,44 @@
 
                                     <i class="material-icons animated slideOutRight infinite">email</i>
                                 </div>
-                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading" class="col s10 center-align animated fadeIn">
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading" class="col s12 center-align animated fadeIn">
 
                                     <div class="row">
 
                                         <div class="col 12 right-align " style="float:right;">
 
-                                            <a href="#" style="color:black; "><i ng-click="openMessageCompositionPage($index,true)" class = "material-icons underline">clear</i></a>
+                                            <a href="#" style="color:black; "><i ng-click="openMessageCompositionPage($index,true)" style="font-size:15px;"class = "material-icons underline">clear</i></a>
 
                                         </div>
                                         <div class="col s12 center-align">
-                                            <p class="railway"> {{page.name}}</p>
+                                            <p class="montserrat underline" style="font-size:16px;"> {{page.name}}</p>
+
                                         </div>
-                                        <div class="input-field col s6">
+                                        <div class = "col s12" style="border-top:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd;">
+                                        <div class="input-field col s6" >
 
                                             <input id="first_name2" ng-model="message.subject" type="text" class="validate">
 
                                             <label class="active" for="first_name2">Subject</label>
 
                                         </div>
-                                        <div class "col s6">
+                                        </div>
+                                        <div class "col s6" >
                                         </div>
                                         <div class="row">
-                                            <form class="col s12">
+                                            <form class="col s12" style="border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;">
                                                 <div class="row">
 
                                                     <div class="input-field col s12">
                                                         <textarea id="textarea1" ng-model="message.body" name="body" class="materialize-textarea"></textarea>
                                                         <label for="textarea1">Message</label>
                                                     </div>
-                                                </div>
-                                            </form>
-                                            <div class="col s12">
+                                                    <div class="col s12">
                                                 <a ng-click="submitMessage(page.name)" class="waves-effect waves-light btn">Send</a>
                                             </div>
+                                                </div>
+                                            </form>
+                                            
 
                                             <div ng-show="allFieldsMustBeInput" class="col s12">
                                                 <p> All Fields Must Be Input </p>
@@ -1882,7 +1896,7 @@
            
             <div class = "row hide-on-small-only">
                  <div class = "col s12 center-align">
-                    <p class = "montserrat underline" style="font-size: 18px;">Metrics Page</p>
+                    <p class = "montserrat underline" style="font-size: 17px;">Metrics Page</p>
                 </div>
                 <div class="col s2">
                 </div>
