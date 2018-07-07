@@ -11,7 +11,7 @@
             <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
                     </a>
             <a href="#" style="color:black;">
-                    <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+                    <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:14px;"></i>
 
                 <a href="#"style="color:black;">
                     <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
@@ -507,27 +507,27 @@
                         </div>
                     </div>
                     <div class="col s2">
-                        <a href="#" style="color:black;"><i ng-click="openHistoryPageProfile()" class="material-icons green-text text-lighten-3">access_time</i></a>
+                        <a href="#" style="color:black;"><i ng-click="openHistoryPageProfile()" class="material-icons green-text text-lighten-3" ng-class="{'workhistoryprofileselected':workHistoryProfileSelected,'workhistoryprofiledeselected':!workHistoryProfileSelected}">access_time</i></a>
                         <div class=" removeonsmall profiletitles">
                             <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Work History</span></a>
                         </div>
                     </div>
                     <div class="col s2">
-                        <a href="#" style="color:black;"><i ng-click="openChartsPage()" class="material-icons">timeline</i></a>
+                        <a href="#" style="color:black;"><i ng-click="openChartsPage()" class="material-icons" ng-class="{'chartspageselected':chartsPageSelected,'chartspagedeselected':!chartsPageSelected}">timeline</i></a>
                         <div class=" removeonsmall profiletitles">
                             <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Metrics</span></a>
                         </div>
                     </div>
                     <div class="col s2">
-                        <a href="#" style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3">email</i></a>
-                        <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3">drafts</i></a>
+                        <a href="#" style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3"ng-class="{'messagepageselected':messagePageSelected,'messagepagedeselected':!messagePageSelected}">email</i></a>
+                        <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons purple-text text-lighten-3"ng-class="{'messagepageselected':messagePageSelected,'messagepagedeselected':!messagePageSelected}">drafts</i></a>
                         <div class=" removeonsmall profiletitles">
                             <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Messages</span></a>
                         </div>
                     </div>
 
                     <div class="col s2">
-                        <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons pink-text text-lighten-3">create</i></a>
+                        <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()"ng-class="{'composemessagepageselected':composeMessagePageSelected,'composemessagepagedeselected':!composeMessagePageSelected}" class="material-icons pink-text text-lighten-3">create</i></a>
                         <div class=" removeonsmall profiletitles">
                             <a href="#" style="color:black; font-family:'Montserrat'"> <span class="railway underline">Compose</span></a>
                         </div>
@@ -645,7 +645,7 @@
                       
 
                         <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index " class = "col s2 center-align hide-on-small-only">
-                           <p class = "montserrat underline" style="font-size:17px;"> User</p>
+                           <p class = "montserrat underline" style="font-size:14px;"> User</p>
                         </div>
                         <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index "class = "col s10 center-align hide-on-small-only">
 
@@ -1958,8 +1958,22 @@
                 </div>
             </div>
         </div>
-
-        <div class="col s10 animated fadeIn" ng-show="chartsPageOpen">
+       
+    <div ng-show="loadingChart" class="col s10 hide-on-small-only">
+            <br>
+            <br>
+            
+            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
+        </div>
+          <div ng-show="loadingChart" class="col s10 hide-on-med-and-up">
+            
+            
+            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            <br>
+            
+        </div>
+        <div class="col s10 animated fadeIn" ng-show="chartsPageOpen &&!loadingChart">
            
             <div class = "row hide-on-small-only">
                  <div class = "col s12 center-align">

@@ -45,6 +45,12 @@
         $scope.june1Booked = false;
         $scope.areYouSure = false;
         $scope.composeMessagePage = false;
+        $scope.messagePageSelected = false;
+        $scope.chartsPageSelected = false
+        $scope.messagePageSelected = false;
+                $scope.composeMessagePageSelected = false;
+        $scope.workHistoryProfileSelected = false;
+
         $scope.reviewSubmittedTimeSheetsPageOpen = false;
         $scope.composeMessagePageLoading = false;
         $scope.messageSuccessfullySent = false;
@@ -85,6 +91,7 @@
         $scope.profileHome = true;
         $scope.requestEmployeePageLoading = false;
          $scope.loadingRequestJob = false;
+         $scope.loadingChart = false;
                      $scope.loadingWorkHistoryProfile = false;
 
                     $scope.loadingRequestJobSuccessful = false;
@@ -2742,6 +2749,10 @@ console.log(data)
             if (!$scope.composeMessagePageOpen) {
                 $scope.composeMessagePageLoading = true;
                 $scope.composeMessagePageOpen = true;
+                $scope.composeMessagePageSelected = true;
+                $scope.messagePageSelected = false
+                $scope.chartsPageSelected = false;
+                $scope.workHistoryProfileSelected = false;
                 $scope.profileHome = false;
                 $scope.messagePageOpen = false;
                 $scope.bookedJobsSelected = false;
@@ -2968,6 +2979,10 @@ console.log(data)
             } else {
                 $scope.bookedJobsSelected = true;
                 $scope.bookedJobsPageOpened = true;
+                $scope.workHistoryProfileSelected = false;
+                $scope.chartsPageSelected = false;
+                $scope.messagePageSelected = false;
+                $scope.composeMessagePageSelected = false;
                 $scope.profileHome=false;
                 $scope.complaintsPageOpened = false;
                 $scope.composeMessagePageOpen = false;
@@ -3170,6 +3185,11 @@ console.log(data)
 
             if(!$scope.chartsPageOpen){
  $scope.chartsPageOpen = true;
+ $scope.loadingChart = true;
+ $scope.chartsPageSelected= true;
+ $scope.workHistoryProfileSelected = false
+ $scope.messagePageSelected = false;
+ $scope.composeMessagePageSelected = false;
  $scope.profileHome= false;
  $scope.composeMessagePageOpen = false;
             $scope.historyPageOpen = false;
@@ -3208,7 +3228,7 @@ console.log(data)
 
                             //console.log($scope.payPeriodHistory[b].entry[c])
                             $scope.hoursCalcIterator = $scope.hoursCalcIterator + $scope.payPeriodHistory[b].entry[c][x].hoursCalculated
-                           
+                           $scope.loadingChart = false;
                             console.log($scope.hoursCalcIterator, b)
                            
                             
@@ -3444,6 +3464,9 @@ console.log("position 1")
                 $scope.messagePageOpen = true;
                 $scope.profileHome = false;
                 $scope.messagePageSelected = true;
+                $scope.chartsPageSelected = false
+                $scope.workHistoryProfileSelected = false;
+                $scope.composeMessagePageSelected = false;
                 $scope.composeMessagePageOpen = false;
                 $scope.bookedJobsPageOpened = false;
                 $scope.bookedJobsSelected = false;
@@ -3607,6 +3630,8 @@ console.log("position 1")
             if(!$scope.historyPageOpenProfile){
                 $scope.openJob = 0;
             $scope.chartsPageOpen = false;
+            $scope.workHistoryProfileSelected = true;
+            $scope.chartsPageSelected = false;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
         $scope.bookedJobsSelected = false;

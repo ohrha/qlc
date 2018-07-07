@@ -130,6 +130,38 @@ a{
     opacity:1;
     transition:.2s;
 }
+.composemessagepageselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.composemessagepagedeselected{
+    opacity:1;
+    transition:.2s;
+}
+.messagepageselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.messagedeselected{
+    opacity:1;
+    transition:.2s;
+}
+.workhistoryprofileselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.workhistoryprofiledeselected{
+    opacity:1;
+    transition:.2s;
+}
+.chartspageselected{
+    opacity:0.4;
+    transition:.2s;
+}
+.chartspagedeselected{
+    opacity:1;
+    transition:.2s;
+}
 .clientspageselected{
     opacity:.4;
     transition:.2s;
