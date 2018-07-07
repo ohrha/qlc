@@ -2829,6 +2829,25 @@ console.log(data)
             }, 500)
 
         }
+         $scope.changeJobInDate2 = function (index) {
+            $scope.slideOut = true;
+            $scope.fadeOut2 = true;
+            $timeout(function () {
+                if ($scope.currentJobInDate == 1) {
+                    $scope.currentJobInDate--;
+
+                } else {
+                    $scope.currentJobInDate = 1
+                }
+                console.log($scope.currentJobInDate
+                )
+                $scope.slideOut = false;
+                $scope.fadeOut2 = false
+                $scope.fadeIn2 = true;
+                $scope.slideIn = true;
+            }, 500)
+
+        }
         $scope.finishSubmitTimesheet = function (decision) {
             console.log(decision)
             /// console.log($scope.delinquentJobDetails)
