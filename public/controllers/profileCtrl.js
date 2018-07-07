@@ -374,7 +374,7 @@
         //$scope.individualPayPeriodOpen = false;
         $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.labels2 = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.labelsForChartsPage = ["January", "February", "March", "April", "May", "June", "July"];
+        $scope.labelsForChartsPage = ["January", "February", "March", "April", "May", "June", ""];
 
         $scope.series = ['Series A'];
         $scope.series2 = ['Series A'];
@@ -3145,7 +3145,6 @@ console.log(data)
                     $scope.newPageArray = []
                     // $scope.data[0][b]= hoursIterator;
                     console.log($scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date)
-                    $scope.labelsForChartsPage[b] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
                     for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
                         //console.log($scope.payPeriodHistory.length)
@@ -3168,28 +3167,38 @@ console.log(data)
                                     
                                     console.log($scope.hoursCalcIterator, b)
                                 $scope.dataForChartsPage[0][0] = $scope.hoursCalcIterator
+                                                    $scope.labelsForChartsPage[0] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+
                                 $scope.positionIterator= $scope.positionIterator -1
 console.log("position 2")
                                 }else
                                  if((b - $scope.positionIterator) == 0){
                                 $scope.dataForChartsPage[0][1] = 5
+                                                    $scope.labelsForChartsPage[1] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+
                                 $scope.positionIterator= $scope.positionIterator -1
 console.log("position 1")
                                 }else
                                  if(b - ($scope.positionIterator) == 2){
                                   $scope.dataForChartsPage[0][2] = $scope.hoursCalcIterator
+                                                      $scope.labelsForChartsPage[2] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+
                                   console.log("position 3")
                                   $scope.positionIterator= $scope.positionIterator -1
                                 }else
                                  if(b - $scope.positionIterator == 3){
                                      console.log("position 4")
                                     $scope.dataForChartsPage[0][3] = $scope.hoursCalcIterator
+                                                        $scope.labelsForChartsPage[3] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+
                                     $scope.positionIterator= $scope.positionIterator -1
 
                                 }else
                                  if(b - $scope.positionIterator == 4){
                                      console.log('position 5')
                                     $scope.dataForChartsPage[0][4] = $scope.hoursCalcIterator
+                                                        $scope.labelsForChartsPage[4] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+
                                     $scope.positionIterator= $scope.positionIterator -1
 
                                 }else
@@ -3197,6 +3206,8 @@ console.log("position 1")
                                      console.log('position 6')
                                      console.log($scope.hoursCalcIterator, b)
                                     $scope.dataForChartsPage[0][5] = $scope.hoursCalcIterator
+                                    $scope.labelsForChartsPage[5] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+
                                     $scope.positionIterator= $scope.positionIterator -1
 
                                 }
