@@ -387,7 +387,7 @@
 
         ];
                 $scope.dataForChartsPage = [
-            [0, 0, 0, 81, 56, 55, 40]
+            [0, 0, 0, 0, 0, 0, 0]
 
         ];
         $scope.onClick = function (points, evt) {
@@ -3136,32 +3136,100 @@ console.log(data)
                 $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                 console.log($scope.payPeriodHistory)
 
+                $scope.positionIterator = 0;
 
                 for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
                     //$scope.data
+                    
                     $scope.hoursCalcIterator = 0;
-
+                    $scope.newPageArray = []
                     // $scope.data[0][b]= hoursIterator;
                     console.log($scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date)
                     $scope.labelsForChartsPage[b] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
                     for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
-                        console.log($scope.payPeriodHistory.length)
+                        //console.log($scope.payPeriodHistory.length)
 
                         for (var x = 0; x < $scope.payPeriodHistory[b].entry[c].length; x++) {
 
-                            console.log($scope.payPeriodHistory[b].entry[c])
+                            //console.log($scope.payPeriodHistory[b].entry[c])
                             $scope.hoursCalcIterator = $scope.hoursCalcIterator + $scope.payPeriodHistory[b].entry[c][x].hoursCalculated
                            
                             console.log($scope.hoursCalcIterator, b)
-                            $scope.dataForChartsPage[0][b] = $scope.hoursCalcIterator
+                           
+                            
                         }
+ if(b>6){
+                                console.log("$scope.positionIterator",$scope.positionIterator)
+                                console.log("b",b)
+                                console.log((b - $scope.positionIterator))
+                                
+                                if(( b - $scope.positionIterator) == 1){
+                                    
+                                    console.log($scope.hoursCalcIterator, b)
+                                $scope.dataForChartsPage[0][0] = $scope.hoursCalcIterator
+                                $scope.positionIterator= $scope.positionIterator -1
+console.log("position 2")
+                                }else
+                                 if((b - $scope.positionIterator) == 0){
+                                $scope.dataForChartsPage[0][1] = 5
+                                $scope.positionIterator= $scope.positionIterator -1
+console.log("position 1")
+                                }else
+                                 if(b - ($scope.positionIterator) == 2){
+                                  $scope.dataForChartsPage[0][2] = $scope.hoursCalcIterator
+                                  console.log("position 3")
+                                  $scope.positionIterator= $scope.positionIterator -1
+                                }else
+                                 if(b - $scope.positionIterator == 3){
+                                     console.log("position 4")
+                                    $scope.dataForChartsPage[0][3] = $scope.hoursCalcIterator
+                                    $scope.positionIterator= $scope.positionIterator -1
 
+                                }else
+                                 if(b - $scope.positionIterator == 4){
+                                     console.log('position 5')
+                                    $scope.dataForChartsPage[0][4] = $scope.hoursCalcIterator
+                                    $scope.positionIterator= $scope.positionIterator -1
+
+                                }else
+                                 if(b - $scope.positionIterator == 5){
+                                     console.log('position 6')
+                                     console.log($scope.hoursCalcIterator, b)
+                                    $scope.dataForChartsPage[0][5] = $scope.hoursCalcIterator
+                                    $scope.positionIterator= $scope.positionIterator -1
+
+                                }
+                               
+                                //$scope.newPageArray.push($scope.)
+                               // $scope.positionIterator = -1
+                               
+                                  /*  $scope.positionIterator++
+                                    if($scope.positionIterator == 0){
+                                       $scope.dataForChartsPage[0][$scope.positionIterator] = $scope.hoursCalcIterator
+
+                                    }else{
+                                        $scope.dataForChartsPage[0][$scope.positionItarator] = 5
+                                    }*/
+                                console.log($scope.positionIterator)
+                                console.log($scope.dataForChartsPage[0][$scope.positionIterator])
+
+                                
+                             
+                            }else{
+                                    if($scope.positionIterator == 0){
+                                       $scope.dataForChartsPage[0][$scope.positionIterator] = $scope.hoursCalcIterator
+
+                                    }else{
+                                        $scope.dataForChartsPage[0][$scope.positionItarator] = 5
+                                    }
+                                console.log("LOst")
+                            }
                         var hoursIterator = 0;
                         var minIterator = 0;
 
                     }
-
+                    $scope.positionIterator++
                 }
             })
 

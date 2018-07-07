@@ -603,16 +603,21 @@
 
             </div>
         </div>
-
-        <div ng-show="messagePageOpen && messagesLoading" class="col s10 center-align">
-            <p class="railway animated flash infinite" style="font-size:20px;"> LOADING</p>
-
+       <div ng-show="messagePageOpen && messagesLoading" class="col s10">
+            <br>
+            <br>
+            
+            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
         </div>
-        <div ng-show="composeMessagePageLoading" class="col s10 center-align  ">
-            <p class="railway animated flash infinite" style="font-size:20px;"> LOADING</p>
-
-
+            <div ng-show="composeMessagePageLoading" class="col s10">
+            <br>
+            <br>
+            
+            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
         </div>
+ 
         <div ng-show="composeMessagePageOpen &&!profileHome &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
 
 
