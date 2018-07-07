@@ -1751,6 +1751,7 @@ console.log(data)
                         //console.log($scope.employees[i])
                         //console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.messagesArray[i]) {
+                            $scope.messagesArray[i].messageIndex = i
                             $scope.messageForPagination.push($scope.messagesArray[i])
                             console.log(i)
                             console.log("firstCondiation")
@@ -1773,6 +1774,7 @@ console.log(data)
                             console.log($scope.messagesPaginated.length)
                             $scope.messageForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
+                                $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
