@@ -91,6 +91,8 @@
         $scope.timeSheetDataNotComplete = false;
         $scope.submittedIndex = null;
         $scope.curPeriod = null;
+    $scope.messageIndex = "";
+   
         $scope.editEmailPageOpen = false;
         $scope.editPhoneNumberPageOpen = false;
         $scope.phoneData = {
@@ -1725,7 +1727,7 @@ console.log(data)
             $scope.areYouSure = false;
             console.log(index)
 
-            User.removeMessage($scope.name, $scope.currentIndex).then(function (data) {
+            User.removeMessage($scope.name, $scope.messageIndex).then(function (data) {
                 console.log(data)
                 $scope.pageLimit = 4;
                 $scope.messagesPaginated = [];
@@ -1789,11 +1791,13 @@ console.log(data)
                 //$scope.openMessagePage2();
             })
         }
-        $scope.markAsUnread = function (index) {
+        $scope.markAsUnread = function (index,messageindex) {
             $scope.messageLoading = true;
             $scope.currentIndex = index;
+            $scope.messageIndex = messageindex
+            console.log(messageindex)
 
-            User.changeMessageToUnRead($scope.name, $scope.currentIndex).then(function (data) {
+            User.changeMessageToUnRead($scope.name, $scope.messageIndex).then(function (data) {
                 console.log(data)
                 $scope.pageLimit = 4;
                 $scope.messagesPaginated = [];
@@ -1817,6 +1821,7 @@ console.log(data)
                         //console.log($scope.employees[i])
                         //console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.messagesArray[i]) {
+                            $scope.messagesArray[i].messageIndex = i
                             $scope.messageForPagination.push($scope.messagesArray[i])
                             console.log(i)
                             console.log("firstCondiation")
@@ -1835,6 +1840,7 @@ console.log(data)
                             console.log($scope.messagesPaginated)
                             $scope.messageForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
+                                $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
@@ -2239,7 +2245,7 @@ console.log(data)
                 $scope.complaintsPageClientOpen = false;
             }
         }
-        $scope.openMessage = function (index, timesheetData) {
+        $scope.openMessage = function (index, timesheetData,messageindex) {
             console.log(index)
             console.log(timesheetData)
             $('select').material_select();
@@ -2249,8 +2255,11 @@ console.log(data)
                 // $scope.individualPayPeriodOpen = false;
                 $scope.messageLoading = true;
                 $scope.currentIndex = index;
+                //]
+                
+                $scope.messageIndex = messageindex
 
-                User.changeMessageToRead($scope.name, $scope.currentIndex).then(function (data) {
+                User.changeMessageToRead($scope.name, $scope.messageIndex).then(function (data) {
                     console.log(data)
                     $scope.pageLimit = 4;
                     $scope.messagesPaginated = [];
@@ -2274,6 +2283,7 @@ console.log(data)
                             //console.log($scope.employees[i])
                             //console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.messagesArray[i]) {
+                                $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                                 console.log(i)
                                 console.log("firstCondiation")
@@ -2292,6 +2302,7 @@ console.log(data)
                                 console.log($scope.messagesPaginated)
                                 $scope.messageForPagination = [];
                                 if ($scope.messagesArray[i] !== undefined) {
+                                    $scope.messagesArray[i].messageIndex = i
                                     $scope.messageForPagination.push($scope.messagesArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
@@ -3459,6 +3470,7 @@ console.log("position 1")
                             //console.log($scope.employees[i])
                             //console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.messagesArray[i]) {
+                                $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                                 console.log(i)
                                 console.log("firstCondiation")
@@ -3479,6 +3491,7 @@ console.log("position 1")
 
                                 $scope.messageForPagination = [];
                                 if ($scope.messagesArray[i] !== undefined) {
+                                     $scope.messagesArray[i].messageIndex = i
                                     $scope.messageForPagination.push($scope.messagesArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;

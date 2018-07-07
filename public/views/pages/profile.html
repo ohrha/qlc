@@ -791,10 +791,10 @@
                         <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                             <div class="row">
                                 <div ng-show="!page.read" class="col s3 " >
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons "  >email</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons "  >email</i></a>
                                 </div>
                                 <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;">
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" >drafts</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons" >drafts</i></a>
                                 </div>
                                 <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;'>
                                     <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#"></a></p>
@@ -824,7 +824,7 @@
                                     <p ng-show="areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">Are You Sure?</a></p>
                                     <div class="row" ng-show="!areYouSure" style="border-bottom:1px solid #ddd;">
                                         <div class="col s6 left-align" style="border-top:1px dashed #ddd; ">
-                                            <a href="#" style="color:black;"> <i ng-click="markAsUnread($index)"class="material-icons">undo</i></a>
+                                            <a href="#" style="color:black;"> <i ng-click="markAsUnread($index,page.messageIndex)"class="material-icons">undo</i></a>
 
                                         </div>
                                         <div class="col s6 right-align" style="border-top:1px dashed #ddd; ">
@@ -837,12 +837,13 @@
                                     </div>
                                     <div class="row" ng-show="areYouSure">
                                         <div class="col s6 left-align" ng-show="areYouSure">
-                                            <a ng-click="removeMessage($index)" class="waves-effect waves-light btn">yes</a>
+                                            
+                                            <i ng-click="removeMessage($index)"class = "material-icons green-text text-lighten-2">check_circle</i>
 
 
                                         </div>
                                         <div class="col s6 right-align" ng-show="areYouSure">
-                                            <a class="waves-effect waves-light btn" ng-click="closeAreYouSure()">no</a>
+                                            <i ng-click="closeAreYouSure($index)"class = "material-icons red-text text-lighten-2">cancel</i>
 
                                         </div>
 
