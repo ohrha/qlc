@@ -85,6 +85,8 @@
         $scope.profileHome = true;
         $scope.requestEmployeePageLoading = false;
          $scope.loadingRequestJob = false;
+                     $scope.loadingWorkHistoryProfile = false;
+
                     $scope.loadingRequestJobSuccessful = false;
         $scope.submittedTimeSheetsArray=[]
         $scope.individualSubmittedTimeSheetOpen = true;
@@ -3606,6 +3608,7 @@ console.log("position 1")
             $scope.generalHistoryTitle = false;
             $scope.profileHome = false;
             $scope.historyPageOpenProfile = true;
+            $scope.loadingWorkHistoryProfile = true;
             $scope.timesheetsPageOpen = false;
             $scope.notesPageOpen = false;
             $scope.jobsPageOpen = true;
@@ -3629,6 +3632,7 @@ console.log("position 1")
             User.findUser($scope.name).then(function (data) {
                 console.log(data)
                 $scope.payPeriodHistory = data.data.user[0].payperiodhistory
+                $scope.loadingWorkHistoryProfile = false;
                 console.log($scope.payPeriodHistory)
 
 

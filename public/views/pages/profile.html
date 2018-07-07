@@ -1722,8 +1722,16 @@
         </div>
         <!-- BOOKED JOBS -->
 
+      <div ng-show="loadingWorkHistoryProfile"  class="col s10 center-align animated fadeIn show-on-med-to-up">
+            <br>
+            <br>
+            
+            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
+        </div>
 
-        <div ng-show="historyPageOpenProfile" class="col s10 center-align animated fadeIn">
+
+        <div ng-show="historyPageOpenProfile && !loadingWorkHistoryProfile" class="col s10 center-align animated fadeIn">
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
 
                 <p ng-show="generalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>History
