@@ -737,10 +737,11 @@
                                 <div class="col s2" ng-show="messageOpen && currentIndex == $index " style="height:100px;">
 
                                 </div>
-                                <div class="col s10" ng-show="messageOpen && currentIndex == $index && messageLoading" style="height:100px; border:1px solid #ddd;">
+                                <div class="col s10" ng-show="messageOpen && currentIndex == $index && messageLoading" style=" border:1px solid #ddd;">
                                     <br>
 
-                                    <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
+                                     <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
                                 </div>
                                 <div class="col s10 " ng-show="messageOpen && currentIndex == $index && !messageLoading " style="height:100px; border:1px solid #ddd;">
 
@@ -809,9 +810,10 @@
                                 <div class="col s9" ng-show="messageOpen && currentIndex == $index && messageLoading" >
 
 
-                                    <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
+                                     <p class="railway animated flash infinite underline" style="font-size:17px;"> ( LOADING )</p>
+            
                                 </div>
-                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && !messageLoading "style="border-left:1px solid #ddd;border-right:1px solid #ddd;">
+                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && !messageLoading "style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;">
                                     <div class="col s12" style=" border-bottom:1px dashed #ddd;">
                                         <span class="railway " style="float:left;">From: {{page.from}}</span>
                                         <br>
@@ -838,12 +840,12 @@
                                     <div class="row" ng-show="areYouSure">
                                         <div class="col s6 left-align" ng-show="areYouSure">
                                             
-                                            <i ng-click="removeMessage($index)"class = "material-icons green-text text-lighten-2">check_circle</i>
+                                           <a href="#" > <i ng-click="removeMessage($index)"class = "material-icons green-text text-lighten-3">check_circle</i></a>
 
 
                                         </div>
                                         <div class="col s6 right-align" ng-show="areYouSure">
-                                            <i ng-click="closeAreYouSure($index)"class = "material-icons red-text text-lighten-2">cancel</i>
+                                           <a href="#" > <i ng-click="closeAreYouSure($index)"class = "material-icons red-text text-lighten-3">cancel</i></a>
 
                                         </div>
 
