@@ -374,13 +374,19 @@
         //$scope.individualPayPeriodOpen = false;
         $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.labels2 = ["January", "February", "March", "April", "May", "June", "July"];
+        $scope.labelsForChartsPage = ["January", "February", "March", "April", "May", "June", "July"];
 
         $scope.series = ['Series A'];
+        $scope.series2 = ['Series A'];
         $scope.data = [
             [0, 0, 0, 81, 56, 55, 40]
 
         ];
         $scope.data2 = [
+            [0, 0, 0, 81, 56, 55, 40]
+
+        ];
+                $scope.dataForChartsPage = [
             [0, 0, 0, 81, 56, 55, 40]
 
         ];
@@ -396,8 +402,29 @@
             $('select').material_select();
 
         }, 15000);
+         $scope.datasetOverrideLineChart = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' },{backgroundColor: "rgba( 0,203,254,0.3)"}];
+           $scope.optionsLineChart = {
+               responsive:true,
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+        },
+        {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: true,
+          position: 'right'
+        }
+      ]
+    }
+  };
         $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
         $scope.options = {
+            responsive:true,
             scales: {
                 yAxes: [
                     {
@@ -3116,7 +3143,7 @@ console.log(data)
 
                     // $scope.data[0][b]= hoursIterator;
                     console.log($scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date)
-                    $scope.labels2[b] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
+                    $scope.labelsForChartsPage[b] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
                     for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
                         console.log($scope.payPeriodHistory.length)
@@ -3125,27 +3152,9 @@ console.log(data)
 
                             console.log($scope.payPeriodHistory[b].entry[c])
                             $scope.hoursCalcIterator = $scope.hoursCalcIterator + $scope.payPeriodHistory[b].entry[c][x].hoursCalculated
-                            /*    if($scope.payPeriodHistory[b].entry[c][0]!== undefined){
-
-                                       $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
-                                       if($scope.payPeriodHistory[b].entry[c][x+1] !== undefined){
-                                        console.log("HOlk")
-                                                $scope.hoursCalIterator = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1];
-                                             console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated)
-                                               $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x+1].hoursCalculated;
-
-                                             
-                                       }else{
-                                           console.log("choOlk")
-                                                                                              $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated ;
-
-                                       }
-
-
-
-                                }*/
+                           
                             console.log($scope.hoursCalcIterator, b)
-                            $scope.data2[b] = $scope.hoursCalcIterator
+                            $scope.dataForChartsPage[0][b] = $scope.hoursCalcIterator
                         }
 
                         var hoursIterator = 0;

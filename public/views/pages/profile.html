@@ -847,9 +847,13 @@
         </div>
         <!-- BOOKED JOBS PAGE -->
         <div ng-show="loadingCurrentEmployee" class="col s10">
-            <p class="railway animated flash infinite" style="font-size:20px;"> LOADING</p>
+            <br>
+            <br>
+            
+            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
         </div>
-        <div ng-show="bookedJobsPageOpened &&!profileHome && !loadingCurrentEmployee " class="col s10 center-align">
+        <div ng-show="bookedJobsPageOpened &&!profileHome && !loadingCurrentEmployee " class="col s10 center-align animated fadeIn">
 <br>
             <!-- SCROLL THROUGH BOOKED JOBS -->
 
@@ -891,7 +895,7 @@
                             <!-- remove border left -->
                             <a href="#" style="color:black;">
                                 <p ng-show="openJob == $index" ng-click="openJobsPage($index);" class="railway truncate" ng-class="{'jobsselected':jobsSelected,'jobsdeselected':!jobsSelected}">
-                                    <i style="font-size:15px;" class="material-icons">mail</i>Job |</p>
+                                    <i style="font-size:15px;" class="material-icons">work</i>Job |</p>
                             </a>
                             <a href="#" style="color:black;">
                                 <p ng-show="openJob == $index" ng-click="openTimesheetsPage($index);" class="railway  truncate "
@@ -899,7 +903,7 @@
                                 </p>
                             </a>
                             <a href="#" style="color:black;">
-                                <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:15px;" class="material-icons">announcement</i> Notes |
+                                <p ng-show="openJob == $index" ng-click="openNotesPage($index);" class="railway  truncate " ng-class="{'notesselected':notesSelected,'notesdeselected':!notesSelected}"><i style="font-size:15px;" class="material-icons">info</i> Notes |
                                 </p>
                             </a>
                         </div>
@@ -913,15 +917,15 @@
                             <!-- DATE BOOKED ARROWS -->
 
                             <div ng-show="job.length>1" class="row animated flash">
-                                <div class="col s6">
-                                    <div class="left-align">
+                                <div class="col s6 left-align">
+                                    
                                         <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
-                                    </div>
+                                   
                                 </div>
-                                <div class="col s6">
-                                    <div class="right-align">
+                                <div class="col s6 right-align">
+                                    
                                         <a href="#" style="color:black;"> <i class = "material-icons">chevron_right</i></a>
-                                    </div>
+                                   
                                 </div>
                             </div>
 
@@ -1714,9 +1718,7 @@
 
 
                             <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s9 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:450px;">
-                            <div class = "show-on-small-only">               
-                                <br>
-                            </div>
+                          
                                 <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
                                     chart-series="series"
                                 </canvas>
@@ -1865,9 +1867,19 @@
         </div>
 
         <div class="col s10 animated fadeIn" ng-show="chartsPageOpen">
-            <canvas id="line" class="chart chart-line" chart-data="data2" chart-labels="labels2" chart-series="series" chart-options="options"
-                chart-dataset-override="datasetOverride" chart-click="onClick">
+            <div class = "row">
+                <div class="col s2">
+                </div>
+                <div class = "col s8">
+                    <br>
+            <canvas id="line" class="chart chart-line" chart-data="dataForChartsPage" chart-labels="labelsForChartsPage" chart-series="series2" chart-options="optionsLineChart"
+                chart-dataset-override="datasetOverrideLineChart" chart-click="onClick">
             </canvas>
+                </div>
+            <div class = "col s2">
+            </div>
+
+            </div>
         </div>
 
     </div>
