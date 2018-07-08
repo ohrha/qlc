@@ -9,15 +9,15 @@
 
             </div>
                <div class = "col s2">
-        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
+        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">schedule</i></a>
 
             </div>
                <div class = "col s2">
-                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
+                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:22px; padding-bottom:20px;"class="far fa-compass"></i>
 
             </div>
                <div class = "col s2">
-                                       <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+                                       <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:22px;"></i>
 
             </div>
 
@@ -30,30 +30,30 @@
 
             </div>
         </div>
-        <div class = "row">
+        <div class = "row hide-on-small-only">
             <div class = "col s2">
-            <a href="#" style="color:black;"> <i ng-click="openRequestEmployeePage()" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openRequestEmployeePage(name)"> <span class=" underline">Request A Job</span></a>
 
             </div>
                <div class = "col s2">
-        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
+        <a href="#" style="color:black; font-family:'Montserrat'"><span ng-click="reviewSubmittedTimeSheetsPage()" class=" underline">Review Time Sheets</span></a>
 
             </div>
                <div class = "col s2">
-                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
+                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openAddLocationPage(name)"> <span class=" underline">Add A Location</span></a>
 
             </div>
                <div class = "col s2">
-                                       <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openAddSupervisorPage(name)"> <span class=" underline">Add A Supervisor</span></a>
 
             </div>
 
       <div class = "col s2">
-       <a href="#" style="color:black;">  <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
-        <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
+                                  <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openRequestEmployeePage(name)"> <span class=" underline">Messages</span></a>
+
             </div>
                   <div class = "col s2">
-        <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openRequestEmployeePage(name)"> <span class=" underline">Compose Message</span></a>
 
             </div>
         </div>
@@ -83,7 +83,10 @@
 
     </div>
         <div class = "row animated slideInRight center-align" ng-show="youCanNowRequestJobs">
-        <p class = "montserrat underline animated fadeIn" style="font-size:22px;">Great! You May Now Request Jobs In The Request Jobs Page</p>
+        <p class = "montserrat underline animated fadeIn" style="font-size:20px;">Great! You May Now Request Jobs In The Request Jobs Page</p>
+                <p class = "montserrat  animated fadeIn" style="font-size:17px;">(Feel Free Add More Supervisors <i  ng-click="openComposeSupervisorPage()" class="fas fa-user-tie underline" style="font-size:19px;"></i>, Or Locations <i  ng-click="openComposeLocationPage()" class="far fa-compass underline" style="font-size:19px;"></i>
+, Anytime!)</p>
+
         <br>
         <i  ng-click="openRequestEmployeePage()" class="material-icons" style="font-size:25px;">job</i>
 

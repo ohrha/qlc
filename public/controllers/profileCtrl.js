@@ -467,7 +467,7 @@
             }
         }
 
-$scope.firstAddSupervisors = false;
+$scope.firstAddSupervisors = true;
 $scope.thenAddLocations = false;
 $scope.youCanNowRequestJobs = false;
 $scope.composeSupervisorPageOpen = false;
