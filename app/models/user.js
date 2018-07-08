@@ -47,14 +47,10 @@ UserSchema.pre('save', function(next){
     console.log(typeof user.password)
     //var password = user.password.toString()
    
-    bcrypt.hash(user.password, 10, function(err,hash){
+  bcrypt.hash(user.password,null,null,function(err,hash){
         if(err) return next(err);
-        console.log("Old user.password", user.password);
-        console.log("Hash". hash)
-        if(user.password !== hash){
- user.password = hash;
-        console.log("New user.password", user.password)
-        }
+        user.password = hash;
+        next();
        
         next();
     })
