@@ -43,6 +43,16 @@ module.exports = function (app) {
         })
 
         */
+    app.post('/users/addhourstoclientsubmittedtimesheets', function(req,res){
+        User.findOneAndUpdate({name:req.body.client},{$push:{submittedtimesheets:req.body}},{new:true}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found..."})
+            }else{
+                res.json({success: true, message:"User found and updated..", user:user})
+            }
+        })
+    })
     app.put('/users/getapprovedjobs/:client', function (req, res) {
         User.find({ name: req.params.client }, function (err, user) {
             if (err) throw err;
@@ -61,6 +71,110 @@ module.exports = function (app) {
             } else {
                 res.json({ success: true, message: "Requested Jobs Found..", requestedjobs: user[0].requestedjobs })
             }
+        })
+    })
+    app.post('/users/changedisputedtimesheettounresolved', function(req,res){
+        User.find({name:req.body.currentuser}, function(err,user){
+
+            console.log(user[0])
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found.."})
+            }else{
+                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
+                User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiods:user[0].payperiods}},{new:true},function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User found and updated.."})
+                    }else{
+                    User.find({name:req.body.client}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"User not found..."})
+                        }else{
+                            user[0].submittedtimesheets[req.body.currentIndex] = req.body
+                            User.findOneAndUpdate({name:req.body.client}, {$set:{submittedtimesheets:user[0].submittedtimesheets}},{new:true}, function(err,user){
+                                if(err)throw err;
+                                if(!user)
+                                {res.json({success: false, message:"User not found."})}
+                                else{
+                                        User.find({userclass:"admin"}, function(err,user){
+                     if(err)throw err;
+                     if(!user){
+                         res.json({success: false, message:"USer not found.."})
+                     }else{
+                         user[0].disputedtimesheets[req.body.currentIndex] = req.body
+                         User.findOneAndUpdate({userclass:"admin"}, {$set:{disputedtimesheets:user[0].disputedtimesheets}},{new:true}, function(err,user){
+                            if(err)throw err;
+                            if(!user){
+                                res.json({success: false, message:"User Not FOund..."})
+                            }else{
+                                res.json({success: true, message:"User found and updated..",user:user})
+                            }
+                         })
+                     }
+                                       })
+                                }
+                            })
+
+                            }
+                    })
+                    }
+                })
+            }
+            
+        })
+    })
+    app.post('/users/changedisputedtimesheettoresolved', function(req,res){
+       User.find({name:req.body.currentuser}, function(err,user){
+
+            console.log(user[0])
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found.."})
+            }else{
+                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
+                User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiods:user[0].payperiods}},{new:true},function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User found and updated.."})
+                    }else{
+                    User.find({name:req.body.client}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"User not found..."})
+                        }else{
+                            user[0].submittedtimesheets[req.body.currentIndex] = req.body
+                            User.findOneAndUpdate({name:req.body.client}, {$set:{submittedtimesheets:user[0].submittedtimesheets}},{new:true}, function(err,user){
+                                if(err)throw err;
+                                if(!user)
+                                {res.json({success: false, message:"User not found."})}
+                                else{
+                                        User.find({userclass:"admin"}, function(err,user){
+                     if(err)throw err;
+                     if(!user){
+                         res.json({success: false, message:"USer not found.."})
+                     }else{
+                         user[0].disputedtimesheets[req.body.currentIndex] = req.body
+                         User.findOneAndUpdate({userclass:"admin"}, {$set:{disputedtimesheets:user[0].disputedtimesheets}},{new:true}, function(err,user){
+                            if(err)throw err;
+                            if(!user){
+                                res.json({success: false, message:"User Not FOund..."})
+                            }else{
+                                res.json({success: true, message:"User found and updated..",user:user})
+                            }
+                         })
+                     }
+                                       })
+                                }
+                            })
+
+                            }
+                    })
+                    }
+                })
+            }
+            
         })
     })
     app.post('/users/changerequestedjobtodisapproved', function (req, res) {
@@ -1314,16 +1428,19 @@ module.exports = function (app) {
                 if (err) throw err;
                 if (!user) {
                     console.log("ppocher")
-                    res.json({ success: false, message: "Could Not Authenticate User" })
+                    res.json({ success: false, message: "User Not Found..." })
                 } else if (user) {
                     //START PASSWORD VALIDATION
                     console.log("hello")
                     var validPassword = user.comparePassword(req.body.password)
+                   
+                    console.log("IS IT VALID?")
+
                     console.log("validPassword", validPassword)
 
                     //console.log(validPassword)
                     if (!validPassword) {
-                        res.json({ success: false, message: "Could not authenticate password" })
+                        res.json({ success: false, message: "Incorrect Password..." })
                     } else {
                         var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments, locations: user.locations, supervisors: user.supervisors, approvednotbooked: user.approvednotbooked, requestedjobs: user.requestedjobs, submittedtimesheets: user.submittedtimesheets }, secret, { expiresIn: '24h' });
                         res.json({ success: true, message: 'User authenticated', token: token, user: user });

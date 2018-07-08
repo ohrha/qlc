@@ -87,7 +87,7 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
-        <li ng-show="loggedIn" ><a href="/management">Management</a></li>
+        <li ng-show="loggedIn && userClass == 'admin'" ><a href="/management">Management</a></li>
         <li ng-show="loggedIn" ><a ng-href="/profile/{{user_id}}">Profile</a></li>
 
         <li><a href="/services">Services</a></li>

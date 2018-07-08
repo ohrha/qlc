@@ -2,25 +2,299 @@
 
     <div ng-show="clientPage" class="col s12 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
         <br>
-        <a href="#" style="color:black;"> <i ng-click="openRequestEmployeePage()" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
-        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
-        <a href="#" style="color:black;" ng-click="openComplaintsPageClient()"><i  class="material-icons">timeline</i></a>
-        <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
-                    </a>
-        <a href="#" style="color:black;">
-                    <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+        <div class = "row">
 
-                <a href="#"style="color:black;">
-                    <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
+            <div class = "col s2">
+            <a href="#" style="color:black;"> <i ng-click="openRequestEmployeePage()" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
+
+            </div>
+               <div class = "col s2">
+        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
+
+            </div>
+               <div class = "col s2">
+                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
+
+            </div>
+               <div class = "col s2">
+                                       <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+
+            </div>
+
+      <div class = "col s2">
+<a href="#"style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
         <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
+       </div>
+                  <div class = "col s2">
         <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
-        <br>
+
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col s2">
+            <a href="#" style="color:black;"> <i ng-click="openRequestEmployeePage()" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i></a>
+
+            </div>
+               <div class = "col s2">
+        <a href="#" style="color:black;"><i ng-click="openReviewSubmittedTimeSheetsPage()" class="material-icons">timeline</i></a>
+
+            </div>
+               <div class = "col s2">
+                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:20px; padding-bottom:20px;"class="far fa-compass"></i>
+
+            </div>
+               <div class = "col s2">
+                                       <i ng-click="openAddSupervisorPage()"  class="fas fa-user-tie" style="font-size:20px;"></i>
+
+            </div>
+
+      <div class = "col s2">
+       <a href="#" style="color:black;">  <i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons">email</i></a>
+        <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons">drafts</i></a>
+            </div>
+                  <div class = "col s2">
+        <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()" class="material-icons">create</i></a>
+
+            </div>
+        </div>
+
+
+            
+
+        </div>
+    
 
 
     </div>
 
 
+<div class = "col s12 center-align" ng-show="clientHome">
+    <p class= "montserrat underline"> CLIENT HOME</p>
+    <div class = "row animated slideInRight center-align" ng-show="firstAddSupervisors">
+        <p class = "montserrat underline animated pulse infinite">Step 1. First Input Your Supervisors</p>
+        <br>
+        <i  ng-click="openComposeSupervisorPage()" class="fas fa-user-tie underline" style="font-size:25px;"></i>
 
+    </div>
+       <div class = "row animated slideInRight center-align" ng-show="thenAddLocations">
+        <p class = "montserrat underline animated pulse infinite">Step 2. Then Input Your Work Site Information</p>
+        <br>
+        <i  ng-click="openComposeLocationPage()" class="far fa-compass underline" style="font-size:25px;"></i>
+
+    </div>
+        <div class = "row animated slideInRight center-align" ng-show="youCanNowRequestJobs">
+        <p class = "montserrat underline animated fadeIn" style="font-size:22px;">Great! You May Now Request Jobs In The Request Jobs Page</p>
+        <br>
+        <i  ng-click="openRequestEmployeePage()" class="material-icons" style="font-size:25px;">job</i>
+
+    </div>
+</div>
+<div class = "col s12 center-align" ng-show="composeLocationPageOpen">
+     <div class="col s12 center-align">
+                                    <p class="railway underline">Add Location</p>
+
+
+                                    <div class="col s12 center-align " ng-show="submitLocationLoading">
+                                        <p ng-show="!addLocationSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING LOCATION </p>
+                                        <p ng-show="addLocationSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Location Successfully Inserted! </p>
+
+                                    </div>
+
+                                    <div ng-show="composeLocationPageOpen  && !submitLocationLoading">
+
+
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="name" ng-model="locationData.name" class="validate">
+                                                    <label for="first_name">Location Name</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationNameNotProvided' class="railway"> A Location Name Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="contact" ng-model="locationData.contact" class="validate">
+                                                    <label for="first_name">Location Contact</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationContactNotProvided' class="railway animated flash"> A Location Contact Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="address" ng-model="locationData.address" class="validate">
+                                                    <label for="first_name">Location Address</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationAddressNotProvided' class="railway animated flash"> A Location Address Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="email" ng-model="locationData.email" class="validate">
+                                                    <label for="first_name">Contact Email</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationEmailNotProvided' class="railway animated flash"> A Contact Email Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="phonenumber" ng-model="locationData.phonenumber" class="validate">
+                                                    <label for="first_name">Contact Phone Number</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationPhoneNumberNotProvided' class="railway animated flash"> A Contact Phone Number Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitLocationSetupPhase();" class="waves-effect waves-light btn">Add Location</a>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+</div>
+<div class = "col s12 center-align" ng-show="composeSupervisorPageOpen">
+     <div class="col s12 center-align">
+                                    <p class="railway underline">Add Supervisor</p>
+                                    <div class="col s12 center-align " ng-show="submitSupervisorLoading">
+                                        <p ng-show="!addSupervisorSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING SUPERVISOR </p>
+                                        <p ng-show="addSupervisorSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Supervisor Successfully Inserted! </p>
+
+                                    </div>
+                                    <div ng-show="composeSupervisorPageOpen && !submitSupervisorLoading">
+
+                                        <div class="row">
+
+                                            <div class="col s2 center-align">
+
+                                            </div>
+
+                                            <div class="input-field col s8 " style="border-top:1px solid black;">
+                                                <br>
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="name" ng-model="supervisorData.name" class="validate">
+                                                    <label for="first_name">Supervisor Name</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='supervisorNameNotProvided' class="railway animated flash"> A Supervisor Name Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="phonenumber" ng-model="supervisorData.phonenumber" class="validate">
+                                                    <label for="first_name">Supervisor Phone Number</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='supervisorPhoneNumberNotProvided' class="railway animated flash"> A Supervisor Phone Number Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+
+                                            </div>
+                                            <div class="input-field col s8 center-align" style="border-bottom:1px solid black;">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="email" ng-model="supervisorData.email" class="validate">
+                                                    <label for="first_name">Supervisor Email</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='supervisorEmailNotProvided' class="railway animated flash"> A Supervisor Name Must Be Provided </span>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitSupervisorSetupPhase()" class="waves-effect waves-light btn">Add Supervisor</a>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+</div>
     <div class="col s12 center-align" ng-show="addSupervisorPageOpen ">
 
         <br>
@@ -502,7 +776,7 @@
                         </div>
                         <div ng-show="page.approved">
                             <span class="railway underline">Status</span>
-                            <p class="railway red-text text-lighten-3"> Job Requirements Have Been Approved And Booked</p>
+                            <p class="railway red-text text-lighten-3"> Job Has Been Approved And Scheduled</p>
                             <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                         </div>
                         <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
@@ -955,14 +1229,17 @@
                                         </div>
                                         </div>
                                         <div ng-show="page.disputed">
-                                    <i ng-click="markAsApproved($index,page)" class="material-icons red-text text-lighten-3"> delete</i>
-                                     <p class = "railway">Disputed</p>
+                                    <a href="#"style="color:black"> <i ng-click="markAsApproved($index,page)" class="material-icons red-text text-lighten-3"> delete</i></a>
+                                     <a href="#"style="color:black"><p ng-click="markAsApproved($index,page)"class = "railway">Disputed</p></a>
+                                 <a href="#"style="color:black"> <p ng-click="markAsApproved($index,page)" class = "railway">(Mark As Approved)</p></a>
+
 
                                         </div>
                                         <div ng-show="!page.disputed">
                                             
-                                        <i ng-click="markAsDisputed($index,page)" class="material-icons green-text text-lighten-3"> check</i>
-                                        <p class = "railway">Approved</p>
+                                         <a href="#"style="color:black"><i ng-click="markAsDisputed($index,page)" class="material-icons green-text text-lighten-3"> check</i></a>
+                                        <a href="#"style="color:black"><p ng-click="markAsDisputed($index,page)"class = "railway">Approved</p></a>
+                                        <a href="#"style="color:black"> <p ng-click="markAsDisputed($index,page)" class = "railway">(Mark As Disputed)</p></a>
                                         </div>
                                     </div>
                                     <div ng-show="individualSubmittedTimeSheetOpen && submittedIndex !== $index" class="col s10  railway">

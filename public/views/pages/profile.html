@@ -643,7 +643,13 @@
 
                     <div class="row" ng-show="usersPaginated.length">
                       
+                                    <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
 
+            
+
+                <p  style="font-size:17px; " class="montserrat animated fadeIn underline ">Compose Message
+                </p>
+                                    </div>
                         <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index " class = "col s2 center-align hide-on-small-only">
                            <p class = "montserrat underline" style="font-size:14px;"> User</p>
                         </div>
@@ -1028,8 +1034,67 @@
 
                             <!-- DATE BOOKED INFORMATION DATE HAS NOT PASSED -->
 
+ <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked && messageAdminPageOpen && !submitAdminMessageLoading && submitAdminMessageSuccessfullySent "  class = "col s12 animated fadeIn">
+                                            
+                                            
+                                            <p class="montserrat animated flash infinite underline green-text text-lighten-2" style="font-size:18px;"> Message Successfully Sent!</p>
 
-                            <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked " class="col s12 animated" ng-class="{'slideInDown':slidedownin,'slideOutDown':slidedownout,'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                        
+                            </div>
+  <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked && messageAdminPageOpen && submitAdminMessageLoading && !submitAdminMessageSuccessfullySent"  class = "col s12 animated fadeIn">
+                                            
+                                            
+                                            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+
+                                        
+                            </div>
+                            <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked && messageAdminPageOpen && !submitAdminMessageLoading && !submitAdminMessageSuccessfullySent"  class = "col s12 animated fadeIn">
+                                
+                                        <div class="row">
+
+                                            <div class="col 12 right-align " style="float:right;">
+
+                                                <a href="#" style="color:black; ">
+                                                <i ng-click="closeTimeSheetComposeMessagePage($index,true)" style="font-size:17px;"class = "material-icons underline">clear</i></a>
+
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <p class="montserrat underline" style="font-size:16px;"> {{sendingTo}}</p>
+
+                                            </div>
+                                            <div class="col s12" style="border-top:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd;">
+                                                <div class="input-field col s12">
+
+                                                    <input id="first_name2" ng-model="timeSheetMessage.subject" name="subject" type="text" class="validate">
+
+                                                    <label class="active" for="first_name2">Subject</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <form class="col s12" style="border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;">
+                                                    <div class="row">
+
+                                                        <div class="input-field col s12">
+                                                            <textarea id="textarea1" ng-model="timeSheetMessage.body" name="body" class="materialize-textarea"></textarea>
+                                                            <label for="textarea1">Message</label>
+                                                        </div>
+                                                        <div class="col s12">
+                                                            <a ng-click="submitTimeSheetMessage(page.name,page.date)" class="waves-effect waves-light btn">Send</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+                                                <div ng-show="allFieldsMustBeInput" class="col s12">
+                                                    <p> All Fields Must Be Input </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                            </div>
+                            <div ng-show="openJob == $index && jobsPageOpen && job[currentJobInDate].booked && !messageAdminPageOpen " class="col s12 animated" ng-class="{'slideInDown':slidedownin,'slideOutDown':slidedownout,'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                 <div ng-show="loadingAddHours" class="col s12">
                                     <p class="railway animated flash infinite"> ADDING HOURS</p>
                                 </div>
@@ -1244,12 +1309,19 @@
                                                 <i class="material-icons animated flash red-text text-lighten-3">error_outline</i>
                                                 <p class="railway">A Dispute Has Been Raised Regarding Your Submission</p>
                                                 <p class="railway">Would You Like to Edit Your Time Sheet?</p>
+                                                
 
                                             </div>
                                             <div class="col s12 center-align">
-                                                <a ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)" style="color:black;" href="#"> <i class ="material-icons">edit</i></a>
+                                                <a ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)" style="color:black;" href="#"> <i class ="material-icons underline">edit</i></a>
 
                                             </div>
+                                            <div class = "col s12 center-align">
+                                                <p ng-click="openMessageAdminPage(job[currentJobInDate].date)" class ="montserrat underline">Message Hannah</p>
+                                                
+                                            </div>
+                                             
+
                                         </div>
                                                 <a ng-show="!jobDetails[openJob][currentJobInDate].disputed" ng-click="openAddHoursPage(jobDetails[openJob][currentJobInDate],$index,currentJobInDate)"
                                         style="color:black;" href="#"> <i class ="material-icons" style="font-size:14px;">edit</i></a>

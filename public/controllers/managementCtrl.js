@@ -8,6 +8,7 @@
 
     app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, Location, Client, Supervisor) {
         $scope.username = "";
+        $scope.userName = ""
         $scope.payperiod = '';
         $scope.payPeriodStartDate = "";
         $scope.payPeriodEndDate = "";
@@ -20,6 +21,7 @@
         $scope.personalHistoryTitle = false;
         $scope.managementPage = true;
         $scope.clientsPage = false;
+        $scope.disputedTimeSheetsPageOpen = false;
         $scope.payslipPageOpen = false;
         $scope.employeesPage = false;
         $scope.userFilePage = false;
@@ -33,6 +35,7 @@
         $scope.name = "";
         $scope.approvedJobsArray = [];
         $scope.requestedJobsArray = []
+        $scope.disputedTimeSheetsArray = [];
         $scope.requestedJobsPageOpen = false;
         $scope.openRequestedJobsPage = function () {
 
@@ -246,6 +249,290 @@ console.log("here")
                 //$scope.removeChart = false;
             }
         }
+
+$scope.disputeIndex = null;
+        $scope.disputedTimeSheetOpen = true;
+        $scope.disputedTimeSheetLoading = false;
+        $scope.timeSheetMessageLoading = false;
+       $scope.timeSheetComposeMessageOpen = false;
+       $scope.allFieldsMustBeInput = false;
+       $scope.timeSheetMessage = {
+           subject:"Re:Disputed Time Sheet("+$scope.disputedDate+")",
+           body:null,
+           from:"ohrha harho",
+           to:null
+       }
+       $scope.sendingTo = "";
+       $scope.sendingFrom = "";
+       $scope.disputedDate = ""
+       $scope.closeTimeSheetComposeMessagePage = function(){
+           $scope.timeSheetComposeMessageOpen = false;
+       }
+       $scope.submitTimeSheetComposeMessage = function(){
+           console.log($scope.timeSheetMessage)
+                     // $scope.timeSheetMessage.subject = "Re:Disputed Time Sheet("+$scope.disputedDate+")"
+
+ if($scope.timeSheetMessage.to == null){
+               $scope.allFieldsMustBeInput = true;
+            
+           }
+           if($scope.timeSheetMessage.from == null){
+               $scope.allFieldsMustBeInput = true;
+
+           }
+           if($scope.timeSheetMessage.body == null){
+               $scope.allFieldsMustBeInput = true;
+           }
+           if($scope.timeSheetMessage.subject == null){
+               $scope.allFieldsMustBeInput = true;
+           }
+           if($scope.timeSheetMessage.body !==null &&
+           $scope.timeSheetMessage.to !==null &&
+           $scope.timeSheetMessage.from !==null &&
+           $scope.timeSheetMessage.subject !==null ){
+
+               console.log($scope.timeSheetMessage)
+               $scope.allFieldsMustBeInput = false;
+               $scope.timeSheetMessageLoading = true;
+               User.sendMessage($scope.timeSheetMessage).then(function(data){
+                   console.log(data)
+                   $scope.timeSheetMessageLoading = false;
+                   $scope.timeSheetMessageSuccessfullySent = true;
+                   $timeout(function(){
+                       $scope.timeSheetMessageSuccessfullySent = false;
+                       $scope.closeTimeSheetComposeMessagePage()
+                   },1500)
+               })
+           }
+       }
+       $scope.markAsResolved = function(jobData){
+           console.log(jobData)
+           jobData.disputed = false;
+           User.changeDisputedTimeSheetToResolved(jobData).then(function(data){
+               console.log(data)
+               $scope.disputedTimeSheetsArray = data.data.user.disputedtimesheets 
+                   $scope.disputedTimeSheetsForPagination = [];
+                    $scope.disputedTimeSheetsPaginated = [];
+                     for (var i = 0; i <= $scope.disputedTimeSheetsArray.length; i++) {
+
+                            var page = 0;
+                            console.log($scope.employees)
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.disputedTimeSheetsArray.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.disputedTimeSheetsArray.length) {//5
+                                console.log("HELLO")
+                                //console.log($scope.employees[i])
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.disputedTimeSheetsArray[i]) {
+                                    $scope.disputedTimeSheetsArray[i].currentIndex = i;
+                                    $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+
+                                console.log("else")
+                                $scope.loadingUsers = false;
+                                $scope.disputedTimeSheetsPaginated.push($scope.disputedTimeSheetsForPagination)
+                               
+                                $scope.disputedTimeSheetsForPagination = [];
+                                if ($scope.disputedTimeSheetsArray[i] !== undefined) {
+                                    $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
+                                }
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                page++
+
+
+
+                            }
+
+                        }
+           })
+       }
+            $scope.markAsUnResolved = function(jobData){
+           console.log(jobData)
+           jobData.disputed = true;
+           User.changeDisputedTimeSheetToUnResolved(jobData).then(function(data){
+               console.log(data)
+               $scope.disputedTimeSheetsArray = data.data.user.disputedtimesheets 
+                   $scope.disputedTimeSheetsForPagination = [];
+                    $scope.disputedTimeSheetsPaginated = [];
+                     for (var i = 0; i <= $scope.disputedTimeSheetsArray.length; i++) {
+
+                            var page = 0;
+                            console.log($scope.employees)
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.disputedTimeSheetsArray.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.disputedTimeSheetsArray.length) {//5
+                                console.log("HELLO")
+                                //console.log($scope.employees[i])
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.disputedTimeSheetsArray[i]) {
+                                    $scope.disputedTimeSheetsArray[i].currentIndex = i;
+                                    $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+
+                                console.log("else")
+                                $scope.loadingUsers = false;
+                                $scope.disputedTimeSheetsPaginated.push($scope.disputedTimeSheetsForPagination)
+                               
+                                $scope.disputedTimeSheetsForPagination = [];
+                                if ($scope.disputedTimeSheetsArray[i] !== undefined) {
+                                    $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
+                                }
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                page++
+
+
+
+                            }
+
+                        }
+           })
+       }
+       $scope.openTimeSheetComposeMessage = function(name,date){
+           if(!$scope.timeSheetComposeMessageOpen)
+           $scope.allFieldsMustBeInput = false;
+           $scope.timeSheetComposeMessageOpen = true;
+           $scope.sendingFrom=name;
+                      $scope.disputedDate = date;
+                      //$scope.timeSheetMessage.from = "ohrha harho"
+                      $scope.timeSheetMessage.to = $scope.sendingFrom
+           $scope.timeSheetMessage.subject = "Re:Disputed Time Sheet("+$scope.disputedDate+")"
+
+          
+           //console.log($scope.sendingTo)
+       }
+$scope.openDispute = function(index){
+       if ($scope.disputedTimeSheetOpen && index !== $scope.disputeIndex
+            ) {
+                // $scope.individualPayPeriodOpen = false;
+                //$scope.disputedTimeSheetLoading = true;
+                $scope.disputeIndex = index;
+
+                
+                    
+                   
+                    //$scope.messageLoading = false;
+                    //$scope.openMessagePage2();
+              
+                console.log("first")
+                // console.log($scope.timesheet)
+                console.log($scope.timesheetEntryOpen)
+
+            }
+            else if (!$scope.disputedTimeSheetOpen && index == $scope.disputeIndex) {
+                $scope.disputedTimeSheetOpen = true;
+                console.log("second")
+                console.log($scope.timesheetEntryOpen)
+                //$scope.curPeriod = index;
+            }
+            else if (!$scope.disputedTimeSheetOpen && index !== $scope.disputeIndex) {
+                console.log("third")
+                $scope.disputedTimeSheetOpen = true;
+                console.log($scope.timesheetEntryOpen)
+                $scope.disputeIndex = index;
+            } else {
+                console.log("last")
+                $scope.disputeIndex = null
+
+                // $scope.showChart = true;
+                //$scope.removeChart = false;
+            }
+
+        }
+
+        $scope.openDisputedTimeSheetsPage = function(){
+
+            if(!$scope.disputedTimeSheetsPageOpen){
+                $scope.fadeIn = false;
+                $timeout(function(){
+                    $scope.adminHome = false;
+                    $scope.disputedTimeSheetsPageOpen = true;
+                       $scope.disputedTimeSheetsForPagination = [];
+                    $scope.disputedTimeSheetsPaginated = [];
+                     for (var i = 0; i <= $scope.disputedTimeSheetsArray.length; i++) {
+
+                            var page = 0;
+                            console.log($scope.employees)
+                            if (i < $scope.pageLimit) {
+                                console.log("its less")
+
+                            }
+                            if (i < $scope.disputedTimeSheetsArray.length) {
+                                console.log("yup,less")
+                            }
+
+                            if (i < $scope.pageLimit && i < $scope.disputedTimeSheetsArray.length) {//5
+                                console.log("HELLO")
+                                //console.log($scope.employees[i])
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                if ($scope.disputedTimeSheetsArray[i]) {
+                                    $scope.disputedTimeSheetsArray[i].currentIndex = i;
+                                    $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
+                                    console.log(i)
+                                    console.log("firstCondiation")
+                                    console.log($scope.pageArray)
+
+                                }
+
+
+
+                            } else {
+
+                                console.log("else")
+                                $scope.loadingUsers = false;
+                                $scope.disputedTimeSheetsPaginated.push($scope.disputedTimeSheetsForPagination)
+                               
+                                $scope.disputedTimeSheetsForPagination = [];
+                                if ($scope.disputedTimeSheetsArray[i] !== undefined) {
+                                    $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
+                                }
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                                page++
+
+
+
+                            }
+
+                        }
+
+                },500)
+                
+            }
+        }
+
         $scope.messageIndex = null;
         $scope.adminMessageOpen = true;
         $scope.adminMessageLoading = false;
@@ -253,7 +540,9 @@ console.log("here")
         $scope.adminMessagesPageOpen = false;
         $scope.adminHome = true;
         $scope.fadeIn = true;
-        $scope.openMessage = function (index, timesheetData) {
+     
+        
+           $scope.openMessage = function (index, timesheetData) {
 
             $('select').material_select();
 
@@ -762,7 +1051,14 @@ console.log("here")
             $scope.adminMessagesArray = data.data.messages;
             $scope.requestedJobsArray = data.data.requestedjobs
             $scope.approvedJobsArray = data.data.approvednotbooked;
+            $scope.userName = data.data.name
                         $rootScope.user_id = data.data._id
+                        User.findUser($scope.userName).then(function(data){
+                            console.log(data)
+                            $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
+                            $scope.requestedJobsArray = data.data.user[0].requestedjobs
+                            $scope.approvedJobsArray = data.data.user[0].approvednotbooked
+                        })
 
             $scope.name = data.data.name
             if ($scope.month == 5 && $scope.dateNow == 29) {

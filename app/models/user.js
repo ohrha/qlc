@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var titlize = require('mongoose-title-case');
 var validate = require('mongoose-validator');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = new Schema({
 
@@ -65,7 +65,7 @@ UserSchema.methods.comparePassword = function(password){
     console.log(password, this.password)
     console.log(typeof password)
     var passwordPlain = password.toString()
-    return bcrypt.compare(password,this.password);
+    return bcrypt.compareSync(password,this.password);
 
 }
 //var Model = mongoose.model('User', UserSchema);

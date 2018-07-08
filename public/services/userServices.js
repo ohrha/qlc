@@ -85,7 +85,17 @@ angular.module('userServices',['authServices']).config(function(){
     }
     userFactory.changeUserPayPeriod= function(details){
         console.log(details)
+      
         return $http.post('/api/users/changeuserpayperiod',details)
+    }
+    userFactory.addHoursToClientSubmittedTimeSheets = function(jobDetails){
+        return $http.post('/api/users/addhourstoclientsubmittedtimesheets', jobDetails)
+    }
+    userFactory.changeDisputedTimeSheetToResolved = function(jobDetails){
+        return $http.post("/api/users/changedisputedtimesheettoresolved",jobDetails)
+    }
+     userFactory.changeDisputedTimeSheetToUnResolved = function(jobDetails){
+        return $http.post("/api/users/changedisputedtimesheettounresolved",jobDetails)
     }
     userFactory.editPayRate = function(newinfo){
         return $http.post('/api/users/editpayrate',newinfo)
