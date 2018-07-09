@@ -97,6 +97,20 @@ angular.module('userServices',['authServices']).config(function(){
      userFactory.changeDisputedTimeSheetToUnResolved = function(jobDetails){
         return $http.post("/api/users/changedisputedtimesheettounresolved",jobDetails)
     }
+        //User.sendPassword(resetData);
+  userFactory.sendPassword = function(resetData){
+
+    return $http.post('/api/users/resetpassword',resetData);
+
+ }
+ userFactory.findByToken = function(token){
+     return $http.put('/api/users/findbytoken/'+token)
+ }
+   userFactory.savePassword = function(regData){
+
+    return $http.post('/api/users/savepassword/',regData);
+
+ }
     userFactory.editPayRate = function(newinfo){
         return $http.post('/api/users/editpayrate',newinfo)
     }

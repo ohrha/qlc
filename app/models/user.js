@@ -46,13 +46,14 @@ UserSchema.pre('save', function(next){
     console.log('user Prehook',user.password) 
     console.log(typeof user.password)
     //var password = user.password.toString()
-   
+   if(!user.isModified('password')) return next();
+
   bcrypt.hash(user.password,null,null,function(err,hash){
         if(err) return next(err);
         user.password = hash;
         next();
        
-        next();
+       
     })
 })
 //CREATE CUSTOM METHOD

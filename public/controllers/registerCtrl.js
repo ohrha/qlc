@@ -44,7 +44,7 @@
                 
                     this.regData.userclass = "employee"
                 
-               /* $scope.loading= true;
+                $scope.loading= true;
                 User.create(this.regData).then(function(data){
                     console.log(data.data)
                     if(data.data.success){
@@ -68,7 +68,7 @@
                             console.log($scope.failReg)
                         },3000)
                     }
-                })*/
+                })
             }else{
                 console.log("Incomplete form..")
             }

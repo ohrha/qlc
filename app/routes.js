@@ -3,18 +3,33 @@ var PayPeriod = require('./models/payperiod')
 var Client = require('./models/client')
 var Location = require('./models/location');
 var Supervisor = require('./models/supervisor')
+var Hogan = require('hogan.js')
 var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var pdf = require('html-pdf');
 var jwt = require('jsonwebtoken');
 var secret = "negus";
 var html = fs.readFileSync('./public/views/pages/management.html', 'utf8');
+var resetpassword = fs.readFileSync('./public/views/pages/email/resetpassword.hjs', 'utf-8');
+var resetPassword = Hogan.compile(resetpassword);
+
 var options = { format: 'Letter' };
 const Nexmo = require('nexmo')
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
 var text = require('textbelt');
 var opts = {};
 opts.region = 'intl'
-console.log(text)
+console.log(text) 
+
+var client = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "t.brixton",
+        pass: 5613111111
+    }
+});
+
 
 /*text.sendText('9491234567', 'A sample text message!', undefined, function(err) {
  if (err) {
@@ -43,6 +58,87 @@ module.exports = function (app) {
         })
 
         */
+        app.put('/users/findbytoken/:token', function(req,res){
+
+            User.findOne({resettoken:req.params.token}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message: "User not found."})
+                }else{
+                    res.json({success: true, message:"User found..", user:user})
+                }
+            })
+        })
+         app.post('/users/savepassword', function (req, res) {
+
+            console.log(req.body)
+        User.findOne({ name: req.body.name }).select('username name password resettoken email').exec(function (err, user) {
+
+            if (err) throw err;
+            if (req.body.password == null || req.body.password == "") {
+
+                res.json({ success: false, message: "Password not provided..." })
+
+            } else {
+
+                console.log(user)
+                user.password = req.body.password;
+                user.resettoken = false;
+                user.save(function (err) {
+                    if (err) {
+                        res.json({ success: false, message: err });
+                    } else {
+
+                        res.json({ success: true, message: "Password has been reset..." })
+                    }
+
+                });
+            }
+        })
+    });
+        app.post('/users/resetpassword', function (req, res) {
+
+        User.findOne({ username: req.body.username }).select('username active email name resettoken').exec(function (err, user) {
+
+            if (err) throw err;
+            if (!user) {
+                res.json({ success: false, message: 'User could not be found...' + err });
+
+            }  else {
+                user.resettoken = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
+                user.save(function (err) {
+
+                    if (err) {
+
+                        res.json({ success: false, message: err })
+                    } else {
+
+                        // If e-mail found in database, create e-mail object
+                        var email = {
+                            from: 'Localhost Staff, cruiserweights@zoho.com',
+                            to: user.email,
+                            subject: 'Password Reset',
+                            text: 'Hello ' + user.name + ', You recently requested a password reset link. Please use this link below to reset your password:"http://localhost:8081/reset/"' + user.resettoken,
+                            //html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You recently requested a password reset link. Please click on the link below to reset your password:<br> <a href="http://localhost:8080/reset/'+user.resettoken+'">"http://localhost:8080/reset/"</a>' 
+                            html: resetPassword.render({ user: user.name, resettoken: user.resettoken })
+                        };
+
+                        // Function to send e-mail to user
+                        client.sendMail(email, function (err, info) {
+                            if (err) {
+                                console.log(err); // If error in sending e-mail, log to console/terminal
+                            } else {
+                                console.log(info); // Log confirmation to console
+                            }
+                        });
+
+                        res.json({ success: true, message: 'Please check your email for password reset link...' })
+                    }
+
+                })
+            }
+        })
+    });
     app.post('/users/addhourstoclientsubmittedtimesheets', function(req,res){
         User.findOneAndUpdate({name:req.body.client},{$push:{submittedtimesheets:req.body}},{new:true}, function(err,user){
             if(err)throw err;
