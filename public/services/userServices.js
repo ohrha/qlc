@@ -49,6 +49,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addDelinquentTimeSheet = function(jobDetail){
         return $http.post('/api/users/adddelinquenttimesheet',jobDetail)
     }
+    userFactory.checkAndAddDelinquentTimeSheet = function(usersArray){
+        return $http.post('/api/users/checkandadddelinquenttimesheet', usersArray)
+    }
     userFactory.addPayPeriodToPayPeriodHistory = function(payperiod){
         console.log(payperiod)
         return $http.post('/api/users/addpayperiodtopayperiodhistory',payperiod)

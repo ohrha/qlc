@@ -809,6 +809,54 @@ module.exports = function (app) {
 
 
     })
+    
+    app.post('/users/checkandadddelinquenttimesheet', function(req,res){
+       // console.log(req.body,"813")
+        for(var z=0; z< req.body.currentusernamearray.length; z++){
+         User.find({name: req.body.currentusernamearray[z]}, function(err,user){
+             console.log(user[0].name)
+             for(var d= 0; d<user.length; d++){
+
+                //console.log(user[d].payperiods)
+                for(var s = 0; s< user[d].payperiods[0].jobDetails.length;s++){
+
+                   // console.log(user[d].payperiods[0].jobDetails[s][0])
+                    if(user[d].payperiods[0].jobDetails[s]){
+
+                        
+                             if(user[d].payperiods[0].jobDetails[s][0]){
+                            console.log("Its Truee")
+                            console.log(user[d].payperiods[0].jobDetails[s][0].booked)
+                            if(user[d].payperiods[0].jobDetails[s][0].booked &&user[d].payperiods[0].jobDetails[s][0].timesheetSubmitted == false){
+                                console.log("EMMET")
+                                console.log("DELINUENTO")
+                                user[d].delinquenttimesheets.push(user[d].payperiods[0].jobDetails[s][0])
+                            }
+                               if(user[d].payperiods[0].jobDetails[s][0].booked &&user[d].payperiods[0].jobDetails[s][1].timesheetSubmitted == false){
+                                console.log("EMMET")
+                                console.log("DELINUENTO")
+                                user[d].delinquenttimesheets.push(user[d].payperiods[0].jobDetails[s][1])
+                            }
+                        }
+
+                    }
+                
+                }
+
+                User.findOneAndUpdate({name:user[0].name}, {$set:{delinquenttimesheets: user[0].delinquenttimesheets}}, {new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found.."})
+                    }else{
+                        //res.json({success: true, mes})
+                        console.log("User Delinquent Time Sheets Updated...")
+                    }
+                })
+             }
+         })
+        }
+        res.json({success:true, message:"Delinquent Time Sheets Updated.."})
+    })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
         console.log(req.body)
         if(req.body.entry[8].name == "Sar Rashi"){
@@ -881,9 +929,8 @@ module.exports = function (app) {
         //res.json({ success: true, message: "User Pay Period History Successfully Updated..." })
     })
     app.post('/users/addjobtocurrentpayperiod', function (req, res) {
-        console.log(req.body)
-
-        User.find({ name: req.body.user }, function (err, user) {
+        req.body[0].currentuser
+        User.find({ name: req.body[0].currentuser }, function (err, user) {
 
             if (err) throw err;
             if (!user) {
@@ -894,7 +941,7 @@ module.exports = function (app) {
                 user[0].payperiods[0].jobDetails[7].push(req.body)
 
                 user[0].delinquenttimesheets.splice(req.body.index, 1)
-                User.findOneAndUpdate({ name: req.body.user },
+                User.findOneAndUpdate({ name: req.body[0].currentuser },
                     {
                         $set: {
                             payperiods: user[0].payperiods,

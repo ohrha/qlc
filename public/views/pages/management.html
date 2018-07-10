@@ -728,7 +728,7 @@
             <div style="border-right:1px solid #ddd" class="col s3 center-align">
                 <a style="color:black;" href="#">
 
-                    <p style="word-wrap:break-word; " ng-click="openEmployeeHome()" class=" railway  "> Overview </p>
+                    <p style="word-wrap:break-word; " ng-click="openClientsHome()" class=" railway  "> Overview </p>
                 </a>
                 <a style="color:black;" href="#">
 
@@ -745,7 +745,7 @@
             </div>
             <div ng-show="clientListOpen" class="col s9 animated fadeIn ">
                 <a style="color:black;" href="#">
-                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Client
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openClientsHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Client
                         List
                     </p>
                 </a>
@@ -841,39 +841,195 @@
 
             <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!clientHome && !clientListOpen ">
                 <a href="#" style="color:black;">
-                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
+                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openClientList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
                         {{currentClientFile}} |</p>
                 </a>
                 <!-- CURRENT USER FILE MENU -->
 
                 <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s12 center-align">
                     <a href="#" style="color:black;">
-                                <i ng-show="requestedJobsArray.length && requestedJobsPageSelected" ng-click="openRequestedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons animated fadeIn" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>  
+                                <i ng-click="openAdminRequestedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons animated fadeIn" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">work</i>  
 
-                                <i ng-show="requestedJobsArray.length && !requestedJobsPageSelected" ng-click="openRequestedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>  
                     </a>
-                    <a href="#" style="color:black;">
-                                <i ng-click="openComplaintsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">priority_high</i>
-                    </a>
-                    <a href="#" style="color:black;">
-                                <i ng-click="openCommentsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">comment</i>
-                    </a>
+                  
 
 
-                    <a ng-show="delinquentTimeSheet" href="#" style="color:black;">
-                                <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                    </a>
+                   
                     <a href="#" style="color:black;">
-                                <i ng-click="openRemoveUserPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons red-text lighten-5" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
+                                <i ng-click="openRemoveClientPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons red-text lighten-5" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
                     </a>
 
                 </div>
 
                 <!-- CURRENT USER FILE MENU -->
                 <div class="row">
+                    <div class = "row center-align" ng-show="clientHomePage">
+                        
+                            <div  class="col s12 animated fadeIn">
+                                <div class="row">
+                                    <div class="col s12" ng-show="editEmailLoading">
+
+                                        <p class="railway truncate animated flash infinite">LOADING</p>
+                                    </div>
+                                    <div class="col s12" ng-show="editEmailPageOpen && !editEmailLoading">
+                                        <div class="row">
+                                            <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                                <i ng-click="closeEditEmailPage()" class="material-icons"> clear</i>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input value="{{currentClientObject.email}}" id="first_name2" type="text" name="email" ng-model="emailData.email" class="validate">
+                                                <label class="active" for="first_name2">Email</label>
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitNewEmailClient(currentClientObject.name);" class="waves-effect waves-light btn">submit</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s2">
+                                        </div>
+                                        <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                            <p class="railway underline">EMAIL</p>
+                                        </div>
+                                        <div class="col s2">
+                                        </div>
+                                    </div>
+                                    <div class="col s12" ng-show="!editEmailPageOpen && !editEmailLoading">
+
+                                        <soan ng-show="!editEmailPageOpen" class="railway  truncate">{{currentClientObject.email}}</span>
+                                            <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s2">
+                                        </div>
+                                        <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                            <p class="railway underline"> PHONENUMBER</p>
+                                        </div>
+                                        <div class="col s2">
+                                        </div>
+                                    </div>
+                                    <div class="col s12" ng-show="editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+                                        <div class="row">
+                                            <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                                <i ng-click="closeEditPhoneNumberPage()" class="material-icons"> clear</i>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input value="{{currentClientObject.phonenumber}}" id="first_name2" type="number" name="phonenumber" ng-model="phoneNumberData.phonenumber"
+                                                    class="validate">
+                                                <label class="active" for="first_name2">Phone Number</label>
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitNewPhoneNumberClient(currentClientObject.name);" class="waves-effect waves-light btn">submit</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col s12" ng-show="editPhoneNumberLoading">
+
+                                        <p class="railway truncate animated flash infinite">LOADING</p>
+                                    </div>
+                                    <div class="col s12" ng-show="!editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+
+                                        <span ng-show="!editPhoneNumberPageOpen" class="railway truncate">{{currentClientObject.phonenumber}}<a ng-click="openEditPhoneNumberPage();" href="#" style="color:green;"><span class = "railway"> edit</span></a></span>
+                                        
 
 
-                    <div class="row">
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col s2">
+                                        </div>
+                                        <div class="col s8" style="border-bottom:1px solid #ddd;">
+                                        </div>
+                                        <div class="col s2">
+                                        </div>
+                                    </div>
+                                    <div class="col s12" ng-show="editPayRateLoading">
+
+                                        <p class="railway truncate animated flash infinite">LOADING</p>
+                                    </div>
+                                    <div class="col s12" ng-show="editPayRatePageOpen&& !editPayRateLoading ">
+                                        <div class="row">
+                                            <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                                <i ng-click="closeEditPayRatePage()" class="material-icons"> clear</i>
+                                            </div>
+                                            <div class="input-field col s12">
+                                                <input value="{{user.payrate}}" id="first_name2" type="number" name="payrate" ng-model="payRateData.payrate" class="validate">
+                                                <label class="active" for="first_name2">First Name</label>
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitNewPayRate(user.name);" class="waves-effect waves-light btn">submit</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                    </div>
+
+  <div class = "row center-align" ng-show="removeClientPageOpen && !clientHomePage">
+                        <div  class="col s12 animated fadeIn">
+
+
+                            
+                                <div class="row" ng-show="removeClientSuccessful">
+
+                                    <div class="col s12">
+                                        <p class="montserrat animated flash green-text text-lighten-2" style="font-size:17px;">{{currentClientFile}} Successfully Removed</p>
+
+                                    </div>
+
+                                </div>
+                                <div class="row" ng-show="loadingRemoveClient &&!removeClientSuccessful">
+
+                                    <div class="col s12">
+                                        <p class="montserrat animated flash infinite red-text text-lighten-2" style="font-size:17px;">( REMOVING USER )</p>
+
+                                    </div>
+
+                                </div>
+                                <div class="row" ng-show="!areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful ">
+
+                                    <div class="col s12">
+                                        <p class="railway">Delete {{currentClientFile}}.</p>
+                                        <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+                                            <i ng-click="openAreYouSureRemove();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> delete</i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row" ng-show="areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful">
+
+                                    <div class="col s12">
+                                        <p class="railway">Are You Sure You Want to Delete {{currentClientFile}}?</p>
+                                        <span class="railway">(This Action Is Irreversible)</span>
+                                        <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+                                            <div class="row">
+                                                <div class="col s6 right-align" style="border-bottom:1px solid #ddd;">
+                                                    <i ng-click="closeAreYouSureRemove2();" class="material-icons green-text text-lighten-2" style="font-size:20px;">cancel </i>
+
+                                                </div>
+                                                <div class="col s6 left-align" style="border-bottom:1px solid #ddd;">
+                                                    <i ng-click="removeClient();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> check_circle</i>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row" ng-show="adminRequestedJobsPageOpen && !clientHomePage">
                         <div class="col s2" style="border-bottom:1px solid #ddd;">
                             <p class="railway underline" style="font-size:18px;"> Name</p>
                         </div>
