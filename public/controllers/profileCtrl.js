@@ -971,7 +971,7 @@ $scope.openComposeSupervisorPage = function(){
                                 $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
 
 
-                                if ($scope.userPayPeriod == $rootScope.payPeriod) {
+                                if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                     $scope.loadingNewPayPeriod = true;
                                     $scope.userPayPeriod = $rootScope.payPeriod
                                     console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
