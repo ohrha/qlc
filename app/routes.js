@@ -314,6 +314,8 @@ module.exports = function (app) {
             if (!user) {
                 res.json({ success: false, message: "User not found" })
             } else {
+                req.body.approved = true;
+                req.body.booked = false;
                 user[0].requestedjobs[req.body.index].approved = true;
                 user[0].requestedjobs[req.body.index].booked = false;
 
@@ -329,10 +331,17 @@ module.exports = function (app) {
                             if (!user) {
                                 res.json({ success: false, message: "User found.." })
                             } else {
-                                user[0].requestedjobs[req.body.index].approved = true;
+                                user[0].requestedjobs[req.body.index].splice(req.body.index,1)
+                               User.findOneAndUpdate({userclass:'admin'},{$set:{requestedjobs:user[0].requestedjobs}},{new:true}, function(err,user){
+
+                                   if(err)throw err;
+                                   if(!user){
+                                       res.json({success: false, message:"User not found"})
+                                   }else{
+                                                    user[0].requestedjobs[req.body.index].approved = true;
                                 user[0].requestedjobs[req.body.index].booked = false;
 
-                                User.findOneAndUpdate({ name: req.body.client }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].requestedjobs } }, { new: true }, function (err, user) {
+                                User.findOneAndUpdate({ name: req.body.client }, { $set: { requestedjobs: user[0].requestedjobs } }, { new: true }, function (err, user) {
                                     if (err) throw err;
                                     if (!user) {
                                         res.json({ success: false, message: "User not found.." })
@@ -340,6 +349,11 @@ module.exports = function (app) {
                                         res.json({ success: true, message: "User found and updated...", user: user })
                                     }
                                 })
+                                   }
+                               })
+                               
+                               
+                   
                             }
                         })
                     }

@@ -50,7 +50,7 @@
         $scope.messagePageSelected = false;
         $scope.composeMessagePageSelected = false;
         $scope.workHistoryProfileSelected = false;
-
+        $scope.currentClientObject = {}
         $scope.reviewSubmittedTimeSheetsPageOpen = false;
         $scope.composeMessagePageLoading = false;
         $scope.messageSuccessfullySent = false;
@@ -228,8 +228,12 @@
         $scope.openReviewSubmittedTimeSheetsPage = function () {
             if (!$scope.reviewSubmittedTimeSheetsPageOpen) {
                 $scope.reviewSubmittedTimeSheetsPageOpen = true;
+                $scope.addSupervisorPageOpen = false;   
+                $scope.clientHome = false;
+                $scope.addLocationPageOpen = false;
                 $scope.addSupervisorPageOpen = false;
-
+                $scope.messagePageOpen = false;
+                $scope.composeMessagePageOpen = false
                 $scope.requestEmployeePageOpen = false;
                 $scope.complaintsPageClientOpen = false;
 
@@ -293,6 +297,7 @@
 
             } else {
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.clientHome = true;
 
             }
         }
@@ -641,7 +646,7 @@ $scope.openDelinquentTimeSheetPage = function(){
             // },500)
         }
 
-$scope.firstAddSupervisors = true;
+$scope.firstAddSupervisors = false;
 $scope.thenAddLocations = false;
 $scope.youCanNowRequestJobs = false;
 $scope.composeSupervisorPageOpen = false;
@@ -676,6 +681,7 @@ $scope.openComposeSupervisorPage = function(){
                     $scope.userEmail = data.data.user[0].email
                     $scope.supervisorsArray = data.data.user[0].supervisors
                     $scope.locationsArray = data.data.user[0].locations
+                    $scope.currentClientObject = data.data.user[0]
                     $scope.delins
                     if(!$scope.supervisorsArray.length){
                         $scope.firstAddSupervisors = true;
@@ -1906,6 +1912,7 @@ $scope.openDisputedTimeSheetsPage = function(){
                 $scope.requestEmployeePageOpen = true;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
+                $scope.clientHome = false;
 
                 $scope.addSupervisorPageOpen = false;
                 User.getRequestedJobs($scope.userName).then(function (data) {
@@ -1980,6 +1987,12 @@ $scope.openDisputedTimeSheetsPage = function(){
 
             } else {
                 $scope.requestEmployeePageOpen = false;
+                $scope.addSupervisorPageOpen = false;
+                $scope.addLocationPageOpen = false;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.messageCompositionPageOpen = false;
+                $scope.messagPageOpen = false;
+                $scope.clientHome = true;
             }
 
 
@@ -2574,6 +2587,7 @@ console.log(data)
                 $scope.addSupervisorPageOpen = true;
                 $scope.addLocationPageOpen = false
                 $scope.requestEmployeePageOpen = false;
+                $scope.clientHome = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
                 User.getSupervisors($scope.userName).then(function (data) {
@@ -2732,6 +2746,7 @@ console.log(data)
                 $scope.requestEmployeePageOpen = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
+                $scope.clientHome = true;
             }
         }
 
@@ -2739,6 +2754,7 @@ console.log(data)
             if (!$scope.addLocationPageOpen) {
                 $scope.addLocationPageOpen = true;
                 $scope.addSupervisorPageOpen = false;
+                $scope.clientHome = false;
                 User.getLocations($scope.userName).then(function (data) {
                     console.log(data)
                     $scope.locationsArray = data.data.locations;
@@ -2809,7 +2825,7 @@ console.log(data)
 
             } else {
                 $scope.addSupervisorPageOpen = false;
-
+                $scope.clientHome = true;
                 $scope.addLocationPageOpen = false
                 $scope.requestEmployeePageOpen = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
@@ -3307,9 +3323,14 @@ console.log(data)
 
 
             if (!$scope.composeMessagePageOpen) {
+                $scope.clientHome = false;
                 $scope.composeMessagePageLoading = true;
                 $scope.composeMessagePageOpen = true;
                 $scope.composeMessagePageSelected = true;
+                $scope.requestEmployeePageOpen = false;
+                $scope.addLocationPageOpen= false;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false
+                $scope.addSupervisorPageOpen = false;
                 $scope.messagePageSelected = false
                 $scope.chartsPageSelected = false;
                 $scope.workHistoryProfileSelected = false;
@@ -3382,6 +3403,9 @@ console.log(data)
                 })
 
             } else {
+                $scope.composeMessagePageOpen = false;
+                    $scope.clientHome = true;
+
 
             }
 
@@ -4029,11 +4053,17 @@ console.log(data)
         $scope.openMessagePage = function () {
             if ($scope.messagePageOpen) {
                 $scope.messagePageOpen = false;
+                $scope.clientHome = true;
                 $scope.profileHome = true;
                 $scope.messagePageSelected = false;
             } else {
                 $scope.messagePageOpen = true;
                 $scope.profileHome = false;
+                $scope.clientHome = false;
+                $scope.requestEmployeePageOpen = false;
+                $scope.addLocationPageOpen = false
+                $scope.addSupervisorPageOpen = false
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.messagePageSelected = true;
                 $scope.chartsPageSelected = false
                 $scope.workHistoryProfileSelected = false;
