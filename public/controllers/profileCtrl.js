@@ -1161,7 +1161,7 @@ $scope.openComposeSupervisorPage = function(){
 
 
                                         })*/
-                                    })
+                                  /*  })
 
 
                                 } else {
