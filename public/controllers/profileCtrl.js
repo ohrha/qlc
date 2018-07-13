@@ -1116,7 +1116,7 @@ $scope.openComposeSupervisorPage = function(){
                                 $scope.newPPObject = {}
                                 $scope.newDeliquentObject = {}
                                 $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
-
+/*
 
                                 if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                     $scope.loadingNewPayPeriod = true;
@@ -1170,7 +1170,7 @@ $scope.openComposeSupervisorPage = function(){
 
                                 }
 
-
+*/
                             }
                             if ($scope.dateNow == 16 || $scope.dateNow == 17 || $scope.dateNow == 18 || $scope.dateNow == 19 || $scope.dateNow == 20 || $scope.dateNow == 21 || $scope.dateNow == 22) {
 
