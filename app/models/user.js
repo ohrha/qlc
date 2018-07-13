@@ -34,7 +34,9 @@ var UserSchema = new Schema({
     approvednotbooked:{type:Array},
     locations:{type:Array},
     submittedtimesheets:{type:Array},
-    disputedtimesheets:{type:Array}
+    disputedtimesheets:{type:Array},
+    jobcount:{type:Array},
+    reqjobcount:{type:Array}
 
 
 

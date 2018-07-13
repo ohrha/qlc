@@ -297,6 +297,7 @@
 
             } else {
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                
                 $scope.clientHome = true;
 
             }

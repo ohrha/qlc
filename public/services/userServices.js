@@ -94,11 +94,20 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addHoursToClientSubmittedTimeSheets = function(jobDetails){
         return $http.post('/api/users/addhourstoclientsubmittedtimesheets', jobDetails)
     }
+    userFactory.addHoursToPayPeriod = function(hoursDetails){
+        return $http.post('/api/users/addhourstopayperiod', hoursDetails)
+    }
     userFactory.changeDisputedTimeSheetToResolved = function(jobDetails){
         return $http.post("/api/users/changedisputedtimesheettoresolved",jobDetails)
     }
      userFactory.changeDisputedTimeSheetToUnResolved = function(jobDetails){
         return $http.post("/api/users/changedisputedtimesheettounresolved",jobDetails)
+    }
+    userFactory.addApprovedJobsToJobCountArray = function(countData){
+        return $http.post('/api/users/addapprovedjobstojobcountarray',countData)
+    }
+    userFactory.getAdmin = function(){
+        return $http.get('/api/users/getadmin')
     }
         //User.sendPassword(resetData);
   userFactory.sendPassword = function(resetData){

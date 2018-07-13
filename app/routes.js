@@ -58,6 +58,30 @@ module.exports = function (app) {
         })
 
         */
+        app.post('/users/addhourstopayperiod', function(req,res){
+            console.log(req.body)
+            User.find({name:req.body.currentuser}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"User not found"})
+                }else{
+                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timein = req.body.timein;
+                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timeout= req.body.timeout;
+                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
+                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timesheetSubmitted = true
+
+                    User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiodhistory: user[0].payperiodhistory}},{new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"user not found.."})
+                        }else{
+                            res.json({success: true, message:"User found and update...", user:user})
+                        }
+                    })
+                }
+            })
+
+        })
         app.put('/users/findbytoken/:token', function(req,res){
 
             User.findOne({resettoken:req.params.token}, function(err,user){
@@ -303,6 +327,38 @@ module.exports = function (app) {
                                 })
                             }
                         })
+                    }
+                })
+            }
+        })
+    })
+    app.get('/users/getadmin', function(req,res){
+        User.find({userclass:"admin"}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found.."})
+            }else{
+                res.json({success: true, message: "Admin found..", user:user[0]})
+            }
+        })
+    })
+    app.post('/users/addapprovedjobstojobcountarray', function(req,res){
+
+        User.find({userclass:"admin"},function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found"})
+            }else{
+                //consoconsole.log(user[0].name)
+                console.log(req.body)
+                user[0].jobcount[req.body.index] = req.body.countData
+                user[0].reqjobcount[req.body.index] = req.body.reqData
+                User.findOneAndUpdate({userclass:'admin'}, {$set:{jobcount:user[0].jobcount},reqjobcount:user[0].reqjobcount},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found"})
+                    }else{
+                        res.json({success: true, message:"User found and updated", user:user})
                     }
                 })
             }
@@ -952,7 +1008,10 @@ module.exports = function (app) {
             } else {
                 // res.json({success: true, message: "User fou"}
                 console.log(user[0].payperiods[0].jobDetails[0])
-                user[0].payperiods[0].jobDetails[7].push(req.body)
+                user[0].payperiods[0].jobDetails[7][0].push(req.body[0])
+                for(var z=0;z<req.body.length;z++){
+                    req.body[z].delinquent=true;
+                }
 
                 user[0].delinquenttimesheets.splice(req.body.index, 1)
                 User.findOneAndUpdate({ name: req.body[0].currentuser },
@@ -1333,17 +1392,19 @@ module.exports = function (app) {
                 if (req.body.indexofdate == 0) {
                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0] = req.body
                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][0].booked = true;
+                    user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodIndex][0]=req.body
                 }
                 if (req.body.indexofdate == 1) {
                     console.log("Here")
                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][1] = req.body
                     user[0].payperiods[0].jobDetails[req.body.payperiodIndex][1].booked = true;
+                    user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodIndex][1]=req.body
 
 
                 }
 
 
-                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods, } }, { new: true }, function (err, user) {
+                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods, payperiodhistory:user[0].payperiodhistory} }, { new: true }, function (err, user) {
                     if (err) throw err;
                     if (!user) {
                         res.json({ success: false, message: "User not found.." })

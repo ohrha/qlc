@@ -38,6 +38,7 @@
             };
 
 
+$scope.timeData = {};
 
         $scope.logout = function () {
             Auth.logout();

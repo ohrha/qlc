@@ -480,7 +480,7 @@
                                 class="col s10 railway" style="border-bottom:1px solid #ddd;">
                                 <p class="railway"> {{page.location}}</p>
                                 <p class="railway"> {{page.supervisor}}</p>
-                                <p class="railway"> {{page.notes}}</p>
+                                <p class="railway"> {{page.hours}}</p>
                                 <div ng-show="!page.approved">
                                     <span class="railway underline">Status</span>
                                     <p class="railway red-text  text-lighten-3"> Not Yet Approved</p>
@@ -1258,7 +1258,7 @@
 
                                     <div ng-repeat="entry in history.entry track by $index" class="row">
 
-                                        <div ng-show="historyEntryOpen && curHistory == $index && !addHoursPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                        <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                             ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                             <div ng-show="entry[currentJobInDate].booked">
 
@@ -1270,19 +1270,10 @@
 
                                                 </div>
                                                 <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
-                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].client}}</p>
+                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
                                                 <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
-                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].notes}}</p>
-                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}-{{entry[currentJobInDate].timeout}}</p>
-                                                 <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].hoursCalculated}}hrs</p>
-                                             
-                                                 <div ng-show="!history.entry[0][0].paid">
-                                                <p ng-show="!entry[currentJobInDate].timesheetSubmitted" ng-click = "openAddHoursPage()" class = "montserrat underline green-text text-lighten-2">ADD HOURS</p>  
-                                                <p ng-show="entry[currentJobInDate].timesheetSubmitted" ng-click = "openAddHoursPage()" class = "montserrat underline green-text text-lighten-2">EDIT HOURS</p>  
-                                                 </div>
-                                                    <div ng-show="history.entry[0][0].paid">
-                                                <p class = "montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>  
-                                                 </div>
+                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}</p>
+                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timeout}}</p>
                                             </div>
                                             <div ng-show="!entry[currentJobInDate].booked">
 
@@ -1297,166 +1288,6 @@
 
                                             </div>
                                         </div>
-
-                                        <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp"
-                                            style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
-                                            <a href="#" style="color:black;">
-                                                <p class="railway underline">{{entry[currentJobInDate].date}}</p>
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                    <div ng-repeat="entry in history.entry track by $index" class="row">
-
-                                        <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
-                                            ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-                                            <div ng-show="entry[currentJobInDate].booked">
-
-                                                <div class="right-align">
-                                                    <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
-                                                    <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeDelinquentJobInDate(entry.length)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i>{{currentJobInDate}}</a>
-
-                                                    <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && !entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeJobInDate(history)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
-
-                                                </div>
-                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].date}}</p>
-                                                 <div class = "col s12 center-align">
-      <p class = "montserrat underline">Time In</p><i ng-click="closeAddHoursPage()" class = "material-icons" style="float:right">clear</i>
-  </div>
-                                                 <div class="input-field col s5">
-    <select name = "hoursIn" ng-model="timeData.hoursIn">
-      <option value="" disabled selected>Hours</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-        <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-        <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-        <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-    </select>
-    <label>Hours</label>
-  </div>
-
-                                                   <div class="input-field col s2">
-<p class = "montserrat" >-</p>
-  </div>
-                                                   <div class="input-field col s5">
-    <select  name = "minutesIn" ng-model="timeData.minutesIn">
-      <option value="" disabled selected>Minutes</option>
-         <option value="00">00</option>
-      <option value="15">15</option>
-      <option value="30">30</option>
-      <option value="45">45</option>
-    </select>
-    <label>Minutes</label>
-  </div>
-<div class ="col s4">
-</div>
-                                                   <div class="input-field col s4">
-    <select  name = "ampmIn" ng-model="timeData.ampmIn">
-      <option value="" disabled selected>AM/PM</option>
-         <option value=" am">AM</option>
-      <option value=" pm">PM</option>
-      
-    </select>
-    <label>AM/PM</label>
-  </div>
-  <div class = "col s4">
-  </div>
-  <div class = "col s12 center-align">
-      <p class = "montserrat underline">Time Out</p>
-  </div>
-   <div class="input-field col s5">
-    <select name = "hoursOut" ng-model="timeData.hoursOut">
-      <option value="" disabled selected>Hours</option>
-          <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-        <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-        <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-        <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-    </select>
-    <label>Hours</label>
-  </div>
-                                                   <div class="input-field col s2">
-<p class = "montserrat" >-</p>
-  </div>
-                                                   <div class="input-field col s5">
-    <select name = "minutesOut" ng-model="timeData.minutesOut">
-      <option value="" disabled selected>Minutes</option>
-       <option value="00">00</option>
-      <option value="15">15</option>
-      <option value="30">30</option>
-      <option value="45">45</option>
-    </select>
-    <label>Minutes</label>
-  </div>
-               <div class ="col s4">
-</div>
-                                                   <div class="input-field col s4">
-    <select  name = "ampmOut" ng-model="timeData.ampmOut">
-      <option value="" disabled selected>AM/PM</option>
-        <option value=" am">AM</option>
-      <option value=" pm">PM</option>
-    </select>
-    <label>AM/PM</label>
-  </div>
-  <div class = "col s4">
-  </div>
-  
-<div class = "col s12">
-</div>
-<div class = "row">
-     <div class = "col s4">
-  </div>
-  <div class="input-field col s4">
-    <select name = "lunch" ng-model="timeData.lunch">
-      <option value="" disabled selected>Lunch?</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-    </select>
-    <label>Lunch?</label>
-  </div>
- 
-  <div class = "col s4">
-  </div>
-</div>
-
-  <div class = "col s12 center-align">
-
-                                                <p ng-click = "submitHours($index,history)" class = "montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>  
-  </div>
-   <div class = "col s12 center-align" ng-show="allFieldsMustBeInput">
-
-                                                <p  class = "montserrat underline ">All Fields Must Be Input</p>  
-  </div>
-                                            </div>
-                                            <div ng-show="!entry[currentJobInDate].booked">
-
-                                                <div class="right-align">
-                                                    <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
-
-                                                    <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
-                                                    <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
-
-                                                </div>
-                                                <p class="railway grey-text " style="text-decoration:underline;">Date Was Never Booked</p>
-
-                                            </div>
-                                        </div>
-                                        
                                         <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp"
                                             style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
                                             <a href="#" style="color:black;">
