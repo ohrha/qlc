@@ -262,6 +262,7 @@
                         //console.log($scope.employees[i])
                         //console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.submittedTimeSheetsArray[i]) {
+                            $scope.submittedTimeSheetsArray[i].currentIndex = i
                             $scope.submittedTimeSheetsForPagination.push($scope.submittedTimeSheetsArray[i])
                             console.log(i)
                             console.log("firstCondiation")
@@ -279,6 +280,7 @@
                         console.log($scope.submittedTimeSheetsPaginated)
                         $scope.submittedTimeSheetsForPagination = [];
                         if ($scope.submittedTimeSheetsArray[i] !== undefined) {
+                            $scope.submittedTimeSheetsArray[i].currentIndex = i
                             $scope.submittedTimeSheetsForPagination.push($scope.submittedTimeSheetsArray[i])
                         }
                         $scope.pageLimit = $scope.pageLimit + 4;
@@ -3272,6 +3274,21 @@ console.log(data)
             console.log($scope.usersPaginated.length)
         }
         $scope.decreasePage2 = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+           $scope.changePageTimeSheets = function () {
+
+            if ($scope.page < $scope.submittedTimeSheetsPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+            
+        }
+        $scope.decreasePageTimeSheets= function () {
             if ($scope.page > 0) {
                 $scope.page--
                 console.log($scope.page)

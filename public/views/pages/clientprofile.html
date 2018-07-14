@@ -1327,7 +1327,7 @@
 
                                     <div class=" col s2 animated fadeIn railway truncate">
                                         <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                            <p ng-click="openIndividualSubmittedTimeSheet($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.name}}</p>
+                                            <p ng-click="openIndividualSubmittedTimeSheet($index)" class="railway underline" style="font-size:17px;">{{page.currentIndex+1}}.{{page.name}}</p>
                                         </a>
                                     </div>
                                     <div class="col s10" ng-show="individualSubmittedTimeSheetOpen &&submittedIndex == $index && removeLocationLoading ">
@@ -1347,6 +1347,7 @@
                                         <div class = "col s5 left-align">
                                             {{page.timeout}}
                                         </div>
+                                  {{page}}
                                         </div>
                                         <div ng-show="page.disputed">
                                     <a href="#"style="color:black"> <i ng-click="markAsApproved($index,page)" class="material-icons red-text text-lighten-3"> delete</i></a>
@@ -1369,6 +1370,22 @@
                                 </div>
 
                             </div>
+                                     <div class="col s2">
+                        </div>
+                        <div class="col s10">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePageTimeSheets()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                <li class="waves-effect"><a href="#" ng-click="changePageTimeSheets()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+
+                            </ul>
+                        </div>
                         </div>
 
 </div>

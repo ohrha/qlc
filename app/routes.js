@@ -75,7 +75,15 @@ module.exports = function (app) {
                         if(!user){
                             res.json({success: false, message:"user not found.."})
                         }else{
-                            res.json({success: true, message:"User found and update...", user:user})
+                           // res.json({success: true, message:"User found and update...", user:user})
+                            User.findOneAndUpdate({name:req.body.client}, {$push:{submittedtimesheets: req.body}}, {new:true}, function(err,user){
+                                if(err)throw err;
+                                if(!user){
+                                    res.json({success: false, message:"User not found.."})
+                                }else{
+                                    res.json({success: true, message:"Hours added to Client Submitted Time Sheets Section", user:user})
+                                }
+                            })
                         }
                     })
                 }
@@ -531,7 +539,7 @@ module.exports = function (app) {
     })
     app.post('/users/marktimesheetasapproved', function (req, res) {
 
-
+console.log(req.body)
         User.findOneAndUpdate({ userclass: "admin" }, { $pull: { disputedtimesheets: req.body } }, { new: true }, function (err, user) {
             if (err) throw err;
             if (!user) {
@@ -544,7 +552,10 @@ module.exports = function (app) {
                         res.json({ success: false, message: "User not found.." })
                     } else {
 
-                        user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate].disputed = false;
+                        //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate].disputed = false;
+                        console.log(user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index])
+                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].disputed = false
+                        
                         User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
@@ -579,7 +590,7 @@ module.exports = function (app) {
 
     })
     app.post('/users/marktimesheetasdisputed', function (req, res) {
-
+        console.log(req.body)
         User.findOneAndUpdate({ userclass: "admin" }, { $push: { disputedtimesheets: req.body } }, { new: true }, function (err, user) {
             if (err) throw err;
             if (!user) {
@@ -592,8 +603,9 @@ module.exports = function (app) {
                         res.json({ success: false, message: "User not found.." })
                     } else {
 
-                        user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body;
-                        User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                        //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body;
+                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentIndex] = req.body
+                        User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods,payperiodhistory:user[0].payperiodhistory } }, { new: true }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
                                 res.json({ success: false, message: "User not found.." })
