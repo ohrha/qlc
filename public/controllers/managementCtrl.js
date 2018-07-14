@@ -487,7 +487,8 @@
                 }
             })
         }
-        $scope.markAsUnResolved = function (jobData) {
+        $scope.markAsUnResolved = function (jobData,index) {
+            console.log(index)
             console.log(jobData)
             jobData.disputed = true;
             User.changeDisputedTimeSheetToUnResolved(jobData).then(function (data) {
@@ -1201,6 +1202,10 @@
                     }
                 })
             }
+        }
+            $scope.closeMessageAdminPage = function(){
+            $scope.allFieldsMustBeInput = false;
+            $scope.messageAdminPageOpen = false
         }
         $scope.closeAddHoursPage = function () {
             $scope.addHoursPageOpen = false;

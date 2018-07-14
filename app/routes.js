@@ -209,8 +209,9 @@ module.exports = function (app) {
             if(!user){
                 res.json({success: false, message:"User not found.."})
             }else{
-                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
-                User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiods:user[0].payperiods}},{new:true},function(err,user){
+                //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
+                user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodIndex][req.body.indexofdate].disputed = true
+                User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiodhistory:user[0].payperiodhistory}},{new:true},function(err,user){
                     if(err)throw err;
                     if(!user){
                         res.json({success: false, message:"User found and updated.."})
@@ -220,7 +221,7 @@ module.exports = function (app) {
                         if(!user){
                             res.json({success: false, message:"User not found..."})
                         }else{
-                            user[0].submittedtimesheets[req.body.currentIndex] = req.body
+                            user[0].submittedtimesheets[req.body.submittedtimesheetsindex] = req.body
                             User.findOneAndUpdate({name:req.body.client}, {$set:{submittedtimesheets:user[0].submittedtimesheets}},{new:true}, function(err,user){
                                 if(err)throw err;
                                 if(!user)
@@ -231,7 +232,7 @@ module.exports = function (app) {
                      if(!user){
                          res.json({success: false, message:"USer not found.."})
                      }else{
-                         user[0].disputedtimesheets[req.body.currentIndex] = req.body
+                         user[0].disputedtimesheets[req.body.submittedtimesheetsindex] = req.body
                          User.findOneAndUpdate({userclass:"admin"}, {$set:{disputedtimesheets:user[0].disputedtimesheets}},{new:true}, function(err,user){
                             if(err)throw err;
                             if(!user){
@@ -256,13 +257,15 @@ module.exports = function (app) {
     app.post('/users/changedisputedtimesheettoresolved', function(req,res){
        User.find({name:req.body.currentuser}, function(err,user){
 
-            console.log(user[0])
+            //console.log(user[0])
             if(err)throw err;
             if(!user){
                 res.json({success: false, message:"User not found.."})
             }else{
                 user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body
-                User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiods:user[0].payperiods}},{new:true},function(err,user){
+                                user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodIndex][req.body.indexofdate].disputed = false
+
+                User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiodhistory:user[0].payperiodhistory}},{new:true},function(err,user){
                     if(err)throw err;
                     if(!user){
                         res.json({success: false, message:"User found and updated.."})
@@ -272,7 +275,7 @@ module.exports = function (app) {
                         if(!user){
                             res.json({success: false, message:"User not found..."})
                         }else{
-                            user[0].submittedtimesheets[req.body.currentIndex] = req.body
+                            user[0].submittedtimesheets[req.body.submittedtimesheetsindex] = req.body
                             User.findOneAndUpdate({name:req.body.client}, {$set:{submittedtimesheets:user[0].submittedtimesheets}},{new:true}, function(err,user){
                                 if(err)throw err;
                                 if(!user)
@@ -283,7 +286,7 @@ module.exports = function (app) {
                      if(!user){
                          res.json({success: false, message:"USer not found.."})
                      }else{
-                         user[0].disputedtimesheets[req.body.currentIndex] = req.body
+                         user[0].disputedtimesheets[req.body.submittedtimesheetsindex] = req.body
                          User.findOneAndUpdate({userclass:"admin"}, {$set:{disputedtimesheets:user[0].disputedtimesheets}},{new:true}, function(err,user){
                             if(err)throw err;
                             if(!user){
@@ -555,7 +558,7 @@ console.log(req.body)
                         //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate].disputed = false;
                         console.log(user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index])
                         user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].disputed = false
-                        
+                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
                         User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
@@ -604,7 +607,8 @@ console.log(req.body)
                     } else {
 
                         //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body;
-                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentIndex] = req.body
+                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].disputed = false
+                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
                         User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods,payperiodhistory:user[0].payperiodhistory } }, { new: true }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
