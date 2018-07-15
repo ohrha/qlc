@@ -2847,6 +2847,42 @@
             }, 500)
 
         }
+        $scope.decreaseDay = function () {
+            $scope.currentJobInDate = 0;
+            $scope.fadeIn2 = false;
+            $scope.slidein = false;
+            $scope.slidedownout = true;
+            $scope.fadeOut = true;
+
+            $timeout(function () {
+                $scope.slidedownout = false;
+                $scope.fadeOut = false;
+                $scope.slidedownin = true;
+                console.log($scope.jobDetails.length)
+                if ($scope.openJob > 0) {
+                    // if ($scope.jobDetails[$scope.openJob - 1].length < 1) {
+                    console.log("Oy")
+                    //   $scope.openJob = $scope.jobDetails.length-1;
+                    // } else {
+                    $scope.openJob = $scope.openJob - 1;
+
+                    // }
+
+
+                } else {
+                    if ($scope.jobDetails[$scope.jobDetails.length - 1].length > 1) {
+                        $scope.openJob = $scope.jobDetails.length - 1;
+                    } else {
+                        $scope.openJob = $scope.jobDetails.length - 2
+                    }
+
+                }
+            }, 500)
+
+
+            console.log($scope.openJob)
+        }
+
         $scope.increaseDay = function () {
             $scope.currentJobInDate = 0;
             $scope.fadeIn2 = false;
@@ -2858,7 +2894,7 @@
                 $scope.fadeOut = false;
                 $scope.slidein = true;
                 console.log($scope.jobDetails.length)
-                if ($scope.openJob <= 6) {
+                if ($scope.openJob < 6) {
                     if ($scope.jobDetails[$scope.openJob + 1].length < 1) {
                         console.log("Oy")
                         $scope.openJob = 0;
@@ -2875,13 +2911,6 @@
 
 
             console.log($scope.openJob)
-        }
-        $scope.decreaseDay = function () {
-            if ($scope.openJob <= 0) {
-                $scope.openJob = $scope.openJob - 1;
-            } else {
-                $scope.openJob = 0;
-            }
         }
         $scope.openDelinquentTimeSheetPage = function () {
 
