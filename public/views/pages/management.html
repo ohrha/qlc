@@ -61,14 +61,16 @@
                 <div class="row animated " ng-class="{fadeIn:fadeIn, fadeOut:!fadeIn}" ng-show="adminHome">
                     <div class="col s3 ">
                         <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:25px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                                <i ng-click="openEmployeeListAdmin()" style="font-size:25px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">work</i>
                             </a>
                     </div>
                     <div class="col s3">
 
                         <a href="#" style="color:black;">
                                 <i ng-click="openApprovedJobsPage();" style="font-size:25px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">event_available</i>
+                                
                             </a>
+                            
                     </div>
                     <div class="col s3">
                         <a href="#" style="color:black;">
@@ -89,7 +91,7 @@
                     </div>
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">work</i>
                             </a>
                     </div>
                     <div class="col s3 hide-on-small-only">
@@ -118,7 +120,7 @@
 
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
-<span class = "railway underline">Home</span>                            
+<span class = "railway underline">Bookings</span>                            
 </a>
                     </div>
                     <div class="col s3 hide-on-small-only">
@@ -141,7 +143,7 @@
                 <div class="row animated" ng-class="{fadeIn:fadeIn, fadeOut:!fadeIn}" ng-show="adminHome">
                     <div class="col s3">
                         <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:25px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:25px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">work</i>
                             </a>
                     </div>
                     <div class="col s3">
@@ -169,7 +171,7 @@
                     </div>
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
+                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">work</i>
                             </a>
                     </div>
                     <div class="col s3 hide-on-small-only">
@@ -218,6 +220,104 @@
                     </div>
                 </div>
 
+            </div>
+
+             <div ng-show="employeeListOpenAdmin" class="col s12 animated fadeIn ">
+                <a style="color:black;" href="#">
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Bookings
+                        Page
+                    </p>
+                </a>
+                <br>
+
+                <form name="searchForm">
+                    <div class="row">
+
+                        <div class="input-field col s12">
+                            <span class="railway underline ">
+              Search
+          </span>
+                            <input ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
+                                id="first_name" type="text" class="validate">
+                            <label for="first_name"></label>
+                        </div>
+                    </div>
+                </form>
+                <div ng-show="noInput">
+                    <p style="word-wrap:break-word;" class="railway underline">No Input...</p>
+
+                </div>
+                <div ng-show="noSearchResults">
+                    <p style="word-wrap:break-word;" class="railway underline">No Search Results...</p>
+
+                </div>
+                <div ng-show="loading" class="align-center">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                </div>
+                <div ng-show="searchResults">
+                    <a href="#" style="color:black;">
+                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
+                    </a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="result in userSearchResults track by $index">
+                                <td ng-click="openUserFile(result.name)"><a style="color:black;" href="#">{{result.name}}</a></td>
+                                <td><a style="color:black;" href="#">{{result.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div ng-show="loadingUsers" class="center-align">
+                    <i class="material-icons animated rotateIn infinite">autorenew</i>
+                </div>
+                <div ng-show="userList && !loadingUsers " class="center-align">
+
+
+                    <table>
+                        <thead style="text-decoration:none;">
+                            <tr style="font-family: railway; text-decoration:none;">
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                            <tr>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination">
+                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                    </ul>
+
+
+                </div>
             </div>
             <div class="col s12 animated fadeIn " ng-show="disputedTimeSheetsPageOpen">
 
@@ -1175,7 +1275,7 @@
           
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
                 <i ng-click="openManagementPage()"class = "material-icons" style="float:left">keyboard_return</i>
-                <p style="font-size:18px;" class="montserrat underline animated fadeIn ">Manage Time Sheets</p>
+                <p style="font-size:17px;" class="montserrat underline animated fadeIn ">Manage Time Sheets</p>
             </div>
         
          
