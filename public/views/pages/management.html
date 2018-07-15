@@ -67,12 +67,12 @@
                     <div class="col s3">
 
                         <a href="#" style="color:black;">
-                                <i ng-click="openApprovedJobsPage();" style="font-size:25px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">check</i>
+                                <i ng-click="openApprovedJobsPage();" style="font-size:25px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">event_available</i>
                             </a>
                     </div>
                     <div class="col s3">
                         <a href="#" style="color:black;">
-                                <i ng-click="openHistoryPage()" style="font-size:25px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
+                                <i ng-click="openRequestedJobsPage()" style="font-size:25px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">event</i>
                             </a>
                     </div>
                     <div class="col s3">
@@ -84,56 +84,56 @@
                     <div class="col s3 show-on-small">
 
                         <a href="#" style="color:black;">
-                                <i  ng-click="openAdminMessagesPage();" style="font-size:25px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
+                                <i  ng-click="openPayslipPage();" style="font-size:25px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
                                 <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
 
                         <a href="#" style="color:black;">
                                 <i ng-click="openApprovedJobsPage();" style="font-size:17px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">check</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
                                 <i ng-click="openHistoryPage()" style="font-size:17px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a ng-show="incompletePayPeriod" href="#" style="color:black;">
                                 <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
                     </div>
 
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
 
                         <a href="#" style="color:black;">
                                 <i  ng-click="openAdminMessagesPage();" style="font-size:17px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
                             </a>
                     </div>
 
-                    <div class="col s3  show-on-medium-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
 <span class = "railway underline">Home</span>                            
 </a>
                     </div>
-                    <div class="col s3 show-on-medium-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a href="#" ng-click="openApprovedJobsPage();" style="color:black;">
 <span ng-click="openApprovedJobsPage();"class = "railway underline">Approved Jobs ({{approvedJobsArray.length+1}})</span>                            
 </a>
                     </div>
-                    <div class="col s3  show-on-medium-and-up">
+                    <div class="col s3  hide-on-small-only">
                         <a href="#" style="color:black;">
 <span ng-click="openRequestedJobsPage();" class = "railway underline">Requested Jobs ({{requestedJobsArray.length+1}})</span>                            
 </a>
                     </div>
-                    <div class="col s3  show-on-medium-and-up">
+                    <div class="col s3  hide-on-small-only">
                         <a href="#" style="color:black;">
-<span  ng-click="openAdminMessagesPage();"class = "railway underline">Messages</span>                            
+<span  ng-click="openPayslipPage();"class = "railway underline">Time Sheets</span>                            
 </a>
                     </div>
 
@@ -147,12 +147,12 @@
                     <div class="col s3">
 
                         <a href="#" style="color:black;">
-                                <i ng-click="openPayslipPage();" style="font-size:25px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
+                                <i ng-click="openChartsPage();" style="font-size:25px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
                             </a>
                     </div>
                     <div class="col s3">
                         <a href="#" style="color:black;">
-                                <i ng-click="openHistoryPage()" style="font-size:25px; padding-top:5px;" class="material-icons red-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">error_outline</i>
+                                <i ng-click="openDisputedTimeSheetsPage()" style="font-size:25px; padding-top:5px;" class="material-icons red-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">error_outline</i>
                             </a>
                     </div>
                     <div class="col s3">
@@ -161,35 +161,35 @@
                             </a>
                     </div>
 
-                    <div class="col s3">
+                    <div class="col s3 ">
 
                         <a href="#" style="color:black;">
-                                <i ng-click="openChartsPage()" style="font-size:25px; color:black;padding-top:5px;" class="material-icons " ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
+                                <i ng-click="openAdminMessagesPage()" style="font-size:25px; color:black;padding-top:5px;" class="material-icons " ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
                                 <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
 
                         <a href="#" style="color:black;">
                                 <i ng-click="openPayslipPage();" style="font-size:17px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
                                 <i ng-click="openDisputedTimeSheetsPage()" style="font-size:17px; padding-top:5px;" class="material-icons red-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">error_outline</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
                         <a ng-show="incompletePayPeriod" href="#" style="color:black;">
                                 <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
                             </a>
                     </div>
 
-                    <div class="col s3 hide-on-med-and-up">
+                    <div class="col s3 hide-on-small-only">
 
                         <a href="#" style="color:black;">
                                 <i ng-click="openChartsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons " ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
@@ -255,7 +255,7 @@
 
 
                                     </div>
-                                    <div class="col s10" ng-show="disputedTimeSheetOpen && disputeIndex !== $index" style=" border-top:1px solid #ddd; height:100px;">
+                                    <div class="col s10" ng-show="disputedTimeSheetOpen && disputeIndex !== $index" style=" border-bottom:1px solid #ddd; height:100px;">
 
 
 
@@ -521,13 +521,9 @@
 
             <div class="col s12 animated fadeIn" ng-show="approvedJobsPageOpen">
                 <div class="row">
-                    <div class="col s2 ">
-                        <i ng-click="openManagementPage();" class='material-icons'>keyboard_return</i>
-
-
-
-                    </div>
-                    <div class="col s10 center-align" style="border-bottom:1px solid #ddd;">
+                
+                    <div class="col s12 center-align" style="border-bottom:1px solid #ddd;">
+                        <i ng-click="openManagementPage();" class='material-icons' style="float:left;">keyboard_return</i>
                         <p class="railway underline" style="font-size:17px;">Approved Jobs</p>
                     </div>
                 </div>
@@ -539,7 +535,9 @@
 
                         <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                             <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                <p ng-click="openIndividualApprovedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
+                                <span ng-click="openIndividualApprovedJob($index)" class="montserrat underline" style="font-size:17px;">{{$index+1}}</span>
+                                <p class="montserrat underline">{{page.date}}</p>
+
                             </a>
                         </div>
                         <div class="col s10" ng-show="individualApprovedJobOpen &&approvedIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
@@ -550,8 +548,13 @@
                         </div>
                         <div ng-show="individualApprovedJobOpen && approvedIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
                             class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                            <span class = "monserrat underline"> Location</span>
                             <p class="railway"> {{page.location}}</p>
+                             <span class = "monserrat underline"> Supervisor</span>
+
                             <p class="railway"> {{page.supervisor}}</p>
+                             <span class = "monserrat underline"> Hours</span>
+
                             <p class="railway"> {{page.hours}}</p>
                             <div ng-show="!page.approved">
                                 <span class="railway underline">Status</span>
@@ -1155,53 +1158,37 @@
 
         <!-- CLIENT PAGE -->
 
+   <div class="col s10 animated fadeIn" ng-show="chartsPageOpen">
+   
+           <div class = "col s12 center-align" >
+               <p class = "montserrat underline" style="font-size:17px;">Metrics Page</p>
+           </div>
+
+                <canvas id="base" class="chart-bar" chart-data="dataMetrics" chart-labels="labelsMetrics" chart-colors="colors" chart-dataset-override="datasetOverrideMetrics">
+                </canvas>
+            </div>
 
 
         <!-- PAYSLIP PAGE -->
 
         <div ng-show="payslipPageOpen" class="col s10 center-align animated fadeIn">
+          
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
-                <p style="font-size:18px;" class="railway animated fadeIn ">Metrics Page</p>
+                <i ng-click="openManagementPage()"class = "material-icons" style="float:left">keyboard_return</i>
+                <p style="font-size:18px;" class="montserrat underline animated fadeIn ">Manage Time Sheets</p>
             </div>
-            <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
-                <!-- <a href="#" style="color:black;">
-                                <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
-                            </a>-->
-                <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">assignment</i>
-                            </a>
-
-                <a href="#" style="color:black;">
-                                <i ng-click="openChartsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
-                            </a>
-                <a href="#" style="color:black;">
-                                <i ng-click="openHistoryPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-                            </a>
-                <a ng-show="incompletePayPeriod" href="#" style="color:black;">
-                                <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                            </a>
-            </div>
-            <div ng-show="generatePaySlipPageOpen" class="col s12">
-                <p style="font-size:17px;" class="railway animated fadeIn underline ">Pay Slip Generation</p>
-
-                <div ng-repeat="employee in employeesForPaySlipGeneration">
-                    <div class="col s3">
-                        {{employee.name}}
-                    </div>
-                    <div class="col s9">
-
-                    </div>
-                </div>
-            </div>
+        
+         
             <div ng-show="historyPageOpen" class="col s12">
+               
                 <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
-
+<!--
 
                     <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openHistoryPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Work
                         History
                     </p>
 
-
+-->
                     <!-- INDIVIDUAL TIMESHEET SECTION -->
 
 
@@ -1226,6 +1213,9 @@
                                 </div>
                                 <br>
 
+                            </div>
+                            <div class = "col s12 left-align animated fadeIn">
+                                <i ng-click="returnToPayPeriodList()"class = "material-icons">keyboard_return</i>
                             </div>
                             <div class =  "col s12 center-align animated fadeIn">
                                 <p class="montserrat underline">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
@@ -1852,12 +1842,12 @@
                                     <thead style="text-decoration:none;">
                                         <tr style="font-family: railway; text-decoration:none;">
                                             <th>Name</th>
-                                            <th>Phonenumber</th>
+                                            <th>Phonenumber2</th>
 
                                         </tr>
                                     </thead>
 
-                                    <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                                    <tbody ng-repeat="page in employeesPaginated[page] | filter:{userclass:'employee'} track by $index">
                                         <tr>
                                             <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFileHistory(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
                                             <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
@@ -1921,11 +1911,7 @@
                         </p>-->
 
             </div>
-            <div class="col s12 animated fadeIn" ng-show="chartsPageOpen">
-                <canvas id="base" class="chart-bar" chart-data="dataMetrics" chart-labels="labelsMetrics" chart-colors="colors" chart-dataset-override="datasetOverrideMetrics">
-                </canvas>
-            </div>
-
+         
 
         </div>
         <!-- PAYSLIP PAGE -->
