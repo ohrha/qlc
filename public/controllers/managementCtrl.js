@@ -3843,7 +3843,9 @@
                 User.findUser($scope.currentUserFile).then(function (data) {
                     console.log(data)
                     $scope.currentEmployee = data.data.user
+                
                     $scope.loadingCurrentEmployee = false;
+                console.log("$scope.loadingCurrentEMployee",$scope.loadingCurrentEmployee )
                     // console.log
                     $scope.comments = data.data.user[0].comments
                     if ($scope.comments.length < 1) {
