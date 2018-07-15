@@ -3796,6 +3796,7 @@
             $scope.searchResults = false;
             $scope.userList = false;
             $scope.employeeListOpen = false;
+            $scope.employeeListOpenAdmin = false;
             $scope.userDetailsPageOpened = true;
             $scope.delinquentTimeSheetPageOpened = false;
             $scope.bookedJobsPageOpened = false;
