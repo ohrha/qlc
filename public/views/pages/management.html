@@ -89,34 +89,9 @@
                                 <i  ng-click="openPayslipPage();" style="font-size:25px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-small-only">
-                        <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">work</i>
-                            </a>
-                    </div>
-                    <div class="col s3 hide-on-small-only">
-
-                        <a href="#" style="color:black;">
-                                <i ng-click="openApprovedJobsPage();" style="font-size:17px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">check</i>
-                            </a>
-                    </div>
-                    <div class="col s3 hide-on-small-only">
-                        <a href="#" style="color:black;">
-                                <i ng-click="openHistoryPage()" style="font-size:17px; padding-top:5px;" class="material-icons yellow-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">schedule</i>
-                            </a>
-                    </div>
-                    <div class="col s3 hide-on-small-only">
-                        <a ng-show="incompletePayPeriod" href="#" style="color:black;">
-                                <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                            </a>
-                    </div>
-
-                    <div class="col s3 hide-on-small-only">
-
-                        <a href="#" style="color:black;">
-                                <i  ng-click="openAdminMessagesPage();" style="font-size:17px; color:black;padding-top:5px;" class="material-icons purple-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
-                            </a>
-                    </div>
+                   
+                 
+                  
 
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
@@ -169,35 +144,7 @@
                                 <i ng-click="openAdminMessagesPage()" style="font-size:25px; color:black;padding-top:5px;" class="material-icons " ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
                             </a>
                     </div>
-                    <div class="col s3 hide-on-small-only">
-                        <a href="#" style="color:black;">
-                                <i ng-click="openGeneratePaySlipPage()" style="font-size:17px; padding-top:5px;" class="material-icons blue-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">work</i>
-                            </a>
-                    </div>
-                    <div class="col s3 hide-on-small-only">
-
-                        <a href="#" style="color:black;">
-                                <i ng-click="openPayslipPage();" style="font-size:17px;padding-top:5px;" class="material-icons green-text text-lighten-3" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">timeline</i>
-                            </a>
-                    </div>
-                    <div class="col s3 hide-on-small-only">
-                        <a href="#" style="color:black;">
-                                <i ng-click="openDisputedTimeSheetsPage()" style="font-size:17px; padding-top:5px;" class="material-icons red-text text-lighten-2" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">error_outline</i>
-                            </a>
-                    </div>
-                    <div class="col s3 hide-on-small-only">
-                        <a ng-show="incompletePayPeriod" href="#" style="color:black;">
-                                <i ng-click="openIncompletePayPeriodPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                            </a>
-                    </div>
-
-                    <div class="col s3 hide-on-small-only">
-
-                        <a href="#" style="color:black;">
-                                <i ng-click="openChartsPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons " ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">email</i>
-                            </a>
-                    </div>
-
+                  
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
 <span class = "railway underline">Comments</span>                            
@@ -224,7 +171,7 @@
 
              <div ng-show="employeeListOpenAdmin" class="col s12 animated fadeIn ">
                 <a style="color:black;" href="#">
-                    <p style="font-size:18px;" class="railway underline"><i ng-click="openEmployeeHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Bookings
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Bookings
                         Page
                     </p>
                 </a>
@@ -294,7 +241,7 @@
                             </tr>
                         </thead>
 
-                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                        <tbody ng-repeat="page in employeesPaginated[page] | filter:{userclass:'employee'} track by $index">
                             <tr>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
@@ -319,7 +266,7 @@
 
                 </div>
             </div>
-   <div class="col s12 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!employeeHome && !employeeListOpen ">
+   <div class="col s12 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!employeeHome && !employeeListOpenAdmin ">
                 <a href="#" style="color:black;">
                     <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
                         {{currentUserFile}} |</p>
@@ -339,10 +286,10 @@
                     </a>
 
                 </div>
-                   <div ng-show="loadingCurrentEmployee" class="col s12">
+                   <div ng-show="loadingCurrentEmployee2" class="col s12">
                     <p class="railway animated flash infinite">LOADING</p>
                 </div>
-                  <div ng-show="!employeeHome && !loadingCurrentEmployee" class="col s12" ng-repeat="user in currentEmployee">
+                  <div ng-show="!employeeHome && !loadingCurrentEmployee2" class="col s12" ng-repeat="user in currentEmployee">
                     <div class="row">
                         <div ng-show="userFilePage && (currentUserFile == user.name) && !employeeHome">
 
@@ -733,24 +680,7 @@
                             <!-- COMMENTS PAGE -->
 
 
-                            <div ng-show="commentsPageOpened" class="col s12">
-                                <p ng-show="commentsPageOpened && noComments" class="railway underline animated fadeIn" style="font-size:20px;" ng-show=" noComments">No Comments Recieved</p>
-                                <div ng-show="!noComments" class="row" ng-repeat="comment in comments">
-                                    <div class="col s1">
-                                    </div>
-                                    <div style="border-bottom:1px solid #ddd" class="col s10 animated fadeIn">
-                                        <span class="railway animated fadeIn"> {{comment.date}}</span>
-
-                                    </div>
-                                    <div class="col s1">
-                                    </div>
-                                    <div class="col s12">
-
-                                        <span class="railway animated fadeIn"> {{comment.body}}</span>
-                                    </div>
-                                </div>
-                            </div>
-
+                          
                             <!-- COMMENTS PAGE -->
 
 
@@ -758,48 +688,12 @@
 
                             <!-- PAYSLIP GENERATION -->
 
-                            <div ng-show="payslipGenerationOpen" class="col-s12">
-
-
-                                <div class="center-align">
-                                    <p class="railway">
-                                        Generate Payslip
-                                    </p>
-                                    <i ng-click="export();" ng-show="!pdfLoading" class="medium material-icons animated pulse infinite ">attach_money</i>
-                                    <i ng-show="pdfLoading" class="medium material-icons animated rotateIn infinite">autorenew</i>
-
-
-                                </div>
-
-                            </div>
+                        
 
                             <!-- PAYSLIP GENERATION -->
 
 
-                            <div ng-show="complaintsPageOpened" class="col s12">
-                                <div class="row">
-                                    <div class="col s12">
-                                        <p ng-show="noComplaints" style="font-size:20px;" class="railway underline animated fadeIn">No Complaints Lodged</p>
-
-                                        <p ng-show="!noComplaints" ng-click="openComplaints()" class="railway animated fadeIn underline">Complaints( {{user.complaints.length}} )</p>
-
-
-                                        <div ng-show="complaintsOpened && !noComplaints">
-                                            <div style="border:1px solid rgba(0,0,0,.6)">
-                                                <p style="font-size:12px;" class="railway animated fadeIn">Date: {{user.complaints[0].date}}</p>
-                                            </div>
-                                            <div style="border:1px solid rgba(0,0,0,.6)">
-                                                <p style="font-size:12px;padding-top:10px; " ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway underline animated fadeIn ">{{user.complaints[0].subject}}</p>
-
-                                                <p style="font-size:12px; padding-bottom:10px;" ng-class="{closedissue: !openIssue,openissue:openIssue}" class="railway animated fadeIn">{{user.complaints[0].body}}</p>
-                                                <button ng-click="openCloseIssue()" class="waves-effect waves-light btn"><span ng-show="!openIssue">Open Issue</span><span ng-show="openIssue">Close Issue</span></button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
+                        
 
                             <!-- BOOKED JOBS PAGE -->
 
@@ -3485,7 +3379,7 @@
                             </tr>
                         </thead>
 
-                        <tbody ng-repeat="page in employeesPaginated[page] track by $index">
+                        <tbody ng-repeat="page in employeesPaginated[page]| filter:{userclass:'employee'} track by $index">
                             <tr>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>

@@ -920,31 +920,76 @@ user.find({userclass:"admin"}, function(err,user){
     })
     
     app.post('/users/checkandadddelinquenttimesheet', function(req,res){
-       // console.log(req.body,"813")
+       console.log(req.body,"813")
         for(var z=0; z< req.body.currentusernamearray.length; z++){
          User.find({name: req.body.currentusernamearray[z]}, function(err,user){
              console.log(user[0].name)
+             adminDelinquentTimeSheetArray = [];
              for(var d= 0; d<user.length; d++){
 
                 //console.log(user[d].payperiods)
-                for(var s = 0; s< user[d].payperiods[0].jobDetails.length;s++){
+               
+                for(var s = 0; s< user[d].payperiodhistory[req.body.oldpayperiod].entry.length;s++){
 
                    // console.log(user[d].payperiods[0].jobDetails[s][0])
-                    if(user[d].payperiods[0].jobDetails[s]){
+                    if(user[d].payperiodhistory[req.body.oldpayperiod].entry[s]){
 
                         
-                             if(user[d].payperiods[0].jobDetails[s][0]){
+                             if(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0]){
                             console.log("Its Truee")
-                            console.log(user[d].payperiods[0].jobDetails[s][0].booked)
-                            if(user[d].payperiods[0].jobDetails[s][0].booked &&user[d].payperiods[0].jobDetails[s][0].timesheetSubmitted == false){
+                           // console.log(user[d].payperiods[0].jobDetails[s][0].booked)
+                            if(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0].booked &&user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0].timesheetSubmitted == false){
                                 console.log("EMMET")
                                 console.log("DELINUENTO")
-                                user[d].delinquenttimesheets.push(user[d].payperiods[0].jobDetails[s][0])
+                                user[d].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
+                                adminDelinquentTimeSheetArray.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
+                                User.find({userclass:"admin", function(err,user){
+                                    if(err)throw err;
+                                    if(!user){
+                                        res.json({success: false, message:"User not found.."})
+                                    }else{
+                                        //res.json({success: true, })
+                                        console.log()
+                                        user[0].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
+                                        User.findOneAndUpdate({userclass:"admin"}, {$set:{delinquenttimesheets:user[0].delinquenttimesheets}}, {new:true}, function(err,user){
+
+                                            if(err)throw err;
+                                            if(!user){
+                                                res.json({success: false, message:"User not found..."})
+                                            }else{
+                                                console.log("Deliinquent Time Sheet Added To Admin Delinquent Time SHeet Array")
+                                            }
+
+                                        })
+                                    }
+                                }})
                             }
-                               if(user[d].payperiods[0].jobDetails[s][0].booked &&user[d].payperiods[0].jobDetails[s][1].timesheetSubmitted == false){
+                               if(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1].booked &&user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1].timesheetSubmitted == false){
                                 console.log("EMMET")
                                 console.log("DELINUENTO")
-                                user[d].delinquenttimesheets.push(user[d].payperiods[0].jobDetails[s][1])
+                                user[d].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
+                                adminDelinquentTimeSheetArray.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
+                                 User.find({userclass:"admin", function(err,user){
+                                    if(err)throw err;
+                                    if(!user){
+                                        res.json({success: false, message:"User not found.."})
+                                    }else{
+                                        //res.json({success: true, })
+                                        console.log()
+                                        user[0].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
+                                        User.findOneAndUpdate({userclass:"admin"}, {$set:{delinquenttimesheets:user[0].delinquenttimesheets}}, {new:true}, function(err,user){
+
+                                            if(err)throw err;
+                                            if(!user){
+                                                res.json({success: false, message:"User not found..."})
+                                            }else{
+                                                console.log("Deliinquent Time Sheet Added To Admin Delinquent Time SHeet Array")
+                                            }
+
+                                        })
+                                    }
+                                }})
+
                             }
                         }
 
@@ -958,6 +1003,7 @@ user.find({userclass:"admin"}, function(err,user){
                         res.json({success: false, message:"User not found.."})
                     }else{
                         //res.json({success: true, mes})
+                        console.log(adminDelinquentTimeSheetArray)
                         console.log("User Delinquent Time Sheets Updated...")
                     }
                 })
@@ -965,27 +1011,54 @@ user.find({userclass:"admin"}, function(err,user){
          })
         }
         res.json({success:true, message:"Delinquent Time Sheets Updated.."})
+        
     })
     app.post('/users/addpayperiodtopayperiodhistory', function (req, res) {
         console.log(req.body)
-        if(req.body.entry[8].name == "Sar Rashi"){
-                  console.log(req.body.entry)
-
-        }
+       
             //console.log(req.body.allEmployeesJobDetails[z])
             //  for (var d= 0; d < req.body.allEmployeesJobDetails[z].length;d++){
             //console.log(req.body.allEmployeesJobDetails[z][d])
      
-            if (req.body.entry[8].name !== undefined) {
+            if (req.body.name !== undefined) {
                 //console.log(z)
-                var name = req.body.entry[8].name;
+                var name = req.body.name;
+                var newPayPeriod = [];
                 var payperiodHistoryEntry = {}
             payperiodHistoryEntry.payperiod = req.body.payperiod;
             payperiodHistoryEntry.entry = req.body.entry
             //console.log("ITS PAY PERIOD HISTORY TIME!!!", payperiodHistoryEntry.entry[3])
              
                 console.log("ITS NAME TIME",name)
-                User.findOne({ name: name }, function (err, user) {
+                PayPeriod.find({payperiodnum:req.body.payperiodnum}, function(err, payperiod){
+                    if(err)throw err;
+                    if(!payperiod){
+                        res.json({success: false, message:"Pay Period Not Found.."})
+                    }else{
+                        newPayPeriod = payperiod[0].jobDetails
+                        User.find({name:req.body.name}, function(err,user){
+                            if(err)throw err;
+                            if(!user){
+                                res.json({success: false, message:"User not found..."})
+                            }else{
+                                var ppObject = {}
+                                ppObject.entry = newPayPeriod
+                               user[0].payperiodhistory.push(ppObject)
+                               User.findOneAndUpdate({name: req.body.name}, {$set:{payperiodhistory: user[0].payperiodhistory}}, function(err,user){
+                                   if(err)throw err;
+                                   if(!user){
+                                       res.json({succes: false, message:"User not found.."})
+                                   }else{
+                                       res.json({success: true, message:"User found and updated...", user:user})
+                                   }
+                               })
+                            }
+
+                        })
+                    }
+                })
+            }
+             /*   User.findOne({ name: name }, function (err, user) {
                     if (err) throw err; 
                     if (!user) {
                         res.json({ success: false, message: "User not found.." })
@@ -1020,22 +1093,16 @@ user.find({userclass:"admin"}, function(err,user){
                 })
 
             }
-
+*/
             // }
 
             //  payperiodHistoryEntroy.historyentered = true;
             //  console.log(req.body.allEmployeesJobDetails[z][7].name)
 
         
-        User.find({}, function (err, users) {
-            if (err) throw err
-            if (!users) {
-                res.json({ success: false, message: "Users not found..." })
-            } else {
-                res.json({ success: true, message: "Users found..", users: users })
-            }
-        })
+     
         //res.json({ success: true, message: "User Pay Period History Successfully Updated..." })
+            
     })
     app.post('/users/addjobtocurrentpayperiod', function (req, res) {
         req.body[0].currentuser

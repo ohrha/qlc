@@ -2004,6 +2004,7 @@ $scope.openDisputedTimeSheetsPage = function(){
 
 
         }
+        $scope.delinquentTimeSheetInPayPeriod = false;
         Auth.getUser().then(function (data) {
             console.log(data)
             $scope.name = data.data.name;
@@ -2016,7 +2017,21 @@ $scope.openDisputedTimeSheetsPage = function(){
                 $scope.locationsArray = data.data.user[0].locations;
                 $scope.supervisorsArray = data.data.user[0].supervisors
                 $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
+                $scope.payPeriodHistory = data.data.user[0].payperiodhistory
+                for(var z=0;z<$scope.payPeriodHistory.length;z++){
 
+                    for(var d=0;d<$scope.payPeriodHistory[z].entry.length;d++){
+                       console.log($scope.payPeriodHistory[z].entry[d])
+                        
+                            $scope.payPeriodHistory[z].entry[d]
+                            
+                            if($scope.payPeriodHistory[z].entry[d][0].delinquent || $scope.payPeriodHistory[z].entry[d][1].delinquent ){
+                                $scope.delinquentTimeSheetInPayPeriod = true;
+                                console.log("DELINQUENT")
+                            }
+                        
+                    }
+                }
             })
         })
 
@@ -4248,6 +4263,7 @@ console.log(data)
 
             if (!$scope.historyPageOpenProfile) {
                 $scope.openJob = 0;
+                $scope.delinquenttimesheetPageOpen = false
                 $scope.chartsPageOpen = false;
                 $scope.workHistoryProfileSelected = true;
                 $scope.chartsPageSelected = false;
