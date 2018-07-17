@@ -58,6 +58,40 @@ module.exports = function (app) {
         })
 
         */
+        
+         app.post('/users/addhourstopayperioddelinquent', function(req,res){
+            console.log(req.body)
+            User.find({name:req.body.currentuser}, function(err,user){
+                if(err)throw err;
+                if(!user){
+                    res.json({success: false, message:"User not found"})
+                }else{
+                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timein = req.body.timein;
+                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timeout= req.body.timeout;
+                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
+                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timesheetSubmitted = true
+                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].delinquent = false
+
+                    User.findOneAndUpdate({name:req.body.currentuser}, {$set:{payperiodhistory: user[0].payperiodhistory}},{new:true}, function(err,user){
+                        if(err)throw err;
+                        if(!user){
+                            res.json({success: false, message:"user not found.."})
+                        }else{
+                           // res.json({success: true, message:"User found and update...", user:user})
+                            User.findOneAndUpdate({name:req.body.client}, {$push:{submittedtimesheets: req.body}}, {new:true}, function(err,user){
+                                if(err)throw err;
+                                if(!user){
+                                    res.json({success: false, message:"User not found.."})
+                                }else{
+                                    res.json({success: true, message:"Hours added to Client Submitted Time Sheets Section", user:user})
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+
+        })
         app.post('/users/addhourstopayperiod', function(req,res){
             console.log(req.body)
             User.find({name:req.body.currentuser}, function(err,user){
@@ -924,7 +958,7 @@ user.find({userclass:"admin"}, function(err,user){
         for(var z=0; z< req.body.currentusernamearray.length; z++){
          User.find({name: req.body.currentusernamearray[z]}, function(err,user){
              console.log(user[0].name)
-             adminDelinquentTimeSheetArray = [];
+             
              for(var d= 0; d<user.length; d++){
 
                 //console.log(user[d].payperiods)
@@ -941,17 +975,23 @@ user.find({userclass:"admin"}, function(err,user){
                             if(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0].booked &&user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0].timesheetSubmitted == false){
                                 console.log("EMMET")
                                 console.log("DELINUENTO")
-                                user[d].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
+                                adminDelinquentTimeSheetArray = [];
+                                user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0].delinquent = true;
+                                       userDelinquentTimeSheetArray = []
+                            userDelinquentTimeSheetArray.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
+                                user[d].delinquenttimesheets.push(userDelinquentTimeSheetArray)
+                                //user[d].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
                                 adminDelinquentTimeSheetArray.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
-                                User.find({userclass:"admin", function(err,user){
+                                User.find({userclass:"admin"}, function(err,user){
                                     if(err)throw err;
                                     if(!user){
                                         res.json({success: false, message:"User not found.."})
                                     }else{
                                         //res.json({success: true, })
-                                        console.log()
-                                        user[0].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
-                                        User.findOneAndUpdate({userclass:"admin"}, {$set:{delinquenttimesheets:user[0].delinquenttimesheets}}, {new:true}, function(err,user){
+                                        console.log("EKKIO")
+                                 
+                                       // user[0].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][0])
+                                        User.findOneAndUpdate({userclass:"admin"}, {$push:{delinquenttimesheets:adminDelinquentTimeSheetArray}}, {new:true}, function(err,user){
 
                                             if(err)throw err;
                                             if(!user){
@@ -962,22 +1002,26 @@ user.find({userclass:"admin"}, function(err,user){
 
                                         })
                                     }
-                                }})
+                                })
                             }
                                if(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1].booked &&user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1].timesheetSubmitted == false){
                                 console.log("EMMET")
                                 console.log("DELINUENTO")
-                                user[d].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
+                            user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1].delinquent = true;
+                            adminDelinquentTimeSheetArray = [];
+                            userDelinquentTimeSheetArray = []
+                            userDelinquentTimeSheetArray.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
+                                user[d].delinquenttimesheets.push(userDelinquentTimeSheetArray)
                                 adminDelinquentTimeSheetArray.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
-                                 User.find({userclass:"admin", function(err,user){
+                                 User.find({userclass:"admin"}, function(err,user){
                                     if(err)throw err;
                                     if(!user){
                                         res.json({success: false, message:"User not found.."})
                                     }else{
                                         //res.json({success: true, })
-                                        console.log()
+                                        console.log("EKKI")
                                         user[0].delinquenttimesheets.push(user[d].payperiodhistory[req.body.oldpayperiod].entry[s][1])
-                                        User.findOneAndUpdate({userclass:"admin"}, {$set:{delinquenttimesheets:user[0].delinquenttimesheets}}, {new:true}, function(err,user){
+                                        User.findOneAndUpdate({userclass:"admin"}, {$push:{delinquenttimesheets:adminDelinquentTimeSheetArray}}, {new:true}, function(err,user){
 
                                             if(err)throw err;
                                             if(!user){
@@ -988,7 +1032,7 @@ user.find({userclass:"admin"}, function(err,user){
 
                                         })
                                     }
-                                }})
+                                })
 
                             }
                         }
@@ -1005,6 +1049,7 @@ user.find({userclass:"admin"}, function(err,user){
                         //res.json({success: true, mes})
                         console.log(adminDelinquentTimeSheetArray)
                         console.log("User Delinquent Time Sheets Updated...")
+                 
                     }
                 })
              }
