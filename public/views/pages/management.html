@@ -198,7 +198,7 @@
 
                                 </div>
                                     <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
-                                        <a href="#" style="color:black;"> <i ng-click="openDelinquentTimeSheet($index,true)" class="material-icons" >email</i></a>
+                                        <a href="#" style="color:black;"> <i ng-click="openDelinquentTimeSheet($index,true)" class="material-icons" ><span class = "railway">{{$index+1}}</span></i></a>
                                     </div>
                                     <div class="col s10" ng-show="delinquentTimeSheetOpen && delinquentIndex == $index && messageLoading">
 

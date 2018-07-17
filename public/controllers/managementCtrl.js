@@ -717,6 +717,8 @@ $scope.openDelinquentTimeSheetInfo = function(){
             } else {
                 console.log("last")
                 $scope.delinquentIndex = null
+                $scope.delinquentInfo = false;
+                $scope.delinquentTimeSheetInfo = false;
 
                 // $scope.showChart = true;
                 //$scope.removeChart = false;
@@ -4438,6 +4440,8 @@ $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
             $scope.managementPage = true;
             $scope.adminHome = true;
             $scope.delinquentTimeSheetPageOpened = false;
+            $scope.disputedInfo = false;
+            $scope.delinquentTimeSheetInfo = false;
             $scope.employeeListOpenAdmin = false;
             $scope.employeeHome = true
             $scope.fadeIn = true;
