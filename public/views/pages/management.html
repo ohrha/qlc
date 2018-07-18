@@ -51,10 +51,12 @@
         <!-- MANAGEMENT HOME -->
 
         <div ng-show="managementPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
-            <div  ng-show="adminHome"class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+
+
+            <div  ng-show="adminHome"class="col s12"style=" border-bottom: 1px solid #ddd;" >
                 <p style="font-size:18px;" class="railway animated fadeIn ">Administration Page</p>
             </div>
-            <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
+            <div class="col s12" >
                 <!-- <a href="#" style="color:black;">
                                 <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
                             </a>-->
@@ -118,7 +120,9 @@
                 <div class="row animated" ng-class="{fadeIn:fadeIn, fadeOut:!fadeIn}" ng-show="adminHome">
                     <div class="col s3">
                         <a href="#" style="color:black;">
-                                <i ng-click="openDelinquentTimeSheetPage()" style="font-size:25px; padding-top:5px;" class="material-icons red-text text-lighten-3" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">error_outline</i>
+                                <i ng-show="delinquentTimeSheetsArray.length" ng-click="openDelinquentTimeSheetPage()" style="font-size:25px; padding-top:5px;" class="material-icons red-text text-lighten-3 animated flash" ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">error_outline</i>
+                                 <i ng-show="!delinquentTimeSheetsArray.length" ng-click="openDelinquentTimeSheetPage()" style="font-size:25px; padding-top:5px;" class="material-icons green-text text-lighten-3 " ng-class="{'complaintsselected':complaintsSelected,'complaintsdeselected':!complaintsSelected}">error_outline</i>
+
                             </a>
                     </div>
                     <div class="col s3">
@@ -172,7 +176,11 @@
 <div class = "col s12 center-align">
     <p class = "railway underline" style="font-size:17px;">Delinquent Time Sheet Page</p>
 </div>
- <div class="col s12" ng-repeat="page in delinquentTimeSheetsPaginated[page] track by $index">
+ <div class = "col s12 center-align" ng-show="!delinquentTimeSheetsArray.length">
+     <p class = "railway underline green-text text-lighten-2">(No Delinquent Time Sheets)</p>
+
+ </div>
+ <div class="col s12" ng-repeat="page in delinquentTimeSheetsPaginated[page] track by $index" ng-show="delinquentTimeSheetsArray.length">
                                 <div class="row">
                                     
                                     <div ng-show="page.read" class="col s2" style="border-right:1px solid #ddd">
@@ -233,25 +241,143 @@
     </div>
 </div>
 <div class = "row animated fadeIn" ng-show="delinquentTimeSheetInfo">
-    <div class = "col s12 center-align">
-<span class = "montserrat underline"> Employee</span>
-<p class = "railway">{{page.currentuser}}</p>
-<span class = "montserrat underline"> Client</span>
-<p class = "railway">{{page.client}}</p>
-<span class = "montserrat underline"> Supervisor</span>
-<p class = "railway">{{page.supervisor}}</p>
-<span class = "montserrat underline"> Location</span>
-<p class = "railway">{{page.location}}</p>
-<span class = "montserrat underline"> Pay Period</span>
-<p class = "railway">{{page.payperiodnum}</p>
-<span class = "montserrat underline"> Date</span>
-<p class = "railway">{{page.date}}</p>
-
+    <div class = "col s12" ng-show="loadingAddDeliquentTimeSheet">
+        <p class = "railway underline animated flash infinite">( LOADING )</p>
     </div>
+   
+  <div class="col s12" ng-show="!loadingAddDelinquentTimeSheet">
+
+  <p class="railway" style="text-decoration:underline;">{{page.date}}</p>
+                                                <div class="col s12 center-align">
+                                                    <p class="montserrat underline">Time In</p><i ng-click="closeAddHoursPage()" class="material-icons" style="float:right">clear</i>
+                                                </div>
+                                                <div class="input-field col s5">
+                                                    <select name="hoursIn" ng-model="timeData.hoursIn">
+      <option value="" disabled selected>Hours</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+        <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+        <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+        <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+                                                    <label>Hours</label>
+                                                </div>
+
+                                                <div class="input-field col s2">
+                                                    <p class="montserrat">-</p>
+                                                </div>
+                                                <div class="input-field col s5">
+                                                    <select name="minutesIn" ng-model="timeData.minutesIn">
+      <option value="" disabled selected>Minutes</option>
+         <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+                                                    <label>Minutes</label>
+                                                </div>
+                                                <div class="col s4">
+                                                </div>
+                                                <div class="input-field col s4">
+                                                    <select name="ampmIn" ng-model="timeData.ampmIn">
+      <option value="" disabled selected>AM/PM</option>
+         <option value=" am">AM</option>
+      <option value=" pm">PM</option>
+      
+    </select>
+                                                    <label>AM/PM</label>
+                                                </div>
+                                                <div class="col s4">
+                                                </div>
+                                                <div class="col s12 center-align">
+                                                    <p class="montserrat underline">Time Out</p>
+                                                </div>
+                                                <div class="input-field col s5">
+                                                    <select name="hoursOut" ng-model="timeData.hoursOut">
+      <option value="" disabled selected>Hours</option>
+          <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+        <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+        <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+        <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+                                                    <label>Hours</label>
+                                                </div>
+                                                <div class="input-field col s2">
+                                                    <p class="montserrat">-</p>
+                                                </div>
+                                                <div class="input-field col s5">
+                                                    <select name="minutesOut" ng-model="timeData.minutesOut">
+      <option value="" disabled selected>Minutes</option>
+       <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+                                                    <label>Minutes</label>
+                                                </div>
+                                                <div class="col s4">
+                                                </div>
+                                                <div class="input-field col s4">
+                                                    <select name="ampmOut" ng-model="timeData.ampmOut">
+      <option value="" disabled selected>AM/PM</option>
+        <option value=" am">AM</option>
+      <option value=" pm">PM</option>
+    </select>
+                                                    <label>AM/PM</label>
+                                                </div>
+                                                <div class="col s4">
+                                                </div>
+
+                                                <div class="col s12">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col s4">
+                                                    </div>
+                                                    <div class="input-field col s4">
+                                                        <select name="lunch" ng-model="timeData.lunch">
+      <option value="" disabled selected>Lunch?</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+                                                        <label>Lunch?</label>
+                                                    </div>
+
+                                                    <div class="col s4">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col s12 center-align">
+
+                                                    <p ng-click="submitHoursDelinquent($index,page.client,page.location,page.currentuser,page,page.payperiodIndex)" class="montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>
+                                                </div>
+                                                 <div ng-show="allFieldsMustBeInput" class="col s12">
+                                                    <p> All Fields Must Be Input </p>
+                                                </div>
+                                    </div>
+
+
+                                </div>
 </div>
 
                                     </div>
+                                    
                             </div>
+                            <div ng-show="delinquentTimeSheetsArray.length">
                             <div class="col s2">
                             </div>
                             <div class="col s10">
@@ -268,7 +394,8 @@
 
                                 </ul>
                             </div>
-</div>
+                            </div>
+
              <div ng-show="employeeListOpenAdmin" class="col s12 animated fadeIn ">
                 <a style="color:black;" href="#">
                     <p style="font-size:18px;" class="railway underline"><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Bookings
@@ -2181,454 +2308,7 @@ hkjhkhjhk
                 </div>
 
             </div>
-            <div class="col s12" ng-show="adminHome">
-            </div>
-
-        </div>
-
-
-
-        <!--MANAGEMENT HOME -->
-
-
-        <!-- CLIENT PAGE -->
-
-        <div ng-show="clientsPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
-
-
-            <div style="border-right:1px solid #ddd" class="col s3 center-align">
-                <a style="color:black;" href="#">
-
-                    <p style="word-wrap:break-word; " ng-click="openClientsHome()" class=" railway  "> Overview </p>
-                </a>
-                <a style="color:black;" href="#">
-
-                    <p style="word-wrap:break-word; " ng-click="openClientList()" class=" railway  "> Client List </p>
-                </a>
-            </div>
-            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="clientHome && !employeeListOpen">
-                <div class="underline">
-                    <p style="font-size:18px;" class="railway animated fadeIn ">Clients Page</p>
-                </div>
-                <p class="railway">
-                    A Simple way to manage your employees...
-                </p>
-            </div>
-            <div ng-show="clientListOpen" class="col s9 animated fadeIn ">
-                <a style="color:black;" href="#">
-                    <p style="font-size:18px;" class="railway underline"><i ng-click="openClientsHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Client
-                        List
-                    </p>
-                </a>
-                <br>
-                <span class="railway ">
-              Search
-          </span>
-                <form name="searchForm">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
-                                id="first_name" type="text" class="validate">
-                            <label for="first_name"></label>
-                        </div>
-                    </div>
-                </form>
-                <div ng-show="noInput">
-                    <p style="word-wrap:break-word;" class="railway underline">No Input...</p>
-
-                </div>
-                <div ng-show="noSearchResults">
-                    <p style="word-wrap:break-word;" class="railway underline">No Search Results...</p>
-
-                </div>
-                <div ng-show="loading" class="align-center">
-                    <i class="fas fa-circle-notch fa-spin"></i>
-                </div>
-                <div ng-show="searchResults">
-                    <a href="#" style="color:black;">
-                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
-                    </a>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phonenumber</th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr ng-repeat="result in userSearchResults track by $index">
-                                <td ng-click="openUserFile(result.name)"><a style="color:black;" href="#">{{result.name}}</a></td>
-                                <td><a style="color:black;" href="#">{{result.phonenumber}}</a></td>
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-
-
-                </div>
-                <div ng-show="loadingUsers" class="center-align">
-                    <i class="material-icons animated rotateIn infinite">autorenew</i>
-                </div>
-                <div ng-show="userList && !loadingUsers " class="center-align">
-
-
-                    <table>
-                        <thead style="text-decoration:none;">
-                            <tr style="font-family: railway; text-decoration:none;">
-                                <th>Name</th>
-                                <th>Phonenumber</th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody ng-repeat="page in clientsPaginated[page] track by $index">
-                            <tr>
-                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openClientFile(page.name)">{{$index+1}}.{{page.name}}</a></td>
-                                <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-
-                    <ul class="pagination">
-                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
-
-                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
-                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
-
-                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
-                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
-
-                    </ul>
-
-
-                </div>
-            </div>
-
-            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!clientHome && !clientListOpen ">
-                <a href="#" style="color:black;">
-                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openClientList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
-                        {{currentClientFile}} |</p>
-                </a>
-                <!-- CURRENT USER FILE MENU -->
-
-                <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s12 center-align">
-                    <a href="#" style="color:black;">
-                                <i ng-click="openAdminRequestedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons animated fadeIn" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">work</i>  
-
-                    </a>
-
-
-
-
-                    <a href="#" style="color:black;">
-                                <i ng-click="openRemoveClientPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons red-text lighten-5" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
-                    </a>
-
-                </div>
-
-                <!-- CURRENT USER FILE MENU -->
-                <div class="row">
-                    <div class="row center-align" ng-show="clientHomePage">
-
-                        <div class="col s12 animated fadeIn">
-                            <div class="row">
-                                <div class="col s12" ng-show="editEmailLoading">
-
-                                    <p class="railway truncate animated flash infinite">LOADING</p>
-                                </div>
-                                <div class="col s12" ng-show="editEmailPageOpen && !editEmailLoading">
-                                    <div class="row">
-                                        <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
-                                            <i ng-click="closeEditEmailPage()" class="material-icons"> clear</i>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input value="{{currentClientObject.email}}" id="first_name2" type="text" name="email" ng-model="emailData.email" class="validate">
-                                            <label class="active" for="first_name2">Email</label>
-                                        </div>
-                                        <div class="col s12 center-align">
-                                            <a ng-click="submitNewEmailClient(currentClientObject.name);" class="waves-effect waves-light btn">submit</a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s2">
-                                    </div>
-                                    <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway underline">EMAIL</p>
-                                    </div>
-                                    <div class="col s2">
-                                    </div>
-                                </div>
-                                <div class="col s12" ng-show="!editEmailPageOpen && !editEmailLoading">
-
-                                    <soan ng-show="!editEmailPageOpen" class="railway  truncate">{{currentClientObject.email}}</span>
-                                        <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
-                                </div>
-                                <div class="row">
-                                    <div class="col s2">
-                                    </div>
-                                    <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway underline"> PHONENUMBER</p>
-                                    </div>
-                                    <div class="col s2">
-                                    </div>
-                                </div>
-                                <div class="col s12" ng-show="editPhoneNumberPageOpen &&!editPhoneNumberLoading">
-                                    <div class="row">
-                                        <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
-                                            <i ng-click="closeEditPhoneNumberPage()" class="material-icons"> clear</i>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input value="{{currentClientObject.phonenumber}}" id="first_name2" type="number" name="phonenumber" ng-model="phoneNumberData.phonenumber"
-                                                class="validate">
-                                            <label class="active" for="first_name2">Phone Number</label>
-                                        </div>
-                                        <div class="col s12 center-align">
-                                            <a ng-click="submitNewPhoneNumberClient(currentClientObject.name);" class="waves-effect waves-light btn">submit</a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="col s12" ng-show="editPhoneNumberLoading">
-
-                                    <p class="railway truncate animated flash infinite">LOADING</p>
-                                </div>
-                                <div class="col s12" ng-show="!editPhoneNumberPageOpen &&!editPhoneNumberLoading">
-
-                                    <span ng-show="!editPhoneNumberPageOpen" class="railway truncate">{{currentClientObject.phonenumber}}<a ng-click="openEditPhoneNumberPage();" href="#" style="color:green;"><span class = "railway"> edit</span></a>
-                                    </span>
-
-
-
-                                </div>
-                                <div class="row">
-
-                                    <div class="col s2">
-                                    </div>
-                                    <div class="col s8" style="border-bottom:1px solid #ddd;">
-                                    </div>
-                                    <div class="col s2">
-                                    </div>
-                                </div>
-                                <div class="col s12" ng-show="editPayRateLoading">
-
-                                    <p class="railway truncate animated flash infinite">LOADING</p>
-                                </div>
-                                <div class="col s12" ng-show="editPayRatePageOpen&& !editPayRateLoading ">
-                                    <div class="row">
-                                        <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
-                                            <i ng-click="closeEditPayRatePage()" class="material-icons"> clear</i>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input value="{{user.payrate}}" id="first_name2" type="number" name="payrate" ng-model="payRateData.payrate" class="validate">
-                                            <label class="active" for="first_name2">First Name</label>
-                                        </div>
-                                        <div class="col s12 center-align">
-                                            <a ng-click="submitNewPayRate(user.name);" class="waves-effect waves-light btn">submit</a>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="row center-align" ng-show="removeClientPageOpen && !clientHomePage">
-                        <div class="col s12 animated fadeIn">
-
-
-
-                            <div class="row" ng-show="removeClientSuccessful">
-
-                                <div class="col s12">
-                                    <p class="montserrat animated flash green-text text-lighten-2" style="font-size:17px;">{{currentClientFile}} Successfully Removed</p>
-
-                                </div>
-
-                            </div>
-                            <div class="row" ng-show="loadingRemoveClient &&!removeClientSuccessful">
-
-                                <div class="col s12">
-                                    <p class="montserrat animated flash infinite red-text text-lighten-2" style="font-size:17px;">( REMOVING USER )</p>
-
-                                </div>
-
-                            </div>
-                            <div class="row" ng-show="!areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful ">
-
-                                <div class="col s12">
-                                    <p class="railway">Delete {{currentClientFile}}.</p>
-                                    <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
-                                        <i ng-click="openAreYouSureRemove();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> delete</i>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row" ng-show="areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful">
-
-                                <div class="col s12">
-                                    <p class="railway">Are You Sure You Want to Delete {{currentClientFile}}?</p>
-                                    <span class="railway">(This Action Is Irreversible)</span>
-                                    <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
-                                        <div class="row">
-                                            <div class="col s6 right-align" style="border-bottom:1px solid #ddd;">
-                                                <i ng-click="closeAreYouSureRemove2();" class="material-icons green-text text-lighten-2" style="font-size:20px;">cancel </i>
-
-                                            </div>
-                                            <div class="col s6 left-align" style="border-bottom:1px solid #ddd;">
-                                                <i ng-click="removeClient();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> check_circle</i>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-show="adminRequestedJobsPageOpen && !clientHomePage">
-                        <div class="col s2" style="border-bottom:1px solid #ddd;">
-                            <p class="railway underline" style="font-size:18px;"> Name</p>
-                        </div>
-                        <div class="col s10" style="border-bottom:1px solid #ddd;">
-                            <p class="railway underline" style="font-size:18px;">Details</p>
-                        </div>
-                        <div ng-show="requestedJobsPaginated[0].length == 0" class="col s12">
-                            <br>
-
-                            <div class="row">
-
-                                <div class=" col s2 animated fadeIn railway truncate">
-                                </div>
-
-                                <div class="col s10  railway">
-                                    <p class="railway"> ( No Jobs Requested )</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div ng-show="requestedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in requestedJobsPaginated[page] track by $index">
-                            <br>
-                            <div class="row">
-
-
-                                <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
-                                    <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                        <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
-                                    </a>
-                                </div>
-                                <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
-                                    <p class="railway green-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REQUESTED JOB SUCCESSFULLY REMOVED</p>
-                                </div>
-                                <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && removeRequestedJobLoading && !removeRequestedJobSuccessful ">
-                                    <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING REQUESTED JOB</p>
-                                </div>
-                                <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
-                                    class="col s10 railway" style="border-bottom:1px solid #ddd;">
-                                    <p class="railway"> {{page.location}}</p>
-                                    <p class="railway"> {{page.supervisor}}</p>
-                                    <p class="railway"> {{page.hours}}</p>
-                                    <p class="railway"> {{page.descriptionofwork}}</p>
-                                    <p class="railway"> {{page.numberofworkers}}</p>
-                                    <p class="railway"> {{page.ppe}}</p>
-
-
-                                    <div ng-show="!page.approved">
-                                        <span class="railway underline">Status</span>
-                                        <p class="railway red-text  text-lighten-3"> Not Yet Approved</p>
-                                        <div class="row" ng-show="approvingRequest">
-                                            <div class="col s12 center-align">
-                                                <p class="railway animated flash infinite green-text text-lighten-3"> APPROVING JOB </p>
-                                            </div>
-                                        </div>
-                                        <div class="row" ng-show="disApprovingRequest">
-                                            <div class="col s12 center-align">
-                                                <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
-                                            </div>
-                                        </div>
-                                        <div class="row" ng-show="!approvingRequest && !disApprovingRequest">
-                                            <div class="col s12 center-align">
-                                                <p class="railway"> Do You Approve Of This Request?</p>
-                                            </div>
-                                            <div class="col s6 center-align">
-                                                <i ng-click="approveJob(page,$index);" class="material-icons green-text text-lighten-3">check_circle</i>
-                                            </div>
-                                            <div class="col s6 center-align">
-                                                <i ng-click="disApproveJob(page,$index);" class="material-icons red-text text-lighten-3">cancel</i>
-
-                                            </div>
-                                        </div>
-
-                                        <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
-                                    </div>
-                                    <div class="row" ng-show="disApprovingRequest">
-                                        <div class="col s12 center-align">
-                                            <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
-                                        </div>
-                                    </div>
-                                    <div ng-show="page.approved &&!disApprovingRequest ">
-                                        <span class="railway underline">Status</span>
-
-                                        <p class="railway green-text text-lighten-3"> Job Has Been Approved</p>
-                                        <span ng-show="page.booked" class="railway black-text text-lighten-3"> (Job Has Been Booked)</span>
-                                        <p ng-click="disApproveJob(page,$index)" class="railway black-text text-lighten-3 " style="text-decoration:underline;"> undo</p>
-
-                                        <span ng-show="!page.booked" class="railway red-text text-lighten-3"> (Not Yet Booked)</span>
-                                        <br>
-                                        <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
-                                    </div>
-                                    <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col s2">
-                        </div>
-                        <div class="col s10 center-align">
-                            <ul class="pagination">
-                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
-
-                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
-                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
-
-                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
-                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- CLIENT PAGE -->
-
-   <div class="col s10 animated fadeIn" ng-show="chartsPageOpen">
+              <div class="col s12 animated fadeIn" ng-show="chartsPageOpen">
    
            <div class = "col s12 center-align" >
                <p class = "montserrat underline" style="font-size:17px;">Metrics Page</p>
@@ -2637,11 +2317,10 @@ hkjhkhjhk
                 <canvas id="base" class="chart-bar" chart-data="dataMetrics" chart-labels="labelsMetrics" chart-colors="colors" chart-dataset-override="datasetOverrideMetrics">
                 </canvas>
             </div>
-
-
+           
         <!-- PAYSLIP PAGE -->
 
-        <div ng-show="payslipPageOpen" class="col s10 center-align animated fadeIn">
+        <div ng-show="payslipPageOpen" class="col s12 center-align animated fadeIn">
           
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
                 <i ng-click="openManagementPage()"class = "material-icons" style="float:left">keyboard_return</i>
@@ -3553,6 +3232,454 @@ hkjhkhjhk
 
         </div>
         <!-- PAYSLIP PAGE -->
+
+
+
+        </div>
+</div>
+
+
+        <!--MANAGEMENT HOME -->
+
+
+        <!-- CLIENT PAGE -->
+
+        <div ng-show="clientsPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
+
+
+            <div style="border-right:1px solid #ddd" class="col s3 center-align">
+                <a style="color:black;" href="#">
+
+                    <p style="word-wrap:break-word; " ng-click="openClientsHome()" class=" railway  "> Overview </p>
+                </a>
+                <a style="color:black;" href="#">
+
+                    <p style="word-wrap:break-word; " ng-click="openClientList()" class=" railway  "> Client List </p>
+                </a>
+            </div>
+            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd;" ng-show="clientHome && !employeeListOpen">
+                <div class="underline">
+                    <p style="font-size:18px;" class="railway animated fadeIn ">Clients Page</p>
+                </div>
+                <p class="railway">
+                    A Simple way to manage your employees...
+                </p>
+            </div>
+            <div ng-show="clientListOpen" class="col s9 animated fadeIn ">
+                <a style="color:black;" href="#">
+                    <p style="font-size:18px;" class="railway underline"><i ng-click="openClientsHome()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Client
+                        List
+                    </p>
+                </a>
+                <br>
+                <span class="railway ">
+              Search
+          </span>
+                <form name="searchForm">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input ng-change="searchFunction(searchForm.searchInput)" name="searchInput" ng-model="management.searchData.searchInput"
+                                id="first_name" type="text" class="validate">
+                            <label for="first_name"></label>
+                        </div>
+                    </div>
+                </form>
+                <div ng-show="noInput">
+                    <p style="word-wrap:break-word;" class="railway underline">No Input...</p>
+
+                </div>
+                <div ng-show="noSearchResults">
+                    <p style="word-wrap:break-word;" class="railway underline">No Search Results...</p>
+
+                </div>
+                <div ng-show="loading" class="align-center">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                </div>
+                <div ng-show="searchResults">
+                    <a href="#" style="color:black;">
+                    <i ng-click="closeSearchResults()" class="material-icons animated fadeIn">keyboard_return</i>
+                    </a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="result in userSearchResults track by $index">
+                                <td ng-click="openUserFile(result.name)"><a style="color:black;" href="#">{{result.name}}</a></td>
+                                <td><a style="color:black;" href="#">{{result.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div ng-show="loadingUsers" class="center-align">
+                    <i class="material-icons animated rotateIn infinite">autorenew</i>
+                </div>
+                <div ng-show="userList && !loadingUsers " class="center-align">
+
+
+                    <table>
+                        <thead style="text-decoration:none;">
+                            <tr style="font-family: railway; text-decoration:none;">
+                                <th>Name</th>
+                                <th>Phonenumber</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody ng-repeat="page in clientsPaginated[page] track by $index">
+                            <tr>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openClientFile(page.name)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    <ul class="pagination">
+                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+
+            <div class="col s9 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!clientHome && !clientListOpen ">
+                <a href="#" style="color:black;">
+                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openClientList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
+                        {{currentClientFile}} |</p>
+                </a>
+                <!-- CURRENT USER FILE MENU -->
+
+                <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s12 center-align">
+                    <a href="#" style="color:black;">
+                                <i ng-click="openAdminRequestedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons animated fadeIn" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">work</i>  
+
+                    </a>
+
+
+
+
+                    <a href="#" style="color:black;">
+                                <i ng-click="openRemoveClientPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons red-text lighten-5" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
+                    </a>
+
+                </div>
+
+                <!-- CURRENT USER FILE MENU -->
+                <div class="row">
+                    <div class="row center-align" ng-show="clientHomePage">
+
+                        <div class="col s12 animated fadeIn">
+                            <div class="row">
+                                <div class="col s12" ng-show="editEmailLoading">
+
+                                    <p class="railway truncate animated flash infinite">LOADING</p>
+                                </div>
+                                <div class="col s12" ng-show="editEmailPageOpen && !editEmailLoading">
+                                    <div class="row">
+                                        <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                            <i ng-click="closeEditEmailPage()" class="material-icons"> clear</i>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input value="{{currentClientObject.email}}" id="first_name2" type="text" name="email" ng-model="emailData.email" class="validate">
+                                            <label class="active" for="first_name2">Email</label>
+                                        </div>
+                                        <div class="col s12 center-align">
+                                            <a ng-click="submitNewEmailClient(currentClientObject.name);" class="waves-effect waves-light btn">submit</a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s2">
+                                    </div>
+                                    <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                        <p class="railway underline">EMAIL</p>
+                                    </div>
+                                    <div class="col s2">
+                                    </div>
+                                </div>
+                                <div class="col s12" ng-show="!editEmailPageOpen && !editEmailLoading">
+
+                                    <soan ng-show="!editEmailPageOpen" class="railway  truncate">{{currentClientObject.email}}</span>
+                                        <a ng-click="openEditEmailPage();" href="#" style="color:green;"><span class = "railway">edit</span></a>
+                                </div>
+                                <div class="row">
+                                    <div class="col s2">
+                                    </div>
+                                    <div class="col s8 center-align" style="border-bottom:1px solid #ddd;">
+                                        <p class="railway underline"> PHONENUMBER</p>
+                                    </div>
+                                    <div class="col s2">
+                                    </div>
+                                </div>
+                                <div class="col s12" ng-show="editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+                                    <div class="row">
+                                        <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                            <i ng-click="closeEditPhoneNumberPage()" class="material-icons"> clear</i>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input value="{{currentClientObject.phonenumber}}" id="first_name2" type="number" name="phonenumber" ng-model="phoneNumberData.phonenumber"
+                                                class="validate">
+                                            <label class="active" for="first_name2">Phone Number</label>
+                                        </div>
+                                        <div class="col s12 center-align">
+                                            <a ng-click="submitNewPhoneNumberClient(currentClientObject.name);" class="waves-effect waves-light btn">submit</a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col s12" ng-show="editPhoneNumberLoading">
+
+                                    <p class="railway truncate animated flash infinite">LOADING</p>
+                                </div>
+                                <div class="col s12" ng-show="!editPhoneNumberPageOpen &&!editPhoneNumberLoading">
+
+                                    <span ng-show="!editPhoneNumberPageOpen" class="railway truncate">{{currentClientObject.phonenumber}}<a ng-click="openEditPhoneNumberPage();" href="#" style="color:green;"><span class = "railway"> edit</span></a>
+                                    </span>
+
+
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col s2">
+                                    </div>
+                                    <div class="col s8" style="border-bottom:1px solid #ddd;">
+                                    </div>
+                                    <div class="col s2">
+                                    </div>
+                                </div>
+                                <div class="col s12" ng-show="editPayRateLoading">
+
+                                    <p class="railway truncate animated flash infinite">LOADING</p>
+                                </div>
+                                <div class="col s12" ng-show="editPayRatePageOpen&& !editPayRateLoading ">
+                                    <div class="row">
+                                        <div class="col s12 right-align" style="border-bottom:1px solid #ddd; border-top:1px solid #ddd">
+                                            <i ng-click="closeEditPayRatePage()" class="material-icons"> clear</i>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input value="{{user.payrate}}" id="first_name2" type="number" name="payrate" ng-model="payRateData.payrate" class="validate">
+                                            <label class="active" for="first_name2">First Name</label>
+                                        </div>
+                                        <div class="col s12 center-align">
+                                            <a ng-click="submitNewPayRate(user.name);" class="waves-effect waves-light btn">submit</a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row center-align" ng-show="removeClientPageOpen && !clientHomePage">
+                        <div class="col s12 animated fadeIn">
+
+
+
+                            <div class="row" ng-show="removeClientSuccessful">
+
+                                <div class="col s12">
+                                    <p class="montserrat animated flash green-text text-lighten-2" style="font-size:17px;">{{currentClientFile}} Successfully Removed</p>
+
+                                </div>
+
+                            </div>
+                            <div class="row" ng-show="loadingRemoveClient &&!removeClientSuccessful">
+
+                                <div class="col s12">
+                                    <p class="montserrat animated flash infinite red-text text-lighten-2" style="font-size:17px;">( REMOVING USER )</p>
+
+                                </div>
+
+                            </div>
+                            <div class="row" ng-show="!areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful ">
+
+                                <div class="col s12">
+                                    <p class="railway">Delete {{currentClientFile}}.</p>
+                                    <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+                                        <i ng-click="openAreYouSureRemove();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> delete</i>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row" ng-show="areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful">
+
+                                <div class="col s12">
+                                    <p class="railway">Are You Sure You Want to Delete {{currentClientFile}}?</p>
+                                    <span class="railway">(This Action Is Irreversible)</span>
+                                    <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+                                        <div class="row">
+                                            <div class="col s6 right-align" style="border-bottom:1px solid #ddd;">
+                                                <i ng-click="closeAreYouSureRemove2();" class="material-icons green-text text-lighten-2" style="font-size:20px;">cancel </i>
+
+                                            </div>
+                                            <div class="col s6 left-align" style="border-bottom:1px solid #ddd;">
+                                                <i ng-click="removeClient();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> check_circle</i>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="adminRequestedJobsPageOpen && !clientHomePage">
+                        <div class="col s2" style="border-bottom:1px solid #ddd;">
+                            <p class="railway underline" style="font-size:18px;"> Name</p>
+                        </div>
+                        <div class="col s10" style="border-bottom:1px solid #ddd;">
+                            <p class="railway underline" style="font-size:18px;">Details</p>
+                        </div>
+                        <div ng-show="requestedJobsPaginated[0].length == 0" class="col s12">
+                            <br>
+
+                            <div class="row">
+
+                                <div class=" col s2 animated fadeIn railway truncate">
+                                </div>
+
+                                <div class="col s10  railway">
+                                    <p class="railway"> ( No Jobs Requested )</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div ng-show="requestedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in requestedJobsPaginated[page] track by $index">
+                            <br>
+                            <div class="row">
+
+
+                                <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
+                                    <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
+                                        <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
+                                    </a>
+                                </div>
+                                <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
+                                    <p class="railway green-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REQUESTED JOB SUCCESSFULLY REMOVED</p>
+                                </div>
+                                <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && removeRequestedJobLoading && !removeRequestedJobSuccessful ">
+                                    <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING REQUESTED JOB</p>
+                                </div>
+                                <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
+                                    class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                                    <p class="railway"> {{page.location}}</p>
+                                    <p class="railway"> {{page.supervisor}}</p>
+                                    <p class="railway"> {{page.hours}}</p>
+                                    <p class="railway"> {{page.descriptionofwork}}</p>
+                                    <p class="railway"> {{page.numberofworkers}}</p>
+                                    <p class="railway"> {{page.ppe}}</p>
+
+
+                                    <div ng-show="!page.approved">
+                                        <span class="railway underline">Status</span>
+                                        <p class="railway red-text  text-lighten-3"> Not Yet Approved</p>
+                                        <div class="row" ng-show="approvingRequest">
+                                            <div class="col s12 center-align">
+                                                <p class="railway animated flash infinite green-text text-lighten-3"> APPROVING JOB </p>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-show="disApprovingRequest">
+                                            <div class="col s12 center-align">
+                                                <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-show="!approvingRequest && !disApprovingRequest">
+                                            <div class="col s12 center-align">
+                                                <p class="railway"> Do You Approve Of This Request?</p>
+                                            </div>
+                                            <div class="col s6 center-align">
+                                                <i ng-click="approveJob(page,$index);" class="material-icons green-text text-lighten-3">check_circle</i>
+                                            </div>
+                                            <div class="col s6 center-align">
+                                                <i ng-click="disApproveJob(page,$index);" class="material-icons red-text text-lighten-3">cancel</i>
+
+                                            </div>
+                                        </div>
+
+                                        <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                    </div>
+                                    <div class="row" ng-show="disApprovingRequest">
+                                        <div class="col s12 center-align">
+                                            <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
+                                        </div>
+                                    </div>
+                                    <div ng-show="page.approved &&!disApprovingRequest ">
+                                        <span class="railway underline">Status</span>
+
+                                        <p class="railway green-text text-lighten-3"> Job Has Been Approved</p>
+                                        <span ng-show="page.booked" class="railway black-text text-lighten-3"> (Job Has Been Booked)</span>
+                                        <p ng-click="disApproveJob(page,$index)" class="railway black-text text-lighten-3 " style="text-decoration:underline;"> undo</p>
+
+                                        <span ng-show="!page.booked" class="railway red-text text-lighten-3"> (Not Yet Booked)</span>
+                                        <br>
+                                        <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                    </div>
+                                    <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col s2">
+                        </div>
+                        <div class="col s10 center-align">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CLIENT PAGE -->
+
+ 
 
 
 
