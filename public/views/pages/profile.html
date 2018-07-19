@@ -2090,7 +2090,7 @@
                             <div ng-show="curPeriod !== $index" class="col s9 animated fadeIn">
                                 <p class="railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                 <p ng-show="history.entry[0][0].paid" class="railway  green-text lighten-3">PAID</p>
-                                <div class = "center-align" ng-show = "delinquentTimeSheetInPayPeriod">
+                                <div class = "center-align" ng-show = "history.entry[0][0].delinquent || history.entry[0][1].delinquent || history.entry[1][0].delinquent || history.entry[1][1].delinquent || history.entry[2][0].delinquent || history.entry[2][1].delinquent || history.entry[3][0].delinquent || history.entry[3][1].delinquent || history.entry[4][0].delinquent || history.entry[4][1].delinquent || history.entry[5][0].delinquent || history.entry[5][1].delinquent || history.entry[6][0].delinquent || history.entry[6][1].delinquent">
                                 <i class = "material-icons red-text text-lighten-2 animated flash">error_outline</i>
                                 <p class = "underline montserrat">You have Not Submitted Your Hours For One Or More Dates In This Pay Period...</p>
                                 </div>
