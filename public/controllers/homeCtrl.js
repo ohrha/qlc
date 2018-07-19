@@ -8,8 +8,11 @@
 
     app.controller('homeCtrl', function($scope){
         $scope.$on('$routeChangeSuccess', function () {
-				$('.carousel').carousel();
+			
+                              $('.carousel.carousel-slider').carousel({ fullWidth: true });
+
 	});
+              $('.carousel.carousel-slider').carousel({ fullWidth: true });
 
     })
 
