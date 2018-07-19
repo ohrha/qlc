@@ -520,13 +520,13 @@
                     <div class="col s2">
                         <a href="#" style="color:black;"> <i ng-click="openUserFile(name)" class="material-icons blue-text text-lighten-3" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">work</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openUserFile(name)"> <span class=" underline">Booked Jobs</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openUserFile(name)"> <span class=" underline">Schedule</span></a>
                         </div>
                     </div>
                     <div class="col s2">
                         <a href="#" style="color:black;"><i ng-click="openHistoryPageProfile()" class="material-icons green-text text-lighten-3" ng-class="{'workhistoryprofileselected':workHistoryProfileSelected,'workhistoryprofiledeselected':!workHistoryProfileSelected}">access_time</i></a>
                         <div class=" removeonsmall profiletitles">
-                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openHistoryPageProfile()"> <span class="railway underline">Work History</span></a>
+                            <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openHistoryPageProfile()"> <span class="railway underline">Time Sheets</span></a>
                         </div>
                     </div>
                     <div class="col s2">
@@ -554,7 +554,7 @@
                 
 
 
-                    <div class="col s12 center-align ">
+                    <div ng-show="delinquentTimesheetArray.length" class="col s12 center-align ">
                          <a href="#" style="color:black;"> <i ng-click="openUserFile(name)" class="material-icons red-text animated flash" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">error_outline</i></a>
                         <div class=" removeonsmall profiletitles">
                             <a href="#" style="color:black; font-family:'Montserrat'"ng-click="openHistoryPageProfile()"> <span class=" underline ">Delinquent Time Sheets</span></a>
@@ -1580,15 +1580,14 @@
                             <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
                             <div ng-show=" !job[currentJobInDate].booked && !job[0].dateHasPassed ">
-                                <span style="font-size:16px;" class="railway  ">Job {{currentJobInDate+1}} Not Yet Booked</span>
+                                <span style="font-size:16px;" class="railway underline ">Job {{currentJobInDate+1}} Not Yet Booked</span>
                                 <br>
 
                             </div>
                             <div ng-show="job[0].dateHasPassed && !job[currentJobInDate].booked">
 
 
-                                <span class="railway  " style="color:grey; opacity:.8; font-size:15px;">Job {{currentJobInDate+1}} Not Booked</span>
-                                <p class="railway  " style="color:grey; opacity:.8; font-size:15px;">(Date Has Passed)</p>
+                                <span class="railway underline  " style="color:grey; opacity:.8; font-size:15px;">Job {{currentJobInDate+1}} Not Booked</span>
                                 <br>
                                 <br>
                             </div>
@@ -1609,7 +1608,7 @@
                                 </div>
                             </div>
                             <div ng-show=" !job[currentJobInDate].booked && !job[0].dateHasPassed ">
-                                <span style="font-size:16px;" class="railway  ">Job {{currentJobInDate+1}} Not Yet Booked</span>
+                                <span style="font-size:16px;" class="railway underline ">Job {{currentJobInDate+1}} Not Yet Booked</span>
                                 <br>
 
                             </div>
@@ -1775,7 +1774,7 @@
                             </div>
 
                             <div ng-show=" !job[currentJobInDate].booked && !job[0].dateHasPassed ">
-                                <span style="font-size:16px;" class="railway  ">Job {{currentJobInDate+1}} Not Yet Booked</span>
+                                <span style="font-size:16px;" class="railway underline ">Job {{currentJobInDate+1}} Not Yet Booked</span>
                                 <br>
 
                             </div>
@@ -2124,11 +2123,15 @@
                                             <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
 
                                             </div>
+                                            <span class="railway underline"> Location</span>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].location}}</p>
+                                            <span class="railway underline"> Client</span>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].contractor}}</p>
+                                             <span class="railway underline"> Supervisor</span>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
-                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}}</p>
-                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timeout}}</p>
+                                            <span class="railway underline"> Time In/Out</span>
+
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
                                          </div>
                                                      <div ng-show="!entry[currentJobInDate].booked">
 

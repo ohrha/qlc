@@ -101,11 +101,11 @@ module.exports = function (app) {
             } else {
                 if (req.body.sentFromDelinquent) {
 
-                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.index][req.body.currentjobindate].timein = req.body.timein;
-                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.index][req.body.currentjobindate].timeout = req.body.timeout;
-                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.index][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
-                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.index][req.body.currentjobindate].timesheetSubmitted = true
-                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.index][req.body.currentjobindate].delinquent = false
+                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timein = req.body.timein;
+                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timeout = req.body.timeout;
+                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
+                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timesheetSubmitted = true
+                    user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.currentjobindate].delinquent = false
 
                     user[0].delinquenttimesheets.splice(req.body.index,1)
                     User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user[0].payperiodhistory,delinquenttimesheets:user[0].delinquenttimesheets} }, { new: true }, function (err, user) {
@@ -141,10 +141,10 @@ module.exports = function (app) {
                         }
                     })
                 }else{
-                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timein = req.body.timein;
-                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timeout = req.body.timeout;
-                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
-                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].timesheetSubmitted = true
+                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timein = req.body.timein;
+                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timeout = req.body.timeout;
+                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
+                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timesheetSubmitted = true
 
                             User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                                 if (err) throw err;
