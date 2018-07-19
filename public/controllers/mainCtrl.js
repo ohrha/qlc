@@ -16,6 +16,7 @@
         $scope.monthName = "December"
         $scope.booked = true;
         $rootScope.payPeriodIcon = false;
+              $('.carousel.carousel-slider').carousel({ fullWidth: true });
 
         $scope.day = ""
         $scope.iterator = 0;

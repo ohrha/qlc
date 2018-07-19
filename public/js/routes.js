@@ -145,7 +145,8 @@
                 templateUrl: '../views/pages/test2.html',
 
                 name: "QLH | Home",
-
+ controller: "mainCtrl",
+                controllerAs: 'management',
                 resolve: {
                     init: function ($route) {
 
