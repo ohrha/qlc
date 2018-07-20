@@ -3484,10 +3484,11 @@ $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
             $scope.page = page;
         }
         $scope.lastPage = function () {
-            $scope.page = 0;
+           
+            $scope.page = $scope.employeesPaginated.length - 1;
         }
         $scope.firstPage = function () {
-            $scope.page = $scope.employeesPaginated.length - 1;
+             $scope.page = 0;
         }
         $scope.searchFunction = function (input) {
             $scope.loading = true;
@@ -4667,9 +4668,11 @@ $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
                 $scope.bookedJobs = true;
             }
         }
+        $scope.individualUser = false;
         $scope.openUserFileHistory = function (name, phonenumber) {
             $scope.openJob = 0;
             $scope.historyPageOpenProfile = true;
+            $scope.individualUser = true;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
             $scope.loadingPersonalHistory = true;

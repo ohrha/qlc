@@ -493,9 +493,9 @@
 
                 </div>
             </div>
-   <div class="col s12 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!employeeHome && !employeeListOpenAdmin ">
+   <div class="col s12 animated fadeIn" style="border-right: 1px solid #ddd" ng-show="!employeeHome && !employeeListOpenAdmin || individualUser ">
                 <a href="#" style="color:black;">
-                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeList()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
+                    <p style="font-size:18px;" class="railway animated fadeIn "><i ng-click="openEmployeeListAdmin()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>|
                         {{currentUserFile}} |</p>
                 </a>
     <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; " class="col s12 center-align">
@@ -2025,14 +2025,13 @@ hkjhkhjhk
             </div>
             <div class="col s12 animated fadeIn" ng-show="requestedJobsPageOpen">
                 <div class="row">
-                    <div class="col s2 ">
-                        <i ng-click="openManagementPage();" class='material-icons'>keyboard_return</i>
+          
+                    <div class="col s12 center-align" style="border-bottom:1px solid #ddd;">
+                        <p class="railway underline" style="font-size:17px;">
+                                <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>
 
-
-
-                    </div>
-                    <div class="col s10 center-align" style="border-bottom:1px solid #ddd;">
-                        <p class="railway underline" style="font-size:17px;">Requested Jobs</p>
+                            Requested Jobs
+                            </p>
                     </div>
                 </div>
                 <div class="row">
@@ -2120,14 +2119,17 @@ hkjhkhjhk
                 <div class="row">
                 
                     <div class="col s12 center-align" style="border-bottom:1px solid #ddd;">
-                        <i ng-click="openManagementPage();" class='material-icons' style="float:left;">keyboard_return</i>
-                        <p class="railway underline" style="font-size:17px;">Approved Jobs</p>
+                        <p class="railway underline" style="font-size:17px;">
+                                <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>
+
+                            Approved Jobs
+                            </p>
                     </div>
                 </div>
 
-                <div ng-show="approvedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in approvedJobsPaginated[page] track by $index">
+                <div ng-show="approvedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in approvedJobsPaginated[page] track by $index" style="border-right:1px solid #ddd;">
 
-                    <div class="row">
+                    <div class="row" style="border-left:1px solid #ddd;">
 
 
                         <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
@@ -2160,7 +2162,7 @@ hkjhkhjhk
                             </div>
                             <div ng-show="page.approved">
                                 <span class="railway underline">Status</span>
-                                <p class="railway red-text text-lighten-3"> Job Requirements Have Been Approved And Booked</p>
+                                <p class="railway green-text text-lighten-3"> Job Has Been Set To Approved</p>
                                 <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                             </div>
                             <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
