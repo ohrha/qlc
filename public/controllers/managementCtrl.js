@@ -4875,10 +4875,10 @@ $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
             console.log(job)
             User.changeRequestedJobToDisApproved(job).then(function (data) {
                 console.log(data)
-                $scope.requestedJobsArray = data.data.user.requestedjobs
+                $scope.approvedJobsArray = data.data.user.approvednotbooked
                 $scope.disApprovingRequest = false;
-                $scope.requestedJobsPageOpen = false;
-                //$scope.openRequestedJobsPage();
+                $scope.approvedJobsPageOpen = false;
+                $scope.openApprovedobsPage();
 
 
             })
