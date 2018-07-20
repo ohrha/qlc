@@ -2035,11 +2035,11 @@ hkjhkhjhk
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s2" style="border-bottom:1px solid #ddd;">
-                        <p class="railway underline" style="font-size:18px;"> Name</p>
+                    <div class="col s2" >
+                        <p class="railway underline" style="font-size:15px;"> #</p>
                     </div>
-                    <div class="col s10" style="border-bottom:1px solid #ddd;">
-                        <p class="railway underline" style="font-size:18px;">Details</p>
+                    <div class="col s10" >
+                        <p class="railway underline" style="font-size:15px;">Details</p>
                     </div>
                     <div ng-show="requestedJobsPaginated[0].length == 0" class="col s12">
                         <br>
@@ -2063,7 +2063,7 @@ hkjhkhjhk
 
                             <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                                 <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                    <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
+                                    <p ng-click="openIndividualRequestedJob($index)" class="montserrat underline" style="font-size:17px;">{{$index+1}}.</p>
                                 </a>
                             </div>
                             <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
@@ -2129,13 +2129,13 @@ hkjhkhjhk
 
                 <div ng-show="approvedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in approvedJobsPaginated[page] track by $index" style="border-right:1px solid #ddd;">
 
-                    <div class="row" style="border-left:1px solid #ddd;">
+                    <div class="row" >
 
 
                         <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                             <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
                                 <span ng-click="openIndividualApprovedJob($index)" class="montserrat underline" style="font-size:17px;">{{$index+1}}</span>
-                                <p class="montserrat underline">{{page.date}}</p>
+                               
 
                             </a>
                         </div>
@@ -2146,7 +2146,7 @@ hkjhkhjhk
                             <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING REQUESTED JOB</p>
                         </div>
                         <div ng-show="individualApprovedJobOpen && approvedIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
-                            class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                            class="col s10 railway" style="border-bottom:1px solid #ddd; border-left:1px solid #ddd;">
                             <span class = "monserrat underline"> Location</span>
                             <p class="railway"> {{page.location}}</p>
                              <span class = "monserrat underline"> Supervisor</span>
@@ -2165,12 +2165,12 @@ hkjhkhjhk
                                 <p class="railway green-text text-lighten-3"> Job Has Been Set To Approved</p>
                                 <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                             </div>
-                            <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
-
-                            </div>
+                         
 
                         </div>
+   <div ng-show="individualApprovedJobOpen && approvedIndex !== $index" class="col s10  railway">
 
+                            </div>
                     </div>
                 </div>
 
@@ -3555,11 +3555,11 @@ hkjhkhjhk
                         </div>
                     </div>
                     <div class="row" ng-show="adminRequestedJobsPageOpen && !clientHomePage">
-                        <div class="col s2" style="border-bottom:1px solid #ddd;">
-                            <p class="railway underline" style="font-size:18px;"> Name</p>
+                        <div class="col s2" >
+                            <p class="montserrat underline" style="font-size:13px;"> Name</p>
                         </div>
                         <div class="col s10" style="border-bottom:1px solid #ddd;">
-                            <p class="railway underline" style="font-size:18px;">Details</p>
+                            <p class="montserrat underline" style="font-size:13px;">Details</p>
                         </div>
                         <div ng-show="requestedJobsPaginated[0].length == 0" class="col s12">
                             <br>
