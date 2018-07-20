@@ -465,6 +465,7 @@ module.exports = function (app) {
                         })
                     })
                     app.post('/users/changerequestedjobtoapproved', function (req, res) {
+                        console.log(req.body)
                         User.find({ userclass: "admin" }, function (err, user) {
                             if (err) throw err
                             if (!user) {
@@ -487,17 +488,17 @@ module.exports = function (app) {
                                             if (!user) {
                                                 res.json({ success: false, message: "User found.." })
                                             } else {
-                                                user[0].requestedjobs[req.body.index].splice(req.body.index, 1)
+                                                //user[0].requestedjobs[req.body.index].splice(req.body.index, 1)
                                                 User.findOneAndUpdate({ userclass: 'admin' }, { $set: { requestedjobs: user[0].requestedjobs } }, { new: true }, function (err, user) {
 
                                                     if (err) throw err;
                                                     if (!user) {
                                                         res.json({ success: false, message: "User not found" })
                                                     } else {
-                                                        user[0].requestedjobs[req.body.index].approved = true;
-                                                        user[0].requestedjobs[req.body.index].booked = false;
+                                                        user.requestedjobs[req.body.index].approved = true;
+                                                        user.requestedjobs[req.body.index].booked = false;
 
-                                                        User.findOneAndUpdate({ name: req.body.client }, { $set: { requestedjobs: user[0].requestedjobs } }, { new: true }, function (err, user) {
+                                                        User.findOneAndUpdate({ name: req.body.client }, { $set: { requestedjobs: user.requestedjobs } }, { new: true }, function (err, user) {
                                                             if (err) throw err;
                                                             if (!user) {
                                                                 res.json({ success: false, message: "User not found.." })

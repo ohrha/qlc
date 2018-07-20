@@ -114,7 +114,7 @@
                             console.log("HELLO")
                             //console.log($scope.employees[i])
                             //console.log($scope.pageLimit, i, $scope.employees.length)
-                            if ($scope.requestedJobsArray[i]) {
+                            if ($scope.requestedJobsArray[i] && !$scope.requestedJobsArray[i].approved) {
                                 $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
                                 console.log(i)
                                 console.log("firstCondiation")
@@ -131,7 +131,7 @@
                             $scope.requestedJobsPaginated.push($scope.requestedJobsForPagination)
                             console.log($scope.requestedJobsPaginated)
                             $scope.requestedJobsForPagination = [];
-                            if ($scope.requestedJobsArray[i] !== undefined) {
+                            if ($scope.requestedJobsArray[i] !== undefined && !$scope.requestedJobsArray[i].approved) {
                                 $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
@@ -201,7 +201,7 @@
                                 console.log("HELLO")
                                 //console.log($scope.employees[i])
                                 //console.log($scope.pageLimit, i, $scope.employees.length)
-                                if ($scope.requestedJobsArray[i]) {
+                                if ($scope.requestedJobsArray[i] && !$scope.requestedJobsArray[i].approved) {
                                     $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
                                     console.log(i)
                                     console.log("firstCondiation")
@@ -218,7 +218,7 @@
                                 $scope.requestedJobsPaginated.push($scope.requestedJobsForPagination)
                                 console.log($scope.requestedJobsPaginated)
                                 $scope.requestedJobsForPagination = [];
-                                if ($scope.requestedJobsArray[i] !== undefined) {
+                                if ($scope.requestedJobsArray[i] !== undefined && !$scope.requestedJobsArray[i].approved) {
                                     $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
@@ -291,7 +291,7 @@
                                 console.log("HELLO")
                                 //console.log($scope.employees[i])
                                 //console.log($scope.pageLimit, i, $scope.employees.length)
-                                if ($scope.approvedJobsArray[i]) {
+                                if ($scope.approvedJobsArray[i] && $scope.approvedJobsArray[i].approved) {
                                     $scope.approvedJobsForPagination.push($scope.approvedJobsArray[i])
                                     console.log(i)
                                     console.log("firstCondiation")
@@ -308,7 +308,7 @@
                                 $scope.loadingUsers = false;
                                 $scope.approvedJobsPaginated.push($scope.approvedJobsForPagination)
                                 $scope.approvedJobsForPagination = [];
-                                if ($scope.approvedJobsArray[i] !== undefined) {
+                                if ($scope.approvedJobsArray[i] !== undefined && $scope.approvedJobsArray[i].approved) {
                                     $scope.approvedJobsForPagination.push($scope.approvedJobsArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
@@ -4878,7 +4878,7 @@ $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
                 $scope.requestedJobsArray = data.data.user.requestedjobs
                 $scope.disApprovingRequest = false;
                 $scope.requestedJobsPageOpen = false;
-                $scope.openRequestedJobsPage();
+                //$scope.openRequestedJobsPage();
 
 
             })
@@ -4946,7 +4946,7 @@ $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
                         console.log("HELLO")
                         //console.log($scope.employees[i])
                         //console.log($scope.pageLimit, i, $scope.employees.length)
-                        if ($scope.requestedJobsArray[i]) {
+                        if ($scope.requestedJobsArray[i] && $scope.requestedJobsArray[i].length > 0) {
                             $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
                             console.log(i)
                             console.log("firstCondiation")
