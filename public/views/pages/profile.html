@@ -2091,11 +2091,14 @@
                                 <div class = "col s12">
                                 <span ng-show="history.entry[0][0].paid" class="railway   green-text lighten-3">(PAID)</span>
                                 </div>
-                                <p ng-show="history.entry[0][0].paid" ng-click="generatePaySlip($index)" class="railway underline " style="font-size:13px;">Generate Payslip</p>
+                               <a href="#" style="color:black;"> <p ng-show="history.entry[0][0].paid" ng-click="generatePaySlip($index)" class="railway underline " style="font-size:13px;">Generate Payslip</p></a>
                                 <div class = "center-align" ng-show = "(history.entry[0][0].delinquent == true || history.entry[0][1].delinquent== true|| history.entry[1][0].delinquent == true || history.entry[1][1].delinquent == true || history.entry[2][0].delinquent == true || history.entry[2][1].delinquent == true || history.entry[3][0].delinquent == true|| history.entry[3][1].delinquent == true || history.entry[4][0].delinquent == true || history.entry[4][1].delinquent == true|| history.entry[5][0].delinquent == true || history.entry[5][1].delinquent || history.entry[6][0].delinquent == true|| history.entry[6][1].delinquent == true ) && !history.entry[0][0].paid">
-                                <i class = "material-icons red-text text-lighten-2 animated flash">error_outline</i>
-                                <br>
-                                <p class = "underline montserrat">You have Not Submitted Your Hours For One Or More Dates In This Pay Period...</p>
+                                 <div class="col s12">
+                                <i class = "material-icons red-text text-lighten-2 animated flash" style="font-size:17px;">error_outline</i>
+                                </div>
+                              <div class = "col s12">
+                                <span class = " montserrat " style="font-size:14px;">You have not submitted your hours for one or more dates in this payperiod...</span>
+                              </div>
                                 </div>
                                     <div class = "center-align" ng-show = "(history.entry[0][0].delinquent == true || history.entry[0][1].delinquent== true|| history.entry[1][0].delinquent == true || history.entry[1][1].delinquent == true || history.entry[2][0].delinquent == true || history.entry[2][1].delinquent == true || history.entry[3][0].delinquent == true|| history.entry[3][1].delinquent == true || history.entry[4][0].delinquent == true || history.entry[4][1].delinquent == true|| history.entry[5][0].delinquent == true || history.entry[5][1].delinquent || history.entry[6][0].delinquent == true|| history.entry[6][1].delinquent == true ) && history.entry[0][0].paid">
                                 <div class="col s12">
