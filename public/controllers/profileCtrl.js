@@ -3593,12 +3593,14 @@ console.log(data)
         $scope.payPeriodHistoryIndex = ""
                 //$scope.currentUserHistoryFile = "";
 $scope.submitHoursLoading = false;
-         $scope.submitHours = function (index, client, location) {
+         $scope.submitHours = function (index, client, location,currentuser,page,payperiodindex) {
             
             $scope.allFieldsMustBeInput = false
             console.log(index)
+            console.log(page)
             $scope.timeData.payperiodhistoryindex = $scope.payPeriodHistoryIndex
             $scope.timeData.currentuser = $scope.userName
+            $scope.timeData.page= page
             $scope.timeData.payperiodnum = $scope.globalPayPeriodIndexATM;
             $scope.timeData.location = location
             $scope.timeData.disputed = false;

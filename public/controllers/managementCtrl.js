@@ -2200,6 +2200,7 @@ $scope.newPPObject = {}
                 $scope.timeData.index = index;
                 $scope.timeData.sentFromDelinquent = true;
                 $scope.timeData.page = page
+                $scope.timeData.date= page.date
                 console.log($scope.timeData)
 
                 $scope.timein = $scope.timeData.hoursIn + ":" + $scope.timeData.minutesIn + $scope.timeData.ampmIn

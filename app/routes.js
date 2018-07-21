@@ -156,6 +156,18 @@ module.exports = function (app) {
                                     res.json({ success: false, message: "user not found.." })
                                 } else {
                                     // res.json({success: true, message:"User found and update...", user:user})
+                                    User.find({name: req.body.client}, function(err,user){
+
+                                        if(err)throw err;
+                                        if(!user){
+                                            res.json({success: false, message:"User not foundd...."})
+                                        }else{
+                                           if(req.body.page.submittedtimesheetsindex){
+                                               user[0].submittedtimesheets.splice(req.body.page.submittedtimesheetsindex,1)
+                                            
+                                           }
+                                        }
+                                    })
                                     User.findOneAndUpdate({ name: req.body.client }, { $push: { submittedtimesheets: req.body } }, { new: true }, function (err, user) {
                                         if (err) throw err;
                                         if (!user) {
