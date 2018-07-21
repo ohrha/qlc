@@ -2145,7 +2145,7 @@
                                             <span class="railway underline"> Time In/Out</span>
 
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
-                                          <div ng-show="entry[currentJobInDate].disputed" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
+                                          <div ng-show="entry[currentJobInDate].disputed && !entry[currentJobInDate].paid" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
                                             <p class = "montserrat "><span class = "blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span> Has Raised An Issue With This Time Sheet</p>
                                             <div class = "row">
                                                 <div class ="col s5 center-align">
@@ -2161,7 +2161,10 @@
                                                 </div>
                                     
                                             </div>
-                                             <div ng-show="history.entry[0][0].paid && !entry[currentJobInDate].disputed">
+                                               <div class = "col s12"ng-show="!history.entry[0][0].paid ">
+                                                    <p  ng-click="openAddHoursPage()"class = "montserrat underline green-text text-lighten-2"> EDIT TIMESHEET </p>
+                                            </div>
+                                             <div class = "col s12"ng-show="history.entry[0][0].paid ">
                                                 <p class="montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>
                                             </div>
 
@@ -2402,13 +2405,17 @@
                                         style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
                                         <a href="#" style="color:black;">
                                             <p class="railway underline">{{entry[0].date}}</p>
-                                                <div class = "center-align" ng-show = "entry[0].delinquent || history.entry[1].delinquent ">
+                                                <div class = "center-align" ng-show = "(entry[0].delinquent || history.entry[1].delinquent) && history.entry[0][0].paid ">
                                     <div class="col s12">
                                 <i class = "material-icons red-text text-lighten-2 animated flash" style="font-size:17px;">error_outline</i>
                                 </div>
-                              <div class = "col s12">
-                                <span class = " montserrat " style="font-size:14px;">You have not submitted your hours for one or more dates in this payperiod...</span>
-                              </div>
+                             
+                                </div>
+                                            <div class = "center-align" ng-show = "(entry[0].delinquent || history.entry[1].delinquent) && !history.entry[0][0].paid ">
+                                    <div class="col s12">
+                                <i class = "material-icons gray-text text-lighten-3 animated flash" style="font-size:17px;">error_outline</i>
+                                </div>
+                             
                                 </div>
 
                                         </a>
