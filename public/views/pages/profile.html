@@ -2403,8 +2403,12 @@
                                         <a href="#" style="color:black;">
                                             <p class="railway underline">{{entry[0].date}}</p>
                                                 <div class = "center-align" ng-show = "entry[0].delinquent || history.entry[1].delinquent ">
-                                <i class = "material-icons red-text text-lighten-2 animated flash">error_outline</i>
-                                <p class = "underline montserrat">You have Not Submitted Your Hours For One Or More Jobs On This Date...</p>
+                                    <div class="col s12">
+                                <i class = "material-icons red-text text-lighten-2 animated flash" style="font-size:17px;">error_outline</i>
+                                </div>
+                              <div class = "col s12">
+                                <span class = " montserrat " style="font-size:14px;">You have not submitted your hours for one or more dates in this payperiod...</span>
+                              </div>
                                 </div>
 
                                         </a>
