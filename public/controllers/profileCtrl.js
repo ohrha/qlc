@@ -557,6 +557,7 @@ $scope.minVarOut =""
             }
             
         }
+
 $scope.openDelinquentTimeSheetPage = function(){
     if(!$scope.delinquentTimeSheetPageOpen){
         $scope.delinquentTimeSheetPageOpen = true;
@@ -3063,6 +3064,7 @@ console.log(data)
         $scope.openUserFileHistory = function (name, phonenumber) {
             $scope.openJob = 0;
             $scope.historyPageOpenProfile = true;
+             $scope.currentUserHistoryFile = name;
             $scope.generalHistoryOpen = false;
             $scope.generalHistoryTitle = false;
             $scope.chartsPageOpen = false;
@@ -3587,6 +3589,134 @@ console.log(data)
                 $scope.addHoursPageOpen = false;
 
             }
+        }
+        $scope.payPeriodHistoryIndex = ""
+                //$scope.currentUserHistoryFile = "";
+$scope.submitHoursLoading = false;
+         $scope.submitHours = function (index, client, location) {
+            
+            $scope.allFieldsMustBeInput = false
+            console.log(index)
+            $scope.timeData.payperiodhistoryindex = $scope.payPeriodHistoryIndex
+            $scope.timeData.currentuser = $scope.userName
+            $scope.timeData.payperiodnum = $scope.globalPayPeriodIndexATM;
+            $scope.timeData.location = location
+            $scope.timeData.disputed = false;
+            if ($scope.timeData.ampmIn == null ||
+                $scope.timeData.ampmOut == null ||
+                $scope.timeData.hoursIn == null ||
+                $scope.timeData.hoursOut == null ||
+                $scope.timeData.minutesIn == null ||
+                $scope.timeData.minutesOut == null) {
+                $scope.allFieldsMustBeInput = true;
+                console.log("Hello")
+            }
+            if ($scope.timeData.ampmIn !== null &&
+                $scope.timeData.ampmOut !== null &&
+                $scope.timeData.hoursIn !== null &&
+                $scope.timeData.hoursOut !== null &&
+                $scope.timeData.minutesIn !== null &&
+                $scope.timeData.minutesOut !== null) {
+                    $scope.submitHoursLoading = true;
+                $scope.timeData.currentjobindate = $scope.currentJobInDate
+                $scope.timeData.index = index;
+                console.log($scope.timeData)
+
+                $scope.timein = $scope.timeData.hoursIn + ":" + $scope.timeData.minutesIn + $scope.timeData.ampmIn
+                $scope.timeout = $scope.timeData.hoursOut + ":" + $scope.timeData.minutesOut + $scope.timeData.ampmOut
+                $scope.timeData.timein = $scope.timein;
+                $scope.timeData.timeout = $scope.timeout
+                $scope.timeData.client = client
+                console.log($scope.timeData.client)
+                console.log($scope.timein)
+                console.log($scope.timeout)
+                var startTime = moment($scope.timein, "HH:mm:ss a");
+                console.log(startTime)
+                var endTime = moment($scope.timeout, "HH:mm:ss a");
+                var duration = moment.duration(endTime.diff(startTime));
+                var hours = parseInt(duration.asHours());
+                var minutes = parseInt(duration.asMinutes()) - hours * 60;
+                var hoursPositive = 0;
+                var hoursDif = 0;
+                console.log(hours)
+                console.log(minutes)
+                if (minutes == 0 && $scope.timeData.lunch == "Yes") {
+                    minutes = 30
+
+                    hours = hours - 1
+                    if (minutes == 30) {
+                        hours = hours + .5
+                        //hours+12
+                        if (Math.sign(hours) == -1) {
+                            console.log("negative")
+                            console.log(hours * -2)
+                            console.log(hours)
+                            hoursPositive = Math.abs(hours)
+                            console.log(hoursPositive)
+                            hoursDif = (12.5 - hoursPositive)
+                            console.log("hoursDif", hoursDif)
+                            hours = hoursDif + 12
+                            console.log(hours)
+                        }
+                        $scope.timeData.hoursCalculated = hours;
+
+                    }
+                    console.log("first condition")
+                }
+                else if (minutes == 15 && $scope.timeData.lunch == "Yes") {
+                    minutes = 45
+                    hours = hours - 1
+                    if (minutes == 45) {
+                        hours = hours + .75
+                        $scope.timeData.hoursCalculated = hours;
+
+                    }
+                    console.log("second condition")
+                }
+                else if (minutes == 30 && $scope.timeData.lunch == "Yes") {
+                    minutes = 0;
+                    if (minutes == 0) {
+                        $scope.timeData.hoursCalculated = hours;
+
+                    }
+                    console.log("third condition")
+                }
+                else if (minutes == 45 && $scope.timeData.lunch == "Yes") {
+                    minutes = 15;
+                    if (minutes == 15) {
+                        hours = hours + .25
+                        $scope.timeData.hoursCalculated = hours;
+                    }
+                    console.log("fourth condition")
+                } else {
+                    console.log("Do nothing")
+                    if (minutes == 15) {
+                        hours = hours + .25
+                        $scope.timeData.hoursCalculated = hours;
+                    }
+                    if (minutes == 30) {
+                        hours = hours + .5
+                        $scope.timeData.hoursCalculated = hours;
+                    }
+                    if (minutes == 45) {
+                        hours = hours + .75
+                        $scope.timeData.hoursCalculated = hours;
+                    }
+                    if (minutes == 00) {
+                        $scope.timeData.hoursCalculated = hours;
+                    }
+                }
+                User.addHoursToPayPeriod($scope.timeData).then(function (data) {
+                    console.log(data)
+                    $scope.submitHoursLoading = false;
+                    $scope.addHoursPageOpen = false;
+
+                })
+                console.log(hours)
+                console.log(minutes)
+            }
+            console.log(index)
+            console.log($scope.currentJobInDate)
         }
         $scope.openUserFile = function (name, phonenumber) {
 
@@ -4376,7 +4506,7 @@ console.log(data)
             console.log(index)
             //curHistory = index;
             // $('html, body').animate({ scrollTop: 0 }, 'fast');
-
+ $scope.payPeriodHistoryIndex = index;
             $scope.showChart = false;
             $timeout(function () {
                 $scope.removeChart = true;
@@ -4406,9 +4536,11 @@ console.log(data)
                 }
             }, 500)
         }
+        $scope.globalPayPeriodIndexATM = ""
         $scope.openIndividualPayPeriod = function (index, history) {
             console.log(index)
             console.log(history)
+            $scope.globalPayPeriodIndexATM = index;
             $scope.labels[0] = history.entry[0][0].date
             $scope.labels[1] = history.entry[1][0].date
             $scope.labels[2] = history.entry[2][0].date

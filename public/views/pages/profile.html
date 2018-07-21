@@ -503,7 +503,6 @@
 
     <div class="col s12 center-align">
         <!-- <p style="font-size:18px;" class="railway animated fadeIn">Profile Page</p>-->
-        <br>
         <div class="col s2 left-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd;">
             <div class="left-align">
                 <i class="material-icons">account_circle</i>
@@ -2090,12 +2089,12 @@
                             <div ng-show="curPeriod !== $index" class="col s9 animated fadeIn">
                                 <p class="railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                 <p ng-show="history.entry[0][0].paid" class="railway  green-text lighten-3">PAID</p>
+                                
+                                <p ng-show="history.entry[0][0].paid" ng-click="generatePaySlip($index)" class="railway  green-text lighten-3">Generate Payslip</p>
                                 <div class = "center-align" ng-show = "history.entry[0][0].delinquent || history.entry[0][1].delinquent || history.entry[1][0].delinquent || history.entry[1][1].delinquent || history.entry[2][0].delinquent || history.entry[2][1].delinquent || history.entry[3][0].delinquent || history.entry[3][1].delinquent || history.entry[4][0].delinquent || history.entry[4][1].delinquent || history.entry[5][0].delinquent || history.entry[5][1].delinquent || history.entry[6][0].delinquent || history.entry[6][1].delinquent">
                                 <i class = "material-icons red-text text-lighten-2 animated flash">error_outline</i>
                                 <p class = "underline montserrat">You have Not Submitted Your Hours For One Or More Dates In This Pay Period...</p>
                                 </div>
-                                <p ng-show="history.entry[0][0].paid" ng-click="generatePaySlip($index)" class="railway  green-text lighten-3">Generate Payslip</p>
-
                             </div>
 
 
@@ -2114,7 +2113,8 @@
 
                                     <div ng-show="historyEntryOpen && curHistory == $index" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
-                                    <div ng-show="entry[currentJobInDate].booked">
+                                   
+                                    <div ng-show="entry[currentJobInDate].booked &&!messageAdminPageOpen &&!addHoursPageOpen">
 
                                             <div class="right-align">
                                                 <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
@@ -2132,7 +2132,243 @@
                                             <span class="railway underline"> Time In/Out</span>
 
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
+                                          <div ng-show="entry[currentJobInDate].disputed" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
+                                            <p class = "montserrat "><span class = "blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span> Has Raised An Issue With This Time Sheet</p>
+                                            <div class = "row">
+                                                <div class ="col s5 center-align">
+                                                <p ng-click="openMessageAdminPage(entry[currentJobInDate].date)"  class = "montserrat underline"> Message Hannah </p>
+                                                </div>
+                                                <div class = "col s2 center-align">
+                                                    <p class = "montserrat">or</p>
+                                                </div>
+                                                <div class = "col s5 center-align">
+                                                    <p  ng-click="openAddHoursPage()"class = "montserrat underline green-text text-lighten-2"> EDIT TIMESHEET </p>
+
+                                                </div>
+                                                </div>
+                                    
+                                            </div>
+                                             <div ng-show="history.entry[0][0].paid && !entry[currentJobInDate].disputed">
+                                                <p class="montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>
+                                            </div>
+
                                          </div>
+                                         
+<div ng-show="historyEntryOpen && curHistory == $index && entry[currentJobInDate].booked&& messageAdminPageOpen && !submitAdminMessageLoading && submitAdminMessageSuccessfullySent "  class = "col s12 animated fadeIn">
+                                            
+                                            
+                                            <p class="montserrat animated flash infinite underline green-text text-lighten-2" style="font-size:18px;"> Message Successfully Sent!</p>
+
+                                        
+                            </div>
+  <div ng-show="historyEntryOpen && curHistory == $index &&entry[currentJobInDate].booked &&messageAdminPageOpen && submitAdminMessageLoading && !submitAdminMessageSuccessfullySent"  class = "col s12 animated fadeIn">
+                                            
+                                            
+                                            <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+
+                                        
+                            </div>
+                             <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen &&submitHoursLoading" class="col s12 center-align" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                >
+                                       <p class = "montserrat underline animated flash infinite" style="font-size:17px;"> ( SUBMITTING HOURS ) </p>
+                                    </div>
+                             <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen &&!submitHoursLoading" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                        ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
+                                        <div ng-show="entry[currentJobInDate].booked">
+
+                                            <div class="right-align">
+                                                <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:17px;"class= "material-icons red-text text-lighten-2 ">clear</i></a>
+                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeDelinquentJobInDate(entry.length)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i>{{currentJobInDate}}</a>
+
+                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && !entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeJobInDate(history)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
+
+                                            </div>
+                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].date}}</p>
+                                            <div class="col s12 center-align">
+                                                <p class="montserrat underline">Time In</p><i ng-click="closeAddHoursPage()" class="material-icons "  style=" font-size:16px;float:right">clear</i>
+                                            </div>
+                                            <div class="input-field col s5">
+                                                <select name="hoursIn" ng-model="timeData.hoursIn">
+      <option value="" disabled selected>Hours</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+        <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+        <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+        <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+                                                <label>Hours</label>
+                                            </div>
+
+                                            <div class="input-field col s2">
+                                                <p class="montserrat">-</p>
+                                            </div>
+                                            <div class="input-field col s5">
+                                                <select name="minutesIn" ng-model="timeData.minutesIn">
+      <option value="" disabled selected>Minutes</option>
+         <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+                                                <label>Minutes</label>
+                                            </div>
+                                            <div class="col s4">
+                                            </div>
+                                            <div class="input-field col s4">
+                                                <select name="ampmIn" ng-model="timeData.ampmIn">
+      <option value="" disabled selected>AM/PM</option>
+         <option value=" am">AM</option>
+      <option value=" pm">PM</option>
+      
+    </select>
+                                                <label>AM/PM</label>
+                                            </div>
+                                            <div class="col s4">
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <p class="montserrat underline">Time Out</p>
+                                            </div>
+                                            <div class="input-field col s5">
+                                                <select name="hoursOut" ng-model="timeData.hoursOut">
+      <option value="" disabled selected>Hours</option>
+          <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+        <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+        <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+        <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+                                                <label>Hours</label>
+                                            </div>
+                                            <div class="input-field col s2">
+                                                <p class="montserrat">-</p>
+                                            </div>
+                                            <div class="input-field col s5">
+                                                <select name="minutesOut" ng-model="timeData.minutesOut">
+      <option value="" disabled selected>Minutes</option>
+       <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+                                                <label>Minutes</label>
+                                            </div>
+                                            <div class="col s4">
+                                            </div>
+                                            <div class="input-field col s4">
+                                                <select name="ampmOut" ng-model="timeData.ampmOut">
+      <option value="" disabled selected>AM/PM</option>
+        <option value=" am">AM</option>
+      <option value=" pm">PM</option>
+    </select>
+                                                <label>AM/PM</label>
+                                            </div>
+                                            <div class="col s4">
+                                            </div>
+
+                                            <div class="col s12">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s4">
+                                                </div>
+                                                <div class="input-field col s4">
+                                                    <select name="lunch" ng-model="timeData.lunch">
+      <option value="" disabled selected>Lunch?</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+                                                    <label>Lunch?</label>
+                                                </div>
+
+                                                <div class="col s4">
+                                                </div>
+                                            </div>
+
+                                            <div class="col s12 center-align">
+
+                                                <p ng-click="submitHours($index,entry[currentJobInDate].client,entry[currentJobInDate].location)" class="montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>
+                                            </div>  
+                  
+
+                                            <div class="col s12 center-align" ng-show="allFieldsMustBeInput">
+
+                                                <p class="montserrat underline ">All Fields Must Be Input</p>
+                                            </div>
+                                        </div>
+                                        <div ng-show="!entry[currentJobInDate].booked">
+
+                                            <div class="right-align">
+                                                <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
+
+                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
+                                                <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
+
+                                            </div>
+                                            <p class="railway grey-text " style="text-decoration:underline;">Date Was Never Booked</p>
+
+                                        </div>
+                                    </div>
+                            <div ng-show="historyEntryOpen && curHistory == $index  &&entry[currentJobInDate].booked && messageAdminPageOpen && !submitAdminMessageLoading && !submitAdminMessageSuccessfullySent"  class = "col s12 animated fadeIn">
+                                
+                                        <div class="row">
+
+                                            <div class="col 12 right-align " style="float:right;">
+
+                                                <a href="#" style="color:black; ">
+                                                <i ng-click="closeMessageAdminPage($index,true)" style="font-size:17px;"class = "material-icons underline">clear</i></a>
+
+                                            </div>
+                                            <div class="col s12 center-align">
+                                                <p class="montserrat underline" style="font-size:16px;"> {{sendingTo}}</p>
+
+                                            </div>
+                                            <div class="col s12" style="border-top:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd;">
+                                                <div class="input-field col s12">
+
+                                                    <input id="first_name2" ng-model="timeSheetMessage.subject" name="subject" type="text" class="validate">
+
+                                                    <label class="active" for="first_name2">Subject</label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <form class="col s12" style="border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;">
+                                                    <div class="row">
+
+                                                        <div class="input-field col s12">
+                                                            <textarea id="textarea1" ng-model="timeSheetMessage.body" name="body" class="materialize-textarea"></textarea>
+                                                            <label for="textarea1">Message</label>
+                                                        </div>
+                                                        <div class="col s12">
+                                                            <a ng-click="submitTimeSheetMessage(page.name,page.date)" class="waves-effect waves-light btn">Send</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+                                                <div ng-show="allFieldsMustBeInput" class="col s12">
+                                                    <p> All Fields Must Be Input </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                            </div>
+
+
                                                      <div ng-show="!entry[currentJobInDate].booked">
 
                                             <div class="right-align">

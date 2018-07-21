@@ -141,11 +141,15 @@ module.exports = function (app) {
                         }
                     })
                 }else{
-                    user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timein = req.body.timein;
-                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timeout = req.body.timeout;
-                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
-                            user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.page.payperiodIndex][req.body.currentjobindate].timesheetSubmitted = true
+                    //NORMAL SUBMIT HOURS//
+                    //console.log(user,"145")
+                    user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].timein = req.body.timein;
+                            user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].timeout = req.body.timeout;
+                            user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
+                            user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].timesheetSubmitted = true
+                                                        user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].disputed = false
 
+                                                        console.log(user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex])
                             User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                                 if (err) throw err;
                                 if (!user) {
@@ -345,8 +349,8 @@ module.exports = function (app) {
                             if (!user) {
                                 res.json({ success: false, message: "User not found.." })
                             } else {
-                                user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.currentjobindate] = req.body
-                                user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodIndex][req.body.currentjobindate].disputed = false
+                                //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.currentjobindate] = req.body
+                                user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.currentjobindate].disputed = false
 
                                 User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                                     if (err) throw err;
@@ -358,7 +362,7 @@ module.exports = function (app) {
                                             if (!user) {
                                                 res.json({ success: false, message: "User not found..." })
                                             } else {
-                                                user[0].submittedtimesheets[req.body.submittedtimesheetsindex] = req.body
+                                                user[0].submittedtimesheets[req.body.page.submittedtimesheetsindex] = req.body
                                                 User.findOneAndUpdate({ name: req.body.client }, { $set: { submittedtimesheets: user[0].submittedtimesheets } }, { new: true }, function (err, user) {
                                                     if (err) throw err;
                                                     if (!user)
@@ -369,7 +373,7 @@ module.exports = function (app) {
                                                             if (!user) {
                                                                 res.json({ success: false, message: "USer not found.." })
                                                             } else {
-                                                                user[0].disputedtimesheets[req.body.submittedtimesheetsindex] = req.body
+                                                                user[0].disputedtimesheets[req.body.page.submittedtimesheetsindex] = req.body
                                                                 for (var z = 0; z < user[0].disputedtimesheets.length; z++) {
                                                                     if (user[0].disputedtimesheets[z].date == req.body.date && user[0].disputedtimesheets[z].indexofdate == req.body.indexofdate) {
                                                                         console.log("MATCH")
@@ -778,8 +782,8 @@ module.exports = function (app) {
                                     } else {
 
                                         //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body;
-                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].disputed = true
-                                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
+                                        user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.currentjobindate].disputed = true
+                                       user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
                                         User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods, payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                                             if (err) throw err;
                                             if (!user) {
@@ -2294,7 +2298,7 @@ module.exports = function (app) {
                     })
                     //EXPRESS MIDDLEWARE
                     app.use(function (req, res, next) {
-                        console.log(req.body.token)
+                       // console.log(req.body.token)
                         var token = req.body.token || req.body.query || req.headers['x-access-token'];
                         //from jwt documentation
                         if (token) {
