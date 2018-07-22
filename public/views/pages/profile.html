@@ -2145,6 +2145,9 @@
                                             <span class="montserrat underline"> Time In/Out</span>
 
                                             <p class="railway" >{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
+                                            <span class="montserrat underline"> Hours</span>
+
+                                            <p class="railway" >{{entry[currentJobInDate].hoursCalculated}} hrs</p>
                                           <div ng-show="entry[currentJobInDate].disputed && !entry[currentJobInDate].paid" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
                                             <p class = "montserrat "><span class = "blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span> Has Raised An Issue With This Time Sheet</p>
                                             <div class = "row">
@@ -2161,7 +2164,7 @@
                                                 </div>
                                     
                                             </div>
-                                               <div class = "col s12"ng-show="!history.entry[0][0].paid ">
+                                               <div class = "col s12"ng-show="!history.entry[0][0].paid && !entry[currentJobInDate].disputed ">
                                                     <p  ng-click="openAddHoursPage()"class = "montserrat underline green-text text-lighten-2"> EDIT TIMESHEET </p>
                                             </div>
                                              <div class = "col s12"ng-show="history.entry[0][0].paid ">
