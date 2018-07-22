@@ -524,6 +524,14 @@
         $scope.minVarIn = ""
         $scope.hrVarOut = ""
         $scope.hrVarIn = ""
+        $scope.supervisorListOpen = false;
+        $scope.openSupervisorList = function(){
+            if(!$scope.supervisorListOpen){
+                $scope.supervisorListOpen = true;
+            }else{
+                $scope.supervisorListOpen = false;
+            }
+        }
         $scope.locationListOpen = false;
         $scope.openLocationList = function(){
             if(!$scope.locationListOpen){
