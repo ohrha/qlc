@@ -1314,7 +1314,7 @@
 
                                                                 </div>
                                                                 <div class="col s12 center-align">
-                                                                    <p ng-click="openMessageAdminPage(job[currentJobInDate].date)" class="montserrat underline">Message {{job[currentJobInDate].currentuser}}</p>
+                                                                    <p ng-click="openMessageAdminPage(job[currentJobInDate].date,job[currentJobInDate].currentuser,job[currentJobInDate].client)" class="montserrat underline">Message {{job[currentJobInDate].currentuser}}</p>
 
                                                                 </div>
 
@@ -2597,18 +2597,18 @@
                                                     <p class="montserrat "><span class="blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span>                                                        Has Raised An Issue With This Time Sheet</p>
                                                     <div class="row">
                                                         <div class="col s5 center-align">
-                                                            <p ng-click="openMessageAdminPage(entry[currentJobInDate].date)" class="montserrat underline"> Message {{entry[currentJobInDate].currentuser}} </p>
+                                                            <p ng-click="openMessageAdminPage(entry[currentJobInDate].date,entry[currentJobInDate].currentuser)" class="montserrat underline"> Message {{entry[currentJobInDate].currentuser}} </p>
                                                         </div>
                                                         <div class="col s2 center-align">
                                                             <p class="montserrat">or</p>
                                                         </div>
                                                         <div class="col s5 center-align">
 
-                                                            <p ng-click="openMessageAdminPage(entry[currentJobInDate].date)" class="montserrat underline"> Message {{entry[currentJobInDate].client}} </p>
+                                                            <p ng-click="openMessageAdminPage(entry[currentJobInDate].date,entry[currentJobInDate].client)" class="montserrat underline"> Message {{entry[currentJobInDate].client}} </p>
 
                                                         </div>
                                                         <div class="col s12 center-align">
-                                                            <p class="montserrat underline green-text text-lighten-2"> EDIT TIMESHEET </p>
+                                                          <a href="#" style="color:black">  <p ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2"> EDIT TIMESHEET </p></a>
                                                         </div>
 
                                                     </div>
@@ -3109,7 +3109,7 @@
                                                 <br>
                                             </div>
                                         </div>-->
-                                            <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                         <!--  <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                                 ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                                 <div ng-show="entry[currentJobInDate].booked">
 
@@ -3202,7 +3202,7 @@
       <option value="30">30</option>
       <option value="45">45</option>
     </select>
-                                                        <label>Minutes</label>
+                                                        <label>Minutes2</label>
                                                     </div>
                                                     <div class="col s4">
                                                     </div>
@@ -3260,7 +3260,7 @@
                                                     <p class="railway grey-text " style="text-decoration:underline;">Date Was Never Booked</p>
 
                                                 </div>
-                                            </div>
+                                            </div>-->
 
                                             <div ng-click="openIndividualHistoryEntry($index)" ng-show="historyEntryOpen && curHistory !== $index" class="col s12 fadeInUp"
                                                 style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;">
