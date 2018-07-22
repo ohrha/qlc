@@ -2537,7 +2537,7 @@ $scope.newPPObject = {}
                 }
                 User.addHoursToPayPeriod($scope.timeData).then(function (data) {
                     console.log(data)
-                                        $scope.payPeriodHistory = data.data.user.payperiodhistory
+                                       // $scope.payPeriodHistory = data.data.user.payperiodhistory
 
                     $scope.submitHoursLoading = false
                     $scope.addHoursPageOpen = false
