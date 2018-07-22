@@ -834,7 +834,8 @@ $scope.openDelinquentTimeSheetInfo = function(){
             }
             // },500)
         }
-        $scope.openAdminMessagesPage = function () {
+        $scope.openAdminMessagesPage = function (date,employee,client) {
+            console.log(date,employee,client)
             if (!$scope.adminMessagesPageOpen) {
                 $scope.fadeIn = false;
                 $timeout(function () {
@@ -976,9 +977,16 @@ $scope.openDelinquentTimeSheetInfo = function(){
         }
         $scope.chartsPageOpen = false;
         $scope.messageAdminPageOpen = false;
-        $scope.openMessageAdminPage = function (date) {
-            console.log(date)
+        $scope.openMessageAdminPage = function (date,employee,client) {
+            console.log(date,employee,client)
             $scope.sendingDate = date;
+            if(employee !== undefined){
+                $scope.timeSheetMessage.to = employee
+            }
+            if(client !== undefined){
+                $scope.timeSheetMessage.to = client
+
+            }
             $scope.timeSheetMessage.subject = "Disputed Time Sheet(" + $scope.sendingDate + ")"
             if (!$scope.messageAdminPageOpen) {
                 $scope.messageAdminPageOpen = true;
@@ -997,8 +1005,14 @@ $scope.openDelinquentTimeSheetInfo = function(){
                    $scope.submitAdminMessageSuccessfullySent = true;
                    $timeout(function(){
                        $scope.submitAdminMessageSuccessfullySent = false;
+                           $scope.timeSheetMessage={
+            to:"ohrha harho",
+            from:$scope.name,
+            subject:null,
+            body:null
+        }
                        $scope.closeMessageAdminPage()
-                   },6000)
+                   },2000)
                })
             }
         }

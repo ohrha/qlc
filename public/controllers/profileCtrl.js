@@ -1696,8 +1696,10 @@
             $scope.allFieldsMustBeInput = false;
             $scope.messageAdminPageOpen = false
         }
-        $scope.openMessageAdminPage = function (date) {
+        $scope.openMessageAdminPage = function (date,employee,client) {
             console.log(date)
+            console.log(employee)
+            console.log(client)
             $scope.sendingDate = date;
             $scope.timeSheetMessage.subject = "Disputed Time Sheet(" + $scope.sendingDate + ")"
             if (!$scope.messageAdminPageOpen) {
