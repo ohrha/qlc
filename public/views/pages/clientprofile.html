@@ -1,6 +1,6 @@
 <div class="row" >
 
-    <div  class="col s12 center-align" style="border-top:1px solid #ddd; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
+    <div  class="col s12 center-align" style="border-top:1px solid #ddd;box-shadow:2px 2px 2px gray; border-left:1px solid #ddd ;border-bottom:1px solid #ddd">
         <br>
         <div class = "row">
 
@@ -415,426 +415,8 @@
 
                                 </div>
 </div>
-    <div class="col s12 center-align animated fadeIn" ng-show="addSupervisorPageOpen ">
-
-        <br>
-        <div class="row">
-
-            <div class="col s12 center-align">
-                <br>
-                <div ng-show="individualSupervisorOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
-                    <div class="center-align">
-
-
-
-
-                        <div class="row">
-                            <div class="col s2" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;"> Name</p>
-                            </div>
-                            <div class="col s10" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;">Details</p>
-                            </div>
-                            <div ng-show="supervisorsPaginated[0].length == 0" class="col s12">
-                                <br>
-
-                                <div class="row">
-
-                                    <div class=" col s2 animated fadeIn railway truncate">
-                                    </div>
-
-                                    <div class="col s10  railway">
-                                        <p class="railway"> ( No Supervisors Added )</p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div ng-show="supervisorsPaginated[0].length>0" class="col s12" ng-repeat="page in supervisorsPaginated[page] track by $index">
-                                <br>
-                                <div class="row">
-
-                                    <div class=" col s2 animated fadeIn railway truncate">
-                                        <a style="color:black;" href="#" ng-click="openIndividualSupervisor($index)">
-                                            <p class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.name}}</p>
-                                        </a>
-                                    </div>
-                                    <div class="col s10" ng-show="individualSupervisorOpen && subconIndex == $index && removeSupervisorLoading ">
-                                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING SUPERVISOR</p>
-                                    </div>
-                                    <div ng-show="individualSupervisorOpen && subconIndex == $index && !removeSupervisorLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway"> {{page.name}}</p>
-                                        <p class="railway"> {{page.email}}</p>
-                                        <p class="railway"> {{page.phonenumber}}</p>
-                                        <i ng-click="removeSupervisor($index)" class="material-icons red-text text-lighten-3"> delete</i>
-                                    </div>
-                                    <div ng-show="individualSupervisorOpen && subconIndex !== $index" class="col s10  railway">
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col s2">
-                        </div>
-                        <div class="col s10 center-align">
-                            <ul class="pagination">
-                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
-
-                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
-                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
-
-                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
-                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <div class="center-align">
-                    <div class="row">
-                        <div class="col s2 center-align">
-                            <i ng-click="openSubmitSupervisorPage()" class="material-icons animated flash  " style="font-size:28px;"> add</i>
-
-                        </div>
-                        <div class=" col s10 center-align">
-                            <div class="row">
-
-                                <div class="col s12 center-align">
-                                    <p class="railway underline">Add Supervisor</p>
-                                    <div class="col s12 center-align " ng-show="submitSupervisorLoading">
-                                        <p ng-show="!addSupervisorSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING SUPERVISOR </p>
-                                        <p ng-show="addSupervisorSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Supervisor Successfully Inserted! </p>
-
-                                    </div>
-                                    <div ng-show="submitSupervisorPageOpen && !submitSupervisorLoading">
-
-                                        <div class="row">
-
-                                            <div class="col s2 center-align">
-
-                                            </div>
-
-                                            <div class="input-field col s8 " style="border-top:1px solid black;">
-                                                <br>
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="name" ng-model="supervisorData.name" class="validate">
-                                                    <label for="first_name">Supervisor Name</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='supervisorNameNotProvided' class="railway animated flash"> A Supervisor Name Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2">
-                                            </div>
-
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-
-                                            </div>
-                                            <div class="input-field col s8">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="phonenumber" ng-model="supervisorData.phonenumber" class="validate">
-                                                    <label for="first_name">Supervisor Phone Number</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='supervisorPhoneNumberNotProvided' class="railway animated flash"> A Supervisor Phone Number Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2">
-                                            </div>
-
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-
-                                            </div>
-                                            <div class="input-field col s8 center-align" style="border-bottom:1px solid black;">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="email" ng-model="supervisorData.email" class="validate">
-                                                    <label for="first_name">Supervisor Email</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='supervisorEmailNotProvided' class="railway animated flash"> A Supervisor Name Must Be Provided </span>
-                                                </div>
-                                                <br>
-                                            </div>
-                                            <div class="col s2">
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s12 center-align">
-                                                <a ng-click="submitSupervisor()" class="waves-effect waves-light btn">Add Supervisor</a>
-
-
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="col s12 center-align animated fadeIn" ng-show="addLocationPageOpen ">
-
-        <br>
-        <div class="row">
-
-            <div class="col s12 center-align">
-                <br>
-                <div ng-show="individualLocationOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
-                    <div class="center-align">
-
-
-
-
-                        <div class="row">
-                            <div class="col s2" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;"> Name</p>
-                            </div>
-                            <div class="col s10" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;">Details</p>
-                            </div>
-                            <div ng-show="locationsPaginated[0].length == 0" class="col s12">
-                                <br>
-
-                                <div class="row">
-
-                                    <div class=" col s2 animated fadeIn railway truncate">
-                                    </div>
-
-                                    <div class="col s10  railway">
-                                        <p class="railway"> ( No Locations Added )</p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div ng-show="locationsPaginated[0].length>0" class="col s12" ng-repeat="page in locationsPaginated[page] track by $index">
-                                <br>
-                                <div class="row">
-
-                                    <div class=" col s2 animated fadeIn railway truncate">
-                                        <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                            <p ng-click="openIndividualLocation($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.name}}</p>
-                                        </a>
-                                    </div>
-                                    <div class="col s10" ng-show="individualLocationOpen &&locationIndex == $index && removeLocationLoading ">
-                                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING LOCATION</p>
-                                    </div>
-                                    <div ng-show="individualLocationOpen && locationIndex == $index && !removeLocationLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway"> {{page.name}}</p>
-                                        <p class="railway"> {{page.email}}</p>
-                                        <p class="railway"> {{page.phonenumber}}</p>
-                                        <i ng-click="removeLocation($index)" class="material-icons red-text text-lighten-3"> delete</i>
-                                    </div>
-                                    <div ng-show="individualLocationOpen && locationIndex !== $index" class="col s10  railway">
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col s2">
-                        </div>
-                        <div class="col s10 center-align">
-                            <ul class="pagination">
-                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
-
-                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
-                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
-
-                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
-                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <div class="center-align">
-                    <div class="row">
-                        <div class="col s2 center-align">
-                            <i ng-click="openSubmitLocationPage()" class="material-icons animated flash  " style="font-size:28px;"> add</i>
-
-                        </div>
-                        <div class=" col s10 center-align">
-                            <div class="row">
-
-                                <div class="col s12 center-align">
-                                    <p class="railway underline">Add Location</p>
-
-
-                                    <div class="col s12 center-align " ng-show="submitLocationLoading">
-                                        <p ng-show="!addLocationSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING LOCATION </p>
-                                        <p ng-show="addLocationSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Location Successfully Inserted! </p>
-
-                                    </div>
-
-                                    <div ng-show="submitLocationPageOpen  && !submitLocationLoading">
-
-
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
-
-                                            </div>
-                                            <div class="input-field col s8">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="name" ng-model="locationData.name" class="validate">
-                                                    <label for="first_name">Location Name</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='locationNameNotProvided' class="railway"> A Location Name Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
-
-                                            </div>
-                                            <div class="input-field col s8">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="contact" ng-model="locationData.contact" class="validate">
-                                                    <label for="first_name">Location Contact</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='locationContactNotProvided' class="railway animated flash"> A Location Contact Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
-
-                                            </div>
-                                            <div class="input-field col s8">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="address" ng-model="locationData.address" class="validate">
-                                                    <label for="first_name">Location Address</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='locationAddressNotProvided' class="railway animated flash"> A Location Address Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
-
-                                            </div>
-                                            <div class="input-field col s8">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="email" ng-model="locationData.email" class="validate">
-                                                    <label for="first_name">Contact Email</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='locationEmailNotProvided' class="railway animated flash"> A Contact Email Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
-
-                                            </div>
-                                            <div class="input-field col s8">
-                                                <div class="animated slideInRight">
-                                                    <input id="first_name" type="text" name="phonenumber" ng-model="locationData.phonenumber" class="validate">
-                                                    <label for="first_name">Contact Phone Number</label>
-                                                </div>
-                                                <div class="animated flash">
-                                                    <span ng-show='locationPhoneNumberNotProvided' class="railway animated flash"> A Contact Phone Number Must Be Provided </span>
-                                                </div>
-                                            </div>
-                                            <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col s12 center-align">
-                                                <a ng-click="submitLocation();" class="waves-effect waves-light btn">Add Location</a>
-
-
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ADD LOCATION PAGE -->
-
+   
+   
     <!-- ADD LOCATION PAGE -->
 
 
@@ -1295,16 +877,444 @@
 
 
 </div>
+ <div class="col s12 center-align animated fadeIn" ng-show="addSupervisorPageOpen ">
+
+
+        <div class="row">
+                  <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+                    
+                    <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openManagementPage()" class="material-icons" >keyboard_return</i>Add Supervisor Page</p>
+                </div>
+
+            <div class="col s12 center-align">
+                <br>
+                <div ng-show="individualSupervisorOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
+                    <div class="center-align">
+
+
+
+
+                        <div class="row">
+                            <div class="col s2" style="border-bottom:1px solid #ddd;">
+                                <p class="montserrat underline" style="font-size:14px;"> #</p>
+                            </div>
+                            <div class="col s10" style="border-bottom:1px solid #ddd;">
+                                <p class="montserrat underline" style="font-size:14px;">Details</p>
+                            </div>
+                            <div ng-show="supervisorsPaginated[0].length == 0" class="col s12">
+                                <br>
+
+                                <div class="row">
+
+                                    <div class=" col s2 animated fadeIn railway truncate">
+                                    </div>
+
+                                    <div class="col s10  railway">
+                                        <p class="railway"> ( No Supervisors Added )</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div ng-show="supervisorsPaginated[0].length>0" class="col s12" ng-repeat="page in supervisorsPaginated[page] track by $index">
+                                <br>
+                                <div class="row">
+
+                                    <div class=" col s2 animated fadeIn railway truncate">
+                                        <a style="color:black;" href="#" ng-click="openIndividualSupervisor($index)">
+                                            <p class="railway underline" style="font-size:17px;">{{$index+1}}.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col s10" ng-show="individualSupervisorOpen && subconIndex == $index && removeSupervisorLoading ">
+                                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING SUPERVISOR</p>
+                                    </div>
+                                    <div ng-show="individualSupervisorOpen && subconIndex == $index && !removeSupervisorLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                                        <p class="railway"> {{page.name}}</p>
+                                        <p class="railway"> {{page.email}}</p>
+                                        <p class="railway"> {{page.phonenumber}}</p>
+                                        <i ng-click="removeSupervisor($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                    </div>
+                                    <div ng-show="individualSupervisorOpen && subconIndex !== $index" class="col s10  railway">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col s2">
+                        </div>
+                        <div class="col s10 center-align">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="center-align">
+                    <div class="row">
+                        <div class="col s2 center-align">
+                            <i ng-click="openSubmitSupervisorPage()" class="material-icons animated flash  " style="font-size:28px;"> add</i>
+
+                        </div>
+                        <div class=" col s10 center-align">
+                            <div class="row">
+
+                                <div class="col s12 center-align">
+                                    <p class="railway underline">Add Supervisor</p>
+                                    <div class="col s12 center-align " ng-show="submitSupervisorLoading">
+                                        <p ng-show="!addSupervisorSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING SUPERVISOR </p>
+                                        <p ng-show="addSupervisorSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Supervisor Successfully Inserted! </p>
+
+                                    </div>
+                                    <div ng-show="submitSupervisorPageOpen && !submitSupervisorLoading">
+
+                                        <div class="row">
+
+                                            <div class="col s2 center-align">
+
+                                            </div>
+
+                                            <div class="input-field col s8 " style="border-top:1px solid black;">
+                                                <br>
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="name" ng-model="supervisorData.name" class="validate">
+                                                    <label for="first_name">Supervisor Name</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='supervisorNameNotProvided' class="railway animated flash"> A Supervisor Name Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="phonenumber" ng-model="supervisorData.phonenumber" class="validate">
+                                                    <label for="first_name">Supervisor Phone Number</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='supervisorPhoneNumberNotProvided' class="railway animated flash"> A Supervisor Phone Number Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+
+                                            </div>
+                                            <div class="input-field col s8 center-align" style="border-bottom:1px solid black;">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="email" ng-model="supervisorData.email" class="validate">
+                                                    <label for="first_name">Supervisor Email</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='supervisorEmailNotProvided' class="railway animated flash"> A Supervisor Name Must Be Provided </span>
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="col s2">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitSupervisor()" class="waves-effect waves-light btn">Add Supervisor</a>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+ <div class="col s12 center-align animated fadeIn" ng-show="addLocationPageOpen ">
+   
+      
+        <div class="row">
+         <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+                    
+                    <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openManagementPage()" class="material-icons" >keyboard_return</i>Add Supervisor Page</p>
+                </div>
+            <div class="col s12 center-align">
+                <p  ng-click="openLocationList();"class= "montserrat underline">Open Location List</p>
+                <br>
+                <div ng-show="locationListOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
+                    <div class="center-align">
+
+
+
+
+                        <div class="row">
+                            <div class="col s2" style="border-bottom:1px solid #ddd;">
+                                <p class="montserrat underline" style="font-size:14px;"> #</p>
+                            </div>
+                            <div class="col s10" style="border-bottom:1px solid #ddd;">
+                                <p class="montserrat underline" style="font-size:14px;">Details</p>
+                            </div>
+                            <div ng-show="locationsPaginated[0].length == 0" class="col s12">
+                                <br>
+
+                                <div class="row">
+
+                                    <div class=" col s2 animated fadeIn railway truncate">
+                                    </div>
+
+                                    <div class="col s10  railway">
+                                        <p class="railway"> ( No Locations Added )</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div ng-show="locationsPaginated[0].length>0" class="col s12" ng-repeat="page in locationsPaginated[page] track by $index">
+                                <br>
+                                <div class="row">
+
+                                    <div class=" col s2 animated fadeIn railway truncate">
+                                        <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
+                                            <p ng-click="openIndividualLocation($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col s10" ng-show="individualLocationOpen &&locationIndex == $index && removeLocationLoading ">
+                                        <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING LOCATION</p>
+                                    </div>
+                                    <div ng-show="individualLocationOpen && locationIndex == $index && !removeLocationLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                                        <p class="railway"> {{page.name}}</p>
+                                        <p class="railway"> {{page.email}}</p>
+                                        <p class="railway"> {{page.phonenumber}}</p>
+                                        <i ng-click="removeLocation($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                    </div>
+                                    <div ng-show="individualLocationOpen && locationIndex !== $index" class="col s10  railway">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col s2">
+                        </div>
+                        <div class="col s10 center-align">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="center-align">
+                    <div class="row">
+                      
+                        <div class=" col s12 center-align">
+                            <div class="row">
+
+                                <div class="col s12 center-align">
+                                    <a href='#' style="color:black;"><p class="railway underline" ng-click="openSubmitLocationPage()">Add Location</p></a>
+
+
+                                    <div class="col s12 center-align " ng-show="submitLocationLoading">
+                                        <p ng-show="!addLocationSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING LOCATION </p>
+                                        <p ng-show="addLocationSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Location Successfully Inserted! </p>
+
+                                    </div>
+
+                                    <div ng-show="submitLocationPageOpen  && !submitLocationLoading">
+
+
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="name" ng-model="locationData.name" class="validate">
+                                                    <label for="first_name">Location Name</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationNameNotProvided' class="railway"> A Location Name Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="contact" ng-model="locationData.contact" class="validate">
+                                                    <label for="first_name">Location Contact</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationContactNotProvided' class="railway animated flash"> A Location Contact Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="address" ng-model="locationData.address" class="validate">
+                                                    <label for="first_name">Location Address</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationAddressNotProvided' class="railway animated flash"> A Location Address Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="email" ng-model="locationData.email" class="validate">
+                                                    <label for="first_name">Contact Email</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationEmailNotProvided' class="railway animated flash"> A Contact Email Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_back</i>
+
+                                            </div>
+                                            <div class="input-field col s8">
+                                                <div class="animated slideInRight">
+                                                    <input id="first_name" type="text" name="phonenumber" ng-model="locationData.phonenumber" class="validate">
+                                                    <label for="first_name">Contact Phone Number</label>
+                                                </div>
+                                                <div class="animated flash">
+                                                    <span ng-show='locationPhoneNumberNotProvided' class="railway animated flash"> A Contact Phone Number Must Be Provided </span>
+                                                </div>
+                                            </div>
+                                            <div class="col s2 center-align">
+                                                <i class="material-icons">arrow_forward</i>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12 center-align">
+                                                <a ng-click="submitLocation();" class="waves-effect waves-light btn">Add Location</a>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ADD LOCATION PAGE -->
+
 <div class="col s12 center-align animated fadeIn" ng-show="reviewSubmittedTimeSheetsPageOpen">
     <div class="row">
-        <p class="railway underline" style="font-size:25px;"> Review Submitted Time Sheets</p>
+         <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+                    
+                    <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openManagementPage()" class="material-icons" >keyboard_return</i>Manage Time Sheets</p>
+                </div>
     </div>
       <div class="row">
                             <div class="col s2" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;"> Name</p>
+                                <p class="montserrat underline" style="font-size:14px;"> Name</p>
                             </div>
                             <div class="col s10" style="border-bottom:1px solid #ddd;">
-                                <p class="railway underline" style="font-size:18px;">Details</p>
+                                <p class="montserrat underline" style="font-size:14px;">Details</p>
                             </div>
                             <div ng-show="submittedTimeSheetsPaginated[0].length == 0" class="col s12">
                                 <br>
@@ -1334,24 +1344,21 @@
                                         <p class="railway red-text text-lighten-3 animated flash infinite" style="font-size:20px;"> REMOVING LOCATION</p>
                                     </div>
                                     <div ng-show="individualSubmittedTimeSheetOpen && submittedIndex == $index && !removeLocationLoading" class="col s10 railway" style="border-bottom:1px solid #ddd;">
+                                        <span class="montserrat underline">Employee</span>
                                         <p class="railway"> {{page.currentuser}}</p>
+                                         <span class="montserrat underline"> Location</span>
                                         <p class="railway"> {{page.location}}</p>
-                                        <p class="railway"> {{page.supervisor}}</p>
-                                        <div class = "row">
-                                            <div class = "col s5 right-align">
-                                                {{page.timein}}
-                                            </div>
-                                            <div class = "col s2">
-                                                -
-                                            </div>
-                                        <div class = "col s5 left-align">
-                                            {{page.timeout}}
-                                        </div>
-                                  {{page}}
-                                        </div>
+                                         <span class="montserrat underline"> Supervisor</span>
+                               
+                                        <p class="railway"> {{page.page.supervisor}}</p>
+                                         <span class="montserrat underline"> Time In/Out</span>
+                                <p class="railway">{{page.timein}}-{{page.timeout}}</p>
+                                                 <span class="montserrat underline"> Hours</span>
+                                <p class="railway">{{page.hoursCalculated}}</p>
+                                <div class = "col s12" style="box-shadow:2px 2px 2px grey; border-top:1px solid grey; border-left:1px solid grey;">
                                         <div ng-show="page.disputed">
                                     <a href="#"style="color:black"> <i ng-click="markAsApproved($index,page)" class="material-icons red-text text-lighten-3"> delete</i></a>
-                                     <a href="#"style="color:black"><p ng-click="markAsApproved($index,page)"class = "railway">Disputed</p></a>
+                                     <a href="#"style="color:black"><p ng-click="markAsApproved($index,page)"class = "railway red-text text-lighten-2">( Disputed )</p></a>
                                  <a href="#"style="color:black"> <p ng-click="markAsApproved($index,page)" class = "railway">(Mark As Approved)</p></a>
 
 
@@ -1362,6 +1369,8 @@
                                         <a href="#"style="color:black"><p ng-click="markAsDisputed($index,page)"class = "railway">Approved</p></a>
                                         <a href="#"style="color:black"> <p ng-click="markAsDisputed($index,page)" class = "railway">(Mark As Disputed)</p></a>
                                         </div>
+                                </div>
+
                                     </div>
                                     <div ng-show="individualSubmittedTimeSheetOpen && submittedIndex !== $index" class="col s10  railway">
 

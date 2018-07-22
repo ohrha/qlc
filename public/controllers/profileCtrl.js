@@ -524,6 +524,14 @@
         $scope.minVarIn = ""
         $scope.hrVarOut = ""
         $scope.hrVarIn = ""
+        $scope.locationListOpen = false;
+        $scope.openLocationList = function(){
+            if(!$scope.locationListOpen){
+                $scope.locationListOpen = true;
+            }else{
+                $scope.locationListOpen = false;
+            }
+        }
         $scope.finishSubmitDelinquentTimesheet = function (decision) {
             console.log(decision)
             console.log($scope.delinquentJobDetails)
