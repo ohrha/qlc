@@ -143,7 +143,7 @@ module.exports = function (app) {
                 } else {
                     //NORMAL SUBMIT HOURS//
                     //console.log(user,"145")
-                    console.log(user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex])
+                   // console.log(user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex])
 
                     User.find({ name: req.body.client }, function (err, user) {
 

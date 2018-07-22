@@ -2553,7 +2553,15 @@ hkjhkhjhk
 
                                         </div>
                                     </div>
-                                    <div ng-show="historyEntryOpen && curHistory == $index && !addHoursPageOpen && !messageAdminPageOpen&& !submitAdminMessageLoading && !submitAdminMessageSuccessfullySent" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                                                        <div class = "col s12 center-align" ng-show="historyEntryOpen && curHistory == $index && submitHoursLoading ">
+                                        <p class = "animated flash infinite montserrat underline" style="font-size:17px;">( SUBMITTING HOURS )</p>
+
+                                    </div>
+                                    <div class = "col s12 center-align" ng-show="historyEntryOpen && curHistory == $index && loadingAddDelinquentTimeSheet ">
+                                        <p class = "animated flash infinite montserrat underline" style="font-size:17px;">( SUBMITTING HOURS )</p>
+
+                                    </div>
+                                    <div ng-show="historyEntryOpen && curHistory == $index && !addHoursPageOpen && !addHoursDelinquentPageOpen && !messageAdminPageOpen &&!loadingAddDelinquentTimeSheet&& !submitHoursLoading && !submitAdminMessageLoading && !submitAdminMessageSuccessfullySent" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                         <div ng-show="entry[currentJobInDate].booked">
 
@@ -2642,7 +2650,7 @@ hkjhkhjhk
                                         </div>
                                     </div>
 
-                                      <div ng-show="historyEntryOpen && curHistory == $index && addHoursDelinquentPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                      <div ng-show="historyEntryOpen && curHistory == $index && addHoursDelinquentPageOpen && !loadingAddDelinquentTimeSheet" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                         <div ng-show="entry[currentJobInDate].booked">
 
@@ -2770,7 +2778,7 @@ hkjhkhjhk
 
                                             <div class="col s12 center-align">
 
-                                                <p ng-click="($index,entry[currentJobInDate].client,entry[currentJobInDate].location)" class="montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>
+                                                <p ng-click="submitHoursDelinquent($index,entry[currentJobInDate].client,entry[currentJobInDate].location,entry[currentJobInDate].currentuser,entry[currentJobInDate])" class="montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>
                                             </div>  
                                            
 
@@ -2793,7 +2801,7 @@ hkjhkhjhk
                                         </div>
                                     </div>
 
-                                    <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                    <div ng-show="historyEntryOpen && curHistory == $index && addHoursPageOpen &&!submitHoursLoading" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                         <div ng-show="entry[currentJobInDate].booked">
 
@@ -2920,11 +2928,11 @@ hkjhkhjhk
 
                                             <div class="col s12 center-align">
 
-                                                <p ng-click="submitHours($index,entry[currentJobInDate].client,entry[currentJobInDate].location)" class="montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>
+                                                <p ng-click="submitHours($index,entry[currentJobInDate].client,entry[currentJobInDate].location,entry[currentJobInDate].currentuser,entry[currentJobInDate])" class="montserrat underline green-text text-lighten-2">SUBMIT HOURS</p>
                                             </div>  
                                             <div ng-show="entry[currentJobInDate].delinquent" class="col s12 center-align">
 
-                                                <p ng-click="submitHours($index,entry[currentJobInDate].client,entry[currentJobInDate].location)" class="montserrat underline red-text text-lighten-2">SUBMIT HOURS</p>
+                                                <p ng-click="submitHours($index,entry[currentJobInDate].client,entry[currentJobInDate].location,entry[currentJobInDate].currentuser,entry[currentJobInDate])" class="montserrat underline red-text text-lighten-2">SUBMIT HOURS</p>
                                             </div>
 
                                             <div class="col s12 center-align" ng-show="allFieldsMustBeInput">
@@ -3031,7 +3039,7 @@ hkjhkhjhk
 
                                     <div ng-show="entry[0].date" ng-repeat="entry in history.entry track by $index" class="row">
 
-                                        <div ng-show="historyEntryOpen && curHistory == $index && !addHoursPageOpen" class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
+                                        <div ng-show="historyEntryOpen && curHistory == $index && !addHoursPageOpen " class="col s12 animated fadeInDown" style="border-top:1px solid #ddd;border-bottom:1px solid #ddd;"
                                             ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                             <div ng-show="entry[currentJobInDate].booked">
 

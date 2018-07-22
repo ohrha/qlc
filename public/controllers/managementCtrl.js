@@ -2170,11 +2170,12 @@ $scope.newPPObject = {}
             console.log($scope.currentJobInDate)
         }*/
         $scope.loadingAddDelinquentTimeSheet = false;
+        $scope.submitHoursLoading = false;
          $scope.submitHoursDelinquent = function (index, client, location,currentuser,page,payperiodindex) {
             console.log(page)
             $scope.allFieldsMustBeInput = false
             $scope.timeData.payperiodhistoryindex = payperiodindex
-
+            $scope.timeData.payperiodnum = $scope.globalPayPeriodIndexATM
             $scope.timeData.currentuser = currentuser
             $scope.timeData.location = location
             $scope.timeData.client = client;
@@ -2195,6 +2196,7 @@ $scope.newPPObject = {}
                 $scope.timeData.hoursOut !== null &&
                 $scope.timeData.minutesIn !== null &&
                 $scope.timeData.minutesOut !== null) {
+
                 $scope.loadingAddDelinquentTimeSheet = true;
                 $scope.timeData.currentjobindate = $scope.currentJobInDate
                 $scope.timeData.index = index;
@@ -2211,13 +2213,14 @@ $scope.newPPObject = {}
                 console.log($scope.timeData.client)
                 console.log($scope.timein)
                 console.log($scope.timeout)
-                var startTime = moment($scope.timein, "HH:mm:ss a");
+              var startTime = moment($scope.timein, "HH:mm:ss a");
                 console.log(startTime)
                 var endTime = moment($scope.timeout, "HH:mm:ss a");
                 var duration = moment.duration(endTime.diff(startTime));
                 var hours = parseInt(duration.asHours());
                 var minutes = parseInt(duration.asMinutes()) - hours * 60;
                 var hoursPositive = 0;
+                var minsPositive = 0;
                 var hoursDif = 0;
                 console.log(hours)
                 console.log(minutes)
@@ -2238,6 +2241,7 @@ $scope.newPPObject = {}
                             console.log("hoursDif", hoursDif)
                             hours = hoursDif + 12
                             console.log(hours)
+                            hours = (hours - 1) + .5
                         }
                         $scope.timeData.hoursCalculated = hours;
 
@@ -2272,25 +2276,141 @@ $scope.newPPObject = {}
                 } else {
                     console.log("Do nothing")
                     if (minutes == 15) {
+                        console.log("Minutes == 15")
                         hours = hours + .25
+                        console.log("Hours", hours)
+                        if (Math.sign(hours) == -1) {
+                            console.log("negative")
+                            console.log(hours * -2)
+                            console.log(hours)
+                            hoursPositive = Math.abs(hours)
+                            console.log(hoursPositive)
+                            hoursDif = (12 - hoursPositive)
+                            console.log("hoursDif", hoursDif)
+                            hours = hoursDif + 12
+                            console.log(hours)
+                            //hours= (hours-1)+.5
+                        }
                         $scope.timeData.hoursCalculated = hours;
                     }
+                    
                     if (minutes == 30) {
                         hours = hours + .5
+                        if (Math.sign(hours) == -1) {
+                            console.log("negative")
+                            console.log(hours * -2)
+                            console.log(hours)
+                            hoursPositive = Math.abs(hours)
+                            console.log(hoursPositive)
+                            hoursDif = (12 - hoursPositive)
+                            console.log("hoursDif", hoursDif)
+                            hours = hoursDif + 12
+                            console.log(hours)
+                            //hours= (hours-1)+.5
+                        }
                         $scope.timeData.hoursCalculated = hours;
                     }
                     if (minutes == 45) {
                         hours = hours + .75
+                        if (Math.sign(hours) == -1) {
+                            console.log("negative")
+                            console.log(hours * -2)
+                            console.log(hours)
+                            hoursPositive = Math.abs(hours)
+                            console.log(hoursPositive)
+                            hoursDif = (12 - hoursPositive)
+                            console.log("hoursDif", hoursDif)
+                            hours = hoursDif + 12
+                            console.log(hours)
+                            //hours= (hours-1)+.5
+                        }
                         $scope.timeData.hoursCalculated = hours;
                     }
                     if (minutes == 00) {
+                        if (Math.sign(hours) == -1) {
+                            console.log("negative")
+                            console.log(hours * -2)
+                            console.log(hours)
+                            hoursPositive = Math.abs(hours)
+                            console.log(hoursPositive)
+                            hoursDif = (12 - hoursPositive)
+                            console.log("hoursDif", hoursDif)
+                            hours = hoursDif + 12
+                            console.log(hours)
+                            //hours= (hours-1)+.5
+                        }
                         $scope.timeData.hoursCalculated = hours;
+                    }
+                    if (Math.sign(minutes) == -1) {
+                        minsPositive = Math.abs(minutes)
+                        if (minsPositive == 15) {
+                            console.log("Minutes == 15")
+                            hours = hours - .25
+                            console.log("Hours", hours)
+                            if (Math.sign(hours) == -1) {
+                                console.log("negative")
+                                console.log(hours * -2)
+                                console.log(hours)
+                                hoursPositive = Math.abs(hours)
+                                console.log(hoursPositive)
+                                hoursDif = (12 - hoursPositive)
+                                console.log("hoursDif", hoursDif)
+                                hours = hoursDif + 12
+
+                                console.log(hours)
+                                //hours= (hours-1)+.5
+                            }
+                            $scope.timeData.hoursCalculated = hours;
+
+                        }
+                        if (minsPositive == 30) {
+                            console.log("Minutes == 30")
+                            hours = hours - .5
+                            console.log("Hours", hours)
+                            if (Math.sign(hours) == -1) {
+                                console.log("negative")
+                                console.log(hours * -2)
+                                console.log(hours)
+                                hoursPositive = Math.abs(hours)
+                                console.log(hoursPositive)
+                                hoursDif = (12 - hoursPositive)
+                                console.log("hoursDif", hoursDif)
+                                hours = hoursDif + 12
+
+                                console.log(hours)
+                                //hours= (hours-1)+.5
+                            }
+                            $scope.timeData.hoursCalculated = hours;
+
+                        }
+                        if (minsPositive == 45) {
+                            console.log("Minutes == 45")
+                            hours = hours - .75
+                            console.log("Hours", hours)
+                            if (Math.sign(hours) == -1) {
+                                console.log("negative")
+                                console.log(hours * -2)
+                                console.log(hours)
+                                hoursPositive = Math.abs(hours)
+                                console.log(hoursPositive)
+                                hoursDif = (12 - hoursPositive)
+                                console.log("hoursDif", hoursDif)
+                                hours = hoursDif + 12
+
+                                console.log(hours)
+                                //hours= (hours-1)+.5
+                            }
+                            $scope.timeData.hoursCalculated = hours;
+
+                        }
+                        
+
                     }
                 }
                 User.addHoursToPayPeriod($scope.timeData).then(function (data) {
                     console.log(data)
                     $scope.loadingDelinquentTimeSheet = false;
-                    $scope.openDelinquentTimeSheetPage()
+                   // $scope.openDelinquentTimeSheetPage()
                     //$scope.
                 })
                 console.log(hours)
@@ -2299,12 +2419,17 @@ $scope.newPPObject = {}
             console.log(index)
             console.log($scope.currentJobInDate)
         }
-        $scope.submitHours = function (index, client, location) {
+        $scope.submitHoursLoading = false;
+        $scope.submitHours = function (index, client, location,currentuser,page) {
             
             $scope.allFieldsMustBeInput = false
             $scope.timeData.payperiodhistoryindex = $scope.payPeriodHistoryIndex
             $scope.timeData.currentuser = $scope.currentUserHistoryFile
+                        $scope.timeData.payperiodnum = $scope.globalPayPeriodIndexATM
+
             $scope.timeData.location = location
+            $scope.timeData.page = page
+            $scope.timeData.currentuser = currentuser
             $scope.timeData.disputed = false;
             if ($scope.timeData.ampmIn == null ||
                 $scope.timeData.ampmOut == null ||
@@ -2321,6 +2446,7 @@ $scope.newPPObject = {}
                 $scope.timeData.hoursOut !== null &&
                 $scope.timeData.minutesIn !== null &&
                 $scope.timeData.minutesOut !== null) {
+                    $scope.submitHoursLoading = true;
                 $scope.timeData.currentjobindate = $scope.currentJobInDate
                 $scope.timeData.index = index;
                 console.log($scope.timeData)
@@ -2411,6 +2537,10 @@ $scope.newPPObject = {}
                 }
                 User.addHoursToPayPeriod($scope.timeData).then(function (data) {
                     console.log(data)
+                                        $scope.payPeriodHistory = data.data.user.payperiodhistory
+
+                    $scope.submitHoursLoading = false
+                    $scope.addHoursPageOpen = false
                 })
                 console.log(hours)
                 console.log(minutes)
@@ -2709,9 +2839,11 @@ $scope.newPPObject = {}
 
         
         $scope.turnOtherPayPeriodsOff = false;
+        $scope.globalPayPeriodIndexATM = "";
         $scope.openIndividualPayPeriod = function (index) {
             console.log(index)
             console.log($scope.personalHistoryOpen)
+            $scope.globalPayPeriodIndexATM = index;
             $scope.payPeriodHistoryIndex = index;
             $scope.turnOtherPayPeriodsOff = true;
             $scope.loadingPersonalHistory = false;
