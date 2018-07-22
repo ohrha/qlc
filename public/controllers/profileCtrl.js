@@ -2782,6 +2782,8 @@
         $scope.openAddLocationPage = function () {
             if (!$scope.addLocationPageOpen) {
                 $scope.addLocationPageOpen = true;
+                $scope.reviewSubmittedTimeSheetsPageOpen= false;
+            
                 $scope.addSupervisorPageOpen = false;
                 $scope.clientHome = false;
                 User.getLocations($scope.userName).then(function (data) {
