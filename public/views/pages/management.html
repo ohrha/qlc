@@ -2604,8 +2604,8 @@ hkjhkhjhk
                                                 </div>
                                                 </div>
                                           
-                                                   <div ng-show="!entry[currentJobInDate].disputed && !entry[currentJobInDate].delinquent" class="col s12 center-align" style="border-top:1px dashed #ddd; ">
-                                                <p ng-show="entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">EDIT HOURS</p>
+                                                   <div ng-show="!entry[currentJobInDate].disputed && !entry[currentJobInDate].delinquent" class="col s12 center-align" style="border-top:1px solid #ddd; border-left:1px solid gray; box-shadow:2px 2px 2px gray;"" ">
+                                             <a href="#" style="color:black;">   <p ng-show="entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">EDIT HOURS</p></a>
 
     <div class = "col s12 center-align">
                                                         <p class="montserrat   green-text text-lighten-2" style="font-size:13px;"> ( RESOLVED )</p>
@@ -2805,16 +2805,10 @@ hkjhkhjhk
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                         <div ng-show="entry[currentJobInDate].booked">
 
-                                            <div class="right-align">
-                                                <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:17px;"class= "material-icons red-text text-lighten-2 ">clear</i></a>
-                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeDelinquentJobInDate(entry.length)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i>{{currentJobInDate}}</a>
 
-                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && !entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeJobInDate(history)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
-
-                                            </div>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].date}}</p>
                                             <div class="col s12 center-align">
-                                                <p class="montserrat underline">Time In</p><i ng-click="closeAddHoursPage()" class="material-icons "  style=" font-size:16px;float:right">clear</i>
+                                                <p class="montserrat underline">Time In</p><a href="#" style="color:black;"><i ng-click="closeAddHoursPage()" class="material-icons "  style=" font-size:16px;float:right">clear</i></a>
                                             </div>
                                             <div class="input-field col s5">
                                                 <select name="hoursIn" ng-model="timeData.hoursIn">
@@ -3058,8 +3052,8 @@ hkjhkhjhk
                                                 <p ng-show="entry[currentJobInDate].hoursCalculated" class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].hoursCalculated}}hrs</p>
 
                                                 <div ng-show="!history.entry[0][0].paid" style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-top:1px solid #ddd;">
-                                                    <p ng-show="!entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">ADD HOURS</p>
-                                                    <p ng-show="entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">EDIT HOURS</p>
+                                                  <a href="#" style="color:black;">   <p ng-show="!entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">ADD HOURS</p></a>
+                                                   <a href="#" style="color:black;"> <p ng-show="entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">EDIT HOURS</p></a>
                                                 </div>
                                                 <div ng-show="history.entry[0][0].paid">
                                                     <p class="montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>

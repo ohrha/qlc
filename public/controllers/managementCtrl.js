@@ -2446,7 +2446,7 @@ $scope.newPPObject = {}
                 $scope.timeData.hoursOut !== null &&
                 $scope.timeData.minutesIn !== null &&
                 $scope.timeData.minutesOut !== null) {
-                    
+                    $scope.submitHoursLoading = true;
                 $scope.timeData.currentjobindate = $scope.currentJobInDate
                 $scope.timeData.index = index;
                 console.log($scope.timeData)
@@ -2535,7 +2535,6 @@ $scope.newPPObject = {}
                         $scope.timeData.hoursCalculated = hours;
                     }
                 }
-                $scope.submitHoursLoading = true;
                 User.addHoursToPayPeriod($scope.timeData).then(function (data) {
                     console.log(data)
                                         $scope.payPeriodHistory = data.data.user.payperiodhistory
