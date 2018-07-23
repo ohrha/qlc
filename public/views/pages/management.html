@@ -173,9 +173,17 @@
 
             </div>
             <div class="col s12" ng-show="delinquentTimeSheetPageOpened">
-                <div class="col s12 center-align">
-                    <p class="railway underline" style="font-size:17px;">Delinquent Time Sheet Page</p>
-                </div>
+           <div class="col s12">
+                            <p class="railway underline" style="font-size:17px;">
+                                <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                                Delinquent Time Sheets
+                            </p>
+                        </div>
+                            <div class="col s2">
+                            <p class="railway underline" style="font-size:15px;"> #</p>
+                        </div>
+                        <div class="col s10">
+                            <p class="railway underline" style="font-size:15px;">Details</p>
+                        </div>
                 <div class="col s12 center-align" ng-show="!delinquentTimeSheetsArray.length">
                     <p class="railway underline green-text text-lighten-2">(No Delinquent Time Sheets)</p>
 
@@ -184,7 +192,7 @@
                     <div class="row">
 
                         <div ng-show="page.read" class="col s2" style="border-right:1px solid #ddd">
-                            <a href="#" style="color:black;"> <i ng-click="openDelinquentTimeSheet($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">drafts</i></a>
+                            <a href="#" class = "montserrat"style="color:black;">{{$index+1}} <i ng-click="openDelinquentTimeSheet($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">drafts</i></a>
                         </div>
                         <div class="col s10">
                         </div>
@@ -206,7 +214,7 @@
 
                     </div>
                     <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
-                        <a href="#" style="color:black;"> <i ng-click="openDelinquentTimeSheet($index,true)" class="material-icons" >navigate_next</i></a>
+                        <a ng-click="openDelinquentTimeSheet($index,true)" href="#" style="color:black;" class = "montserrat underline"> <span style="font-size:14px;">{{$index+1}}</span></a>
                     </div>
                     <div class="col s10" ng-show="delinquentTimeSheetOpen && delinquentIndex == $index && messageLoading">
 
@@ -241,8 +249,8 @@
                             </div>
                         </div>
                         <div class="row animated fadeIn" ng-show="delinquentTimeSheetInfo">
-                            <div class="col s12" ng-show="loadingAddDeliquentTimeSheet">
-                                <p class="railway underline animated flash infinite">( LOADING )</p>
+                            <div class="col s12" ng-show="loadingAddDelinquentTimeSheet">
+                                <p class="montserrat  animated flash infinite flow-text green-text text-lighten-2"style="font-size:12px;">( INSERTING DELINQUENT HOURS )</p>
                             </div>
 
                             <div class="col s12" ng-show="!loadingAddDelinquentTimeSheet">
@@ -376,7 +384,7 @@
 
                 </div>
 
-            </div>
+            
             <div ng-show="delinquentTimeSheetsArray.length">
                 <div class="col s2">
                 </div>
@@ -394,6 +402,7 @@
 
                     </ul>
                 </div>
+            </div>
             </div>
 
             <div ng-show="employeeListOpenAdmin" class="col s12 animated fadeIn ">
