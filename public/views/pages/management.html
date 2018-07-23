@@ -54,9 +54,9 @@
 
 
             <div ng-show="adminHome" class="col s12" style=" border-bottom: 1px solid #ddd;">
-                <p style="font-size:18px;" class="railway animated fadeIn ">Administration Page</p>
+                <p style="font-size:18px;" class="montserrat underline animated fadeIn ">Administration Page</p>
             </div>
-            <div class="col s12">
+            <div class="col s12" style="box-shadow: 2px 2px 2px gray; border-left:1px solid #ddd;">
                 <!-- <a href="#" style="color:black;">
                                 <i ng-click="openBookedJobsPage()" style="font-size:17px; color:black; padding-top:5px;" class="material-icons" ng-class="{'bookedjobsselected':bookedJobsSelected,'bookedjobsdeselected':!bookedJobsSelected}">book</i>
                             </a>-->
@@ -178,11 +178,14 @@
                                 <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                                Delinquent Time Sheets
                             </p>
                         </div>
+                        <div class ="col s12" style="border-bottom:1px solid #ddd;">
                             <div class="col s2">
                             <p class="railway underline" style="font-size:15px;"> #</p>
                         </div>
+
                         <div class="col s10">
                             <p class="railway underline" style="font-size:15px;">Details</p>
+                        </div>
                         </div>
                 <div class="col s12 center-align" ng-show="!delinquentTimeSheetsArray.length">
                     <p class="railway underline green-text text-lighten-2">(No Delinquent Time Sheets)</p>
@@ -2299,7 +2302,7 @@
 
                         <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                             <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                <span ng-click="openIndividualApprovedJob($index)" class="montserrat underline" style="font-size:17px;">{{$index+1}}</span>
+                                <span ng-click="openIndividualApprovedJob($index)" class="montserrat underline" style="font-size:14px;">{{$index+1}}</span>
                                
 
                             </a>
@@ -2512,10 +2515,11 @@
 
             </div>
             <div class="col s12 animated fadeIn" ng-show="chartsPageOpen">
-
-                <div class="col s12 center-align">
-                    <p class="montserrat underline" style="font-size:17px;">Metrics Page</p>
-                </div>
+     <div class="col s12">
+                            <p class="railway underline" style="font-size:17px;">
+                                <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                                Metrics Page
+                            </p>
+                        </div>
 
                 <canvas id="base" class="chart-bar" chart-data="dataMetrics" chart-labels="labelsMetrics" chart-colors="colors" chart-dataset-override="datasetOverrideMetrics">
                 </canvas>
