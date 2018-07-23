@@ -2032,7 +2032,8 @@ module.exports = function (app) {
                         res.json({ success: false, message: "Incorrect Password..." })
                     } else {
                         var token = jwt.sign({ username: user.username, email: user.email, payrate: user.payrate, userclass: user.userclass, payperiod: user.payperiodnum, name: user.name, _id: user._id, phonenumber: user.phonenumber, messages: user.comments, locations: user.locations, supervisors: user.supervisors, approvednotbooked: user.approvednotbooked, requestedjobs: user.requestedjobs, submittedtimesheets: user.submittedtimesheets }, secret, { expiresIn: '24h' });
-                        res.json({ success: true, message: 'User authenticated', token: token, user: user });
+                        var timelefttoken =  jwt.sign({ username: user.username, email: user.email}, secret, { expiresIn: '24h' });
+                        res.json({ success: true, message: 'User authenticated', token: token,timelefttoken:timelefttoken, user: user });
                         //res.json({ success: true, message: "User authenticated...", user: user })
                     }
                 }

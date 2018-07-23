@@ -6,7 +6,7 @@
         console.log("Management Controller Loaded")
     })
 
-    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, Location, Client, Supervisor) {
+    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location,$interval,$window, User, $rootScope, Location, Client, Supervisor) {
         $scope.username = "";
         $scope.userName = ""
         $scope.payperiod = '';
@@ -59,6 +59,46 @@
 
             })
         }
+         $scope.checkSession = function () {
+
+            if (Auth.isLoggedIn()) {
+
+                $scope.checkingSession = true;
+                var interval = $interval(function () {
+                    ////console.log("test");
+                    var timelefttoken = $window.localStorage.getItem('timelefttoken');
+                    //console.log(token)
+                    if (timelefttoken === null) {
+                        $interval.cancel(interval);
+                    } else {
+                        self.parseJwt = function (token) {
+                            var base64Url = token.split('.')[1];
+                            var base64 = base64Url.replace('-', '+').replace('_', '/');
+                            return JSON.parse($window.atob(base64));
+                        }
+                        var expireTime = self.parseJwt(timelefttoken);
+                        var timeStamp = Math.floor(Date.now() / 1000);// convert javascript date object into a timestamp
+                        console.log(expireTime);
+                        ////console.log(timeStamp);
+
+                        ////console.log(expireTime.exp - timeStamp);
+                        var timeCheck = expireTime.exp - timeStamp;
+                        // //console.log(timeCheck);
+                        if (timeCheck < 200 && timeCheck > 0) {
+                            ////console.log("Token has expired...");
+                            showModal(1); // Open bootstrap modal and let user decide what to do
+                            $interval.cancel(interval); // Stop interval
+                        }
+                        else{
+                        console.log("Token is not yet expired...")
+                        //  showModal(2);
+                        }
+                    }
+                }, 2000);
+            }
+
+        };
+        $scope.checkSession();
         $scope.openRemoveClientPage = function () {
             if (!$scope.removeClientPageOpen) {
                 $scope.removeClientPageOpen = true;
