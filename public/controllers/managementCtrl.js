@@ -4475,7 +4475,9 @@
 
             console.log("Clicked")
             if (!$scope.delinquentTimeSheetPageOpened) {
-                console.log($scope.delinquentTimeSheetsArray)
+                $scope.fadeIn = false;
+                $timeout(function(){
+ console.log($scope.delinquentTimeSheetsArray)
                 $scope.delinquentTimeSheetSelected = true;
                 $scope.adminHome = false;
                 $scope.disputesSelected = false;
@@ -4542,6 +4544,8 @@
                         }
 
                     }
+                },500)
+               
              
             } else {
                 $scope.delinquentTimeSheetPageOpened = false;
