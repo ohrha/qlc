@@ -18,6 +18,7 @@
         <div style="border-bottom:1px solid black;" class='col s12 center-align animated fadeIn'>
 
             <p class="management-header underline railway animated fadeIn">| Administration |</p>
+            
         </div>
 
 
@@ -49,8 +50,12 @@
         </div>
         <!-- PAYPERIOD UPDATED PAGE <-->
         <!-- MANAGEMENT HOME -->
-
-        <div ng-show="managementPage && !payPeriodUpdated" class="col s10 center-align animated fadeIn">
+        <div class = "col s10 center-align" ng-show="adminMenuLoading">
+            <br>
+            <br>
+            <p class = "green-text montserrat text-lighten-2 underline animated flash infinite" style="font-size:14px;"> LOADING ADMINISTRATOR DASHBOARD</p>
+        </div>
+        <div ng-show="managementPage && !payPeriodUpdated &&!adminMenuLoading" class="col s10 center-align animated fadeIn">
 
 
             <div ng-show="adminHome" class="col s12" style=" border-bottom: 1px solid #ddd;">

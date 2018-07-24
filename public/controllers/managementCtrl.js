@@ -17,6 +17,7 @@
         $scope.loading = false;
         $scope.loadingUsers = false;
         $scope.loadingPersonalHistory = false;
+        $scope.adminMenuLoading = true;
         $scope.loadingRemoveUser = false;
         $scope.generalHistoryTitle = false;
         $scope.personalHistoryTitle = false;
@@ -33,6 +34,7 @@
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
         $scope.loadingCurrentClient = false;
+        
         $scope.currentClientObject = {}
         $scope.name = "";
         $scope.approvedJobsArray = [];
@@ -84,9 +86,9 @@
                         ////console.log(expireTime.exp - timeStamp);
                         var timeCheck = expireTime.exp - timeStamp;
                         // //console.log(timeCheck);
-                        if (timeCheck < 200 && timeCheck > 0) {
+                        if (timeCheck ==0) {
                             ////console.log("Token has expired...");
-                            showModal(1); // Open bootstrap modal and let user decide what to do
+                            Auth.logout(); // Open bootstrap modal and let user decide what to do
                             $interval.cancel(interval); // Stop interval
                         }
                         else{
@@ -3918,7 +3920,7 @@
                 }
 
             }
-           
+           $scope.adminMenuLoading = false;
         })
 
 

@@ -321,7 +321,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col s12 center-align">
-                                                <a ng-click="submitLocationSetupPhase();" class="waves-effect waves-light btn">Add Location</a>
+                                                <a ng-show="!composeLocationPageOpen"ng-click="submitLocationSetupPhase();" class="waves-effect waves-light btn">Open Add Location Form</a>
+                                               <a ng-show="composeLocationPageOpen" ng-click="submitLocationSetupPhase();" class="waves-effect waves-light btn">Close Add Location Form</a>
 
 
                                             </div>
@@ -1173,7 +1174,8 @@
                             <div class="row">
 
                                 <div class="col s12 center-align">
-                                    <a href='#' style="color:black;"><p class="railway underline" ng-click="openSubmitLocationPage()">Add Location</p></a>
+                                    <a ng-show="!submitLocationPageOpen" href='#' style="color:black;"><p class="railway underline" ng-click="openSubmitLocationPage()">Open Add Location Form</p></a>
+                                    <a ng-show="submitLocationPageOpen" href='#' style="color:black;"><p class="railway underline" ng-click="openSubmitLocationPage()">Close Add Location Form</p></a>
 
 
                                     <div class="col s12 center-align " ng-show="submitLocationLoading">
