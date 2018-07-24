@@ -1954,6 +1954,8 @@ $scope.requestEmployeePageLoading = false;
                 $('select').material_select();
                 $scope.requestEmployeePageOpen = true;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.addLocationPageOpen = false;
+                
                 $scope.complaintsPageClientOpen = false;
                 $scope.clientHome = false;
 
@@ -2653,6 +2655,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.addSupervisorPageOpen = true;
                 $scope.addLocationPageOpen = false
                 $scope.requestEmployeePageOpen = false;
+                $scope.requestEmployeePageOpen = false;
                 $scope.clientHome = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
@@ -2822,6 +2825,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen= false;
             
                 $scope.addSupervisorPageOpen = false;
+                $scope.requestEmployeePageOpen = false;
                 $scope.clientHome = false;
                 User.getLocations($scope.userName).then(function (data) {
                     console.log(data)
