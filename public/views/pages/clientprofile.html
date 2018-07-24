@@ -1099,6 +1099,175 @@
 
     </div>
 </div>
+<div ng-show="composeMessagePageOpen &&!profileHome &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
+
+            
+            <div class="col s12" >
+                <div class="center-align">
+
+
+                    <div class="row" ng-show="usersPaginated.length">
+                      
+                        <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
+
+            <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openClientHome()" class="material-icons" style="font-size:16px;">keyboard_return</i>Compose Message</p>
+        </div>
+                        <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index " class = "col s2 center-align hide-on-small-only">
+                           <p class = "montserrat underline" style="font-size:14px;"> User</p>
+                        </div>
+                        <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index "class = "col s10 center-align hide-on-small-only">
+
+                        </div>
+                        <div  ng-show="!messageCompositionPageOpen && currentIndex2 == $index "class = "col s12 hide-on-small-only" style="border-bottom:1px solid black;">
+                        </div>
+                        <div class="col s12" ng-repeat="page in usersPaginated[page] track by $index">
+                            <div class="row">
+                                <br>
+                                
+                                <div class="col s2 hide-on-small-only" style="border-left:1px solid #ddd;" ng-show="!messageCompositionPageOpen && currentIndex2 !== $index ">
+                                    <a href="#" style="color:black;">
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate underline">{{page.name}}</p>
+                                    </a>
+                                </div>
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index" class="col s10 center-align animated fadeIn hide-on-small-only" >
+                                    <a href="#" style="color:black;">
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway underline hide-on-med-and-up" >{{page.name}}</p>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway  show-on-med-and-up" style="color:white;">{{page.name}}</p>
+
+                                    </a>
+                                </div>
+
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 !== $index " class="col s12 center-align animated fadeIn hide-on-med-and-up" style="border-bottom:1px solid #ddd;">
+                                    <a href="#" style="color:black;">
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway underline hide-on-med-and-up" >{{page.name}}</p>
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway  show-on-med-and-up" style="color:white;">{{page.name}}</p>
+
+                                    </a>
+                                </div>
+
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && sendMessageLoading && !messageSuccessfullySent" class="col s10 center-align animated fadeIn">
+                                    <br>
+                                    <i class="material-icons animated flash infinite">chevron_right</i>
+                                    <i class="material-icons animated flash infinite">chevron_right</i>
+
+                                    <i class="material-icons animated slideOutRight infinite">email</i>
+                                </div>
+                                  <div class="col s2 hide-on-small-only" ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading && messageSuccessfullySent ">
+                                    <a href="#" style="color:black;">
+                                        <p ng-click="openMessageCompositionPage($index,true)" class="railway truncate">{{page.name}}</p>
+                                    </a>
+                                </div>
+                                
+                                                               <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading && messageSuccessfullySent" class="col s10 center-align animated fadeIn underline hide-on-small-only">
+                                    <div class = "row">
+                                        <div class = "col s12 center-align">
+                                            <p class = "railway animated flash green-text text-lighten-2" style="font-size: 17px;"> Message Successfully Sent!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                   
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading && messageSuccessfullySent" class="col s12 center-align animated fadeIn underline hide-on-med-and-up">
+                                    <div class = "row">
+                                        <div class = "col s12 center-align">
+                                            <p class = "railway animated flash green-text text-lighten-2" style="font-size: 17px;"> Message Successfully Sent!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index && !sendMessageLoading && !messageSuccessfullySent" class="col s12 center-align animated fadeIn">
+
+                                    <div class="row">
+
+                                        <div class="col 12 right-align " style="float:right;">
+
+                                            <a href="#" style="color:black; ">
+                                                <i ng-click="openMessageCompositionPage($index,true)" style="font-size:17px;"class = "material-icons underline">clear</i></a>
+
+                                        </div>
+                                        <div class="col s12 center-align">
+                                            <p class="montserrat underline" style="font-size:16px;"> {{page.name}}</p>
+
+                                        </div>
+                                        <div class = "col s12" style="border-top:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd;">
+                                        <div class="input-field col s6" >
+
+                                            <input id="first_name2" ng-model="message.subject" type="text" class="validate">
+
+                                            <label class="active" for="first_name2">Subject</label>
+
+                                        </div>
+                                        </div>
+                                        <div class "col s6" >
+                                        </div>
+                                        <div class="row">
+                                            <form class="col s12" style="border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;">
+                                                <div class="row">
+
+                                                    <div class="input-field col s12">
+                                                        <textarea id="textarea1" ng-model="message.body" name="body" class="materialize-textarea"></textarea>
+                                                        <label for="textarea1">Message</label>
+                                                    </div>
+                                                    <div class="col s12">
+                                                <a ng-click="submitMessage(page.name)" class="waves-effect waves-light btn">Send</a>
+                                            </div>
+                                                </div>
+                                            </form>
+                                            
+
+                                            <div ng-show="allFieldsMustBeInput" class="col s12">
+                                                <p> All Fields Must Be Input </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#">{{page.subject}}</a></p>
+                                </div>
+
+
+
+
+                                <div class="col s2" ng-show="messageOpen && currentIndex == $index " style="height:100px;">
+
+                                </div>
+                                <div class="col s10" ng-show="messageOpen && currentIndex == $index && messageLoading" style=" border:1px solid #ddd;">
+                                    <br>
+
+                                     <p class="railway animated flash infinite underline" style="font-size:18px;"> ( LOADING )</p>
+            
+                                </div>
+                                <div class="col s10 " ng-show="messageOpen && currentIndex == $index && !messageLoading " style="height:100px; border:1px solid #ddd;">
+
+                                    <p class="animated fadeIn railway"><a style="color:black;" href="#">{{page.body}}</a></p>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col s2">
+                        </div>
+                        <div class="col s10">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
 
 <div class="col s12 center-align animated fadeIn" ng-show="addLocationPageOpen ">
 
