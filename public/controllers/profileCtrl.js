@@ -528,6 +528,7 @@
         $scope.openSupervisorList = function(){
             if(!$scope.supervisorListOpen){
                 $scope.supervisorListOpen = true;
+                $scope.submitSupervisorPageOpen = false;
             }else{
                 $scope.supervisorListOpen = false;
             }
@@ -1735,6 +1736,7 @@
         $scope.openSubmitSupervisorPage = function () {
             if (!$scope.submitSupervisorPageOpen) {
                 $scope.submitSupervisorPageOpen = true;
+                $scope.supervisorListOpen = false;
             } else {
                 $scope.submitSupervisorPageOpen = false;
 
@@ -1917,9 +1919,26 @@
 
 
 
+$scope.requestJobFormOpen = false;
+$scope.openRequestJobForm = function(){
+    console.log("Clicke")
+    if(!$scope.requestJobFormOpen){
+        $scope.requestJobFormOpen = true
+        $scope.requstListOpen = false;
+    }else{
+        $scope.requestJobFormOpen = false;
+    }
+}
+$scope.openRequestList = function(){
+    if(!$scope.requestListOpen){
+        $scope.requestListOpen = true;
+        $scope.requestJobFormOpen = false;
 
-
-
+    }else{
+        $scope.requestListOpen = false;
+    }
+}
+$scope.requestEmployeePageLoading = false;
         $scope.openRequestEmployeePage = function () {
 
             $scope.requestEmployeePageLoading = true;
@@ -2619,6 +2638,14 @@
                 //$scope.removeChart = false;
             }
 
+        }
+        $scope.openClientHome = function(){
+           // if(!$scope.clientHome){
+                $scope.clientHome= true;
+                $scope.addLocationPageOpen = false;
+                $scope.addSupervisorPageOpen = false;
+                $scope.reviewSubmittedTimeSheetsPageOpen = false;
+            //}
         }
         $scope.openAddSupervisorPage = function (index) {
 
