@@ -3322,13 +3322,14 @@ $scope.requestEmployeePageLoading = false;
 
 
         $scope.changePage = function () {
-
+$scope.currentIndex = null;
             if ($scope.page < $scope.messagesPaginated.length - 1) {
                 $scope.page++
             }
             console.log($scope.page)
         }
         $scope.decreasePage = function () {
+            $scope.currentIndex = null;
             if ($scope.page > 0) {
                 $scope.page--
                 console.log($scope.page)
@@ -3336,7 +3337,7 @@ $scope.requestEmployeePageLoading = false;
 
         }
         $scope.changePage2 = function () {
-
+            //$scope.messageIndex = null
             if ($scope.page < $scope.usersPaginated.length - 1) {
                 $scope.page++
             }
