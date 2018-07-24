@@ -2060,7 +2060,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.supervisorsArray = data.data.user[0].supervisors
                 $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
                 $scope.payPeriodHistory = data.data.user[0].payperiodhistory
-               /* for (var z = 0; z < $scope.payPeriodHistory.length; z++) {
+                for (var z = 0; z < $scope.payPeriodHistory.length; z++) {
 
                     for (var d = 0; d < $scope.payPeriodHistory[z].entry.length; d++) {
                         console.log($scope.payPeriodHistory[z].entry[d])
@@ -2074,7 +2074,6 @@ $scope.requestEmployeePageLoading = false;
 
                     }
                 }
-                */
             })
         })
 
