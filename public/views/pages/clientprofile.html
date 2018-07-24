@@ -13,7 +13,7 @@
 
             </div>
                <div class = "col s2">
-                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:22px; padding-bottom:20px;"class="far fa-compass"></i>
+                           <a href="#" style="color:black;" ng-click="openAddLocationPage()"><i  style="font-size:22px; padding-bottom:20px;"class="far fa-compass"></i></a>
 
             </div>
                <div class = "col s2">
@@ -888,7 +888,7 @@
                 </div>
 <div class = "col s12 center-align">
         <p  ng-click="openSupervisorList();"class= "montserrat underline">Open Supervisor List</p>
-         <div ng-show="supervisorListOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
+         <div ng-show="supervisorListOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd; border-bottom:1px solid #ddd">
                     <div class="center-align">
 
 
@@ -1085,9 +1085,11 @@
                     <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openManagementPage()" class="material-icons" >keyboard_return</i>Add Location Page</p>
                 </div>
             <div class="col s12 center-align">
+                <div class = "col s3">
                 <p  ng-click="openLocationList();"class= "montserrat underline">Open Location List</p>
+                </div>
                 <br>
-                <div ng-show="locationListOpen" class="col s12" style="border-top:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
+                <div ng-show="locationListOpen" class="col s9 animated fadeIn" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd; border-right:1px solid #ddd; border-left:1px solid #ddd;">
                     <div class="center-align">
 
 
@@ -1161,35 +1163,35 @@
                     </div>
                 </div>
 
-
+            </div>
             </div>
 
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <div class="center-align">
-                    <div class="row">
-                      
+    
+      
                         <div class=" col s12 center-align">
                             <div class="row">
 
                                 <div class="col s12 center-align">
+                                    <div class = "col s3">
+
                                     <a ng-show="!submitLocationPageOpen" href='#' style="color:black;"><p class="railway underline" ng-click="openSubmitLocationPage()">Open Add Location Form</p></a>
                                     <a ng-show="submitLocationPageOpen" href='#' style="color:black;"><p class="railway underline" ng-click="openSubmitLocationPage()">Close Add Location Form</p></a>
+                                    </div>
 
-
-                                    <div class="col s12 center-align " ng-show="submitLocationLoading">
+                                    <div class="col s9 center-align " ng-show="submitLocationLoading">
                                         <p ng-show="!addLocationSuccessful" class="railway animated flash infinite" style="font-size:20px;"> INSERTING LOCATION </p>
                                         <p ng-show="addLocationSuccessful" class="railway animated fadeIn green-text lighten-4" style="font-size:20px;"> Location Successfully Inserted! </p>
 
                                     </div>
 
-                                    <div ng-show="submitLocationPageOpen  && !submitLocationLoading">
+                                    <div ng-show="submitLocationPageOpen  && !submitLocationLoading" class = "col s9 animated fadeIn" style="border:1px solid #ddd;">
 
 
                                         <div class="row">
+                                            <br>
+
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
+                                               
 
                                             </div>
                                             <div class="input-field col s8">
@@ -1202,14 +1204,13 @@
                                                 </div>
                                             </div>
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
+                                              
                                             </div>
 
                                         </div>
 
                                         <div class="row">
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
 
                                             </div>
                                             <div class="input-field col s8">
@@ -1222,13 +1223,11 @@
                                                 </div>
                                             </div>
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
                                             </div>
 
                                         </div>
                                         <div class="row">
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
 
                                             </div>
                                             <div class="input-field col s8">
@@ -1241,13 +1240,12 @@
                                                 </div>
                                             </div>
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
                                             </div>
 
                                         </div>
                                         <div class="row">
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
+
 
                                             </div>
                                             <div class="input-field col s8">
@@ -1260,13 +1258,11 @@
                                                 </div>
                                             </div>
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
                                             </div>
 
                                         </div>
                                         <div class="row">
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_back</i>
 
                                             </div>
                                             <div class="input-field col s8">
@@ -1279,7 +1275,6 @@
                                                 </div>
                                             </div>
                                             <div class="col s2 center-align">
-                                                <i class="material-icons">arrow_forward</i>
                                             </div>
 
                                         </div>
@@ -1301,10 +1296,7 @@
 
                             </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  
 
         </div>
     </div>

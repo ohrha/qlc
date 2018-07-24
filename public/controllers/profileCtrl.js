@@ -536,6 +536,7 @@
         $scope.openLocationList = function(){
             if(!$scope.locationListOpen){
                 $scope.locationListOpen = true;
+                $scope.submitLocationPageOpen = false;
             }else{
                 $scope.locationListOpen = false;
             }
@@ -1725,6 +1726,7 @@
         $scope.openSubmitLocationPage = function () {
             if (!$scope.submitLocationPageOpen) {
                 $scope.submitLocationPageOpen = true;
+                $scope.locationListOpen = false
             } else {
                 $scope.submitLocationPageOpen = false;
 
