@@ -1371,7 +1371,7 @@
 
                         <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                             <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
+                                <p ng-click="openIndividualRequestedJob($index)" class="montserrat underline" style="font-size:14px;">{{$index+1}}.</p>
                             </a>
                         </div>
                         <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
@@ -1698,10 +1698,13 @@
       
     </select>
                     </div>
+<a ng-click="areYouSureSubmitRequest()" class="waves-effect waves-light btn">Submit Request</a>
+
 
                     <div class="animated flash">
                         <span ng-show='timeDataCannotBeEmpty' class="railway"> Time Data Must Be Completed </span>
                     </div>
+                    </form>
             </div>
 
         </div>
@@ -1782,9 +1785,7 @@
 
 
 
-<a ng-click="areYouSureSubmitRequest()" class="waves-effect waves-light btn">Submit Request</a>
 
-</form>
             </div>
         </div>
 
