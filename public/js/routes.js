@@ -50,6 +50,17 @@
                     }
                 }
             })
+                  .when('/display', {
+                templateUrl: '../views/pages/display.html',
+                name: "QLH | SERVICES",
+                controller: "loginCtrl",
+                controllerAs: 'login',
+                resolve: {
+                    init: function ($route) {
+                        console.log("index")
+                    }
+                }
+            })
                  .when('/employmentdocuments', {
                 templateUrl: '../views/pages/employmentdocs.html',
                 name: "QLH | EMPLOYMENT DOCUMENTS",
