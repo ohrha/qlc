@@ -104,6 +104,19 @@
                 $scope.image9 = false;
                 $scope.image10 = false;
             }
+               else if ($scope.image8) {
+                $scope.image1 = false;
+                $scope.image2 = false;
+                $scope.image3 = false;
+                $scope.image4 = false;
+                $scope.image5 = false;
+                $scope.image6 = false;
+                $scope.image7 = false;
+                $scope.image8 = false;
+                $scope.image9 = true;
+                $scope.image10 = false;
+                console.log(9)
+            }
             else if ($scope.image9) {
                 $scope.image1 = false;
                 $scope.image2 = false;
@@ -115,6 +128,7 @@
                 $scope.image8 = false;
                 $scope.image9 = false;
                 $scope.image10 = true;
+                console.log(9)
             }
             else if ($scope.image10) {
                 $scope.image1 = false;
@@ -127,7 +141,9 @@
                 $scope.image8 = false;
                 $scope.image9 = false;
                 $scope.image10 = false;
-                                $scope.image111 = true;
+                                $scope.image11 = true;
+                                                console.log(10)
+
 
             }
                         else if ($scope.image11) {
@@ -142,6 +158,8 @@
                 $scope.image9 = false;
                 $scope.image10 = false;
                                 $scope.image11 = false;
+                                                console.log(11)
+
 
                 
             }
