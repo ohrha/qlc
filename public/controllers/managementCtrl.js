@@ -1147,12 +1147,12 @@
         ];
         $scope.datasetOverrideMetrics = [
             {
-                label: "Bar chart",
+                label: "Requested Jobs",
                 borderWidth: 1,
                 type: 'bar'
             },
             {
-                label: "Line chart",
+                label: "Approved Jobs",
                 borderWidth: 3,
                 hoverBackgroundColor: "rgba(255,99,132,0.4)",
                 hoverBorderColor: "rgba(255,99,132,1)",
@@ -2052,6 +2052,10 @@
                 console.log(data)
                 $scope.dataMetrics[0] = data.data.user.jobcount
                 $scope.dataMetrics[1] = data.data.user.reqjobcount
+                  $scope.dataMetrics = [
+            [5, 2, 4, 81, 89, 55, 10],
+            [5, 2, 4, 19, 86, 27, 90]
+        ];
             })
             //}
 
