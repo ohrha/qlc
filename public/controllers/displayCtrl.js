@@ -147,6 +147,25 @@
 
             }
                         else if ($scope.image11) {
+                $scope.image1 = false;
+                $scope.image2 = false;
+                $scope.image3 = false;
+                $scope.image4 = false;
+                $scope.image5 = false;
+                $scope.image6 = false;
+                $scope.image7 = false;
+                $scope.image8 = false;
+                $scope.image9 = false;
+                $scope.image10 = false;
+                                $scope.image11 = false;
+                                                                $scope.image12 = true;
+
+                                                console.log(11)
+
+
+                
+            }
+  else if ($scope.image12) {
                 $scope.image1 = true;
                 $scope.image2 = false;
                 $scope.image3 = false;
@@ -158,12 +177,13 @@
                 $scope.image9 = false;
                 $scope.image10 = false;
                                 $scope.image11 = false;
+                                                                $scope.image12 = false;
+
                                                 console.log(11)
 
 
                 
             }
-
 
         }
 
