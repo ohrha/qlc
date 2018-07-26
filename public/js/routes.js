@@ -53,7 +53,7 @@
                   .when('/display', {
                 templateUrl: '../views/pages/display.html',
                 name: "QLH | SERVICES",
-                controller: "loginCtrl",
+                controller: "displayCtrl",
                 controllerAs: 'login',
                 resolve: {
                     init: function ($route) {
