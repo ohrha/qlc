@@ -96,11 +96,11 @@
         <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/profile/{{user_id}}">Profile</a></li>
                 <li ng-show="loggedIn && userClassy == 'client'" ><a ng-href="/clientprofile/{{user_id}}">Profile</a></li>
 
-        <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/employmentdocuments">Employee Documentation</a></li>
-
-        <li><a href="/services">Services</a></li>
-        <li ng-show="!loggedIn"><a href="/clienttoc">Client Register</a></li>
-        <li ng-show="!loggedIn"><a href="/register">Employee Register</a></li>
+      <!--  <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/employmentdocuments">Employee Documentation</a></li>
+-->
+       <!-- <li><a href="/services">Services</a></li>-->
+        <!--<li ng-show="!loggedIn"><a href="/clienttoc">Client Register</a></li>-->
+       <!-- <li ng-show="!loggedIn"><a href="/register">Employee Register</a></li>-->
 
         
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
@@ -132,10 +132,10 @@
         <li ng-show="loggedIn && userClassy == 'admin'" ><a href="/management">Management</a></li>
         <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/profile/{{user_id}}">Profile</a></li>
                 <li ng-show="loggedIn && userClassy == 'client'" ><a ng-href="/clientprofile/{{user_id}}">Profile</a></li>
-        <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/employmentdocuments">Docs</a></li>
-
+       <!-- <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/employmentdocuments">Docs</a></li>
+-->
         <li><a href="/services">Services</a></li>
-        <li ng-show="!loggedIn"><a href="/clienttoc">Client Register</a></li>
+        <!--<li ng-show="!loggedIn"><a href="/clienttoc">Client Register</a></li>-->
 
         <li ng-show="!loggedIn"><a href="/register">Register</a></li>
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
@@ -158,9 +158,9 @@
   </nav>
 
 
-  <main>
+  <main class = "blue-gray">
 
-    <div ng-view></div>
+    <div  ng-view></div>
 
   </main>
   <!-- Modal Trigger -->
@@ -173,7 +173,7 @@
         <div class="col l6 s12">
           <h5 class="white-text railway">Give us a Shout!</h5>
           <p class="grey-text text-lighten-4">Call
-            <bold>021 778 574</bold> today to take advantage of our event crew experience</p>
+            <bold>999 999 9999</bold> today to take advantage of our event crew experience</p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text railway">Links</h5>
