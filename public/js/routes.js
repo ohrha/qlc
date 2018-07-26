@@ -52,7 +52,7 @@
             })
                   .when('/display', {
                 templateUrl: '../views/pages/display.html',
-                name: "QLH | SERVICES",
+                name: "CLOUD | GALLERY",
                 controller: "displayCtrl",
                 controllerAs: 'login',
                 resolve: {
