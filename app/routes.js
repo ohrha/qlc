@@ -757,7 +757,7 @@ module.exports = function (app) {
     app.post('/users/marktimesheetasapproved', function (req, res) {
 
         console.log(req.body)
-        user.find({ userclass: "admin" }, function (err, user) {
+        User.find({ userclass: "admin" }, function (err, user) {
             if (err) throw err;
             if (!user) {
                 res.json({ success: false, message: "User not found.." })
@@ -837,8 +837,8 @@ module.exports = function (app) {
                     } else {
 
                         //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate] = req.body;
-                        user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.currentjobindate].disputed = true
-                        user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
+                        user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.indexofdate].disputed = true
+                        user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.indexofdate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
                         User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods, payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
