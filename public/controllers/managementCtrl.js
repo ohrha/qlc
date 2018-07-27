@@ -5946,6 +5946,7 @@
 
             } else {
 
+                console.log("Userlist not loaded")
                 User.findUser($scope.currentUserFile).then(function (data) {
                     console.log(data)
                     $scope.currentEmployee = data.data.user
