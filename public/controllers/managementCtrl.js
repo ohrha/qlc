@@ -931,10 +931,9 @@
                                 $scope.loadingUsers = false;
                                 $scope.adminMessagesPaginated.push($scope.adminMessagesForPagination)
                                 console.log($scope.adminMessagesPaginated)
-                                console.log($scope.messagesPaginated.length)
 
                                 $scope.adminMessagesForPagination = [];
-                                if ($scope.messagesArray[i] !== undefined) {
+                                if ($scope.adminMessagesArray[i] !== undefined) {
                                     $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
@@ -947,6 +946,7 @@
                             }
 
                         }
+                        console.log("Admin Messages Paginated", $scope.adminMessagesPaginated)
                     })
                 }, 500)
 
@@ -954,6 +954,75 @@
                 $scope.adminMessagesPage = false;
                 $scope.adminHome = true
             }
+        }
+
+         $scope.markAsUnread = function (index, messageindex) {
+            $scope.messageLoading = true;
+            $scope.currentIndex = index;
+            $scope.messageIndex = messageindex
+            console.log(messageindex)
+
+            User.changeMessageToUnRead($scope.name, $scope.messageIndex).then(function (data) {
+                console.log(data)
+                $scope.pageLimit = 4;
+                $scope.messagesPaginated = [];
+                $scope.messageForPagination = [];
+                $scope.messagesArray = data.data.user.comments;
+                for (var i = 0; i <= $scope.messagesArray.length; i++) {
+
+                    var page = 0;
+                    ////console.log($scope.pageLimit, i, $scope.employees.length)
+                    console.log($scope.employees)
+                    if (i < $scope.pageLimit) {
+                        console.log("its less")
+
+                    }
+                    if (i < $scope.messagesArray.length) {
+                        console.log("yup,less")
+                    }
+
+                    if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
+                        console.log("HELLO")
+                        //console.log($scope.employees[i])
+                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        if ($scope.messagesArray[i]) {
+                            $scope.messagesArray[i].messageIndex = i
+                            $scope.messageForPagination.push($scope.messagesArray[i])
+                            console.log(i)
+                            console.log("firstCondiation")
+                            console.log($scope.pageArray)
+
+                        }
+
+
+
+                    } else {
+                        if (!$scope.usersLoaded) {
+
+                            console.log("else")
+                            $scope.loadingUsers = false;
+                            $scope.messagesPaginated.push($scope.messageForPagination)
+                            console.log($scope.messagesPaginated)
+                            $scope.messageForPagination = [];
+                            if ($scope.messagesArray[i] !== undefined) {
+                                $scope.messagesArray[i].messageIndex = i
+                                $scope.messageForPagination.push($scope.messagesArray[i])
+                            }
+                            $scope.pageLimit = $scope.pageLimit + 4;
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                            page++
+
+                        }
+
+                    }
+
+                }
+
+                $scope.messageLoading = false;
+                $scope.currentIndex = null;
+                //$scope.openMessagePage2();
+            })
         }
         $scope.clientDetailsPageOpen = false;
         $scope.currentClientFile = "";
@@ -3973,6 +4042,27 @@
             console.log($scope.page)
         }
         $scope.decreasePage2 = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+         $scope.firstPageAdminMessages = function () {
+            $scope.page = 0;
+        }
+        $scope.lastPageAdminMessages = function () {
+
+            $scope.page = $scope.adminMessagesPaginated.length - 1;
+        }
+        $scope.changePageAdminMessages = function () {
+
+            if ($scope.page < $scope.adminMessagesPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+        }
+        $scope.decreasePageAdminMessages = function () {
             if ($scope.page > 0) {
                 $scope.page--
                 console.log($scope.page)

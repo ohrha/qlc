@@ -2495,10 +2495,10 @@
                             <div class="col s12" ng-repeat="page in adminMessagesPaginated[page] track by $index">
                                 <div class="row">
                                     <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
-                                        <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">email</i></a>
+                                        <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" font-size:16px;box-shadow:1px 1px 1px black;">email</i></a>
                                     </div>
                                     <div ng-show="page.read" class="col s2" style="border-right:1px solid #ddd">
-                                        <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style=" box-shadow:1px 1px 1px black;">drafts</i></a>
+                                        <a href="#" style="color:black;"> <i ng-click="openMessage($index,true)" class="material-icons" style="font-size:16px; box-shadow:1px 1px 1px black;">drafts</i></a>
                                     </div>
                                     <div class="col s10">
                                         <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#">{{page.subject}}</a></p>
@@ -2568,22 +2568,30 @@
 
                                 </div>
                             </div>
-                            <div class="col s2">
-                            </div>
-                            <div class="col s10">
-                                <ul class="pagination">
-                                    <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+                 <div ng-show="adminMessagesPaginated.length>1" class="animated fadeIn">
 
-                                    <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
-                                    <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                        ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+                        <div class="col s2">
+                        </div>
+                        <div class="col s10 center-align">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPageAdminMessages()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
 
-                                    <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
-                                    <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePageAdminMessages()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
 
+                                <li class="waves-effect"><a href="#" ng-click="changePageAdminMessages()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPageAdminMessages()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+                                
+                            </ul>
+                        </div>
+                           <div class="col s2">
+                        </div>
+                        <div class = "col s10 center-align">
+                            <span class = "montserrat underline" style="font-size:14px;">{{page+1}}</span>
+                        </div>
 
-                                </ul>
-                            </div>
+                    </div>
                         </div>
 
 
