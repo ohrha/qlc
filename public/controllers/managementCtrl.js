@@ -80,7 +80,7 @@
                         }
                         var expireTime = self.parseJwt(timelefttoken);
                         var timeStamp = Math.floor(Date.now() / 1000);// convert javascript date object into a timestamp
-                        console.log(expireTime);
+                       // console.log(expireTime);
                         ////console.log(timeStamp);
 
                         ////console.log(expireTime.exp - timeStamp);
@@ -92,7 +92,7 @@
                             $interval.cancel(interval); // Stop interval
                         }
                         else{
-                        console.log("Token is not yet expired...")
+                       // console.log("Token is not yet expired...")
                         //  showModal(2);
                         }
                     }
@@ -5487,6 +5487,7 @@
             job.index = index;
             $scope.approvingRequest = true;
             console.log(job)
+            job.approved = true;
             User.changeRequestedJobToApproved(job).then(function (data) {
                 console.log(data)
                 //$scope.requestedJobsArray = data.data.user.requestedjobs

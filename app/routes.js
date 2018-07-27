@@ -608,7 +608,11 @@ module.exports = function (app) {
             } else {
                 req.body.approved = true;
                 req.body.booked = false;
+
+                //IF APPROVED REQUEST ARRAY VALUE DOES EXIST//
+
                 if (user[0].approvednotbooked[req.body.index]) {
+                    
                     user[0].requestedjobs[req.body.index].approved = true;
                     user[0].approvednotbooked[req.body.index].approved = true;
 
@@ -646,15 +650,18 @@ module.exports = function (app) {
                         }
                     })
 
-                } else {
+                } 
+                
+              //IF IT DOESN'T EXIST (WHICH IT SHOULDN'T)//  
+                else {
                     user[0].requestedjobs[req.body.index].approved = true;
-                    //user[0].approvednotbooked[req.body.index].approved = true;
+                    user[0].approvednotbooked.push(req.body) 
 
 
                     user[0].requestedjobs[req.body.index].booked = false;
 
 
-                    User.findOneAndUpdate({ userclass: "admin" }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].requestedjobs } }, { new: true }, function (err, user) {
+                    User.findOneAndUpdate({ userclass: "admin" }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].approvednotbooked } }, { new: true }, function (err, user) {
 
                         if (err) throw err;
                         if (!user) {
