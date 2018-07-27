@@ -825,6 +825,7 @@
                             //console.log($scope.employees[i])
                             //console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.adminMessagesArray[i]) {
+                                $scope.adminMessagesArray[i].messageIndex = i
                                 $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
                                 console.log(i)
                                 console.log("firstCondiation")
@@ -842,6 +843,7 @@
                             console.log($scope.adminMessagesPaginated)
                             $scope.adminMessagesForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
+                               $scope.adminMessagesArray[i].messageIndex = i
                                 $scope.adminMessageseForPagination.push($scope.adminMessagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
@@ -966,10 +968,10 @@
             User.changeMessageToUnRead($scope.name, $scope.messageIndex).then(function (data) {
                 console.log(data)
                 $scope.pageLimit = 4;
-                $scope.messagesPaginated = [];
-                $scope.messageForPagination = [];
-                $scope.messagesArray = data.data.user.comments;
-                for (var i = 0; i <= $scope.messagesArray.length; i++) {
+                    $scope.adminMessagesPaginated = [];
+                $scope.adminMessagesForPagination = [];
+                 $scope.adminMessagesArray = data.data.user.comments;
+                for (var i = 0; i <=  $scope.adminMessagesArray.length; i++) {
 
                     var page = 0;
                     ////console.log($scope.pageLimit, i, $scope.employees.length)
@@ -978,17 +980,17 @@
                         console.log("its less")
 
                     }
-                    if (i < $scope.messagesArray.length) {
+                    if (i <  $scope.adminMessagesArray.length) {
                         console.log("yup,less")
                     }
 
-                    if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
+                    if (i < $scope.pageLimit && i <  $scope.adminMessagesArray.length) {//5
                         console.log("HELLO")
                         //console.log($scope.employees[i])
                         //console.log($scope.pageLimit, i, $scope.employees.length)
-                        if ($scope.messagesArray[i]) {
-                            $scope.messagesArray[i].messageIndex = i
-                            $scope.messageForPagination.push($scope.messagesArray[i])
+                        if ( $scope.adminMessagesArray[i]) {
+                             $scope.adminMessagesArray[i].messageIndex = i
+                            $scope.adminMessagesForPagination.push( $scope.adminMessagesArray[i])
                             console.log(i)
                             console.log("firstCondiation")
                             console.log($scope.pageArray)
@@ -998,29 +1000,30 @@
 
 
                     } else {
-                        if (!$scope.usersLoaded) {
+                        
 
                             console.log("else")
                             $scope.loadingUsers = false;
-                            $scope.messagesPaginated.push($scope.messageForPagination)
+                            $scope.adminMessagesPaginated.push($scope.adminMessagesForPagination)
                             console.log($scope.messagesPaginated)
-                            $scope.messageForPagination = [];
-                            if ($scope.messagesArray[i] !== undefined) {
-                                $scope.messagesArray[i].messageIndex = i
-                                $scope.messageForPagination.push($scope.messagesArray[i])
+                            $scope.adminMessagesForPagination = [];
+                            if ( $scope.adminMessagesArray[i] !== undefined) {
+                                 $scope.adminMessagesArray[i].messageIndex = i
+                                $scope.adminMessagesForPagination.push( $scope.adminMessagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
                             //console.log($scope.pageLimit, i, $scope.employees.length)
 
                             page++
 
-                        }
+                    
 
                     }
 
                 }
 
                 $scope.messageLoading = false;
+                $scope.messageIndex = null
                 $scope.currentIndex = null;
                 //$scope.openMessagePage2();
             })
