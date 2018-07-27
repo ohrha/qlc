@@ -2182,7 +2182,9 @@
                             </div>
 
                             <div class="col s10  railway">
-                                <p class="railway"> ( No Jobs Requested )</p>
+                    <p class="railway underline green-text text-lighten-2">(No Requested Jobs)</p>
+
+               
                             </div>
 
                         </div>
@@ -2354,7 +2356,7 @@
                 </div>
 
                 <div ng-show="!approvedJobsPaginated[0].length" class="col s12 center-align">
-                    <p class="montserrat underline text-gray"> No Approved Jobs </p>
+                    <p class="railway underline green-text text-lighten-2">(No Approved Jobs)</p>
                 </div>
                 <div ng-show="approvedJobsPaginated[0].length>0" class="col s12" ng-repeat="page in approvedJobsPaginated[page] track by $index"
                     style="border-right:1px solid #ddd;">
