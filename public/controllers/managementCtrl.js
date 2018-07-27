@@ -4848,8 +4848,7 @@
             $scope.timesheetsPageOpen = false;
             $scope.notesPageOpen = false;
             $scope.complaintsSelected = false;
-            $scope.employeesPaginated = [];
-            $scope.pageArray = []
+          
             if ($scope.employeeListOpenAdmin) {
                 // $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
@@ -4859,6 +4858,8 @@
 
             } else {
                 if (!$scope.usersLoaded) {
+                      $scope.employeesPaginated = [];
+            $scope.pageArray = []
                     $scope.loadingUsers = true;
                     $scope.employeeListOpenAdmin = true;
                     $scope.delinquentTimeSheetPageOpened = false;
@@ -4899,7 +4900,7 @@
 
 
                             } else {
-                                if (!$scope.usersLoaded) {
+                                //if (!$scope.usersLoaded) {
 
                                     console.log("else")
                                     console.log($scope.pageArray)
@@ -4917,7 +4918,7 @@
 
                                     page++
 
-                                }
+                               // }
 
                             }
 
