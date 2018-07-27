@@ -2474,7 +2474,7 @@
 
             </div>
             <div class="col s12 animated fadeIn" ng-show="adminMessagesPageOpen">
-                <br>
+     
                 <div class="col s12" style="border-right:1px solid #ddd;">
 
                     <div class="center-align">
@@ -2485,19 +2485,13 @@
                             </div>
                         </div>
                         <div class="row" ng-show="adminMessagesPaginated[0].length">
-                            <div class="col s12">
-                                <div class="row">
-                                    <div class="col s2 ">
-                                        <i ng-click="openManagementPage();" class='material-icons'>keyboard_return</i>
-
-
-
-                                    </div>
-                                    <div class="col s10 center-align" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway underline" style="font-size:17px;">Admin Messages</p>
-                                    </div>
-                                </div>
-                            </div>
+                       <div class="col s12 center-align" style="border-bottom:1px solid #ddd;">
+                        <p class="railway underline" style="font-size:17px;">
+                            <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                            Admin Messages
+                        </p>
+                    </div>
+                    <div class = "row">
+                    </div>
                             <div class="col s12" ng-repeat="page in adminMessagesPaginated[page] track by $index">
                                 <div class="row">
                                     <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
