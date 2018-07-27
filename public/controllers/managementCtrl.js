@@ -896,6 +896,7 @@
                     $scope.adminMessagesPaginated = [];
                     User.getMessages($scope.name).then(function (data) {
                         console.log(data)
+                        $scope.pageLimit = 4;
                         $scope.adminMessagesArray = data.data.messages;
                         console.log($scope.adminMessagesArray)
                         $scope.adminMessagesLoading = false;
