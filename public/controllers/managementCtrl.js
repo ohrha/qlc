@@ -2572,12 +2572,14 @@
                     }
                 }
                 console.log($scope.timeData.hoursCalculated)
-                /*User.addHoursToPayPeriod($scope.timeData).then(function (data) {
+                User.addHoursToPayPeriod($scope.timeData).then(function (data) {
                     console.log(data)
                     $scope.loadingAddDelinquentTimeSheet = false;
-                    // $scope.openDelinquentTimeSheetPage()
+                    $scope.timesheetPageOpen = false;
+                    $scope.delinquentInfo = false;
+                     $scope.openDelinquentTimeSheetPage()
                     //$scope.
-                })*/
+                })
                 console.log(hours)
                 console.log(minutes)
             }
@@ -4844,7 +4846,8 @@
             $scope.timesheetsPageOpen = false;
             $scope.notesPageOpen = false;
             $scope.complaintsSelected = false;
-            //$scope.employeesPaginated = [];
+            $scope.employeesPaginated = [];
+            $scope.pageArray = []
             if ($scope.employeeListOpenAdmin) {
                 // $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
@@ -5557,7 +5560,7 @@
                 })
                 $scope.requestIndex = null;
                 $scope.requestedJobsPageOpen = false;
-                
+
                 $scope.openRequestedJobsPage();
                 $scope.approvingRequest = false;
 
