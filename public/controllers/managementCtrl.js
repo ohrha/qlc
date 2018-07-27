@@ -2302,6 +2302,8 @@
             console.log(page)
             $scope.allFieldsMustBeInput = false
             $scope.timeData.payperiodhistoryindex = payperiodindex
+
+            
             $scope.timeData.payperiodnum = $scope.globalPayPeriodIndexATM
             $scope.timeData.currentuser = currentuser
             $scope.timeData.location = location

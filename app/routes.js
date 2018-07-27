@@ -849,7 +849,7 @@ module.exports = function (app) {
                                     if (!user) {
                                         res.json({ success: false, message: "User not found" })
                                     } else {
-                                        user[0].submittedtimesheets[req.body.submittedtimesheetsindex].disputed = true;
+                                        user[0].submittedtimesheets[req.body.currentIndex].disputed = true;
                                         User.findOneAndUpdate({ name: req.body.client }, { $set: { submittedtimesheets: user[0].submittedtimesheets } }, { new: true }, function (err, user) {
                                             if (err) throw err;
                                             if (!user) {
