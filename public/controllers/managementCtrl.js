@@ -6,7 +6,7 @@
         console.log("Management Controller Loaded")
     })
 
-    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location,$interval,$window, User, $rootScope, Location, Client, Supervisor) {
+    app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, $interval, $window, User, $rootScope, Location, Client, Supervisor) {
         $scope.username = "";
         $scope.userName = ""
         $scope.payperiod = '';
@@ -34,7 +34,7 @@
         $scope.bookedJobs = false;
         $scope.employeeHome = true;
         $scope.loadingCurrentClient = false;
-        
+
         $scope.currentClientObject = {}
         $scope.name = "";
         $scope.approvedJobsArray = [];
@@ -43,11 +43,11 @@
         $scope.disputedTimeSheetsArray = [];
         $scope.removeRequestedJobPageOpen = false;
         $scope.removingRequestedJob = false;
-        $scope.openRemoveRequestedJobPage = function(){
-                $scope.removeRequestedJobPageOpen = true;
-            
+        $scope.openRemoveRequestedJobPage = function () {
+            $scope.removeRequestedJobPageOpen = true;
+
         }
-        $scope.closeRemoveRequestedJobPage = function(){
+        $scope.closeRemoveRequestedJobPage = function () {
             $scope.removeRequestedJobPageOpen = false;
         }
         $scope.removeClientPageOpen = false;
@@ -70,7 +70,7 @@
 
             })
         }
-         $scope.checkSession = function () {
+        $scope.checkSession = function () {
 
             if (Auth.isLoggedIn()) {
 
@@ -89,20 +89,20 @@
                         }
                         var expireTime = self.parseJwt(timelefttoken);
                         var timeStamp = Math.floor(Date.now() / 1000);// convert javascript date object into a timestamp
-                       // console.log(expireTime);
+                        // console.log(expireTime);
                         ////console.log(timeStamp);
 
                         ////console.log(expireTime.exp - timeStamp);
                         var timeCheck = expireTime.exp - timeStamp;
                         // //console.log(timeCheck);
-                        if (timeCheck ==0) {
+                        if (timeCheck == 0) {
                             ////console.log("Token has expired...");
                             Auth.logout(); // Open bootstrap modal and let user decide what to do
                             $interval.cancel(interval); // Stop interval
                         }
-                        else{
-                       // console.log("Token is not yet expired...")
-                        //  showModal(2);
+                        else {
+                            // console.log("Token is not yet expired...")
+                            //  showModal(2);
                         }
                     }
                 }, 2000);
@@ -1796,9 +1796,9 @@
 
                     $rootScope.payPeriod = 2;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
-  $scope.newPPObject = {}
+                    $scope.newPPObject = {}
                     $scope.newDeliquentObject = {}
-                     $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
+                    $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
 
 
                     if ($scope.userPayPeriod !== $rootScope.payPeriod) {
@@ -2061,10 +2061,10 @@
                 console.log(data)
                 $scope.dataMetrics[0] = data.data.user.jobcount
                 $scope.dataMetrics[1] = data.data.user.reqjobcount
-                  $scope.dataMetrics = [
-            [5, 2, 4, 81, 89, 55, 10],
-            [5, 2, 4, 19, 86, 27, 90]
-        ];
+                $scope.dataMetrics = [
+                    [5, 2, 4, 81, 89, 55, 10],
+                    [5, 2, 4, 19, 86, 27, 90]
+                ];
             })
             //}
 
@@ -2303,7 +2303,7 @@
             $scope.allFieldsMustBeInput = false
             $scope.timeData.payperiodhistoryindex = payperiodindex
 
-            
+
             $scope.timeData.payperiodnum = $scope.globalPayPeriodIndexATM
             $scope.timeData.currentuser = currentuser
             $scope.timeData.location = location
@@ -2424,16 +2424,16 @@
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
-                        if(hours == 0){
+                        if (hours == 0) {
                             hours = 24
 
                         }
-                        
+
                         $scope.timeData.hoursCalculated = hours;
                     }
-                    
+
                     if (minutes == 30) {
-                        
+
                         hours = hours + .5
                         if (Math.sign(hours) == -1) {
                             console.log("negative")
@@ -2447,7 +2447,7 @@
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
-                          if(hours == 0){
+                        if (hours == 0) {
                             hours = 24
 
                         }
@@ -2467,7 +2467,7 @@
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
-                          if(hours == 0){
+                        if (hours == 0) {
                             hours = 24
 
                         }
@@ -2488,7 +2488,7 @@
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
-                        if(hours ==0){
+                        if (hours == 0) {
                             hours = 24
 
                         }
@@ -2514,10 +2514,10 @@
                                 console.log(hours)
                                 //hours= (hours-1)+.5
                             }
-                               if(hours ==0){
-                            hours = 24
+                            if (hours == 0) {
+                                hours = 24
 
-                        }
+                            }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
@@ -2538,10 +2538,10 @@
                                 console.log(hours)
                                 //hours= (hours-1)+.5
                             }
-                               if(hours ==0){
-                            hours = 24
+                            if (hours == 0) {
+                                hours = 24
 
-                        }
+                            }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
@@ -2562,14 +2562,14 @@
                                 console.log(hours)
                                 //hours= (hours-1)+.5
                             }
-                               if(hours ==0){
-                            hours = 24
+                            if (hours == 0) {
+                                hours = 24
 
-                        }
+                            }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
-                        
+
 
                     }
                 }
@@ -2579,7 +2579,7 @@
                     $scope.loadingAddDelinquentTimeSheet = false;
                     $scope.timesheetPageOpen = false;
                     $scope.delinquentInfo = false;
-                     $scope.openDelinquentTimeSheetPage()
+                    $scope.openDelinquentTimeSheetPage()
                     //$scope.
                 })
                 console.log(hours)
@@ -3927,17 +3927,17 @@
 
                     for (var s = 0; s < $scope.delinquentTimeSheetArray[z].length; s++) {
 
-                        if($scope.delinquentTimeSheetArray[z][d][s]){
- $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
-                        console.log("DELINQUENT TIME SHEET ARRAY", $scope.delinquentTimeSheetArray[z][d][s])
+                        if ($scope.delinquentTimeSheetArray[z][d][s]) {
+                            $scope.delinquentTimeSheetsArray.push($scope.delinquentTimeSheetArray[z][d][s])
+                            console.log("DELINQUENT TIME SHEET ARRAY", $scope.delinquentTimeSheetArray[z][d][s])
                         }
 
-                       
+
                     }
                 }
 
             }
-           $scope.adminMenuLoading = false;
+            $scope.adminMenuLoading = false;
         })
 
 
@@ -3979,6 +3979,48 @@
             }
 
         }
+        $scope.firstPageApprovedJobs = function () {
+            $scope.page = 0;
+        }
+        $scope.lastPageApprovedJobs = function () {
+
+            $scope.page = $scope.approvedJobsPaginated.length - 1;
+        }
+        $scope.changePageApprovedJobs = function () {
+
+            if ($scope.page < $scope.approvedJobsPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+        }
+        $scope.decreasePageApprovedJobs = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+           $scope.firstPageRequestedJobs = function () {
+            $scope.page = 0;
+        }
+        $scope.lastPageRequestedJobs = function () {
+
+            $scope.page = $scope.requestedJobsPaginated.length - 1;
+        }
+        $scope.changePageRequestedJobs = function () {
+
+            if ($scope.page < $scope.requestedJobsPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+        }
+        $scope.decreasePageRequestedJobs = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
         $scope.specificPage = function (page) {
             $scope.page = page;
         }
@@ -3986,9 +4028,11 @@
 
             $scope.page = $scope.employeesPaginated.length - 1;
         }
+
         $scope.firstPage = function () {
             $scope.page = 0;
         }
+
         $scope.searchData = {
             searchInput: "",
         }
@@ -4535,24 +4579,24 @@
             console.log("Clicked")
             if (!$scope.delinquentTimeSheetPageOpened) {
                 $scope.fadeIn = false;
-                $timeout(function(){
- console.log($scope.delinquentTimeSheetsArray)
-                $scope.delinquentTimeSheetSelected = true;
-                $scope.adminHome = false;
-                $scope.disputesSelected = false;
-                $scope.timesheetsSelected = false;
-                $scope.jobsSelected = false;
-                $scope.complaintsSelected = false;
-                $scope.delinquentTimeSheetPageOpened = true;
-                console.log($scope.delinquentTimeSheetPageOpened)
-                $scope.userDetailsPageOpened = false;
-                $scope.bookedJobsPageOpened = false;
-                $scope.complaintsPageOpened = false;
-                $scope.commentsPageOpened = false;
+                $timeout(function () {
+                    console.log($scope.delinquentTimeSheetsArray)
+                    $scope.delinquentTimeSheetSelected = true;
+                    $scope.adminHome = false;
+                    $scope.disputesSelected = false;
+                    $scope.timesheetsSelected = false;
+                    $scope.jobsSelected = false;
+                    $scope.complaintsSelected = false;
+                    $scope.delinquentTimeSheetPageOpened = true;
+                    console.log($scope.delinquentTimeSheetPageOpened)
+                    $scope.userDetailsPageOpened = false;
+                    $scope.bookedJobsPageOpened = false;
+                    $scope.complaintsPageOpened = false;
+                    $scope.commentsPageOpened = false;
 
-                $scope.delinquentTimeSheetsForPagination = [];
-                $scope.delinquentTimeSheetsPaginated = [];
-                $scope.pageLimit = 4
+                    $scope.delinquentTimeSheetsForPagination = [];
+                    $scope.delinquentTimeSheetsPaginated = [];
+                    $scope.pageLimit = 4
                     for (var i = 0; i <= $scope.delinquentTimeSheetsArray.length; i++) {
 
                         var page = 0;
@@ -4603,9 +4647,9 @@
                         }
 
                     }
-                },500)
-               
-             
+                }, 500)
+
+
             } else {
                 $scope.delinquentTimeSheetPageOpened = false;
             }
@@ -4848,7 +4892,7 @@
             $scope.timesheetsPageOpen = false;
             $scope.notesPageOpen = false;
             $scope.complaintsSelected = false;
-          
+
             if ($scope.employeeListOpenAdmin) {
                 // $scope.employeeListOpen = false;
                 $scope.userDetailsPageOpened = false;
@@ -4858,8 +4902,8 @@
 
             } else {
                 if (!$scope.usersLoaded) {
-                      $scope.employeesPaginated = [];
-            $scope.pageArray = []
+                    $scope.employeesPaginated = [];
+                    $scope.pageArray = []
                     $scope.loadingUsers = true;
                     $scope.employeeListOpenAdmin = true;
                     $scope.delinquentTimeSheetPageOpened = false;
@@ -4902,23 +4946,23 @@
                             } else {
                                 //if (!$scope.usersLoaded) {
 
-                                    console.log("else")
-                                    console.log($scope.pageArray)
+                                console.log("else")
+                                console.log($scope.pageArray)
 
-                                    $scope.loadingUsers = false;
-                                    $scope.employeesPaginated.push($scope.pageArray)
-                                    console.log($scope.employeesPaginated)
-                                    $scope.pageArray = [];
-                                    if ($scope.employees[i] !== undefined) {
-                                        $scope.pageArray.push($scope.employees[i])
-                                    }
-                                    //console.log(pageLimit)
-                                    $scope.pageLimit = $scope.pageLimit + 4;
-                                    console.log($scope.pageLimit, i, $scope.employees.length)
+                                $scope.loadingUsers = false;
+                                $scope.employeesPaginated.push($scope.pageArray)
+                                console.log($scope.employeesPaginated)
+                                $scope.pageArray = [];
+                                if ($scope.employees[i] !== undefined) {
+                                    $scope.pageArray.push($scope.employees[i])
+                                }
+                                //console.log(pageLimit)
+                                $scope.pageLimit = $scope.pageLimit + 4;
+                                console.log($scope.pageLimit, i, $scope.employees.length)
 
-                                    page++
+                                page++
 
-                               // }
+                                // }
 
                             }
 
