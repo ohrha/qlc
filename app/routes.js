@@ -509,9 +509,12 @@ module.exports = function (app) {
             if (!user) {
                 res.json({ success: false, message: "User not found" })
             } else {
-                user[0].requestedjobs[req.body.index].approved = false;
-                if (user[0].approvednotbooked[req.body.index]) {
-                    user[0].approvednotbooked[req.body.index].approved = false;
+                user[0].approvednotbooked.splice(req.body.approvedjobindex,1)
+                user[0].requestedjobs.push(req.body)
+            
+              
+              
+                   // user[0].approvednotbooked[req.body.index].approved = false;
                     User.findOneAndUpdate({ userclass: "admin" }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].approvednotbooked } }, { new: true }, function (err, user) {
 
                         if (err) throw err;
@@ -536,32 +539,9 @@ module.exports = function (app) {
                             })
                         }
                     })
-                } else {
-                    User.findOneAndUpdate({ userclass: "admin" }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].requestedjobs } }, { new: true }, function (err, user) {
-
-                        if (err) throw err;
-                        if (!user) {
-                            res.json({ success: false, message: "User not found.." })
-                        } else {
-                            User.find({ name: req.body.client }, function (err, user) {
-                                if (err) throw err;
-                                if (!user) {
-                                    res.json({ success: false, message: "User found.." })
-                                } else {
-                                    user[0].requestedjobs[req.body.index].approved = false;
-                                    User.findOneAndUpdate({ name: req.body.client }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].requestedjobs } }, { new: true }, function (err, user) {
-                                        if (err) throw err;
-                                        if (!user) {
-                                            res.json({ success: false, message: "User not found.." })
-                                        } else {
-                                            res.json({ success: true, message: "User found and updated...", user: user })
-                                        }
-                                    })
-                                }
-                            })
-                        }
-                    })
-                }
+               
+                   
+                
 
 
             }
@@ -611,13 +591,16 @@ module.exports = function (app) {
 
                 //IF APPROVED REQUEST ARRAY VALUE DOES EXIST//
 
-                if (user[0].approvednotbooked[req.body.index]) {
-                    
-                    user[0].requestedjobs[req.body.index].approved = true;
-                    user[0].approvednotbooked[req.body.index].approved = true;
+                user[0].requestedjobs.splice(req.body.index,1)
+                req.body.requestedjoblocation = req.body.index
+                user[0].approvednotbooked.push(req.body)
 
 
-                    user[0].requestedjobs[req.body.index].booked = false;
+             
+                    console.log("approvednotbooked index exists")
+                   
+
+                   // user[0].requestedjobs[req.body.index].booked = false;
 
 
                     User.findOneAndUpdate({ userclass: "admin" }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].approvednotbooked } }, { new: true }, function (err, user) {
@@ -650,47 +633,10 @@ module.exports = function (app) {
                         }
                     })
 
-                } 
+                
                 
               //IF IT DOESN'T EXIST (WHICH IT SHOULDN'T)//  
-                else {
-                    user[0].requestedjobs[req.body.index].approved = true;
-                    user[0].approvednotbooked.push(req.body) 
-
-
-                    user[0].requestedjobs[req.body.index].booked = false;
-
-
-                    User.findOneAndUpdate({ userclass: "admin" }, { $set: { requestedjobs: user[0].requestedjobs, approvednotbooked: user[0].approvednotbooked } }, { new: true }, function (err, user) {
-
-                        if (err) throw err;
-                        if (!user) {
-                            res.json({ success: false, message: "User not found.." })
-                        } else {
-                            User.find({ name: req.body.client }, function (err, user) {
-                                if (err) throw err;
-                                if (!user) {
-                                    res.json({ success: false, message: "User found.." })
-                                } else {
-                                    user[0].requestedjobs[req.body.index].approved = true;
-                                    User.findOneAndUpdate({ name: req.body.client }, { $set: { requestedjobs: user[0].requestedjobs } }, { new: true }, function (err, user) {
-
-                                        if (err) throw err;
-                                        if (!user) {
-                                            res.json({ success: false, message: "User not found" })
-                                        } else {
-
-                                            res.json({ success: true, message: "User found and upated...", user: user })
-                                        }
-                                    })
-
-
-
-                                }
-                            })
-                        }
-                    })
-                }
+            
 
 
             }

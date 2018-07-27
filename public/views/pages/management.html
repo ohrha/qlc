@@ -2145,6 +2145,14 @@
                 </div>
 
             </div>
+
+
+
+
+
+
+
+
             <div class="col s12 animated fadeIn" ng-show="requestedJobsPageOpen">
                 <div class="row">
 
@@ -2185,7 +2193,7 @@
 
                             <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                                 <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                    <p ng-click="openIndividualRequestedJob($index)" class="montserrat underline" style="font-size:17px;">{{$index+1}}.</p>
+                                    <p ng-click="openIndividualRequestedJob($index)" class="montserrat underline" style="font-size:14px;">{{$index+1}}.</p>
                                 </a>
                             </div>
                             <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
@@ -2196,57 +2204,82 @@
                             </div>
                             <div ng-show="individualRequestedJobOpen && requestIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
                                 class="col s10 railway" style="border-bottom:1px solid #ddd;">
-                                <p class="railway"> {{page.location}}</p>
-                                <p class="railway"> {{page.supervisor}}</p>
-                                <p class="railway"> {{page.hours}}</p>
-                                <p class="railway"> {{page.descriptionofwork}}</p>
-                                <p class="railway"> {{page.numberofworkers}}</p>
-                                <p class="railway"> {{page.ppe}}</p>
+                                <span class = "montserrat underline" style="font-size:15px;">Client</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.client}}</p>
+ <span class = "montserrat underline" style="font-size:15px;">Supervisor</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.supervisor}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Location</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.location}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Requested Hours</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.hours}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Description</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.descriptionofwork}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Employees Requested</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.numberofworkers}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">PPE?</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.ppe}}</p>
 
 
-                                <div ng-show="!page.approved">
+                                <div ng-show="!page.approved" style="border:1px solid grey; box-shadow:2px 2px 2px grey">
+                                    <div ng-show="!removeRequestedJobPageOpen && !approvingRequest">
                                     <span class="railway underline">Status</span>
                                     <p class="railway red-text  text-lighten-3"> Not Yet Approved</p>
-                                    <div class="row" ng-show="approvingRequest">
+                                    </div>
+                                  
+                                  
+                                      <div class="row" ng-show="approvingRequest">
                                         <div class="col s12 center-align">
                                             <p class="railway animated flash infinite green-text text-lighten-3"> APPROVING JOB </p>
                                         </div>
                                     </div>
-                                    <div class="row" ng-show="disApprovingRequest">
+                                    <div class="row" ng-show="!approvingRequest && !disApprovingRequest && !removeRequestedJobPageOpen" >
                                         <div class="col s12 center-align">
-                                            <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
-                                        </div>
-                                    </div>
-                                    <div class="row" ng-show="!approvingRequest && !disApprovingRequest" style="border:1px solid grey; box-shadow:2px 2px 2px grey">
-                                        <div class="col s12 center-align">
-                                            <p class="railway"> Do You Approve Of This Request?</p>
+                                            <p class="montserrat" style="text-decoration:underline;"> Do You Approve Of This Request?</p>
                                         </div>
                                         <div class="col s6 center-align">
                                             <i ng-click="approveJob(page,$index);" class="material-icons green-text text-lighten-3">check_circle</i>
+                                            <br>
                                         </div>
                                         <div class="col s6 center-align">
                                             <i ng-click="disApproveJob(page,$index);" class="material-icons red-text text-lighten-3">cancel</i>
+                                            <br>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="row animated fadeIn" ng-show="!approvingRequest && !disApprovingRequest && removeRequestedJobPageOpen && !removingRequestedJob" >
+                                        <div class="col s12 center-align">
+                                            <p class="montserrat red-text text-lighten-2" style="text-decoration:underline;"> Are You Sure You Want To Remove This Request?</p>
+                                             <span class="montserrat" style="color:grey;" > (This Cannot Be Undone)</span>
 
                                         </div>
+                                        <div class="col s6 center-align">
+                                            <i ng-click="approveJob(page,$index);" class="material-icons red-text text-lighten-3">check_circle</i>
+                                            <br>
+                                        </div>
+                                        <div class="col s6 center-align">
+                                            <i ng-click="closeRemoveRequestedJobPage();" class="material-icons green-text text-lighten-3">cancel</i>
+                                            <br>
+                                        </div>
+                                      
                                     </div>
 
-                                    <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                    <i ng-click="openRemoveRequestedJobPage($index)"class="material-icons red-text text-lighten-3"> delete</i>
                                 </div>
-                                <div class="row" ng-show="disApprovingRequest">
-                                    <div class="col s12 center-align">
-                                        <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
-                                    </div>
-                                </div>
+
+
+
+
                                 <div ng-show="page.approved &&!disApprovingRequest ">
-                                    <span class="railway underline">Status</span>
-
-                                    <p class="railway green-text text-lighten-3"> Job Has Been Approved</p>
-                                    <span ng-show="page.booked" class="railway black-text text-lighten-3"> (Job Has Been Booked)</span>
-                                    <p ng-click="disApproveJob(page,$index)" class="railway black-text text-lighten-3 " style="text-decoration:underline;"> undo</p>
-
-                                    <span ng-show="!page.booked" class="railway red-text text-lighten-3"> (Not Yet Booked)</span>
-                                    <br>
-                                    <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                    <div class = "row">
+                                        </div>
+                                      <div class="row" ng-show="approvingRequest"style="border:1px solid grey; box-shadow:2px 2px 2px grey">
+                                        <div class="col s12 center-align">
+                                            <p class="railway animated flash infinite green-text text-lighten-3"> APPROVING JOB </p>
+                                        </div>
+                                    </div>
+                                      <div class = "row">
+                                        </div>
+                                 
                                 </div>
                                 <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
 
@@ -2278,6 +2311,17 @@
 
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
 
             <div class="col s12 animated fadeIn" ng-show="approvedJobsPageOpen">
                 <div class="row">
@@ -2321,56 +2365,53 @@
                         <div ng-show="individualApprovedJobOpen && approvedIndex == $index && !removeRequestedJobLoading && !removeRequestedJobSuccessful"
                             class="col s10 railway" style="border-bottom:1px solid #ddd; border-left:1px solid #ddd;">
 
-                            <p class="railway"> {{page.location}}</p>
-                            <p class="railway"> {{page.supervisor}}</p>
-                            <p class="railway"> {{page.hours}}</p>
-                            <p class="railway"> {{page.descriptionofwork}}</p>
-                            <p class="railway"> {{page.numberofworkers}}</p>
-                            <p class="railway"> {{page.ppe}}</p>
+                          <span class = "montserrat underline" style="font-size:15px;">Client</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.client}}</p>
+ <span class = "montserrat underline" style="font-size:15px;">Supervisor</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.supervisor}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Location</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.location}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Requested Hours</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.hours}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Description</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.descriptionofwork}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">Employees Requested</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.numberofworkers}}</p>
+                                 <span class = "montserrat underline" style="font-size:15px;">PPE?</span>
+                                <p class="railway grey-text " style="font-size:14px;" > {{page.ppe}}</p>
 
 
                             <div ng-show="!page.approved">
-                                <span class="railway underline">Status</span>
-                                <p class="railway red-text  text-lighten-3"> Not Yet Approved</p>
-                                <div class="row" ng-show="approvingRequest">
+                              
+                                <div class="row" ng-show="disApprovingRequest"style="border:1px solid grey;box-shadow:2px 2px 2px gray;">
+                                    <div class = "row">
+                                        </div>
                                     <div class="col s12 center-align">
-                                        <p class="railway animated flash infinite green-text text-lighten-3"> APPROVING JOB </p>
+                                        <p class="railway animated flash infinite green-text text-lighten-3"> DISAPPROVING JOB </p>
                                     </div>
+                                    <div class = "row">
+                                        </div>
                                 </div>
-                                <div class="row" ng-show="disApprovingRequest">
-                                    <div class="col s12 center-align">
-                                        <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
-                                    </div>
-                                </div>
-                                <div class="row" ng-show="!approvingRequest && !disApprovingRequest">
-                                    <div class="col s12 center-align">
-                                        <p class="railway"> Do You Approve Of This Request?</p>
-                                    </div>
-                                    <div class="col s6 center-align">
-                                        <i ng-click="approveJob(page,$index);" class="material-icons green-text text-lighten-3">check_circle</i>
-                                    </div>
-                                    <div class="col s6 center-align">
-                                        <i ng-click="disApproveJob(page,$index);" class="material-icons red-text text-lighten-3">cancel</i>
-
-                                    </div>
-                                </div>
-
-                                <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                                  
+                         
                             </div>
-                            <div class="row" ng-show="disApprovingRequest">
-                                <div class="col s12 center-align">
-                                    <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
-                                </div>
-                            </div>
+                         
                             <div ng-show="page.approved">
-                                <span class="railway underline">Status</span>
+                                
+                              
+                                <div ng-click="disApproveJob(page,$index)" class="row" style="border:1px solid gray;;box-shadow:2px 2px 2px gray;">
+                                      <span class="railway underline">Status</span>
                                 <p class="railway green-text text-lighten-3"> Job Has Been Set To Approved</p>
-                                <div ng-click="disApproveJob(page,$index)" class="row" style="box-shadow:2px 2px 2px gray;">
-                                    <div class="col s12" style="border:1px solid gray;">
+                                    <div class="col s12"ng-show="!disApprovingRequest">
                                         <p class="railway underline"> Set To Disapproved</p>
                                         <br>
-                                        <i class="material-icons yellow-text" style="font-size:16Fpx;">thumb_down</i>
+                                        <i class="material-icons red-text text-lighten-2" >thumb_down</i>
                                     </div>
+                                      
+                                <div class="col s12 center-align"ng-show="disApprovingRequest">
+                                    <p class="railway animated flash infinite green-text text-lighten-3"> UNDOING APPROVAL </p>
+                                
+                            </div>
                                 </div>
                                 <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
                             </div>
@@ -3826,7 +3867,7 @@
 
                             <div class=" col s2 animated fadeIn railway truncate" style="border-right:1px solid #ddd;">
                                 <a style="color:black;" href="#" ng-click="openLocationSupervisor($index)">
-                                    <p ng-click="openIndividualRequestedJob($index)" class="railway underline" style="font-size:17px;">{{$index+1}}.{{page.client}}</p>
+                                    <p ng-click="openIndividualRequestedJob($index)" class="montserrat underline" style="font-size:14px;">{{$index+1}}.{{page.client}}</p>
                                 </a>
                             </div>
                             <div class="col s10" ng-show="individualRequestedJobOpen &&requestIndex == $index && !removeRequestedJobLoading && removeRequestedJobSuccessful ">
@@ -3879,6 +3920,7 @@
                                     </div>
                                 </div>
                                 <div ng-show="page.approved &&!disApprovingRequest ">
+                                 
                                     <span class="railway underline">Status</span>
 
                                     <p class="railway green-text text-lighten-3"> Job Has Been Approved</p>
@@ -3888,6 +3930,7 @@
                                     <span ng-show="!page.booked" class="railway red-text text-lighten-3"> (Not Yet Booked)</span>
                                     <br>
                                     <i ng-click="removeRequestedJob($index)" class="material-icons red-text text-lighten-3"> delete</i>
+                               
                                 </div>
                                 <div ng-show="individualRequestedJobOpen && requestIndex !== $index" class="col s10  railway">
 

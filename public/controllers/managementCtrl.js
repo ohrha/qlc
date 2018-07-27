@@ -41,6 +41,15 @@
         $scope.delinquentTimeSheetsArray = []
         $scope.requestedJobsArray = []
         $scope.disputedTimeSheetsArray = [];
+        $scope.removeRequestedJobPageOpen = false;
+        $scope.removingRequestedJob = false;
+        $scope.openRemoveRequestedJobPage = function(){
+                $scope.removeRequestedJobPageOpen = true;
+            
+        }
+        $scope.closeRemoveRequestedJobPage = function(){
+            $scope.removeRequestedJobPageOpen = false;
+        }
         $scope.removeClientPageOpen = false;
         $scope.clientHomePage = true
         $scope.loadingRemoveClient = false;
@@ -5547,10 +5556,10 @@
 
                 })
                 $scope.requestIndex = null;
-                $scope.approvingRequest = false;
                 $scope.requestedJobsPageOpen = false;
+                
                 $scope.openRequestedJobsPage();
-
+                $scope.approvingRequest = false;
 
             })
 
@@ -5558,6 +5567,8 @@
         $scope.disApproveJob = function (job, index) {
             //job.approved = true;
             job.index = index;
+            job.approvedjobindex = index;
+            job.approved = false;
             $scope.disApprovingRequest = true;
             console.log(job)
             User.changeRequestedJobToDisApproved(job).then(function (data) {
@@ -5627,7 +5638,7 @@
 
         }
         $scope.openIndividualRequestedJob = function (index) {
-
+            $scope.removeRequestedJobPageOpen = false;
             if ($scope.individualRequestedJobOpen && index !== $scope.requestIndex
             ) {
                 // $scope.individualPayPeriodOpen = false;
