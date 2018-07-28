@@ -5283,6 +5283,7 @@
 
             $scope.clientsPage = false;
             $scope.payslipPageOpen = false;
+            $scope.curPeriod = null;
 
 
         }

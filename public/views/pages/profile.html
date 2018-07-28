@@ -892,7 +892,7 @@
                         </div>
                         <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index " class="col s12 hide-on-small-only" style="border-bottom:1px solid black;">
                         </div>
-                        <div class="col s12" ng-repeat="page in usersPaginated[page] track by $index">
+                        <div class="col s12" ng-repeat="page in usersPaginated[page]| filter:{userclass:'employee'} track by $index">
                             <div class="row">
                                 <br>
 
@@ -1058,10 +1058,10 @@
                         <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
                             <div class="row">
                                 <div ng-show="!page.read" class="col s3 " style="border-left:1px solid #ddd;">
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons "  >email</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons "style="font-size:17px;"  >email</i></a>
                                 </div>
                                 <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;">
-                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons" >drafts</i></a>
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons" style="font-size:17px;" >drafts</i></a>
                                 </div>
                                 <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;'>
                                     <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#"></a></p>
