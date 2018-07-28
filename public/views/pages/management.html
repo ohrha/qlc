@@ -1020,44 +1020,54 @@
                                                     </div>
                                                     
                                              
-                                                                                                      <div class="input-field col s12">
-    <select ng-change="getLocations()" ng-model="selectedItem.name" name="name"  id="sex" ng-model="jobData.client" name="client" required>
-      <option value="" disabled selected>Select Client</option>
-      				<option ng-repeat="client in clients"value="{{client}}">{{client}}</option>
+                                                                                                       <div class="col s12">
+                                                        <label for="Sex">Client*</label>
+                                                        <select ng-change="getLocations()" ng-model="selectedItem.name" name="name" class="error browser-default" id="sex" ng-model="jobData.client"
+                                                            name="client" required>
+                                				<option value="" disabled selected>Client</option>
+                                  				<option ng-repeat="client in clients"value="{{client}}">{{client}}</option>
 
-    </select>
-    <label>Client</label>
-  </div>
+                                              
+
+                                			</select>
+
+                                                    </div>
                                                     <div class="col s12" ng-show="loadingLists">
                                                         <p class="railway animated flash infinite text-green text-lighten-3"> LOADING</p>
                                                     </div>
 
 
 
-                                      
-                                                 <div ng-show="supervisorsListOn && !loadingLists">
-  <div class="input-field col s12">
-    <select id="sex" ng-model="jobData.supervisor" name="supervisor" required>
-      <option value="" disabled selected>Select Supervisor</option>
+                                                    <div class="col s12">
+                                                        <div ng-show="supervisorsListOn && !loadingLists">
+                                                            <label for="Sex">Supervisor *</label>
+
+                                                            <select class="error browser-default" id="sex" ng-model="jobData.supervisor" name="supervisor" required>
+                                				<option value="" disabled selected>Supervisor</option>
                                 				<option ng-repeat="supervisor in supervisors"value="{{supervisor.name}}">{{supervisor.name}}</option>
 
-    </select>
-    <label>Supervisor</label>
-  </div>
+
+                                			</select>
+                                                        </div>
+
+
+
                                                     </div>
 
-                                                  
+                                                    <div class="col s12">
+                                                        <div ng-show="locationsListOn &&!loadingLists">
+                                                            <label for="Sex">Location *</label>
 
-                                          
-                                                    <div ng-show="locationsListOn &&!loadingLists">
-  <div class="input-field col s12">
-    <select id="sex" ng-model="jobData.location" name="location" required>
-      <option value="" disabled selected>Select Location</option>
+                                                            <select class="error browser-default" id="sex" ng-model="jobData.location" name="location" required>
+                                				<option value="" disabled selected>Location</option>
                                  				<option ng-repeat="location in locations"value="{{location.name}}">{{location.name}}</option>
 
-    </select>
-    <label>Location</label>
-  </div>
+
+                                			</select>
+
+
+
+                                                        </div>
                                                     </div>
 
                                                     <div class="col s12 center-align">

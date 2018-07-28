@@ -2426,6 +2426,9 @@
                 var hoursDif = 0;
                 console.log(hours)
                 console.log(minutes)
+
+
+
                 if (minutes == 0 && $scope.timeData.lunch == "Yes") {
                     minutes = 30
 
@@ -3115,17 +3118,7 @@
                $scope.clients = data.data.clients;
                console.log($scope.clients)
            })*/
-        Location.getLocations().then(function (data) {
-
-            console.log(data)
-            $scope.locations = data.data.location;
-        })
-        Supervisor.getSupervisors().then(function (data) {
-
-            console.log(data)
-            $scope.supervisors = data.data.supervisors;
-            console.log($scope.supervisors[0]._id)
-        })
+ 
 
         $scope.openGeneratePaySlipPage = function () {
             $scope.generatePaySlipPageOpen = true;
@@ -4294,6 +4287,7 @@
 
         $scope.getLocations = function (name) {
             $scope.supervisorListLoading = true;
+            $scope.locationsListLoading = true;
             $scope.loadingLists = true;
 
             /*User.getLocations(name).then(function(data){
@@ -4304,16 +4298,25 @@
             $scope.jobData.client = $scope.selectedItem.name
             $
             User.getSupervisors($scope.selectedItem.name).then(function (data) {
-                $scope.locationsListLoading = true;
-                $scope.supervisorListLoading = false;
+                
+                
 
                 $scope.supervisors = data.data.supervisors
-                $scope.supervisorsListOn = true;
+                 $scope.supervisorsListOn = true;
+               
+                console.log($scope.supervisors)
+               
+                console.log(data)
                 User.getLocations($scope.selectedItem.name).then(function (data) {
                     $scope.locationsListLoading = false;
+                    $scope.supervisorListLoading = false;
                     $scope.loadingLists = false;
-                    $scope.locations = data.data.locations;
-                    $scope.locationsListOn = true;
+                                   $scope.locations = data.data.locations
+
+                     $scope.locationsListOn = true;
+                   
+                               $('select').material_select();
+
 
                     console.log(data)
                 })
