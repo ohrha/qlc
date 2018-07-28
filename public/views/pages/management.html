@@ -1119,7 +1119,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div ng-show="job.length<2" class="row">
+                                                <div ng-show="job.length<2" class="col s12">
                                                     <div class="col s6">
                                                         <div class="left-align">
                                                             <i style="color:grey; opacity:.8;" class="material-icons">chevron_left</i>
@@ -1400,12 +1400,13 @@
 
                                                     <div ng-show="!addHoursPageOpen" class="row animated fadeIn">
                                                         <div class="col s12">
-                                                            <span class="railway underline"> Client</span>
-                                                            <p class="railway  "> {{jobDetails[openJob][currentJobInDate].client}}</p>
-                                                            <span class="railway  underline">Supervisor</span>
-                                                            <p class="railway   "> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
-                                                            <span class="railway  underline">Location</span>
-                                                            <p class="railway  "> {{jobDetails[openJob][currentJobInDate].location}}</p>
+                                                                     <span class="montserrat underline" style="font-size:15px;" class="railway  underline">Client</span>
+
+                                                            <p class="railway grey-text " style="font-size:14px; "> {{jobDetails[openJob][currentJobInDate].client}}</p>
+                                                            <span class="montserrat underline" style="font-size:15px;">Supervisor</span>
+                                                            <p class="railway grey-text " style="font-size:14px;"> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
+                                                            <span class="montserrat underline" style="font-size:15px;">Location</span>
+                                                            <p class="railway grey-text " style="font-size:14px;"> {{jobDetails[openJob][currentJobInDate].location}}</p>
 
 
                                                         </div>
@@ -2825,15 +2826,16 @@
                                                     <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && !entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeJobInDate(history)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i></a>
 
                                                 </div>
-                                                <span class="montserrat underline"> Location</span>
-                                                <p class="railway">{{entry[currentJobInDate].location}}</p>
-                                                <span class="montserrat underline"> Client</span>
-                                                <p class="railway">{{entry[currentJobInDate].client}}</p>
-                                                <span class="railway underline"> Supervisor</span>
-                                                <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
-                                                <span class="montserrat underline"> Time In/Out</span>
+                                                
+                                                <span class="montserrat underline" style="font-size:15px;"> Location</span>
+                                                <p class="railway" style="font-size:14px; color:grey;">{{entry[currentJobInDate].location}}</p>
+                                                <span class="montserrat underline" style="font-size:15px;"> Client</span>
+                                                <p class="railway"style="font-size:14px; color:grey;">{{entry[currentJobInDate].client}}</p>
+                                                <span  class="montserrat underline" style="font-size:15px;"> Supervisor</span>
+                                                <p class="railway" style="text-decoration:underline;"style="font-size:14px; color:grey;">{{entry[currentJobInDate].supervisor}}</p>
+                                                <span  class="montserrat underline" style="font-size:15px;"> Time In/Out</span>
 
-                                                <p class="railway">{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
+                                                <p style="font-size:14px; color:grey;" class="railway">{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
                                                 <span class="montserrat underline"> Hours</span>
 
                                                 <p class="railway">{{entry[currentJobInDate].hoursCalculated}} hrs</p>
