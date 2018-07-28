@@ -2224,10 +2224,10 @@
 
                                                 <p class="railway grey-text " style="font-size:14px;"> {{entry[currentJobInDate].hoursCalculated}}</p>
                                             </div>
-                                            <div class ="col s12"ng-show="entry[currentJobInDate].disputed && !entry[currentJobInDate].paid" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
-                                                <p class="montserrat "><span class="blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span>                                                    Has Raised An Issue With This Time Sheet</p>
+                                            <div class ="row"ng-show="entry[currentJobInDate].disputed && !entry[currentJobInDate].paid" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
+                                                <p class="montserrat "><span class="blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span> Has Raised An Issue With This Time Sheet</p>
 
-                                                <div class="row">
+                                                <div class="row hide-on-small-only">
                                                     <div class="col s5 center-align">
                                                         <p ng-click="openMessageAdminPage(entry[currentJobInDate].date)" class="montserrat underline"> Message Hannah </p>
                                                     </div>
@@ -2235,6 +2235,21 @@
                                                         <p class="montserrat">or</p>
                                                     </div>
                                                     <div class="col s5 center-align">
+                                                        <a href="#" style="color:black;">
+                                                            <p ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">
+                                                            EDIT TIMESHEET </p>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                                                  <div class="row show-on-small">
+                                                    <div class="col s12 center-align">
+                                                        <p ng-click="openMessageAdminPage(entry[currentJobInDate].date)" class="montserrat underline"> Message Hannah </p>
+                                                    </div>
+                                                    <div class="col s12 center-align">
+                                                        <p class="montserrat">or</p>
+                                                    </div>
+                                                    <div class="col s12 center-align">
                                                         <a href="#" style="color:black;">
                                                             <p ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">
                                                             EDIT TIMESHEET </p>
