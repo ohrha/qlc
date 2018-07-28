@@ -4576,8 +4576,12 @@ $scope.currentIndex = null;
             doc.text("Tax Code:", 10, 80)
             doc.text("M", 30, 80)
             doc.setFontSize(13)
-
+doc.setFillColor(0) 
+doc.setDrawColor(0) 
+doc.setDrawColor(255,0,0);
+doc.rect(0, 85,150, 10);
             doc.text("Taxable Earnings", 10, 90)
+           
             doc.text("Rate", 120, 90)
 
             doc.text("Hours", 150, 90)
@@ -4603,7 +4607,7 @@ $scope.currentIndex = null;
 
             doc.addImage($scope.qlhLogo, 'JPG', 180, 15, 15, 15);
 
-            doc.save('a4.pdf')
+            doc.save($scope.name+' Payslip for .'+$scope.payPeriodStartDate+'-'+$scope.payPeriodEndDate+'.pdf')
             doc.addFont('Raleway', 'Raleway', 'normal');
 
         }
