@@ -4323,11 +4323,14 @@
         $scope.returnToPayPeriodList = function () {
             $scope.curPeriod = null;
         }
+
+        $scope.loadingUserList = false
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
             console.log("$scope.historyPageOpen", $scope.historyPageOpen)
-            $scope.historyPageOpen = true;
+            $scope.loadingUserList = true;
+            //$scope.historyPageOpen = true;
             //$scope.clientHome = false;
             //$scope.payslipPageSelected = true;
             $scope.employeePage = false;
@@ -4411,6 +4414,7 @@
                         console.log("else")
                         $scope.loadingUsers = false;
                         $scope.employeesPaginated.push($scope.employeesForHistory)
+                        
                         console.log($scope.employeesPaginated)
                         $scope.employeesForHistory = [];
                         if ($scope.employees[i] !== undefined) {
@@ -4428,7 +4432,7 @@
 
 
                 }
-                $scope.loadingGeneralHistory = false;
+                $scope.loadingUserList = false;
                 /* if($scope.employees[z].payperiodnum !== $rootScope.payPeriod){
                      $scope.allEmployeesJobDetails.historyupdated = false;
                      $scope.allEmployeesJobDetails.newpayperiod = $rootScope.payPeriod
@@ -4601,6 +4605,25 @@
                 $scope.fadeIn2 = true;
                 $scope.slideIn = true;
                 $scope.jobsPageOpen = true;
+            }, 500)
+
+        }
+         $scope.changeJobInDate2 = function (index) {
+            $scope.slideOut = true;
+            $scope.fadeOut2 = true;
+            $timeout(function () {
+                if ($scope.currentJobInDate == 1) {
+                    $scope.currentJobInDate--;
+
+                } else {
+                    $scope.currentJobInDate = 1
+                }
+                console.log($scope.currentJobInDate
+                )
+                $scope.slideOut = false;
+                $scope.fadeOut2 = false
+                $scope.fadeIn2 = true;
+                $scope.slideIn = true;
             }, 500)
 
         }
@@ -5341,7 +5364,7 @@
             $scope.searchResults = false;
             $scope.userList = false;
             $scope.employeeListOpen = false;
-            $scope.userDetailsPageOpened = true;
+           // $scope.userDetailsPageOpened = true;
             $scope.bookedJobsPageOpened = false;
             $scope.complaintsPageOpened = false;
             $scope.commentsPageOpened = false;

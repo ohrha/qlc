@@ -2652,10 +2652,11 @@
 
             <div ng-show="payslipPageOpen" class="col s12 center-align animated fadeIn">
 
-                <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
-                    <i ng-click="openManagementPage()" class="material-icons" style="float:left">keyboard_return</i>
-                    <p style="font-size:17px;" class="montserrat underline animated fadeIn ">Manage Time Sheets</p>
-                </div>
+                 <div class="col s12">
+                            <p class="railway underline" style="font-size:17px;">
+                                <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                                Manage Time Sheets
+                            </p>
+                        </div>
 
 
                 <div ng-show="historyPageOpen" class="col s12">
@@ -2696,7 +2697,7 @@
 -->
                                 <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s12 animated fadeInUp" style="border: 1px solid #ddd; ">
                                     <div class="col s12 left-align animated fadeIn">
-                                        <i ng-click="returnToPayPeriodList()" class="material-icons">keyboard_return</i>
+                                        <i ng-click="returnToPayPeriodList()" style="font-size:18px;" class="material-icons">keyboard_return</i>
                                     </div>
                                     <div class="col s12 center-align animated fadeIn">
                                         <p class="montserrat underline">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
@@ -3252,11 +3253,11 @@
                             <div ng-show="personalHistoryOpen && !loadingPersonalHistory" class="col s12 center-align">
                                 <div class="row">
                                     <div class="col s3">
-                                        <span style="font-size:14px;" class="railway animated fadeIn ">Pay Period</span>
+                                        <span style="font-size:14px;" class="railway underline animated fadeIn ">Pay Period</span>
 
                                     </div>
                                     <div class="col s9">
-                                        <span style="font-size:14px;" class="railway animated fadeIn ">Details</span>
+                                        <span style="font-size:14px;" class="railway underline animated fadeIn ">Details</span>
 
 
                                     </div>
@@ -3514,12 +3515,12 @@
 
                                 </div>
                             </div>
-                            <div ng-show="loadingGeneralHistory" class="col s12 center-align">
+                            <div ng-show="loadingUserList" class="col s12 center-align">
                                 <!--<i class="fas fa-circle-notch fa-spin"></i>-->
-                                <p class="railway animated flash infinite">LOADING USER LIST</p>
+                                <p class=" montserrat green-text underline text-lighten-2 animated flash infinite" style="font-size:14px;">(LOADING USER LIST)</p>
 
                             </div>
-                            <div ng-show="generalHistoryOpen && !loadingGeneralHistory" class="col s12">
+                            <div ng-show="generalHistoryOpen && !loadingUserList" class="col s12">
                                 <div class="center-align">
 
 
