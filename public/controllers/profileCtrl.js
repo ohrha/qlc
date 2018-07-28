@@ -4769,6 +4769,9 @@ doc.rect(0, 172,250, 0);
             $scope.profileHome =  true;
             $scope.historyPageOpenProfile = false;
             $scope.turnOffOthers = false;
+            $scope.chartsPageOpen = false;
+            $scope.messagePageOpen = false;
+            $scope.composeMessagePageOpen = false
             $scope.curPeriod = null;
 
             
