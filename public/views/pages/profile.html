@@ -777,11 +777,11 @@
 
             </div>
         </div>
-        <div class  = "col s10 center-align animated fadeIn" ng-show="profileLoading">
+        <div class  = "col s10 center-align animated fadeIn" ng-show="loadingProfile">
             <br>
-            <p class = "montserrat underline grey-font animated flash infinite" style="font-size:14px;">(LOADING PROFILE)</p>
+            <p class = "montserrat underline green-text text-lighten-2 animated flash infinite" style="font-size:14px;">(LOADING PROFILE)</p>
         </div>
-        <div class="col s10 center-align animated fadeIn" ng-show="profileHome ">
+        <div class="col s10 center-align animated fadeIn" ng-show="profileHome && !loadingProfile ">
             <div class="row">
                 <br>
                 <div class="col s12 center-align">
