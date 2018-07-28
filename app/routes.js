@@ -198,7 +198,7 @@ module.exports = function (app) {
                                 })
 
                             } else {
-
+console.log('Hereo')
                                 User.findOneAndUpdate({ name: req.body.client }, { $push: { submittedtimesheets: req.body } }, { new: true }, function (err, user) {
 
                                     if (err) throw err
@@ -215,7 +215,7 @@ module.exports = function (app) {
                                                 user.payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].hoursCalculated = req.body.hoursCalculated;
                                                 user.payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].timesheetSubmitted = true
                                                 user.payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex][req.body.currentjobindate].disputed = false
-                                                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { paypeiodhistory: user.payperiodhistory } }, { new: true }, function (err, user) {
+                                                User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user.payperiodhistory } }, { new: true }, function (err, user) {
 
                                                     if (err) throw err;
                                                     if (!user) {
