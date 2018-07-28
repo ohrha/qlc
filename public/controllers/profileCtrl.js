@@ -3697,6 +3697,8 @@ $scope.currentIndex = null;
                 var hoursDif = 0;
                 console.log(hours)
                 console.log(minutes)
+              
+                
                 if (minutes == 0 && $scope.timeData.lunch == "Yes") {
                     minutes = 30
 
@@ -3747,7 +3749,11 @@ $scope.currentIndex = null;
                     }
                     console.log("fourth condition")
                 } else {
-                    console.log("Do nothing")
+
+                    /* NO LUNCH */
+
+                    console.log("NO LUNCH")
+
                     if (minutes == 15) {
                         console.log("Minutes == 15")
                         hours = hours + .25
@@ -3764,10 +3770,16 @@ $scope.currentIndex = null;
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
+                        if (hours == 0) {
+                            hours = 24
+
+                        }
+
                         $scope.timeData.hoursCalculated = hours;
                     }
-                    
+
                     if (minutes == 30) {
+
                         hours = hours + .5
                         if (Math.sign(hours) == -1) {
                             console.log("negative")
@@ -3780,6 +3792,10 @@ $scope.currentIndex = null;
                             hours = hoursDif + 12
                             console.log(hours)
                             //hours= (hours-1)+.5
+                        }
+                        if (hours == 0) {
+                            hours = 24
+
                         }
                         $scope.timeData.hoursCalculated = hours;
                     }
@@ -3797,9 +3813,15 @@ $scope.currentIndex = null;
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
+                        if (hours == 0) {
+                            hours = 24
+
+                        }
                         $scope.timeData.hoursCalculated = hours;
                     }
                     if (minutes == 00) {
+                        console.log("No lunch mins 00")
+                        //hours= hours-1
                         if (Math.sign(hours) == -1) {
                             console.log("negative")
                             console.log(hours * -2)
@@ -3812,7 +3834,12 @@ $scope.currentIndex = null;
                             console.log(hours)
                             //hours= (hours-1)+.5
                         }
+                        if (hours == 0) {
+                            hours = 24
+
+                        }
                         $scope.timeData.hoursCalculated = hours;
+                        console.log($scope.timeData.hoursCalculated)
                     }
                     if (Math.sign(minutes) == -1) {
                         minsPositive = Math.abs(minutes)
@@ -3832,6 +3859,10 @@ $scope.currentIndex = null;
 
                                 console.log(hours)
                                 //hours= (hours-1)+.5
+                            }
+                            if (hours == 0) {
+                                hours = 24
+
                             }
                             $scope.timeData.hoursCalculated = hours;
 
@@ -3853,6 +3884,10 @@ $scope.currentIndex = null;
                                 console.log(hours)
                                 //hours= (hours-1)+.5
                             }
+                            if (hours == 0) {
+                                hours = 24
+
+                            }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
@@ -3873,10 +3908,14 @@ $scope.currentIndex = null;
                                 console.log(hours)
                                 //hours= (hours-1)+.5
                             }
+                            if (hours == 0) {
+                                hours = 24
+
+                            }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
-                        
+
 
                     }
                 }
@@ -3890,6 +3929,7 @@ $scope.currentIndex = null;
                     $scope.addHoursPageOpen = false;
 
                 })
+                
                 console.log(hours)
                 console.log(minutes)
             }
@@ -4720,7 +4760,7 @@ $scope.currentIndex = null;
             $scope.profileHome =  true;
             $scope.historyPageOpenProfile = false;
             $scope.curPeriod = null;
-            
+
             
 
         }
