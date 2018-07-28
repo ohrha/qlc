@@ -4716,6 +4716,11 @@ $scope.currentIndex = null;
         }
         $scope.globalPayPeriodIndexATM = ""
         $scope.turnOffOthers= false;
+        $scope.closeIndividualPayPeriod = function(){
+            $scope.turnOffOthers = false;
+            $scope.curPeriod = null;
+            $scope.removeRightBorder = false;
+        }
         $scope.openIndividualPayPeriod = function (index, history) {
             console.log(index)
             console.log(history)

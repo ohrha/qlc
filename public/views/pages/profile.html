@@ -2129,29 +2129,34 @@
 
 
 
-                            <div ng-show="individualPayPeriodOpen && curPeriod == $index  && turnOffOthers" class="col s12 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:450px;">
+                            <div ng-show="individualPayPeriodOpen && curPeriod == $index  && turnOffOthers" class="col s12 animated fadeInUp" style="border: 1px solid #ddd; ">
+                          <div class="col s12">
+                            <p class="railway underline" style="font-size:17px;">
+                                <i ng-click="closeIndividualPayPeriod();" class='material-icons' style="font-size:14px;">keyboard_return</i>  {{history.entry[0][0].date}} - {{history.entry[6][0].date}}
+                            </p>
+                        </div>
                           <div class = "hide-on-small-only">
-                          <div class="col s3">
+                          <div class="col s2">
                           </div>
-                          <div class = "col s6">
-
+                          <div class = "col s8">
+  <canvas ng-show="showChart " id="bar" class="chart chart-bar animated fadeInDown " chart-data="data" chart-labels="labels">
+                                    chart-series="series"
+                                </canvas>
                                 <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
                                     chart-series="series"
                                 </canvas>
-                                <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
-                                    chart-series="series"
-                                </canvas>
+                               
                           </div>
-                          <div class = "col s3">
+                          <div class = "col s2">
                           </div>
                           </div>
-                          <div class = "show-on-small">
+                          <div class = "hide-on-med-and-up">
                           
 
-                                <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp " chart-data="data" chart-labels="labels">
                                     chart-series="series"
                                 </canvas>
-                                <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown show-on-small" chart-data="data" chart-labels="labels">
                                     chart-series="series"
                                 </canvas>
                          
