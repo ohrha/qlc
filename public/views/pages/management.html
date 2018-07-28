@@ -1970,15 +1970,11 @@
                         <div class="row" ng-show="disputedTimeSheetsPaginated[0].length">
                             <div class="col s12">
                                 <div class="row">
-                                    <div class="col s2 ">
-                                        <i ng-click="openManagementPage();" class='material-icons'>keyboard_return</i>
-
-
-
-                                    </div>
-                                    <div class="col s10 center-align" style="border-bottom:1px solid #ddd;">
-                                        <p class="railway underline" style="font-size:17px;">Disputes Page</p>
-                                    </div>
+                                <div class="col s12 center-align">
+                        <p class="railway underline" style="font-size:17px;">
+                            <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                            Requested Jobs
+                        </p>
+                    </div>
                                 </div>
                             </div>
                             <div class="col s12" ng-repeat="page in disputedTimeSheetsPaginated[page] track by $index">
@@ -2355,8 +2351,7 @@
 
    <div class="col s12 center-align">
                         <p class="railway underline" style="font-size:17px;">
-                            <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                            Requested Jobs
-                        </p>
+                            <i ng-click="openManagementPage();" class='material-icons' style="font-size:14px;">keyboard_return</i>                            Approved Jobs 
                     </div>
                 <div class="row">
 
