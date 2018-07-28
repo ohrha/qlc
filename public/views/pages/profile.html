@@ -2256,16 +2256,9 @@
                                         ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
                                         <div ng-show="entry[currentJobInDate].booked">
 
-                                            <div class="right-align">
-                                                <a href="#" style="color:black;"> <i  ng-click="closeAddHours()"style="font-size:17px;"class= "material-icons red-text text-lighten-2 ">clear</i></a>
-                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeDelinquentJobInDate(entry.length)"style="font-size:16px;"class= "material-icons animated flash">chevron_right</i>{{currentJobInDate}}</a>
-
-                                                <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default && !entry[0].delinquent" href="#" style="color:black;"> <i  ng-click="changeJobInDate(history)"style="font-size:18px;"class= "material-icons animated flash">chevron_right</i></a>
-
-                                            </div>
                                             <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].date}}</p>
                                             <div class="col s12 center-align">
-                                                <p class="montserrat underline">Time In</p><i ng-click="closeAddHoursPagez()" class="material-icons "  style=" font-size:16px;float:right">clear</i>
+                                                <p class="montserrat underline">Time In</p><i ng-click="closeAddHours()" class="material-icons "  style=" font-size:16px;float:right">clear</i>
                                             </div>
                                             <div class="input-field col s5">
                                                 <select name="hoursIn" ng-model="timeData.hoursIn">
