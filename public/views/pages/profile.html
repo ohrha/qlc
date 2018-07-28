@@ -1365,7 +1365,7 @@
 
 
                                     <div class="col s12 center-align">
-                                        <span class="railway animated fadeIn "> Add Hours</span>
+                                        <span class="railway animated fadeIn "> Submit Hours</span>
                                         <span class="railway animated fadeIn "> (Job #{{currentJobInDate+1}})</span>
 
                                     </div>
@@ -2097,12 +2097,12 @@
 </div>
                         <div class="row " ng-repeat="history in payPeriodHistory track by $index">
 
-                            <div class="col s3 animated fadeIn" ng-show="curPeriod !== $index" ng-class="{removerightborder:removeRightBorder, addrightborder:!removeRightBorder}" >
+                            <div class="col s3 animated fadeIn" ng-show="curPeriod !== $index&&  !turnOffOthers" ng-class="{removerightborder:removeRightBorder, addrightborder:!removeRightBorder}" >
                                 <a href='#' style="color:black;">
                                     <p ng-click="openIndividualPayPeriod($index ,history)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
                                 </a>
                             </div>
-                            <div ng-show="curPeriod !== $index" class="col s9 animated fadeIn">
+                            <div ng-show="curPeriod !== $index &&  !turnOffOthers" class="col s9 animated fadeIn">
                                 <p class="railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                 <div class = "col s12">
                                 <span ng-show="history.entry[0][0].paid" class="railway   green-text lighten-3">(PAID)</span>
@@ -2129,7 +2129,7 @@
 
 
 
-                            <div ng-show="individualPayPeriodOpen && curPeriod == $index" class="col s12 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:450px;">
+                            <div ng-show="individualPayPeriodOpen && curPeriod == $index  && turnOffOthers" class="col s12 animated fadeInUp" style="border: 1px solid #ddd; overflow-y:scroll; height:450px;">
                           <div class = "hide-on-small-only">
                           <div class="col s3">
                           </div>

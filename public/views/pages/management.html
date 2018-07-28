@@ -2658,6 +2658,11 @@
                             </p>
                         </div>
 
+  <div ng-show="loadingUserList" class="col s12 center-align">
+                                <!--<i class="fas fa-circle-notch fa-spin"></i>-->
+                                <p class=" montserrat green-text underline text-lighten-2 animated flash infinite" style="font-size:14px;">(LOADING USER LIST)</p>
+
+                            </div>
 
                 <div ng-show="historyPageOpen" class="col s12">
 
@@ -3515,11 +3520,7 @@
 
                                 </div>
                             </div>
-                            <div ng-show="loadingUserList" class="col s12 center-align">
-                                <!--<i class="fas fa-circle-notch fa-spin"></i>-->
-                                <p class=" montserrat green-text underline text-lighten-2 animated flash infinite" style="font-size:14px;">(LOADING USER LIST)</p>
-
-                            </div>
+                          
                             <div ng-show="generalHistoryOpen && !loadingUserList" class="col s12">
                                 <div class="center-align">
 

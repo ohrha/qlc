@@ -4328,8 +4328,15 @@
         $scope.openPayslipPage = function () {
 
             $scope.payslipPageOpen = true;
+            $scope.historyPageOpen = false
+
+            
             console.log("$scope.historyPageOpen", $scope.historyPageOpen)
             $scope.loadingUserList = true;
+            $scope.curPeriod = null
+            $scope.historyPageOpenProfile = false;
+              $scope.curPeriod = null;
+                $scope.curHistory = null;
             //$scope.historyPageOpen = true;
             //$scope.clientHome = false;
             //$scope.payslipPageSelected = true;
@@ -4360,8 +4367,7 @@
                 $scope.nameVar = ""
 
                 /*HISTORY PAGE VARIABLES */
-                $scope.curPeriod = null;
-                $scope.curHistory = null;
+              
                 $scope.generalHistoryTitle = true;
                 $scope.personalHistoryTitle = false;
                 $scope.historyPageOpen = true;

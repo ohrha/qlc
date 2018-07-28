@@ -4715,9 +4715,11 @@ $scope.currentIndex = null;
             }, 500)
         }
         $scope.globalPayPeriodIndexATM = ""
+        $scope.turnOffOthers= false;
         $scope.openIndividualPayPeriod = function (index, history) {
             console.log(index)
             console.log(history)
+            $scope.turnOffOthers=true;
             $scope.globalPayPeriodIndexATM = index;
             $scope.labels[0] = history.entry[0][0].date
             $scope.labels[1] = history.entry[1][0].date
