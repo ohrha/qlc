@@ -11,6 +11,7 @@
         $scope.$on('$routeChangeSuccess', function () {
             $('.carousel').carousel();
         });
+        $scope.loadingProfile = true;
         $scope.name = "";
         $scope.email = "";
         $scope.clientPage = false;
@@ -704,7 +705,8 @@
                     $scope.supervisorsArray = data.data.user[0].supervisors
                     $scope.locationsArray = data.data.user[0].locations
                     $scope.currentClientObject = data.data.user[0]
-                    $scope.delins
+                    $scope.loadingProfile = false;
+                   
                     if (!$scope.supervisorsArray.length) {
                         $scope.firstAddSupervisors = true;
                     }
