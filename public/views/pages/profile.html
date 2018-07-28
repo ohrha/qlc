@@ -841,13 +841,13 @@
             <br>
             <br>
 
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING MESSAGES )</p>
+            <p class="montserrat animated flash infinite  green-text text-lighten-2 underline" style="font-size:14px;"> ( LOADING MESSAGES )</p>
 
         </div>
         <div ng-show="messagePageOpen && messagesLoading" class="col s10 hide-on-med-and-up">
             <br>
 
-            <p class="railway animated flash infinite green-text text-lighten-2" style="font-size:16px;"> ( LOADING MESSAGES)</p>
+            <p class="railway animated flash infinite green-text text-lighten-2 underline" style="font-size:14px;"> ( LOADING MESSAGES)</p>
             <br>
 
         </div>
@@ -856,34 +856,31 @@
             <br>
             <br>
 
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING )</p>
+            <p class="montserrat animated flash infinite  green-text text-lighten-2 underline" style="font-size:14px;"> ( LOADING )</p>
 
         </div>
         <div ng-show="composeMessagePageLoading" class="col s10 hide-on-med-and-up">
 
             <br>
 
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING )</p>
+            <p class="montserrat animated flash infinite  green-text text-lighten-2 underline" style="font-size:14px;"> ( LOADING )</p>
             <br>
 
         </div>
 
         <div ng-show="composeMessagePageOpen &&!profileHome &&!composeMessagePageLoading " class="col s10 center-align animated fadeIn">
 
-
+   <div class="col s12">
+                    <p class="railway underline" style="font-size:15px;">
+                      <a href="#"style="color:black;" > <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i> </a>                       Compose Message Page
+                    </p>
+                </div>
             <div class="col s12">
                 <div class="center-align">
 
 
                     <div class="row" ng-show="usersPaginated.length">
 
-                        <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
-
-
-
-                            <p style="font-size:17px; " class="montserrat animated fadeIn underline ">Compose Message
-                            </p>
-                        </div>
                         <div ng-show="!messageCompositionPageOpen && currentIndex2 == $index " class="col s2 center-align hide-on-small-only">
                             <p class="montserrat underline" style="font-size:14px;"> User</p>
                         </div>
@@ -1043,7 +1040,12 @@
         </div>
 
         <div ng-show="messagePageOpen &&!profileHome && !messagesLoading" class="col s10 center-align animated fadeIn">
-            <br>
+            
+               <div class="col s12">
+                    <p class="railway underline" style="font-size:15px;">
+                      <a href="#"style="color:black;" > <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i> </a>                       Messages Page
+                    </p>
+                </div>
             <div class="col s12" style="border-right:1px solid #ddd;">
                 <div class="center-align">
 
@@ -1188,8 +1190,7 @@
         <div ng-show="historyPageOpenProfile && !loadingWorkHistoryProfile" class="col s10 center-align animated fadeIn">
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
 
-                <div class="row">
-                </div>
+                
                 <div class="col s12">
                     <p class="railway underline" style="font-size:15px;">
                       <a href="#"style="color:black;" > <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i> </a>                       Time Sheet Page
@@ -1634,21 +1635,23 @@
             <br>
             <br>
 
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING CHART )</p>
+            <p class="montserrat animated flash infinite  green-text text-lighten-2 underline" style="font-size:14px;"> ( LOADING CHART )</p>
 
         </div>
         <div ng-show="loadingChart" class="col s10 hide-on-med-and-up">
 
             <br>
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING CHART )</p>
+            <p class="montserrat animated flash infinite  green-text text-lighten-2 underline" style="font-size:14px;"> ( LOADING CHART )</p>
             <br>
 
         </div>
         <div class="col s10 animated fadeIn" ng-show="chartsPageOpen &&!loadingChart">
 
             <div class="row hide-on-small-only">
-                <div class="col s12 center-align">
-                    <p class="montserrat underline" style="font-size: 17px;">Metrics Page</p>
+                 <div class="col s12">
+                    <p class="railway underline" style="font-size:15px;">
+                      <a href="#"style="color:black;" > <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i> </a>                       Metrics Page
+                    </p>
                 </div>
                 <div class="col s2">
                 </div>
@@ -1663,8 +1666,10 @@
 
             </div>
             <div class="row hide-on-med-and-up">
-                <div class="col s12 center-align">
-                    <p class="montserrat underline" style="font-size: 18px;">Metrics Page</p>
+                   <div class="col s12">
+                    <p class="railway underline" style="font-size:15px;">
+                      <a href="#"style="color:black;" > <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i> </a>                       Time Sheet Page
+                    </p>
                 </div>
                 <div class="col s12">
 
