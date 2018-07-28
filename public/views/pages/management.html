@@ -1106,7 +1106,7 @@
 
                                                 <!-- DATE BOOKED ARROWS -->
 
-                                                <div ng-show="job.length>1" class="row animated flash">
+                                                <div ng-show="job.length>1" class="col s12 animated flash">
                                                     <div class="col s6 left-align">
 
                                                         <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
@@ -1398,9 +1398,9 @@
 
                                                     </div>
 
-                                                    <div ng-show="!addHoursPageOpen" class="row animated fadeIn">
+                                                    <div ng-show="!addHoursPageOpen" class="col s12 animated fadeIn">
                                                         <div class="col s12">
-                                                                     <span class="montserrat underline" style="font-size:15px;" class="railway  underline">Client</span>
+                                                                     <span class="montserrat underline" style="font-size:15px;">Client</span>
 
                                                             <p class="railway grey-text " style="font-size:14px; "> {{jobDetails[openJob][currentJobInDate].client}}</p>
                                                             <span class="montserrat underline" style="font-size:15px;">Supervisor</span>
@@ -1468,7 +1468,7 @@
 
                                                 <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
-                                                <div ng-show="job.length>1 && !job[currentJobInDate].booked" class="row animated flash">
+                                                <div ng-show="job.length>1 && !job[currentJobInDate].booked" class="col s12 animated flash">
                                                     <div class="col s6">
                                                         <div class="left-align">
                                                             <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
@@ -1505,7 +1505,7 @@
                                             </div>
                                             <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && !job[0].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
 
-                                                <div ng-show="job.length>1 && !job[currentJobInDate].booked" class="row animated flash">
+                                                <div ng-show="job.length>1 && !job[currentJobInDate].booked" class="col s12 animated flash">
                                                     <div class="col s6">
                                                         <div class="left-align">
                                                             <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
@@ -1534,7 +1534,7 @@
                                             </div>
                                             <div ng-show="openJob == $index && timesheetsPageOpen && !notesPageOpen && job[0].booked" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
-                                                <div ng-show="job.length>1 " class="row animated flash">
+                                                <div ng-show="job.length>1 " class="col s12 animated flash">
                                                     <div class="col s6">
 
                                                         <div class="left-align">
@@ -1550,7 +1550,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div ng-show="job.length<2 && !job[currentJobInDate].booked" class="row">
+                                                <div ng-show="job.length<2 && !job[currentJobInDate].booked" class="col s12">
                                                     <div class="col s6">
 
                                                         <div class="left-align">
@@ -1670,7 +1670,7 @@
                                             </div>
 
                                             <div ng-show="openJob == $index && !timesheetsPageOpen && notesPageOpen && !job[0].booked  " class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut}">
-                                                <div ng-show="job.length>1 " class="row animated flash">
+                                                <div ng-show="job.length>1 " class="col s12 animated flash">
                                                     <div class="col s6">
 
                                                         <div class="left-align">
@@ -1704,7 +1704,7 @@
 
                                             <div ng-show="notesPageOpen && openJob == $index && job[0].booked" class="col s9 animated" ng-class="{'slideOutUp': slideout,'slideInUp':slidein,'fadeout':fadeOut,'slideOutLeft':slideOut, 'fadeout2':fadeOut2,'fadein2':fadeIn2, 'slideInRight':slideIn}">
 
-                                                <div ng-show="job.length>1" class="row animated flash">
+                                                <div ng-show="job.length>1" class="col s12 animated flash">
                                                     <div class="col s6">
 
                                                         <div class="left-align">
@@ -1721,7 +1721,7 @@
 
                                                 </div>
 
-                                                <div ng-show="job.length<2" class="row ">
+                                                <div ng-show="job.length<2" class="col s12 ">
                                                     <div class="col s6">
 
                                                         <div class="left-align">
@@ -4633,7 +4633,7 @@
                                         <!-- BOOKED JOBS MENU -->
 
                                         <div ng-show="openJob == $index && timesheetsPageOpen || openJob == $index  && notesPageOpen || openJob == $index  " class="col s9 animated fadeIn">
-                                            <div ng-show="job.length>1 " class="row animated flash">
+                                            <div ng-show="job.length>1 " class="col s12 animated flash">
                                                 <div class="col s6">
                                                     <div class="left-align">
                                                         <a href="#" style="color:black; border-right:1px solid #ddd">    <i ng-click="changeJobInDate($index)" class = "material-icons" style="font-size:27px;">chevron_left</i></a>
@@ -4646,7 +4646,7 @@
                                                 </div>
                                             </div>
 
-                                            <div ng-show="job.length<2 " class="row">
+                                            <div ng-show="job.length<2 " class="col s12">
                                                 <div class="col s6">
                                                     <div class="left-align">
                                                         <i style="color:grey; opacity:.8;" class="material-icons">chevron_left</i>
