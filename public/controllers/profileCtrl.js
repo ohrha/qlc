@@ -4759,6 +4759,7 @@ $scope.currentIndex = null;
         $scope.openProfileHome = function(){
             $scope.profileHome =  true;
             $scope.historyPageOpenProfile = false;
+            $scope.turnOffOthers = false;
             $scope.curPeriod = null;
 
             
