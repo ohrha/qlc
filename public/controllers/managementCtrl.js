@@ -3848,6 +3848,7 @@
             var date = job.date;
             var location = job.location
             var client = job.client
+             $('select').material_select();
             User.findUser(job.currentuser).then(function (data) {
                 console.log(data)
                 userDetails.phonenumber = data.data.user[0].phonenumber
@@ -5890,6 +5891,10 @@
                 $scope.requestedJobsArray = data.data.user[0].requestedjobs
                 $scope.currentClientObject = data.data.user[0]
             })
+        }
+        $scope.closeAddJobPage = function(){
+            $scope.addJobPageOpen = false;
+            $scope.jobsPageOpen = true;
         }
         $scope.openUserFile = function (name, phonenumber) {
             $('html, body').animate({ scrollTop: 0 }, 'fast');

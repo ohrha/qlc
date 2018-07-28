@@ -1015,59 +1015,54 @@
 
                                                 </div>
                                                 <div ng-show="!loadingNewJob" class="animated fadeIn">
-
-                                                    <div class="col s12">
-                                                        <label for="Sex">Client*</label>
-                                                        <select ng-change="getLocations()" ng-model="selectedItem.name" name="name" class="error browser-default" id="sex" ng-model="jobData.client"
-                                                            name="client" required>
-                                				<option value="" disabled selected>Client</option>
-                                  				<option ng-repeat="client in clients"value="{{client}}">{{client}}</option>
-
-                                              
-
-                                			</select>
-
+                                                    <div class = "col s12 center-align">
+                                                        <p class = "montserrat underline" style="font-size:14px">Schedule Job Page</p>
                                                     </div>
+                                                    
+                                             
+                                                                                                      <div class="input-field col s12">
+    <select ng-change="getLocations()" ng-model="selectedItem.name" name="name"  id="sex" ng-model="jobData.client" name="client" required>
+      <option value="" disabled selected>Choose your option</option>
+      				<option ng-repeat="client in clients"value="{{client}}">{{client}}</option>
+
+    </select>
+    <label>Client</label>
+  </div>
                                                     <div class="col s12" ng-show="loadingLists">
                                                         <p class="railway animated flash infinite text-green text-lighten-3"> LOADING</p>
                                                     </div>
 
 
 
-                                                    <div class="col s12">
-                                                        <div ng-show="supervisorsListOn && !loadingLists">
-                                                            <label for="Sex">Supervisor *</label>
+                                      
 
-                                                            <select class="error browser-default" id="sex" ng-model="jobData.supervisor" name="supervisor" required>
-                                				<option value="" disabled selected>Supervisor</option>
+                                                 <div ng-show="supervisorsListOn && !loadingLists">
+  <div class="input-field col s12">
+    <select id="sex" ng-model="jobData.supervisor" name="supervisor" required>
+      <option value="" disabled selected>Select Supervisor</option>
                                 				<option ng-repeat="supervisor in supervisors"value="{{supervisor.name}}">{{supervisor.name}}</option>
 
-
-                                			</select>
-                                                        </div>
-
-
+    </select>
+    <label>Supervisor</label>
+  </div>
+                                                    </div>
 
                                                     </div>
 
-                                                    <div class="col s12">
-                                                        <div ng-show="locationsListOn &&!loadingLists">
-                                                            <label for="Sex">Location *</label>
-
-                                                            <select class="error browser-default" id="sex" ng-model="jobData.location" name="location" required>
-                                				<option value="" disabled selected>Location</option>
+                                          
+                                                    <div ng-show="locationsListOn &&!loadingLists">
+  <div class="input-field col s12">
+    <select id="sex" ng-model="jobData.location" name="location" required>
+      <option value="" disabled selected>Select Location</option>
                                  				<option ng-repeat="location in locations"value="{{location.name}}">{{location.name}}</option>
 
-
-                                			</select>
-
-
-
-                                                        </div>
+    </select>
+    <label>Location</label>
+  </div>
                                                     </div>
 
                                                     <div class="col s12 center-align">
-                                                        <p style="font-size:20px;" class="railway underline"> Notes</p>
+                                                        <p style="font-size:14px;" class="montserrat underline"> Notes</p>
                                                     </div>
 
 
@@ -1082,7 +1077,9 @@
                                                         </form>
                                                         <div class="col s12 center-align">
                                                             <a ng-click="addJobData(job[0].monthNum,job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
-
+                                                        </div>
+                                                             <div class="col s12 center-align">
+                                                            <p  ng-click="closeAddJobPage()"class = "montserrat underline blue-text text-lighten-3" style="font-size:13px">(cancel)</p>
                                                         </div>
                                                     </div>
 
