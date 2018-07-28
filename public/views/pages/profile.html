@@ -1182,9 +1182,12 @@
 
             <!-- DATE OF BOOKED JOB -->
 
-            <span ng-show="!jobDetails[openJob][0].delinquent" class="railway animated fadeIn underline">{{jobDetails[openJob][currentJobInDate].date}}</span>
-            <span ng-show="jobDetails[openJob][0].delinquent" class="railway animated fadeIn underline red-text lighten-3">{{jobDetails[openJob][currentJobInDate].date}}</span>
-
+           
+ 
+                        <p class="railway underline" style="font-size:17px;">
+                                                   {{jobDetails[openJob][currentJobInDate].date}}
+                        </p>
+                    
 
             <!-- DATE OF BOOKED JOB -->
 
@@ -1229,7 +1232,7 @@
 
                             <!-- DATE BOOKED ARROWS -->
 
-                            <div ng-show="job.length>1" class="row animated flash">
+                            <div ng-show="job.length>1" class="col s12 animated flash">
                                 <div class="col s6 left-align">
                                     
                                         <a href="#" style="color:black;">    <i ng-click="changeJobInDate($index)" class = "material-icons">chevron_left</i></a>
@@ -1242,7 +1245,7 @@
                                 </div>
                             </div>
 
-                            <div ng-show="job.length<2" class="row">
+                            <div ng-show="job.length<2" class="col s12">
                                 <div class="col s6">
                                     <div class="left-align">
                                         <i style="color:grey; opacity:.8;" class="material-icons">chevron_left</i>
@@ -1517,18 +1520,26 @@
 
                                 </div>
 
-                                <div ng-show="!addHoursPageOpen" class="row animated fadeIn">
+                                <div ng-show="!addHoursPageOpen" class="col s12 animated fadeIn">
                                     <div class="col s12">
-                                        <span class="railway underline"> Client</span>
-                                        <p class="railway  "> {{jobDetails[openJob][currentJobInDate].client}}</p>
-                                        <span class="railway  underline">Supervisor</span>
-                                        <p class="railway   "> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
-                                        <span class="railway  underline">Location</span>
-                                        <p class="railway  "> {{jobDetails[openJob][currentJobInDate].location}}</p>
+                                   
 
+                            <span class="montserrat underline" style="font-size:15px;">Client</span>
+                            <p class="railway grey-text " style="font-size:14px;"> {{jobDetails[openJob][currentJobInDate].client}}</p>
+                            <span class="montserrat underline" style="font-size:15px;">Supervisor</span>
+                            <p class="railway grey-text " style="font-size:14px;"> {{jobDetails[openJob][currentJobInDate].supervisor}}</p>
+                            <span class="montserrat underline" style="font-size:15px;">Location</span>
+                            <p class="railway grey-text " style="font-size:14px;"> {{jobDetails[openJob][currentJobInDate].location}}</p>
+                            <span class="montserrat underline" style="font-size:15px;">Notes</span>
+                            <p class="railway grey-text " style="font-size:14px;"> {{jobDetails[openJob][currentJobInDate].notes}}</p>
+                            
 
                                     </div>
                                 </div>
+
+
+
+
                                 <div ng-show="!addHoursPageOpen" class="row animated fadeIn">
                                     <div class="col s12" style="border:1px solid #ddd">
 
@@ -1561,6 +1572,7 @@
 
                                 </div>
                             </div>
+                            -->
                             <!-- ADD TIMESHEET PAGE -->
 
                         </div>
@@ -2050,14 +2062,14 @@
             <br>
             <br>
             
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING PROFILE )</p>
+            <p class="montserrat animated flash infinite underline text-lighten-2" style="font-size:14px;"> ( LOADING PROFILE )</p>
             
         </div>
             <div ng-show="loadingWorkHistoryProfile"  class="col s10 center-align animated fadeIn hide-on-med-and-up">
             
             
             <br>
-            <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING PROFILE )</p>
+            <p class="montserrat animated flash infinite underline   " style="font-size:14px;"> ( LOADING PROFILE )</p>
             <br>
 
             
@@ -2067,12 +2079,13 @@
         <div ng-show="historyPageOpenProfile && !loadingWorkHistoryProfile" class="col s10 center-align animated fadeIn">
             <div class="col s12" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
 
-                <p ng-show="generalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openManagementPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>History
-                    page
-                </p>
-
-                <p ng-show="personalHistoryTitle" style="font-size:17px; " class="montserrat animated fadeIn underline ">Work History
-                </p>
+            <div class = "row">
+            </div>
+    <div class="col s12">
+                            <p class="railway underline" style="font-size:15px;">
+                                <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i>  Time Sheet Page
+                            </p>
+                        </div>                </p>
                 <div class="row ">
                     <div ng-show="loadingPersonalHistory" class="col s12 center-align">
                         <!-- <i class="fas fa-circle-notch fa-spin"></i>-->
@@ -2083,29 +2096,29 @@
 
 
                     </div>
-                    <div ng-show="personalHistoryOpen && !loadingPersonalHistory" class="col s12 center-align">
+                    <div ng-show="personalHistoryOpen && !loadingPersonalHistory" class="col s12 center-align" >
 <div class = "row">
                         <div class="col s3 center-align">
-                            <p style="font-size:14px;" class="montserrat animated fadeIn underline ">Pay Period</p>
+                            <p style="font-size:14px;" class="railway animated fadeIn underline ">Pay Period</p>
 
                         </div>
                         <div class="col s9 center-align">
-                            <p style="font-size:14px;" class="montserrat animated fadeIn underline ">Details</p>
+                            <p style="font-size:14px;" class="railway animated fadeIn underline ">Details</p>
 
 
                         </div>
 </div>
-                        <div class="col s12 " ng-repeat="history in payPeriodHistory track by $index">
+                        <div class="col s12 " ng-repeat="history in payPeriodHistory track by $index"style="border-right:1px solid #ddd; ;">
 
-                            <div class="col s3 animated fadeIn" ng-show="curPeriod !== $index&&  !turnOffOthers" ng-class="{removerightborder:removeRightBorder, addrightborder:!removeRightBorder}" >
+                            <div class="col s3 animated fadeIn" ng-show="curPeriod !== $index&&  !turnOffOthers" ng-class="{removerightborder:removeRightBorder, addrightborder:!removeRightBorder}"style="border-left:1px solid #ddd" >
                                 <a href='#' style="color:black;">
-                                    <p ng-click="openIndividualPayPeriod($index ,history)" class="railway underline" style="font-size:16px;">#{{$index}}</p>
+                                    <p ng-click="openIndividualPayPeriod($index ,history)" class="montserrat underline" style="font-size:14px;">#{{$index}}</p>
                                 </a>
                             </div>
                             <div ng-show="curPeriod !== $index &&  !turnOffOthers" class="col s9 animated fadeIn">
-                                <p class="railway">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
+                                <p class="railway" style="font-size:14px;">{{history.entry[0][0].date}} - {{history.entry[6][0].date}}</p>
                                 <div class = "col s12">
-                                <span ng-show="history.entry[0][0].paid" class="railway   green-text lighten-3">(PAID)</span>
+                                <span ng-show="history.entry[0][0].paid" class="montserrat underline green-text lighten-3" style="font-size:12px;">(PAID)</span>
                                 </div>
                                <a href="#" style="color:black;"> <p ng-show="history.entry[0][0].paid" ng-click="generatePaySlip($index)" class="railway underline " style="font-size:13px;">Generate Payslip</p></a>
                                 <div class = "center-align" ng-show = "(history.entry[0][0].delinquent == true || history.entry[0][1].delinquent== true|| history.entry[1][0].delinquent == true || history.entry[1][1].delinquent == true || history.entry[2][0].delinquent == true || history.entry[2][1].delinquent == true || history.entry[3][0].delinquent == true|| history.entry[3][1].delinquent == true || history.entry[4][0].delinquent == true || history.entry[4][1].delinquent == true|| history.entry[5][0].delinquent == true || history.entry[5][1].delinquent || history.entry[6][0].delinquent == true|| history.entry[6][1].delinquent == true ) && !history.entry[0][0].paid">
@@ -2171,24 +2184,30 @@
                                             <div class="right-align">
                                                 <a href="#" style="color:black;"> <i  ng-click="openIndividualHistoryEntry($index)"style="font-size:16px;"class= "material-icons ">clear</i></a>
                                             
-                                            <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:18px;"class= "material-icons animated flash">chevron_right</i></a>
+                                            <a ng-show="entry.length>1 && curHistory == $index &&!entry[1].default" href="#" style="color:black;"> <i  ng-click="changeJobInDate()"style="font-size:20px;"class= "material-icons animated flash">chevron_right</i></a>
                                             <a ng-show="entry.length<2 && curHistory == $index" href="#" style="color:#ddd;"> <i  ng-click="changeJobInDate()"style="font-size:16px;"class= "material-icons ">chevron_right</i></a>
 
                                             </div>
-                                            <span class="montserrat underline"> Location</span>
-                                            <p class="railway" >{{entry[currentJobInDate].location}}</p>
-                                            <span class="montserrat underline"> Client</span>
-                                            <p class="railway" >{{entry[currentJobInDate].client}}</p>
-                                             <span class="railway underline"> Supervisor</span>
-                                            <p class="railway" style="text-decoration:underline;">{{entry[currentJobInDate].supervisor}}</p>
+                                                <span class="montserrat underline" style="font-size:15px;">Client</span>
+                                <p class="railway grey-text " style="font-size:14px;"> {{entry[currentJobInDate].client}}</p>
+                                <span class="montserrat underline" style="font-size:15px;">Supervisor</span>
+                                <p class="railway grey-text " style="font-size:14px;"> {{entry[currentJobInDate].supervisor}}{{page.supervisor}}</p>
+                                <span class="montserrat underline" style="font-size:15px;">Location</span>
+                                <p class="railway grey-text " style="font-size:14px;"> {{entry[currentJobInDate].location}}</p>
+                                  <span class="montserrat underline" style="font-size:15px;">Notes</span>
+                                <p class="railway grey-text " style="font-size:14px;"> {{entry[currentJobInDate].notes}}</p>
+                                
+<div ng-show="entry[currentJobInDate].timesheetSubmitted">
                                             <span class="montserrat underline"> Time In/Out</span>
 
                                             <p class="railway" >{{entry[currentJobInDate].timein}} - {{entry[currentJobInDate].timeout}}</p>
                                             <span class="montserrat underline"> Hours</span>
 
                                             <p class="railway" >{{entry[currentJobInDate].hoursCalculated}} hrs</p>
+</div>
                                           <div ng-show="entry[currentJobInDate].disputed && !entry[currentJobInDate].paid" style="border-top:1px solid grey;border-left:1px solid grey; box-shadow:2px 2px 2px gray;">
                                             <p class = "montserrat "><span class = "blue-text text-lighten-2 underline"> {{entry[currentJobInDate].client}} </span> Has Raised An Issue With This Time Sheet</p>
+                                            
                                             <div class = "row">
                                                 <div class ="col s5 center-align">
                                                 <p ng-click="openMessageAdminPage(entry[currentJobInDate].date)"  class = "montserrat underline"> Message Hannah </p>
@@ -2203,8 +2222,11 @@
                                                 </div>
                                     
                                             </div>
-                                               <div class = "col s12"ng-show="!history.entry[0][0].paid && !entry[currentJobInDate].disputed ">
+                                               <div class = "col s12"ng-show="!history.entry[0][0].paid && !entry[currentJobInDate].disputed &&entry[currentJobInDate].timesheetSubmitted ">
                                                     <p  ng-click="openAddHoursPage()"class = "montserrat underline green-text text-lighten-2"> EDIT TIMESHEET </p>
+                                            </div>
+                                              <div class = "col s12"ng-show="!history.entry[0][0].paid && !entry[currentJobInDate].disputed &&!entry[currentJobInDate].timesheetSubmitted ">
+                                                    <p  ng-click="openAddHoursPage()"class = "montserrat underline green-text text-lighten-2"> SUBMIT TIMESHEET </p>
                                             </div>
                                              <div class = "col s12"ng-show="history.entry[0][0].paid ">
                                                 <p class="montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>

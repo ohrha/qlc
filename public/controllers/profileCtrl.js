@@ -4716,6 +4716,14 @@ $scope.currentIndex = null;
         }
         $scope.globalPayPeriodIndexATM = ""
         $scope.turnOffOthers= false;
+        $scope.openProfileHome = function(){
+            $scope.profileHome =  true;
+            $scope.historyPageOpenProfile = false;
+            $scope.curPeriod = null;
+            
+            
+
+        }
         $scope.closeIndividualPayPeriod = function(){
             $scope.turnOffOthers = false;
             $scope.curPeriod = null;
