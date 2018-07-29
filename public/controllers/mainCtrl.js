@@ -235,6 +235,7 @@ $scope.timeData = {};
             Auth.getUser().then(function (data) {
                 console.log(data)
                 $rootScope.payPeriod = data.data.payperiod;
+                $rootScope.userClassy = $rootScope.userClass
 
                 console.log($rootScope.userClass)
             })

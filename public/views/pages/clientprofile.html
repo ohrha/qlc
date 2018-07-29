@@ -1099,6 +1099,128 @@
 
     </div>
 </div>
+
+        <div ng-show="messagePageOpen &&!profileHome && !messagesLoading" class="col s10 center-align animated fadeIn">
+            
+               <div class="col s12">
+                    <p class="railway underline" style="font-size:15px;">
+                      <a href="#"style="color:black;" > <i ng-click="openProfileHome();" class='material-icons' style="font-size:14px;">keyboard_return</i> </a>                       Messages Page
+                    </p>
+                </div>
+            <div class="col s12" style="border-right:1px solid #ddd;">
+                <div class="center-align">
+
+                    <div class="row" ng-show="!messagesPaginated[0].length">
+                        <div class="col s12 center-align">
+                            <p class="railway" style="color:#ddd;">( No Messages )
+                        </div>
+                    </div>
+                    <div class="row" ng-show="messagesPaginated[0].length">
+
+
+                        <div class="col s12" ng-repeat="page in messagesPaginated[page] track by $index">
+                            <div class="row">
+                                <div ng-show="!page.read" class="col s3 " style="border-left:1px solid #ddd;">
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons "style="font-size:17px;"  >email</i></a>
+                                </div>
+                                <div ng-show="page.read" class="col s3 " style="border-left:1px solid #ddd;">
+                                    <a href="#" style="color:black;"> <i ng-click="openMessage($index,true,page.messageIndex)" class="material-icons" style="font-size:17px;" >drafts</i></a>
+                                </div>
+                                <div class="col s9" style='border-top:1px solid #ddd; border-right:1px solid #ddd; border-bottom:1px solid #ddd; border-left:1px solid #ddd;'>
+                                    <p ng-click="openMessage($index,true)" class="animated fadeIn railway underline"><a style="color:black;" href="#"></a></p>
+                                </div>
+
+
+
+
+                                <div class="col s3" ng-show="messageOpen && currentIndex == $index " style="height:100px;">
+
+                                </div>
+                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && messageLoading">
+
+
+                                    <p class="montserrat animated flash infinite  green-text text-lighten-2" style="font-size:16px;"> ( LOADING MESSAGE )</p>
+
+                                </div>
+                                <div class="col s9" ng-show="messageOpen && currentIndex == $index && !messageLoading " style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-bottom:1px solid #ddd;">
+                                    <div class="col s12" style=" border-bottom:1px dashed #ddd;">
+                                        <span class="railway " style="float:left;">From: {{page.from}}</span>
+                                        <br>
+                                        <span class="railway " style="float:left;">Subject: {{page.subject}}</span>
+                                        <br>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <p ng-show="!areYouSure" class="railway"><a style="color:black;" href="#">{{page.body}}</a></p>
+                                    <p ng-show="areYouSure" class="animated fadeIn railway"><a style="color:black;" href="#">Are You Sure?</a></p>
+                                    <div class="row" ng-show="!areYouSure" style="border-bottom:1px solid #ddd;">
+                                        <div class="col s6 left-align" style="border-top:1px dashed #ddd; ">
+                                            <a href="#" style="color:black;"> <i ng-click="markAsUnread($index,page.messageIndex)"class="material-icons">undo</i></a>
+
+                                        </div>
+                                        <div class="col s6 right-align" style="border-top:1px dashed #ddd; ">
+                                            <a href="#" style="color:black;"> <i ng-click="openAreYouSure($index)"style="font-size:18px;" class="far fa-trash-alt red-text lighten-4"></i></a>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row" ng-show="areYouSure">
+                                        <div class="col s6 left-align" ng-show="areYouSure">
+
+                                            <a href="#"> <i ng-click="removeMessage($index)"class = "material-icons green-text text-lighten-3">check_circle</i></a>
+
+
+                                        </div>
+                                        <div class="col s6 right-align" ng-show="areYouSure">
+                                            <a href="#"> <i ng-click="closeAreYouSure($index)"class = "material-icons red-text text-lighten-3">cancel</i></a>
+
+                                        </div>
+
+                                    </div>
+
+                                    <br>
+                                </div>
+                                <!--
+                                <div class="col s2" ng-show="messageOpen && currentIndex !== $index " style="height:100px;">
+
+
+                                </div>
+                                <div class="col s10" ng-show="messageOpen && currentIndex !== $index" style=" border-top:1px solid #ddd; height:100px;">
+
+
+
+                                </div>-->
+
+                            </div>
+                        </div>
+                        <div class="col s2">
+                        </div>
+                        <div class="col s10">
+                            <ul class="pagination">
+                                <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+
+                                <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
+                                <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                    ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+
+                                <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
+                                <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
     <div ng-show="composeMessagePageLoading" class="col s10 center-align ">
            <br>
             

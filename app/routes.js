@@ -764,13 +764,22 @@ console.log('Hereo')
             } else {
                 for (var z = 0; z < user[0].disputedtimesheets.length; z++) {
 
-                    if (user[0].disputedtimesheets[z].date == req.body.date && user[0].disputedtimesheets[z].indexofdate == req.body.indexofdate) {
+                    if (user[0].disputedtimesheets[z].page.date == req.body.page.date && user[0].disputedtimesheets[z].page.indexofdate == req.body.page.indexofdate) {
                         console.log("MATCH")
-                        user[0].disputedtimesheets.splice(user[0].disputedtimesheets[z], 1)
+                        user[0].disputedtimesheets.splice(user[0].disputedtimesheets.indexOf(user[0].disputedtimesheets[z]), 1)
+                        //console.log(user[0].disputedtimesheets)
                     }
 
 
                 }
+                User.findOneAndUpdate({userclass:"admin"}, {$set:{disputedtimesheets:user[0].disputedtimesheets}}, {new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success:false, message:"User not found.."})
+                    }else{
+                        console.log("Admin Disputed Time Sheets Updated..")
+                    }
+                })
             }
         })
         User.findOneAndUpdate({ userclass: "admin" }, { $pull: { disputedtimesheets: req.body } }, { new: true }, function (err, user) {

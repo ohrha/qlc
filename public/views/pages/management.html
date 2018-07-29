@@ -26,11 +26,11 @@
 
         <div style="border-right:1px solid #ddd" class="col s2 center-align animated fadeIn">
             <span ng-click="openManagementPage()" class=" truncate  black-text    " ng-class="{'managementpageselected':managementPage,'managementpageclosed':!managementPage}"><i class="material-icons blue-text text-lighten-3" ng-class = "{'managementpageselected':managementPage,'managementpageclosed':!managementPage}">home</i> HOME </span>
-            <span ng-click="openClientsPage()" class=" truncate black-text  " ng-class="{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons green-text text-lighten-3" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
+           <!--MANAGEMENT <span ng-click="openClientsPage()" class=" truncate black-text  " ng-class="{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}"><i class="material-icons green-text text-lighten-3" ng-class = "{'clientspageselected':clientsPage,'clientspageclosed':!clientsPage}">business</i> CLIENTS </span>
             <a style="color:black;" href="#">
             <span ng-click="openEmployeesPage()" class=" truncate black-text " ng-class="{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}"><i class="material-icons yellow-text text-lighten-2"ng-class = "{'employeepageselected':employeesPage,'employeepageclosed':!employeesPage}">person</i> EMPLOYEES </span>
             </a>
-
+-->
 
         </div>
 
@@ -166,7 +166,7 @@
                     </div>
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
-<span class = "railway underline">Disputes ({{disputedTimeSheetsArray.length}})</span>                            
+<span ng-click="openDisputedTimeSheetsPage()" class = "railway underline">Disputes ({{disputedTimeSheetsArray.length}})</span>                            
 </a>
                     </div>
                     <div class="col s3 hide-on-small-only">
@@ -2073,7 +2073,7 @@
                                             <span class="montserrat underline" style="font-size:15px;">Employee</span>
                                             <p class="railway grey-text" style="font-size:14px;"> {{page.currentuser}}</p>
                                             <span class="montserrat underline"style="font-size:15px;">Date</span>
-                                            <p class="railway grey-text" style="font-size:14px;"> {{page.date}}</p>
+                                            <p class="railway grey-text" style="font-size:14px;"> {{page.page.date}}</p>
 
                                             <span class="montserrat underline"style="font-size:15px;">Disputed Hours</span>
                                             <p class="railway grey-text" style="font-size:14px;"> {{page.timein}}-{{page.timeout}}</p>
@@ -2092,13 +2092,13 @@
                                             </div>
                                             <div class="col s6 center-align">
 
-                                                <a ng-click="openTimeSheetComposeMessage(page.client,page.date)" href="#" style="color:black;">
+                                                <a ng-click="openTimeSheetComposeMessage(page.client,page.page.date)" href="#" style="color:black;">
                                                     <p class="montserrat">Message {{page.client}}</p>
                                                 </a>
 
                                             </div>
                                             <div class="col s6 center-align">
-                                                <a ng-click="openTimeSheetComposeMessage(page.currentuser,page.date)" href="#" style="color:black;">
+                                                <a ng-click="openTimeSheetComposeMessage(page.currentuser,page.page.date)" href="#" style="color:black;">
                                                     <p class="montserrat">Message {{page.currentuser}}</p>
                                                 </a>
 

@@ -11,6 +11,19 @@
         $scope.$on('$routeChangeSuccess', function () {
             $('.carousel').carousel();
         });
+               $rootScope.$on('$routeChangeStart', function () {
+
+            console.log(Auth.isLoggedIn())
+            console.log(AuthToken.getToken())
+            $rootScope.loggedIn = Auth.isLoggedIn()
+            Auth.getUser().then(function (data) {
+                console.log(data)
+                $rootScope.payPeriod = data.data.payperiod;
+                $rootScope.userClassy = $rootScope.userClass
+
+                console.log($rootScope.userClass)
+            })
+        })
         $scope.loadingProfile = true;
         $scope.name = "";
         $scope.email = "";

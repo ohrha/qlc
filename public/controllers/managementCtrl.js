@@ -7,6 +7,22 @@
     })
 
     app.controller('managementCtrl', function ($scope, Auth, $timeout, $location, $interval, $window, User, $rootScope, Location, Client, Supervisor) {
+       
+              $rootScope.$on('$routeChangeStart', function () {
+
+            console.log(Auth.isLoggedIn())
+            console.log(AuthToken.getToken())
+            $rootScope.loggedIn = Auth.isLoggedIn()
+            Auth.getUser().then(function (data) {
+                console.log(data)
+                $rootScope.payPeriod = data.data.payperiod;
+                $rootScope.userClassy = $rootScope.userClass
+
+                console.log($rootScope.userClass)
+            })
+        })
+       
+       
         $scope.username = "";
         $scope.userName = ""
         $scope.payperiod = '';
@@ -446,7 +462,7 @@
         $scope.closeTimeSheetComposeMessagePage = function () {
             $scope.timeSheetComposeMessageOpen = false;
         }
-        $scope.submitTimeSheetComposeMessage = function () {
+        $scope.submitTimeSheetComposeMessage = function (name,date) {
             console.log($scope.timeSheetMessage)
             // $scope.timeSheetMessage.subject = "Re:Disputed Time Sheet("+$scope.disputedDate+")"
 
@@ -468,7 +484,7 @@
                 $scope.timeSheetMessage.to !== null &&
                 $scope.timeSheetMessage.from !== null &&
                 $scope.timeSheetMessage.subject !== null) {
-
+                   // $scope.timeSheetMessage.to = name
                 console.log($scope.timeSheetMessage)
                 $scope.allFieldsMustBeInput = false;
                 $scope.timeSheetMessageLoading = true;
@@ -606,7 +622,7 @@
             $scope.timeSheetComposeMessageOpen = true;
             $scope.sendingFrom = name;
             $scope.disputedDate = date;
-            //$scope.timeSheetMessage.from = "ohrha harho"
+            $scope.timeSheetMessage.from = "ohrha harho"
             $scope.timeSheetMessage.to = $scope.sendingFrom
             $scope.timeSheetMessage.subject = "Re:Disputed Time Sheet(" + $scope.disputedDate + ")"
 
@@ -5302,6 +5318,7 @@
 
             } else {
                 $scope.clientsPage = true;
+                $scope.adminHome = false;
                 $scope.employeesPage = false;
                 $scope.managementPage = false;
                 $scope.payslipPageSelected = false;
