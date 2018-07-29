@@ -91,23 +91,23 @@
       <a href="/" class="brand-logo railway orange-text text-lighten-2"><i class = "material-icons white-text">cloud</i>QLH</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
-        <li ng-show="loggedIn && userClassy == 'admin'" ><a href="/management">Management</a></li>
-        <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/profile/{{user_id}}">Profile</a></li>
-                <li ng-show="loggedIn && userClassy == 'client'" ><a ng-href="/clientprofile/{{user_id}}">Profile</a></li>
+        <li><a href="/" class="menuhover">Home</a></li>
+        <li ng-show="loggedIn && userClassy == 'admin'" ><a href="/management"class="menuhover">Management</a></li>
+        <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/profile/{{user_id}}"class="menuhover">Profile</a></li>
+                <li ng-show="loggedIn && userClassy == 'client'" class="menuhover"><a ng-href="/clientprofile/{{user_id}}" class="menuhover">Profile</a></li>
 
-      <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/employmentdocuments">Employee Documentation</a></li>
+      <li ng-show="loggedIn && userClassy == 'employee'" ><a ng-href="/employmentdocuments"class="menuhover">Employee Documentation</a></li>
 
-      <li><a href="/services">Services</a></li>
-       <li ng-show="!loggedIn"><a href="/clienttoc">Client Register</a></li>
-      <li ng-show="!loggedIn"><a href="/register">Employee Register</a></li>
+      <li><a href="/services" class="menuhover">Services</a></li>
+       <li ng-show="!loggedIn"><a href="/clienttoc" class="menuhover">Client Register</a></li>
+      <li ng-show="!loggedIn"><a href="/register" class="menuhover">Employee Register</a></li>
 
         
-        <li ng-show="!loggedIn"><a href="/login">Login</a></li>
-        <li ng-show="loggedIn" ng-click="logout()"><a href="#">Logout</a></li>
+        <li ng-show="!loggedIn"><a href="/login"class="menuhover">Login</a></li>
+        <li ng-show="loggedIn" ng-click="logout()"class="menuhover"><a href="#"class="menuhover">Logout</a></li>
 
-        <li><a href="/contact">Contact</a></li>
-            <li ng-show="payPeriodIcon" ><a href="/contact">      
+        <li><a href="/contact"class="menuhover">Contact</a></li>
+            <li ng-show="payPeriodIcon" ><a class="menuhover" href="/contact">      
        <!--     
       <span class="fa-stack fa-2x">
   <i class="fas fa-calendar fa-stack-1x fa-lg"></i>
@@ -170,17 +170,22 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text railway">Give us a Shout!</h5>
+          <h5 class="orange-text text-lighten-2 railway">Give us a Shout!</h5>
           <p class="grey-text text-lighten-4">Call
             <bold>999 999 9999</bold> today to take advantage of our event crew experience</p>
         </div>
         <div class="col l4 offset-l2 s12">
-          <h5 class="white-text railway">Links</h5>
+          <h5 class="orange-text railway">Links</h5>
           <ul>
             <li><a ng-click="addPayPeriod();" class="grey-text text-lighten-3 railway" href="#">Home</a></li>
             <li><a ng-click="addJobDetails();"class="grey-text text-lighten-3 railway" href="/services">Services</a></li>
             <li><a class="grey-text text-lighten-3 railway" href="/contact">Contact</a></li>
+            <li><a class="grey-text text-lighten-3 railway" href="https://www.facebook.com/qlh.co.nz/"><i class="fab fa-facebook"></i></a></li>
+
           </ul>
+          <div class = "col s12 center-align">
+
+          </div>
         </div>
       </div>
     </div>
