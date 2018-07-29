@@ -102,7 +102,7 @@
 
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
-<span class = "railway underline">Bookings</span>                            
+<span ng-click="openEmployeeListAdmin()"class = "railway underline">Bookings</span>                            
 </a>
                     </div>
                     <div class="col s3 hide-on-small-only">
@@ -2070,6 +2070,8 @@
                                             <p class="railway grey-text" style="font-size:14px;"> {{page.currentuser}}</p>
                                             <span class="montserrat underline"style="font-size:15px;">Date</span>
                                             <p class="railway grey-text" style="font-size:14px;"> {{page.page.date}}</p>
+      <span class="montserrat underline"style="font-size:15px;">Job #</span>
+                                            <p class="railway grey-text" style="font-size:14px;"> {{page.currentjobindate+1}}</p>
 
                                             <span class="montserrat underline"style="font-size:15px;">Disputed Hours</span>
                                             <p class="railway grey-text" style="font-size:14px;"> {{page.timein}}-{{page.timeout}}</p>
