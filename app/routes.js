@@ -141,17 +141,17 @@ module.exports = function (app) {
                         }
                     })
                 } else {
-                    //NORMAL SUBMIT HOURS//
-                    //console.log(user,"145")
-                   // console.log(user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.payperiodhistoryindex])
 
+                    //NORMAL SUBMIT HOURS//
+                    console.log("NORMAL SUBMIT HOURS")
                     User.find({ name: req.body.client }, function (err, user) {
 
                         if (err) throw err;
                         if (!user) {
                             res.json({ success: false, message: "User not found..." })
                         } else {
-                            if (req.body.page.submittedtimesheetsindex) {
+                            if (req.body.page.submittedtimesheetsindex || req.body.page.submittedtimesheetsindex ==0) {
+                                console.log("SUBMITTED TIME SHEET INDEX EXISGS")
                                 //user[0].submittedtimesheets.splice(req.body.page.submittedtimesheetsindex,1)
                                 user[0].submittedtimesheets[req.body.page.submittedtimesheetsindex].timein = req.body.timein
                                 user[0].submittedtimesheets[req.body.page.submittedtimesheetsindex].timeout = req.body.timeout
@@ -786,10 +786,10 @@ console.log('Hereo')
                     } else {
 
                         //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.indexofdate].disputed = false;
-                        console.log(user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index])
-                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].disputed = false
-                        user[0].payperiodhistory[req.body.payperiodhistoryindex].entry[req.body.index][req.body.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
-                        User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiods: user[0].payperiods } }, { new: true }, function (err, user) {
+                        console.log(user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.index])
+                        user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.index][req.body.currentjobindate].disputed = false
+                        user[0].payperiodhistory[req.body.payperiodnum].entry[req.body.index][req.body.currentjobindate].submittedtimesheetsindex = req.body.submittedtimesheetsindex
+                        User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                             if (err) throw err;
                             if (!user) {
                                 res.json({ success: false, message: "User not found.." })
