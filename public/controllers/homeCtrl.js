@@ -1,16 +1,15 @@
 (function(){
 
-    var app = angular.module('homeController',[])
+    var app = angular.module('homeController',['authServices'])
     app.config(function(){
 
         console.log("Home Controller Loaded")
     })
 
-    app.controller('homeCtrl', function($scope,$rootScope){
+    app.controller('homeCtrl', function($scope,$rootScope,Auth){
           $rootScope.$on('$routeChangeStart', function () {
 
-            console.log(Auth.isLoggedIn())
-            console.log(AuthToken.getToken())
+           
             $rootScope.loggedIn = Auth.isLoggedIn()
             Auth.getUser().then(function (data) {
                 console.log(data)

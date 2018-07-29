@@ -1,16 +1,16 @@
 (function(){
 
-    var app = angular.module('registerController',['userServices'])
+    var app = angular.module('registerController',['userServices','authServices'])
     app.config(function(){
 
         console.log("Register Controller Loaded")
     })
 
-    app.controller('registerCtrl', function($scope,$http,$location,User,$timeout,$rootScope){
+    app.controller('registerCtrl', function($scope,$http,$location,User,$timeout,$rootScope,Auth){
                $rootScope.$on('$routeChangeStart', function () {
 
-            console.log(Auth.isLoggedIn())
-            console.log(AuthToken.getToken())
+           
+           
             $rootScope.loggedIn = Auth.isLoggedIn()
             Auth.getUser().then(function (data) {
                 console.log(data)

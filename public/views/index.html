@@ -116,15 +116,15 @@
   
   
   </a></li>
-           <li ng-show="payPeriodIcon" ><a href="/contact">      
-            
+        <!--   <li ng-show="payPeriodIcon" ><a href="/contact">      
+   <!--         
       <span class="fa-stack fa-2x">
   <i class="far fa-comment-alt fa-stack-1x fa-lg"></i>
   <span class=" fa-stack-2x" style="color:white; font-size:20px; padding-bottom:20px;">{{messageCount}}</span>
 </span>
   
-  
-  </a></li>
+  -->
+ <!-- </a></li>-->
 
       </ul>
       <ul class="side-nav railway" id="mobile-demo">
@@ -139,8 +139,7 @@
         <li ng-show="!loggedIn"><a href="/register">Register</a></li>
         <li ng-show="!loggedIn"><a href="/login">Login</a></li>
         <li ng-show="loggedIn" ng-click="logout()"><a href="#">Logout</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li  class ="left-align "><a  href="/contact">        
+               
    
   
   </a></li>
@@ -176,7 +175,8 @@
           <ul>
             <li><a ng-click="addPayPeriod();" class="grey-text text-lighten-3 railway" href="#">Home</a></li>
             <li><a ng-click="addJobDetails();"class="grey-text text-lighten-3 railway" href="/services">Services</a></li>
-            <li><a class="grey-text text-lighten-3 railway" href="/contact">Contact</a></li>
+            <li><a class="grey-text text-lighten-3 railway" href="/clientregister">Employee Register</a></li>
+             <li><a class="grey-text text-lighten-3 railway" href="/register">Client Register</a></li>
             <li><a class="grey-text text-lighten-3 railway" href="https://www.facebook.com/qlh.co.nz/"><i class="fab fa-facebook"></i></a></li>
 
           </ul>
