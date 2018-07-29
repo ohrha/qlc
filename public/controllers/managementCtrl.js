@@ -808,7 +808,7 @@
         $scope.fadeIn = true;
 
 
-        $scope.openMessage = function (index, timesheetData) {
+        $scope.openMessage = function (index,messageIndex, timesheetData) {
 
             $('select').material_select();
 
@@ -818,7 +818,7 @@
                 $scope.adminMessageLoading = true;
                 $scope.messageIndex = index;
 
-                User.changeMessageToRead($scope.name, $scope.messageIndex).then(function (data) {
+                User.changeMessageToRead($scope.name,messageIndex).then(function (data) {
                     console.log(data)
                     $scope.pageLimit = 4;
                     $scope.adminMessagesPaginated = [];
@@ -935,6 +935,7 @@
                                 //console.log($scope.employees[i])
                                 //console.log($scope.pageLimit, i, $scope.employees.length)
                                 if ($scope.adminMessagesArray[i]) {
+                                    $scope.adminMessagesArray[i].messageIndex = i
                                     $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
                                     console.log(i)
                                     console.log("firstCondiation")
@@ -3606,6 +3607,89 @@
                 $scope.areYouSureRemove3 = true;
                 $scope.addJobPageOpen = false;
             }
+        }
+       $scope.areYouSureRMessage = false;
+              $scope.openAreYouSure = function (index) {
+            if (!$scope.areYouSureRMessage) {
+                $scope.areYouSureRMessage = true;
+
+            } else {
+                // $scope.areYouSure 
+            }
+        }
+           $scope.removeMessage = function (index,messageIndex) {
+            $scope.messageLoading = true;
+            $scope.currentIndex = index;
+            $scope.areYouSureRMessage = false;
+            console.log(index)
+
+            User.removeMessage($scope.name, messageIndex).then(function (data) {
+                console.log(data)
+                $scope.pageLimit = 4;
+                $scope.adminMessagesPaginated = [];
+                $scope.adminMessagesForPagination = [];
+                $scope.adminMessagesArray = data.data.user.comments;
+                for (var i = 0; i <= $scope.adminMessagesArray.length; i++) {
+
+                    var page = 0;
+                    ////console.log($scope.pageLimit, i, $scope.employees.length)
+                    console.log($scope.employees)
+                    if (i < $scope.pageLimit) {
+                        console.log("its less")
+
+                    }
+                    if (i < $scope.adminMessagesArray.length) {
+                        console.log("yup,less")
+                    }
+
+                    if (i < $scope.pageLimit && i < $scope.adminMessagesArray.length) {//5
+                        console.log("HELLO")
+                        //console.log($scope.employees[i])
+                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        if ($scope.adminMessagesArray[i]) {
+                            $scope.adminMessagesArray.messageIndex = i
+                            $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
+                            console.log(i)
+                            console.log("firstCondiation")
+                            console.log($scope.pageArray)
+
+                        }
+
+
+
+                    } else {
+                        
+
+                            console.log("else")
+                            $scope.loadingUsers = false;
+                            if ($scope.adminMessagesForPagination.length > 0) {
+                                $scope.adminMessagesPaginated.push($scope.adminMessagesForPagination)
+
+                            }
+                           
+                            $scope.adminMessagesForPagination = [];
+                            if ($scope.adminMessagesArray[i] !== undefined) {
+                                $scope.adminMessagesArray[i].messageIndex = i
+                                $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
+                            }
+                            $scope.pageLimit = $scope.pageLimit + 4;
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                            page++
+
+                        
+
+                    }
+
+                }
+
+                $scope.messageLoading = false;
+                $scope.messageIndex= null;
+                //$scope.openMessagePage2();
+            })
+        }
+        $scope.closeAreYouSure = function (index) {
+            $scope.areYouSureRMessage = false;
         }
         $scope.openRemoveUserPage = function () {
             if (!$scope.removeUserPageOpen) {
