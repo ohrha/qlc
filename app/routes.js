@@ -1229,7 +1229,7 @@ console.log('Hereo')
                             res.json({ success: false, message: "User not found.." })
                         } else {
                             //res.json({success: true, mes})
-                            console.log(adminDelinquentTimeSheetArray)
+                            
                             console.log("User Delinquent Time Sheets Updated...")
 
                         }

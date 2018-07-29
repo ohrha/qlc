@@ -4567,7 +4567,7 @@ $scope.currentIndex = null;
             doc.setFontSize(10)
             doc.text("Casual Labourer", 10, 20)
             doc.text(String($scope.userPhoneNumber), 10, 30)
-            doc.text("Quality Labour Hire Ltd.", 10, 60)
+            doc.text("Quality Labour Hire Ltd.", 10, 65)
             doc.text("Pay Period:", 10, 70)
             doc.text($scope.payPeriodStartDate, 30, 70)
             doc.text($scope.payPeriodEndDate, 46, 70)
@@ -4576,11 +4576,10 @@ $scope.currentIndex = null;
             doc.text("Tax Code:", 10, 80)
             doc.text("M", 30, 80)
             doc.setFontSize(13)
-doc.setFillColor(0) 
-doc.setDrawColor(0) 
-doc.setDrawColor(0,0,0);
-doc.rect(0, 83,250, 10);
-            doc.text("Taxable Earnings", 10, 90)
+doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(0, 83,250, 10,'f');
+            doc.text("Taxable Earnings", 10, 87)
            
             doc.text("Rate", 120, 90)
 
@@ -4592,12 +4591,12 @@ doc.rect(0, 83,250, 10);
             doc.text(String($scope.totalHours), 150, 100)
             doc.text(String($scope.totalHours * $scope.userPayRate), 170, 100)
             doc.text(String("Holiday Pay @ 8% (Pay As You Go)"), 10, 120)
-            doc.text(String(($scope.totalHours * $scope.userPayRate) * .08), 170, 120)
+            doc.text(String(Number(($scope.totalHours * $scope.userPayRate) * .08).toFixed(2)), 170, 120)
             doc.setDrawColor(0,0,0);
 doc.rect(0, 132,250, 0);
             doc.text(String("Total Gross Earnings"), 10, 130)
             doc.text(String(($scope.totalHours * $scope.userPayRate) * .08 + ($scope.totalHours * $scope.userPayRate)), 170, 130)
-                      doc.setDrawColor(0,0,0);
+                      doc.setDrawColor(100,0,0);
 doc.rect(0, 142,250, 0);
             doc.text(String("Taxable Earnings"), 10, 140)
             doc.text(String($scope.totalHours * $scope.userPayRate), 170, 140)
@@ -4606,8 +4605,35 @@ doc.rect(0, 142,250, 0);
             doc.text(String((($scope.totalHours * $scope.userPayRate) * .1)), 170, 150)
             doc.text(String("Take Home Pay"), 10, 160)//NEED TO ADD TAX CODE TO USER MODEL TO CALCULATE THIS...
             doc.text(String(($scope.totalHours * $scope.userPayRate) - (($scope.totalHours * $scope.userPayRate) * .1)), 170, 160)
+                    doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(130, 172,30, 5,'FD');
+                  doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(160, 172,30, 5,'FD');
+                  doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(190, 172,30, 5,'FD');
+                    doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(130, 182,30, 13,'FD');
+                  doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(160, 182,30, 13,'FD');
+                  doc.setDrawColor(0,0,0)
+doc.setFillColor(175, 175, 175);
+doc.rect(190, 182,30, 13,'FD');
                     doc.setDrawColor(0,0,0);
 doc.rect(0, 172,250, 0);
+doc.text(String("Summary"), 133, 176)
+doc.text(String("This Pay"), 162, 176)
+ doc.text(String("YTD"), 190, 176)
+doc.text(String("Gross"), 133, 185)
+doc.text(String("PAYE"), 133, 189)
+ doc.text(String("Take Home"), 133, 193)
+ doc.text(String(($scope.totalHours * $scope.userPayRate) * .08 + ($scope.totalHours * $scope.userPayRate)),162,185)
+            doc.text(String((($scope.totalHours * $scope.userPayRate) * .1)), 162, 189)
+            doc.text(String(($scope.totalHours * $scope.userPayRate) - (($scope.totalHours * $scope.userPayRate) * .1)), 162, 193)
 
 
             doc.addImage($scope.qlhLogo, 'JPG', 180, 15, 15, 15);
