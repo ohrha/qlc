@@ -2005,11 +2005,7 @@
 
 
 
-                                    <div class="col s10" ng-show="disputedTimeSheetOpen && disputeIndex == $index && messageLoading">
-
-
-                                        <i style="font-size:16px;" class="fas fa-circle-notch fa-spin"></i>
-                                    </div>
+               
                                     <div class="col s10" ng-show="disputedTimeSheetOpen && disputeIndex == $index && !timeSheetMessageLoading && timeSheetComposeMessageOpen && timeSheetMessageSuccessfullySent  ">
                                         <p class="montserrat animated flash green-text text-lighten-2  underline" style="font-size:14px;"> Message Successfully Sent!</p>
 
@@ -2064,7 +2060,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col s10" ng-show="disputedTimeSheetOpen && disputeIndex == $index && !messageLoading && !timeSheetComposeMessageOpen "
+                                    <div class="col s10" ng-show="disputedTimeSheetOpen && disputeIndex == $index  && !timeSheetComposeMessageOpen "
                                         style=" border-bottom:1px solid #ddd;">
 
                                         <div class="col s12 center-align" style="border-bottom:1px dashed #ddd;">
@@ -2512,7 +2508,7 @@
                     <div class = "row">
                     </div>
                             <div class="col s12" ng-repeat="page in adminMessagesPaginated[page] track by $index">
-                                {{page.messageIndex}}
+                             
                                 <div class="row">
                                     <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
                                         <a href="#" style="color:black;"> <i ng-click="openMessage($index,page.messageIndex,true)" class="material-icons" style=" font-size:16px;box-shadow:1px 1px 1px black;">email</i></a>

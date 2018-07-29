@@ -3005,7 +3005,7 @@
         }
         Auth.getUser().then(function (data) {
             console.log(data)
-            $scope.adminMessagesArray = data.data.messages;
+           // $scope.adminMessagesArray = data.data.messages;
             $scope.requestedJobsArray = data.data.requestedjobs
             $scope.approvedJobsArray = data.data.approvednotbooked;
             $scope.userName = data.data.name
@@ -3016,7 +3016,7 @@
                 $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
                 // $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
 
-
+                $scope.adminMessagesArray = data.data.user[0].comments
                 $scope.requestedJobsArray = data.data.user[0].requestedjobs
                 $scope.approvedJobsArray = data.data.user[0].approvednotbooked
                 $scope.payPeriodNum = data.data.user[0].payperiodnum
@@ -5371,10 +5371,21 @@
 
         $scope.openManagementPage = function () {
 
+User.findUser($scope.userName).then(function (data) {
+    console.log()
+     $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
+                // $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
 
+
+                $scope.requestedJobsArray = data.data.user[0].requestedjobs
+                $scope.approvedJobsArray = data.data.user[0].approvednotbooked
+                $scope.payPeriodNum = data.data.user[0].payperiodnum
+                $scope.adminMessagesArray = data.data.user[0].comments
+})
             $scope.managementPage = true;
             $scope.adminHome = true;
             $scope.delinquentIndex = null;
+            $scope.disputeIndex = null
             $scope.messageIndex = null;
             $scope.approvedIndex = null;
             $scope.requestIndex = null;
