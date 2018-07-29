@@ -858,9 +858,9 @@
                             $scope.adminMessagesPaginated.push($scope.adminMessagesForPagination)
                             console.log($scope.adminMessagesPaginated)
                             $scope.adminMessagesForPagination = [];
-                            if ($scope.messagesArray[i] !== undefined) {
+                            if ($scope.adminMessagesArray[i] !== undefined) {
                                $scope.adminMessagesArray[i].messageIndex = i
-                                $scope.adminMessageseForPagination.push($scope.adminMessagesArray[i])
+                                $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
                             //console.log($scope.pageLimit, i, $scope.employees.length)
