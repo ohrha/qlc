@@ -2512,6 +2512,7 @@
                     <div class = "row">
                     </div>
                             <div class="col s12" ng-repeat="page in adminMessagesPaginated[page] track by $index">
+                                {{page.messageIndex}}
                                 <div class="row">
                                     <div ng-show="!page.read" class="col s2" style="border-right:1px solid #ddd">
                                         <a href="#" style="color:black;"> <i ng-click="openMessage($index,page.messageIndex,true)" class="material-icons" style=" font-size:16px;box-shadow:1px 1px 1px black;">email</i></a>

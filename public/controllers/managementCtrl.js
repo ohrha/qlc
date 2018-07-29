@@ -817,6 +817,7 @@
                 // $scope.individualPayPeriodOpen = false;
                 $scope.adminMessageLoading = true;
                 $scope.messageIndex = index;
+                console.log(messageIndex)
 
                 User.changeMessageToRead($scope.name,messageIndex).then(function (data) {
                     console.log(data)
@@ -3647,7 +3648,7 @@
                         //console.log($scope.employees[i])
                         //console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.adminMessagesArray[i]) {
-                            $scope.adminMessagesArray.messageIndex = i
+                            $scope.adminMessagesArray[i].messageIndex = i
                             $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
                             console.log(i)
                             console.log("firstCondiation")
@@ -3658,7 +3659,20 @@
 
 
                     } else {
-                        
+                                    console.log("else")
+                            $scope.loadingUsers = false;
+                            $scope.adminMessagesPaginated.push($scope.adminMessagesForPagination)
+                            console.log($scope.adminMessagesPaginated)
+                            $scope.adminMessagesForPagination = [];
+                            if ($scope.adminMessagesArray[i] !== undefined) {
+                               $scope.adminMessagesArray[i].messageIndex = i
+                                $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
+                            }
+                            $scope.pageLimit = $scope.pageLimit + 4;
+                            //console.log($scope.pageLimit, i, $scope.employees.length)
+
+                            page++
+                        /*
 
                             console.log("else")
                             $scope.loadingUsers = false;
@@ -3673,10 +3687,9 @@
                                 $scope.adminMessagesForPagination.push($scope.adminMessagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
 
                             page++
-
+*/
                         
 
                     }
