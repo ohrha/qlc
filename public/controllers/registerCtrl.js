@@ -6,7 +6,7 @@
         console.log("Register Controller Loaded")
     })
 
-    app.controller('registerCtrl', function($scope,$http,$location,User,$timeout){
+    app.controller('registerCtrl', function($scope,$http,$location,User,$timeout,$rootScope){
                $rootScope.$on('$routeChangeStart', function () {
 
             console.log(Auth.isLoggedIn())
