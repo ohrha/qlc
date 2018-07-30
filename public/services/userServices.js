@@ -94,6 +94,9 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.addHoursToClientSubmittedTimeSheets = function(jobDetails){
         return $http.post('/api/users/addhourstoclientsubmittedtimesheets', jobDetails)
     }
+    userFactory.removeRequestedJob = function(jobDetails){
+        return $http.post('/api/users/removerequestedjob', jobDetails)
+    }
     userFactory.addHoursToPayPeriod = function(hoursDetails){
         return $http.post('/api/users/addhourstopayperiod', hoursDetails)
     }

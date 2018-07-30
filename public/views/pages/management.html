@@ -156,7 +156,7 @@
 
                     <div class="col s3 hide-on-small-only">
                         <a href="#" style="color:black;">
-<span class = "railway underline">Delinquent Time Sheets</span>                            
+<span class = "railway underline" ng-click="openDelinquentTimeSheetPage();">Delinquent Time Sheets</span>                            
 </a>
                     </div>
                     <div class="col s3 hide-on-small-only">
@@ -499,17 +499,28 @@
                         </tbody>
                     </table>
 
-                    <ul class="pagination">
-                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+              <div ng-show="employeesPaginated.length>1" class="animated fadeIn">
 
-                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage()"><i class="material-icons">chevron_left</i></a></li>
-                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+                               
+                                <div class="col s12 center-align">
+                                    <ul class="pagination">
+                                        <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPageManageTimeSheets()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
 
-                        <li class="waves-effect"><a href="#" ng-click="changePage()"><i class="material-icons">chevron_right</i></a></li>
-                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+                                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePageManageTimeSheets()"><i class="material-icons">chevron_left</i></a></li>
+                                        <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
+                                            ng-click="specificPage($index)">
 
-                    </ul>
+                                        <li class="waves-effect"><a href="#" ng-click="changePageManageTimeSheets()"><i class="material-icons">chevron_right</i></a></li>
+                                        <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPageManageTimeSheets()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+
+                                    </ul>
+                                </div>
+                               
+                                <div class="col s12 center-align">
+                                    <span class="montserrat underline" style="font-size:14px;">{{page+1}}</span>
+                                </div>
+
+                            </div>
 
 
                 </div>
@@ -2257,11 +2268,11 @@
                                             <p class="montserrat" style="text-decoration:underline;"> Do You Approve Of This Request?</p>
                                         </div>
                                         <div class="col s6 center-align">
-                                            <i ng-click="approveJob(page,$index);" class="material-icons green-text text-lighten-3">check_circle</i>
+                                            <i ng-click="approveJob(page,$index,page.currentIndex);" class="material-icons green-text text-lighten-3">check_circle</i>
                                             <br>
                                         </div>
                                         <div class="col s6 center-align">
-                                            <i ng-click="disApproveJob(page,$index);" class="material-icons red-text text-lighten-3">cancel</i>
+                                            <i ng-click="disApproveJob(page,$index,page.currentIndex);" class="material-icons red-text text-lighten-3">cancel</i>
                                             <br>
                                         </div>
 
@@ -2273,7 +2284,7 @@
 
                                         </div>
                                         <div class="col s6 center-align">
-                                            <i ng-click="approveJob(page,$index);" class="material-icons red-text text-lighten-3">check_circle</i>
+                                            <i ng-click="removeRequestedJob(page,$index,page.currentIndex);" class="material-icons red-text text-lighten-3">check_circle</i>
                                             <br>
                                         </div>
                                         <div class="col s6 center-align">
@@ -2594,7 +2605,7 @@
 
                                         <li class="disabled waves-effect"><a href="#" ng-click="decreasePageAdminMessages()"><i class="material-icons">chevron_left</i></a></li>
                                         <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+                                            ng-click="specificPage($index)">
 
                                         <li class="waves-effect"><a href="#" ng-click="changePageAdminMessages()"><i class="material-icons">chevron_right</i></a></li>
                                         <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPageAdminMessages()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
@@ -2677,7 +2688,7 @@
 
                 <div ng-show="historyPageOpen" class="col s12">
 
-                    <div class="col s12" style="border-bottom: 1px solid black; border-top: 1px slid #ddd;">
+                    <div class="col s12" style=" border-top: 1px slid #ddd;">
                         <!--
 
                     <p ng-show="personalHistoryTitle" style="font-size:17px;" class="railway animated fadeIn underline "><i ng-click="openHistoryPage()" style="font-size:14px;" class="material-icons animated fadeIn">keyboard_return</i>Work
@@ -3557,17 +3568,28 @@
                                         </tbody>
                                     </table>
 
+             <div ng-show="employeesPaginated.length>1" class="animated fadeIn">
+
+                               
+                                <div class="col s12 center-align">
                                     <ul class="pagination">
-                                        <li class="disabled hide-on-small-only"><a href="#" ng-click="firstPage()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
+                                        <li class="disabled hide-on-small-only" style="border-left:1px solid #ddd;"><a href="#" ng-click="firstPageManageTimeSheets()"><i class="material-icons">chevron_left</i><i class="material-icons">chevron_left</i></a></li>
 
-                                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePage2()"><i class="material-icons">chevron_left</i></a></li>
+                                        <li class="disabled waves-effect"><a href="#" ng-click="decreasePageManageTimeSheets()"><i class="material-icons">chevron_left</i></a></li>
                                         <li ng-class="{'active':page == $index, 'disabled': page!==$index}" ng-repeat="employee in employeesPaginated track by $index"
-                                            ng-click="specificPage($index)"><a href="#">{{$index}}</a></li>
+                                            ng-click="specificPage($index)">
 
-                                        <li class="waves-effect"><a href="#" ng-click="changePage2()"><i class="material-icons">chevron_right</i></a></li>
-                                        <li class="waves-effect hide-on-small-only" ng-click="lastPage()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
+                                        <li class="waves-effect"><a href="#" ng-click="changePageManageTimeSheets()"><i class="material-icons">chevron_right</i></a></li>
+                                        <li class="waves-effect hide-on-small-only" style="border-right:1px solid #ddd;" ng-click="lastPageManageTimeSheets()"><a href="#"><i class="material-icons">chevron_right</i><i class="material-icons">chevron_right</i></a></li>
 
                                     </ul>
+                                </div>
+                               
+                                <div class="col s12 center-align">
+                                    <span class="montserrat underline" style="font-size:14px;">{{page+1}}</span>
+                                </div>
+
+                            </div>
                                 </div>
                             </div>
 

@@ -592,7 +592,7 @@ console.log('Hereo')
                 //IF APPROVED REQUEST ARRAY VALUE DOES EXIST//
 
                 user[0].requestedjobs.splice(req.body.index,1)
-                req.body.requestedjoblocation = req.body.index
+                req.body.requestedjoblocation = req.body.currentIndex
                 user[0].approvednotbooked.push(req.body)
 
 
@@ -643,7 +643,7 @@ console.log('Hereo')
         })
 
     })
-    app.post('/users/removerequestedjob', function (req, res) {
+   /* app.post('/users/removerequestedjob', function (req, res) {
 
         User.find({ userclass: "admin" }, function (err, user) {
 
@@ -678,7 +678,7 @@ console.log('Hereo')
                 })
             }
         })
-    })
+    })*/
     app.post('/users/requestjob', function (req, res) {
 
         User.find({ userclass: "admin" }, function (err, user) {
@@ -1755,6 +1755,46 @@ console.log('Hereo')
 
 
 
+
+    })
+    app.post('/users/removerequestedjob', function(req,res){
+        
+        User.find({name:req.body.client}, function(err,user){
+            if(err)throw err;
+            if(!user){
+                res.json({success: false, message:"User not found.."})
+            }else{
+                for(var z=0;z<user[0].requestedjobs.length;z++){
+                    if(user[0].requestedjobs[z].numberofworkers == req.body.numberofworkers && user[0].requestedjobs[z].hours == req.body.hours
+                    && user[0].requestedjobs[z].monthNum == req.body.monthNum  && user[0].requestedjobs[z].dateNum == req.body.dateNum){
+                        user[0].requestedjobs.splice(z,1)
+                    }
+                }
+                User.findOneAndUpdate({name:req.body.client}, {$set:{requestedjobs:user[0].requestedjobs}},{new:true}, function(err,user){
+                    if(err)throw err;
+                    if(!user){
+                        res.json({success: false, message:"User not found.."})
+                    }else{
+                        User.find({userclass:"admin"}, function(err,user){
+                            if(err)throw err;
+                            if(!user){
+                                res.json({success: false, message:"user not found.."})
+                            }else{
+                                user[0].requestedjobs.splice(req.body.requestedjoblocation,1)
+                                User.findOneAndUpdate({userclass:"admin"}, {$set:{requestedjobs: user[0].requestedjobs}},{new:true}, function(err,user){
+                                    if(err)throw err;
+                                    if(!user){
+                                        res.json({success: false, message:"User not found.."})
+                                    }else{
+                                        res.json({sucess: true, message:"Requested Job removed..", user:user})
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
 
     })
     app.post('/payperiod/updatepayperiodjobdetails', function (req, res) {
