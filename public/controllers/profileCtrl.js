@@ -2661,8 +2661,10 @@ $scope.requestEmployeePageLoading = false;
                 $scope.clientHome= true;
                 $scope.addLocationPageOpen = false;
                 $scope.addSupervisorPageOpen = false;
+
                 $scope.messagePageOpen = false;
                 $scope.messagePageSelected = false;
+                $scope.composeMessagePageOpen = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
             //}
         }
