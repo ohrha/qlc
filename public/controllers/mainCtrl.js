@@ -8,7 +8,7 @@
 
     app.controller('mainCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, AuthToken, PayPeriod, $window) {
 
-
+    $('.parallax').parallax();
         $scope.userClass = "";
         $scope.userToken = "";
         $scope.date = 24;
