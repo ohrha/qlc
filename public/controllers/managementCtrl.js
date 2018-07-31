@@ -3423,7 +3423,7 @@
             $scope.globalPayPeriodIndexATM = index;
             $scope.payPeriodHistoryIndex = index;
             $scope.turnOtherPayPeriodsOff = true;
-            $scope.individualuser = false;
+            $scope.individualUser = false;
             $scope.loadingPersonalHistory = false;
 
             // $scope.historyEntryOpen = false;
@@ -4701,6 +4701,7 @@ $scope.totalHours  =0
             $scope.adminHome = false;
             //$scope.managementPage = false;
             $scope.employeesPage = false;
+            $scope.individualUser=false;
             $scope.clientsPage = false;
             $scope.allEmployeesJobDetails = [];
 
