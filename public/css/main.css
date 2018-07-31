@@ -280,3 +280,10 @@ body, html{
     padding:20px;
 
 }
+.menuhover{
+color:white
+}
+.menuhover:hover{
+    color:#ff8533;
+    transition:.3s;
+}
