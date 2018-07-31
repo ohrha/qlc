@@ -3423,6 +3423,7 @@
             $scope.globalPayPeriodIndexATM = index;
             $scope.payPeriodHistoryIndex = index;
             $scope.turnOtherPayPeriodsOff = true;
+            $scope.individualuser = false;
             $scope.loadingPersonalHistory = false;
 
             // $scope.historyEntryOpen = false;
