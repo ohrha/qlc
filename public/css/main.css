@@ -249,185 +249,27 @@ a{
     height: 400px !important;
 }
 */
-.md-datepicker-input-container {
-    width: 300px;
-    height: 200px;
-}
-.red{
-    color:red;
-}
-.blue{
-    color:blue;
-}
-.green{
-    color:green;
-}
-.removeonsmall{
-    transition:.3s;
-}
-@media(max-width:600px){
+body, html{
 
-    .removeonsmall{
-        display:none;
-    }
+ 
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight:400;
+    line-height:1.8em;
+    color:#666;
 
 }
+#title{
 
-
-/* Experiment select box */
-
-
-
-
-.missionstatement{
-
-  border:1px solid black;
-
+  top:-20%;
 }
-#companyhero{
-
-  text-align:center;
-
-}
-.capitaltitle{
-
-  position:absolute;
-  left:45%;
-
-}
-#rosejumbotron{
-    display:inline-block;
-  position:absolute;
-  top:50%;
-  left:125px;
-  
-  transition:.6s;
-  border:1px solid black;
-  box-shadow: 2px 2px 2px black;
-}
-#rosejumbotron:hover{
-  position:absolute;
-  top:49%;
-  left:-30px;
-  transition:.3s;
-  box-shadow: 4px 4px 6px rgba(0,0,0,.5);
-
-}
-#rosejumbotron:active{
-  position:absolute;
-  top:50%;
-  left:42%;
-  transition:.3s;
-  box-shadow: 2px 2px 2px black;
-
-}
-.threelaws{
+.ptext{
     position:absolute;
-    top:50;
+    top:35%;
+    width:100%;
+    text-align:center;
+    color:black;
+    font-size:27px;
+    letter-spacing:8px;
+    text-transform:uppercase;
 }
-.menuhover{
-color:white
-}
-.menuhover:hover{
-    color:#ff8533;
-    transition:.3s;
-}
-
-
-/* CSS WEATHER ICONS */
-/* CSS WEATHER ICONS */
-.button-collapse {
-  color: #ee6e73;
-}
-
-.parallax-container {
-  min-height: 380px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
-}
-  .parallax-container .section {
-    width: 100%;
-  }
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
-  #index-banner .section {
-    top: 10%;
-  }
-}
-
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
-  }
-}
-
-
-.icon-block {
-  padding: 0 15px;
-}
-
-footer.page-footer {
-  margin: 0;
-}
-
-
-
-
- .parallax img 
- {
- 	 background-repeat: no-repeat;
- 	 background-size: cover;
- }
- .parallax-container
- {
- 	color: black;
- }
- @media only screen and (max-width : 600px) {
-  .parallax-container
- {
- 	color: white;
- }
-}
- nav a.button-collapse
- {
- 	color:black;
- }
- .purple.lighten-1 {
-  background-color: #CC0066 !important;
-}
-.teal-text.text-lighten-2 {
-  color: #CC0066 !important;
-}
-.share-buttons{
-	list-style: none;
-}
-
-.share-buttons li{
-	display: inline;
-}
-nav
-{
-	overflow: visible;
-}
-nav li a {
-    -webkit-transition: background .3s ease-in-out;
-    -moz-transition: background .3s ease-in-out;
-    transition: background .3s ease-in-out;
-}
-
-/*
-@media(max-width:568px){
-
-
-    .pimg1, .pimg2, .pimg3{
-        background-attachment:scroll;
-
-    }
-
-}
-*/

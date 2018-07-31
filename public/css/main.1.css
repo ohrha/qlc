@@ -437,6 +437,15 @@ body, html{
 #margin{
  
 }
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
 /*
 @media(max-width:568px){
 
