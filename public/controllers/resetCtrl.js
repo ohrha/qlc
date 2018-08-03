@@ -20,6 +20,12 @@
                 console.log($rootScope.userClass)
             })
         })
+               if (Auth.isLoggedIn()) {
+                    //$rootScope.payPeriod = data.data.payperiod;
+                   // $rootScope.userClassy = $rootScope.userClass
+                }else{
+                   Auth.logout();
+                }
         $scope.resetData = {
             username:null
         }

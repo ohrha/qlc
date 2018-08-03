@@ -2135,36 +2135,36 @@ console.log('Hereo')
             }
         }
         if (month == 8) {
-            if (dateNow == 1 || 2 || 3 || 4 || 5) {
+            if (dateNow == 1 || dateNow == 2 || dateNow == 3 || dateNow ==4 || dateNow == 5) {
 
-                payperiodnum = 10;
+                payperiodnum = 2;
                 console.log("payperiodnum", payperiodnum)
 
             }
-            if (dateNow == 6 || 7 || 8 || 9 || 10 || 11 || 12) {
+            if (dateNow == 6 || dateNow ==7 || dateNow ==8 ||dateNow == 9 ||dateNow == 10 ||dateNow == 11 ||dateNow == 12) {
 
-                payperiodnum = 11;
-                console.log("payperiodnum", payperiodnum)
-
-
-            }
-            if (dateNow == 13 || 14 || 15 || 16 || 17 || 18 || 19) {
-
-                payperiodnum = 12;
+                payperiodnum = 3;
                 console.log("payperiodnum", payperiodnum)
 
 
             }
-            if (dateNow == 20 || 21 || 22 || 23 || 24 || 25 || 26) {
+            if (dateNow == 13 ||dateNow == 14 ||dateNow == 15 ||dateNow == 16 || dateNow ==17 ||dateNow == 18 ||dateNow == 19) {
 
-                payperiodnum = 13;
+                payperiodnum = 4;
                 console.log("payperiodnum", payperiodnum)
 
 
             }
-            if (dateNow == 27 || 28 || 29 || 30 || 31) {
+            if (dateNow == 20 ||dateNow == 21 ||dateNow == 22 ||dateNow ==23 || dateNow ==24 ||dateNow == 25 || dateNow ==26) {
 
-                payperiodnum = 14;
+                payperiodnum = 5;
+                console.log("payperiodnum", payperiodnum)
+
+
+            }
+            if (dateNow == 27 || dateNow == 28 ||dateNow == 29 ||dateNow == 30 ||dateNow == 31) {
+
+                payperiodnum = 6;
                 console.log("payperiodnum", payperiodnum)
 
 
@@ -2323,16 +2323,18 @@ console.log('Hereo')
         user.username = req.body.userName;
         user.phonenumber = req.body.phonenumber;
         user.password = req.body.password.toString(),
-            user.email = req.body.email;
+        user.email = req.body.email;
         user.userclass = req.body.userclass;
-        user.delinquenttimesheets = [];
+        user.delinquenttimesheets = [[]];
+        user.disputedtimesheets= [];
+
         user.payrate = 17;
         user.requestedjobs = [];
         user.approvedjobs = [];
         user.name = req.body.name;
         user.payperiodnum = payperiodnum;
         user.historyupdated = false;
-        user.complaints = []
+        //user.complaints = []
         user.comments = []
         console.log(user)
 

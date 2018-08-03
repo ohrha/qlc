@@ -8,7 +8,13 @@
 
     app.controller('mainCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, AuthToken, PayPeriod, $window) {
 
-    $('.parallax').parallax();
+        $('.parallax').parallax();
+               if (Auth.isLoggedIn()) {
+                    //$rootScope.payPeriod = data.data.payperiod;
+                   // $rootScope.userClassy = $rootScope.userClass
+                }else{
+                   Auth.logout();
+                }
         $scope.userClass = "";
         $scope.userToken = "";
         $scope.date = 24;
@@ -16,7 +22,7 @@
         $scope.monthName = "December"
         $scope.booked = true;
         $rootScope.payPeriodIcon = false;
-              $('.carousel.carousel-slider').carousel({ fullWidth: true });
+        $('.carousel.carousel-slider').carousel({ fullWidth: true });
 
         $scope.day = ""
         $scope.iterator = 0;
@@ -39,7 +45,7 @@
             };
 
 
-$scope.timeData = {};
+        $scope.timeData = {};
 
         $scope.logout = function () {
             Auth.logout();
@@ -54,7 +60,7 @@ $scope.timeData = {};
 
         }
         console.log($window.localStorage.getItem('token'))
-      
+
 
         PayPeriod.getAllPayPeriods().then(function (data) {
             console.log(data)
@@ -229,13 +235,18 @@ $scope.timeData = {};
         })
         $rootScope.$on('$routeChangeStart', function () {
 
-            console.log(Auth.isLoggedIn())
-            console.log(AuthToken.getToken())
+            console.log("Logged In?", Auth.isLoggedIn())
+            // console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
             Auth.getUser().then(function (data) {
                 console.log(data)
-                $rootScope.payPeriod = data.data.payperiod;
-                $rootScope.userClassy = $rootScope.userClass
+                if (data.data.success) {
+                    $rootScope.payPeriod = data.data.payperiod;
+                    $rootScope.userClassy = $rootScope.userClass
+                }else{
+                  // / Auth.logout();
+                }
+
 
                 console.log($rootScope.userClass)
             })

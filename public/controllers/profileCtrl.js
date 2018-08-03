@@ -25,6 +25,12 @@
             })
         })
         $scope.loadingProfile = true;
+               if (Auth.isLoggedIn()) {
+                    //$rootScope.payPeriod = data.data.payperiod;
+                   // $rootScope.userClassy = $rootScope.userClass
+                }else{
+                   Auth.logout();
+                }
         $scope.name = "";
         $scope.email = "";
         $scope.clientPage = false;
