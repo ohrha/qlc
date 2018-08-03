@@ -31,6 +31,8 @@
                 }else{
                    Auth.logout();
                 }
+                                $rootScope.userClassy = $rootScope.userClass
+
         $scope.name = "";
         $scope.email = "";
         $scope.clientPage = false;

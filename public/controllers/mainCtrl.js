@@ -15,6 +15,8 @@
                 }else{
                    Auth.logout();
                 }
+                                $rootScope.userClassy = $rootScope.userClass
+
         $scope.userClass = "";
         $scope.userToken = "";
         $scope.date = 24;
@@ -238,6 +240,8 @@
             console.log("Logged In?", Auth.isLoggedIn())
             // console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
+                            $rootScope.userClassy = $rootScope.userClass
+
             Auth.getUser().then(function (data) {
                 console.log(data)
                 if (data.data.success) {
