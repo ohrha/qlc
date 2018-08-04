@@ -541,9 +541,7 @@
 
 
 
-                    <a ng-show="delinquentTimeSheet" href="#" style="color:black;">
-                                <i ng-click="openDelinquentTimeSheetPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons animated flash infinite" ng-class="{'delinquenttimesheetselected':deliinquentTimeSheetSelected,'delinquenttimesheetdeselected':!delinquentTimeSheetSelected}">priority_high</i>
-                    </a>
+              
                     <a href="#" style="color:black;">
                                 <i ng-click="openRemoveUserPage()" style="font-size:17px; color:black;padding-top:5px;" class="material-icons red-text lighten-5" ng-class="{'commentsselected':commentsSelected,'commentsdeselected':!commentsSelected}">delete</i>
                     </a>
@@ -1098,7 +1096,7 @@
                                                             <a ng-click="addJobData(job[0].monthNum,job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn blue-grey s">Submit</a>
                                                         </div>
                                                         <div class="col s12 center-align">
-                                                            <p ng-click="closeAddJobPage()" class="montserrat underline orange-text text-lighten-2" style="font-size:13px">( cancel )</p>
+                                                            <a href="#" style="color:black;"><p ng-click="closeAddJobPage()" class="montserrat underline orange-text text-lighten-2" style="font-size:13px">( cancel )</p></a>
                                                         </div>
                                                     </div>
 
@@ -2054,7 +2052,7 @@
                                                             <label for="textarea1">Message</label>
                                                         </div>
                                                         <div class="col s12">
-                                                            <a ng-click="submitTimeSheetComposeMessage(page.name,page.date)" class="waves-effect waves-light btn">Send</a>
+                                                            <a ng-click="submitTimeSheetComposeMessage(page.name,page.date)" class="waves-effect waves-light blue-grey btn">Send</a>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -2110,13 +2108,13 @@
                                             <div ng-show="page.disputed" class="col s12 center-align" style="border-top:1px dashed #ddd; ">
                                                 <p class="montserrat underline  red-text text-lighten-2"> UNRESOLVED</p>
                                                 <br>
-                                                <p ng-click="markAsResolved(page,page.currentIndex)" class="railway underline"> Mark As Resolved</p>
+                                               <a ng-click="markAsResolved(page,page.currentIndex)" class="waves-effect waves-light blue-grey btn">Resolve</a>
 
                                             </div>
                                             <div ng-show="!page.disputed" class="col s12 center-align" style="border-top:1px dashed #ddd; ">
                                                 <p class="montserrat underline  green-text text-lighten-2"> RESOLVED</p>
                                                 <br>
-                                                <p ng-click="markAsUnResolved(page,page.currentIndex)" class="railway underline"> Mark As Un-Resolved</p>
+                                               <a ng-click="markAsResolved(page,page.currentIndex)" class="waves-effect waves-light blue-grey btn"> Open Issue</a>
 
                                             </div>
 
@@ -2799,7 +2797,7 @@
                                                                 <label for="textarea1">Message</label>
                                                             </div>
                                                             <div class="col s12">
-                                                                <a ng-click="submitTimeSheetMessage(page.name,page.date)" class="waves-effect waves-light btn">Send</a>
+                                                                <a ng-click="submitTimeSheetMessage(page.name,page.date)" class="waves-effect waves-light blue-grey btn">Send</a>
                                                             </div>
                                                             <div ng-show="allFieldsMustBeInput" class="col s12">
                                                                 <p> All Fields Must Be Input </p>
