@@ -3301,11 +3301,11 @@
 
                                         </div>
                                         <div ng-show="{{history.entry[0][0].paid}}">
-                                            <a href='#' style="color:black;">  <span class="montserrat underline " ng-click="markAsUnPaid($index,history)"style="font-size:13px;">MARK AS UNPAID</span>
+                                            <a class="waves-effect waves-light blue-grey btn-small" ng-click="markAsUnPaid($index,history)">MARK AS UNPAID</a>
                                          </a>
                                         </div>
                                         <div ng-show="{{!history.entry[0][0].paid}}">
-                                            <a href='#' style="color:black;">  <span class="montserrat underline " ng-click="markAsPaid($index,history)" style="font-size:13px;">MARK AS PAID</span>
+                                           <a class="waves-effect waves-light blue-grey btn-small" ng-click="markAsUnPaid($index,history)">MARK AS PAID</a>
                                           </a> <br>
                                         </div>
                                         <br>
