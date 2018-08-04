@@ -1095,10 +1095,10 @@
                                                             </div>
                                                         </form>
                                                         <div class="col s12 center-align">
-                                                            <a ng-click="addJobData(job[0].monthNum,job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn grey lighten-4 black-text">Submit</a>
+                                                            <a ng-click="addJobData(job[0].monthNum,job[0].dateNum,job[0].day,job[0].date,$index,currentJobInDate)" class="waves-effect waves-light btn blue-grey s">Submit</a>
                                                         </div>
                                                         <div class="col s12 center-align">
-                                                            <p ng-click="closeAddJobPage()" class="montserrat underline blue-text text-lighten-3" style="font-size:13px">(cancel)</p>
+                                                            <p ng-click="closeAddJobPage()" class="montserrat underline orange-text text-lighten-2" style="font-size:13px">( cancel )</p>
                                                         </div>
                                                     </div>
 
@@ -1496,12 +1496,9 @@
                                                 <!--WOULD YOU LIKE TO BOOK THIS DATE ARROWS -->
 
                                                 <div ng-show=" !job[currentJobInDate].booked && !job[0].dateHasPassed ">
-                                                    <span style="font-size:16px;" class="railway  ">Job {{currentJobInDate+1}} Not Yet Booked</span>
-                                                    <br>
-                                                    <span class="railway  ">Would You Like To Book This Date?</span>
-                                                    <p class="railway">(Job #{{currentJobInDate+1}})</p>
-
-                                                    <a ng-click="openAddJobPage(job)" class="waves-effect waves-light btn ">Yes</a>
+                                                    <p style="font-size:16px;" class="railway  ">Job #{{currentJobInDate+1}} Not Yet Booked</p> 
+                                                    <p class="railway  ">Would You Like To Book This Date?</p>
+                                                    <a ng-click="openAddJobPage(job)" class="waves-effect waves-light blue-grey btn ">Yes</a>
                                                 </div>
                                                 <div ng-show="job[0].dateHasPassed && !job[currentJobInDate].booked">
 
