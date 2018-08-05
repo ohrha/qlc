@@ -225,10 +225,17 @@
         })*/
         Auth.getUser().then(function (data) {
             console.log(data)
-            $rootScope.userClass = data.data.userclass;
+          
+            console.log($rootScope.user_id)
+              if (data.data.success) {
+                    $rootScope.userClass = data.data.userclass;
             $rootScope.user_id = data.data._id
             $rootScope.messageCount = data.data.messages.length
-            console.log($rootScope.user_id)
+                    $rootScope.payPeriod = data.data.payperiod;
+                    $rootScope.userClassy = $rootScope.userClass
+                }else{
+                   Auth.logout();
+                }
         })
         User.getUserClass().then(function (data) {
 
@@ -248,7 +255,7 @@
                     $rootScope.payPeriod = data.data.payperiod;
                     $rootScope.userClassy = $rootScope.userClass
                 }else{
-                  // / Auth.logout();
+                   Auth.logout();
                 }
 
 

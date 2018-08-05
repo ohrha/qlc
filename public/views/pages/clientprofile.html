@@ -2118,12 +2118,13 @@
                     <div class="col s12" style="box-shadow:2px 2px 2px grey; border-top:1px solid grey; border-left:1px solid grey;">
                         <div ng-show="page.disputed">
                             <a href="#" style="color:black"> <i ng-click="markAsApproved($index,page)" class="material-icons red-text text-lighten-3"> delete</i></a>
-                            <a href="#" style="color:black">
-                                <p ng-click="markAsApproved($index,page)" class="railway red-text text-lighten-2">( Disputed )</p>
+                              <a href="#" style="color:black">
+                               <a ng-click="markAsApproved($index,page)" class="waves-effect waves-light blue-grey btn-large">APPROVE</a>
                             </a>
                             <a href="#" style="color:black">
-                                <p ng-click="markAsApproved($index,page)" class="railway">(Mark As Approved)</p>
+                                <p  class="railway red-text text-lighten-2">( Disputed )</p>
                             </a>
+                          
 
 
                         </div>
@@ -2131,10 +2132,10 @@
 
                             <a href="#" style="color:black"><i ng-click="markAsDisputed($index,page)" class="material-icons green-text text-lighten-3"> check</i></a>
                             <a href="#" style="color:black">
-                                <p ng-click="markAsDisputed($index,page)" class="railway">Approved</p>
+                                <span ng-click="markAsDisputed($index,page)" class="railway">Approved</span>
                             </a>
                             <a href="#" style="color:black">
-                                <p ng-click="markAsDisputed($index,page)" class="railway">(Mark As Disputed)</p>
+                                <a ng-click="markAsDisputed($index,page)" class="waves-effect waves-light blue-grey btn-large">DISPUTE</a>
                             </a>
                         </div>
                     </div>
