@@ -9,13 +9,13 @@
     app.controller('mainCtrl', function ($scope, Auth, $timeout, $location, User, $rootScope, AuthToken, PayPeriod, $window) {
 
         $('.parallax').parallax();
-               if (Auth.isLoggedIn()) {
-                    //$rootScope.payPeriod = data.data.payperiod;
-                   // $rootScope.userClassy = $rootScope.userClass
-                }else{
-                   Auth.logout();
-                }
-                                $rootScope.userClassy = $rootScope.userClass
+        if (Auth.isLoggedIn()) {
+            //$rootScope.payPeriod = data.data.payperiod;
+            // $rootScope.userClassy = $rootScope.userClass
+        } else {
+            Auth.logout();
+        }
+        $rootScope.userClassy = $rootScope.userClass
 
         $scope.userClass = "";
         $scope.userToken = "";
@@ -225,17 +225,17 @@
         })*/
         Auth.getUser().then(function (data) {
             console.log(data)
-          
+
             console.log($rootScope.user_id)
-              if (data.data.success) {
-                    $rootScope.userClass = data.data.userclass;
-            $rootScope.user_id = data.data._id
-            $rootScope.messageCount = data.data.messages.length
-                    $rootScope.payPeriod = data.data.payperiod;
-                    $rootScope.userClassy = $rootScope.userClass
-                }else{
-                   Auth.logout();
-                }
+            if (data.data.success) {
+                $rootScope.userClass = data.data.userclass;
+                $rootScope.user_id = data.data._id
+                $rootScope.messageCount = data.data.messages.length
+                $rootScope.payPeriod = data.data.payperiod;
+                $rootScope.userClassy = $rootScope.userClass
+            } else {
+                Auth.logout();
+            }
         })
         User.getUserClass().then(function (data) {
 
@@ -247,15 +247,15 @@
             console.log("Logged In?", Auth.isLoggedIn())
             // console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
-                            $rootScope.userClassy = $rootScope.userClass
+            $rootScope.userClassy = $rootScope.userClass
 
             Auth.getUser().then(function (data) {
                 console.log(data)
                 if (data.data.success) {
                     $rootScope.payPeriod = data.data.payperiod;
                     $rootScope.userClassy = $rootScope.userClass
-                }else{
-                   Auth.logout();
+                } else {
+                    Auth.logout();
                 }
 
 
