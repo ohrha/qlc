@@ -5394,7 +5394,7 @@ $scope.openBookedJobsPage = function () {
     } else {
         $scope.bookedJobsSelected = true;
         $scope.complaintsPageOpened = false;
-        
+
         $scope.bookedJobsPageOpened = true;
         $scope.delinquentTimeSheetSelected = false;
         $scope.delinquentTimeSheetPageOpened = false;
@@ -6528,7 +6528,7 @@ $scope.openUserFile = function (name, phonenumber) {
             console.log($scope.month, $scope.payperiods[0].jobDetails[4][0].monthNum)
             console.log($scope.month, $scope.payperiods[0].jobDetails[5][0].monthNum)
             console.log($scope.month, $scope.payperiods[0].jobDetails[6][0].monthNum)
-            if ($scope.payperiods[0].jobDetails[0][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[0][0].monthNum == $scope.month
+            if ($scope.payperiods[0].jobDetails[0][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[0][0].monthNum == $scope.month
                 || $scope.payperiods[0].jobDetails[0][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[0][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[0][0].dateHasPassed = true;
@@ -6538,7 +6538,8 @@ $scope.openUserFile = function (name, phonenumber) {
 
             }
 
-            if ($scope.payperiods[0].jobDetails[0][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[0][1].monthNum == $scope.month) {
+             if ( $scope.payperiods[0].jobDetails[0][1].dateNum < $scope.dateNow &&  $scope.payperiods[0].jobDetails[0][1].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[0][1].dateNum > $scope.dateNow &&  $scope.payperiods[0].jobDetails[0][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[0][1].dateHasPassed = true;
 
@@ -6546,8 +6547,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[0][1].dateHasPassed = false;
 
             }
-
-            if ($scope.payperiods[0].jobDetails[1][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[1][0].monthNum < $scope.month) {
+  if ($scope.payperiods[0].jobDetails[1][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[1][0].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[1][0].dateNum > $scope.dateNow &&$scope.payperiods[0].jobDetails[1][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[1][0].dateHasPassed = true;
 
@@ -6555,7 +6556,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[1][0].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[1][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[1][1].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[1][1].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[1][1].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[1][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[1][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[1][1].dateHasPassed = true;
 
@@ -6563,7 +6565,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[1][1].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[2][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[2][0].monthNum < $scope.month) {
+    if ($scope.payperiods[0].jobDetails[2][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[2][0].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[0][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[0][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[2][0].dateHasPassed = true;
 
@@ -6571,7 +6574,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[2][0].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[2][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[2][1].monthNum < $scope.month) {
+    if ( $scope.payperiods[0].jobDetails[2][1].dateNum < $scope.dateNow &&  $scope.payperiods[0].jobDetails[2][1].monthNum == $scope.month
+                ||  $scope.payperiods[0].jobDetails[2][1].dateNum > $scope.dateNow &&  $scope.payperiods[0].jobDetails[2][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[2][1].dateHasPassed = true;
 
@@ -6579,7 +6583,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[2][1].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[3][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[3][0].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[3][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[3][0].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[3][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[3][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[3][0].dateHasPassed = true;
 
@@ -6587,7 +6592,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[3][0].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[3][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[3][1].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[3][1].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[3][1].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[3][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[3][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[3][1].dateHasPassed = true;
 
@@ -6595,7 +6601,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[3][1].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[4][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[4][0].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[4][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[4][0].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[4][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[4][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[4][0].dateHasPassed = true;
 
@@ -6603,7 +6610,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[4][0].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[4][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[4][1].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[4][1].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[4][1].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[4][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[4][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[4][1].dateHasPassed = true;
 
@@ -6611,7 +6619,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[4][1].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[5][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[5][0].monthNum < $scope.month) {
+              if ($scope.payperiods[0].jobDetails[5][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[5][0].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[5][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[5][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[5][0].dateHasPassed = true;
 
@@ -6619,7 +6628,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[5][0].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[5][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[5][1].monthNum < $scope.month) {
+              if ($scope.payperiods[0].jobDetails[5][1].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[5][1].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[5][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[5][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[5][1].dateHasPassed = true;
 
@@ -6627,7 +6637,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[5][1].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[6][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[6][0].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[6][0].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[6][0].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[6][0].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[6][0].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[6][0].dateHasPassed = true;
 
@@ -6635,7 +6646,8 @@ $scope.openUserFile = function (name, phonenumber) {
                 $scope.payperiods[0].jobDetails[6][0].dateHasPassed = false;
 
             }
-            if ($scope.payperiods[0].jobDetails[6][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[6][1].monthNum < $scope.month) {
+             if ($scope.payperiods[0].jobDetails[6][1].dateNum < $scope.dateNow && $scope.payperiods[0].jobDetails[6][1].monthNum == $scope.month
+                || $scope.payperiods[0].jobDetails[6][1].dateNum > $scope.dateNow && $scope.payperiods[0].jobDetails[6][1].monthNum !== $scope.month) {
                 console.log($scope.jobDetails[u])
                 $scope.payperiods[0].jobDetails[6][1].dateHasPassed = true;
 
