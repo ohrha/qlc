@@ -252,6 +252,7 @@
             Auth.getUser().then(function (data) {
                 console.log(data)
                 if (data.data.success) {
+                    $rootScope.userClass = data.data.userclass
                     $rootScope.payPeriod = data.data.payperiod;
                     $rootScope.userClassy = $rootScope.userClass
                 } else {

@@ -13,12 +13,12 @@
             console.log(Auth.isLoggedIn())
             //console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
-                if (Auth.isLoggedIn()) {
+               /* if (Auth.isLoggedIn()) {
                     //$rootScope.payPeriod = data.data.payperiod;
                    // $rootScope.userClassy = $rootScope.userClass
                 }else{
                    Auth.logout();
-                }
+                }*/
             Auth.getUser().then(function (data) {
                 console.log(data)
                
