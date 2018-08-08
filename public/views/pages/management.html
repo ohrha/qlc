@@ -2604,7 +2604,7 @@
                     </p>
                 </div>
 
-                <canvas id="base" class="chart-bar" chart-data="dataMetrics" chart-labels="labelsMetrics" chart-colors="colors" chart-dataset-override="datasetOverrideMetrics">
+                <canvas id="base" class="chart-bar" chart-data="dataMetrics" style="box-shadow:2px 2px 2px grey;" chart-labels="labelsMetrics" chart-colors="colors" chart-dataset-override="datasetOverrideMetrics">
                 </canvas>
                 <div class="row">
                 </div>
@@ -2700,10 +2700,10 @@
                                     </div>
                                     <br>
 
-                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                    <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp"style="box-shadow:2px 2px 2px grey;" chart-data="data" chart-labels="labels">
                                         chart-series="series"
                                     </canvas>
-                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                    <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown"style="box-shadow:2px 2px 2px grey;" chart-data="data" chart-labels="labels">
                                         chart-series="series"
                                     </canvas>
 
@@ -3289,10 +3289,10 @@
 
                                         <br>
 
-                                        <canvas ng-show="!showChart && !removeChart" id="bar" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
+                                        <canvas ng-show="!showChart && !removeChart" id="bar"style="box-shadow:2px 2px 2px grey;" class="chart chart-bar animated fadeOutUp" chart-data="data" chart-labels="labels">
                                             chart-series="series"
                                         </canvas>
-                                        <canvas ng-show="showChart" id="bar" class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
+                                        <canvas ng-show="showChart" id="bar" style="box-shadow:2px 2px 2px grey;"class="chart chart-bar animated fadeInDown" chart-data="data" chart-labels="labels">
                                             chart-series="series"
                                         </canvas>
 
@@ -3895,7 +3895,7 @@
                         <div class="row" ng-show="!areYouSureRemove3 && !loadingRemoveClient &&!removeClientSuccessful ">
 
                             <div class="col s12">
-                                <p class="railway">Delete {{currentClientFile}}.</p>
+                                <p class="railway">Remove {{currentClientFile}}.</p>
                                 <div class="col s12" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
                                     <i ng-click="openAreYouSureRemove();" class="material-icons red-text text-lighten-2" style="font-size:20px;"> delete</i>
                                 </div>
