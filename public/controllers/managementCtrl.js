@@ -683,11 +683,11 @@
             }
 
         }
-
+         $scope.loadingDisputedTimeSheetsPage = false;
         $scope.openDisputedTimeSheetsPage = function () {
 
             if (!$scope.disputedTimeSheetsPageOpen) {
-
+                $scope.loadingDisputedTimeSheetsPage = true;
                 User.findUser($scope.name).then(function (data) {
                     console.log(data)
                     $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
@@ -729,7 +729,7 @@
                                 console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.disputedTimeSheetsPaginated.push($scope.disputedTimeSheetsForPagination)
-
+                                $scope.loadingDisputedTimeSheetsPage = false;
                                 $scope.disputedTimeSheetsForPagination = [];
                                 if ($scope.disputedTimeSheetsArray[i] !== undefined) {
                                     $scope.disputedTimeSheetsForPagination.push($scope.disputedTimeSheetsArray[i])
@@ -5526,7 +5526,7 @@ $scope.openEmployeeListAdmin = function () {
 
 
     $scope.delinquentTimeSheet = false;
-    $scope.adminHome = false;
+    //$scope.adminHome = false;
     $scope.bookedJobsPageOpened = false;
     $scope.bookedJobsSelected = false;
     $scope.removeUserPageOpen = false;
@@ -5544,6 +5544,9 @@ $scope.openEmployeeListAdmin = function () {
 
     } else {
         if (!$scope.usersLoaded) {
+            $scope.fadeIn = false;
+            $timeout(function(){
+            $scope.adminHome = false;
             $scope.employeesPaginated = [];
             $scope.pageArray = []
             $scope.loadingUsers = true;
@@ -5615,9 +5618,13 @@ $scope.openEmployeeListAdmin = function () {
                 $scope.loadingUsers = false;
 
             })
+            },500)
+          
         } else {
             console.log("HERE")
-            $scope.loadingUsers = true;
+            $scope.fadeIn = false;
+            $timeout(function(){
+                   $scope.loadingUsers = true;
             $scope.employeeListOpenAdmin = true
             $scope.employeeHome = false;
             $timeout(function () {
@@ -5634,6 +5641,8 @@ $scope.openEmployeeListAdmin = function () {
             $scope.pageLimit = 4
 
 
+            })
+         
         }
 
 

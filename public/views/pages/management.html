@@ -1935,8 +1935,11 @@
 
 
             <div class="col s12 animated fadeIn " ng-show="disputedTimeSheetsPageOpen">
+                <div class = "col s12" style="border-right:1px solid #ddd;" ng-show="loadingDisputedTimeSheetsPage">
+                    <p class=" montserrat orange-text underline text-lighten-2 animated flash infinite" style="font-size:14px;">( LOADING )</p>
 
-                <div class="col s12" style="border-right:1px solid #ddd;">
+                </div>
+                <div class="col s12" style="border-right:1px solid #ddd;" ng-show="!loadingDisputedTimeSheetsPage">
 
                     <div class="center-align">
 
@@ -2890,7 +2893,7 @@
                                                     <p ng-show="!entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">ADD HOURS</p>
                                                 </div>
                                                 <div ng-show="history.entry[0][0].paid " style="border-top:1px solid gray; border-left:1px solid gray;box-shadow:2px 2px 2px gray;">
-                                                    <p class="montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>
+                                                    <p class="montserrat  grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>
                                                 </div>
                                             </div>
                                             <div ng-show="!entry[currentJobInDate].booked">

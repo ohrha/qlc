@@ -452,7 +452,7 @@ console.log('Hereo')
                 res.json({ success: false, message: "User not found.." })
             } else {
                 //user[0].payperiods[0].jobDetails[req.body.payperiodIndex][req.body.currentjobindate] = req.body
-                user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.currentjobindate].disputed = false
+                user[0].payperiodhistory[req.body.page.payperiodnum].entry[req.body.page.payperiodIndex][req.body.page.indexofdate].disputed = false
 
                 User.findOneAndUpdate({ name: req.body.currentuser }, { $set: { payperiodhistory: user[0].payperiodhistory } }, { new: true }, function (err, user) {
                     if (err) throw err;
