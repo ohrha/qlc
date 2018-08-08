@@ -2848,7 +2848,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div ng-show="entry[currentJobInDate].disputed &&!history.entry[0][0].paid" class="col s12 center-align">
+                                                <div ng-show="entry[currentJobInDate].disputed &&!history.entry[0][0].paid" style="border-top:1px solid gray; border-left:1px solid gray;box-shadow:2px 2px 2px gray;" class="col s12 center-align">
 
                                                     <p class="montserrat   red-text text-lighten-2  " style="font-size:13px;">( UNRESOLVED )</p>
                                                     <span ng-click="markAsResolved(entry[currentJobInDate],$index,entry[currentJobInDate].currentIndex, entry[currentJobInDate].client,entry[currentJobInDate].location)"
@@ -2889,7 +2889,7 @@
                                                 <div ng-show="!history.entry[0][0].paid && !entry[currentJobInDate].disputed && !entry[currentJobInDate].delinquent" style="border-left:1px solid #ddd;border-right:1px solid #ddd;border-top:1px solid #ddd;">
                                                     <p ng-show="!entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">ADD HOURS</p>
                                                 </div>
-                                                <div ng-show="history.entry[0][0].paid && !entry[currentJobInDate].disputed">
+                                                <div ng-show="history.entry[0][0].paid && !entry[currentJobInDate].disputed" style="border-top:1px solid gray; border-left:1px solid gray;box-shadow:2px 2px 2px gray;">
                                                     <p class="montserrat underline grey-text ">Pay Period Has Been Paid Out, And So Hours May No Longer Be Edited.</p>
                                                 </div>
                                             </div>
