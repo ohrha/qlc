@@ -5394,6 +5394,7 @@ $scope.openBookedJobsPage = function () {
     } else {
         $scope.bookedJobsSelected = true;
         $scope.complaintsPageOpened = false;
+        
         $scope.bookedJobsPageOpened = true;
         $scope.delinquentTimeSheetSelected = false;
         $scope.delinquentTimeSheetPageOpened = false;
@@ -5528,6 +5529,7 @@ $scope.openEmployeeListAdmin = function () {
     $scope.adminHome = false;
     $scope.bookedJobsPageOpened = false;
     $scope.bookedJobsSelected = false;
+    $scope.removeUserPageOpen = false;
     $scope.complaintsPageOpened = false;
     $scope.timesheetsPageOpen = false;
     $scope.notesPageOpen = false;
