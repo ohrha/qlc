@@ -5624,6 +5624,7 @@ $scope.openEmployeeListAdmin = function () {
             console.log("HERE")
             $scope.fadeIn = false;
             $timeout(function(){
+                $scope.adminHome = false;
                    $scope.loadingUsers = true;
             $scope.employeeListOpenAdmin = true
             $scope.employeeHome = false;
@@ -5641,7 +5642,7 @@ $scope.openEmployeeListAdmin = function () {
             $scope.pageLimit = 4
 
 
-            })
+            },500)
          
         }
 
