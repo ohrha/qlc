@@ -2848,7 +2848,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div ng-show="entry[currentJobInDate].disputed" class="col s12 center-align">
+                                                <div ng-show="entry[currentJobInDate].disputed &&!history.entry[0][0].paid" class="col s12 center-align">
 
                                                     <p class="montserrat   red-text text-lighten-2  " style="font-size:13px;">( UNRESOLVED )</p>
                                                     <span ng-click="markAsResolved(entry[currentJobInDate],$index,entry[currentJobInDate].currentIndex, entry[currentJobInDate].client,entry[currentJobInDate].location)"
@@ -2860,7 +2860,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div ng-show="!entry[currentJobInDate].disputed && !entry[currentJobInDate].delinquent" class="col s12 center-align" style="border-top:1px solid gray; border-left:1px solid gray; box-shadow:2px 2px 2px gray;"
+                                                <div ng-show="!entry[currentJobInDate].disputed && !entry[currentJobInDate].delinquent &&!history.entry[0][0].paid " class="col s12 center-align" style="border-top:1px solid gray; border-left:1px solid gray; box-shadow:2px 2px 2px gray;"
                                                     " ">
                                                     <a href="#" style="color:black;">
                                                         <p ng-show="entry[currentJobInDate].timesheetSubmitted" ng-click="openAddHoursPage()" class="montserrat underline green-text text-lighten-2">EDIT HOURS</p>
