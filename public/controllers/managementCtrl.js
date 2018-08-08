@@ -2941,7 +2941,7 @@
                     $scope.timesheetPageOpen = false;
                     $scope.delinquentInfo = false;
                      })
-                $scope.openDelinquentTimeSheetPage()
+                //$scope.openDelinquentTimeSheetPage()
                 //$scope.
             })
     console.log(hours)

@@ -59,7 +59,7 @@
 
 
             <div ng-show="adminHome" class="col s12" style=" border-bottom: 1px solid #ddd;">
-                <p style="font-size:18px;" class="montserrat underline animated fadeIn ">Administration Page</p>
+                <p style="font-size:18px;" class="montserrat underline animated fadeIn ">Control Panel</p>
             </div>
             <div ng-show="adminHome" class="col s12" style="box-shadow: 2px 2px 2px gray; border-left:1px solid #ddd;">
                 <!-- <a href="#" style="color:black;">
@@ -264,9 +264,7 @@
                             <div class="col s12" ng-show="!loadingAddDelinquentTimeSheet">
 
                                 <p class="railway" style="text-decoration:underline;">{{page.date}}</p>
-                                <div class="col s12 center-align">
-                                    <p class="montserrat underline">Time In</p><i ng-click="closeAddHoursPage()" class="material-icons " style="float:right; text-decoration:underline;font-size:14px;">clear</i>
-                                </div>
+                              
                                 <div class="input-field col s5">
                                     <select name="hoursIn" ng-model="timeData.hoursIn">
       <option value="" disabled selected>Hours</option>
