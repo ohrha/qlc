@@ -1976,11 +1976,19 @@ $scope.requestEmployeePageLoading = false;
             console.log($scope.locationsArray)
             $scope.requestEmployeePageLoading = false;
             if (!$scope.requestEmployeePageOpen) {
+                $scope.page=0;
                 $('select').material_select();
                 $scope.requestEmployeePageOpen = true;
+                $scope.composeMessagePageOpen = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                $scope.messagePageOpen = false;
                 $scope.addLocationPageOpen = false;
-                
+                  $scope.locationListOpen = false;
+                $scope.supervisorListOpen = false;
+                $scope.requestListOpen = false;
+                $scope.requestJobFormOpen = false;
+                $scope.submitSupervisorPageOpen = false;
+                $scope.submitLocationPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
                 $scope.clientHome = false;
 
@@ -2541,6 +2549,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.removeSupervisorLoading = false;
                 $scope.addSupervisorPageOpen = false;
                 $scope.subconIndex = null;
+                $scope.page = 0;
                 $scope.openAddSupervisorPage();
             })
         }
@@ -2558,6 +2567,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.addLocationPageOpen = false;
                 $scope.locationIndex = null;
                 $scope.openAddLocationPage();
+                $scope.page=0;
             })
         }
         $scope.openIndividualLocation = function (index) {
@@ -2681,10 +2691,19 @@ $scope.requestEmployeePageLoading = false;
         $scope.openAddSupervisorPage = function (index) {
 
             if (!$scope.addSupervisorPageOpen) {
+                $scope.page=0;
                 $scope.addSupervisorPageOpen = true;
                 $scope.addLocationPageOpen = false
                 $scope.requestEmployeePageOpen = false;
                 $scope.requestEmployeePageOpen = false;
+                $scope.messagePageOpen = false;
+                $scope.composeMessagePageOpen = false;
+                  $scope.locationListOpen = false;
+                $scope.supervisorListOpen = false;
+                $scope.requestListOpen = false;
+                $scope.requestJobFormOpen = false;
+                $scope.submitSupervisorPageOpen = false;
+                $scope.submitLocationPageOpen = false;
                 $scope.clientHome = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
@@ -2850,9 +2869,18 @@ $scope.requestEmployeePageLoading = false;
 
         $scope.openAddLocationPage = function () {
             if (!$scope.addLocationPageOpen) {
+                $scope.page=0;
                 $scope.addLocationPageOpen = true;
                 $scope.reviewSubmittedTimeSheetsPageOpen= false;
-            
+                $scope.messagePageOpen = false;
+                $scope.composeMessagePageOpen = false;
+                $scope.locationListOpen = false;
+                $scope.supervisorListOpen = false;
+                $scope.requestListOpen = false;
+                $scope.requestJobFormOpen = false;
+                $scope.submitSupervisorPageOpen = false;
+                $scope.submitLocationPageOpen = false;
+               // $scope.addLocationPageOpen = false;
                 $scope.addSupervisorPageOpen = false;
                 $scope.requestEmployeePageOpen = false;
                 $scope.clientHome = false;
@@ -3365,6 +3393,22 @@ $scope.currentIndex = null;
             }
 
         }
+                $scope.changePageAddSupervisorsPage = function () {
+$scope.currentIndex = null;
+            if ($scope.page < $scope.supervisorsPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+        }
+        $scope.decreasePageAddSupervisorsPage = function () {
+            $scope.currentIndex = null;
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+
         $scope.changePage2 = function () {
             //$scope.messageIndex = null
             if ($scope.page < $scope.usersPaginated.length - 1) {
@@ -3374,6 +3418,36 @@ $scope.currentIndex = null;
             console.log($scope.usersPaginated.length)
         }
         $scope.decreasePage2 = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+                $scope.changePageRequestedJobsPage = function () {
+            //$scope.messageIndex = null
+            if ($scope.page < $scope.requestedJobsPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+            
+        }
+        $scope.decreasePageRequestedJobsPage = function () {
+            if ($scope.page > 0) {
+                $scope.page--
+                console.log($scope.page)
+            }
+
+        }
+              $scope.changePageLocationsPage = function () {
+            //$scope.messageIndex = null
+            if ($scope.page < $scope.locationsPaginated.length - 1) {
+                $scope.page++
+            }
+            console.log($scope.page)
+            
+        }
+        $scope.decreasePageLocationsPage = function () {
             if ($scope.page > 0) {
                 $scope.page--
                 console.log($scope.page)
