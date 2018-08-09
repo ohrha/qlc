@@ -527,27 +527,27 @@
             </div>-->
             <div class="col s3">
                 <a href="#" style="color:black;"><i ng-click="openHistoryPageProfile()" class="material-icons blue-text text-lighten-3" ng-class="{'workhistoryprofileselected':workHistoryProfileSelected,'workhistoryprofiledeselected':!workHistoryProfileSelected}">access_time</i></a>
-                <div class=" removeonsmall profiletitles">
+                <div class=" hide-on-small-only profiletitles">
                     <a href="#" style="color:black; font-family:'Montserrat'" ng-click="openHistoryPageProfile()"> <span class="railway underline">Time Sheets</span></a>
                 </div>
             </div>
             <div class="col s3">
                 <a href="#" style="color:black;"><i ng-click="openChartsPage()" class="material-icons yellow-text text-lighten-2" ng-class="{'chartspageselected':chartsPageSelected,'chartspagedeselected':!chartsPageSelected}">timeline</i></a>
-                <div class=" removeonsmall profiletitles">
+                <div class=" hide-on-small-only profiletitles">
                     <a href="#" style="color:black; font-family:'Montserrat'" ng-click="openChartsPage()"> <span class="railway underline">Metrics</span></a>
                 </div>
             </div>
             <div class="col s3">
                 <a href="#" style="color:black;"><i ng-show="!messagePageSelected" ng-click="openMessagePage()" class="material-icons green-text text-lighten-3"ng-class="{'messagepageselected':messagePageSelected,'messagepagedeselected':!messagePageSelected}">email</i></a>
                 <a href="#" style="color:black;"><i ng-show="messagePageSelected" ng-click="openMessagePage()" class="material-icons green-text text-lighten-3"ng-class="{'messagepageselected':messagePageSelected,'messagepagedeselected':!messagePageSelected}">drafts</i></a>
-                <div class=" removeonsmall profiletitles">
+                <div class=" hide-on-small-only profiletitles">
                     <a href="#" style="color:black; font-family:'Montserrat'" ng-click="openMessagePage()"> <span class="railway underline">Messages</span></a>
                 </div>
             </div>
 
             <div class="col s3">
                 <a href="#" style="color:black;"> <i ng-click="openComposeMessagePage()"ng-class="{'composemessagepageselected':composeMessagePageSelected,'composemessagepagedeselected':!composeMessagePageSelected}" class="material-icons purple-text text-lighten-3">create</i></a>
-                <div class=" removeonsmall profiletitles">
+                <div class=" hide-on-small-only profiletitles">
                     <a href="#" style="color:black; font-family:'Montserrat'" ng-click="openComposeMessagePage()"> <span class="railway underline">Compose</span></a>
                 </div>
             </div>
