@@ -771,6 +771,7 @@
                     $scope.supervisorsArray = data.data.user[0].supervisors
                     $scope.locationsArray = data.data.user[0].locations
                     $scope.currentClientObject = data.data.user[0]
+                    console.log($scope.currentClientObject)
                     $scope.loadingProfile = false;
                    
                     if (!$scope.supervisorsArray.length) {
