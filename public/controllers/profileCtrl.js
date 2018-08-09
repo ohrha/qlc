@@ -137,8 +137,33 @@
         $scope.emailData = {
             email: null
         }
+              $scope.phoneNumberDataClient = {
+            newphonenumber: null
+        }
+        $scope.emailDataClient = {
+            newemail: null
+        }
         $scope.phoneDataCannotBeEmpty = false;
         $scope.emailDataCannotBeEmpty = false;
+           $scope.submitNewPhoneNumberClient = function () {
+               console.log("clicked")
+              console.log($scope.phoneDataClient)
+            $scope.phoneNumberDataClient.name = $scope.currentClientObject.name;
+
+            if ($scope.phoneNumberDataClient.newphonenumber !== null) {
+                console.log($scope.phoneData)
+                User.editPhoneNumber($scope.phoneNumberDataClient).then(function (data) {
+                    console.log(data)
+                   $scope.currentClientObject.phonenumber= data.data.user.phonenumber
+                    $scope.closeEditPhoneNumberPage();
+                })
+            } else {
+                $scope.phoneDataCannotBeEmpty = true;
+                $timeout(function () {
+                    $scope.phoneDataCannotBeEmpty = false;
+                }, 1000)
+            }
+        }
         $scope.submitNewPhoneNumber = function () {
             $scope.phoneData.name = $scope.userName;
 
@@ -154,6 +179,24 @@
                 $timeout(function () {
                     $scope.phoneDataCannotBeEmpty = false;
                 }, 1000)
+            }
+        }
+          $scope.submitNewEmailClient = function () {
+            $scope.emailDataClient.name = $scope.currentClientObject.name;
+
+            if ($scope.emailDataClient.newemail !== null) {
+                console.log($scope.emailData)
+                $scope.emailDataClient.newemail = $scope.emailDataClient.newemail
+                User.editEmail($scope.emailDataClient).then(function (data) {
+                    console.log(data)
+                    $scope.currentClientObject.email = data.data.user.email
+                    $scope.closeEditEmailPage();
+                })
+            } else {
+                $scope.emailDataCannotBeEmpty = true;
+                $timeout(function () {
+                    $scope.emailDataCannotBeEmpty = false;
+                }, 2500)
             }
         }
         $scope.submitNewEmailAddress = function () {
