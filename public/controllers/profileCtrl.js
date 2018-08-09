@@ -2448,6 +2448,7 @@ $scope.requestEmployeePageLoading = false;
 
             User.removeMessage($scope.name, $scope.messageIndex).then(function (data) {
                 console.log(data)
+                $scope.page=0;
                 $scope.pageLimit = 4;
                 $scope.messagesPaginated = [];
                 $scope.messageForPagination = [];
