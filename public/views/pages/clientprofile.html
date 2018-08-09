@@ -91,7 +91,7 @@
                                 <i ng-click="closeEditEmailPage()" class="material-icons"> clear</i>
                             </div>
                             <div class="input-field col s12">
-                                <input value="{{currentClientObject.newemail}}" id="first_name2" type="text" name="newemail" ng-model="emailDataClient.newemail" class="validate">
+                                <input value="{{currentClientObject.email}}" id="first_name2" type="text" name="newemail" ng-model="emailDataClient.newemail" class="validate">
                                 <label class="active" for="first_name2">Email</label>
                             </div>
                             <div class="col s12 center-align">
@@ -436,7 +436,7 @@
         <p class="railway animated flash infinite" style="font-size:20px;"> LOADING</p>
     </div>
     <div class="col s12 center-align animated fadeIn" ng-show="requestEmployeePageOpen && !requestEmployeePageLoading">
-        ffgsfd
+       
         <div class="row">
             <div class="col s2" style="border-bottom:1px solid #ddd;">
                 <p class="railway underline" style="font-size:18px;"> Name</p>
@@ -1622,7 +1622,7 @@
     <div class="row">
             <div class="col s12 center-align" style="border-bottom: 1px solid #ddd; border-top: 1px slid #ddd;">
 
-            <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openClientHome()" class="material-icons" style="font-size:16px;">keyboard_return</i>Request Job
+            <p style="font-size:17px;" class="montserrat underline animated fadeIn "><i ng-click="openRequestEmployeePage()" class="material-icons" style="font-size:16px;">keyboard_return</i>Request Job
                 Page</p>
         </div>
         <div class="col s3 center-align">
