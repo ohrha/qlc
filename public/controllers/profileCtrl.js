@@ -1993,7 +1993,7 @@ $scope.openRequestJobForm = function(){
     //console.log("Clicke")
     if(!$scope.requestJobFormOpen){
         $scope.requestJobFormOpen = true
-        $scope.requstListOpen = false;
+        $scope.requestListOpen = false;
     }else{
         $scope.requestJobFormOpen = false;
     }
