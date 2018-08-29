@@ -4,7 +4,7 @@
     var app = angular.module('profileController', ['userServices'])
     app.config(function () {
 
-        console.log("Profile Controller Loaded")
+        //console.log("Profile Controller Loaded")
     })
 
     app.controller('profileCtrl', function ($scope, User, $routeParams, Auth, $timeout, $window, $rootScope) {
@@ -13,21 +13,21 @@
         });
                $rootScope.$on('$routeChangeStart', function () {
 
-            console.log(Auth.isLoggedIn())
-            console.log(AuthToken.getToken())
+            //console.log(Auth.isLoggedIn())
+            //console.log(AuthToken.getToken())
             $rootScope.loggedIn = Auth.isLoggedIn()
             Auth.getUser().then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $rootScope.payPeriod = data.data.payperiod;
                 $rootScope.userClassy = $rootScope.userClass
 
-                console.log($rootScope.userClass)
+                //console.log($rootScope.userClass)
             })
         })
         $scope.loadingProfile = true;
         
                if (Auth.isLoggedIn()) {
-                   console.log("Logged In")
+                   //console.log("Logged In")
                     //$rootScope.payPeriod = data.data.payperiod;
                    // $rootScope.userClassy = $rootScope.userClass
                 }else{
@@ -146,14 +146,14 @@
         $scope.phoneDataCannotBeEmpty = false;
         $scope.emailDataCannotBeEmpty = false;
            $scope.submitNewPhoneNumberClient = function () {
-               console.log("clicked")
-              console.log($scope.phoneDataClient)
+               //console.log("clicked")
+              //console.log($scope.phoneDataClient)
             $scope.phoneNumberDataClient.name = $scope.currentClientObject.name;
 
             if ($scope.phoneNumberDataClient.newphonenumber !== null) {
-                console.log($scope.phoneData)
+                //console.log($scope.phoneData)
                 User.editPhoneNumber($scope.phoneNumberDataClient).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                    $scope.currentClientObject.phonenumber= data.data.user.phonenumber
                     $scope.closeEditPhoneNumberPage();
                 })
@@ -168,9 +168,9 @@
             $scope.phoneData.name = $scope.userName;
 
             if ($scope.phoneData.newphonenumber !== null) {
-                console.log($scope.phoneData)
+                //console.log($scope.phoneData)
                 User.editPhoneNumber($scope.phoneData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.userPhoneNumber = data.data.user.phonenumber
                     $scope.closeEditPhoneNumberPage();
                 })
@@ -185,10 +185,10 @@
             $scope.emailDataClient.name = $scope.currentClientObject.name;
 
             if ($scope.emailDataClient.newemail !== null) {
-                console.log($scope.emailData)
+                //console.log($scope.emailData)
                 $scope.emailDataClient.newemail = $scope.emailDataClient.newemail
                 User.editEmail($scope.emailDataClient).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.currentClientObject.email = data.data.user.email
                     $scope.closeEditEmailPage();
                 })
@@ -203,10 +203,10 @@
             $scope.emailData.name = $scope.userName;
 
             if ($scope.emailData.email !== null) {
-                console.log($scope.emailData)
+                //console.log($scope.emailData)
                 $scope.emailData.newemail = $scope.emailData.email
                 User.editEmail($scope.emailData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.userEmail = data.data.user.email
                     $scope.closeEditEmailPage();
                 })
@@ -241,9 +241,9 @@
         $scope.markAsApproved = function (index, timesheet) {
             timesheet.disputed = false
             timesheet.submittedtimesheetsindex = index;
-            console.log(timesheet)
+            //console.log(timesheet)
             User.markTimeSheetAsApproved(timesheet).then(function (data) {
-                console.log(data)
+                //console.log(data)
             })
 
         }
@@ -252,7 +252,7 @@
             timesheet.submittedtimesheetsindex = index;
 
             User.markTimeSheetAsDisputed(timesheet).then(function (data) {
-                console.log(data)
+                //console.log(data)
             })
 
         }
@@ -265,26 +265,26 @@
                 $scope.submittedIndex = index;
 
 
-                console.log("first")
-                // console.log($scope.timesheet)
-                console.log($scope.timesheetEntryOpen)
+                //console.log("first")
+                // //console.log($scope.timesheet)
+                //console.log($scope.timesheetEntryOpen)
 
             }
 
 
             else if (!$scope.individualSubmittedTimeSheetOpen && index == $scope.submittedIndex) {
                 $scope.individualSubmittedTimeSheetOpen = true;
-                console.log("second")
-                console.log($scope.timesheetEntryOpen)
+                //console.log("second")
+                //console.log($scope.timesheetEntryOpen)
                 //$scope.curPeriod = index;
             }
             else if (!$scope.individualSubmittedTimeSheetOpen && index !== $scope.submittedIndex) {
-                console.log("third")
+                //console.log("third")
                 $scope.individualSubmittedTimeSheetOpen = true;
-                console.log($scope.timesheetEntryOpen)
+                //console.log($scope.timesheetEntryOpen)
                 $scope.submittedIndex = index;
             } else {
-                console.log("last")
+                //console.log("last")
                 $scope.submittedIndex = null
 
                 // $scope.showChart = true;
@@ -307,33 +307,33 @@
                 $scope.pageLimit = 4;
                 $scope.submittedTimeSheetsPaginated = [];
                 $scope.submittedTimeSheetsForPagination = [];
-                console.log($scope.userName)
+                //console.log($scope.userName)
                 User.findUser($scope.userName).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.submittedTimeSheetsArray = data.data.user[0].submittedtimesheets;
                     for (var i = 0; i <= $scope.submittedTimeSheetsArray.length; i++) {
 
                         var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        //console.log($scope.employees)
+                        //////console.log($scope.pageLimit, i, $scope.employees.length)
+                        ////console.log($scope.employees)
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                            //console.log("its less")
 
                         }
                         if (i < $scope.submittedTimeSheetsArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.submittedTimeSheetsArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.submittedTimeSheetsArray[i]) {
                                 $scope.submittedTimeSheetsArray[i].currentIndex = i
                                 $scope.submittedTimeSheetsForPagination.push($scope.submittedTimeSheetsArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -341,17 +341,17 @@
 
                         } else {
 
-                            console.log("else")
+                            //console.log("else")
                             $scope.loadingUsers = false;
                             $scope.submittedTimeSheetsPaginated.push($scope.submittedTimeSheetsForPagination)
-                            console.log($scope.submittedTimeSheetsPaginated)
+                            //console.log($scope.submittedTimeSheetsPaginated)
                             $scope.submittedTimeSheetsForPagination = [];
                             if ($scope.submittedTimeSheetsArray[i] !== undefined) {
                                 $scope.submittedTimeSheetsArray[i].currentIndex = i
                                 $scope.submittedTimeSheetsForPagination.push($scope.submittedTimeSheetsArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                             page++
 
@@ -482,7 +482,7 @@
             return (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
         };
         $scope.suffix = $scope.getOrdinalSuffix($scope.dateNow)
-        console.log($scope.suffix)
+        //console.log($scope.suffix)
         if ($scope.month == 1) {
             $scope.monthName = "January"
         } else if ($scope.month == 2) {
@@ -529,9 +529,9 @@
 
         ];
         $scope.onClick = function (points, evt) {
-            console.log(points, evt);
+            //console.log(points, evt);
         };
-        console.log($routeParams)
+        //console.log($routeParams)
 
 
         setTimeout(function () {
@@ -610,8 +610,8 @@
             }
         }
         $scope.finishSubmitDelinquentTimesheet = function (decision) {
-            console.log(decision)
-            console.log($scope.delinquentJobDetails)
+            //console.log(decision)
+            //console.log($scope.delinquentJobDetails)
             $scope.clientSubmittedJobDetails = $scope.delinquentJobDetails[0]
             $scope.clientSubmittedJobDetails.disputed = false;
             $scope.clientSubmittedJobDetails.currentuser = $scope.name
@@ -623,9 +623,9 @@
             if (decision == "yes") {
                 //$scope.areYouSure = false;
                 User.addJobToCurrentPayPeriod($scope.delinquentJobDetails).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     /* User.addHoursToClientSubmittedTimeSheets($scope.clientSubmittedJobDetails).then(function(data){
-                         console.log(data)
+                         //console.log(data)
                              if (data.data.success) {
                          $scope.loadingAddAndRemoveDelinquentTimeSheet = false;
                          $scope.areYouSure = false;
@@ -650,8 +650,8 @@
             }
         }
         $scope.submitTimeSheet = function (timesheet, index) {
-            console.log($scope.timeData)
-            console.log(timesheet)
+            //console.log($scope.timeData)
+            //console.log(timesheet)
             $scope.delinquentJobDetails = timesheet;
             $scope.delinquentJobDetails.index = index;
             $scope.delinquentJobDetails.currentuser = $scope.name;
@@ -659,7 +659,7 @@
             $scope.disputed = false;
             $scope.delinquentJobDetails.delinquent = true;
 
-            console.log($scope.areYouSureTimeSheet)
+            //console.log($scope.areYouSureTimeSheet)
             $scope.minVarOut = "";
             $scope.minVarIn = "";
             $scope.hrVarOut = "";
@@ -682,23 +682,23 @@
                 $scope.delinquentJobDetails.payperiodnum = $rootScope.payPeriod;
                 $scope.delinquentJobDetails.user = $scope.currentUserFile;
                 $scope.delinquentJobDetails.timesheetSubmitted = true;
-                console.log($scope.hrVarOut)
-                console.log($scope.hrVarIn)
-                console.log($scope.minVarOut)
-                console.log($scope.minVarIn)
-                console.log($scope.timeData)
+                //console.log($scope.hrVarOut)
+                //console.log($scope.hrVarIn)
+                //console.log($scope.minVarOut)
+                //console.log($scope.minVarIn)
+                //console.log($scope.timeData)
                 $scope.areYouSureTimeSheet = true;
-                console.log($scope.areYouSureTimeSheet)
+                //console.log($scope.areYouSureTimeSheet)
 
             } else {
-                console.log("null")
+                //console.log("null")
             }
         }
         $scope.openIndividualDelinquentTimeSheet = function (index, timesheetData) {
-            console.log(index)
-            console.log(timesheetData)
+            //console.log(index)
+            //console.log(timesheetData)
             $('select').material_select();
-            //console.log($scope.timesheet)
+            ////console.log($scope.timesheet)
             //curHistory = index;
             // $scope.showChart = false;
             //$timeout(function(){
@@ -707,26 +707,26 @@
             ) {
                 // $scope.individualPayPeriodOpen = false;
                 $scope.curTimesheet = index;
-                console.log("first")
-                // console.log($scope.timesheet)
-                console.log($scope.timesheetEntryOpen)
+                //console.log("first")
+                // //console.log($scope.timesheet)
+                //console.log($scope.timesheetEntryOpen)
 
             }
 
 
             else if (!$scope.timesheetEntryOpen && index == $scope.curTimesheet) {
                 $scope.timesheetEntryOpen = true;
-                console.log("second")
-                console.log($scope.timesheetEntryOpen)
+                //console.log("second")
+                //console.log($scope.timesheetEntryOpen)
                 //$scope.curPeriod = index;
             }
             else if (!$scope.timesheetEntryOpen && index !== $scope.curTimesheet) {
-                console.log("third")
+                //console.log("third")
                 $scope.timesheetEntryOpen = true;
-                console.log($scope.timesheetEntryOpen)
+                //console.log($scope.timesheetEntryOpen)
                 $scope.curTimesheet = index;
             } else {
-                console.log("last")
+                //console.log("last")
                 $scope.curTimesheet = null
 
                 // $scope.showChart = true;
@@ -754,7 +754,7 @@
 
             $scope.userToken = $window.localStorage.getItem('token');
             Auth.getUser($scope.userToken).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.userName = data.data.name;
                 $scope.requestedJobData.client = $scope.userName
                 $scope.userClass = data.data.userclass;
@@ -764,14 +764,14 @@
 
                 $scope.userPayRate = data.data.payrate;
                 User.findUser($scope.userName).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.userPhoneNumber = data.data.user[0].phonenumber
                     $scope.userPayPeriod = data.data.user[0].payperiodnum
                     $scope.userEmail = data.data.user[0].email
                     $scope.supervisorsArray = data.data.user[0].supervisors
                     $scope.locationsArray = data.data.user[0].locations
                     $scope.currentClientObject = data.data.user[0]
-                    console.log($scope.currentClientObject)
+                    //console.log($scope.currentClientObject)
                     $scope.loadingProfile = false;
                    
                     if (!$scope.supervisorsArray.length) {
@@ -785,34 +785,34 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
 
                             $rootScope.payPeriod = 1;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 8 || 9 || 10 || 11 || 12 || 13 || 14) {
 
                             $rootScope.payPeriod = 2;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 15 || 16 || 17 || 18 || 19 || 20 || 21) {
 
                             $rootScope.payPeriod = 3;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 22 || 23 || 24 || 25 || 26 || 27 || 28) {
 
                             $rootScope.payPeriod = 4;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 29 || 30 || 31) {
 
                             $rootScope.payPeriod = 5;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -822,34 +822,34 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4) {
 
                             $rootScope.payPeriod = 5;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 5 || 6 || 7 || 8 || 9 || 10 || 11) {
 
                             $rootScope.payPeriod = 6;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 12 || 13 || 14 || 15 || 16 || 17 || 18) {
 
                             $rootScope.payPeriod = 7;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 19 || 20 || 21 || 22 || 23 || 24 || 25) {
 
                             $rootScope.payPeriod = 8;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 26 || 27 || 28) {
 
                             $rootScope.payPeriod = 9;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -858,35 +858,35 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4) {
 
                             $rootScope.payPeriod = 9;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 5 || 6 || 7 || 8 || 9 || 10 || 11) {
 
                             $rootScope.payPeriod = 10;
-                            console.log('imm here')
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log('imm here')
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 12 || 13 || 14 || 15 || 16 || 17 || 18) {
 
                             $rootScope.payPeriod = 11;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 19 || 20 || 21 || 22 || 23 || 24 || 25) {
 
                             $rootScope.payPeriod = 12;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 26 || 27 || 28 || 29 || 30 || 31) {
 
                             $rootScope.payPeriod = 13;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -895,34 +895,34 @@
                         if ($scope.dateNow == 1) {
 
                             $rootScope.payPeriod = 13;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 2 || 3 || 4 || 5 || 6 || 7 || 8) {
 
                             $rootScope.payPeriod = 14;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 9 || 10 || 11 || 12 || 13 || 14 || 15) {
 
                             $rootScope.payPeriod = 15;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 16 || 17 || 18 || 19 || 20 || 21 || 22) {
 
                             $rootScope.payPeriod = 16;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 24 || 25 || 26 || 27 || 28 || 29 || 30) {
 
                             $rootScope.payPeriod = 18;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -931,34 +931,34 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
 
                             $rootScope.payPeriod = 19;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 8 || 9 || 10 || 11 || 12 || 13 || 14) {
 
                             $rootScope.payPeriod = 20;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 15 || 16 || 17 || 18 || 19 || 20 || 21) {
 
                             $rootScope.payPeriod = 21;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 22 || 23 || 24 || 25 || 26 || 27 || 28) {
 
                             $rootScope.payPeriod = 22;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 28 || 29 || 30 || 31) {
 
                             $rootScope.payPeriod = 1;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -968,13 +968,13 @@
                         if ($scope.dateNow == 1 || $scope.dateNow == 2 || $scope.dateNow == 3) {
 
                             $rootScope.payPeriod = 1;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 4 || $scope.dateNow == 5 || $scope.dateNow == 6 || $scope.dateNow == 7 || $scope.dateNow == 8 || $scope.dateNow == 9 || $scope.dateNow == 10) {
 
                             $rootScope.payPeriod = 2;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                             $scope.newPPObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
                             /* User.getUsers().then(function(data){
@@ -987,7 +987,7 @@
                              */
                             /*
                             User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
-                                console.log(data)
+                                //console.log(data)
                                 if (data.data.success) {
                                     $scope.payPeriodUpdated = true;
                                     //$timeout(function(){
@@ -1001,7 +1001,7 @@
                         if ($scope.dateNow == 11 || $scope.dateNow == 12 || $scope.dateNow == 13 || $scope.dateNow == 14 || $scope.dateNow == 15 || $scope.dateNow == 16 || $scope.dateNow == 17) {
 
                             $rootScope.payPeriod = 3;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                             $scope.newPPObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
@@ -1016,7 +1016,7 @@
 
                             if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                 $scope.userPayPeriod = $rootScope.payPeriod
-                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                                 User.getUsers().then(function (data) {
 
                                     for (var i = 0; i < data.data.users.length; i++) {
@@ -1033,7 +1033,7 @@
 
                                     User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
 
-                                        console.log(data)
+                                        //console.log(data)
                                         $scope.addPayPeriodToPayPeriodHistory();
 
 
@@ -1043,7 +1043,7 @@
 
                             } else {
 
-                                console.log("Pay Periods Match")
+                                //console.log("Pay Periods Match")
 
                             }
 
@@ -1053,14 +1053,14 @@
                         if ($scope.dateNow == 25 || $scope.dateNow == 26 || $scope.dateNow == 27 || $scope.dateNow == 28 || $scope.dateNow == 39 || $scope.dateNow == 30) {
 
                             $rootScope.payPeriod = 5;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                             $scope.newPPObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
 
                             if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                 $scope.userPayPeriod = $rootScope.payPeriod
-                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                                 User.getUsers().then(function (data) {
 
                                     for (var i = 0; i < data.data.users.length; i++) {
@@ -1077,7 +1077,7 @@
 
                                     User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
 
-                                        console.log(data)
+                                        //console.log(data)
                                         $scope.addPayPeriodToPayPeriodHistory();
 
 
@@ -1087,7 +1087,7 @@
 
                             } else {
 
-                                console.log("Pay Periods Match")
+                                //console.log("Pay Periods Match")
 
                             }
 
@@ -1101,7 +1101,7 @@
                         if ($scope.dateNow == 1) {
 
                             $rootScope.payPeriod = 5;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                             $scope.newPPObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
@@ -1109,7 +1109,7 @@
 
                             if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                 $scope.userPayPeriod = $rootScope.payPeriod
-                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                                 User.getUsers().then(function (data) {
 
                                     for (var i = 0; i < data.data.users.length; i++) {
@@ -1126,7 +1126,7 @@
 
                                     User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
 
-                                        console.log(data)
+                                        //console.log(data)
                                         $scope.addPayPeriodToPayPeriodHistory();
 
 
@@ -1136,7 +1136,7 @@
 
                             } else {
 
-                                console.log("Pay Periods Match")
+                                //console.log("Pay Periods Match")
 
                             }
 
@@ -1145,9 +1145,9 @@
                         if ($scope.dateNow == 2 || $scope.dateNow == 3 || $scope.dateNow == 4 || $scope.dateNow == 5 || $scope.dateNow == 6 || $scope.dateNow == 7 || $scope.dateNow == 8) {
 
                             $rootScope.payPeriod = 6;
-                            console.log($scope.dateNow)
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
-                            //console.log("$rootScope.userPayPeriod", $rootScope.userPayPeriod)
+                            //console.log($scope.dateNow)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            ////console.log("$rootScope.userPayPeriod", $rootScope.userPayPeriod)
 
                             $scope.newPPObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
@@ -1156,7 +1156,7 @@
                             if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                 $scope.newPayPeriodLoading = true;
                                 $scope.userPayPeriod = $rootScope.payPeriod
-                                console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                                //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                                 User.getUsers().then(function (data) {
 
                                     for (var i = 0; i < data.data.users.length; i++) {
@@ -1181,8 +1181,8 @@
 
                                     User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
 
-                                        console.log(data)
-                                        console.log($scope.newPayPeriodHistoryEntry)
+                                        //console.log(data)
+                                        //console.log($scope.newPayPeriodHistoryEntry)
                                         $scope.addPayPeriodToPayPeriodHistory();
 
 
@@ -1192,7 +1192,7 @@
 
                             } else {
 
-                                console.log("Pay Periods Match")
+                                //console.log("Pay Periods Match")
 
                             }
 
@@ -1202,7 +1202,7 @@
                         if ($scope.dateNow == 9 || $scope.dateNow == 10 || $scope.dateNow == 11 || $scope.dateNow == 12 || $scope.dateNow == 13 || $scope.dateNow == 14 || $scope.dateNow == 15) {
 
                             $rootScope.payPeriod = 7;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
                             $scope.newPPObject = {}
                             $scope.newDeliquentObject = {}
                             $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
@@ -1211,7 +1211,7 @@
                                                             if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                                                                 $scope.loadingNewPayPeriod = true;
                                                                 $scope.userPayPeriod = $rootScope.payPeriod
-                                                                console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
+                                                                //console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
                                                                 User.getUsers().then(function (data) {
                                                                     
                             
@@ -1245,8 +1245,8 @@
                             
                                                                   /*  User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
                                                                         $scope.loadingAddToWorkHistory = true;
-                                                                        console.log(data)
-                                                                        console.log($scope.newPayPeriodHistoryEntry)
+                                                                        //console.log(data)
+                                                                        //console.log($scope.newPayPeriodHistoryEntry)
                                                                         $scope.addPayPeriodToPayPeriodHistory();
                             
                             
@@ -1256,7 +1256,7 @@
 
                           } else {
 
-                              console.log("Pay Periods Match")
+                              //console.log("Pay Periods Match")
 
                           }
 
@@ -1265,21 +1265,21 @@
                         if ($scope.dateNow == 16 || $scope.dateNow == 17 || $scope.dateNow == 18 || $scope.dateNow == 19 || $scope.dateNow == 20 || $scope.dateNow == 21 || $scope.dateNow == 22) {
 
                             $rootScope.payPeriod = 8;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 23 || $scope.dateNow == 24 || $scope.dateNow == 25 || $scope.dateNow == 26 || $scope.dateNow == 27 || $scope.dateNow == 28 || $scope.dateNow == 29) {
 
                             $rootScope.payPeriod = 9;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 30 || $scope.dateNow == 31) {
 
                             $rootScope.payPeriod = 10;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -1288,34 +1288,34 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4 || 5) {
 
                             $rootScope.payPeriod = 10;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 6 || 7 || 8 || 9 || 10 || 11 || 12) {
 
                             $rootScope.payPeriod = 11;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 13 || 14 || 15 || 16 || 17 || 18 || 19) {
 
                             $rootScope.payPeriod = 12;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 20 || 21 || 22 || 23 || 24 || 25 || 26) {
 
                             $rootScope.payPeriod = 13;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 27 || 28 || 29 || 30 || 31) {
 
                             $rootScope.payPeriod = 14;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -1324,34 +1324,34 @@
                         if ($scope.dateNow == 1 || 2) {
 
                             $rootScope.payPeriod = 15;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 3 || 4 || 5 || 6 || 7 || 8 || 9) {
 
                             $rootScope.payPeriod = 16;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 10 || 11 || 12 || 13 || 14 || 15 || 16) {
 
                             $rootScope.payPeriod = 17;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 17 || 18 || 19 || 20 || 21 || 22 || 23) {
 
                             $rootScope.payPeriod = 18;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 24 || 25 || 26 || 27 || 28 || 29 || 30) {
 
                             $rootScope.payPeriod = 19;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -1360,34 +1360,34 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
 
                             $rootScope.payPeriod = 20;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 8 || 9 || 10 || 11 || 12 || 13 || 14) {
 
                             $rootScope.payPeriod = 21;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 15 || 16 || 17 || 18 || 19 || 20 || 21) {
 
                             $rootScope.payPeriod = 22;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 22 || 23 || 24 || 25 || 26 || 27 || 28) {
 
                             $rootScope.payPeriod = 23;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 29 || 30 || 31) {
 
                             $rootScope.payPeriod = 24;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -1396,34 +1396,34 @@
                         if ($scope.dateNow == 1 || 2 || 3 || 4) {
 
                             $rootScope.payPeriod = 24;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 5 || 6 || 7 || 8 || 9 || 10 || 11) {
 
                             $rootScope.payPeriod = 25;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 12 || 13 || 14 || 15 || 16 || 17 || 18) {
 
                             $rootScope.payPeriod = 26;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 19 || 20 || 21 || 22 || 23 || 24 || 25) {
 
                             $rootScope.payPeriod = 27;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 26 || 27 || 28 || 29 || 30) {
 
                             $rootScope.payPeriod = 28;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
@@ -1432,48 +1432,48 @@
                         if ($scope.dateNow == 1 || 2) {
 
                             $rootScope.payPeriod = 29;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
                         }
                         if ($scope.dateNow == 3 || 4 || 5 || 6 || 7 || 8 || 9) {
 
                             $rootScope.payPeriod = 30;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 10 || 11 || 12 || 13 || 14 || 15 || 16) {
 
                             $rootScope.payPeriod = 31;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 17 || 18 || 19 || 20 || 21 || 22 || 23) {
 
                             $rootScope.payPeriod = 32;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                         if ($scope.dateNow == 24 || 25 || 26 || 27 || 28 || 29 || 30) {
 
                             $rootScope.payPeriod = 33;
-                            console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                            //console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                         }
                     }
 
                     /*else if ($scope.userClass == "client") {
-                       console.log("YOU DA CLIENT")
+                       //console.log("YOU DA CLIENT")
                        $scope.clientPage = true;
                    }*/
 
                 })
 
                 $scope.submittedTimeSheetsArray = data.data.submittedtimesheets
-                console.log($scope.submittedTimeSheetsArray)
+                //console.log($scope.submittedTimeSheetsArray)
 
 
 
@@ -1481,7 +1481,7 @@
             })
 
         } else {
-            console.log("Not Logged In")
+            //console.log("Not Logged In")
 
         }
 
@@ -1502,7 +1502,7 @@
             $scope.removeRequestedJobLoading = true;
             $scope.removeRequestedJobSuccessful = false;
             User.removeRequestedJob(jobData).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 if (data.data.success) {
                     $scope.removeRequestedJobLoading = false;
                     $scope.removeRequestedJobSuccessful = true;
@@ -1516,12 +1516,12 @@
         }
         $scope.submitRequest = function () {
             $scope.loadingRequestJob = true;
-            console.log($scope.requestedJobData)
+            //console.log($scope.requestedJobData)
             $scope.requestedJobData.approved = false;
             $scope.requestedJobData.dateNum = $scope.dateNow;
             $scope.requestedJobData.monthNum = $scope.month;
             User.requestJob($scope.requestedJobData).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 if (data.data.success) {
                     $scope.loadingRequestJob = false;
                     $scope.areYouSureSubmitRequestJob = false
@@ -1556,7 +1556,7 @@
             $scope.areYouSureSubmitRequestJob = false;
         }
         $scope.areYouSureSubmitRequest = function () {
-            console.log($scope.requestedJobData)
+            //console.log($scope.requestedJobData)
             $('select').material_select();
 
             if ($scope.requestedJobData.ppe == null) {
@@ -1613,7 +1613,7 @@
                     $scope.requestedJobData.minsIn1 + $scope.requestedJobData.minsIn2 + $scope.requestedJobData.amPm1 + " - " +
                     $scope.requestedJobData.hrsOut1 + $scope.requestedJobData.hrsOut2 + ":" +
                     $scope.requestedJobData.minsOut1 + $scope.requestedJobData.minsOut2 + $scope.requestedJobData.amPm1
-                console.log($scope.requestedJobData.hours)
+                //console.log($scope.requestedJobData.hours)
                 if ($scope.requestedJobData.location !== null &&
                     $scope.requestedJobData.supervisor !== null &&
                     $scope.requestedJobData.client !== null &&
@@ -1623,7 +1623,7 @@
                     $scope.requestedJobData.ppe !== null
 
                 ) {
-                    console.log($scope.requestJobDetails)
+                    //console.log($scope.requestJobDetails)
                     $scope.areYouSureSubmitRequestJob = true;
                 }
 
@@ -1632,8 +1632,8 @@
 
         }
         $scope.submitSupervisorSetupPhase = function () {
-            console.log("Clicked")
-            console.log($scope.supervisorData)
+            //console.log("Clicked")
+            //console.log($scope.supervisorData)
             if ($scope.supervisorData.name == null || $scope.supervisorData.name == undefined) {
 
                 $scope.supervisorNameNotProvided = true;
@@ -1669,11 +1669,11 @@
 
             ) {
                 $scope.submitSupervisorLoading = true;
-                console.log("all fields filled in")
+                //console.log("all fields filled in")
                 $scope.supervisorData.username = $scope.userName;
-                console.log($scope.supervisorData)
+                //console.log($scope.supervisorData)
                 User.addSupervisor($scope.supervisorData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.addSupervisorSuccessful = true;
                     $timeout(function () {
                         $scope.submitSupervisorLoading = false;
@@ -1693,8 +1693,8 @@
             }
         }
         $scope.submitSupervisor = function () {
-            console.log("Clicked")
-            console.log($scope.supervisorData)
+            //console.log("Clicked")
+            //console.log($scope.supervisorData)
             if ($scope.supervisorData.name == null || $scope.supervisorData.name == undefined) {
 
                 $scope.supervisorNameNotProvided = true;
@@ -1730,11 +1730,11 @@
 
             ) {
                 $scope.submitSupervisorLoading = true;
-                console.log("all fields filled in")
+                //console.log("all fields filled in")
                 $scope.supervisorData.username = $scope.userName;
-                console.log($scope.supervisorData)
+                //console.log($scope.supervisorData)
                 User.addSupervisor($scope.supervisorData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.addSupervisorSuccessful = true;
                     $timeout(function () {
                         $scope.submitSupervisorLoading = false;
@@ -1769,7 +1769,7 @@
             } else {
                 $scope.submitAdminMessageLoading = true;
                 User.sendMessage($scope.timeSheetMessage).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.submitAdminMessageLoading = false;
                     $scope.submitAdminMessageSuccessfullySent = true;
                     $timeout(function () {
@@ -1784,9 +1784,9 @@
             $scope.messageAdminPageOpen = false
         }
         $scope.openMessageAdminPage = function (date,employee,client) {
-            console.log(date)
-            console.log(employee)
-            console.log(client)
+            //console.log(date)
+            //console.log(employee)
+            //console.log(client)
             $scope.sendingDate = date;
             $scope.timeSheetMessage.subject = "Disputed Time Sheet(" + $scope.sendingDate + ")"
             if (!$scope.messageAdminPageOpen) {
@@ -1812,8 +1812,8 @@
             }
         }
         $scope.submitLocationSetupPhase = function () {
-            console.log("Clicked")
-            console.log($scope.locationData)
+            //console.log("Clicked")
+            //console.log($scope.locationData)
             if ($scope.locationData.name == null || $scope.locationData.name == undefined) {
 
                 $scope.locationNameNotProvided = true;
@@ -1865,11 +1865,11 @@
                 $scope.locationData.contact !== null &&
                 $scope.locationData.address !== null) {
                 $scope.submitLocationLoading = true;
-                console.log("all fields filled in")
+                //console.log("all fields filled in")
                 $scope.locationData.username = $scope.userName;
-                console.log($scope.locationData)
+                //console.log($scope.locationData)
                 User.addLocation($scope.locationData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.addLocationSuccessful = true;
                     $timeout(function () {
                         $scope.submitLocationLoading = false;
@@ -1892,8 +1892,8 @@
             }
         }
         $scope.submitLocation = function () {
-            console.log("Clicked")
-            console.log($scope.locationData)
+            //console.log("Clicked")
+            //console.log($scope.locationData)
             if ($scope.locationData.name == null || $scope.locationData.name == undefined) {
 
                 $scope.locationNameNotProvided = true;
@@ -1945,11 +1945,11 @@
                 $scope.locationData.contact !== null &&
                 $scope.locationData.address !== null) {
                 $scope.submitLocationLoading = true;
-                console.log("all fields filled in")
+                //console.log("all fields filled in")
                 $scope.locationData.username = $scope.userName;
-                console.log($scope.locationData)
+                //console.log($scope.locationData)
                 User.addLocation($scope.locationData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.addLocationSuccessful = true;
                     $timeout(function () {
                         $scope.submitLocationLoading = false;
@@ -1990,7 +1990,7 @@
 
 $scope.requestJobFormOpen = false;
 $scope.openRequestJobForm = function(){
-    console.log("Clicke")
+    //console.log("Clicke")
     if(!$scope.requestJobFormOpen){
         $scope.requestJobFormOpen = true
         $scope.requstListOpen = false;
@@ -2013,11 +2013,11 @@ $scope.requestEmployeePageLoading = false;
             $scope.requestEmployeePageLoading = true;
 
             $('select').material_select();
-            console.log($scope.supervisorsArray)
+            //console.log($scope.supervisorsArray)
 
 
             $('select').material_select();
-            console.log($scope.locationsArray)
+            //console.log($scope.locationsArray)
             $scope.requestEmployeePageLoading = false;
             if (!$scope.requestEmployeePageOpen) {
                 $scope.page=0;
@@ -2038,7 +2038,7 @@ $scope.requestEmployeePageLoading = false;
 
                 $scope.addSupervisorPageOpen = false;
                 User.getRequestedJobs($scope.userName).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.requestedJobsArray = data.data.requestedjobs;
                     //$scope.locationIndex = index;
 
@@ -2048,25 +2048,25 @@ $scope.requestEmployeePageLoading = false;
                     for (var i = 0; i <= $scope.requestedJobsArray.length; i++) {
 
                         var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        //console.log($scope.employees)
+                        //////console.log($scope.pageLimit, i, $scope.employees.length)
+                        ////console.log($scope.employees)
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                            //console.log("its less")
 
                         }
                         if (i < $scope.requestedJobsArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.requestedJobsArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.requestedJobsArray[i]) {
                                 $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -2075,16 +2075,16 @@ $scope.requestEmployeePageLoading = false;
                         } else {
                             if (!$scope.usersLoaded) {
 
-                                console.log("else")
+                                //console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.requestedJobsPaginated.push($scope.requestedJobsForPagination)
-                                console.log($scope.requestedJobsPaginated)
+                                //console.log($scope.requestedJobsPaginated)
                                 $scope.requestedJobsForPagination = [];
                                 if ($scope.requestedJobsArray[i] !== undefined) {
                                     $scope.requestedJobsForPagination.push($scope.requestedJobsArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
@@ -2096,9 +2096,9 @@ $scope.requestEmployeePageLoading = false;
 
 
 
-                    console.log("first")
-                    // console.log($scope.timesheet)
-                    console.log($scope.timesheetEntryOpen)
+                    //console.log("first")
+                    // //console.log($scope.timesheet)
+                    //console.log($scope.timesheetEntryOpen)
 
 
                 })
@@ -2125,14 +2125,14 @@ $scope.requestEmployeePageLoading = false;
         }
         $scope.delinquentTimeSheetInPayPeriod = false;
         Auth.getUser().then(function (data) {
-            console.log(data)
+            //console.log(data)
             $scope.name = data.data.name;
             $scope.email = data.data.email;
             $scope.user_id = $routeParams.userid
 
-            console.log($scope.user_id)
+            //console.log($scope.user_id)
             User.findUser($scope.name).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.locationsArray = data.data.user[0].locations;
                 $scope.supervisorsArray = data.data.user[0].supervisors
                 $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
@@ -2140,13 +2140,13 @@ $scope.requestEmployeePageLoading = false;
                 for (var z = 0; z < $scope.payPeriodHistory.length; z++) {
 
                     for (var d = 0; d < $scope.payPeriodHistory[z].entry.length; d++) {
-                        console.log($scope.payPeriodHistory[z].entry[d])
+                        //console.log($scope.payPeriodHistory[z].entry[d])
 
                         $scope.payPeriodHistory[z].entry[d]
 
                         if ($scope.payPeriodHistory[z].entry[d][0].delinquent || $scope.payPeriodHistory[z].entry[d][1].delinquent) {
                             $scope.delinquentTimeSheetInPayPeriod = true;
-                            console.log("DELINQUENT")
+                            //console.log("DELINQUENT")
                         }
 
                     }
@@ -2155,7 +2155,7 @@ $scope.requestEmployeePageLoading = false;
         })
 
         /*$scope.addPayPeriodToPayPeriodHistory = function (details) {
-            console.log(details)
+            //console.log(details)
             $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
             $scope.allEmployeesJobDetails = []
 
@@ -2176,9 +2176,9 @@ $scope.requestEmployeePageLoading = false;
 
                     }
                     $scope.employeeJobDetails.allEmployeesJobDetails = $scope.allEmployeesJobDetails;
-                    console.log($scope.allEmployeesJobDetails)
+                    //console.log($scope.allEmployeesJobDetails)
                     $scope.payPeriodHistory = data.data.users[d].payperiodhistory
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.payPeriodHistory)
                     for (var z = 0; z < $scope.employeeJobDetails.allEmployeesJobDetails.length; z++) {
                         //$scope.data
 
@@ -2186,7 +2186,7 @@ $scope.requestEmployeePageLoading = false;
                         for (var x = 0; x < $scope.employeeJobDetails.allEmployeesJobDetails[z].length; x++) {
 
                             for (var y = 0; y < $scope.employeeJobDetails.allEmployeesJobDetails[z][x].length; y++) {
-                                //console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
+                                ////console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
                                 if ($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timesheetSubmitted) {
 
 
@@ -2195,8 +2195,8 @@ $scope.requestEmployeePageLoading = false;
                                     var duration = moment.duration(endTime.diff(startTime));
                                     var hours = parseInt(duration.asHours());
                                     var minutes = parseInt(duration.asMinutes()) - hours * 60;
-                                    console.log(hours)
-                                    console.log(minutes)
+                                    //console.log(hours)
+                                    //console.log(minutes)
 
 
                                     if (minutes == 15) {
@@ -2228,10 +2228,10 @@ $scope.requestEmployeePageLoading = false;
                         $scope.payPeriodObject = {
                             entry: $scope.employeeJobDetails.allEmployeesJobDetails[z]
                         }
-                        console.log($scope.payPeriodObject)
+                        //console.log($scope.payPeriodObject)
                         User.addPayPeriodToPayPeriodHistory($scope.payPeriodObject).then(function (data) {
 
-                            console.log(data)
+                            //console.log(data)
                             $scope.loadingAddToWorkHistory = false
                             $scope.finishedChangingPayPeriod = true;
                             $timeout(function(){
@@ -2246,7 +2246,7 @@ $scope.requestEmployeePageLoading = false;
                 }
 
 
-                console.log("OYYYYYY!!!!!!!!!!!!!!!!!!!!!", $scope.employeeJobDetails)
+                //console.log("OYYYYYY!!!!!!!!!!!!!!!!!!!!!", $scope.employeeJobDetails)
 
 
             })
@@ -2256,7 +2256,7 @@ $scope.requestEmployeePageLoading = false;
         }
         */
         $scope.addPayPeriodToPayPeriodHistory = function (details) {
-            console.log(details)
+            //console.log(details)
             $scope.employeeJobDetails.payperiod = $rootScope.payPeriod;
             $scope.allEmployeesJobDetails = []
 
@@ -2277,9 +2277,9 @@ $scope.requestEmployeePageLoading = false;
 
                     }
                     $scope.employeeJobDetails.allEmployeesJobDetails = $scope.allEmployeesJobDetails;
-                    console.log($scope.allEmployeesJobDetails)
+                    //console.log($scope.allEmployeesJobDetails)
                     $scope.payPeriodHistory = data.data.users[d].payperiodhistory
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.payPeriodHistory)
 
 
                 }
@@ -2291,7 +2291,7 @@ $scope.requestEmployeePageLoading = false;
                     for (var x = 0; x < $scope.employeeJobDetails.allEmployeesJobDetails[z].length; x++) {
 
                         for (var y = 0; y < $scope.employeeJobDetails.allEmployeesJobDetails[z][x].length; y++) {
-                            //console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
+                            ////console.log($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y])
                             if ($scope.employeeJobDetails.allEmployeesJobDetails[z][x][y].timesheetSubmitted) {
 
 
@@ -2300,8 +2300,8 @@ $scope.requestEmployeePageLoading = false;
                                 var duration = moment.duration(endTime.diff(startTime));
                                 var hours = parseInt(duration.asHours());
                                 var minutes = parseInt(duration.asMinutes()) - hours * 60;
-                                console.log(hours)
-                                console.log(minutes)
+                                //console.log(hours)
+                                //console.log(minutes)
 
 
                                 if (minutes == 15) {
@@ -2311,7 +2311,7 @@ $scope.requestEmployeePageLoading = false;
                                 if (minutes == 30) {
 
                                     hours = hours + .50
-                                    console.log("we're here")
+                                    //console.log("we're here")
                                 }
                                 if (minutes == 45) {
                                     hours = hours + .75
@@ -2335,10 +2335,10 @@ $scope.requestEmployeePageLoading = false;
                     $scope.payPeriodObject = {
                         entry: $scope.employeeJobDetails.allEmployeesJobDetails[z]
                     }
-                    console.log($scope.payPeriodObject)
+                    //console.log($scope.payPeriodObject)
                     User.addPayPeriodToPayPeriodHistory($scope.payPeriodObject).then(function (data) {
 
-                        console.log(data)
+                        //console.log(data)
                         $scope.loadingAddToWorkHistory = false
                         $scope.finishedChangingPayPeriod = true;
                         $timeout(function () {
@@ -2349,7 +2349,7 @@ $scope.requestEmployeePageLoading = false;
                 }
 
 
-                console.log("OYYYYYY!!!!!!!!!!!!!!!!!!!!!", $scope.employeeJobDetails)
+                //console.log("OYYYYYY!!!!!!!!!!!!!!!!!!!!!", $scope.employeeJobDetails)
 
 
             })
@@ -2358,7 +2358,7 @@ $scope.requestEmployeePageLoading = false;
 
         }
         $scope.openIndividualHistoryEntry = function (index) {
-            console.log(index)
+            //console.log(index)
             //curHistory = index;
             // $('html, body').animate({ scrollTop: 0 }, 'fast');
 
@@ -2370,7 +2370,7 @@ $scope.requestEmployeePageLoading = false;
                     // $scope.individualPayPeriodOpen = false;
                     $scope.curHistory = index;
 
-                    console.log("first")
+                    //console.log("first")
 
 
                 }
@@ -2378,11 +2378,11 @@ $scope.requestEmployeePageLoading = false;
 
                 else if (!$scope.historyEntryOpen && index == $scope.curHistory) {
                     $scope.historyEntryOpen = true;
-                    console.log("second")
+                    //console.log("second")
                     //$scope.curPeriod = index;
                 }
                 else if (!$scope.historyEntryOpen && index !== $scope.curHistory) {
-                    console.log("third")
+                    //console.log("third")
                     $scope.historyEntryOpen = true;
                     $scope.curHistory = index;
                 } else {
@@ -2396,7 +2396,7 @@ $scope.requestEmployeePageLoading = false;
         $scope.openMessageCompositionPage = function (index) {
             $('.tooltipped').tooltip();
             //$scope.currentIndex2 = index;
-            console.log(index)
+            //console.log(index)
             // $scope.messageCopositionPageOpen = true;;
 
             // $scope.removeChart = true;
@@ -2404,18 +2404,18 @@ $scope.requestEmployeePageLoading = false;
             ) {
                 // $scope.individualPayPeriodOpen = false;
                 $scope.currentIndex2 = index;
-                console.log("first")
+                //console.log("first")
 
             }
 
 
             else if (!$scope.messageCopositionPageOpen && index == $scope.currentIndex2) {
                 $scope.messageCopositionPageOpen = true;
-                console.log("second")
+                //console.log("second")
                 //$scope.curPeriod = index;
             }
             else if (!$scope.messageCopositionPageOpen && index !== $scope.currentIndex2) {
-                console.log("third")
+                //console.log("third")
                 $scope.messageCopositionPageOpen = true;
                 $scope.currentIndex2 = index;
             } else {
@@ -2444,10 +2444,10 @@ $scope.requestEmployeePageLoading = false;
             $scope.messageLoading = true;
             $scope.currentIndex = index;
             $scope.areYouSure = false;
-            console.log(index)
+            //console.log(index)
 
             User.removeMessage($scope.name, $scope.messageIndex).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.page=0;
                 $scope.pageLimit = 4;
                 $scope.messagesPaginated = [];
@@ -2456,26 +2456,26 @@ $scope.requestEmployeePageLoading = false;
                 for (var i = 0; i <= $scope.messagesArray.length; i++) {
 
                     var page = 0;
-                    ////console.log($scope.pageLimit, i, $scope.employees.length)
-                    console.log($scope.employees)
+                    //////console.log($scope.pageLimit, i, $scope.employees.length)
+                    //console.log($scope.employees)
                     if (i < $scope.pageLimit) {
-                        console.log("its less")
+                        //console.log("its less")
 
                     }
                     if (i < $scope.messagesArray.length) {
-                        console.log("yup,less")
+                        //console.log("yup,less")
                     }
 
                     if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
-                        console.log("HELLO")
-                        //console.log($scope.employees[i])
-                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log("HELLO")
+                        ////console.log($scope.employees[i])
+                        ////console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.messagesArray[i]) {
                             $scope.messagesArray[i].messageIndex = i
                             $scope.messageForPagination.push($scope.messagesArray[i])
-                            console.log(i)
-                            console.log("firstCondiation")
-                            console.log($scope.pageArray)
+                            //console.log(i)
+                            //console.log("firstCondiation")
+                            //console.log($scope.pageArray)
 
                         }
 
@@ -2484,21 +2484,21 @@ $scope.requestEmployeePageLoading = false;
                     } else {
                         if (!$scope.usersLoaded) {
 
-                            console.log("else")
+                            //console.log("else")
                             $scope.loadingUsers = false;
                             if ($scope.messageForPagination.length > 0) {
                                 $scope.messagesPaginated.push($scope.messageForPagination)
 
                             }
-                            console.log($scope.messagesPaginated)
-                            console.log($scope.messagesPaginated.length)
+                            //console.log($scope.messagesPaginated)
+                            //console.log($scope.messagesPaginated.length)
                             $scope.messageForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
                                 $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                             page++
 
@@ -2517,10 +2517,10 @@ $scope.requestEmployeePageLoading = false;
             $scope.messageLoading = true;
             $scope.currentIndex = index;
             $scope.messageIndex = messageindex
-            console.log(messageindex)
+            //console.log(messageindex)
 
             User.changeMessageToUnRead($scope.name, $scope.messageIndex).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.pageLimit = 4;
                 $scope.messagesPaginated = [];
                 $scope.messageForPagination = [];
@@ -2528,26 +2528,26 @@ $scope.requestEmployeePageLoading = false;
                 for (var i = 0; i <= $scope.messagesArray.length; i++) {
 
                     var page = 0;
-                    ////console.log($scope.pageLimit, i, $scope.employees.length)
-                    console.log($scope.employees)
+                    //////console.log($scope.pageLimit, i, $scope.employees.length)
+                    //console.log($scope.employees)
                     if (i < $scope.pageLimit) {
-                        console.log("its less")
+                        //console.log("its less")
 
                     }
                     if (i < $scope.messagesArray.length) {
-                        console.log("yup,less")
+                        //console.log("yup,less")
                     }
 
                     if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
-                        console.log("HELLO")
-                        //console.log($scope.employees[i])
-                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log("HELLO")
+                        ////console.log($scope.employees[i])
+                        ////console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.messagesArray[i]) {
                             $scope.messagesArray[i].messageIndex = i
                             $scope.messageForPagination.push($scope.messagesArray[i])
-                            console.log(i)
-                            console.log("firstCondiation")
-                            console.log($scope.pageArray)
+                            //console.log(i)
+                            //console.log("firstCondiation")
+                            //console.log($scope.pageArray)
 
                         }
 
@@ -2556,17 +2556,17 @@ $scope.requestEmployeePageLoading = false;
                     } else {
                         if (!$scope.usersLoaded) {
 
-                            console.log("else")
+                            //console.log("else")
                             $scope.loadingUsers = false;
                             $scope.messagesPaginated.push($scope.messageForPagination)
-                            console.log($scope.messagesPaginated)
+                            //console.log($scope.messagesPaginated)
                             $scope.messageForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
                                 $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                             page++
 
@@ -2588,7 +2588,7 @@ $scope.requestEmployeePageLoading = false;
                 name: $scope.userName
             }
             User.removeSupervisor(supervisorData).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.supervisorsArray = data.data.supervisors;
 
                 $scope.removeSupervisorLoading = false;
@@ -2606,7 +2606,7 @@ $scope.requestEmployeePageLoading = false;
             }
 
             User.removeLocation(locationData).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.locationsArray = data.data.locations;
                 $scope.removeLocationLoading = false;
                 $scope.addLocationPageOpen = false;
@@ -2623,26 +2623,26 @@ $scope.requestEmployeePageLoading = false;
                 $scope.locationIndex = index;
 
 
-                console.log("first")
-                // console.log($scope.timesheet)
-                console.log($scope.timesheetEntryOpen)
+                //console.log("first")
+                // //console.log($scope.timesheet)
+                //console.log($scope.timesheetEntryOpen)
 
             }
 
 
             else if (!$scope.individualLocationOpen && index == $scope.locationIndex) {
                 $scope.individualLocationOpen = true;
-                console.log("second")
-                console.log($scope.timesheetEntryOpen)
+                //console.log("second")
+                //console.log($scope.timesheetEntryOpen)
                 //$scope.curPeriod = index;
             }
             else if (!$scope.individualLocationOpen && index !== $scope.locationIndex) {
-                console.log("third")
+                //console.log("third")
                 $scope.individualLocationOpen = true;
-                console.log($scope.timesheetEntryOpen)
+                //console.log($scope.timesheetEntryOpen)
                 $scope.locationIndex = index;
             } else {
-                console.log("last")
+                //console.log("last")
                 $scope.locationIndex = null
 
                 // $scope.showChart = true;
@@ -2660,26 +2660,26 @@ $scope.requestEmployeePageLoading = false;
                 individualRequestedJobOpen
 
 
-                console.log("first")
-                // console.log($scope.timesheet)
-                console.log($scope.timesheetEntryOpen)
+                //console.log("first")
+                // //console.log($scope.timesheet)
+                //console.log($scope.timesheetEntryOpen)
 
             }
 
 
             else if (!$scope.individualRequestedJobOpen && index == $scope.requestIndex) {
                 $scope.individualSupervisorOpen = true;
-                console.log("second")
-                console.log($scope.timesheetEntryOpen)
+                //console.log("second")
+                //console.log($scope.timesheetEntryOpen)
                 //$scope.curPeriod = index;
             }
             else if (!$scope.individualRequestedJobOpen && index !== $scope.requestIndex) {
-                console.log("third")
+                //console.log("third")
                 $scope.individualRequestedJobOpen = true;
-                console.log($scope.timesheetEntryOpen)
+                //console.log($scope.timesheetEntryOpen)
                 $scope.requestIndex = index;
             } else {
-                console.log("last")
+                //console.log("last")
                 $scope.requestIndex = null
 
                 // $scope.showChart = true;
@@ -2694,26 +2694,26 @@ $scope.requestEmployeePageLoading = false;
                 $scope.subconIndex = index;
 
 
-                console.log("first")
-                // console.log($scope.timesheet)
-                console.log($scope.timesheetEntryOpen)
+                //console.log("first")
+                // //console.log($scope.timesheet)
+                //console.log($scope.timesheetEntryOpen)
 
             }
 
 
             else if (!$scope.individualSupervisorOpen && index == $scope.subconIndex) {
                 $scope.individualSupervisorOpen = true;
-                console.log("second")
-                console.log($scope.timesheetEntryOpen)
+                //console.log("second")
+                //console.log($scope.timesheetEntryOpen)
                 //$scope.curPeriod = index;
             }
             else if (!$scope.individualSupervisorOpen && index !== $scope.subconIndex) {
-                console.log("third")
+                //console.log("third")
                 $scope.individualSupervisorOpen = true;
-                console.log($scope.timesheetEntryOpen)
+                //console.log($scope.timesheetEntryOpen)
                 $scope.subconIndex = index;
             } else {
-                console.log("last")
+                //console.log("last")
                 $scope.subconIndex = null
 
                 // $scope.showChart = true;
@@ -2755,7 +2755,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
                 $scope.complaintsPageClientOpen = false;
                 User.getSupervisors($scope.userName).then(function (data) {
-                    console.log(data)
+                   // //console.log(data)
                     $scope.supervisorsArray = data.data.supervisors
                     $scope.subconIndex = index;
 
@@ -2765,25 +2765,25 @@ $scope.requestEmployeePageLoading = false;
                     for (var i = 0; i <= $scope.supervisorsArray.length; i++) {
 
                         var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        //console.log($scope.employees)
+                        //////console.log($scope.pageLimit, i, $scope.employees.length)
+                        ////console.log($scope.employees)
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                          //  //console.log("its less")
 
                         }
                         if (i < $scope.supervisorsArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.supervisorsArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.supervisorsArray[i]) {
                                 $scope.supervisorsForPagination.push($scope.supervisorsArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -2792,16 +2792,16 @@ $scope.requestEmployeePageLoading = false;
                         } else {
                             if (!$scope.usersLoaded) {
 
-                                console.log("else")
+                                //console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.supervisorsPaginated.push($scope.supervisorsForPagination)
-                                console.log($scope.supervisorsPaginated)
+                                //console.log($scope.supervisorsPaginated)
                                 $scope.supervisorsForPagination = [];
                                 if ($scope.supervisorsArray[i] !== undefined) {
                                     $scope.supervisorsForPagination.push($scope.supervisorsArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
@@ -2813,9 +2813,9 @@ $scope.requestEmployeePageLoading = false;
 
 
 
-                    console.log("first")
-                    // console.log($scope.timesheet)
-                    console.log($scope.timesheetEntryOpen)
+                    //console.log("first")
+                    // //console.log($scope.timesheet)
+                    //console.log($scope.timesheetEntryOpen)
 
 
                     if ($scope.individualSupervisorOpen && index !== $scope.subconIndex
@@ -2829,25 +2829,25 @@ $scope.requestEmployeePageLoading = false;
                         for (var i = 0; i <= $scope.supervisorsArray.length; i++) {
 
                             var page = 0;
-                            ////console.log($scope.pageLimit, i, $scope.employees.length)
-                            //console.log($scope.employees)
+                            //////console.log($scope.pageLimit, i, $scope.employees.length)
+                            ////console.log($scope.employees)
                             if (i < $scope.pageLimit) {
-                                console.log("its less")
+                                //console.log("its less")
 
                             }
                             if (i < $scope.supervisorsArray.length) {
-                                console.log("yup,less")
+                                //console.log("yup,less")
                             }
 
                             if (i < $scope.pageLimit && i < $scope.supervisorsArray.length) {//5
-                                console.log("HELLO")
-                                //console.log($scope.employees[i])
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                //console.log("HELLO")
+                                ////console.log($scope.employees[i])
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
                                 if ($scope.supervisorsArray[i]) {
                                     $scope.supervisorsForPagination.push($scope.supervisorsArray[i])
-                                    console.log(i)
-                                    console.log("firstCondiation")
-                                    console.log($scope.pageArray)
+                                    //console.log(i)
+                                    //console.log("firstCondiation")
+                                    //console.log($scope.pageArray)
 
                                 }
 
@@ -2856,16 +2856,16 @@ $scope.requestEmployeePageLoading = false;
                             } else {
                                 if (!$scope.usersLoaded) {
 
-                                    console.log("else")
+                                    //console.log("else")
                                     $scope.loadingUsers = false;
                                     $scope.supervisorsPaginated.push($scope.supervisorsForPagination)
-                                    console.log($scope.supervisorsPaginated)
+                                    //console.log($scope.supervisorsPaginated)
                                     $scope.supervisorsForPagination = [];
                                     if ($scope.supervisorsArray[i] !== undefined) {
                                         $scope.supervisorsForPagination.push($scope.supervisorsArray[i])
                                     }
                                     $scope.pageLimit = $scope.pageLimit + 4;
-                                    //console.log($scope.pageLimit, i, $scope.employees.length)
+                                    ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                     page++
 
@@ -2877,26 +2877,26 @@ $scope.requestEmployeePageLoading = false;
 
 
 
-                        console.log("first")
-                        // console.log($scope.timesheet)
-                        console.log($scope.timesheetEntryOpen)
+                        //console.log("first")
+                        // //console.log($scope.timesheet)
+                        //console.log($scope.timesheetEntryOpen)
 
                     }
 
 
                     else if (!$scope.individualSupervisorOpen && index == $scope.subconIndex) {
                         $scope.individualSupervisorOpen = true;
-                        console.log("second")
-                        console.log($scope.timesheetEntryOpen)
+                        //console.log("second")
+                        //console.log($scope.timesheetEntryOpen)
                         //$scope.curPeriod = index;
                     }
                     else if (!$scope.individualSupervisorOpen && index !== $scope.subconIndex) {
-                        console.log("third")
+                        //console.log("third")
                         $scope.individualSupervisorOpen = true;
-                        console.log($scope.timesheetEntryOpen)
+                        //console.log($scope.timesheetEntryOpen)
                         $scope.subconIndex = index;
                     } else {
-                        console.log("last")
+                        //console.log("last")
                         $scope.subconIndex = null
 
                         // $scope.showChart = true;
@@ -2932,7 +2932,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.requestEmployeePageOpen = false;
                 $scope.clientHome = false;
                 User.getLocations($scope.userName).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.locationsArray = data.data.locations;
                     //$scope.locationIndex = index;
 
@@ -2942,25 +2942,25 @@ $scope.requestEmployeePageLoading = false;
                     for (var i = 0; i <= $scope.locationsArray.length; i++) {
 
                         var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        //console.log($scope.employees)
+                        //////console.log($scope.pageLimit, i, $scope.employees.length)
+                        ////console.log($scope.employees)
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                            //console.log("its less")
 
                         }
                         if (i < $scope.locationsArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.locationsArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.locationsArray[i]) {
                                 $scope.locationsForPagination.push($scope.locationsArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -2969,16 +2969,16 @@ $scope.requestEmployeePageLoading = false;
                         } else {
                             if (!$scope.usersLoaded) {
 
-                                console.log("else")
+                                //console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.locationsPaginated.push($scope.locationsForPagination)
-                                console.log($scope.locationsPaginated)
+                                //console.log($scope.locationsPaginated)
                                 $scope.locationsForPagination = [];
                                 if ($scope.locationsArray[i] !== undefined) {
                                     $scope.locationsForPagination.push($scope.locationsArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
@@ -2990,9 +2990,9 @@ $scope.requestEmployeePageLoading = false;
 
 
 
-                    console.log("first")
-                    // console.log($scope.timesheet)
-                    console.log($scope.timesheetEntryOpen)
+                    //console.log("first")
+                    // //console.log($scope.timesheet)
+                    //console.log($scope.timesheetEntryOpen)
 
 
                 })
@@ -3009,8 +3009,8 @@ $scope.requestEmployeePageLoading = false;
             }
         }
         $scope.openMessage = function (index, timesheetData, messageindex) {
-            console.log(index)
-            console.log(timesheetData)
+            //console.log(index)
+            //console.log(timesheetData)
             $('select').material_select();
 
             if ($scope.messageOpen && index !== $scope.currentIndex
@@ -3024,7 +3024,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.messageLoading = false;
 
                 User.changeMessageToRead($scope.name, $scope.messageIndex).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.pageLimit = 4;
                     $scope.messagesPaginated = [];
                     $scope.messageForPagination = [];
@@ -3032,26 +3032,26 @@ $scope.requestEmployeePageLoading = false;
                     for (var i = 0; i <= $scope.messagesArray.length; i++) {
 
                         var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        console.log($scope.employees)
+                        //////console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log($scope.employees)
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                            //console.log("its less")
 
                         }
                         if (i < $scope.messagesArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.messagesArray[i]) {
                                 $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -3060,17 +3060,17 @@ $scope.requestEmployeePageLoading = false;
                         } else {
                             if (!$scope.usersLoaded) {
 
-                                console.log("else")
+                                //console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.messagesPaginated.push($scope.messageForPagination)
-                                console.log($scope.messagesPaginated)
+                                //console.log($scope.messagesPaginated)
                                 $scope.messageForPagination = [];
                                 if ($scope.messagesArray[i] !== undefined) {
                                     $scope.messagesArray[i].messageIndex = i
                                     $scope.messageForPagination.push($scope.messagesArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
@@ -3083,26 +3083,26 @@ $scope.requestEmployeePageLoading = false;
 
                     //$scope.openMessagePage2();
                 })
-                console.log("first")
-                // console.log($scope.timesheet)
-                console.log($scope.timesheetEntryOpen)
+                //console.log("first")
+                // //console.log($scope.timesheet)
+                //console.log($scope.timesheetEntryOpen)
 
             }
 
 
             else if (!$scope.messageOpen && index == $scope.currentIndex) {
                 $scope.messageOpen = true;
-                console.log("second")
-                console.log($scope.timesheetEntryOpen)
+                //console.log("second")
+                //console.log($scope.timesheetEntryOpen)
                 //$scope.curPeriod = index;
             }
             else if (!$scope.messageOpen && index !== $scope.currentIndex) {
-                console.log("third")
+                //console.log("third")
                 $scope.messageOpen = true;
-                console.log($scope.timesheetEntryOpen)
+                //console.log($scope.timesheetEntryOpen)
                 $scope.currentIndex = index;
             } else {
-                console.log("last")
+                //console.log("last")
                 $scope.currentIndex = null
 
                 // $scope.showChart = true;
@@ -3115,7 +3115,7 @@ $scope.requestEmployeePageLoading = false;
 
         $scope.currentIndex = index;
         User.changeMessageToRead($scope.name,$scope.currentIndex).then(function(data){
-            console.log(data)
+            //console.log(data)
            $scope.messagesArray= data.data.user.comments;
            $scope.openMessagePage2();
         })
@@ -3194,7 +3194,7 @@ $scope.requestEmployeePageLoading = false;
                 ;
 
             } else {
-                console.log("second")
+                //console.log("second")
                 $scope.bookedJobsSelected = true;
                 $scope.complaintsPageOpened = false;
                 $scope.messageCompositionPageOpen = false;
@@ -3236,8 +3236,8 @@ $scope.requestEmployeePageLoading = false;
             $scope.bookedJobsPageOpened = false;
             $scope.complaintsPageOpened = false;
             $scope.commentsPageOpened = false;
-            console.log(phonenumber)
-            console.log(name)
+            //console.log(phonenumber)
+            //console.log(name)
             //$scope.currentUserFile = name;
             $scope.currentUserHistoryFile = name;
             $scope.currentUserPhoneNumber = phonenumber;
@@ -3249,7 +3249,7 @@ $scope.requestEmployeePageLoading = false;
                 User.findUser($scope.currentUserHistoryFile).then(function (data) {
 
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.payPeriodHistory)
 
 
                     for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
@@ -3262,19 +3262,19 @@ $scope.requestEmployeePageLoading = false;
                             $scope.hoursCalcIterator = 0;
                             for (var x = 0; x < $scope.payPeriodHistory[b].entry[x].length; x++) {
 
-                                console.log($scope.payPeriodHistory[b].entry[c])
+                                //console.log($scope.payPeriodHistory[b].entry[c])
                                 if ($scope.payPeriodHistory[b].entry[c][0] !== undefined) {
 
                                     $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
                                     if ($scope.payPeriodHistory[b].entry[c][x + 1] !== undefined) {
-                                        console.log("HOlk")
+                                        //console.log("HOlk")
                                         $scope.hoursCalIterator = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1];
-                                        console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1].hoursCalculated)
+                                        //console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1].hoursCalculated)
                                         $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1].hoursCalculated;
 
 
                                     } else {
-                                        console.log("choOlk")
+                                        //console.log("choOlk")
                                         $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated;
 
                                     }
@@ -3286,8 +3286,8 @@ $scope.requestEmployeePageLoading = false;
                             }
                             var hoursIterator = 0;
                             var minIterator = 0;
-                            //console.log(c,$scope.payPeriodHistory[b].entry.length)
-                            // console.log("hoursIteratot",hoursIterator)
+                            ////console.log(c,$scope.payPeriodHistory[b].entry.length)
+                            // //console.log("hoursIteratot",hoursIterator)
 
 
 
@@ -3311,7 +3311,7 @@ $scope.requestEmployeePageLoading = false;
                                                                 hours + .75
                                                             }*/
 
-                            // console.log(hours, minutes)
+                            // //console.log(hours, minutes)
                         }
 
                     }
@@ -3319,29 +3319,29 @@ $scope.requestEmployeePageLoading = false;
 
                     //},2000)
                     //$scope.loadingPersonalHistory = false;
-                    console.log($scope.payperiods)
-                    console.log($scope.currentUserFile)
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.payperiods)
+                    //console.log($scope.currentUserFile)
+                    //console.log($scope.payPeriodHistory)
                 })
 
 
             } else {
                 User.getUsers().then(function (data) {
-                    console.log(data)
+                    //console.log(data)
 
                     // $scope.employees = data.data.users;
                     //$scope.jobDetails = data.data.users.jobDetails;
                     for (var i = 0; i < data.data.users.length; i++) {
                         if (data.data.users[i].name == $scope.currentUserHistoryFile) {
-                            console.log($scope.currentUserFile)
+                            //console.log($scope.currentUserFile)
                             // $scope.jobDetails = data.data.users[i].jobDetails;
                             $scope.comments = data.data.users[i].comments;
                             $scope.payperiods = data.data.users[i].payperiods;
                             $scope.payPeriodHistory = data.data.users[i].payperiodhistory
                             $scope.loadingPersonalHistory = false;
-                            console.log($scope.payperiods)
-                            console.log($scope.currentUserFile)
-                            console.log($scope.payPeriodHistory)
+                            //console.log($scope.payperiods)
+                            //console.log($scope.currentUserFile)
+                            //console.log($scope.payPeriodHistory)
 
                             for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
                                 //$scope.data
@@ -3351,8 +3351,8 @@ $scope.requestEmployeePageLoading = false;
                                 for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
                                     var hoursIterator = 0;
                                     var minIterator = 0;
-                                    //console.log(c,$scope.payPeriodHistory[b].entry.length)
-                                    // console.log("hoursIteratot",hoursIterator)
+                                    ////console.log(c,$scope.payPeriodHistory[b].entry.length)
+                                    // //console.log("hoursIteratot",hoursIterator)
 
 
 
@@ -3377,7 +3377,7 @@ $scope.requestEmployeePageLoading = false;
                                     }
                                     $scope.data[0][c] = hours + minutes
 
-                                    console.log(hours, minutes)
+                                    //console.log(hours, minutes)
                                 }
 
                             }
@@ -3392,10 +3392,10 @@ $scope.requestEmployeePageLoading = false;
                             */
 
                             for (var k = 0; k < $scope.payperiods.length; k++) {
-                                //console.log($scope.payperiods[k].payperiodnum)
-                                //console.log($rootScope.payPeriod)
+                                ////console.log($scope.payperiods[k].payperiodnum)
+                                ////console.log($rootScope.payPeriod)
                                 if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
-                                    console.log($scope.payperiods[k].jobDetails)
+                                    //console.log($scope.payperiods[k].jobDetails)
 
                                     $scope.jobDetails = $scope.payperiods[k].jobDetails
                                 }
@@ -3404,14 +3404,14 @@ $scope.requestEmployeePageLoading = false;
 
                         }
                     }
-                    console.log($scope.payperiods)
-                    console.log($scope.jobDetails)
+                    //console.log($scope.payperiods)
+                    //console.log($scope.jobDetails)
                 })
 
             }
 
-            console.log(name);
-            console.log("Curent User", $scope.currentUserFile)
+            //console.log(name);
+            //console.log("Curent User", $scope.currentUserFile)
             if (!$scope.userFilePage && $scope.currentUserFile == name) {
                 $scope.userFilePage = true;
             } else if (!$scope.userFilePage && $scope.currentUserFile == name) {
@@ -3430,13 +3430,13 @@ $scope.currentIndex = null;
             if ($scope.page < $scope.messagesPaginated.length - 1) {
                 $scope.page++
             }
-            console.log($scope.page)
+            //console.log($scope.page)
         }
         $scope.decreasePage = function () {
             $scope.currentIndex = null;
             if ($scope.page > 0) {
                 $scope.page--
-                console.log($scope.page)
+                //console.log($scope.page)
             }
 
         }
@@ -3445,13 +3445,13 @@ $scope.currentIndex = null;
             if ($scope.page < $scope.supervisorsPaginated.length - 1) {
                 $scope.page++
             }
-            console.log($scope.page)
+            //console.log($scope.page)
         }
         $scope.decreasePageAddSupervisorsPage = function () {
             $scope.currentIndex = null;
             if ($scope.page > 0) {
                 $scope.page--
-                console.log($scope.page)
+                //console.log($scope.page)
             }
 
         }
@@ -3461,13 +3461,13 @@ $scope.currentIndex = null;
             if ($scope.page < $scope.usersPaginated.length - 1) {
                 $scope.page++
             }
-            console.log($scope.page)
-            console.log($scope.usersPaginated.length)
+            //console.log($scope.page)
+            //console.log($scope.usersPaginated.length)
         }
         $scope.decreasePage2 = function () {
             if ($scope.page > 0) {
                 $scope.page--
-                console.log($scope.page)
+                //console.log($scope.page)
             }
 
         }
@@ -3476,13 +3476,13 @@ $scope.currentIndex = null;
             if ($scope.page < $scope.requestedJobsPaginated.length - 1) {
                 $scope.page++
             }
-            console.log($scope.page)
+            //console.log($scope.page)
             
         }
         $scope.decreasePageRequestedJobsPage = function () {
             if ($scope.page > 0) {
                 $scope.page--
-                console.log($scope.page)
+                //console.log($scope.page)
             }
 
         }
@@ -3491,13 +3491,13 @@ $scope.currentIndex = null;
             if ($scope.page < $scope.locationsPaginated.length - 1) {
                 $scope.page++
             }
-            console.log($scope.page)
+            //console.log($scope.page)
             
         }
         $scope.decreasePageLocationsPage = function () {
             if ($scope.page > 0) {
                 $scope.page--
-                console.log($scope.page)
+                //console.log($scope.page)
             }
 
         }
@@ -3506,21 +3506,21 @@ $scope.currentIndex = null;
             if ($scope.page < $scope.submittedTimeSheetsPaginated.length - 1) {
                 $scope.page++
             }
-            console.log($scope.page)
+            //console.log($scope.page)
 
         }
         $scope.decreasePageTimeSheets = function () {
             if ($scope.page > 0) {
                 $scope.page--
-                console.log($scope.page)
+                //console.log($scope.page)
             }
 
         }
 
 
         $scope.submitMessage = function (name) {
-            console.log($scope.message)
-            console.log($scope.name)
+            //console.log($scope.message)
+            //console.log($scope.name)
             if ($scope.message.subject == null || $scope.message.body == null) {
                 $scope.allFieldsMustBeInput = true;
                 $timeout(function () {
@@ -3538,7 +3538,7 @@ $scope.currentIndex = null;
                     $scope.message.read = false;
 
                     User.sendMessage($scope.message).then(function (data) {
-                        console.log(data)
+                        //console.log(data)
                         // $scope.sendMessageLoading = false;
                         $scope.sendMessageLoading = false;
                         $scope.messageSuccessfullySent = true;
@@ -3587,29 +3587,29 @@ $scope.currentIndex = null;
                 $scope.usersForPagination = [];
                 $scope.pageLimit = 4;
                 User.getUsers().then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.usersArray = data.data.users;
                     for (var i = 0; i <= $scope.usersArray.length; i++) {
 
                         var page = 0;
 
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                            //console.log("its less")
 
                         }
                         if (i < $scope.usersArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.usersArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.usersArray[i]) {
                                 $scope.usersForPagination.push($scope.usersArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -3618,17 +3618,17 @@ $scope.currentIndex = null;
                         } else {
                             if (!$scope.usersLoaded) {
 
-                                console.log("else")
+                                //console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.usersPaginated.push($scope.usersForPagination)
-                                // console.log($scope.messagesPaginated)
+                                // //console.log($scope.messagesPaginated)
                                 $scope.usersForPagination = [];
                                 if ($scope.usersArray[i] !== undefined) {
                                     $scope.usersForPagination.push($scope.usersArray[i])
 
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
@@ -3662,7 +3662,7 @@ $scope.currentIndex = null;
                 } else {
                     $scope.currentJobInDate = 0
                 }
-                console.log($scope.currentJobInDate
+                //console.log($scope.currentJobInDate
                 )
                 $scope.slideOut = false;
                 $scope.fadeOut2 = false
@@ -3681,7 +3681,7 @@ $scope.currentIndex = null;
                 } else {
                     $scope.currentJobInDate = 0
                 }
-                console.log($scope.currentJobInDate
+                //console.log($scope.currentJobInDate
                 )
                 $scope.slideOut = false;
                 $scope.fadeOut2 = false
@@ -3700,7 +3700,7 @@ $scope.currentIndex = null;
                 } else {
                     $scope.currentJobInDate = 1
                 }
-                console.log($scope.currentJobInDate
+                //console.log($scope.currentJobInDate
                 )
                 $scope.slideOut = false;
                 $scope.fadeOut2 = false
@@ -3710,8 +3710,8 @@ $scope.currentIndex = null;
 
         }
         $scope.finishSubmitTimesheet = function (decision) {
-            console.log(decision)
-            /// console.log($scope.delinquentJobDetails)
+            //console.log(decision)
+            /// //console.log($scope.delinquentJobDetails)
             $scope.loadingAddHours = true;
 
 
@@ -3720,7 +3720,7 @@ $scope.currentIndex = null;
 
                 User.addHoursToBookedJob($scope.jobData).then(function (data) {
                     User.addHoursToClientSubmittedTimeSheets($scope.jobData).then(function (data) {
-                        console.log(data)
+                        //console.log(data)
                         if (data.data.success) {
                             $scope.loadingAddHours = false;
                             $scope.areYouSure = false;
@@ -3729,7 +3729,7 @@ $scope.currentIndex = null;
 
                         }
                     })
-                    console.log(data)
+                    //console.log(data)
 
                 })
             } else {
@@ -3737,10 +3737,10 @@ $scope.currentIndex = null;
             }
         }
         $scope.addHours = function (currentJobInDate, index, jobData) {
-            console.log($scope.timeData)
-            // console.log($scope.currentJobInDate)
-            console.log(jobData)
-            console.log($scope.userName)
+            //console.log($scope.timeData)
+            // //console.log($scope.currentJobInDate)
+            //console.log(jobData)
+            //console.log($scope.userName)
 
             if ($scope.timeData.hrsIn1 !== null && $scope.timeData.hrsIn2 !== null &&
                 $scope.timeData.minsIn1 !== null && $scope.timeData.minsIn2 !== null
@@ -3764,16 +3764,16 @@ $scope.currentIndex = null;
                 jobData.timesheetSubmitted = true;
                 $scope.jobData = jobData;
                 $scope.jobData.disputed = false;
-                console.log($scope.hrVarOut)
-                console.log($scope.hrVarIn)
-                console.log($scope.minVarOut)
-                console.log($scope.minVarIn)
-                console.log($scope.timeData)
+                //console.log($scope.hrVarOut)
+                //console.log($scope.hrVarIn)
+                //console.log($scope.minVarOut)
+                //console.log($scope.minVarIn)
+                //console.log($scope.timeData)
                 $scope.areYouSure = true;
-                console.log($scope.areYouSure)
+                //console.log($scope.areYouSure)
 
             } else {
-                console.log("null")
+                //console.log("null")
                 $scope.timeSheetDataNotComplete = true;
                 $timeout(function () {
                     $scope.timeSheetDataNotComplete = false;
@@ -3800,8 +3800,8 @@ $scope.currentIndex = null;
         $scope.submitHours = function (index, client, location, currentuser, page, payperiodindex) {
 
             $scope.allFieldsMustBeInput = false
-            console.log(index)
-            console.log(page)
+            //console.log(index)
+            //console.log(page)
             $scope.timeData.payperiodhistoryindex = $scope.payPeriodHistoryIndex
             $scope.timeData.currentuser = $scope.userName
             $scope.timeData.page = page
@@ -3815,7 +3815,7 @@ $scope.currentIndex = null;
                 $scope.timeData.minutesIn == null ||
                 $scope.timeData.minutesOut == null) {
                 $scope.allFieldsMustBeInput = true;
-                console.log("Hello")
+                //console.log("Hello")
             }
             if ($scope.timeData.ampmIn !== null &&
                 $scope.timeData.ampmOut !== null &&
@@ -3826,18 +3826,18 @@ $scope.currentIndex = null;
                 $scope.submitHoursLoading = true;
                 $scope.timeData.currentjobindate = $scope.currentJobInDate
                 $scope.timeData.index = index;
-                console.log($scope.timeData)
+                //console.log($scope.timeData)
 
                 $scope.timein = $scope.timeData.hoursIn + ":" + $scope.timeData.minutesIn + $scope.timeData.ampmIn
                 $scope.timeout = $scope.timeData.hoursOut + ":" + $scope.timeData.minutesOut + $scope.timeData.ampmOut
                 $scope.timeData.timein = $scope.timein;
                 $scope.timeData.timeout = $scope.timeout
                 $scope.timeData.client = client
-                console.log($scope.timeData.client)
-                console.log($scope.timein)
-                console.log($scope.timeout)
+                //console.log($scope.timeData.client)
+                //console.log($scope.timein)
+                //console.log($scope.timeout)
                 var startTime = moment($scope.timein, "HH:mm:ss a");
-                console.log(startTime)
+                //console.log(startTime)
                 var endTime = moment($scope.timeout, "HH:mm:ss a");
                 var duration = moment.duration(endTime.diff(startTime));
                 var hours = parseInt(duration.asHours());
@@ -3845,8 +3845,8 @@ $scope.currentIndex = null;
                 var hoursPositive = 0;
                 var minsPositive = 0;
                 var hoursDif = 0;
-                console.log(hours)
-                console.log(minutes)
+                //console.log(hours)
+                //console.log(minutes)
               
                  if (minutes == 0 && $scope.timeData.lunch == "Yes") {
                     minutes = 30
@@ -3856,21 +3856,21 @@ $scope.currentIndex = null;
                         hours = hours + .5
                         //hours+12
                         if (Math.sign(hours) == -1) {
-                            console.log("negative")
-                            console.log(hours * -2)
-                            console.log(hours)
+                            //console.log("negative")
+                            //console.log(hours * -2)
+                            //console.log(hours)
                             hoursPositive = Math.abs(hours)
-                            console.log(hoursPositive)
+                            //console.log(hoursPositive)
                             hoursDif = (12.5 - hoursPositive)
-                            console.log("hoursDif", hoursDif)
+                            //console.log("hoursDif", hoursDif)
                             hours = hoursDif + 12
-                            console.log(hours)
+                            //console.log(hours)
                             hours = (hours - 1) + .5
                         }
                         $scope.timeData.hoursCalculated = hours;
 
                     }
-                    console.log("first condition")
+                    //console.log("first condition")
                 }
                 else if (minutes == 15 && $scope.timeData.lunch == "Yes") {
                     minutes = 45
@@ -3886,7 +3886,7 @@ $scope.currentIndex = null;
                         }
 
                     }
-                    console.log("second condition")
+                    //console.log("second condition")
                 }
                 else if (minutes == 30 && $scope.timeData.lunch == "Yes") {
                     minutes = 0;
@@ -3899,7 +3899,7 @@ $scope.currentIndex = null;
 
                         }
                     }
-                    console.log("third condition")
+                    //console.log("third condition")
                 }
                 else if (minutes == 45 && $scope.timeData.lunch == "Yes") {
                     minutes = 15;
@@ -3913,23 +3913,23 @@ $scope.currentIndex = null;
 
                         }
                     }
-                    console.log("fourth condition")
+                    //console.log("fourth condition")
                 } else {
-                    console.log("Do nothing")
+                    //console.log("Do nothing")
                     if (minutes == 15) {
-                        console.log("Minutes == 15")
+                        //console.log("Minutes == 15")
                         hours = hours + .25
-                        console.log("Hours", hours)
+                        //console.log("Hours", hours)
                         if (Math.sign(hours) == -1) {
-                            console.log("negative")
-                            console.log(hours * -2)
-                            console.log(hours)
+                            //console.log("negative")
+                            //console.log(hours * -2)
+                            //console.log(hours)
                             hoursPositive = Math.abs(hours)
-                            console.log(hoursPositive)
+                            //console.log(hoursPositive)
                             hoursDif = (12 - hoursPositive)
-                            console.log("hoursDif", hoursDif)
+                            //console.log("hoursDif", hoursDif)
                             hours = hoursDif + 12
-                            console.log(hours)
+                            //console.log(hours)
                             //hours= (hours-1)+.5
                         }
                         $scope.timeData.hoursCalculated = hours;
@@ -3938,15 +3938,15 @@ $scope.currentIndex = null;
                     if (minutes == 30) {
                         hours = hours + .5
                         if (Math.sign(hours) == -1) {
-                            console.log("negative")
-                            console.log(hours * -2)
-                            console.log(hours)
+                            //console.log("negative")
+                            //console.log(hours * -2)
+                            //console.log(hours)
                             hoursPositive = Math.abs(hours)
-                            console.log(hoursPositive)
+                            //console.log(hoursPositive)
                             hoursDif = (12 - hoursPositive)
-                            console.log("hoursDif", hoursDif)
+                            //console.log("hoursDif", hoursDif)
                             hours = hoursDif + 12
-                            console.log(hours)
+                            //console.log(hours)
                             //hours= (hours-1)+.5
                         }
                         $scope.timeData.hoursCalculated = hours;
@@ -3954,30 +3954,30 @@ $scope.currentIndex = null;
                     if (minutes == 45) {
                         hours = hours + .75
                         if (Math.sign(hours) == -1) {
-                            console.log("negative")
-                            console.log(hours * -2)
-                            console.log(hours)
+                            //console.log("negative")
+                            //console.log(hours * -2)
+                            //console.log(hours)
                             hoursPositive = Math.abs(hours)
-                            console.log(hoursPositive)
+                            //console.log(hoursPositive)
                             hoursDif = (12 - hoursPositive)
-                            console.log("hoursDif", hoursDif)
+                            //console.log("hoursDif", hoursDif)
                             hours = hoursDif + 12
-                            console.log(hours)
+                            //console.log(hours)
                             //hours= (hours-1)+.5
                         }
                         $scope.timeData.hoursCalculated = hours;
                     }
                     if (minutes == 00) {
                         if (Math.sign(hours) == -1) {
-                            console.log("negative")
-                            console.log(hours * -2)
-                            console.log(hours)
+                            //console.log("negative")
+                            //console.log(hours * -2)
+                            //console.log(hours)
                             hoursPositive = Math.abs(hours)
-                            console.log(hoursPositive)
+                            //console.log(hoursPositive)
                             hoursDif = (12 - hoursPositive)
-                            console.log("hoursDif", hoursDif)
+                            //console.log("hoursDif", hoursDif)
                             hours = hoursDif + 12
-                            console.log(hours)
+                            //console.log(hours)
                             //hours= (hours-1)+.5
                         }
                         $scope.timeData.hoursCalculated = hours;
@@ -3985,60 +3985,60 @@ $scope.currentIndex = null;
                     if (Math.sign(minutes) == -1) {
                         minsPositive = Math.abs(minutes)
                         if (minsPositive == 15) {
-                            console.log("Minutes == 15")
+                            //console.log("Minutes == 15")
                             hours = hours - .25
-                            console.log("Hours", hours)
+                            //console.log("Hours", hours)
                             if (Math.sign(hours) == -1) {
-                                console.log("negative")
-                                console.log(hours * -2)
-                                console.log(hours)
+                                //console.log("negative")
+                                //console.log(hours * -2)
+                                //console.log(hours)
                                 hoursPositive = Math.abs(hours)
-                                console.log(hoursPositive)
+                                //console.log(hoursPositive)
                                 hoursDif = (12 - hoursPositive)
-                                console.log("hoursDif", hoursDif)
+                                //console.log("hoursDif", hoursDif)
                                 hours = hoursDif + 12
 
-                                console.log(hours)
+                                //console.log(hours)
                                 //hours= (hours-1)+.5
                             }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
                         if (minsPositive == 30) {
-                            console.log("Minutes == 30")
+                            //console.log("Minutes == 30")
                             hours = hours - .5
-                            console.log("Hours", hours)
+                            //console.log("Hours", hours)
                             if (Math.sign(hours) == -1) {
-                                console.log("negative")
-                                console.log(hours * -2)
-                                console.log(hours)
+                                //console.log("negative")
+                                //console.log(hours * -2)
+                                //console.log(hours)
                                 hoursPositive = Math.abs(hours)
-                                console.log(hoursPositive)
+                                //console.log(hoursPositive)
                                 hoursDif = (12 - hoursPositive)
-                                console.log("hoursDif", hoursDif)
+                                //console.log("hoursDif", hoursDif)
                                 hours = hoursDif + 12
 
-                                console.log(hours)
+                                //console.log(hours)
                                 //hours= (hours-1)+.5
                             }
                             $scope.timeData.hoursCalculated = hours;
 
                         }
                         if (minsPositive == 45) {
-                            console.log("Minutes == 45")
+                            //console.log("Minutes == 45")
                             hours = hours - .75
-                            console.log("Hours", hours)
+                            //console.log("Hours", hours)
                             if (Math.sign(hours) == -1) {
-                                console.log("negative")
-                                console.log(hours * -2)
-                                console.log(hours)
+                                //console.log("negative")
+                                //console.log(hours * -2)
+                                //console.log(hours)
                                 hoursPositive = Math.abs(hours)
-                                console.log(hoursPositive)
+                                //console.log(hoursPositive)
                                 hoursDif = (12 - hoursPositive)
-                                console.log("hoursDif", hoursDif)
+                                //console.log("hoursDif", hoursDif)
                                 hours = hoursDif + 12
 
-                                console.log(hours)
+                                //console.log(hours)
                                 //hours= (hours-1)+.5
                             }
                             $scope.timeData.hoursCalculated = hours;
@@ -4054,9 +4054,9 @@ $scope.currentIndex = null;
                     $scope.timeData.hoursCalculated = 4
                 }
 
-                console.log("$scope.timeData", $scope.timeData)
+                //console.log("$scope.timeData", $scope.timeData)
               User.addHoursToPayPeriod($scope.timeData).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.payPeriodHistory = data.data.user.payperiodhistory
                     $scope.timeData = {}
 
@@ -4065,11 +4065,11 @@ $scope.currentIndex = null;
 
                 })
                 
-                console.log(hours)
-                console.log(minutes)
+                //console.log(hours)
+                //console.log(minutes)
             }
-            console.log(index)
-            console.log($scope.currentJobInDate)
+            //console.log(index)
+            //console.log($scope.currentJobInDate)
         }
         $scope.openUserFile = function (name, phonenumber) {
 
@@ -4096,7 +4096,7 @@ $scope.currentIndex = null;
                 $scope.messagePageOpen = false;
                 $scope.chartsPageOpen = false;
                 $scope.historyPageOpenProfile = false;
-                console.log($scope.bookedJobsPageOpened)
+                //console.log($scope.bookedJobsPageOpened)
                 $scope.delinquentTimeSheetSelected = false;
                 $scope.delinquentTimeSheetPageOpened = false;
                 $scope.addJobPageOpen = false;
@@ -4121,8 +4121,8 @@ $scope.currentIndex = null;
                 //$scope.bookedJobsPageOpened = false;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsPageOpened = false;
-                console.log(phonenumber)
-                console.log(name)
+                //console.log(phonenumber)
+                //console.log(name)
                 $scope.currentUserFile = name;
                 $scope.currentUserPhoneNumber = phonenumber;
                 $scope.delinquentTimeSheetArray = [];
@@ -4132,7 +4132,7 @@ $scope.currentIndex = null;
 
                 /*   for (var i = 0; i < $scope.employees.length; i++) {
                        if ($scope.employees[i].name == $scope.currentUserFile) {
-                           console.log($scope.currentUserFile)
+                           //console.log($scope.currentUserFile)
                            // $scope.jobDetails = data.data.users[i].jobDetails;
                            $scope.comments = $scope.employees[i].comments;
                            if($scope.comments.length <1){
@@ -4144,7 +4144,7 @@ $scope.currentIndex = null;
                            $scope.payperiods = $scope.employees[i].payperiods;
                            $scope.payPeriodHistory = $scope.employees[i].payperiodhistory
                            $scope.delinquenttimesheets = $scope.employees[i].delinquenttimesheets
-                           // console.log(data.data.users[i].delinquent)
+                           // //console.log(data.data.users[i].delinquent)
                            if ($scope.delinquenttimesheets.length > 0) {
                                $scope.delinquentTimeSheet = true;
                                for (var t = 0; t <$scope.delinquenttimesheets[0].length; t++) {
@@ -4155,18 +4155,18 @@ $scope.currentIndex = null;
                            } else {
                                $scope.delinquentTimeSheet = false;
                            }
-                           console.log($scope.delinquentTimeSheetArray)
-                           console.log($scope.payperiods)
-                           console.log($scope.currentUserFile)
-                           console.log($scope.payPeriodHistory)
+                           //console.log($scope.delinquentTimeSheetArray)
+                           //console.log($scope.payperiods)
+                           //console.log($scope.currentUserFile)
+                           //console.log($scope.payPeriodHistory)
                            $scope.payperiod = $scope.employees[i].payperiodnum;
    
    
                            for (var k = 0; k < $scope.payperiods.length; k++) {
-                               //console.log($scope.payperiods[k].payperiodnum)
-                               //console.log($rootScope.payPeriod)
+                               ////console.log($scope.payperiods[k].payperiodnum)
+                               ////console.log($rootScope.payPeriod)
                                if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
-                                   console.log($scope.payperiods[k].jobDetails)
+                                   //console.log($scope.payperiods[k].jobDetails)
    
                                    $scope.jobDetails = $scope.payperiods[k].jobDetails
                                }
@@ -4178,10 +4178,10 @@ $scope.currentIndex = null;
 
 
                 User.findUser($scope.currentUserFile).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.currentEmployee = data.data.user
                     $scope.loadingCurrentEmployee = false;
-                    // console.log
+                    // //console.log
                     $scope.comments = data.data.user[0].comments
                     if ($scope.comments.length < 1) {
                         $scope.noComments = true;
@@ -4203,10 +4203,10 @@ $scope.currentIndex = null;
                         $scope.delinquentTimeSheet = false;
                     }
 
-                    console.log($scope.delinquentTimeSheetArray)
-                    console.log($scope.payperiods)
-                    console.log($scope.currentUserFile)
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.delinquentTimeSheetArray)
+                    //console.log($scope.payperiods)
+                    //console.log($scope.currentUserFile)
+                    //console.log($scope.payPeriodHistory)
                     $scope.payperiod = data.data.user[0].payperiodnum;
 
 
@@ -4214,10 +4214,10 @@ $scope.currentIndex = null;
                     /* NOT NEEDED WHEN ONLY ONE PAY PERIOD EXISTS... */
 
                     /* for (var k = 0; k < $scope.payperiods.length; k++) {
-                         //console.log($scope.payperiods[k].payperiodnum)
-                         //console.log($rootScope.payPeriod)
+                         ////console.log($scope.payperiods[k].payperiodnum)
+                         ////console.log($rootScope.payPeriod)
                          if ($scope.payperiods[k].payperiodnum == $rootScope.payPeriod) {
-                             console.log($scope.payperiods[k].jobDetails)
+                             //console.log($scope.payperiods[k].jobDetails)
 
                              $scope.jobDetails = $scope.payperiods[k].jobDetails
                          }
@@ -4230,14 +4230,14 @@ $scope.currentIndex = null;
 
 
                     for (var u = 0; u < $scope.payperiods[0].jobDetails.length; u++) {
-                        // console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
+                        // //console.log($scope.jobDetails[u].dateNum,$scope.dateNow)
                         for (var x = 0; x < $scope.payperiods[0].jobDetails[u].length; x++) {
 
-                            console.log($scope.payperiods[0].jobDetails[u][x])
+                            //console.log($scope.payperiods[0].jobDetails[u][x])
 
                         }
                         if ($scope.payperiods[0].jobDetails[u].dateNum < $scope.dateNow) {
-                            console.log($scope.jobDetails[u])
+                            //console.log($scope.jobDetails[u])
                             $scope.payperiods[0].jobDetails[u].dateHasPassed = true;
 
                         } else {
@@ -4249,14 +4249,14 @@ $scope.currentIndex = null;
                                     $scope.payperiods[0].jobDetails[u][0].dateHasPassed = false;
 
                                 }
-                                console.log($scope.payperiods[0].jobDetails[u][0])
+                                //console.log($scope.payperiods[0].jobDetails[u][0])
                             }
 
                         }
 
                     }
                     $scope.jobDetails = $scope.payperiods[0].jobDetails
-                    console.log($scope.jobDetails)
+                    //console.log($scope.jobDetails)
                     /*CHECK IF THE JOBDETAIL DATE HAS PASSED AND DISABLE IF TRUE*/
 
 
@@ -4268,11 +4268,11 @@ $scope.currentIndex = null;
 
             }
 
-            console.log(name);
+            //console.log(name);
 
-            console.log($scope.bookedJobsPageOpened)
+            //console.log($scope.bookedJobsPageOpened)
 
-            console.log("Curent User", $scope.currentUserFile)
+            //console.log("Curent User", $scope.currentUserFile)
             if (!$scope.userFilePage && $scope.currentUserFile == name) {
                 $scope.userFilePage = true;
             } else if (!$scope.userFilePage && $scope.currentUserFile == name) {
@@ -4311,9 +4311,9 @@ $scope.currentIndex = null;
                 $scope.incompletePayPeriodPageOpen = false;
 
                 User.findUser($scope.name).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.payPeriodHistory)
 
                     $scope.positionIterator = 0;
 
@@ -4323,51 +4323,51 @@ $scope.currentIndex = null;
                         $scope.hoursCalcIterator = 0;
                         $scope.newPageArray = []
                         // $scope.data[0][b]= hoursIterator;
-                        console.log($scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date)
+                        //console.log($scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date)
 
                         for (var c = 0; c < $scope.payPeriodHistory[b].entry.length; c++) {
-                            //console.log($scope.payPeriodHistory.length)
+                            ////console.log($scope.payPeriodHistory.length)
 
                             for (var x = 0; x < $scope.payPeriodHistory[b].entry[c].length; x++) {
 
-                                //console.log($scope.payPeriodHistory[b].entry[c])
+                                ////console.log($scope.payPeriodHistory[b].entry[c])
                                 $scope.hoursCalcIterator = $scope.hoursCalcIterator + $scope.payPeriodHistory[b].entry[c][x].hoursCalculated
                                 $scope.loadingChart = false;
-                                console.log($scope.hoursCalcIterator, b)
+                                //console.log($scope.hoursCalcIterator, b)
 
 
                             }
 
                             if (b > 6) {
-                                console.log("$scope.positionIterator", $scope.positionIterator)
-                                console.log("b", b)
-                                console.log((b - $scope.positionIterator))
+                                //console.log("$scope.positionIterator", $scope.positionIterator)
+                                //console.log("b", b)
+                                //console.log((b - $scope.positionIterator))
 
                                 if ((b - $scope.positionIterator) == 1) {
 
-                                    console.log($scope.hoursCalcIterator, b)
+                                    //console.log($scope.hoursCalcIterator, b)
                                     $scope.dataForChartsPage[0][0] = $scope.hoursCalcIterator
                                     $scope.labelsForChartsPage[0] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
                                     $scope.positionIterator = $scope.positionIterator - 1
-                                    console.log("position 2")
+                                    //console.log("position 2")
                                 } else
                                     if ((b - $scope.positionIterator) == 0) {
                                         $scope.dataForChartsPage[0][1] = 5
                                         $scope.labelsForChartsPage[1] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
                                         $scope.positionIterator = $scope.positionIterator - 1
-                                        console.log("position 1")
+                                        //console.log("position 1")
                                     } else
                                         if (b - ($scope.positionIterator) == 2) {
                                             $scope.dataForChartsPage[0][2] = $scope.hoursCalcIterator
                                             $scope.labelsForChartsPage[2] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
-                                            console.log("position 3")
+                                            //console.log("position 3")
                                             $scope.positionIterator = $scope.positionIterator - 1
                                         } else
                                             if (b - $scope.positionIterator == 3) {
-                                                console.log("position 4")
+                                                //console.log("position 4")
                                                 $scope.dataForChartsPage[0][3] = $scope.hoursCalcIterator
                                                 $scope.labelsForChartsPage[3] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
@@ -4375,7 +4375,7 @@ $scope.currentIndex = null;
 
                                             } else
                                                 if (b - $scope.positionIterator == 4) {
-                                                    console.log('position 5')
+                                                    //console.log('position 5')
                                                     $scope.dataForChartsPage[0][4] = $scope.hoursCalcIterator
                                                     $scope.labelsForChartsPage[4] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
@@ -4383,8 +4383,8 @@ $scope.currentIndex = null;
 
                                                 } else
                                                     if (b - $scope.positionIterator == 5) {
-                                                        console.log('position 6')
-                                                        console.log($scope.hoursCalcIterator, b)
+                                                        //console.log('position 6')
+                                                        //console.log($scope.hoursCalcIterator, b)
                                                         $scope.dataForChartsPage[0][5] = $scope.hoursCalcIterator
                                                         $scope.labelsForChartsPage[5] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
 
@@ -4402,8 +4402,8 @@ $scope.currentIndex = null;
                                   }else{
                                       $scope.dataForChartsPage[0][$scope.positionItarator] = 5
                                   }*/
-                                console.log($scope.positionIterator)
-                                console.log($scope.dataForChartsPage[0][$scope.positionIterator])
+                                //console.log($scope.positionIterator)
+                                //console.log($scope.dataForChartsPage[0][$scope.positionIterator])
 
 
 
@@ -4414,7 +4414,7 @@ $scope.currentIndex = null;
                                  } else {
                                      $scope.dataForChartsPage[0][$scope.positionItarator] = 5
                                  }*/
-                                console.log("LOst", $scope.hoursCalcIterator)
+                                //console.log("LOst", $scope.hoursCalcIterator)
 
                                 $scope.dataForChartsPage[0][$scope.positionIterator] = $scope.hoursCalcIterator
                                 $scope.labelsForChartsPage[0] = $scope.payPeriodHistory[b].entry[0][0].date + "-" + $scope.payPeriodHistory[b].entry[6][0].date
@@ -4448,10 +4448,10 @@ $scope.currentIndex = null;
                 $scope.slidedownout = false;
                 $scope.fadeOut = false;
                 $scope.slidedownin = true;
-                console.log($scope.jobDetails.length)
+                //console.log($scope.jobDetails.length)
                 if ($scope.openJob > 0) {
                     // if ($scope.jobDetails[$scope.openJob - 1].length < 1) {
-                    console.log("Oy")
+                    //console.log("Oy")
                     //   $scope.openJob = $scope.jobDetails.length-1;
                     // } else {
                     $scope.openJob = $scope.openJob - 1;
@@ -4470,7 +4470,7 @@ $scope.currentIndex = null;
             }, 500)
 
 
-            console.log($scope.openJob)
+            //console.log($scope.openJob)
         }
 
         $scope.increaseDay = function () {
@@ -4483,10 +4483,10 @@ $scope.currentIndex = null;
                 $scope.slideout = false;
                 $scope.fadeOut = false;
                 $scope.slidein = true;
-                console.log($scope.jobDetails.length)
+                //console.log($scope.jobDetails.length)
                 if ($scope.openJob < 6) {
                     if ($scope.jobDetails[$scope.openJob + 1].length < 1) {
-                        console.log("Oy")
+                        //console.log("Oy")
                         $scope.openJob = 0;
                     } else {
                         $scope.openJob = $scope.openJob + 1;
@@ -4500,7 +4500,7 @@ $scope.currentIndex = null;
             }, 500)
 
 
-            console.log($scope.openJob)
+            //console.log($scope.openJob)
         }
         $scope.openMessagePage2 = function () {
             $scope.currentIndex = null;
@@ -4513,31 +4513,31 @@ $scope.currentIndex = null;
             $scope.messageForPagination = [];
             $scope.pageLimit = 4;
             User.getMessages($scope.name).then(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.messagesArray = data.data.messages;
                 $scope.messagesLoading = false;
                 for (var i = 0; i <= $scope.messagesArray.length; i++) {
 
                     var page = 0;
-                    ////console.log($scope.pageLimit, i, $scope.employees.length)
-                    console.log($scope.employees)
+                    //////console.log($scope.pageLimit, i, $scope.employees.length)
+                    //console.log($scope.employees)
                     if (i < $scope.pageLimit) {
-                        console.log("its less")
+                        //console.log("its less")
 
                     }
                     if (i < $scope.messagesArray.length) {
-                        console.log("yup,less")
+                        //console.log("yup,less")
                     }
 
                     if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
-                        console.log("HELLO")
-                        //console.log($scope.employees[i])
-                        //console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log("HELLO")
+                        ////console.log($scope.employees[i])
+                        ////console.log($scope.pageLimit, i, $scope.employees.length)
                         if ($scope.messagesArray[i]) {
                             $scope.messageForPagination.push($scope.messagesArray[i])
-                            console.log(i)
-                            console.log("firstCondiation")
-                            console.log($scope.pageArray)
+                            //console.log(i)
+                            //console.log("firstCondiation")
+                            //console.log($scope.pageArray)
 
                         }
 
@@ -4546,16 +4546,16 @@ $scope.currentIndex = null;
                     } else {
                         if (!$scope.usersLoaded) {
 
-                            console.log("else")
+                            //console.log("else")
                             $scope.loadingUsers = false;
                             $scope.messagesPaginated.push($scope.messageForPagination)
-                            console.log($scope.messagesPaginated)
+                            //console.log($scope.messagesPaginated)
                             $scope.messageForPagination = [];
                             if ($scope.messagesArray[i] !== undefined) {
                                 $scope.messageForPagination.push($scope.messagesArray[i])
                             }
                             $scope.pageLimit = $scope.pageLimit + 4;
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                             page++
 
@@ -4598,32 +4598,32 @@ $scope.currentIndex = null;
                 $scope.messageForPagination = [];
                 $scope.pageLimit = 4;
                 User.getMessages($scope.name).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.messagesArray = data.data.messages;
                     $scope.messagesLoading = false;
                     for (var i = 0; i <= $scope.messagesArray.length; i++) {
 
                         var page = 0;
-                        ////console.log($scope.pageLimit, i, $scope.employees.length)
-                        console.log($scope.employees)
+                        //////console.log($scope.pageLimit, i, $scope.employees.length)
+                        //console.log($scope.employees)
                         if (i < $scope.pageLimit) {
-                            console.log("its less")
+                            //console.log("its less")
 
                         }
                         if (i < $scope.messagesArray.length) {
-                            console.log("yup,less")
+                            //console.log("yup,less")
                         }
 
                         if (i < $scope.pageLimit && i < $scope.messagesArray.length) {//5
-                            console.log("HELLO")
-                            //console.log($scope.employees[i])
-                            //console.log($scope.pageLimit, i, $scope.employees.length)
+                            //console.log("HELLO")
+                            ////console.log($scope.employees[i])
+                            ////console.log($scope.pageLimit, i, $scope.employees.length)
                             if ($scope.messagesArray[i]) {
                                 $scope.messagesArray[i].messageIndex = i
                                 $scope.messageForPagination.push($scope.messagesArray[i])
-                                console.log(i)
-                                console.log("firstCondiation")
-                                console.log($scope.pageArray)
+                                //console.log(i)
+                                //console.log("firstCondiation")
+                                //console.log($scope.pageArray)
 
                             }
 
@@ -4632,11 +4632,11 @@ $scope.currentIndex = null;
                         } else {
                             if (!$scope.usersLoaded) {
 
-                                console.log("else")
+                                //console.log("else")
                                 $scope.loadingUsers = false;
                                 $scope.messagesPaginated.push($scope.messageForPagination)
-                                console.log($scope.messagesPaginated)
-                                console.log($scope.messagesPaginated.length)
+                                //console.log($scope.messagesPaginated)
+                                //console.log($scope.messagesPaginated.length)
 
                                 $scope.messageForPagination = [];
                                 if ($scope.messagesArray[i] !== undefined) {
@@ -4644,7 +4644,7 @@ $scope.currentIndex = null;
                                     $scope.messageForPagination.push($scope.messagesArray[i])
                                 }
                                 $scope.pageLimit = $scope.pageLimit + 4;
-                                //console.log($scope.pageLimit, i, $scope.employees.length)
+                                ////console.log($scope.pageLimit, i, $scope.employees.length)
 
                                 page++
 
@@ -4657,24 +4657,24 @@ $scope.currentIndex = null;
             }
         }
         $scope.generatePaySlip = function (index) {
-            console.log(index)
-            console.log($scope.payPeriodHistory[index])
+            //console.log(index)
+            //console.log($scope.payPeriodHistory[index])
             $scope.totalHours = 0;
 
             for (var z = 0; z < $scope.payPeriodHistory[index].entry.length; z++) {
                 $scope.totalHoursIterator = 0;
-                console.log($scope.payPeriodHistory[index].entry[z])
+                //console.log($scope.payPeriodHistory[index].entry[z])
                 //for(var d =0; $scope.payPeriodHistory[index].entry[z].length;d++){
                 if ($scope.payPeriodHistory[index].entry[z][0]) {
 
-                    console.log($scope.payPeriodHistory[index].entry[z][0].hoursCalculated)
+                    //console.log($scope.payPeriodHistory[index].entry[z][0].hoursCalculated)
 
                     $scope.totalHours = $scope.totalHours + $scope.payPeriodHistory[index].entry[z][0].hoursCalculated
 
                 }
                 if ($scope.payPeriodHistory[index].entry[z][1]) {
 
-                    console.log($scope.payPeriodHistory[index].entry[z][1].hoursCalculated)
+                    //console.log($scope.payPeriodHistory[index].entry[z][1].hoursCalculated)
                     $scope.totalHours = $scope.totalHours + $scope.payPeriodHistory[index].entry[z][1].hoursCalculated
 
 
@@ -4683,9 +4683,9 @@ $scope.currentIndex = null;
                 $scope.payPeriodEndDate = $scope.payPeriodHistory[index].entry[6][0].date
                 // }
             }
-            console.log($scope.totalHours)
-            console.log($scope.payPeriodStartDate)
-            console.log($scope.payPeriodEndDate)
+            //console.log($scope.totalHours)
+            //console.log($scope.payPeriodStartDate)
+            //console.log($scope.payPeriodEndDate)
             $scope.exportPdf()
 
         }
@@ -4695,7 +4695,7 @@ $scope.currentIndex = null;
             $timeout(function () {
                 $scope.pdfLoading = false;
             }, 2000)
-            console.log('clicked')
+            //console.log('clicked')
             var doc = new jsPDF()
             doc.getFontList();
             doc.text($scope.name, 10, 10)
@@ -4812,10 +4812,10 @@ doc.text(String("PAYE"), 133, 189)
                 $scope.complaintsPageOpened = false;
                 $scope.commentsPageOpened = false;
                 User.findUser($scope.name).then(function (data) {
-                    console.log(data)
+                    //console.log(data)
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                     $scope.loadingWorkHistoryProfile = false;
-                    console.log($scope.payPeriodHistory)
+                    //console.log($scope.payPeriodHistory)
 
 
                     for (var b = 0; b < $scope.payPeriodHistory.length; b++) {
@@ -4828,19 +4828,19 @@ doc.text(String("PAYE"), 133, 189)
                             $scope.hoursCalcIterator = 0;
                             for (var x = 0; x < $scope.payPeriodHistory[b].entry[x].length; x++) {
 
-                                console.log($scope.payPeriodHistory[b].entry[c])
+                                //console.log($scope.payPeriodHistory[b].entry[c])
                                 if ($scope.payPeriodHistory[b].entry[c][0] !== undefined) {
 
                                     $scope.labels[c] = $scope.payPeriodHistory[b].entry[c][0].date
                                     if ($scope.payPeriodHistory[b].entry[c][x + 1] !== undefined) {
-                                        console.log("HOlk")
+                                        //console.log("HOlk")
                                         $scope.hoursCalIterator = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1];
-                                        console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1].hoursCalculated)
+                                        //console.log($scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1].hoursCalculated)
                                         $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated + $scope.payPeriodHistory[b].entry[c][x + 1].hoursCalculated;
 
 
                                     } else {
-                                        console.log("choOlk")
+                                        //console.log("choOlk")
                                         $scope.data[0][c] = $scope.payPeriodHistory[b].entry[c][x].hoursCalculated;
 
                                     }
@@ -4852,8 +4852,8 @@ doc.text(String("PAYE"), 133, 189)
                             }
                             var hoursIterator = 0;
                             var minIterator = 0;
-                            //console.log(c,$scope.payPeriodHistory[b].entry.length)
-                            // console.log("hoursIteratot",hoursIterator)
+                            ////console.log(c,$scope.payPeriodHistory[b].entry.length)
+                            // //console.log("hoursIteratot",hoursIterator)
 
 
 
@@ -4877,13 +4877,13 @@ doc.text(String("PAYE"), 133, 189)
                                                                 hours + .75
                                                             }*/
 
-                            // console.log(hours, minutes)
+                            // //console.log(hours, minutes)
                         }
 
                     }
                 })
                 $scope.loadingPersonalHistory = false;
-                console.log($scope.bookedJobsPageOpened)
+                //console.log($scope.bookedJobsPageOpened)
             } else {
                 $scope.profileHome = true;
                 $scope.historyPageOpenProfile = false;
@@ -4891,7 +4891,7 @@ doc.text(String("PAYE"), 133, 189)
 
         }
         $scope.openIndividualHistoryEntry = function (index) {
-            console.log(index)
+            //console.log(index)
             //curHistory = index;
             // $('html, body').animate({ scrollTop: 0 }, 'fast');
             $scope.payPeriodHistoryIndex = index;
@@ -4902,18 +4902,18 @@ doc.text(String("PAYE"), 133, 189)
                 ) {
                     // $scope.individualPayPeriodOpen = false;
                     $scope.curHistory = index;
-                    console.log("first")
+                    //console.log("first")
 
                 }
 
 
                 else if (!$scope.historyEntryOpen && index == $scope.curHistory) {
                     $scope.historyEntryOpen = true;
-                    console.log("second")
+                    //console.log("second")
                     //$scope.curPeriod = index;
                 }
                 else if (!$scope.historyEntryOpen && index !== $scope.curHistory) {
-                    console.log("third")
+                    //console.log("third")
                     $scope.historyEntryOpen = true;
                     $scope.curHistory = index;
                 } else {
@@ -4944,8 +4944,8 @@ doc.text(String("PAYE"), 133, 189)
             $scope.removeRightBorder = false;
         }
         $scope.openIndividualPayPeriod = function (index, history) {
-            console.log(index)
-            console.log(history)
+            //console.log(index)
+            //console.log(history)
             $scope.turnOffOthers=true;
             $scope.globalPayPeriodIndexATM = index;
             $scope.labels[0] = history.entry[0][0].date
@@ -5011,31 +5011,31 @@ doc.text(String("PAYE"), 133, 189)
                 // $scope.individualPayPeriodOpen = false;
                 $scope.curPeriod = index;
                 $scope.removeRightBorder = true;
-                console.log($scope.removeRightBorder)
-                console.log("first")
+                //console.log($scope.removeRightBorder)
+                //console.log("first")
 
             }
 
 
             else if (!$scope.individualPayPeriodOpen && index == $scope.curPeriod) {
                 $scope.individualPayPeriodOpen = true;
-                console.log("second")
+                //console.log("second")
                 //$scope.curPeriod = index;
             }
             else if (!$scope.individualPayPeriodOpen && index !== $scope.curPeriod) {
-                console.log("third")
+                //console.log("third")
                 $scope.removeRightBorder = true;
-                console.log($scope.removeRightBorder)
+                //console.log($scope.removeRightBorder)
                 $scope.individualPayPeriodOpen = true;
                 $scope.curPeriod = index;
             } else {
-                console.log("fourth")
+                //console.log("fourth")
 
                 $scope.curHistory = null;
                 $scope.curPeriod = null
                 $scope.showChart = true;
                 $scope.removeRightBorder = false;
-                console.log($scope.removeRightBorder)
+                //console.log($scope.removeRightBorder)
             }
         }
 
@@ -5043,21 +5043,21 @@ doc.text(String("PAYE"), 133, 189)
             if ($scope.availability == 1) {
 
                 $scope.availability = 2;
-                console.log($scope.availability)
+                //console.log($scope.availability)
             } else if ($scope.availability == 2) {
                 $scope.availability = 3;
-                console.log($scope.availability)
+                //console.log($scope.availability)
 
             } else if ($scope.availability == 3) {
                 $scope.availability = 1;
-                console.log($scope.availability)
+                //console.log($scope.availability)
 
             }
         }
         $scope.previousMonth = function () {
 
             if ($scope.monthPosition === 1) {
-                console.log("hello")
+                //console.log("hello")
                 $scope.currentMonth = "DECEMBER";
                 $scope.monthPosition = 12
             }
@@ -5113,7 +5113,7 @@ doc.text(String("PAYE"), 133, 189)
             else {
                 $scope.currentMonth = "JANUARY";
                 $scope.monthPosition = 1
-                console.log($scope.monthPosition)
+                //console.log($scope.monthPosition)
 
             }
         }
