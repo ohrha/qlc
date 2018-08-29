@@ -2731,6 +2731,8 @@ $scope.requestEmployeePageLoading = false;
                 $scope.messagePageSelected = false;
                 $scope.composeMessagePageOpen = false;
                 $scope.reviewSubmittedTimeSheetsPageOpen = false;
+                                $scope.currentIndex2 = null
+
             //}
         }
         $scope.openAddSupervisorPage = function (index) {
