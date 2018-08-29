@@ -3663,7 +3663,7 @@ $scope.currentIndex = null;
                     $scope.currentJobInDate = 0
                 }
                 //console.log($scope.currentJobInDate
-                )
+                //)
                 $scope.slideOut = false;
                 $scope.fadeOut2 = false
                 $scope.fadeIn2 = true;
@@ -3682,7 +3682,7 @@ $scope.currentIndex = null;
                     $scope.currentJobInDate = 0
                 }
                 //console.log($scope.currentJobInDate
-                )
+                //)
                 $scope.slideOut = false;
                 $scope.fadeOut2 = false
                 $scope.fadeIn2 = true;
@@ -3701,7 +3701,7 @@ $scope.currentIndex = null;
                     $scope.currentJobInDate = 1
                 }
                 //console.log($scope.currentJobInDate
-                )
+                //)
                 $scope.slideOut = false;
                 $scope.fadeOut2 = false
                 $scope.fadeIn2 = true;
