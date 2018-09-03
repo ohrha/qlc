@@ -2433,9 +2433,9 @@
                     $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
                     console.log("$rootScope.userPayPeriod", $scope.userPayPeriod)
 
-                    if ($scope.userPayPeriod == $rootScope.payPeriod) {
+                    if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                         $scope.loadingNewPayPeriod = true;
-                        //$scope.userPayPeriod = $rootScope.payPeriod
+                        $scope.userPayPeriod = $rootScope.payPeriod
                         console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
                         User.getUsers().then(function (data) {
 
@@ -2454,7 +2454,7 @@
                                 }
 
                                 $scope.newPPObject.newpayperiod = $rootScope.payPeriod
-                                $scope.newPPObject.oldpayperiod = $scope.userPayPeriod
+                                $scope.newPPObject.oldpayperiod = 6
                                 $scope.newPPObject.currentusername = data.data.users[i].name
 
                                 $scope.currentusernameArray.push(data.data.users[i].name)
