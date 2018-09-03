@@ -2423,7 +2423,7 @@
                     }
 
                 }
-                if ($scope.dateNow == 3 || 4 || 5 || 6 || 7 || 8 || 9) {
+                if ($scope.dateNow == 3 || $scope.dateNow == 4 || $scope.dateNow == 5 || $scope.dateNow == 6 || $scope.dateNow == 7 || $scope.dateNow == 8 ||$scope.dateNow == 9) {
 
                  
                     $rootScope.payPeriod =8;
@@ -2489,21 +2489,21 @@
                     }
 
                 }
-                if ($scope.dateNow == 10 || 11 || 12 || 13 || 14 || 15 || 16) {
+                if ($scope.dateNow == 10 ||$scope.dateNow == 11 ||$scope.dateNow == 12 ||$scope.dateNow == 13 ||$scope.dateNow == 14 || $scope.dateNow ==15 || $scope.dateNow ==16) {
 
                     $rootScope.payPeriod = 17;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                 }
-                if ($scope.dateNow == 17 || 18 || 19 || 20 || 21 || 22 || 23) {
+                if ($scope.dateNow == 17 ||$scope.dateNow == 18 || $scope.dateNow ==19 ||$scope.dateNow == 20 || $scope.dateNow ==21 ||$scope.dateNow == 22 ||$scope.dateNow == 23) {
 
                     $rootScope.payPeriod = 18;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                 }
-                if ($scope.dateNow == 24 || 25 || 26 || 27 || 28 || 29 || 30) {
+                if ($scope.dateNow == 24 || $scope.dateNow == 25 || $scope.dateNow ==26 ||$scope.dateNow == 27 ||$scope.dateNow == 28 ||$scope.dateNow == 29 ||$scope.dateNow == 30) {
 
                     $rootScope.payPeriod = 19;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
