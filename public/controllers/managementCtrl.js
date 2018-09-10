@@ -2499,7 +2499,7 @@
                     $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
                     console.log("$rootScope.userPayPeriod", $scope.userPayPeriod)
 
-                    if ($scope.userPayPeriod == $rootScope.payPeriod) {
+                    if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                         $scope.loadingNewPayPeriod = true;
                         $scope.userPayPeriod = $rootScope.payPeriod
                         console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
