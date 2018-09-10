@@ -308,7 +308,7 @@
                 $scope.submittedTimeSheetsPaginated = [];
                 $scope.submittedTimeSheetsForPagination = [];
                 //console.log($scope.userName)
-                User.findUser($scope.userName).then(function (data) {
+                User.findUser($rootScope.user_id).then(function (data) {
                     //console.log(data)
                     $scope.submittedTimeSheetsArray = data.data.user[0].submittedtimesheets;
                     for (var i = 0; i <= $scope.submittedTimeSheetsArray.length; i++) {
@@ -763,7 +763,7 @@
 
 
                 $scope.userPayRate = data.data.payrate;
-                User.findUser($scope.userName).then(function (data) {
+                User.findUser($rootScope.user_id).then(function (data) {
                     //console.log(data)
                     $scope.userPhoneNumber = data.data.user[0].phonenumber
                     $scope.userPayPeriod = data.data.user[0].payperiodnum
@@ -2131,7 +2131,7 @@ $scope.requestEmployeePageLoading = false;
             $scope.user_id = $routeParams.userid
 
             //console.log($scope.user_id)
-            User.findUser($scope.name).then(function (data) {
+            User.findUser($rootScope.user_id).then(function (data) {
                 //console.log(data)
                 $scope.locationsArray = data.data.user[0].locations;
                 $scope.supervisorsArray = data.data.user[0].supervisors
@@ -3246,7 +3246,7 @@ $scope.requestEmployeePageLoading = false;
 
             $scope.hoursArrayForHistory = [];
             if ($scope.usersLoaded) {
-                User.findUser($scope.currentUserHistoryFile).then(function (data) {
+                User.findUser($rootScope.user_id).then(function (data) {
 
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                     //console.log($scope.payPeriodHistory)
@@ -4177,7 +4177,7 @@ $scope.currentIndex = null;
                    }*/
 
 
-                User.findUser($scope.currentUserFile).then(function (data) {
+                User.findUser($rootScope.user_id).then(function (data) {
                     //console.log(data)
                     $scope.currentEmployee = data.data.user
                     $scope.loadingCurrentEmployee = false;
@@ -4310,7 +4310,7 @@ $scope.currentIndex = null;
 
                 $scope.incompletePayPeriodPageOpen = false;
 
-                User.findUser($scope.name).then(function (data) {
+                User.findUser($rootScope.user_id).then(function (data) {
                     //console.log(data)
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                     //console.log($scope.payPeriodHistory)
@@ -4811,7 +4811,7 @@ doc.text(String("PAYE"), 133, 189)
                 $scope.bookedJobsPageOpened = false;
                 $scope.complaintsPageOpened = false;
                 $scope.commentsPageOpened = false;
-                User.findUser($scope.name).then(function (data) {
+                User.findUser($rootScope.user_id).then(function (data) {
                     //console.log(data)
                     $scope.payPeriodHistory = data.data.user[0].payperiodhistory
                     $scope.loadingWorkHistoryProfile = false;

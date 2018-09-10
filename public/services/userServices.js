@@ -39,9 +39,10 @@ angular.module('userServices',['authServices']).config(function(){
     userFactory.removeJob = function(jobData){
         return $http.post('/api/users/removejob',jobData)
     }
-    userFactory.findUser = function(name){
-        console.log(name)
-        return $http.put('/api/users/finduser/'+name)
+    userFactory.findUser = function(id){
+      /*  console.log(name)
+        return $http.put('/api/users/finduser/'+name)*/
+        return $http.put('/api/users/finduser/'+id)
     }
     userFactory.removeUser = function(name){
         return $http.put('/api/users/removeuser/'+name)

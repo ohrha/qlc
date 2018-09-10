@@ -1549,9 +1549,9 @@ console.log('Hereo')
             }
         })
     })
-    app.put('/users/finduser/:name', function (req, res) {
-        console.log(req.params.name)
-        User.find({ name: req.params.name }, function (err, user) {
+    app.put('/users/finduser/:id', function (req, res) {
+       //s console.log(req.params.name)
+        User.find({ _id: req.params.id }, function (err, user) {
             if (err) throw err;
             if (!user) {
                 res.json({ success: false, message: "User not found.." })

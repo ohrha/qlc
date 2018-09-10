@@ -489,7 +489,7 @@
 
                         <tbody ng-repeat="page in employeesPaginated[page] | filter:{userclass:'employee'} track by $index">
                             <tr>
-                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber,page._id)">{{$index+1}}.{{page.name}}</a></td>
                                 <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                             </tr>
 
@@ -3529,13 +3529,13 @@
 
                                         <tbody ng-repeat="page in employeesPaginated[page] | filter:{userclass:'employee'} track by $index">
                                             <tr>
-                                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFileHistoryManageTimeSheets(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                                                <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFileHistoryManageTimeSheets(page.name,page.phonenumber,page._id)">{{$index+1}}.{{page.name}}</a></td>
                                                 <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                                             </tr>
 
 
                                         </tbody>
-                                    </table>
+                                    </table> 
 
              <div ng-show="employeesPaginated.length>1" class="animated fadeIn">
 
@@ -4035,7 +4035,7 @@
 
                 <tbody ng-repeat="page in employeesPaginated[page]| filter:{userclass:'employee'} track by $index">
                     <tr>
-                        <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber)">{{$index+1}}.{{page.name}}</a></td>
+                        <td class="animated fadeIn railway"><a style="color:black;" href="#" ng-click="openUserFile(page.name,page.phonenumber,page._id)">{{$index+1}}.{{page.name}}</a></td>
                         <td class="animated fadeIn railway"><a style="color:black;" href="#">{{page.phonenumber}}</a></td>
                     </tr>
 

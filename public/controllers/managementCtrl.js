@@ -688,7 +688,7 @@
 
             if (!$scope.disputedTimeSheetsPageOpen) {
                 $scope.loadingDisputedTimeSheetsPage = true;
-                User.findUser($scope.name).then(function (data) {
+                User.findUser( $rootScope.user_id ).then(function (data) {
                     console.log(data)
                     $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
                     $scope.fadeIn = false;
@@ -3642,7 +3642,7 @@ Auth.getUser().then(function (data) {
     $scope.userName = data.data.name
 
     $rootScope.user_id = data.data._id
-    User.findUser($scope.userName).then(function (data) {
+    User.findUser(data.data._id).then(function (data) {
         console.log(data)
         $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
         // $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
@@ -3938,7 +3938,7 @@ $scope.openIndividualPayPeriod = function (index) {
     $scope.turnOtherPayPeriodsOff = true;
     $scope.individualUser = false;
     $scope.loadingPersonalHistory = false;
-
+$('html, body').animate({ scrollTop: 0 }, 'fast');
     // $scope.historyEntryOpen = false;
     if ($scope.individualPayPeriodOpen && index !== $scope.curPeriod
     ) {
@@ -3947,7 +3947,7 @@ $scope.openIndividualPayPeriod = function (index) {
         console.log("first")
         $scope.removeRightBorder = true;
         console.log($scope.removeRightBorder)
-        User.findUser($scope.currentUserHistoryFile).then(function (data) {
+        User.findUser($scope.currentUserId).then(function (data) {
 
             $scope.payPeriodHistory = data.data.user[0].payperiodhistory
             console.log($scope.payPeriodHistory)
@@ -6138,7 +6138,7 @@ $scope.openCloseIssue = function () {
 
 $scope.openManagementPage = function () {
 
-    User.findUser($scope.userName).then(function (data) {
+    User.findUser($rootScope.user_id).then(function (data) {
         console.log()
         $scope.disputedTimeSheetsArray = data.data.user[0].disputedtimesheets
         // $scope.delinquentTimeSheetArray = data.data.user[0].delinquenttimesheets
@@ -6253,7 +6253,7 @@ $scope.openCloseBookedJobs = function () {
     }
 }
 $scope.individualUser = false;
-$scope.openUserFileHistoryManageTimeSheets = function (name, phonenumber) {
+$scope.openUserFileHistoryManageTimeSheets = function (name, phonenumber,id) {
     $scope.openJob = 0;
     $scope.historyPageOpenProfile = true;
     //$scope.individualUser = true;
@@ -6274,13 +6274,14 @@ $scope.openUserFileHistoryManageTimeSheets = function (name, phonenumber) {
     console.log(name)
     //$scope.currentUserFile = name;
     $scope.currentUserHistoryFile = name;
+    $scope.currentUserId = id;
     $scope.currentUserPhoneNumber = phonenumber;
     $scope.jobDetails = [];
     //$scope.employeesPaginated = [];
 
     $scope.hoursArrayForHistory = [];
-
-    User.findUser($scope.currentUserHistoryFile).then(function (data) {
+ 
+    User.findUser(id).then(function (data) {
         console.log(data.data.user)
         $scope.payPeriodHistory = data.data.user[0].payperiodhistory
         console.log($scope.payPeriodHistory)
@@ -6823,9 +6824,9 @@ $scope.closeAddJobPage = function () {
     $scope.addJobPageOpen = false;
     $scope.jobsPageOpen = true;
 }
-$scope.openUserFile = function (name, phonenumber) {
+$scope.openUserFile = function (name, phonenumber,id) {
     $('html, body').animate({ scrollTop: 0 }, 'fast');
-
+console.log(id)
     $scope.openJob = 0;
 
     $scope.individualUser = true;
@@ -6849,7 +6850,7 @@ $scope.openUserFile = function (name, phonenumber) {
 
     if ($scope.usersLoaded) {
         console.log("users loaded")
-        User.findUser($scope.currentUserFile).then(function (data) {
+        User.findUser(id).then(function (data) {
             console.log(data)
             $scope.currentEmployee = data.data.user
 
