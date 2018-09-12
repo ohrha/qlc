@@ -929,7 +929,7 @@
                     $scope.adminMessagesPageOpen = true;
                     $scope.adminMessagesForPagination = [];
                     $scope.adminMessagesPaginated = [];
-                    User.getMessages($scope.currentUserId).then(function (data) {
+                    User.getMessages($scope.user_id).then(function (data) {
                         console.log(data)
                         $scope.pageLimit = 4;
                         $scope.adminMessagesArray = data.data.messages;
