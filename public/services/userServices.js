@@ -187,11 +187,11 @@ angular.module('userServices',['authServices']).config(function(){
 
         return $http.put('/api/users/getmessages/'+id)
     }
-    userFactory.changeMessageToRead = function(name,index){
-        return $http.put('/api/users/changemessagetoread/'+name+"/"+index)
+    userFactory.changeMessageToRead = function(id,index){
+        return $http.put('/api/users/changemessagetoread/'+id+"/"+index)
     }
-    userFactory.changeMessageToUnRead = function(name,index){
-        return $http.put('/api/users/changemessagetounread/'+name+"/"+index)
+    userFactory.changeMessageToUnRead = function(id,index){
+        return $http.put('/api/users/changemessagetounread/'+id+"/"+index)
     }
        userFactory.removeMessage = function(name,index){
         return $http.put('/api/users/removemessage/'+name+"/"+index)
