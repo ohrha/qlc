@@ -1018,7 +1018,7 @@ console.log('Hereo')
             } else {
                 //res.json({success: true,})
                 user[0].comments[req.params.index].read = false;
-                User.findOneAndUpdate({ name: req.params.name }, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
+                User.findOneAndUpdate({ _id: req.params.id }, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
                     if (err) throw err;
                     if (!user) {
                         res.json({ success: false, message: "User found and updated..." })
@@ -1037,7 +1037,7 @@ console.log('Hereo')
             } else {
                 //res.json({success: true,})
                 user[0].comments[req.params.index].read = true;
-                User.findOneAndUpdate({ name: req.params.name }, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
+                User.findOneAndUpdate({ _id: req.params.id}, { $set: { comments: user[0].comments } }, { new: true }, function (err, user) {
                     if (err) throw err;
                     if (!user) {
                         res.json({ success: false, message: "User found and updated..." })
