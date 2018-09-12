@@ -835,7 +835,7 @@
                 $scope.messageIndex = index;
                 console.log(messageIndex)
 
-                User.changeMessageToRead($scope.currentUserId, messageIndex).then(function (data) {
+                User.changeMessageToRead($scope.user_id, messageIndex).then(function (data) {
                     console.log(data)
                     $scope.pageLimit = 4;
                     $scope.adminMessagesPaginated = [];
@@ -999,7 +999,7 @@
             $scope.messageIndex = messageindex
             console.log(messageindex)
 
-            User.changeMessageToUnRead($scope.currentUserId, $scope.messageIndex).then(function (data) {
+            User.changeMessageToUnRead($scope.user_id, $scope.messageIndex).then(function (data) {
                 console.log(data)
                 $scope.pageLimit = 4;
                 $scope.adminMessagesPaginated = [];
