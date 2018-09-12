@@ -835,7 +835,7 @@
                 $scope.messageIndex = index;
                 console.log(messageIndex)
 
-                User.changeMessageToRead($scope.name, messageIndex).then(function (data) {
+                User.changeMessageToRead($scope.currentUserId, messageIndex).then(function (data) {
                     console.log(data)
                     $scope.pageLimit = 4;
                     $scope.adminMessagesPaginated = [];
@@ -929,7 +929,7 @@
                     $scope.adminMessagesPageOpen = true;
                     $scope.adminMessagesForPagination = [];
                     $scope.adminMessagesPaginated = [];
-                    User.getMessages($scope.name).then(function (data) {
+                    User.getMessages($scope.currentUserId).then(function (data) {
                         console.log(data)
                         $scope.pageLimit = 4;
                         $scope.adminMessagesArray = data.data.messages;
@@ -999,7 +999,7 @@
             $scope.messageIndex = messageindex
             console.log(messageindex)
 
-            User.changeMessageToUnRead($scope.name, $scope.messageIndex).then(function (data) {
+            User.changeMessageToUnRead($scope.currentUserId, $scope.messageIndex).then(function (data) {
                 console.log(data)
                 $scope.pageLimit = 4;
                 $scope.adminMessagesPaginated = [];
@@ -2733,7 +2733,7 @@
                 $scope.messagesPaginated = [];
                 $scope.messageForPagination = [];
                 $scope.pageLimit = 4;
-                User.getMessages($scope.name).then(function (data) {
+                User.getMessages($scope.currentUserId).then(function (data) {
                     console.log(data)
                     $scope.messagesArray = data.data.messages;
                     $scope.messagesLoading = false;
@@ -3938,7 +3938,7 @@ $scope.openIndividualPayPeriod = function (index) {
     $scope.turnOtherPayPeriodsOff = true;
     $scope.individualUser = false;
     $scope.loadingPersonalHistory = false;
-$('html, body').animate({ scrollTop: 0 }, 'fast');
+$('html, body').animate({ scrollTop: 0 }, 'fast');openMessage
     // $scope.historyEntryOpen = false;
     if ($scope.individualPayPeriodOpen && index !== $scope.curPeriod
     ) {
