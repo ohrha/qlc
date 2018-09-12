@@ -3938,7 +3938,7 @@ $scope.openIndividualPayPeriod = function (index) {
     $scope.turnOtherPayPeriodsOff = true;
     $scope.individualUser = false;
     $scope.loadingPersonalHistory = false;
-$('html, body').animate({ scrollTop: 0 }, 'fast');openMessage
+$('html, body').animate({ scrollTop: 0 }, 'fast');
     // $scope.historyEntryOpen = false;
     if ($scope.individualPayPeriodOpen && index !== $scope.curPeriod
     ) {
