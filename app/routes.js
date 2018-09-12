@@ -1010,8 +1010,8 @@ console.log('Hereo')
             }
         })
     })
-    app.put('/users/changemessagetounread/:name/:index', function (req, res) {
-        User.find({ name: req.params.name }, function (err, user) {
+    app.put('/users/changemessagetounread/:id/:index', function (req, res) {
+        User.find({ _id: req.params.id }, function (err, user) {
             if (err) throw err;
             if (!user) {
                 res.json({ success: false, message: "User not found..." })
@@ -1029,8 +1029,8 @@ console.log('Hereo')
             }
         })
     })
-    app.put('/users/changemessagetoread/:name/:index', function (req, res) {
-        User.find({ name: req.params.name }, function (err, user) {
+    app.put('/users/changemessagetoread/:id/:index', function (req, res) {
+        User.find({ _id: req.params.id }, function (err, user) {
             if (err) throw err;
             if (!user) {
                 res.json({ success: false, message: "User not found..." })
