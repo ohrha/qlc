@@ -380,7 +380,7 @@ console.log('Hereo')
         })
     })
     app.put('/users/getrequestedjobs/:client', function (req, res) {
-        User.find({ name: req.params.client }, function (err, user) {
+        User.find({ _id: req.params.client }, function (err, user) {
             if (err) throw err;
             if (!user) {
                 res.json({ success: false, message: "User not found..." })

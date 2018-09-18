@@ -256,7 +256,7 @@
                 $timeout(function () {
                     $scope.adminHome = false;
                     $scope.requestedJobsPageOpen = true; $scope.addSupervisorPageOpen = false;
-                    User.getRequestedJobs($scope.name).then(function (data) {
+                    User.getRequestedJobs($scope.user_id).then(function (data) {
                         console.log(data)
                         $scope.requestedJobsArray = data.data.requestedjobs;
                         //$scope.locationIndex = index;
