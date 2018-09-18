@@ -2037,7 +2037,7 @@ $scope.requestEmployeePageLoading = false;
                 $scope.clientHome = false;
 
                 $scope.addSupervisorPageOpen = false;
-                User.getRequestedJobs($scope.userName).then(function (data) {
+                User.getRequestedJobs($scope.user_id).then(function (data) {
                     //console.log(data)
                     $scope.requestedJobsArray = data.data.requestedjobs;
                     //$scope.locationIndex = index;
