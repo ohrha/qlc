@@ -2583,7 +2583,7 @@
                     $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
                     console.log("$rootScope.userPayPeriod", $scope.userPayPeriod)
 
-                    if ($scope.userPayPeriod == $rootScope.payPeriod) {
+                    if ($scope.userPayPeriod !== $rootScope.payPeriod) {
                         $scope.loadingNewPayPeriod = true;
                         $scope.userPayPeriod = $rootScope.payPeriod
                         console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
@@ -2642,28 +2642,28 @@
                 }
                 if ($scope.dateNow == 8 || 9 || 10 || 11 || 12 || 13 || 14) {
 
-                    $rootScope.payPeriod = 21;
+                   // $rootScope.payPeriod = 21;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                 }
                 if ($scope.dateNow == 15 || 16 || 17 || 18 || 19 || 20 || 21) {
 
-                    $rootScope.payPeriod = 22;
+                  //  $rootScope.payPeriod = 22;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                 }
                 if ($scope.dateNow == 22 || 23 || 24 || 25 || 26 || 27 || 28) {
 
-                    $rootScope.payPeriod = 23;
+                   // $rootScope.payPeriod = 23;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
                 }
                 if ($scope.dateNow == 29 || 30 || 31) {
 
-                    $rootScope.payPeriod = 24;
+                    //$rootScope.payPeriod = 24;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
 
 
