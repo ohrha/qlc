@@ -2572,7 +2572,7 @@
                 }
             }
             if ($scope.month == 10) {
-                if ($scope.dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
+                if ($scope.dateNow == 1 || $scope.dateNow == 2 || $scope.dateNow == 3 || $scope.dateNow == 4 || $scope.dateNow == 5 || $scope.dateNow == 6 || $scope.dateNow == 7) {
 
                   
                   
