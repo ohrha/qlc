@@ -2604,7 +2604,7 @@
                                 }
 
                                 $scope.newPPObject.newpayperiod = $rootScope.payPeriod
-                                $scope.newPPObject.oldpayperiod = 9
+                                $scope.newPPObject.oldpayperiod = 7
                                 $scope.newPPObject.currentusername = data.data.users[i].name
 
                                 $scope.currentusernameArray.push(data.data.users[i].name)
