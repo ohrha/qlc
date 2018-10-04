@@ -2574,8 +2574,70 @@
             if ($scope.month == 10) {
                 if ($scope.dateNow == 1 || 2 || 3 || 4 || 5 || 6 || 7) {
 
-                    $rootScope.payPeriod = 20;
+                  
+                  
+                    $rootScope.payPeriod =10;
                     console.log("$rootScope.payPeriod", $rootScope.payPeriod)
+                    $scope.newPPObject = {}
+                    $scope.newDeliquentObject = {}
+                    $scope.newPPObject.newpayperiod = $rootScope.payPeriod;
+                    console.log("$rootScope.userPayPeriod", $scope.userPayPeriod)
+
+                    if ($scope.userPayPeriod !== $rootScope.payPeriod) {
+                        $scope.loadingNewPayPeriod = true;
+                        $scope.userPayPeriod = $rootScope.payPeriod
+                        console.log("$rootScope.payPeriod2", $rootScope.payPeriod)
+                        User.getUsers().then(function (data) {
+
+
+                            for (var i = 0; i < data.data.users.length; i++) {
+
+                                $scope.nameObjectForNewPayPeriodHistoryEntry = {
+                                    name: data.data.users[i].name
+                                }
+
+
+
+                                data.data.users[i].jobDetails.push($scope.nameObjectForNewPayPeriodHistoryEntry)
+                                $scope.newPayPeriodHistoryEntry = {
+                                    entry: data.data.users[i].jobDetails
+                                }
+
+                                $scope.newPPObject.newpayperiod = $rootScope.payPeriod
+                                $scope.newPPObject.oldpayperiod = 9
+                                $scope.newPPObject.currentusername = data.data.users[i].name
+
+                                $scope.currentusernameArray.push(data.data.users[i].name)
+                                $scope.newPPObject.currentusernamearray = $scope.currentusernameArray                 // $scope.newPayPeriodObject.lootch = $scope.employees[i].name
+
+
+                            }
+                            console.log("I'm heeeeer")
+                            console.log($scope.newPPObject)
+                            //This works..//
+                            User.checkAndAddDelinquentTimeSheet($scope.newPPObject).then(function (data) {
+
+                            })
+                            //This works..//
+
+                            User.changeUserPayPeriod($scope.newPPObject).then(function (data) {
+                                $scope.loadingAddToWorkHistory = true;
+                                console.log(data)
+                                console.log($scope.newPayPeriodHistoryEntry)
+                                $scope.addPayPeriodToPayPeriodHistory();
+
+
+                            })
+                        })
+
+                }
+                
+                     else {
+
+                        console.log("Pay Periods Match")
+
+                    }
+
 
                 }
                 if ($scope.dateNow == 8 || 9 || 10 || 11 || 12 || 13 || 14) {
